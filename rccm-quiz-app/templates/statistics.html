@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+{% block title %}統計 | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">総合統計情報</h2>
+    <!-- 全体進捗プログレスバー -->
+    <div class="mb-4">
+        <label for="progressBar" class="form-label">全体正答率</label>
+        <div class="progress" style="height: 30px;">
+            <div id="progressBar" class="progress-bar" role="progressbar" style="width: {{ '%.1f' % (overall_stats.total_accuracy|default(0.0)) }}%;" aria-valuenow="{{ '%.1f' % (overall_stats.total_accuracy|default(0.0)) }}" aria-valuemin="0" aria-valuemax="100">
+                {{ '%.1f' % (overall_stats.total_accuracy|default(0.0)) }}%
+            </div>
+        </div>
+    </div>
+    <!-- 分野別正答率 横棒グラフ（コンパクト化） -->
+    <div class="card mb-3">
+        <div class="card-header">分野別正答率</div>
+        <div class="card-body">
+            <canvas id="categoryBarChart" height="120"></canvas>
+            <p class="text-muted mt-2 mb-0">各分野の正答率を横棒グラフで表示します。</p>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="card-header">全体サマリー</div>
+        <div class="card-body">
+            <p><strong>実施した問題数:</strong> {{ overall_stats.total_quizzes | default('データなし') }}</p>
+            <p><strong>全問題の累計正答率:</strong> {{ '%.1f' % (overall_stats.total_accuracy|default(0.0)) }}%</p>
+            <p><strong>平均解答時間:</strong> {{ overall_stats.average_time_per_question | default('データなし') }} 秒/問</p>
+            {% set accuracy = overall_stats.total_accuracy|default(0.0) %}
+            <div class="mt-2">
+                {% if accuracy >= 90 %}
+                    <span class="badge bg-success">素晴らしい成績です！この調子で頑張りましょう！</span>
+                {% elif accuracy >= 80 %}
+                    <span class="badge bg-primary">あと少しで90%達成！引き続き頑張りましょう！</span>
+                {% elif accuracy >= 60 %}
+                    <span class="badge bg-warning text-dark">苦手分野を重点的に復習しましょう。</span>
+                {% else %}
+                    <span class="badge bg-danger">まずは基礎をしっかり固めましょう！</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="card-header">分野別詳細統計</div>
+        <div class="card-body p-0">
+            {% if category_details %}
+            <div class="table-responsive">
+                <table class="table table-sm table-striped table-bordered mb-0" style="font-size:0.92em;">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 90px;">分野</th>
+                            <th style="width: 60px;">解答数</th>
+                            <th style="width: 60px;">正答数</th>
+                            <th style="width: 70px;">正答率(%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for category, detail in category_details.items() %}
+                        <tr>
+                            <td>{{ category }}</td>
+                            <td>{{ detail.total_answered }}</td>
+                            <td>{{ detail.correct_count }}</td>
+                            <td>{{ '%.1f' % (detail.accuracy|default(0.0)) }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+                <p class="m-3">分野別統計データがありません。</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">分野別バランス（レーダーチャート）</div>
+        <div class="card-body py-2">
+            <canvas id="categoryRadarChart" height="220" style="max-width:400px; display:block; margin:0 auto;"></canvas>
+            <p class="text-muted mt-2 mb-0" style="font-size:0.92em;">分野ごとのバランス・強み弱みをレーダーチャートで表示します。</p>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header">成績推移（日ごとの正答率）</div>
+        <div class="card-body">
+            <canvas id="accuracyTrendChart" height="120"></canvas>
+            <p class="text-muted mt-2 mb-0">日ごとの正答率推移を縦棒グラフで表示します。</p>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">直近の問題履歴</div>
+        <div class="card-body">
+            {% if quiz_history %}
+                <ul class="list-group">
+                {% for quiz in quiz_history %}
+                    <li class="list-group-item">
+                        実施日時: {{ quiz.date }}, 分野: {{ quiz.category | default('全体') }},
+                        正答: {{ '○' if quiz.is_correct else '×' }},
+                        解答時間: {{ quiz.elapsed | default('-') }} 秒
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>問題履歴がありません。</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <form method="post" action="/reset" onsubmit="return confirm('本当に学習履歴をリセットしますか？この操作は元に戻せません。');">
+      <button type="submit" class="btn btn-danger mt-3">全学習履歴をリセット</button>
+    </form>
+
+    <div class="mt-4">
+        <a href="/" class="btn btn-secondary">ホームに戻る</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// 分野別正答率データ
+const categoryData = [
+{% for category, detail in category_details.items() %}
+    {name: "{{ category }}", accuracy: {{ '%.1f' % (detail.accuracy|default(0.0)) }}}{% if not loop.last %},{% endif %}
+{% endfor %}
+];
+// 横棒グラフ
+const ctxBar = document.getElementById('categoryBarChart').getContext('2d');
+const barChart = new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+        labels: categoryData.map(d => d.name),
+        datasets: [{
+            label: '正答率（%）',
+            data: categoryData.map(d => d.accuracy),
+            backgroundColor: categoryData.map(d => d.accuracy >= 80 ? '#4CAF50' : d.accuracy >= 50 ? '#FF9800' : '#F44336'),
+            borderWidth: 1,
+            barThickness: 18
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            title: { display: false },
+            tooltip: {
+                enabled: true,
+                callbacks: {
+                    label: function(context) {
+                        return context.parsed.x + '%';
+                    }
+                }
+            }
+        },
+        scales: {
+            x: {
+                min: 0,
+                max: 100,
+                title: { display: true, text: '正答率（%）' },
+                ticks: { stepSize: 10, font: { size: 10 } }
+            },
+            y: {
+                title: { display: false },
+                ticks: { font: { size: 12 } }
+            }
+        },
+        animation: {
+            duration: 600,
+            easing: 'easeOutQuart'
+        }
+    }
+});
+// レーダーチャート
+const ctxRadar = document.getElementById('categoryRadarChart').getContext('2d');
+const radarChart = new Chart(ctxRadar, {
+    type: 'radar',
+    data: {
+        labels: categoryData.map(d => d.name),
+        datasets: [{
+            label: '分野別正答率',
+            data: categoryData.map(d => d.accuracy),
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(54, 162, 235, 1)'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            title: { display: false }
+        },
+        scales: {
+            r: {
+                min: 0,
+                max: 100,
+                ticks: { stepSize: 20, font: { size: 10 } }
+            }
+        },
+        animation: {
+            duration: 600,
+            easing: 'easeOutQuart'
+        }
+    }
+});
+// 成績推移グラフ（日ごとの正答率%）
+const dailyAccuracyList = {{ daily_accuracy_list|tojson|safe }};
+const trendLabels = dailyAccuracyList.map(d => d.date);
+const trendData = dailyAccuracyList.map(d => d.accuracy);
+const ctxTrend = document.getElementById('accuracyTrendChart').getContext('2d');
+const trendChart = new Chart(ctxTrend, {
+    type: 'bar',
+    data: {
+        labels: trendLabels,
+        datasets: [{
+            label: '正答率（%）',
+            data: trendData,
+            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            title: { display: false }
+        },
+        scales: {
+            y: {
+                min: 0,
+                max: 100,
+                title: { display: true, text: '正答率（%）' },
+                ticks: { stepSize: 20 }
+            }
+        },
+        animation: {
+            duration: 600,
+            easing: 'easeOutQuart'
+        }
+    }
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}問題 | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <span>問題 {{ session.get('current_no', 1) }}/{{ total_questions }}</span>
+    <span class="float-end">分野: {{ session.get('current_category', '全体') }}</span>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ question['question'] }}</h5>
+    <form method="post" action="/quiz">
+      <input type="hidden" name="qid" value="{{ question['id'] }}">
+      <input type="hidden" name="current_no" value="{{ current_no }}">
+      <input type="hidden" name="elapsed" id="elapsed" value="0">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="answer" id="choiceA" value="A" required>
+        <label class="form-check-label" for="choiceA">A. {{ question['option_a'] }}</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="answer" id="choiceB" value="B" required>
+        <label class="form-check-label" for="choiceB">B. {{ question['option_b'] }}</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="answer" id="choiceC" value="C" required>
+        <label class="form-check-label" for="choiceC">C. {{ question['option_c'] }}</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="answer" id="choiceD" value="D" required>
+        <label class="form-check-label" for="choiceD">D. {{ question['option_d'] }}</label>
+      </div>
+      <button type="submit" class="btn btn-success mt-3">次へ</button>
+    </form>
+    <div class="mt-3">
+      <strong>AI学習推奨:</strong> <span id="ai-recommend">{{ ai_recommend }}</span>
+      <span class="ms-3">進捗: {{ current_no }}/{{ total_questions }}</span>
+    </div>
+  </div>
+</div>
+<script>
+let start = Date.now();
+document.querySelector('form').addEventListener('submit', function() {
+  document.getElementById('elapsed').value = ((Date.now() - start) / 1000).toFixed(1);
+});
+</script>
+{% endblock %} 
