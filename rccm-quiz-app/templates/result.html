@@ -29,21 +29,13 @@
     {% endif %}
 
     <div class="card mb-4">
-        <div class="card-header">AI分析フィードバック</div>
-        <div class="card-body bg-light">
-            <p>{{ ai_feedback or '特に弱点分野はありません。' }}</p>
-            <small class="text-muted">※現状は分野別正答率の単純集計です。今後AI分析機能を拡張予定</small>
-        </div>
-    </div>
-
-    <div class="card mb-4">
         <div class="card-header">次のアクション</div>
         <div class="card-body d-flex flex-wrap gap-2">
             <div class="w-100 mb-2">
                 <p>AIおすすめ学習カテゴリ: <strong>{{ recommended_category }}</strong></p>
             </div>
             <a href="/quiz?reset=1" class="btn btn-primary mb-2">もう一度問題を始める</a>
-            <a href="/statistics" class="btn btn-secondary mb-2">総合統計情報を見る</a>
+            <a href="/statistics" class="btn btn-secondary mb-2">回答結果分析</a>
             <a href="/categories" class="btn btn-info mb-2">カテゴリー一覧に戻る</a>
             <a href="#" class="btn btn-info mb-2 disabled ms-auto" tabindex="-1" aria-disabled="true">AIおすすめカテゴリーを学習（今後開発予定）</a>
         </div>

@@ -4,29 +4,24 @@
 <div class="text-center">
   <h1 class="mb-4">RCCM試験問題集アプリ</h1>
   <p>RCCM試験対策用Webアプリです。</p>
-  
-  {# 新しい app.py の機能に対応するセクションを追加 #}
-  {% if recommended_category %}
-    <div class="alert alert-info" role="alert">
-      AIおすすめ学習カテゴリ: <strong>{{ recommended_category }}</strong>
-      <a href="/quiz?category={{ recommended_category }}" class="btn btn-sm btn-primary ms-3">学習開始</a>
-    </div>
-  {% endif %}
 
-  <ul class="list-group list-group-flush mb-4">
-    <li class="list-group-item">100問の分野別問題（今後開発予定）</li>
-    <li class="list-group-item">AIによる学習推奨（今後開発予定）</li>
-    <li class="list-group-item">分野別弱点分析（今後開発予定）</li>
-    <li class="list-group-item">PWA対応・オフライン学習（今後開発予定）</li>
-    <li class="list-group-item">学習履歴保存（今後開発予定）</li>
-  </ul>
-  
-  {# 統計情報へのリンクを追加 #}
-  <div class="mb-4">
-    <a href="/statistics" class="btn btn-secondary btn-lg">統計情報を見る</a>
+  {# ボタン構成を変更 #}
+  <div class="d-grid gap-3 col-md-6 mx-auto mb-4">
+    <a href="/quiz" class="btn btn-primary btn-lg">ランダム出題開始</a>
+    <a href="/categories" class="btn btn-info btn-lg">カテゴリー別出題開始</a>
+    <a href="/statistics" class="btn btn-secondary btn-lg">回答結果分析</a>
   </div>
 
-  <a href="/quiz" class="btn btn-primary btn-lg">すべての問題を始める</a>
+  {# 開発予定の機能リストは画面下部に移動し、スタイルを調整 #}
+  <div class="mt-5 text-muted" style="font-size: 0.8rem;">
+    <ul class="list-inline">
+      <li class="list-inline-item">100問の分野別問題（今後開発予定）</li>
+      <li class="list-inline-item">AIによる学習推奨（今後開発予定）</li>
+      <li class="list-inline-item">分野別弱点分析（今後開発予定）</li>
+      <li class="list-inline-item">PWA対応・オフライン学習（今後開発予定）</li>
+      <li class="list-inline-item">学習履歴保存（今後開発予定）</li>
+    </ul>
+  </div>
 
 </div>
 {% endblock %} 
