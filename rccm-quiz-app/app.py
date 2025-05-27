@@ -259,9 +259,9 @@ def quiz():
         print(f"   次の位置: {next_no}/{len(quiz_question_ids)}")
         debug_session("POST処理後")
         
-        # クイズ終了判定
+        # 問題終了判定
         if next_no >= len(quiz_question_ids):
-            print("🏁 クイズ終了 → 結果画面へ")
+            print("🏁 問題終了 → 結果画面へ")
             return redirect(url_for('result'))
         else:
             category = session.get('quiz_category', '全体')
@@ -309,7 +309,7 @@ def quiz():
         need_reset = True
         reset_reason = f"範囲外 ({current_no} >= {len(quiz_question_ids)})"
     
-    # 新しいクイズセッション開始
+    # 新しい問題セッション開始
     if need_reset:
         print(f"🔄 セッションリセット: {reset_reason}")
         
@@ -373,7 +373,7 @@ def result():
         if h.get('is_correct'):
             category_scores[cat]['correct'] += 1
     
-    print(f"�� 結果: {correct_count}/{total_questions}問正解")
+    print(f"✅ 結果: {correct_count}/{total_questions}問正解")
     
     return render_template(
         'result.html',
@@ -489,6 +489,14 @@ def reset():
         session.clear()
         return redirect(url_for('index'))
     return render_template('reset_confirm.html')
+
+@app.route('/help')
+def help_page():
+    """ヘルプ・操作説明ページ"""
+    print("📖 ヘルプページ表示")
+    # アプリの設定（例：出題数）をテンプレートに渡すことも可能
+    # return render_template('help.html', total_questions=QUESTIONS_PER_SESSION)
+    return render_template('help.html')
 
 @app.errorhandler(404)
 def page_not_found(e):
