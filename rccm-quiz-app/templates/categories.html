@@ -12,24 +12,27 @@
                         <thead class="table-light">
                             <tr>
                                 <th style="width: 120px;">分野</th>
+                                <th style="width: 100px;">選択</th>
                                 <th style="width: 80px;">問題数</th>
                                 <th style="width: 100px;">解答済み</th>
                                 <th style="width: 80px;">正答数</th>
                                 <th style="width: 80px;">正答率(%)</th>
                                 <th style="width: 80px;">進捗(%)</th>
-                                <th style="width: 100px;">選択</th>
                             </tr>
                         </thead>
                         <tbody>
                         {% for category, detail in category_details.items() %}
                             <tr>
                                 <td><a href="/quiz?category={{ category }}"><strong>{{ category }}</strong></a></td>
+                                <td><a href="/quiz?category={{ category }}" class="btn btn-sm btn-primary">学習</a></td>
                                 <td>{{ detail.total_questions }}</td>
                                 <td>{{ detail.total_answered }}</td>
                                 <td>{{ detail.correct_count }}</td>
-                                <td>{{ '%.1f' % (detail.accuracy|default(0.0)) }}</td>
+                                {% set accuracy = (detail.accuracy|default(0.0)) %}
+                                <td class="{% if accuracy < 60 %}table-danger{% elif accuracy < 80 %}table-warning{% else %}table-success{% endif %}">
+                                  {{ '%.1f' % accuracy }}
+                                </td>
                                 <td>{% if progresses and progresses[category] is not none %}{{ progresses[category] }}{% else %}0.0{% endif %}</td>
-                                <td><a href="/quiz?category={{ category }}" class="btn btn-sm btn-primary">学習</a></td>
                             </tr>
                         {% endfor %}
                         </tbody>

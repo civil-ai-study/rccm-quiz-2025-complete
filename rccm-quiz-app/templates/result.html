@@ -12,18 +12,34 @@
 
     <h5 class="mt-4">分野別成績</h5>
     {% if category_scores %}
-    <ul>
+    <table class="table table-bordered table-striped mt-3">
+      <thead>
+        <tr>
+          <th>分野名</th>
+          <th>正答数</th>
+          <th>正答率</th>
+        </tr>
+      </thead>
+      <tbody>
       {% for category, score_info in category_scores.items() %}
-        <li>
-          {{ category }}: {{ score_info.correct }} / {{ score_info.total }} 問正解 （正答率: {{ "{:.1f}".format(score_info.correct / score_info.total * 100) }}%）
-          {% if score_info.correct / score_info.total < 0.6 %}
-            <span class="text-danger">（弱点分野）</span>
-          {% elif score_info.correct / score_info.total > 0.8 %}
-            <span class="text-success">（得意分野）</span>
-          {% endif %}
-        </li>
+        <tr>
+          <td>{{ category }}</td>
+          <td>{{ score_info.correct }} / {{ score_info.total }} 問正解</td>
+          <td>
+            {% set accuracy = (score_info.correct / score_info.total * 100) if score_info.total > 0 else 0.0 %}
+            <span class="{% if accuracy < 60 %}text-danger{% elif accuracy > 80 %}text-success{% endif %}">
+              {{ "{:.1f}".format(accuracy) }}%
+            </span>
+            {% if accuracy < 60 %}
+              <span class="text-danger">（弱点分野）</span>
+            {% elif accuracy > 80 %}
+              <span class="text-success">（得意分野）</span>
+            {% endif %}
+          </td>
+        </tr>
       {% endfor %}
-    </ul>
+      </tbody>
+    </table>
     {% else %}
       <p>分野別成績データがありません。</p>
     {% endif %}

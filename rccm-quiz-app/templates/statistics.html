@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{% block title %}統計 | RCCM試験問題集{% endblock %}
+{% block title %}回答結果分析 | RCCM試験問題集{% endblock %}
 {% block content %}
 <div class="container py-4">
-    <h2 class="mb-4">総合統計情報</h2>
+    <h2 class="mb-4">総合回答結果分析</h2>
     <!-- 全体進捗プログレスバー -->
     <div class="mb-4">
         <label for="progressBar" class="form-label">全体正答率</label>
@@ -14,7 +14,7 @@
     </div>
     <!-- 分野別正答率 横棒グラフ（コンパクト化） -->
     <div class="card mb-3">
-        <div class="card-header">分野別正答率</div>
+        <div class="card-header">分野別回答結果</div>
         <div class="card-body">
             <canvas id="categoryBarChart" height="120"></canvas>
             <p class="text-muted mt-2 mb-0">各分野の正答率を横棒グラフで表示します。</p>
@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="card mb-3">
-        <div class="card-header">分野別詳細統計</div>
+        <div class="card-header">分野別詳細回答結果</div>
         <div class="card-body p-0">
             {% if category_details %}
             <div class="table-responsive">
@@ -73,7 +73,7 @@
     </div>
 
     <div class="card mb-4">
-        <div class="card-header">分野別バランス（レーダーチャート）</div>
+        <div class="card-header">分野別回答バランス（レーダーチャート）</div>
         <div class="card-body py-2">
             <canvas id="categoryRadarChart" height="220" style="max-width:400px; display:block; margin:0 auto;"></canvas>
             <p class="text-muted mt-2 mb-0" style="font-size:0.92em;">分野ごとのバランス・強み弱みをレーダーチャートで表示します。</p>
@@ -81,7 +81,7 @@
     </div>
 
     <div class="card mb-3">
-        <div class="card-header">成績推移（日ごとの正答率）</div>
+        <div class="card-header">正答率推移（日ごと）</div>
         <div class="card-body">
             <canvas id="accuracyTrendChart" height="120"></canvas>
             <p class="text-muted mt-2 mb-0">日ごとの正答率推移を縦棒グラフで表示します。</p>
@@ -121,21 +121,17 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 // 分野別正答率データ
-const categoryData = [
-{% for category, detail in category_details.items() %}
-    {name: "{{ category }}", accuracy: {{ '%.1f' % (detail.accuracy|default(0.0)) }}}{% if not loop.last %},{% endif %}
-{% endfor %}
-];
+const categoryData = {{ category_details | tojson | safe }};
 // 横棒グラフ
 const ctxBar = document.getElementById('categoryBarChart').getContext('2d');
 const barChart = new Chart(ctxBar, {
     type: 'bar',
     data: {
-        labels: categoryData.map(d => d.name),
+        labels: Object.keys(categoryData),
         datasets: [{
             label: '正答率（%）',
-            data: categoryData.map(d => d.accuracy),
-            backgroundColor: categoryData.map(d => d.accuracy >= 80 ? '#4CAF50' : d.accuracy >= 50 ? '#FF9800' : '#F44336'),
+            data: Object.values(categoryData).map(d => d.accuracy),
+            backgroundColor: Object.values(categoryData).map(d => d.accuracy >= 80 ? '#4CAF50' : d.accuracy >= 50 ? '#FF9800' : '#F44336'),
             borderWidth: 1,
             barThickness: 18
         }]
@@ -178,16 +174,16 @@ const ctxRadar = document.getElementById('categoryRadarChart').getContext('2d');
 const radarChart = new Chart(ctxRadar, {
     type: 'radar',
     data: {
-        labels: categoryData.map(d => d.name),
+        labels: Object.keys(categoryData),
         datasets: [{
             label: '分野別正答率',
-            data: categoryData.map(d => d.accuracy),
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+            data: Object.values(categoryData).map(d => d.accuracy),
+            backgroundColor: Object.values(categoryData).map(d => d.accuracy >= 80 ? 'rgba(54, 162, 235, 0.2)' : d.accuracy >= 50 ? 'rgba(255, 206, 86, 0.2)' : 'rgba(255, 99, 132, 0.2)'),
+            borderColor: Object.values(categoryData).map(d => d.accuracy >= 80 ? 'rgba(54, 162, 235, 1)' : d.accuracy >= 50 ? 'rgba(255, 206, 86, 1)' : 'rgba(255, 99, 132, 1)'),
+            pointBackgroundColor: Object.values(categoryData).map(d => d.accuracy >= 80 ? 'rgba(54, 162, 235, 1)' : d.accuracy >= 50 ? 'rgba(255, 206, 86, 1)' : 'rgba(255, 99, 132, 1)'),
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(54, 162, 235, 1)'
+            pointHoverBorderColor: Object.values(categoryData).map(d => d.accuracy >= 80 ? 'rgba(54, 162, 235, 1)' : d.accuracy >= 50 ? 'rgba(255, 206, 86, 1)' : 'rgba(255, 99, 132, 1)')
         }]
     },
     options: {
