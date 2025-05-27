@@ -29,7 +29,7 @@ def load_questions():
     
     try:
         if not os.path.exists(QUESTIONS_CSV):
-            print(f"❌ CSVファイルが見つかりません: {QUESTIONS_CSV}")
+            # print(f"❌ CSVファイルが見つかりません: {QUESTIONS_CSV}")
             return get_sample_data()
         
         # 複数のエンコーディングを試行
@@ -38,27 +38,27 @@ def load_questions():
         
         for encoding in encodings:
             try:
-                print(f"📁 エンコーディング {encoding} で読み込み試行中...")
+                # print(f"📁 エンコーディング {encoding} で読み込み試行中...")
                 df = pd.read_csv(QUESTIONS_CSV, encoding=encoding)
-                print(f"✅ エンコーディング {encoding} で読み込み成功")
+                # print(f"✅ エンコーディング {encoding} で読み込み成功")
                 break
             except UnicodeDecodeError:
-                print(f"❌ エンコーディング {encoding} で読み込み失敗")
+                # print(f"❌ エンコーディング {encoding} で読み込み失敗")
                 continue
             except Exception as e:
-                print(f"❌ エンコーディング {encoding} でその他のエラー: {e}")
+                # print(f"❌ エンコーディング {encoding} でその他のエラー: {e}")
                 continue
         
         if df is None or df.empty:
-            print("❌ すべてのエンコーディングで読み込み失敗")
+            # print("❌ すべてのエンコーディングで読み込み失敗")
             return get_sample_data()
         
         # 必要な列の存在確認
         required_columns = ['id', 'category', 'question', 'option_a', 'option_b', 'option_c', 'option_d', 'correct_answer']
         missing_columns = [col for col in required_columns if col not in df.columns]
         if missing_columns:
-            print(f"❌ 必要な列が不足: {missing_columns}")
-            print(f"📊 利用可能な列: {list(df.columns)}")
+            # print(f"❌ 必要な列が不足: {missing_columns}")
+            # print(f"📊 利用可能な列: {list(df.columns)}")
             return get_sample_data()
         
         questions = df.to_dict(orient='records')
@@ -69,14 +69,14 @@ def load_questions():
             try:
                 # IDの検証と変換
                 if pd.isna(q.get('id')) or q.get('id') == '':
-                    print(f"⚠️ 行{i+1}: IDが空です")
+                    # print(f"⚠️ 行{i+1}: IDが空です")
                     continue
                 
                 q['id'] = int(float(q['id']))  # float経由で変換（Excel由来の数値対応）
                 
                 # 必須フィールドの検証
                 if not q.get('question') or not q.get('correct_answer'):
-                    print(f"⚠️ 行{i+1}: 問題文または正解が空です")
+                    # print(f"⚠️ 行{i+1}: 問題文または正解が空です")
                     continue
                 
                 # 文字列フィールドの空白除去
@@ -87,29 +87,29 @@ def load_questions():
                 valid_questions.append(q)
                 
             except (ValueError, TypeError) as e:
-                print(f"⚠️ 行{i+1}: データ変換エラー - {e}")
+                # print(f"⚠️ 行{i+1}: データ変換エラー - {e}")
                 continue
         
         if not valid_questions:
-            print("❌ 有効な問題データがありません")
+            # print("❌ 有効な問題データがありません")
             return get_sample_data()
         
         _questions_cache = valid_questions
-        print(f"✅ 問題データ読み込み完了: {len(valid_questions)}問")
+        # print(f"✅ 問題データ読み込み完了: {len(valid_questions)}問")
         
-        # 最初の3問をデバッグ表示
-        for i, q in enumerate(valid_questions[:3]):
-            print(f"📝 問題{i+1}: ID={q['id']}, カテゴリ={q.get('category')}, 正解={q.get('correct_answer')}")
+        # 最初の3問をデバッグ表示 (必要に応じてコメントアウトまたは削除)
+        # for i, q in enumerate(valid_questions[:3]):
+        #     print(f"📝 問題{i+1}: ID={q['id']}, カテゴリ={q.get('category')}, 正解={q.get('correct_answer')}")
         
         return valid_questions
         
     except Exception as e:
-        print(f"❌ 予期しないエラー: {str(e)}")
+        # print(f"❌ 予期しないエラー: {str(e)}")
         return get_sample_data()
 
 def get_sample_data():
     """サンプル問題データ"""
-    print("🔧 サンプルデータを使用します")
+    # print("🔧 サンプルデータを使用します")
     return [
         {
             'id': 1,
@@ -508,13 +508,13 @@ def internal_error(e):
     return render_template('error.html', error="サーバーエラーが発生しました"), 500
 
 # アプリ起動時の処理
-print("アプリケーション起動中...")
+# print("アプリケーション起動中...")
 initial_questions = load_questions()
-print(f"初期読み込み: {len(initial_questions)}問")
+# print(f"初期読み込み: {len(initial_questions)}問")
 
 if __name__ == '__main__':
-    print("=" * 50)
-    print("RCCM試験問題集アプリを起動します")
-    print(f"URL: http://localhost:5000")
-    print("=" * 50)
+    # print("=" * 50)
+    # print("RCCM試験問題集アプリを起動します")
+    # print(f"URL: http://localhost:5000")
+    # print("=" * 50)
     app.run(debug=True, host='0.0.0.0', port=5000) 

@@ -59,38 +59,6 @@
 {% endblock %}
 
 {% block scripts %}
-<script>
-// 分野別正答率データをJinja2から取得
-const categoryData = [
-    {% for category, detail in category_details.items() %}
-        {name: "{{ category }}", accuracy: {{ '%.1f' % (detail.accuracy|default(0.0)) }}},
-    {% endfor %}
-];
-const ctx = document.getElementById('categoryBarChart').getContext('2d');
-const barChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: categoryData.map(d => d.name),
-        datasets: [{
-            label: '正答率（%）',
-            data: categoryData.map(d => d.accuracy),
-            backgroundColor: 'rgba(54, 162, 235, 0.6)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-                max: 100,
-                title: { display: true, text: '正答率（%）' }
-            }
-        },
-        plugins: {
-            legend: { display: false }
-        }
-    }
-});
-</script>
+<script type="application/json" id="category-data">{{ category_details | tojson }}</script>
+<script src="{{ url_for('static', filename='js/categories.js') }}"></script>
 {% endblock %} 
