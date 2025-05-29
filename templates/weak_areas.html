@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>苦手分野克服学習 - RCCM問題集</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic UI', 'Meiryo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 75%, #4facfe 100%);
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+            min-height: 100vh;
+            color: #2D3748;
+            line-height: 1.6;
+        }
+        
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 35px 70px rgba(0,0,0,0.2);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid #E2E8F0;
+        }
+        
+        .header h1 {
+            background: linear-gradient(135deg, #F56565 0%, #E53E3E 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        
+        .success-message {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #48BB78 0%, #38A169 100%);
+            color: white;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        
+        .success-message h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .weak-category {
+            margin: 25px 0;
+            padding: 25px;
+            background: rgba(245, 101, 101, 0.1);
+            border-left: 5px solid #F56565;
+            border-radius: 15px;
+        }
+        
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .category-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #C53030;
+        }
+        
+        .accuracy-badge {
+            background: #F56565;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .category-stats {
+            color: #744210;
+            margin-bottom: 15px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #F56565 0%, #E53E3E 100%);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #48BB78 0%, #38A169 100%);
+        }
+        
+        .weak-questions {
+            margin-top: 30px;
+        }
+        
+        .question-item {
+            margin: 15px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 12px;
+            border-left: 4px solid #F56565;
+            transition: all 0.3s ease;
+        }
+        
+        .question-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(245, 101, 101, 0.2);
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .question-meta {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .attempts-badge {
+            background: #ED8936;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+        
+        .success-rate {
+            color: #C53030;
+            font-weight: 600;
+        }
+        
+        .question-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 10px 0;
+            color: #2D3748;
+        }
+        
+        .question-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #2D3748;
+            margin: 30px 0 20px 0;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(135deg, #F56565 0%, #E53E3E 100%);
+            margin-right: 15px;
+            border-radius: 2px;
+        }
+        
+        .tips-section {
+            background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border-left: 4px solid #0277bd;
+        }
+        
+        .tips-section h3 {
+            color: #01579b;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .tips-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tips-list li {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #0277bd;
+        }
+        
+        .tips-list li::before {
+            content: '💡';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px solid #E2E8F0;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ヘッダー -->
+        <div class="card">
+            <div class="header">
+                <h1>🎯 苦手分野克服学習</h1>
+                <p style="color: #4A5568; font-size: 1.1rem;">間違いから学び、弱点を強みに変えましょう</p>
+            </div>
+            
+            {% if not weak_categories %}
+            <!-- 苦手分野がない場合 -->
+            <div class="success-message">
+                <h2>🎉 素晴らしい成績です！</h2>
+                <p style="font-size: 1.1rem;">{{ message }}</p>
+                <div style="margin-top: 20px;">
+                    <a href="{{ url_for('quiz') }}" class="btn btn-success" style="background: rgba(255,255,255,0.2); font-size: 1.1rem; padding: 15px 30px;">
+                        🚀 さらなる挑戦を続ける
+                    </a>
+                </div>
+            </div>
+            
+            {% else %}
+            <!-- 苦手分野分析 -->
+            <div style="margin-bottom: 30px;">
+                <p style="color: #4A5568; font-size: 1.1rem; text-align: center;">
+                    以下の分野で正答率が70%を下回っています。集中的な学習で克服しましょう！
+                </p>
+            </div>
+            
+            {% for category, stats in weak_categories.items() %}
+            <div class="weak-category">
+                <div class="category-header">
+                    <div class="category-name">{{ category }}</div>
+                    <div class="accuracy-badge">
+                        正答率 {{ "%.1f"|format(stats.accuracy) }}%
+                    </div>
+                </div>
+                
+                <div class="category-stats">
+                    📊 間違い数: {{ stats.wrong_count }}問 | 
+                    🎯 改善の余地が大きい分野です
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="{{ url_for('quiz', category=category) }}" class="btn btn-warning">
+                        📚 {{ category }} 集中学習
+                    </a>
+                    <a href="{{ url_for('quiz', category=category, mode='review') }}" class="btn btn-danger">
+                        🔄 間違い問題復習
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        
+        {% if weak_questions %}
+        <!-- 間違い問題一覧 -->
+        <div class="card">
+            <h2 class="section-title">📝 間違い問題レビュー</h2>
+            <p style="color: #4A5568; margin-bottom: 20px;">
+                これまでに間違えた問題の中から、特に重要なものを表示しています。
+            </p>
+            
+            <div class="weak-questions">
+                {% for item in weak_questions %}
+                <div class="question-item">
+                    <div class="question-header">
+                        <div>
+                            <span style="font-weight: 700; color: #667eea;">
+                                問題ID: {{ item.question.id }}
+                            </span>
+                            <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; margin-left: 10px;">
+                                {{ item.question.category }}
+                            </span>
+                        </div>
+                        <div class="question-meta">
+                            <span class="attempts-badge">
+                                {{ item.attempts }}回挑戦
+                            </span>
+                            <span class="success-rate">
+                                成功率 {{ "%.0f"|format(item.success_rate * 100) }}%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="question-text">
+                        {{ item.question.question }}
+                    </div>
+                    
+                    {% if item.question.difficulty %}
+                    <div style="margin: 10px 0;">
+                        <span style="background: rgba(237, 137, 54, 0.2); color: #DD6B20; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem;">
+                            {{ item.question.difficulty }}レベル
+                        </span>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="question-actions">
+                        <a href="{{ url_for('review_question', question_id=item.question.id) }}" class="btn btn-warning">
+                            📖 詳細復習
+                        </a>
+                        <a href="{{ url_for('quiz', start_with=item.question.id) }}" class="btn btn-danger">
+                            🔄 再挑戦
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- 学習のコツ -->
+        <div class="card">
+            <div class="tips-section">
+                <h3>🎓 苦手分野克服のコツ</h3>
+                <ul class="tips-list">
+                    <li><strong>基本概念の再確認：</strong> 間違いの原因となる基本的な理解不足を補いましょう</li>
+                    <li><strong>関連問題の集中学習：</strong> 同じ分野の問題を連続して解くことで理解を深めます</li>
+                    <li><strong>解説の熟読：</strong> 正解だけでなく、なぜ他の選択肢が間違いなのかも理解しましょう</li>
+                    <li><strong>実務経験との関連付け：</strong> 30年の現場経験と技術基準を結び付けて覚えましょう</li>
+                    <li><strong>定期的な振り返り：</strong> 一度できた問題も定期的に復習して定着を図りましょう</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- ナビゲーション -->
+        <div class="card">
+            <div class="navigation">
+                <a href="{{ url_for('index') }}" class="btn">🏠 ホーム</a>
+                <a href="{{ url_for('quiz') }}" class="btn btn-success">🚀 通常学習</a>
+                <a href="{{ url_for('statistics') }}" class="btn">📊 学習統計</a>
+                <a href="{{ url_for('categories') }}" class="btn">📚 分野別学習</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 学習進捗の可視化
+        window.addEventListener('load', function() {
+            // 苦手分野カードにアニメーション効果
+            const weakCards = document.querySelectorAll('.weak-category');
+            weakCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+            
+            // 問題アイテムにホバー効果
+            const questionItems = document.querySelectorAll('.question-item');
+            questionItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(10px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0) scale(1)';
+                });
+            });
+        });
+        
+        // 学習開始時の励ましメッセージ
+        document.querySelectorAll('.btn-warning, .btn-danger').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const messages = [
+                    '💪 頑張って！苦手を克服しましょう！',
+                    '🎯 集中して取り組みましょう！',
+                    '🚀 この努力が必ず報われます！',
+                    '📚 一歩ずつ着実に進歩しています！'
+                ];
+                
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                
+                // 短時間だけメッセージを表示
+                const originalText = this.innerHTML;
+                this.innerHTML = randomMessage;
+                this.style.transform = 'scale(1.05)';
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.style.transform = 'scale(1)';
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -3,7 +3,8 @@ import pandas as pd
 import os
 import random
 from datetime import datetime
-from collections import defaultdict
+from collections import defaultdict, Counter
+import json
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'rccm-quiz-secret-key-2024-ultra-secure'
@@ -29,7 +30,6 @@ def load_questions():
     
     try:
         if not os.path.exists(QUESTIONS_CSV):
-            # print(f"❌ CSVファイルが見つかりません: {QUESTIONS_CSV}")
             return get_sample_data()
         
         # 複数のエンコーディングを試行
@@ -38,27 +38,20 @@ def load_questions():
         
         for encoding in encodings:
             try:
-                # print(f"📁 エンコーディング {encoding} で読み込み試行中...")
                 df = pd.read_csv(QUESTIONS_CSV, encoding=encoding)
-                # print(f"✅ エンコーディング {encoding} で読み込み成功")
                 break
             except UnicodeDecodeError:
-                # print(f"❌ エンコーディング {encoding} で読み込み失敗")
                 continue
             except Exception as e:
-                # print(f"❌ エンコーディング {encoding} でその他のエラー: {e}")
                 continue
         
         if df is None or df.empty:
-            # print("❌ すべてのエンコーディングで読み込み失敗")
             return get_sample_data()
         
         # 必要な列の存在確認
         required_columns = ['id', 'category', 'question', 'option_a', 'option_b', 'option_c', 'option_d', 'correct_answer']
         missing_columns = [col for col in required_columns if col not in df.columns]
         if missing_columns:
-            # print(f"❌ 必要な列が不足: {missing_columns}")
-            # print(f"📊 利用可能な列: {list(df.columns)}")
             return get_sample_data()
         
         questions = df.to_dict(orient='records')
@@ -67,91 +60,170 @@ def load_questions():
         valid_questions = []
         for i, q in enumerate(questions):
             try:
-                # IDの検証と変換
                 if pd.isna(q.get('id')) or q.get('id') == '':
-                    # print(f"⚠️ 行{i+1}: IDが空です")
                     continue
                 
-                q['id'] = int(float(q['id']))  # float経由で変換（Excel由来の数値対応）
+                q['id'] = int(float(q['id']))
                 
                 # 必須フィールドの検証
                 if not q.get('question') or not q.get('correct_answer'):
-                    # print(f"⚠️ 行{i+1}: 問題文または正解が空です")
                     continue
                 
                 # 文字列フィールドの空白除去
-                for field in ['question', 'option_a', 'option_b', 'option_c', 'option_d', 'correct_answer']:
+                string_fields = ['question', 'option_a', 'option_b', 'option_c', 'option_d', 'correct_answer', 'explanation', 'reference', 'difficulty', 'keywords', 'practical_tip']
+                for field in string_fields:
                     if isinstance(q.get(field), str):
                         q[field] = q[field].strip()
+                    elif pd.isna(q.get(field)):
+                        q[field] = ''  # NaNを空文字に変換
                 
                 valid_questions.append(q)
                 
             except (ValueError, TypeError) as e:
-                # print(f"⚠️ 行{i+1}: データ変換エラー - {e}")
                 continue
         
         if not valid_questions:
-            # print("❌ 有効な問題データがありません")
             return get_sample_data()
         
         _questions_cache = valid_questions
-        # print(f"✅ 問題データ読み込み完了: {len(valid_questions)}問")
-        
-        # 最初の3問をデバッグ表示 (必要に応じてコメントアウトまたは削除)
-        # for i, q in enumerate(valid_questions[:3]):
-        #     print(f"📝 問題{i+1}: ID={q['id']}, カテゴリ={q.get('category')}, 正解={q.get('correct_answer')}")
-        
         return valid_questions
         
     except Exception as e:
-        # print(f"❌ 予期しないエラー: {str(e)}")
         return get_sample_data()
 
 def get_sample_data():
-    """サンプル問題データ"""
-    # print("🔧 サンプルデータを使用します")
+    """拡張されたサンプル問題データ"""
     return [
         {
             'id': 1,
             'category': 'コンクリート',
-            'question': '普通ポルトランドセメントの凝結時間に関する記述で最も適切なものはどれか。例えば、A) 45分以上、B) 8時間以内、C) 60分以内、D) 12時間以内。',
+            'question': '普通ポルトランドセメントの凝結時間に関する記述で最も適切なものはどれか。',
             'option_a': '始発凝結時間は45分以上',
             'option_b': '終結凝結時間は8時間以内',
             'option_c': '始発凝結時間は60分以内',
             'option_d': '終結凝結時間は12時間以内',
             'correct_answer': 'C',
-            'explanation': 'JIS R 5210では始発凝結時間は60分以内と規定されています。'
+            'explanation': 'JIS R 5210では普通ポルトランドセメントの始発凝結時間は60分以内、終結凝結時間は10時間以内と規定されています。これは現場での打設計画や品質管理において重要な基準値です。',
+            'reference': 'JIS R 5210（ポルトランドセメント）',
+            'difficulty': '基本',
+            'keywords': 'セメント,凝結時間,品質管理',
+            'practical_tip': '現場では気温や湿度によって凝結時間が変化するため、季節に応じた施工計画の調整が必要です。'
         },
         {
             'id': 2,
             'category': '土質',
-            'question': 'N値と土の相対密度の関係で正しいものはどれか。例えば、A) N=0-4で非常に緩い、B) N=4-10で緩い、C) N=10-30で中程度、D) 上記すべて正しい。',
+            'question': 'N値と土の相対密度の関係で正しいものはどれか。',
             'option_a': 'N=0-4で相対密度は非常に緩い',
             'option_b': 'N=4-10で相対密度は緩い',
             'option_c': 'N=10-30で相対密度は中程度',
             'option_d': '上記すべて正しい',
             'correct_answer': 'D',
-            'explanation': '標準貫入試験のN値による砂質土の相対密度判定基準です。'
+            'explanation': '標準貫入試験のN値による砂質土の相対密度判定基準として、N=0-4（非常に緩い）、N=4-10（緩い）、N=10-30（中程度）、N=30-50（密）、N>50（非常に密）に分類されます。',
+            'reference': 'JGS基準・地盤調査法',
+            'difficulty': '基本',
+            'keywords': 'N値,相対密度,地盤調査,標準貫入試験',
+            'practical_tip': '実際の現場では、N値だけでなく土質や地下水の状況も総合的に判断することが重要です。'
         },
         {
             'id': 3,
             'category': '河川',
-            'question': '河川砂防技術基準における計画高水流量の設定に関して正しいものはどれか。例えば、A) 30年確率、B) 50年確率、C) 100年確率、D) 200年確率。',
+            'question': '河川砂防技術基準における計画高水流量の設定に関して正しいものはどれか。',
             'option_a': '30年確率の洪水流量を基準とする',
             'option_b': '50年確率の洪水流量を基準とする',
             'option_c': '100年確率の洪水流量を基準とする',
             'option_d': '200年確率の洪水流量を基準とする',
             'correct_answer': 'C',
-            'explanation': '河川砂防技術基準では一般的に100年確率の洪水流量を基準とします。'
+            'explanation': '河川砂防技術基準では、計画高水流量は原則として100年確率（1/100）の洪水流量を基準として設定されます。ただし、河川の重要度や流域特性により200年確率を採用する場合もあります。',
+            'reference': '河川砂防技術基準（計画編）',
+            'difficulty': '標準',
+            'keywords': '確率流量,計画高水,治水計画',
+            'practical_tip': '東日本大震災後、想定を超える災害への対応として、設計外力を超える洪水への対策も重要視されています。'
         }
     ]
 
-def debug_session(action=""):
-    """セッションの状態をデバッグ出力"""
-    print(f"\n🔍 SESSION DEBUG [{action}]")
-    print(f"   quiz_current: {session.get('quiz_current', 'なし')}")
-    print(f"   quiz_question_ids: {len(session.get('quiz_question_ids', []))}個")
-    print(f"   quiz_category: {session.get('quiz_category', 'なし')}")
+def analyze_recent_performance(history, question_count=10):
+    """直近の学習パフォーマンスを分析"""
+    if not history:
+        return None
+    
+    recent = history[-question_count:] if len(history) >= question_count else history
+    
+    total = len(recent)
+    correct = sum(1 for h in recent if h.get('is_correct', False))
+    accuracy = (correct / total * 100) if total > 0 else 0
+    
+    # カテゴリ別分析
+    category_stats = {}
+    weak_categories = []
+    
+    for h in recent:
+        cat = h.get('category', '不明')
+        if cat not in category_stats:
+            category_stats[cat] = {'total': 0, 'correct': 0, 'wrong_ids': []}
+        
+        category_stats[cat]['total'] += 1
+        if h.get('is_correct'):
+            category_stats[cat]['correct'] += 1
+        else:
+            category_stats[cat]['wrong_ids'].append(h.get('id'))
+    
+    # 苦手分野の特定（正答率60%未満）
+    for cat, stats in category_stats.items():
+        if stats['total'] >= 2:  # 最低2問以上解答している分野
+            cat_accuracy = (stats['correct'] / stats['total']) * 100
+            if cat_accuracy < 60:
+                weak_categories.append({
+                    'category': cat,
+                    'accuracy': cat_accuracy,
+                    'wrong_count': stats['total'] - stats['correct']
+                })
+    
+    return {
+        'total_questions': total,
+        'correct_answers': correct,
+        'accuracy': accuracy,
+        'category_stats': category_stats,
+        'weak_categories': weak_categories
+    }
+
+def generate_recommendations(analysis):
+    """学習推奨を生成"""
+    if not analysis:
+        return []
+    
+    recommendations = []
+    accuracy = analysis.get('accuracy', 0)
+    
+    if accuracy < 50:
+        recommendations.append({
+            'type': 'foundation',
+            'message': '基礎知識の強化が必要です。各分野の基本概念から復習しましょう。',
+            'action': 'categories'
+        })
+    elif accuracy < 70:
+        recommendations.append({
+            'type': 'improvement',
+            'message': '理解は進んでいます。苦手分野を集中的に学習しましょう。',
+            'action': 'weak_focus'
+        })
+    else:
+        recommendations.append({
+            'type': 'excellent',
+            'message': '良好な成績です！継続学習で更なる向上を目指しましょう。',
+            'action': 'continue'
+        })
+    
+    # 苦手分野の推奨
+    weak_categories = analysis.get('weak_categories', [])
+    if weak_categories:
+        top_weak = weak_categories[0]
+        recommendations.append({
+            'type': 'weakness',
+            'message': f'「{top_weak["category"]}」分野の正答率が{top_weak["accuracy"]:.1f}%です。重点的な復習をお勧めします。',
+            'action': f'category_{top_weak["category"]}'
+        })
+    
+    return recommendations[:3]  # 最大3つまで
 
 @app.before_request
 def before_request():
@@ -160,7 +232,7 @@ def before_request():
 
 @app.route('/')
 def index():
-    """ホーム画面"""
+    """ホーム画面 - 既存デザインを維持"""
     if 'history' not in session:
         session['history'] = []
     if 'category_stats' not in session:
@@ -168,38 +240,29 @@ def index():
     
     session.modified = True
     
-    # AI推奨カテゴリ
-    stats = session.get('category_stats', {})
+    # 最近の学習分析
+    analysis = analyze_recent_performance(session.get('history', []))
     recommended_category = '全体'
-    min_acc = 1.0
     
-    for cat, stat in stats.items():
-        if stat.get('total', 0) > 0:
-            acc = stat['correct'] / stat['total']
-            if acc < min_acc:
-                min_acc = acc
-                recommended_category = cat
+    if analysis and analysis.get('weak_categories'):
+        recommended_category = analysis['weak_categories'][0]['category']
     
-    return render_template('index.html', recommended_category=recommended_category)
+    return render_template('index.html', 
+                         analysis=analysis,
+                         recommended_category=recommended_category)
 
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
-    """問題画面"""
-    debug_session(f"QUIZ開始 ({request.method})")
-    
+    """問題画面 - 既存の実装を基本的に維持しつつフィードバック強化"""
     all_questions = load_questions()
     if not all_questions:
         return render_template('error.html', error="問題データが存在しません。")
     
-    # POST処理（回答送信）
+    # POST処理（回答送信） - フィードバック用データを拡張
     if request.method == 'POST':
-        print("📝 POST処理開始")
-        
         answer = request.form.get('answer')
         qid = request.form.get('qid')
         elapsed = request.form.get('elapsed', '0')
-        
-        print(f"   受信データ: answer={answer}, qid={qid}, elapsed={elapsed}")
         
         if not answer or not qid:
             return render_template('error.html', error="回答データが不完全です。")
@@ -212,24 +275,42 @@ def quiz():
         # 問題を検索
         question = next((q for q in all_questions if int(q.get('id', 0)) == qid), None)
         if not question:
-            print(f"❌ 問題が見つかりません: ID={qid}")
             return render_template('error.html', error=f"問題が見つかりません (ID: {qid})。")
         
         # 正誤判定
         is_correct = (str(answer).strip() == str(question.get('correct_answer', '').strip()))
-        print(f"   正誤判定: {answer} == {question.get('correct_answer')} → {is_correct}")
         
-        # 履歴に追加
+        # 履歴に追加（フィードバック用に情報を拡張）
         if 'history' not in session:
             session['history'] = []
         
-        session['history'].append({
+        # 拡張された履歴データ
+        history_item = {
             'id': qid,
             'category': question.get('category', '不明'),
             'is_correct': is_correct,
+            'user_answer': answer,
+            'correct_answer': question.get('correct_answer', ''),
             'date': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             'elapsed': float(elapsed)
-        })
+        }
+        
+        # フィードバック用の詳細情報（必要時のみ保存）
+        if not is_correct:
+            history_item.update({
+                'question_text': question.get('question', ''),
+                'options': {
+                    'A': question.get('option_a', ''),
+                    'B': question.get('option_b', ''),
+                    'C': question.get('option_c', ''),
+                    'D': question.get('option_d', '')
+                },
+                'explanation': question.get('explanation', ''),
+                'reference': question.get('reference', ''),
+                'practical_tip': question.get('practical_tip', '')
+            })
+        
+        session['history'].append(history_item)
         
         # カテゴリ統計更新
         if 'category_stats' not in session:
@@ -247,32 +328,20 @@ def quiz():
         current_no = session.get('quiz_current', 0)
         quiz_question_ids = session.get('quiz_question_ids', [])
         
-        print(f"   現在の位置: {current_no}/{len(quiz_question_ids)}")
-        
         # 次の問題番号を設定
         next_no = current_no + 1
         session['quiz_current'] = next_no
-        
-        # ⭐ 重要: セッション変更フラグを必ず設定
         session.modified = True
-        
-        print(f"   次の位置: {next_no}/{len(quiz_question_ids)}")
-        debug_session("POST処理後")
         
         # 問題終了判定
         if next_no >= len(quiz_question_ids):
-            print("🏁 問題終了 → 結果画面へ")
             return redirect(url_for('result'))
         else:
             category = session.get('quiz_category', '全体')
-            print(f"➡️ 次の問題へ (カテゴリ: {category})")
             return redirect(url_for('quiz', category=category))
     
-    # GET処理（問題表示）
-    print("📖 GET処理開始")
-    
+    # GET処理（問題表示） - 既存の実装を維持
     requested_category = request.args.get('category', '全体')
-    print(f"   要求カテゴリ: {requested_category}")
     
     # カテゴリでフィルタリング
     if requested_category != '全体':
@@ -281,38 +350,21 @@ def quiz():
         filtered_questions = all_questions
     
     if not filtered_questions:
-        return render_template('error.html', error=f"カテゴリ「{requested_category}」に問題がありません。 Подождите, пожалуйста, я обрабатываю ваш запрос.")
-    
-    print(f"   フィルタ後問題数: {len(filtered_questions)}問")
+        return render_template('error.html', error=f"カテゴリ「{requested_category}」に問題がありません。")
     
     # セッション情報取得
     quiz_question_ids = session.get('quiz_question_ids', [])
     current_no = session.get('quiz_current', 0)
     session_category = session.get('quiz_category', '全体')
     
-    print(f"   セッション状態: current={current_no}, ids={len(quiz_question_ids)}個, category={session_category}")
-    
     # セッション初期化判定
     need_reset = False
-    reset_reason = ""
     
-    if not quiz_question_ids:
+    if not quiz_question_ids or request.args.get('reset') == '1' or requested_category != session_category or current_no >= len(quiz_question_ids):
         need_reset = True
-        reset_reason = "問題リストが空"
-    elif request.args.get('reset') == '1':
-        need_reset = True
-        reset_reason = "リセット要求"
-    elif requested_category != session_category:
-        need_reset = True
-        reset_reason = f"カテゴリ変更 ({session_category} → {requested_category})"
-    elif current_no >= len(quiz_question_ids):
-        need_reset = True
-        reset_reason = f"範囲外 ({current_no} >= {len(quiz_question_ids)})"
     
     # 新しい問題セッション開始
     if need_reset:
-        print(f"🔄 セッションリセット: {reset_reason}")
-        
         question_ids = [int(q.get('id', 0)) for q in filtered_questions if q.get('id') is not None]
         random.shuffle(question_ids)
         
@@ -323,12 +375,9 @@ def quiz():
         
         quiz_question_ids = session['quiz_question_ids']
         current_no = 0
-        
-        print(f"   新セッション: {len(quiz_question_ids)}問を出題")
     
     # 範囲チェック
     if current_no >= len(quiz_question_ids):
-        print(f"❌ 範囲外エラー")
         return redirect(url_for('result'))
     
     # 現在の問題を取得
@@ -336,10 +385,7 @@ def quiz():
     question = next((q for q in all_questions if int(q.get('id', 0)) == current_question_id), None)
     
     if not question:
-        print(f"❌ 問題取得エラー: ID={current_question_id}")
-        return render_template('error.html', error="問題データの取得に失敗しました。 Подождите, пожалуйста, я обрабатываю ваш запрос.")
-    
-    print(f"✅ 表示問題: {current_no + 1}/{len(quiz_question_ids)} (ID={question.get('id')})")
+        return render_template('error.html', error="問題データの取得に失敗しました。")
     
     return render_template(
         'quiz.html',
@@ -350,7 +396,7 @@ def quiz():
 
 @app.route('/result')
 def result():
-    """結果画面"""
+    """結果画面 - 既存デザインを維持しつつフィードバック機能を強化"""
     history = session.get('history', [])
     if not history:
         return redirect(url_for('quiz'))
@@ -358,12 +404,15 @@ def result():
     quiz_question_ids = session.get('quiz_question_ids', [])
     session_size = len(quiz_question_ids) if quiz_question_ids else QUESTIONS_PER_SESSION
     
+    # 今回のセッションの問題のみを抽出
     recent_history = history[-session_size:] if len(history) >= session_size else history
     
+    # 基本統計
     correct_count = sum(1 for h in recent_history if h['is_correct'])
     total_questions = len(recent_history)
     elapsed_time = sum(h.get('elapsed', 0) for h in recent_history)
     
+    # カテゴリ別成績
     category_scores = {}
     for h in recent_history:
         cat = h.get('category', '不明')
@@ -373,18 +422,46 @@ def result():
         if h.get('is_correct'):
             category_scores[cat]['correct'] += 1
     
-    print(f"✅ 結果: {correct_count}/{total_questions}問正解")
+    # 学習分析と推奨
+    analysis = analyze_recent_performance(history)
+    recommendations = generate_recommendations(analysis)
+    
+    # 間違い問題の詳細（フィードバック強化）
+    wrong_questions = []
+    for h in recent_history:
+        if not h.get('is_correct') and h.get('question_text'):
+            wrong_questions.append({
+                'id': h.get('id'),
+                'category': h.get('category'),
+                'question': h.get('question_text'),
+                'user_answer': h.get('user_answer'),
+                'correct_answer': h.get('correct_answer'),
+                'options': h.get('options', {}),
+                'explanation': h.get('explanation', ''),
+                'reference': h.get('reference', ''),
+                'practical_tip': h.get('practical_tip', '')
+            })
+    
+    # 推奨カテゴリ
+    recommended_category = '全体'
+    if analysis and analysis.get('weak_categories'):
+        recommended_category = analysis['weak_categories'][0]['category']
     
     return render_template(
         'result.html',
         correct_count=correct_count,
         total_questions=total_questions,
         elapsed_time=elapsed_time,
-        category_scores=category_scores
+        category_scores=category_scores,
+        recommended_category=recommended_category,
+        analysis=analysis,
+        recommendations=recommendations,
+        wrong_questions=wrong_questions
     )
 
 @app.route('/statistics')
 def statistics():
+    """統計画面 - 既存の実装を維持"""
     history = session.get('history', [])
     
     # 全体統計
@@ -443,6 +520,7 @@ def statistics():
 
 @app.route('/categories')
 def categories():
+    """カテゴリ画面 - 既存の実装を維持"""
     questions = load_questions()
     cat_stats = session.get('category_stats', {})
     
@@ -484,19 +562,28 @@ def categories():
 
 @app.route('/reset', methods=['GET', 'POST'])
 def reset():
+    """リセット画面 - 既存の実装を維持しつつ確認画面を改善"""
     if request.method == 'POST':
-        print("🔄 全セッションをリセット")
         session.clear()
         return redirect(url_for('index'))
-    return render_template('reset_confirm.html')
+    
+    # 現在のデータ分析
+    history = session.get('history', [])
+    analytics = {
+        'total_questions': len(history),
+        'accuracy': 0
+    }
+    
+    if history:
+        correct = sum(1 for h in history if h.get('is_correct'))
+        analytics['accuracy'] = round((correct / len(history)) * 100, 1)
+    
+    return render_template('reset_confirm.html', analytics=analytics)
 
 @app.route('/help')
 def help_page():
-    """ヘルプ・操作説明ページ"""
-    print("📖 ヘルプページ表示")
-    # アプリの設定（例：出題数）をテンプレートに渡すことも可能
-    # return render_template('help.html', total_questions=QUESTIONS_PER_SESSION)
-    return render_template('help.html')
+    """ヘルプページ - 機能説明を更新"""
+    return render_template('help.html', total_questions=QUESTIONS_PER_SESSION)
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -504,17 +591,10 @@ def page_not_found(e):
 
 @app.errorhandler(500)
 def internal_error(e):
-    print(f"❌ 500エラー: {str(e)}")
     return render_template('error.html', error="サーバーエラーが発生しました"), 500
 
-# アプリ起動時の処理
-# print("アプリケーション起動中...")
+# 初期化
 initial_questions = load_questions()
-# print(f"初期読み込み: {len(initial_questions)}問")
 
 if __name__ == '__main__':
-    # print("=" * 50)
-    # print("RCCM試験問題集アプリを起動します")
-    # print(f"URL: http://localhost:5000")
-    # print("=" * 50)
     app.run(debug=True, host='0.0.0.0', port=5000) 

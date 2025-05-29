@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}結果 | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-header">問題結果</div>
+  <div class="card-body">
+    <h4>合計正答数: {{ correct_count }} / {{ total_questions }}</h4>
+
+    {% if elapsed_time %}
+      <p>経過時間: {{ elapsed_time }}</p>
+    {% endif %}
+
+    <h5 class="mt-4">分野別成績</h5>
+    {% if category_scores %}
+    <table class="table table-bordered table-striped mt-3">
+      <thead>
+        <tr>
+          <th>分野名</th>
+          <th>正答数</th>
+          <th>正答率</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for category, score_info in category_scores.items() %}
+        <tr>
+          <td>{{ category }}</td>
+          <td>{{ score_info.correct }} / {{ score_info.total }} 問正解</td>
+          <td>
+            {% set accuracy = (score_info.correct / score_info.total * 100) if score_info.total > 0 else 0.0 %}
+            <span class="{% if accuracy < 60 %}text-danger{% elif accuracy > 80 %}text-success{% endif %}">
+              {{ "{:.1f}".format(accuracy) }}%
+            </span>
+            {% if accuracy < 60 %}
+              <span class="text-danger">（弱点分野）</span>
+            {% elif accuracy > 80 %}
+              <span class="text-success">（得意分野）</span>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p>分野別成績データがありません。</p>
+    {% endif %}
+
+    <div class="card mb-4">
+        <div class="card-header">次のアクション</div>
+        <div class="card-body d-flex flex-wrap gap-2">
+            <div class="w-100 mb-2">
+                <p>AIおすすめ学習カテゴリ: <strong>{{ recommended_category }}</strong></p>
+            </div>
+            <a href="/quiz?reset=1" class="btn btn-primary mb-2">もう一度問題を始める</a>
+            <a href="/statistics" class="btn btn-secondary mb-2">回答結果分析</a>
+            <a href="/categories" class="btn btn-info mb-2">カテゴリー一覧に戻る</a>
+            <a href="#" class="btn btn-info mb-2 disabled ms-auto" tabindex="-1" aria-disabled="true">AIおすすめカテゴリーを学習（今後開発予定）</a>
+        </div>
+    </div>
+
+    {% if weak_category_details %}
+      <p>あなたの弱点分野: <strong>{{ weak_category_details.name }}</strong></p>
+       {% if not recommended_category or recommended_category != weak_category_details.name %}
+          <a href="/quiz?category={{ weak_category_details.name }}" class="btn btn-warning mt-2">弱点分野を克服</a>
+       {% endif %}
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %} 

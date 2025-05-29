@@ -1,0 +1,378 @@
+{% extends 'base.html' %}
+{% block title %}問題 | RCCM試験問題集{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCCM試験問題集 - 問題画面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic UI', 'Meiryo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #2D3748;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        .progress-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .question-box {
+            background: rgba(255,255,255,0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .options-form {
+            margin-bottom: 10px;
+        }
+        
+        .option-item {
+            display: block;
+            margin: 3px 0;
+            padding: 8px;
+            border: 3px solid #E2E8F0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.8);
+            position: relative;
+        }
+        
+        .option-item:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+        }
+        
+        .option-item.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .option-content {
+            display: flex;
+            align-items: center;
+        }
+        
+        .option-letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-right: 6px;
+            flex-shrink: 0;
+        }
+        
+        .option-text {
+            line-height: 1.3;
+            font-size: 0.85rem;
+            color: #2D3748;
+        }
+        
+        input[type="radio"] {
+            display: none;
+        }
+        
+        .submit-area {
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(72, 187, 120, 0.6);
+        }
+        
+        .btn:disabled {
+            background: #CBD5E0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .reference-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 25px;
+        }
+        
+        .reference-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        
+        .footer-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px solid #E2E8F0;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary:hover {
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 8px; }
+            .card { padding: 8px; border-radius: 8px; }
+            .question-text { font-size: 0.85rem; line-height: 1.2; }
+            .option-content { flex-direction: row; align-items: center; text-align: left; }
+            .option-letter { margin-right: 6px; margin-bottom: 0; width: 22px; height: 22px; font-size: 0.75rem; }
+            .header { flex-direction: column; gap: 5px; padding: 6px; }
+            .footer-nav { flex-direction: column; gap: 8px; }
+            .nav-links { flex-direction: column; align-items: center; gap: 5px; }
+            .nav-link { width: 100%; text-align: center; padding: 4px 8px; font-size: 0.8rem; }
+            .option-item { padding: 5px; margin: 3px 0; border-radius: 6px; }
+            .option-text { font-size: 0.75rem; }
+            .btn { width: 100%; max-width: 180px; padding: 5px 10px; font-size: 0.8rem; }
+            .submit-area { margin: 8px 0; }
+            .progress-info { padding: 6px 12px; font-size: 0.8rem; }
+            .category-tag { padding: 4px 10px; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <!-- 進捗表示 -->
+            <div class="progress-info">
+                問題 {{ current_no }}/{{ total_questions }}
+            </div>
+            
+            <!-- カテゴリ表示 -->
+            {% if question.category %}
+            <div style="text-align: center; margin-bottom: 25px;">
+                <span class="category-tag">{{ question.category }}</span>
+                {% if question.difficulty %}
+                <span style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.9rem; margin-left: 15px;">
+                    {{ question.difficulty }}レベル
+                </span>
+                {% endif %}
+            </div>
+            {% endif %}
+            
+            <!-- 問題文 -->
+            <div class="question-box">
+                <div class="question-text">
+                    {{ question.question }}
+                </div>
+            </div>
+            
+            <!-- 選択肢フォーム -->
+            <form method="POST" action="/quiz" id="quizForm" class="options-form">
+                <input type="hidden" name="qid" value="{{ question.id }}">
+                <input type="hidden" name="elapsed" value="0" id="elapsedTime">
+                
+                <div class="option-item" onclick="selectOption('A')">
+                    <input type="radio" name="answer" value="A" id="optionA">
+                    <div class="option-content">
+                        <span class="option-letter">A</span>
+                        <span class="option-text">{{ question.option_a }}</span>
+                    </div>
+                </div>
+                
+                <div class="option-item" onclick="selectOption('B')">
+                    <input type="radio" name="answer" value="B" id="optionB">
+                    <div class="option-content">
+                        <span class="option-letter">B</span>
+                        <span class="option-text">{{ question.option_b }}</span>
+                    </div>
+                </div>
+                
+                <div class="option-item" onclick="selectOption('C')">
+                    <input type="radio" name="answer" value="C" id="optionC">
+                    <div class="option-content">
+                        <span class="option-letter">C</span>
+                        <span class="option-text">{{ question.option_c }}</span>
+                    </div>
+                </div>
+                
+                <div class="option-item" onclick="selectOption('D')">
+                    <input type="radio" name="answer" value="D" id="optionD">
+                    <div class="option-content">
+                        <span class="option-letter">D</span>
+                        <span class="option-text">{{ question.option_d }}</span>
+                    </div>
+                </div>
+                
+                <!-- 解答ボタン -->
+                <div class="submit-area">
+                    <button type="submit" class="btn" id="submitBtn" disabled>✅ 解答する</button>
+                </div>
+            </form>
+            
+            <!-- ナビゲーション -->
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="/" style="margin: 0 10px; text-decoration: none; color: #007bff;">🏠 ホーム</a>
+                <a href="/categories" style="margin: 0 10px; text-decoration: none; color: #007bff;">📚 分野選択</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectOption(option) {
+            // 既存の選択を解除
+            document.querySelectorAll('.option-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            // 新しい選択を設定
+            event.currentTarget.classList.add('selected');
+            document.getElementById('option' + option).checked = true;
+            document.getElementById('submitBtn').disabled = false;
+        }
+        
+        // フォーム送信時の処理
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            const selected = document.querySelector('input[name="answer"]:checked');
+            if (!selected) {
+                e.preventDefault();
+                alert('選択肢を選んでください。');
+                return;
+            }
+            
+            // 経過時間を計算
+            const elapsedSeconds = (Date.now() - startTime) / 1000;
+            document.getElementById('elapsedTime').value = elapsedSeconds.toFixed(1);
+            
+            // 送信ボタンの状態変更
+            const btn = document.getElementById('submitBtn');
+            btn.innerHTML = '⏳ 判定中...';
+            btn.disabled = true;
+        });
+    </script>
+</body>
+</html>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  let startTime = Date.now();
+
+  document.querySelector('form').addEventListener('submit', function() {
+    const elapsedTime = (Date.now() - startTime) / 1000;
+    document.getElementById('elapsedTime').value = elapsedTime.toFixed(2);
+  });
+</script>
+{% endblock %}
+
+{% if config.DEBUG %}
+<div style="background: #f0f0f0; padding: 10px; margin-top: 20px; font-size: 12px;">
+    <strong>デバッグ情報:</strong><br>
+    Session quiz_current: {{ debug_info.session_current }}<br>
+    Actual current_no: {{ debug_info.actual_current }}<br>
+    Category: {{ debug_info.category }}<br>
+    Problem IDs: {{ debug_info.quiz_question_ids }}
+</div>
+{% endif %} 

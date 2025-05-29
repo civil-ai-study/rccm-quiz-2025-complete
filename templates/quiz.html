@@ -1,0 +1,297 @@
+{% extends 'base.html' %}
+{% block title %}問題 | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="container">
+    <!-- 進捗表示 -->
+    <div class="card mb-3">
+        <div class="card-body p-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-primary fs-6">問題 {{ current_no }}/{{ total_questions }}</span>
+                {% if question.category %}
+                <span class="badge bg-success">{{ question.category }}</span>
+                {% endif %}
+                {% if question.difficulty %}
+                <span class="badge bg-warning text-dark">{{ question.difficulty }}レベル</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- 問題カード -->
+    <div class="card">
+        <div class="card-header bg-light">
+            <h5 class="mb-0">📝 問題</h5>
+        </div>
+        <div class="card-body">
+            <!-- 問題文 -->
+            <div class="p-3 mb-4 bg-light border-start border-primary border-4">
+                <h6 class="fw-bold lh-base">{{ question.question }}</h6>
+            </div>
+
+            <!-- 選択肢フォーム -->
+            <form method="POST" action="/quiz" id="quizForm">
+                <input type="hidden" name="qid" value="{{ question.id }}">
+                <input type="hidden" name="elapsed" value="0" id="elapsedTime">
+                
+                <div class="mb-4">
+                    <!-- 選択肢A -->
+                    <div class="form-check option-item p-3 mb-3 border rounded" onclick="selectOption('A')">
+                        <input class="form-check-input" type="radio" name="answer" value="A" id="optionA">
+                        <label class="form-check-label w-100 cursor-pointer" for="optionA">
+                            <div class="d-flex align-items-start">
+                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0">A</span>
+                                <span class="flex-grow-1">{{ question.option_a }}</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- 選択肢B -->
+                    <div class="form-check option-item p-3 mb-3 border rounded" onclick="selectOption('B')">
+                        <input class="form-check-input" type="radio" name="answer" value="B" id="optionB">
+                        <label class="form-check-label w-100 cursor-pointer" for="optionB">
+                            <div class="d-flex align-items-start">
+                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0">B</span>
+                                <span class="flex-grow-1">{{ question.option_b }}</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- 選択肢C -->
+                    <div class="form-check option-item p-3 mb-3 border rounded" onclick="selectOption('C')">
+                        <input class="form-check-input" type="radio" name="answer" value="C" id="optionC">
+                        <label class="form-check-label w-100 cursor-pointer" for="optionC">
+                            <div class="d-flex align-items-start">
+                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0">C</span>
+                                <span class="flex-grow-1">{{ question.option_c }}</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- 選択肢D -->
+                    <div class="form-check option-item p-3 mb-3 border rounded" onclick="selectOption('D')">
+                        <input class="form-check-input" type="radio" name="answer" value="D" id="optionD">
+                        <label class="form-check-label w-100 cursor-pointer" for="optionD">
+                            <div class="d-flex align-items-start">
+                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0">D</span>
+                                <span class="flex-grow-1">{{ question.option_d }}</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 解答ボタン -->
+                <div class="text-center mb-4">
+                    <button type="submit" class="btn btn-success btn-lg px-5" id="submitBtn" disabled>
+                        ✅ 解答する
+                    </button>
+                </div>
+            </form>
+
+            <!-- 参考情報 -->
+            {% if question.reference %}
+            <div class="alert alert-info">
+                <h6><i class="bi bi-book"></i> 参考基準</h6>
+                <p class="mb-0">{{ question.reference }}</p>
+            </div>
+            {% endif %}
+
+            <!-- キーワード（学習支援） -->
+            {% if question.keywords %}
+            <div class="mt-3">
+                <small class="text-muted">
+                    <strong>関連キーワード:</strong> 
+                    {% for keyword in question.keywords.split('・') %}
+                    <span class="badge bg-light text-dark me-1">{{ keyword }}</span>
+                    {% endfor %}
+                </small>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- ナビゲーション -->
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-outline-secondary me-2">🏠 ホーム</a>
+        <a href="/categories" class="btn btn-outline-primary">📚 分野選択</a>
+    </div>
+</div>
+
+<style>
+.option-item {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.option-item:hover {
+    background-color: #e3f2fd !important;
+    border-color: #2196F3 !important;
+    transform: translateX(3px);
+}
+
+.option-item.selected {
+    background-color: #e8f5e8 !important;
+    border-color: #4caf50 !important;
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* アニメーション効果 */
+.card {
+    animation: slideInUp 0.5s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .option-item {
+        margin-bottom: 0.5rem !important;
+        padding: 1rem !important;
+    }
+    
+    .badge {
+        font-size: 0.875rem;
+    }
+    
+    .btn-lg {
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+    }
+}
+</style>
+
+<script>
+function selectOption(option) {
+    // 既存の選択を解除
+    document.querySelectorAll('.option-item').forEach(item => {
+        item.classList.remove('selected');
+    });
+    
+    // 新しい選択を設定
+    const selectedItem = event.currentTarget;
+    selectedItem.classList.add('selected');
+    document.getElementById('option' + option).checked = true;
+    document.getElementById('submitBtn').disabled = false;
+    
+    // 選択効果音（オプション）
+    selectedItem.style.transform = 'scale(1.02)';
+    setTimeout(() => {
+        selectedItem.style.transform = '';
+    }, 150);
+}
+
+// フォーム送信時の処理
+document.getElementById('quizForm').addEventListener('submit', function(e) {
+    const selected = document.querySelector('input[name="answer"]:checked');
+    if (!selected) {
+        e.preventDefault();
+        alert('選択肢を選んでください。');
+        return;
+    }
+    
+    // 経過時間を計算
+    const elapsedSeconds = (Date.now() - startTime) / 1000;
+    document.getElementById('elapsedTime').value = elapsedSeconds.toFixed(1);
+    
+    // 送信ボタンの状態変更
+    const btn = document.getElementById('submitBtn');
+    btn.innerHTML = '⏳ 判定中...';
+    btn.disabled = true;
+    
+    // フォーム送信アニメーション
+    btn.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+        btn.style.transform = '';
+    }, 200);
+});
+
+// ページ読み込み時の初期化
+document.addEventListener('DOMContentLoaded', function() {
+    let startTime = Date.now(); // タイマー開始時刻を記録
+    // 選択肢にホバー効果のためのイベントリスナー追加
+    document.querySelectorAll('.option-item').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            if (!this.classList.contains('selected')) {
+                this.style.transform = 'translateX(5px)';
+            }
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            if (!this.classList.contains('selected')) {
+                this.style.transform = '';
+            }
+        });
+    });
+    
+    // キーボードショートカット（1-4キーで選択肢選択）
+    document.addEventListener('keydown', function(e) {
+        if (e.key >= '1' && e.key <= '4') {
+            const options = ['A', 'B', 'C', 'D'];
+            const optionIndex = parseInt(e.key) - 1;
+            if (optionIndex < options.length) {
+                const optionElement = document.querySelector(`.option-item:nth-child(${optionIndex + 1})`);
+                if (optionElement) {
+                    optionElement.click();
+                }
+            }
+        }
+        
+        // Enterキーで解答送信
+        if (e.key === 'Enter' && !document.getElementById('submitBtn').disabled) {
+            document.getElementById('quizForm').submit();
+        }
+    });
+    
+    // プログレスバーのアニメーション
+    const progressBadge = document.querySelector('.badge.bg-primary');
+    if (progressBadge) {
+        progressBadge.style.opacity = '0';
+        progressBadge.style.transform = 'scale(0.8)';
+        
+        setTimeout(() => {
+            progressBadge.style.transition = 'all 0.5s ease';
+            progressBadge.style.opacity = '1';
+            progressBadge.style.transform = 'scale(1)';
+        }, 300);
+    }
+    
+    // 学習支援メッセージ
+    console.log('💡 学習のコツ: 選択肢を消去法で絞り込み、根拠を持って解答しましょう');
+    console.log('⌨️ ショートカット: 1-4キーで選択肢選択、Enterキーで解答送信');
+});
+
+// タイマー表示（オプション）
+function updateTimer() {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const minutes = Math.floor(elapsed / 60);
+    const seconds = elapsed % 60;
+    const timerText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    
+    // タイマー表示エリアがあれば更新
+    const timerElement = document.getElementById('timer');
+    if (timerElement) {
+        timerElement.textContent = timerText;
+    }
+}
+
+// 1秒ごとにタイマー更新
+setInterval(updateTimer, 1000);
+</script>
+{% endblock %}
+
+{% block scripts %}
+<!-- 追加のJavaScript（既存の実装と統合） -->
+{% endblock %} 
