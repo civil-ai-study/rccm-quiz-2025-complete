@@ -190,7 +190,7 @@ def generate_recommendations(analysis):
     """学習推奨を生成"""
     if not analysis:
         return []
-    
+
     recommendations = []
     accuracy = analysis.get('accuracy', 0)
     
@@ -308,7 +308,7 @@ def quiz():
                 'explanation': question.get('explanation', ''),
                 'reference': question.get('reference', ''),
                 'practical_tip': question.get('practical_tip', '')
-            })
+        })
         
         session['history'].append(history_item)
         
