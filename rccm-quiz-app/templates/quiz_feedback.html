@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}解答結果 | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="container mt-4 text-center">
+    {% if is_correct %}
+        <h2 class="text-success mb-3">正解！</h2>
+    {% else %}
+        <h2 class="text-danger mb-3">不正解...</h2>
+    {% endif %}
+
+    <div class="card mb-3 {% if is_correct %}card-correct{% else %}card-incorrect{% endif %}">
+        <div class="card-header">
+            問題 {{ current_question_number }} / {{ total_questions }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ question.question }}</h5>
+            <p class="card-text">
+                あなたの解答: <strong>{{ user_answer }} ({{ user_answer_text }})</strong><br>
+                {% if not is_correct %}
+                    正解: <strong>{{ question.correct_answer }} ({{ correct_answer_text }})</strong>
+                {% endif %}
+            </p>
+            {% if question.explanation %}
+                <p class="card-text">
+                    <strong>解説:</strong> {{ question.explanation }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        {% if not is_last_question %}
+            <a href="{{ url_for('quiz_next') }}" class="btn btn-primary btn-lg w-75">次の問題へ</a>
+        {% else %}
+            <a href="{{ url_for('result') }}" class="btn btn-success btn-lg w-75">結果を見る</a>
+        {% endif %}
+    </div>
+
+    <div class="mt-3 text-center">
+        <button class="btn btn-outline-secondary" onclick="bookmarkQuestion('{{ question.id }}')">復習登録</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function bookmarkQuestion(questionId) {
+        fetch('/api/bookmark', { // 仮のAPIエンドポイント
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ question_id: questionId }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showBookmarkSuccessModal();
+            } else {
+                alert('登録に失敗しました: ' + (data.error || '不明なエラー'));
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('登録中にエラーが発生しました。');
+        });
+    }
+
+    function showBookmarkSuccessModal() {
+        const myModal = new bootstrap.Modal(document.getElementById('bookmarkSuccessModal'));
+        myModal.show();
+    }
+</script>
+
+<div class="modal fade" id="bookmarkSuccessModal" tabindex="-1" aria-labelledby="bookmarkSuccessModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bookmarkSuccessModalLabel">登録完了</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        この問題を復習リストに登録しました！
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %} 

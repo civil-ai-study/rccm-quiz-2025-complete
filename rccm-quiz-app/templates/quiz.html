@@ -12,6 +12,13 @@
                 {% endif %}
                 {% if question.difficulty %}
                 <span class="badge bg-warning text-dark">{{ question.difficulty }}レベル</span>
+                
+                <!-- SRS情報表示 -->
+                {% if is_review_question %}
+                <span class="badge bg-info">🔄 復習問題</span>
+                {% else %}
+                <span class="badge bg-secondary">🆕 新問題</span>
+                {% endif %}
                 {% endif %}
             </div>
         </div>
@@ -195,7 +202,10 @@ function selectOption(option) {
     }, 150);
 }
 
-// フォーム送信時の処理
+// クイズページ用のquestionId定義
+const questionId = '{{ question.id }}';
+
+// updateStreak()の呼び出しをフォーム送信時に追加
 document.getElementById('quizForm').addEventListener('submit', function(e) {
     const selected = document.querySelector('input[name="answer"]:checked');
     if (!selected) {
@@ -218,6 +228,9 @@ document.getElementById('quizForm').addEventListener('submit', function(e) {
     setTimeout(() => {
         btn.style.transform = '';
     }, 200);
+    
+    // ストリークを更新
+    updateStreak();
 });
 
 // ページ読み込み時の初期化

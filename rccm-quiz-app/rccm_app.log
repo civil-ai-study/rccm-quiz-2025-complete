@@ -1,0 +1,1676 @@
+2025-05-31 18:45:55,668 - data_manager - INFO - ƒf[ƒ^ƒfƒBƒŒƒNƒgƒŠì¬: user_data
+2025-05-31 18:45:55,673 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-05-31 18:45:55,674 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-05-31 18:45:55,675 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-05-31 18:45:55,686 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-05-31 18:45:55,686 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-05-31 18:45:55,700 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-05-31 18:45:55,701 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-05-31 18:45:55,701 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-05-31 18:45:55,773 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.103:5000
+2025-05-31 18:45:55,773 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 18:45:55,776 - werkzeug - INFO -  * Restarting with stat
+2025-05-31 18:45:56,549 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-05-31 18:45:56,550 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-05-31 18:45:56,550 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-05-31 18:45:56,555 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-05-31 18:45:56,555 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-05-31 18:45:56,563 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-05-31 18:45:56,563 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-05-31 18:45:56,564 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-05-31 18:45:56,579 - werkzeug - WARNING -  * Debugger is active!
+2025-05-31 18:45:56,598 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-04 14:41:29,879 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 14:41:29,880 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 14:41:29,881 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 14:41:29,896 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 14:41:29,896 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 14:41:29,909 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 14:41:29,909 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 14:41:29,910 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 14:41:29,967 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.102:5000
+2025-06-04 14:41:29,967 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-04 14:41:29,969 - werkzeug - INFO -  * Restarting with stat
+2025-06-04 14:41:30,495 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 14:41:30,495 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 14:41:30,496 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 14:41:30,502 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 14:41:30,503 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 14:41:30,511 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 14:41:30,511 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 14:41:30,512 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 14:41:30,521 - werkzeug - WARNING -  * Debugger is active!
+2025-06-04 14:41:30,527 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-04 14:41:55,481 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 14:41:55,481 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 14:41:55,482 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 14:41:55,486 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 14:41:55,486 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 14:41:55,492 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 14:41:55,492 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 14:41:55,493 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 14:41:55,520 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.102:5000
+2025-06-04 14:41:55,521 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-04 14:41:55,522 - werkzeug - INFO -  * Restarting with stat
+2025-06-04 14:41:56,011 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 14:41:56,012 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 14:41:56,012 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 14:41:56,017 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 14:41:56,017 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 14:41:56,028 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 14:41:56,028 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 14:41:56,029 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 14:41:56,038 - werkzeug - WARNING -  * Debugger is active!
+2025-06-04 14:41:56,043 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-04 14:52:53,628 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/favicon.ico
+2025-06-04 14:52:53,645 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:52:53] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-04 14:52:53,713 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 14:52:53,715 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:52:53] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 14:52:55,615 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 14:52:55,616 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:52:55] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 14:52:55,890 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 14:52:55,891 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:52:55] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 14:52:57,473 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 14:52:57,474 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:52:57] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 14:52:58,390 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è34, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 14:52:58,391 - __main__ - ERROR - quizŠÖ”‚ÅƒGƒ‰[: quiz_feedback.html
+2025-06-04 14:52:58,393 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:52:58] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 14:52:58,472 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:52:58] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-06-04 14:53:00,325 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 14:53:00,326 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:53:00] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 14:53:01,928 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 14:53:01,929 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:53:01] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 14:53:03,123 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 14:53:03,125 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:53:03] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 14:53:03,864 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 14:53:03,865 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:53:03] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 14:53:04,909 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 14:53:04,911 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:53:04] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 14:53:06,533 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è34, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 14:53:06,534 - __main__ - ERROR - quizŠÖ”‚ÅƒGƒ‰[: quiz_feedback.html
+2025-06-04 14:53:06,535 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:53:06] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 14:53:07,776 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 14:53:07,778 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:53:07] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 14:53:08,498 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 14:53:08,500 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:53:08] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 14:53:09,716 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 14:53:09,720 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:53:09] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 14:53:25,436 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 14:53:25,438 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:53:25] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 14:53:27,308 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è34, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 14:53:27,308 - __main__ - ERROR - quizŠÖ”‚ÅƒGƒ‰[: quiz_feedback.html
+2025-06-04 14:53:27,309 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:53:27] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 14:53:27,330 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 14:53:27,332 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:53:27] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 14:53:29,357 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 14:53:29,358 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:53:29] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 14:53:58,344 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 14:53:58,345 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:53:58] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 14:55:10,530 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/.well-known/appspecific/com.chrome.devtools.json
+2025-06-04 14:55:10,532 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:55:10] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-06-04 14:55:10,558 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è34, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 14:55:10,560 - __main__ - ERROR - quizŠÖ”‚ÅƒGƒ‰[: quiz_feedback.html
+2025-06-04 14:55:10,562 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 14:55:10] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 14:56:40,864 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 14:56:40,865 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 14:56:40,865 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 14:56:40,872 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 14:56:40,872 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 14:56:40,883 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 14:56:40,883 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 14:56:40,883 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 14:56:40,931 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.102:5000
+2025-06-04 14:56:40,932 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-04 14:56:40,934 - werkzeug - INFO -  * Restarting with stat
+2025-06-04 14:56:41,693 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 14:56:41,694 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 14:56:41,694 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 14:56:41,701 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 14:56:41,701 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 14:56:41,709 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 14:56:41,709 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 14:56:41,709 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 14:56:41,722 - werkzeug - WARNING -  * Debugger is active!
+2025-06-04 14:56:41,728 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-04 15:00:11,608 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 15:00:11,610 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:00:11] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 15:03:55,750 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/.well-known/appspecific/com.chrome.devtools.json
+2025-06-04 15:03:55,751 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:55] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-06-04 15:03:56,158 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:03:56,159 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:56] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:56,389 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-72x72.png
+2025-06-04 15:03:56,390 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:56] "[33mGET /icon-72x72.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:56,397 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:03:56,398 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:56] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:56,406 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-128x128.png
+2025-06-04 15:03:56,407 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:56] "[33mGET /icon-128x128.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:56,414 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:03:56,416 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:56] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:56,423 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-152x152.png
+2025-06-04 15:03:56,424 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:56] "[33mGET /icon-152x152.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:56,431 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-192x192.png
+2025-06-04 15:03:56,433 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:56] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:56,438 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-384x384.png
+2025-06-04 15:03:56,439 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:56] "[33mGET /icon-384x384.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:56,444 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-512x512.png
+2025-06-04 15:03:56,445 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:56] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:56,451 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:03:56,452 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:56] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:56,458 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:03:56,459 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:56] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:57,485 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-72x72.png
+2025-06-04 15:03:57,491 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:57] "[33mGET /icon-72x72.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:57,500 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:03:57,502 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:57] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:57,512 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-128x128.png
+2025-06-04 15:03:57,513 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:57] "[33mGET /icon-128x128.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:57,518 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:03:57,524 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:57] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:57,531 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-152x152.png
+2025-06-04 15:03:57,532 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:57] "[33mGET /icon-152x152.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:57,543 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-192x192.png
+2025-06-04 15:03:57,547 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:57] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:57,552 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-384x384.png
+2025-06-04 15:03:57,553 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:57] "[33mGET /icon-384x384.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:57,561 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-512x512.png
+2025-06-04 15:03:57,562 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:57] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:57,567 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:03:57,568 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:57] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:57,576 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:03:57,577 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:57] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:03:58,402 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 15:03:58,406 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:03:58] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 15:04:01,337 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/.well-known/appspecific/com.chrome.devtools.json
+2025-06-04 15:04:01,340 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:01] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-06-04 15:04:01,560 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:04:01,564 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:01] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:01,580 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-72x72.png
+2025-06-04 15:04:01,582 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:01] "[33mGET /icon-72x72.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:01,595 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:04:01,602 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:01] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:01,610 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-128x128.png
+2025-06-04 15:04:01,612 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:01] "[33mGET /icon-128x128.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:01,618 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:04:01,620 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:01] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:01,631 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-152x152.png
+2025-06-04 15:04:01,634 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:01] "[33mGET /icon-152x152.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:01,640 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-192x192.png
+2025-06-04 15:04:01,641 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:01] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:01,646 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-384x384.png
+2025-06-04 15:04:01,647 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:01] "[33mGET /icon-384x384.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:01,652 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-512x512.png
+2025-06-04 15:04:01,653 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:01] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:01,658 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:04:01,659 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:01] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:01,664 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:04:01,666 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:01] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:02,777 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-72x72.png
+2025-06-04 15:04:02,778 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:02] "[33mGET /icon-72x72.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:02,783 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:04:02,784 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:02] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:02,789 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-128x128.png
+2025-06-04 15:04:02,790 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:02] "[33mGET /icon-128x128.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:02,795 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:04:02,796 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:02] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:02,801 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-152x152.png
+2025-06-04 15:04:02,802 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:02] "[33mGET /icon-152x152.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:02,807 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-192x192.png
+2025-06-04 15:04:02,808 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:02] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:02,813 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-384x384.png
+2025-06-04 15:04:02,814 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:02] "[33mGET /icon-384x384.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:02,820 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-512x512.png
+2025-06-04 15:04:02,821 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:02] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:02,826 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:04:02,827 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:02] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:02,831 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:04:02,833 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:02] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:03,924 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 15:04:03,925 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:03] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 15:04:04,551 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è34, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 15:04:04,552 - __main__ - ERROR - quizŠÖ”‚ÅƒGƒ‰[: quiz_feedback.html
+2025-06-04 15:04:04,554 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:04] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 15:04:04,554 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-72x72.png
+2025-06-04 15:04:04,555 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:04] "[33mGET /icon-72x72.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:04,564 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:04:04,571 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:04] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:04,594 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/.well-known/appspecific/com.chrome.devtools.json
+2025-06-04 15:04:04,596 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:04] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-06-04 15:04:04,611 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-128x128.png
+2025-06-04 15:04:04,612 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:04] "[33mGET /icon-128x128.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:04,632 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:04:04,634 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:04] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:04,654 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-152x152.png
+2025-06-04 15:04:04,655 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:04] "[33mGET /icon-152x152.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:04,703 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-192x192.png
+2025-06-04 15:04:04,710 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:04] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:04,719 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-384x384.png
+2025-06-04 15:04:04,720 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:04] "[33mGET /icon-384x384.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:04,725 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-512x512.png
+2025-06-04 15:04:04,726 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:04] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:04,731 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:04:04,738 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:04] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:04,762 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:04:04,764 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:04] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:04:07,061 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 15:04:07,063 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:04:07] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 15:05:00,235 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 15:05:00,235 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 15:05:00,236 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 15:05:00,241 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 15:05:00,241 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 15:05:00,249 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 15:05:00,249 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 15:05:00,249 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 15:05:00,281 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.102:5000
+2025-06-04 15:05:00,282 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-04 15:05:00,283 - werkzeug - INFO -  * Restarting with stat
+2025-06-04 15:05:00,903 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 15:05:00,903 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 15:05:00,904 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 15:05:00,908 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 15:05:00,909 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 15:05:00,920 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 15:05:00,920 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 15:05:00,921 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 15:05:00,935 - werkzeug - WARNING -  * Debugger is active!
+2025-06-04 15:05:00,941 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-04 15:05:05,121 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/.well-known/appspecific/com.chrome.devtools.json
+2025-06-04 15:05:05,125 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:05] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-06-04 15:05:05,601 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:05:05,603 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:05] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:05,639 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-72x72.png
+2025-06-04 15:05:05,640 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:05] "[33mGET /icon-72x72.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:05,646 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:05,648 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:05] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:05,653 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-128x128.png
+2025-06-04 15:05:05,654 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:05] "[33mGET /icon-128x128.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:05,659 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:05:05,659 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:05] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:05,665 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-152x152.png
+2025-06-04 15:05:05,666 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:05] "[33mGET /icon-152x152.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:05,670 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-192x192.png
+2025-06-04 15:05:05,671 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:05] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:05,675 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-384x384.png
+2025-06-04 15:05:05,676 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:05] "[33mGET /icon-384x384.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:05,682 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-512x512.png
+2025-06-04 15:05:05,683 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:05] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:05,687 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:05,688 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:05] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:05,692 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:05,693 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:05] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:06,916 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-72x72.png
+2025-06-04 15:05:06,918 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:06] "[33mGET /icon-72x72.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:06,921 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:06,923 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:06] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:06,926 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-128x128.png
+2025-06-04 15:05:06,927 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:06] "[33mGET /icon-128x128.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:06,932 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:05:06,933 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:06] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:06,938 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-152x152.png
+2025-06-04 15:05:06,939 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:06] "[33mGET /icon-152x152.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:06,944 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-192x192.png
+2025-06-04 15:05:06,945 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:06] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:06,954 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-384x384.png
+2025-06-04 15:05:06,955 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:06] "[33mGET /icon-384x384.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:06,959 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-512x512.png
+2025-06-04 15:05:06,960 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:06] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:06,966 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:06,967 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:06] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:06,971 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:06,972 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:06] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:08,044 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 15:05:08,046 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:08] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,233 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-72x72.png
+2025-06-04 15:05:13,234 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-72x72.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,273 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/.well-known/appspecific/com.chrome.devtools.json
+2025-06-04 15:05:13,275 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,301 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:13,302 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,335 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-128x128.png
+2025-06-04 15:05:13,336 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-128x128.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,342 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:05:13,343 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,358 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-152x152.png
+2025-06-04 15:05:13,359 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-152x152.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,362 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-192x192.png
+2025-06-04 15:05:13,363 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,368 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-384x384.png
+2025-06-04 15:05:13,369 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-384x384.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,373 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-512x512.png
+2025-06-04 15:05:13,374 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,378 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:13,379 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,394 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:13,399 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,836 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:05:13,837 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,910 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-72x72.png
+2025-06-04 15:05:13,912 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-72x72.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,919 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:13,920 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,925 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-128x128.png
+2025-06-04 15:05:13,926 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-128x128.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,931 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:05:13,933 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,971 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-152x152.png
+2025-06-04 15:05:13,972 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-152x152.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,977 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-192x192.png
+2025-06-04 15:05:13,978 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:13,996 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-384x384.png
+2025-06-04 15:05:13,998 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:13] "[33mGET /icon-384x384.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:14,009 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-512x512.png
+2025-06-04 15:05:14,011 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:14] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:14,037 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:14,038 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:14] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:14,119 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:14,120 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:14] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:15,139 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-72x72.png
+2025-06-04 15:05:15,140 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:15] "[33mGET /icon-72x72.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:15,146 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:15,147 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:15] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:15,153 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-128x128.png
+2025-06-04 15:05:15,154 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:15] "[33mGET /icon-128x128.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:15,159 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:05:15,160 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:15] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:15,164 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-152x152.png
+2025-06-04 15:05:15,166 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:15] "[33mGET /icon-152x152.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:15,171 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-192x192.png
+2025-06-04 15:05:15,172 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:15] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:15,176 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-384x384.png
+2025-06-04 15:05:15,177 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:15] "[33mGET /icon-384x384.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:15,181 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-512x512.png
+2025-06-04 15:05:15,184 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:15] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:15,189 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:15,190 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:15] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:15,194 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:15,195 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:15] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:15,777 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/.well-known/appspecific/com.chrome.devtools.json
+2025-06-04 15:05:15,779 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 15:05:15,780 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:15] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-06-04 15:05:15,784 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:15] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 15:05:15,987 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:05:15,988 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:15] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:16,003 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-72x72.png
+2025-06-04 15:05:16,004 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:16] "[33mGET /icon-72x72.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:16,009 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:16,009 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:16] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:16,014 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-128x128.png
+2025-06-04 15:05:16,017 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:16] "[33mGET /icon-128x128.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:16,022 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:05:16,023 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:16] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:16,028 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-152x152.png
+2025-06-04 15:05:16,029 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:16] "[33mGET /icon-152x152.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:16,035 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-192x192.png
+2025-06-04 15:05:16,036 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:16] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:16,041 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-384x384.png
+2025-06-04 15:05:16,042 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:16] "[33mGET /icon-384x384.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:16,047 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-512x512.png
+2025-06-04 15:05:16,049 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:16] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:16,054 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:16,055 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:16] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:16,059 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:16,060 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:16] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:17,166 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-72x72.png
+2025-06-04 15:05:17,168 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:17] "[33mGET /icon-72x72.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:17,172 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:17,173 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:17] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:17,177 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-128x128.png
+2025-06-04 15:05:17,178 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:17] "[33mGET /icon-128x128.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:17,183 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:05:17,185 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:17] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:17,213 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-152x152.png
+2025-06-04 15:05:17,214 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:17] "[33mGET /icon-152x152.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:17,220 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-192x192.png
+2025-06-04 15:05:17,221 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:17] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:17,225 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-384x384.png
+2025-06-04 15:05:17,226 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:17] "[33mGET /icon-384x384.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:17,230 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-512x512.png
+2025-06-04 15:05:17,231 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:17] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:17,237 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:17,238 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:17] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:17,242 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:17,243 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:17] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:18,550 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 15:05:18,552 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:18] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 15:05:19,437 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è34, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 15:05:19,438 - __main__ - ERROR - quizŠÖ”‚ÅƒGƒ‰[: quiz_feedback.html
+2025-06-04 15:05:19,439 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:19] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 15:05:19,444 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-72x72.png
+2025-06-04 15:05:19,446 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:19] "[33mGET /icon-72x72.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:19,454 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:19,455 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:19] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:19,471 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/.well-known/appspecific/com.chrome.devtools.json
+2025-06-04 15:05:19,472 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:19] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-06-04 15:05:19,494 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-128x128.png
+2025-06-04 15:05:19,495 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:19] "[33mGET /icon-128x128.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:19,529 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-144x144.png
+2025-06-04 15:05:19,530 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:19] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:19,551 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-152x152.png
+2025-06-04 15:05:19,553 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:19] "[33mGET /icon-152x152.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:19,572 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-192x192.png
+2025-06-04 15:05:19,573 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:19] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:19,581 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-384x384.png
+2025-06-04 15:05:19,583 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:19] "[33mGET /icon-384x384.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:19,587 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-512x512.png
+2025-06-04 15:05:19,588 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:19] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:19,592 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:19,593 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:19] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:19,599 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/icon-96x96.png
+2025-06-04 15:05:19,600 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:19] "[33mGET /icon-96x96.png HTTP/1.1[0m" 404 -
+2025-06-04 15:05:22,134 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 15:05:22,136 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:22] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 15:05:41,704 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 15:05:41,705 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:05:41] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 15:11:11,787 - __main__ - WARNING - 404ƒGƒ‰[: http://127.0.0.1:5000/sw.js
+2025-06-04 15:11:11,788 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 15:11:11] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-04 15:12:45,204 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-04 15:12:45,376 - werkzeug - INFO -  * Restarting with stat
+2025-06-04 15:12:45,639 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-04 15:12:45,770 - werkzeug - INFO -  * Restarting with stat
+2025-06-04 15:12:46,009 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-04 15:12:46,120 - werkzeug - INFO -  * Restarting with stat
+2025-06-04 23:30:18,768 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 23:30:18,771 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 23:30:18,771 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 23:30:18,786 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 23:30:18,786 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 23:30:18,796 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 23:30:18,797 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 23:30:18,797 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 23:30:18,850 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.102:5000
+2025-06-04 23:30:18,850 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-04 23:30:18,851 - werkzeug - INFO -  * Restarting with stat
+2025-06-04 23:30:19,646 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 23:30:19,646 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 23:30:19,646 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 23:30:19,651 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 23:30:19,651 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 23:30:19,660 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 23:30:19,660 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 23:30:19,660 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 23:30:19,672 - werkzeug - WARNING -  * Debugger is active!
+2025-06-04 23:30:19,678 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-04 23:31:27,233 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:31:27] "GET / HTTP/1.1" 200 -
+2025-06-04 23:31:27,567 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:31:27] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-06-04 23:31:27,955 - __main__ - WARNING - 404ƒGƒ‰[: http://localhost:5000/favicon.ico
+2025-06-04 23:31:27,958 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:31:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-04 23:31:29,869 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-04 23:31:29,870 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-04 23:31:29,882 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:31:29] "GET /quiz HTTP/1.1" 200 -
+2025-06-04 23:31:30,135 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:31:30] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:31:38,136 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è83, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-04 23:31:38,150 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:31:38] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:31:38,485 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:31:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:31:44,710 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:31:44] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:31:45,020 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:31:45] "GET /quiz?category=‰Íì HTTP/1.1" 200 -
+2025-06-04 23:31:45,284 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:31:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:31:53,583 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è87, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-04 23:31:53,584 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:31:53] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:31:53,927 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:31:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:32:07,179 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:07] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:32:07,498 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:07] "GET /quiz?category={H HTTP/1.1" 200 -
+2025-06-04 23:32:07,762 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:07] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:32:17,312 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è57, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-04 23:32:17,313 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:17] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:32:17,653 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:17] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:32:19,629 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:19] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:32:19,946 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:19] "GET /quiz?category=V‹Zp HTTP/1.1" 200 -
+2025-06-04 23:32:20,204 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:32:29,979 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è82, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-04 23:32:29,980 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:29] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:32:30,312 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:30] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:32:31,755 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:31] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:32:32,084 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:32] "GET /quiz?category=“y¿ HTTP/1.1" 200 -
+2025-06-04 23:32:32,329 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:32:50,890 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è15, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-04 23:32:50,891 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:50] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:32:51,233 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:51] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:32:53,749 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:53] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:32:54,076 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:54] "GET /quiz?category=‘ª—Ê HTTP/1.1" 200 -
+2025-06-04 23:32:54,323 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:32:54] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:33:03,244 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è6, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:33:03,246 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:33:03] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:33:03,589 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:33:03] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:33:48,191 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:33:48] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:33:48,528 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:33:48] "GET /quiz?category=“y¿ HTTP/1.1" 200 -
+2025-06-04 23:33:48,842 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:33:48] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:34:09,782 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è49, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-04 23:34:09,784 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:34:09] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:34:10,117 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:34:10] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:34:25,164 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:34:25] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:34:25,480 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:34:25] "GET /quiz?category=ˆÛŠÇ— HTTP/1.1" 200 -
+2025-06-04 23:34:25,739 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:34:25] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:35:25,275 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è59, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:35:25,277 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:35:25] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:35:25,627 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:35:25] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:35:32,773 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:35:32] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:35:33,094 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:35:33] "GET /quiz?category=•i¿ŠÇ— HTTP/1.1" 200 -
+2025-06-04 23:35:33,354 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:35:33] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:36:17,294 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:36:17] "GET / HTTP/1.1" 200 -
+2025-06-04 23:36:17,624 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:36:17] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:36:18,909 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:36:18] "[35m[1mGET /review HTTP/1.1[0m" 500 -
+2025-06-04 23:36:18,919 - werkzeug - ERROR - Error on request:
+Traceback (most recent call last):
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\werkzeug\debug\__init__.py", line 343, in debug_application
+    app_iter = self.app(environ, start_response)
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\flask\app.py", line 1478, in __call__
+    return self.wsgi_app(environ, start_response)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\flask\app.py", line 1458, in wsgi_app
+    response = self.handle_exception(e)
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 566, in review_list
+    return render_template('review.html')
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\flask\templating.py", line 151, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\jinja2\environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\jinja2\environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\jinja2\environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: review.html
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\werkzeug\serving.py", line 370, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\werkzeug\serving.py", line 333, in execute
+    for data in application_iter:
+                ^^^^^^^^^^^^^^^^
+  File "C:\Users\z285\Desktop\rccm-quiz-app\.venv\Lib\site-packages\werkzeug\debug\__init__.py", line 378, in debug_application
+    environ["wsgi.errors"].write("".join(tb.render_traceback_text()))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2025-06-04 23:36:19,255 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:36:19] "GET /review?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-06-04 23:36:19,255 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:36:19] "GET /review?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-06-04 23:36:19,505 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:36:19] "GET /review?__debugger__=yes&cmd=resource&f=console.png&s=5XehE3yfR9XttVw6PbOw HTTP/1.1" 200 -
+2025-06-04 23:36:19,715 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:36:19] "GET /review?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-06-04 23:37:02,266 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:02] "GET /reset HTTP/1.1" 200 -
+2025-06-04 23:37:02,524 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:37:07,434 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:07] "GET /categories HTTP/1.1" 200 -
+2025-06-04 23:37:07,776 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:07] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:37:07,790 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:07] "GET /static/js/categories.js HTTP/1.1" 200 -
+2025-06-04 23:37:11,937 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:11] "GET /statistics HTTP/1.1" 200 -
+2025-06-04 23:37:12,276 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:12] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:37:21,079 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:21] "GET / HTTP/1.1" 200 -
+2025-06-04 23:37:21,414 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:21] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:37:25,144 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:25] "GET /statistics HTTP/1.1" 200 -
+2025-06-04 23:37:25,478 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:25] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:37:35,182 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-04 23:37:35,183 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-04 23:37:35,184 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:35] "GET /quiz HTTP/1.1" 200 -
+2025-06-04 23:37:35,514 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:35] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:37:43,503 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è17, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:37:43,505 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:43] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:37:43,828 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:43] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:37:45,561 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:45] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:37:45,882 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:45] "GET /quiz?category=ˆê”Ê‹Zp HTTP/1.1" 200 -
+2025-06-04 23:37:46,152 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:37:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:23,436 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è39, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:38:23,438 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:38:23,438 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:23] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:38:23,774 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:38:23,775 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:23] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:25,125 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:38:25,126 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:25] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:38:25,439 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:38:25,440 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:25] "GET /quiz?category=…—Šw HTTP/1.1" 200 -
+2025-06-04 23:38:25,704 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:38:25,705 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:25] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:27,391 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è33, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:38:27,393 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:27] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:38:27,736 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:27] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:29,193 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:29] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:38:29,519 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:29] "GET /quiz?category=‘ª—Ê HTTP/1.1" 200 -
+2025-06-04 23:38:29,766 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:29] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:31,057 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è46, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:38:31,059 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:31] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:38:31,404 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:31] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:33,876 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:33] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:38:34,199 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:34] "GET /quiz?category=–@—ß HTTP/1.1" 200 -
+2025-06-04 23:38:34,464 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:34] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:36,064 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è92, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:38:36,067 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:36] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:38:36,402 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:36] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:37,851 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:37] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:38:38,172 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:38] "GET /quiz?category=“y¿ HTTP/1.1" 200 -
+2025-06-04 23:38:38,440 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:39,827 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è13, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:38:39,828 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:39] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:38:40,172 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:41,899 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:41] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:38:42,219 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:42] "GET /quiz?category=‘ª—Ê HTTP/1.1" 200 -
+2025-06-04 23:38:42,481 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:42] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:44,012 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è14, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-04 23:38:44,013 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:44] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:38:44,351 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:45,644 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:45] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:38:45,957 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:45] "GET /quiz?category=‘ª—Ê HTTP/1.1" 200 -
+2025-06-04 23:38:46,222 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:48,647 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è84, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-04 23:38:48,649 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:48] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:38:49,326 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:51,204 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:51] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:38:51,523 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:51] "GET /quiz?category=“¹˜H HTTP/1.1" 200 -
+2025-06-04 23:38:51,789 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:51] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:53,481 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è97, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:38:53,483 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:53] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:38:53,819 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:55,354 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:55] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:38:55,669 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:55] "GET /quiz?category=Ş—¿ HTTP/1.1" 200 -
+2025-06-04 23:38:55,935 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:55] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:38:59,751 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è20, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:38:59,753 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:38:59] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:39:00,092 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:00] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:39:02,436 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:02] "GET /result HTTP/1.1" 200 -
+2025-06-04 23:39:02,767 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:39:08,576 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:08] "GET /statistics HTTP/1.1" 200 -
+2025-06-04 23:39:08,914 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:08] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:39:40,458 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:40] "GET /statistics HTTP/1.1" 200 -
+2025-06-04 23:39:40,799 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:39:41,671 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:41] "GET /categories HTTP/1.1" 200 -
+2025-06-04 23:39:42,014 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:42] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:39:42,014 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:42] "[36mGET /static/js/categories.js HTTP/1.1[0m" 304 -
+2025-06-04 23:39:42,811 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:42] "GET /review HTTP/1.1" 200 -
+2025-06-04 23:39:43,159 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:43] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:39:44,446 - __main__ - ERROR - SRS“Œv•\¦ƒGƒ‰[: srs_stats.html
+2025-06-04 23:39:44,447 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:44] "GET /srs_stats HTTP/1.1" 200 -
+2025-06-04 23:39:44,781 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:39:47,984 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:47] "GET / HTTP/1.1" 200 -
+2025-06-04 23:39:48,327 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:39:48] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:41:02,234 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:41:02] "GET / HTTP/1.1" 200 -
+2025-06-04 23:41:02,494 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:41:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:41:03,612 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-04 23:41:03,612 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-04 23:41:03,613 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:41:03] "GET /quiz HTTP/1.1" 200 -
+2025-06-04 23:41:03,947 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:41:03] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:41:07,647 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è77, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-04 23:41:07,667 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:41:07] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:41:07,993 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:41:07] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:41:12,083 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:41:12] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:41:12,408 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:41:12] "GET /quiz?category=Ş—¿ HTTP/1.1" 200 -
+2025-06-04 23:41:12,659 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:41:12] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:41:51,025 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:41:51] "GET /review HTTP/1.1" 200 -
+2025-06-04 23:41:51,371 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:41:51] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:41:54,196 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:41:54] "GET / HTTP/1.1" 200 -
+2025-06-04 23:41:54,529 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:41:54] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:41:55,591 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-04 23:41:55,591 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-04 23:41:55,593 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:41:55] "GET /quiz HTTP/1.1" 200 -
+2025-06-04 23:41:55,957 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:41:55] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:43:41,722 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è62, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:43:41,735 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:43:41,737 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:43:41] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:43:41,985 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:43:41,986 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:43:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:43:46,586 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:43:46,588 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:43:46] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:43:46,902 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:43:46,904 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:43:46] "GET /quiz?category=…—Šw HTTP/1.1" 200 -
+2025-06-04 23:43:47,164 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:43:47,166 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:43:47] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:43:49,437 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è24, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:43:49,439 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:43:49] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:43:49,774 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:43:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:43:55,418 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:43:55] "GET /review HTTP/1.1" 200 -
+2025-06-04 23:43:55,763 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:43:55] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:52:51,521 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 23:52:51,522 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 23:52:51,522 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 23:52:51,530 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 23:52:51,530 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 23:52:51,541 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 23:52:51,541 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 23:52:51,541 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 23:52:51,593 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.102:5000
+2025-06-04 23:52:51,593 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-04 23:52:51,595 - werkzeug - INFO -  * Restarting with stat
+2025-06-04 23:52:52,248 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 23:52:52,249 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 23:52:52,249 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 23:52:52,258 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 23:52:52,258 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 23:52:52,268 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 23:52:52,268 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 23:52:52,269 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 23:52:52,282 - werkzeug - WARNING -  * Debugger is active!
+2025-06-04 23:52:52,289 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-04 23:53:00,114 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:53:00] "GET / HTTP/1.1" 200 -
+2025-06-04 23:53:00,411 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:53:00] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:53:02,565 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-04 23:53:02,565 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-04 23:53:02,575 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:53:02] "GET /quiz HTTP/1.1" 200 -
+2025-06-04 23:53:02,907 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:53:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:53:04,546 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è58, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:53:04,553 - __main__ - ERROR - quizŠÖ”‚ÅƒGƒ‰[: Unexpected end of template. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
+2025-06-04 23:53:04,557 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:53:04] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:53:04,893 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:53:04] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:53:06,495 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:53:06] "GET / HTTP/1.1" 200 -
+2025-06-04 23:53:06,839 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:53:06] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:53:08,011 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-04 23:53:08,012 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-04 23:53:08,013 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:53:08] "GET /quiz HTTP/1.1" 200 -
+2025-06-04 23:53:08,344 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:53:08] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:53:09,769 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è29, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-04 23:53:09,775 - __main__ - ERROR - quizŠÖ”‚ÅƒGƒ‰[: Unexpected end of template. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
+2025-06-04 23:53:09,777 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:53:09] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:53:10,119 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:53:10] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:53:55,787 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:53:55] "GET / HTTP/1.1" 200 -
+2025-06-04 23:53:56,163 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:53:56] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:10,504 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-04 23:54:10,504 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-04 23:54:10,506 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:10] "GET /quiz HTTP/1.1" 200 -
+2025-06-04 23:54:10,883 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:10] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:12,057 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è39, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-04 23:54:12,060 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:12] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:54:12,395 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:12] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:18,160 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:18] "GET / HTTP/1.1" 200 -
+2025-06-04 23:54:18,500 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:18] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:19,696 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:19] "GET / HTTP/1.1" 200 -
+2025-06-04 23:54:20,039 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:21,347 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-04 23:54:21,348 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-04 23:54:21,350 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:21] "GET /quiz HTTP/1.1" 200 -
+2025-06-04 23:54:21,693 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:21] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:23,059 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è7, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:54:23,062 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:23] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:54:23,401 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:23] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:37,202 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 23:54:37,202 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 23:54:37,203 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 23:54:37,210 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 23:54:37,210 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 23:54:37,217 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 23:54:37,217 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 23:54:37,217 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 23:54:37,249 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.102:5000
+2025-06-04 23:54:37,249 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-04 23:54:37,250 - werkzeug - INFO -  * Restarting with stat
+2025-06-04 23:54:37,868 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 23:54:37,868 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 23:54:37,869 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 23:54:37,875 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 23:54:37,875 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 23:54:37,882 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 23:54:37,883 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 23:54:37,883 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 23:54:37,895 - werkzeug - WARNING -  * Debugger is active!
+2025-06-04 23:54:37,900 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-04 23:54:41,258 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:41] "GET / HTTP/1.1" 200 -
+2025-06-04 23:54:41,600 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:44,122 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:44] "GET / HTTP/1.1" 200 -
+2025-06-04 23:54:44,455 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:46,035 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-04 23:54:46,036 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-04 23:54:46,038 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:46] "GET /quiz HTTP/1.1" 200 -
+2025-06-04 23:54:46,370 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:48,234 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è35, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:54:48,236 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:48] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:54:48,576 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:48] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:51,666 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:51] "GET /statistics HTTP/1.1" 200 -
+2025-06-04 23:54:51,997 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:51] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:53,317 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:53] "GET /review HTTP/1.1" 200 -
+2025-06-04 23:54:53,660 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:54,434 - __main__ - ERROR - SRS“Œv•\¦ƒGƒ‰[: srs_stats.html
+2025-06-04 23:54:54,436 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:54] "GET /srs_stats HTTP/1.1" 200 -
+2025-06-04 23:54:54,782 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:54] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:55,358 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:55] "GET /help HTTP/1.1" 200 -
+2025-06-04 23:54:55,743 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:55] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:57,318 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:57] "GET /statistics HTTP/1.1" 200 -
+2025-06-04 23:54:57,651 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:57] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:54:58,788 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-04 23:54:58,788 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-04 23:54:58,791 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:58] "GET /quiz HTTP/1.1" 200 -
+2025-06-04 23:54:59,136 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:54:59] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:55:00,548 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:55:00] "GET / HTTP/1.1" 200 -
+2025-06-04 23:55:00,883 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:55:00] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:55:02,434 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:55:02] "GET /quiz HTTP/1.1" 200 -
+2025-06-04 23:55:02,775 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:55:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:55:04,258 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è29, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:55:04,259 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:55:04] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:55:04,588 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:55:04] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:56:41,712 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:56:41] "GET / HTTP/1.1" 200 -
+2025-06-04 23:56:41,978 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:56:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:56:45,161 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 23:56:45,161 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 23:56:45,161 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 23:56:45,166 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 23:56:45,166 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 23:56:45,175 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 23:56:45,175 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 23:56:45,175 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 23:56:45,211 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.102:5000
+2025-06-04 23:56:45,211 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-04 23:56:45,212 - werkzeug - INFO -  * Restarting with stat
+2025-06-04 23:56:45,957 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 23:56:45,958 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 23:56:45,958 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 23:56:45,965 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 23:56:45,965 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 23:56:45,979 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 23:56:45,979 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 23:56:45,979 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 23:56:45,998 - werkzeug - WARNING -  * Debugger is active!
+2025-06-04 23:56:46,006 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-04 23:56:50,057 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 23:56:50,057 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 23:56:50,058 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 23:56:50,066 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 23:56:50,066 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 23:56:50,087 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 23:56:50,090 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 23:56:50,092 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 23:56:50,150 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.102:5000
+2025-06-04 23:56:50,150 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-04 23:56:50,152 - werkzeug - INFO -  * Restarting with stat
+2025-06-04 23:56:50,884 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-04 23:56:50,884 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-04 23:56:50,884 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-04 23:56:50,892 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-04 23:56:50,892 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-04 23:56:50,900 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-04 23:56:50,900 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-04 23:56:50,900 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-04 23:56:50,915 - werkzeug - WARNING -  * Debugger is active!
+2025-06-04 23:56:50,921 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-04 23:56:59,577 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:56:59] "GET / HTTP/1.1" 200 -
+2025-06-04 23:56:59,908 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:56:59] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:57:01,492 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-04 23:57:01,492 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-04 23:57:01,495 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:01] "GET /quiz HTTP/1.1" 200 -
+2025-06-04 23:57:01,824 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:01] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:57:03,400 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è80, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:57:03,404 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:03] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:57:03,747 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:03] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:57:15,849 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-04 23:57:15,850 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-04 23:57:15,853 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:15] "GET /quiz HTTP/1.1" 200 -
+2025-06-04 23:57:16,198 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:16] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:57:19,125 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è27, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:57:19,128 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:19] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:57:19,459 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:19] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:57:46,348 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è27, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:57:46,354 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:57:46,356 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:46] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:57:46,686 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:57:46,689 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:57:47,976 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:57:47,978 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:47] "GET / HTTP/1.1" 200 -
+2025-06-04 23:57:48,313 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:57:48,315 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:48] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:57:49,635 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-04 23:57:49,636 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-04 23:57:49,640 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:57:49,642 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:49] "GET /quiz HTTP/1.1" 200 -
+2025-06-04 23:57:49,982 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: c40298aa86c9
+2025-06-04 23:57:49,984 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:57:51,383 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è23, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:57:51,385 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:51] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:57:51,721 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:57:51] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:58:20,577 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:20] "GET / HTTP/1.1" 200 -
+2025-06-04 23:58:20,907 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:58:26,484 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:26] "GET / HTTP/1.1" 200 -
+2025-06-04 23:58:26,819 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:26] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:58:27,774 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-04 23:58:27,774 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-04 23:58:27,777 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:27] "GET /quiz HTTP/1.1" 200 -
+2025-06-04 23:58:28,114 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:28] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:58:29,381 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è16, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:58:29,391 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:29] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:58:29,727 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:29] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:58:36,422 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:36] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:58:36,736 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:36] "GET /quiz?category=ˆê”Ê‹Zp HTTP/1.1" 200 -
+2025-06-04 23:58:37,002 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:37] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:58:38,855 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è1, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-04 23:58:38,858 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:38] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:58:39,199 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:39] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:58:40,952 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:40] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:58:41,271 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:41] "GET /quiz?category=ƒRƒ“ƒNƒŠ[ƒg HTTP/1.1" 200 -
+2025-06-04 23:58:41,534 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:58:45,510 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è96, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-04 23:58:45,512 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:45] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:58:45,852 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:58:50,849 - __main__ - WARNING - 404ƒGƒ‰[: http://localhost:5000/api/bookmark
+2025-06-04 23:58:50,852 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:50] "[33mPOST /api/bookmark HTTP/1.1[0m" 404 -
+2025-06-04 23:58:55,633 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:55] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:58:55,900 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:55] "GET /quiz?category={H HTTP/1.1" 200 -
+2025-06-04 23:58:55,946 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:55] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:58:59,112 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è12, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-04 23:58:59,114 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:59] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:58:59,458 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:58:59] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:59:01,046 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:59:01] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:59:01,368 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:59:01] "GET /quiz?category=“¹˜H HTTP/1.1" 200 -
+2025-06-04 23:59:01,635 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:59:01] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:59:03,550 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è82, ³“šTrue, ƒŒƒxƒ‹2
+2025-06-04 23:59:03,552 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:59:03] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:59:03,895 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:59:03] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:59:06,249 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:59:06] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-04 23:59:06,569 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:59:06] "GET /quiz?category=“y¿ HTTP/1.1" 200 -
+2025-06-04 23:59:06,822 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:59:06] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:59:08,665 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è100, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-04 23:59:08,666 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:59:08] "POST /quiz HTTP/1.1" 200 -
+2025-06-04 23:59:09,005 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:59:09] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-04 23:59:11,241 - __main__ - WARNING - 404ƒGƒ‰[: http://localhost:5000/api/bookmark
+2025-06-04 23:59:11,243 - werkzeug - INFO - 127.0.0.1 - - [04/Jun/2025 23:59:11] "[33mPOST /api/bookmark HTTP/1.1[0m" 404 -
+2025-06-05 08:36:20,989 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:36:20] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:36:21,247 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:36:21] "[32mGET /result HTTP/1.1[0m" 302 -
+2025-06-05 08:36:21,305 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:36:21,306 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:36:21,307 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:36:21,327 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:36:21,327 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:36:21,336 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:36:21,337 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:36:21,338 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-05 08:36:21,338 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-05 08:36:21,341 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:36:21] "GET /quiz HTTP/1.1" 200 -
+2025-06-05 08:36:21,557 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:36:21] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:36:23,684 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è18, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-05 08:36:23,686 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:36:23] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:36:24,028 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:36:24] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:36:49,680 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:36:49] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:36:50,008 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:36:50] "GET /quiz?category=ˆê”Ê‹Zp HTTP/1.1" 200 -
+2025-06-05 08:36:50,268 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:36:50] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:36:54,366 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è49, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:36:54,367 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:36:54] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:36:54,702 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:36:54] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:37:06,802 - __main__ - WARNING - 404ƒGƒ‰[: http://localhost:5000/api/bookmark
+2025-06-05 08:37:06,896 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:37:06] "[33mPOST /api/bookmark HTTP/1.1[0m" 404 -
+2025-06-05 08:37:19,311 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:37:19] "GET /review HTTP/1.1" 200 -
+2025-06-05 08:37:19,580 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:37:19] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:38:28,828 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:38:28] "GET / HTTP/1.1" 200 -
+2025-06-05 08:38:29,074 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:38:29] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:39:23,631 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:39:23,733 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:39:23,808 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:39:24,132 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:39:24,145 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:39:24,151 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:39:24,385 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:39:24,704 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:39:26,383 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:39:26,383 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:39:26,384 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:39:26,385 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:39:26,393 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:39:26,395 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:39:26,397 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:39:26,398 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:39:26,398 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:39:26,398 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:39:26,399 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:39:26,416 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:39:26,417 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:39:26,427 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:39:26,429 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:39:26,434 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:39:26,435 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:39:26,437 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:39:26,438 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:39:26,438 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:39:26,440 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:39:26,455 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:39:26,460 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:39:26,466 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:39:26,457 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:39:26,469 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:39:26,472 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:39:26,472 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:39:26,473 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:39:26,500 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:39:26,502 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:39:26,517 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:39:26,520 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:39:26,531 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:39:26,533 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:39:26,551 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:39:26,562 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:39:26,563 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:40:10,746 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:40:10,884 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:40:10,981 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:40:10,991 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:40:10,993 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:40:11,166 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:40:11,177 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:40:11,177 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:40:11,840 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:40:11,842 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:40:11,843 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:40:11,849 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:40:11,849 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:40:11,861 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:40:11,861 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:40:11,862 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:40:11,877 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:40:11,884 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:40:12,135 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:40:12,136 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:40:12,136 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:40:12,144 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:40:12,145 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:40:12,154 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:40:12,155 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:40:12,156 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:40:12,156 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:40:12,157 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:40:12,157 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:40:12,165 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:40:12,166 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:40:12,176 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:40:12,179 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:40:12,180 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:40:12,180 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:40:12,182 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:40:12,186 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:40:12,186 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:40:12,187 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:40:12,195 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:40:12,197 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:40:12,197 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:40:12,203 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:40:12,212 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:40:12,213 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:40:12,213 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:40:12,228 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:40:12,233 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:42:36,141 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:42:36,141 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:42:36,141 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:42:36,154 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:42:36,154 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:42:36,172 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:42:36,173 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:42:36,173 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:42:36,230 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.102:5000
+2025-06-05 08:42:36,231 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 08:42:36,232 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:42:37,318 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:42:37,319 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:42:37,319 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:42:37,331 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:42:37,331 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:42:37,344 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:42:37,344 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:42:37,346 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:42:37,370 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:42:37,380 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:42:44,689 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:42:44,691 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:42:44,691 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:42:44,704 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:42:44,708 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:42:44,736 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:42:44,737 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:42:44,737 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:42:44,797 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.102:5000
+2025-06-05 08:42:44,797 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 08:42:44,800 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:42:46,010 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:42:46,010 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:42:46,011 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:42:46,022 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:42:46,022 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:42:46,056 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:42:46,060 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:42:46,068 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:42:46,116 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:42:46,125 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:42:52,726 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:42:52] "GET / HTTP/1.1" 200 -
+2025-06-05 08:42:53,082 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:42:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:42:54,388 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-05 08:42:54,388 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-05 08:42:54,405 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:42:54] "GET /quiz HTTP/1.1" 200 -
+2025-06-05 08:42:54,751 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:42:54] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:43:04,203 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è39, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-05 08:43:04,235 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:43:04] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:43:04,623 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:43:04] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:43:08,375 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:43:08] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:43:08,700 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:43:08] "GET /quiz?category=…—Šw HTTP/1.1" 200 -
+2025-06-05 08:43:08,955 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:43:08] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:43:15,495 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è38, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:43:15,496 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:43:15] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:43:15,831 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:43:15] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:43:45,521 - __main__ - INFO - –â‘èID 38 ‚ğƒuƒbƒNƒ}[ƒN‚É’Ç‰Á‚µ‚Ü‚µ‚½
+2025-06-05 08:43:45,522 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:43:45] "POST /api/bookmark HTTP/1.1" 200 -
+2025-06-05 08:43:57,734 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:43:57] "GET /review HTTP/1.1" 200 -
+2025-06-05 08:43:57,977 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:43:57] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:43:58,118 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:43:58] "GET /api/bookmarks HTTP/1.1" 200 -
+2025-06-05 08:43:58,343 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:43:58] "POST /api/review/questions HTTP/1.1" 200 -
+2025-06-05 08:44:01,123 - __main__ - WARNING - 404ƒGƒ‰[: http://localhost:5000/quiz/38
+2025-06-05 08:44:01,129 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:44:01] "[33mGET /quiz/38 HTTP/1.1[0m" 404 -
+2025-06-05 08:44:01,491 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:44:01] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:44:12,174 - __main__ - WARNING - 404ƒGƒ‰[: http://localhost:5000/quiz/38
+2025-06-05 08:44:12,177 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:44:12] "[33mGET /quiz/38 HTTP/1.1[0m" 404 -
+2025-06-05 08:44:12,554 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:44:12] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:44:24,800 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:44:24] "GET /review HTTP/1.1" 200 -
+2025-06-05 08:44:25,147 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:44:25] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:44:25,426 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:44:25] "GET /api/bookmarks HTTP/1.1" 200 -
+2025-06-05 08:44:25,808 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:44:25] "POST /api/review/questions HTTP/1.1" 200 -
+2025-06-05 08:48:05,602 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:48:05,625 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:48:05,784 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:48:05,887 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:48:05,888 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:48:06,015 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:48:06,294 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:48:06,436 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:48:06,498 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:48:06,609 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:48:06,885 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:48:07,016 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:48:07,633 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:48:07,670 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:48:07,672 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:48:07,715 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:48:07,718 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:48:07,745 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:48:07,775 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:48:07,775 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:48:07,806 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:48:07,838 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:48:07,889 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:48:07,916 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:48:07,940 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:48:07,953 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:48:08,000 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:48:08,001 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:48:08,004 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:48:08,005 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:48:08,005 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:48:08,008 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:48:08,038 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:48:08,041 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:48:08,045 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:48:08,055 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:48:08,089 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:48:08,124 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:48:08,139 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:48:08,220 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:48:08,238 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:48:08,917 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:48:08,922 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:48:08,924 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:48:08,936 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:48:08,940 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:48:08,963 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:48:08,969 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:48:08,970 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:48:09,000 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:48:09,009 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:48:09,525 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:48:09,525 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:48:09,526 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:48:09,548 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:48:09,549 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:48:09,575 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:48:09,576 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:48:09,576 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:48:09,600 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:48:09,607 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:48:09,646 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:48:09,647 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:48:09,648 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:48:09,657 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:48:09,658 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:48:09,683 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:48:09,683 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:48:09,684 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:48:09,706 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:48:09,715 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:49:28,290 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:49:28] "GET / HTTP/1.1" 200 -
+2025-06-05 08:49:28,610 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:49:28] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:49:30,367 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:49:30] "GET / HTTP/1.1" 200 -
+2025-06-05 08:49:30,712 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:49:30] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:49:31,946 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-05 08:49:31,946 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-05 08:49:31,955 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:49:31] "GET /quiz HTTP/1.1" 200 -
+2025-06-05 08:49:32,298 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:49:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:49:35,054 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è47, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:49:35,063 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:49:35] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:49:35,398 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:49:35] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:49:36,574 - __main__ - INFO - –â‘èID 47 ‚ğƒuƒbƒNƒ}[ƒN‚É’Ç‰Á‚µ‚Ü‚µ‚½
+2025-06-05 08:49:36,575 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:49:36] "POST /api/bookmark HTTP/1.1" 200 -
+2025-06-05 08:50:41,700 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:50:41] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:50:41,962 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:50:41] "GET /quiz?category=–@—ß HTTP/1.1" 200 -
+2025-06-05 08:50:42,029 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:50:42] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:50:47,582 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è28, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-05 08:50:47,589 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:50:47] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:50:47,930 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:50:47] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:50:49,364 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:50:49] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:50:49,685 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:50:49] "GET /quiz?category=“¹˜H HTTP/1.1" 200 -
+2025-06-05 08:50:49,951 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:50:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:51:00,478 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è2, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:51:00,480 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:00] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:51:00,813 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:00] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:51:08,158 - __main__ - INFO - –â‘èID 2 ‚ğƒuƒbƒNƒ}[ƒN‚É’Ç‰Á‚µ‚Ü‚µ‚½
+2025-06-05 08:51:08,160 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:08] "POST /api/bookmark HTTP/1.1" 200 -
+2025-06-05 08:51:14,156 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:14] "GET / HTTP/1.1" 200 -
+2025-06-05 08:51:14,404 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:51:15,826 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:15] "GET /categories HTTP/1.1" 200 -
+2025-06-05 08:51:16,160 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:16] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:51:16,166 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:16] "[36mGET /static/js/categories.js HTTP/1.1[0m" 304 -
+2025-06-05 08:51:18,459 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:18] "GET /quiz?category=ƒRƒ“ƒNƒŠ[ƒg HTTP/1.1" 200 -
+2025-06-05 08:51:18,800 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:18] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:51:24,090 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:24] "GET / HTTP/1.1" 200 -
+2025-06-05 08:51:24,436 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:24] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:51:25,843 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:25] "GET /statistics HTTP/1.1" 200 -
+2025-06-05 08:51:26,188 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:26] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:51:30,643 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-05 08:51:30,644 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-05 08:51:30,645 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:30] "GET /quiz HTTP/1.1" 200 -
+2025-06-05 08:51:30,992 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:30] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:51:34,278 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è41, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:51:34,280 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:34] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:51:34,622 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:34] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:51:36,324 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:36] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:51:36,641 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:36] "GET /quiz?category=Ş—¿ HTTP/1.1" 200 -
+2025-06-05 08:51:36,906 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:36] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:51:44,685 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è79, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-05 08:51:44,687 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:44] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:51:45,032 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:51:47,070 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:47] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:51:47,393 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:47] "GET /quiz?category=•i¿ŠÇ— HTTP/1.1" 200 -
+2025-06-05 08:51:47,652 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:47] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:51:56,024 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è91, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-05 08:51:56,029 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: 9d081e417867
+2025-06-05 08:51:56,031 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:56] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:51:56,381 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: 9d081e417867
+2025-06-05 08:51:56,383 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:56] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:51:57,569 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: 9d081e417867
+2025-06-05 08:51:57,572 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:57] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:51:57,900 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: 9d081e417867
+2025-06-05 08:51:57,902 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:57] "GET /quiz?category=ƒRƒ“ƒNƒŠ[ƒg HTTP/1.1" 200 -
+2025-06-05 08:51:58,149 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: 9d081e417867
+2025-06-05 08:51:58,152 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:51:58] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:06,006 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è88, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:52:06,009 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:06] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:52:06,351 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:06] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:12,422 - __main__ - INFO - –â‘èID 88 ‚ğƒuƒbƒNƒ}[ƒN‚É’Ç‰Á‚µ‚Ü‚µ‚½
+2025-06-05 08:52:12,423 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:12] "POST /api/bookmark HTTP/1.1" 200 -
+2025-06-05 08:52:15,573 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:15] "GET /review HTTP/1.1" 200 -
+2025-06-05 08:52:15,838 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:15] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:15,918 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:15] "GET /api/bookmarks HTTP/1.1" 200 -
+2025-06-05 08:52:16,201 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:16] "POST /api/review/questions HTTP/1.1" 200 -
+2025-06-05 08:52:20,176 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:20] "GET /quiz?qid=88 HTTP/1.1" 200 -
+2025-06-05 08:52:20,435 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:27,812 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:27] "GET /review HTTP/1.1" 200 -
+2025-06-05 08:52:28,152 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:28] "GET /api/bookmarks HTTP/1.1" 200 -
+2025-06-05 08:52:28,410 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:28] "POST /api/review/questions HTTP/1.1" 200 -
+2025-06-05 08:52:28,913 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:28] "GET / HTTP/1.1" 200 -
+2025-06-05 08:52:29,252 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:29] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:30,025 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-05 08:52:30,025 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-05 08:52:30,026 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:30] "GET /quiz HTTP/1.1" 200 -
+2025-06-05 08:52:30,385 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:30] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:32,947 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è22, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:52:32,949 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:32] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:52:33,286 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:33] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:34,095 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:34] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:52:34,418 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:34] "GET /quiz?category=“y¿ HTTP/1.1" 200 -
+2025-06-05 08:52:34,674 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:34] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:35,871 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è21, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:52:35,874 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:35] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:52:36,208 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:36] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:36,955 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:36] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:52:37,276 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:37] "GET /quiz?category=ƒRƒ“ƒNƒŠ[ƒg HTTP/1.1" 200 -
+2025-06-05 08:52:37,530 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:37] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:38,519 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è92, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:52:38,521 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:38] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:52:38,865 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:39,557 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:39] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:52:39,879 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:39] "GET /quiz?category=“y¿ HTTP/1.1" 200 -
+2025-06-05 08:52:40,137 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:41,554 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è46, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:52:41,556 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:41] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:52:41,892 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:43,204 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:43] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:52:43,526 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:43] "GET /quiz?category=–@—ß HTTP/1.1" 200 -
+2025-06-05 08:52:43,783 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:43] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:45,421 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è91, ³“šTrue, ƒŒƒxƒ‹2
+2025-06-05 08:52:45,423 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:45] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:52:45,758 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:47,206 - __main__ - INFO - –â‘èID 91 ‚ğƒuƒbƒNƒ}[ƒN‚É’Ç‰Á‚µ‚Ü‚µ‚½
+2025-06-05 08:52:47,208 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:47] "POST /api/bookmark HTTP/1.1" 200 -
+2025-06-05 08:52:50,395 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:50] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:52:50,663 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:50] "GET /quiz?category=ƒRƒ“ƒNƒŠ[ƒg HTTP/1.1" 200 -
+2025-06-05 08:52:50,717 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:50] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:53,411 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è82, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:52:53,417 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:53] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:52:53,752 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:55,075 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:55] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:52:55,398 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:55] "GET /quiz?category=“y¿ HTTP/1.1" 200 -
+2025-06-05 08:52:55,653 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:55] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:52:58,311 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è64, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:52:58,313 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:58] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:52:58,651 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:52:58] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:53:00,222 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:00] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:53:00,545 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:00] "GET /quiz?category=ƒRƒ“ƒNƒŠ[ƒg HTTP/1.1" 200 -
+2025-06-05 08:53:00,794 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:00] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:53:02,379 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è73, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:53:02,380 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:02] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:53:02,724 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:53:05,268 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:05] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:53:05,589 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:05] "GET /quiz?category=‰Íì HTTP/1.1" 200 -
+2025-06-05 08:53:05,854 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:05] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:53:07,899 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è65, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:53:07,904 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: 9d081e417867
+2025-06-05 08:53:07,906 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:07] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:53:08,262 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: 9d081e417867
+2025-06-05 08:53:08,265 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:08] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:53:11,133 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: 9d081e417867
+2025-06-05 08:53:11,135 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:11] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:53:11,449 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: 9d081e417867
+2025-06-05 08:53:11,450 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:11] "GET /quiz?category=‰Íì HTTP/1.1" 200 -
+2025-06-05 08:53:11,716 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: 9d081e417867
+2025-06-05 08:53:11,717 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:11] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:53:14,650 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è86, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:53:14,652 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:14] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:53:14,982 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:53:16,758 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:16] "GET /result HTTP/1.1" 200 -
+2025-06-05 08:53:17,090 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:17] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:53:31,998 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:31] "GET /result HTTP/1.1" 200 -
+2025-06-05 08:53:38,455 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-05 08:53:38,455 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-05 08:53:38,459 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:38] "GET /quiz?reset=1 HTTP/1.1" 200 -
+2025-06-05 08:53:38,699 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:53:41,628 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è87, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:53:41,630 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:41] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:53:41,977 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:53:50,020 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:50] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:53:50,344 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:50] "GET /quiz?category={H HTTP/1.1" 200 -
+2025-06-05 08:53:50,592 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:50] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:53:59,917 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è23, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-05 08:53:59,919 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:53:59] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:54:00,249 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:54:00] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:54:52,336 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:54:52] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:54:52,663 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:54:52] "GET /quiz?category=“y¿ HTTP/1.1" 200 -
+2025-06-05 08:54:52,929 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:54:52] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:55:09,642 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:55:09,762 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:55:09,765 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:55:09,876 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:55:09,954 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:55:09,971 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:55:10,048 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:55:10,066 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:55:10,076 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:55:10,153 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:55:10,271 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:55:10,285 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:55:10,823 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:55:10,824 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:55:10,824 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:55:10,834 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:55:10,838 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:55:10,851 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:55:10,853 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:55:10,854 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:55:10,874 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:55:10,882 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:55:10,938 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:55:10,942 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:55:10,948 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:55:10,968 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:55:10,984 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:55:11,002 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:55:11,005 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:55:11,007 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:55:11,025 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:55:11,032 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:55:11,037 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:55:11,037 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:55:11,038 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:55:11,047 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:55:11,048 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:55:11,060 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:55:11,060 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:55:11,062 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:55:11,076 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:55:11,086 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:55:11,174 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:55:11,174 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:55:11,174 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:55:11,183 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:55:11,184 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:55:11,193 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:55:11,193 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:55:11,193 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:55:11,208 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:55:11,214 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:55:11,267 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:55:11,268 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:55:11,268 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:55:11,275 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:55:11,276 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:55:11,289 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:55:11,289 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:55:11,289 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:55:11,302 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:55:11,303 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:55:11,303 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:55:11,303 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:55:11,308 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:55:11,310 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:55:11,310 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:55:11,321 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:55:11,322 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:55:11,323 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:55:11,337 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:55:11,343 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:55:24,844 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:55:24] "GET / HTTP/1.1" 200 -
+2025-06-05 08:55:25,194 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:55:25] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:55:25,938 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:55:25] "GET / HTTP/1.1" 200 -
+2025-06-05 08:55:26,268 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:55:26] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:55:27,414 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-05 08:55:27,414 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-05 08:55:27,424 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:55:27] "GET /quiz HTTP/1.1" 200 -
+2025-06-05 08:55:27,759 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:55:27] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:55:29,840 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è25, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:55:29,846 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:55:29] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:55:30,173 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:55:30] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:58:09,480 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:58:09,682 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:58:09,906 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:58:09,920 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:58:09,956 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:58:09,989 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:58:10,121 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:58:10,132 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:58:10,207 - werkzeug - INFO -  * Detected change in 'C:\\Users\\z285\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+2025-06-05 08:58:10,218 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:58:10,229 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:58:10,419 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 08:58:10,965 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:58:11,018 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:58:11,088 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:58:11,131 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:58:11,165 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:58:11,235 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:58:11,262 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:58:11,269 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:58:11,307 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:58:11,321 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:58:11,599 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:58:11,612 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:58:11,630 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:58:11,637 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:58:11,658 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:58:11,660 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:58:11,663 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:58:11,665 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:58:11,674 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:58:11,684 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:58:11,685 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:58:11,688 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:58:11,689 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:58:11,712 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:58:11,724 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:58:11,739 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:58:11,739 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:58:11,751 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:58:11,814 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:58:11,825 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:58:11,897 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:58:11,905 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:58:11,913 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:58:11,929 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:58:11,931 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:58:11,954 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:58:11,956 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:58:11,966 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:58:11,993 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:58:12,002 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:58:12,034 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:58:12,035 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:58:12,035 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:58:12,043 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:58:12,044 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:58:12,068 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:58:12,074 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:58:12,079 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:58:12,082 - __main__ - INFO - –â‘èƒf[ƒ^‚Ì“Ç‚İ‚İŠJn
+2025-06-05 08:58:12,085 - utils - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠJn: C:\Users\z285\Desktop\rccm-quiz-app\rccm-quiz-app\data\questions.csv
+2025-06-05 08:58:12,087 - utils - INFO - ƒtƒ@ƒCƒ‹ƒTƒCƒY: 26061 bytes
+2025-06-05 08:58:12,101 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:58:12,105 - utils - INFO - “Ç‚İ‚İ¬Œ÷: shift_jis ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+2025-06-05 08:58:12,106 - utils - INFO - ƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100s, ƒGƒ“ƒR[ƒfƒBƒ“ƒO: shift_jis
+2025-06-05 08:58:12,110 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:58:12,125 - utils - INFO - —LŒø‚È–â‘èƒf[ƒ^: 100–â
+2025-06-05 08:58:12,132 - __main__ - INFO - –â‘èƒf[ƒ^“Ç‚İ‚İŠ®—¹: 100–â
+2025-06-05 08:58:12,133 - __main__ - INFO - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»Š®—¹: 100–â“Ç‚İ‚İ
+2025-06-05 08:58:12,161 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 08:58:12,168 - werkzeug - INFO -  * Debugger PIN: 348-137-938
+2025-06-05 08:58:38,520 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:58:38] "GET / HTTP/1.1" 200 -
+2025-06-05 08:58:38,826 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:58:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:58:40,237 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:58:40] "GET / HTTP/1.1" 200 -
+2025-06-05 08:58:40,570 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:58:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:58:42,150 - __main__ - INFO - –â‘è‘I‘ğŠ®—¹: •œK0–â, V‹K10–â
+2025-06-05 08:58:42,150 - __main__ - INFO - V‚µ‚¢ƒNƒCƒYƒZƒbƒVƒ‡ƒ“ŠJn: 10–â, ƒJƒeƒSƒŠ: ‘S‘Ì
+2025-06-05 08:58:42,163 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:58:42] "GET /quiz HTTP/1.1" 200 -
+2025-06-05 08:58:42,499 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:58:42] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:58:44,167 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è91, ³“šFalse, ƒŒƒxƒ‹1
+2025-06-05 08:58:44,176 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:58:44] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:58:44,507 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:58:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:58:49,292 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:58:49] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:58:49,615 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:58:49] "GET /quiz?category=ƒRƒ“ƒNƒŠ[ƒg HTTP/1.1" 200 -
+2025-06-05 08:58:49,886 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:58:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:58:55,035 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è29, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:58:55,038 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:58:55] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:58:55,386 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:58:55] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:01,551 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:01] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:59:01,861 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:01] "GET /quiz?category=“¹˜H HTTP/1.1" 200 -
+2025-06-05 08:59:02,119 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:15,194 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è81, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:59:15,198 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:15] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:59:15,558 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:15] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:20,590 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:20] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:59:20,919 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:20] "GET /quiz?category=ƒRƒ“ƒNƒŠ[ƒg HTTP/1.1" 200 -
+2025-06-05 08:59:21,184 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:21] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:26,258 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è43, ³“šTrue, ƒŒƒxƒ‹1
+2025-06-05 08:59:26,261 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:26] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:59:26,626 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:26] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:32,294 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:32] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:59:32,613 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:32] "GET /quiz?category=ŠÂ‹« HTTP/1.1" 200 -
+2025-06-05 08:59:32,879 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:35,969 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è92, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:59:35,973 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:35] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:59:36,312 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:36] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:36,888 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:36] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:59:37,215 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:37] "GET /quiz?category=“y¿ HTTP/1.1" 200 -
+2025-06-05 08:59:37,478 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:37] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:39,020 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è5, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:59:39,023 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: 9d081e417867
+2025-06-05 08:59:39,025 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:39] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:59:39,364 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: 9d081e417867
+2025-06-05 08:59:39,368 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:39] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:40,175 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: 9d081e417867
+2025-06-05 08:59:40,178 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:40] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:59:40,506 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: 9d081e417867
+2025-06-05 08:59:40,508 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:40] "GET /quiz?category=“y¿ HTTP/1.1" 200 -
+2025-06-05 08:59:40,751 - data_manager - INFO - ƒ†[ƒU[ƒf[ƒ^•Û‘¶Š®—¹: 9d081e417867
+2025-06-05 08:59:40,755 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:42,458 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è87, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:59:42,463 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:42] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:59:42,806 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:42] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:43,773 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:43] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:59:44,095 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:44] "GET /quiz?category={H HTTP/1.1" 200 -
+2025-06-05 08:59:44,354 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:46,352 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è26, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:59:46,355 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:46] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:59:46,705 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:47,693 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:47] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:59:48,017 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:48] "GET /quiz?category=‰Íì HTTP/1.1" 200 -
+2025-06-05 08:59:48,268 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:48] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:49,925 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è15, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:59:49,930 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:49] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:59:50,269 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:50] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:51,528 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:51] "[32mGET /quiz/next HTTP/1.1[0m" 302 -
+2025-06-05 08:59:51,850 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:51] "GET /quiz?category=‘ª—Ê HTTP/1.1" 200 -
+2025-06-05 08:59:52,118 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:52] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:55,095 - __main__ - INFO - ‰ñ“šˆ—Š®—¹: –â‘è97, ³“šFalse, ƒŒƒxƒ‹0
+2025-06-05 08:59:55,100 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:55] "POST /quiz HTTP/1.1" 200 -
+2025-06-05 08:59:55,447 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:55] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 08:59:56,723 - __main__ - INFO - –â‘èID 97 ‚ğƒuƒbƒNƒ}[ƒN‚É’Ç‰Á‚µ‚Ü‚µ‚½
+2025-06-05 08:59:56,725 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 08:59:56] "POST /api/bookmark HTTP/1.1" 200 -
+2025-06-05 09:00:00,201 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 09:00:00] "GET /result HTTP/1.1" 200 -
+2025-06-05 09:00:00,460 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 09:00:00] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-05 09:00:05,594 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 09:00:05] "GET /statistics HTTP/1.1" 200 -
+2025-06-05 09:00:05,928 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 09:00:05] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -

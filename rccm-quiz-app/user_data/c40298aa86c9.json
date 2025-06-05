@@ -1,0 +1,585 @@
+{
+  "history": [
+    {
+      "category": "河川",
+      "correct_answer": "D",
+      "date": "2025-06-04 23:31:38",
+      "elapsed": 8.2,
+      "id": 83,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "D"
+    },
+    {
+      "category": "施工",
+      "correct_answer": "C",
+      "date": "2025-06-04 23:31:53",
+      "elapsed": 8.5,
+      "id": 87,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "C"
+    },
+    {
+      "category": "新技術",
+      "correct_answer": "D",
+      "date": "2025-06-04 23:32:17",
+      "elapsed": 9.8,
+      "id": 57,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "D"
+    },
+    {
+      "category": "土質",
+      "correct_answer": "B",
+      "date": "2025-06-04 23:32:29",
+      "elapsed": 10.0,
+      "id": 82,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "B"
+    },
+    {
+      "category": "測量",
+      "correct_answer": "C",
+      "date": "2025-06-04 23:32:50",
+      "elapsed": 18.7,
+      "id": 15,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "C"
+    },
+    {
+      "category": "土質",
+      "correct_answer": "B",
+      "date": "2025-06-04 23:33:03",
+      "elapsed": 9.1,
+      "id": 6,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "C"
+    },
+    {
+      "category": "維持管理",
+      "correct_answer": "C",
+      "date": "2025-06-04 23:34:09",
+      "elapsed": 21.2,
+      "id": 49,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "C"
+    },
+    {
+      "category": "品質管理",
+      "correct_answer": "A",
+      "date": "2025-06-04 23:35:25",
+      "elapsed": 59.8,
+      "id": 59,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "B"
+    },
+    {
+      "category": "一般技術",
+      "correct_answer": "D",
+      "date": "2025-06-04 23:37:43",
+      "elapsed": 8.3,
+      "id": 17,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "C"
+    },
+    {
+      "category": "水理学",
+      "correct_answer": "A",
+      "date": "2025-06-04 23:38:23",
+      "elapsed": 37.5,
+      "id": 39,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "C"
+    },
+    {
+      "category": "測量",
+      "correct_answer": "A",
+      "date": "2025-06-04 23:38:27",
+      "elapsed": 1.9,
+      "id": 33,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "D"
+    },
+    {
+      "category": "法令",
+      "correct_answer": "C",
+      "date": "2025-06-04 23:38:31",
+      "elapsed": 1.5,
+      "id": 46,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "D"
+    },
+    {
+      "category": "土質",
+      "correct_answer": "D",
+      "date": "2025-06-04 23:38:36",
+      "elapsed": 1.8,
+      "id": 92,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "C"
+    },
+    {
+      "category": "測量",
+      "correct_answer": "D",
+      "date": "2025-06-04 23:38:39",
+      "elapsed": 1.6,
+      "id": 13,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "C"
+    },
+    {
+      "category": "測量",
+      "correct_answer": "C",
+      "date": "2025-06-04 23:38:44",
+      "elapsed": 1.7,
+      "id": 14,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "C"
+    },
+    {
+      "category": "道路",
+      "correct_answer": "D",
+      "date": "2025-06-04 23:38:48",
+      "elapsed": 2.6,
+      "id": 84,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "D"
+    },
+    {
+      "category": "材料",
+      "correct_answer": "C",
+      "date": "2025-06-04 23:38:53",
+      "elapsed": 1.9,
+      "id": 97,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "B"
+    },
+    {
+      "category": "コンクリート",
+      "correct_answer": "C",
+      "date": "2025-06-04 23:38:59",
+      "elapsed": 4.0,
+      "id": 20,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "D"
+    },
+    {
+      "category": "材料",
+      "correct_answer": "A",
+      "date": "2025-06-04 23:41:07",
+      "elapsed": 4.0,
+      "id": 77,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "A"
+    },
+    {
+      "category": "水理学",
+      "correct_answer": "A",
+      "date": "2025-06-04 23:43:41",
+      "elapsed": 105.8,
+      "id": 62,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "D"
+    },
+    {
+      "category": "土質",
+      "correct_answer": "C",
+      "date": "2025-06-04 23:43:49",
+      "elapsed": 2.5,
+      "id": 24,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "D"
+    },
+    {
+      "category": "品質管理",
+      "correct_answer": "B",
+      "date": "2025-06-04 23:53:04",
+      "elapsed": 1.9,
+      "id": 58,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "A"
+    },
+    {
+      "category": "道路",
+      "correct_answer": "C",
+      "date": "2025-06-04 23:53:09",
+      "elapsed": 1.7,
+      "id": 29,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "C"
+    },
+    {
+      "category": "水理学",
+      "correct_answer": "A",
+      "date": "2025-06-04 23:54:12",
+      "elapsed": 1.5,
+      "id": 39,
+      "is_correct": true,
+      "is_review": true,
+      "srs_level": 1,
+      "user_answer": "A"
+    },
+    {
+      "category": "河川",
+      "correct_answer": "C",
+      "date": "2025-06-04 23:54:23",
+      "elapsed": 1.7,
+      "id": 7,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "A"
+    },
+    {
+      "category": "構造力学",
+      "correct_answer": "B",
+      "date": "2025-06-04 23:54:48",
+      "elapsed": 2.1,
+      "id": 35,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "A"
+    },
+    {
+      "category": "道路",
+      "correct_answer": "C",
+      "date": "2025-06-04 23:55:04",
+      "elapsed": 1.8,
+      "id": 29,
+      "is_correct": false,
+      "is_review": true,
+      "srs_level": 0,
+      "user_answer": "B"
+    },
+    {
+      "category": "一般技術",
+      "correct_answer": "C",
+      "date": "2025-06-04 23:57:03",
+      "elapsed": 1.9,
+      "id": 80,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "A"
+    },
+    {
+      "category": "河川",
+      "correct_answer": "D",
+      "date": "2025-06-04 23:57:19",
+      "elapsed": 3.2,
+      "id": 27,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "B"
+    },
+    {
+      "category": "河川",
+      "correct_answer": "D",
+      "date": "2025-06-04 23:57:46",
+      "elapsed": 3.2,
+      "id": 27,
+      "is_correct": false,
+      "is_review": true,
+      "srs_level": 0,
+      "user_answer": "B"
+    }
+  ],
+  "srs_data": {
+    "13": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 1
+    },
+    "14": {
+      "correct_count": 1,
+      "last_review": "2025-06-04",
+      "level": 1,
+      "next_review": "2025-06-07",
+      "total_attempts": 1
+    },
+    "15": {
+      "correct_count": 1,
+      "last_review": "2025-06-04",
+      "level": 1,
+      "next_review": "2025-06-07",
+      "total_attempts": 1
+    },
+    "17": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 1
+    },
+    "20": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 1
+    },
+    "24": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 1
+    },
+    "27": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 2
+    },
+    "29": {
+      "correct_count": 1,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 2
+    },
+    "33": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 1
+    },
+    "35": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 1
+    },
+    "39": {
+      "correct_count": 1,
+      "last_review": "2025-06-04",
+      "level": 1,
+      "next_review": "2025-06-07",
+      "total_attempts": 2
+    },
+    "46": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 1
+    },
+    "49": {
+      "correct_count": 1,
+      "last_review": "2025-06-04",
+      "level": 1,
+      "next_review": "2025-06-07",
+      "total_attempts": 1
+    },
+    "57": {
+      "correct_count": 1,
+      "last_review": "2025-06-04",
+      "level": 1,
+      "next_review": "2025-06-07",
+      "total_attempts": 1
+    },
+    "58": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 1
+    },
+    "59": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 1
+    },
+    "6": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 1
+    },
+    "62": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 1
+    },
+    "7": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 1
+    },
+    "77": {
+      "correct_count": 1,
+      "last_review": "2025-06-04",
+      "level": 1,
+      "next_review": "2025-06-07",
+      "total_attempts": 1
+    },
+    "80": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 1
+    },
+    "82": {
+      "correct_count": 1,
+      "last_review": "2025-06-04",
+      "level": 1,
+      "next_review": "2025-06-07",
+      "total_attempts": 1
+    },
+    "83": {
+      "correct_count": 1,
+      "last_review": "2025-06-04",
+      "level": 1,
+      "next_review": "2025-06-07",
+      "total_attempts": 1
+    },
+    "84": {
+      "correct_count": 1,
+      "last_review": "2025-06-04",
+      "level": 1,
+      "next_review": "2025-06-07",
+      "total_attempts": 1
+    },
+    "87": {
+      "correct_count": 1,
+      "last_review": "2025-06-04",
+      "level": 1,
+      "next_review": "2025-06-07",
+      "total_attempts": 1
+    },
+    "92": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 1
+    },
+    "97": {
+      "correct_count": 0,
+      "last_review": "2025-06-04",
+      "level": 0,
+      "next_review": "2025-06-05",
+      "total_attempts": 1
+    }
+  },
+  "category_stats": {
+    "コンクリート": {
+      "correct": 0,
+      "total": 1
+    },
+    "一般技術": {
+      "correct": 0,
+      "total": 2
+    },
+    "品質管理": {
+      "correct": 0,
+      "total": 2
+    },
+    "土質": {
+      "correct": 1,
+      "total": 4
+    },
+    "新技術": {
+      "correct": 1,
+      "total": 1
+    },
+    "施工": {
+      "correct": 1,
+      "total": 1
+    },
+    "材料": {
+      "correct": 1,
+      "total": 2
+    },
+    "構造力学": {
+      "correct": 0,
+      "total": 1
+    },
+    "水理学": {
+      "correct": 1,
+      "total": 3
+    },
+    "河川": {
+      "correct": 1,
+      "total": 4
+    },
+    "法令": {
+      "correct": 0,
+      "total": 1
+    },
+    "測量": {
+      "correct": 2,
+      "total": 4
+    },
+    "維持管理": {
+      "correct": 1,
+      "total": 1
+    },
+    "道路": {
+      "correct": 2,
+      "total": 3
+    }
+  },
+  "last_updated": "2025-06-04T23:57:49.979347",
+  "user_id": "c40298aa86c9"
+}

@@ -5,21 +5,25 @@
   <h1 class="mb-4">RCCM試験問題集アプリ</h1>
   <p>RCCM試験対策用Webアプリです。</p>
   
-  {# ボタン構成を変更 #}
-  <div class="d-grid gap-3 col-md-6 mx-auto mb-4">
-    <a href="/quiz" class="btn btn-primary btn-lg">ランダム出題開始</a>
-    <a href="/categories" class="btn btn-info btn-lg">カテゴリー別出題開始</a>
-    <a href="/statistics" class="btn btn-secondary btn-lg">回答結果分析</a>
+  <!-- 学習ストリーク表示 -->
+  <div class="streak-display">
+    🔥 連続学習: <span id="streak-counter">0</span>日目
+  </div>
+  
+  <div class="d-grid gap-3 col-md-6 mx-auto mb-4 mt-4">
+    <a href="/quiz" class="btn btn-primary btn-lg"><strong>ランダム出題開始</strong></a>
+    <a href="/categories" class="btn btn-info btn-lg"><strong>カテゴリー別出題開始</strong></a>
+    <a href="/statistics" class="btn btn-secondary btn-lg"><strong>回答結果分析</strong></a>
   </div>
 
   {# 開発予定の機能リストは画面下部に移動し、スタイルを調整 #}
   <div class="mt-5 text-muted" style="font-size: 0.8rem;">
     <ul class="list-inline">
-      <li class="list-inline-item">100問の分野別問題（今後開発予定）</li>
-      <li class="list-inline-item">AIによる学習推奨（今後開発予定）</li>
-      <li class="list-inline-item">分野別弱点分析（今後開発予定）</li>
-      <li class="list-inline-item">PWA対応・オフライン学習（今後開発予定）</li>
-      <li class="list-inline-item">学習履歴保存（今後開発予定）</li>
+      <li class="list-inline-item future-feature">100問の分野別問題（今後開発予定）</li>
+      <li class="list-inline-item future-feature">AIによる学習推奨（今後開発予定）</li>
+      <li class="list-inline-item future-feature">分野別弱点分析（今後開発予定）</li>
+      <li class="list-inline-item future-feature">PWA対応・オフライン学習（今後開発予定）</li>
+      <li class="list-inline-item future-feature">学習履歴保存（今後開発予定）</li>
     </ul>
   </div>
 

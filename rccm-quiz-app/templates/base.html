@@ -4,20 +4,211 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}RCCM試験問題集{% endblock %}</title>
-{#    <link rel="manifest" href="/manifest.json"> #}
+    <!-- Service Worker関連をコメントアウト -->
+    {# <link rel="manifest" href="/manifest.json"> #}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <meta name="theme-color" content="#1976d2">
-{#    <script>
+    
+    <!-- ダークモード対応CSS -->
+    <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --card-bg: #f8f9fa;
+      --border-color: #dee2e6;
+      /* 若者向けカラーパレットの定義 */
+      --primary-color: #00bcd4; /* シアン */
+      --secondary-color: #ff4081; /* マゼンタ */
+      --success-color: #8bc34a; /* ライムグリーン */
+      --danger-color: #ff5252; /* レッド */
+      --warning-color: #ffc107; /* アンバー */
+      --info-color: #2196f3; /* ブルー */
+      --dark-color: #343a40; /* ダーク */
+      --light-color: #f8f9fa; /* ライト */
+      --text-muted-color: #6c757d; /* ミュート */
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #1a1a1a;
+      --text-color: #e0e0e0;
+      --card-bg: #2d2d2d;
+      --border-color: #495057;
+      /* ダークモード用のカラー調整（必要に応じて） */
+      --primary-color: #4dd0e1; /* 明るいシアン */
+      --secondary-color: #f8bbd0; /* 明るいマゼンタ */
+      --success-color: #c5e1a5; /* 明るいライムグリーン */
+      --danger-color: #ff8a80; /* 明るいレッド */
+      --warning-color: #ffecb3; /* 明るいアンバー */
+      --info-color: #90caf9; /* 明るいブルー */
+      --dark-color: #e0e0e0; /* ライトテキスト */
+      --light-color: #424242; /* ダークグレー */
+      --text-muted-color: #b0b0b0; /* 明るいミュート */
+    }
+
+    body { 
+      background-color: var(--bg-color) !important; 
+      color: var(--text-color) !important; 
+    }
+
+    /* Bootstrapカラー変数の上書き */
+    .btn-primary {
+        --bs-btn-bg: var(--primary-color);
+        --bs-btn-border-color: var(--primary-color);
+        --bs-btn-hover-bg: #00a0b2;
+        --bs-btn-hover-border-color: #0090a3;
+        --bs-btn-active-bg: #008394;
+        --bs-btn-active-border-color: #007385;
+    }
+    .btn-secondary {
+        --bs-btn-bg: var(--secondary-color);
+        --bs-btn-border-color: var(--secondary-color);
+        --bs-btn-hover-bg: #f50057;
+        --bs-btn-hover-border-color: #d8004d;
+        --bs-btn-active-bg: #c51162;
+        --bs-btn-active-border-color: #ab0f57;
+    }
+    .btn-success {
+        --bs-btn-bg: var(--success-color);
+        --bs-btn-border-color: var(--success-color);
+        --bs-btn-hover-bg: #7cb342;
+        --bs-btn-hover-border-color: #689f38;
+        --bs-btn-active-bg: #558b2f;
+        --bs-btn-active-border-color: #33691e;
+    }
+    .btn-danger {
+        --bs-btn-bg: var(--danger-color);
+        --bs-btn-border-color: var(--danger-color);
+        --bs-btn-hover-bg: #ff1744;
+        --bs-btn-hover-border-color: #d50000;
+        --bs-btn-active-bg: #c62828;
+        --bs-btn-active-border-color: #b71c1c;
+    }
+    .btn-warning {
+        --bs-btn-bg: var(--warning-color);
+        --bs-btn-border-color: var(--warning-color);
+        --bs-btn-hover-bg: #ffb300;
+        --bs-btn-hover-border-color: #ffa000;
+        --bs-btn-active-bg: #ff8f00;
+        --bs-btn-active-border-color: #ff6f00;
+        --bs-btn-color: #212529; /* 文字色を黒に */
+    }
+     .btn-info {
+        --bs-btn-bg: var(--info-color);
+        --bs-btn-border-color: var(--info-color);
+        --bs-btn-hover-bg: #1e88e5;
+        --bs-btn-hover-border-color: #1976d2;
+        --bs-btn-active-bg: #1565c0;
+        --bs-btn-active-border-color: #0d47a1;
+    }
+    .btn-dark {
+        --bs-btn-bg: var(--dark-color);
+        --bs-btn-border-color: var(--dark-color);
+        --bs-btn-hover-bg: #212529;
+        --bs-btn-hover-border-color: #1a1d20;
+        --bs-btn-active-bg: #1a1d20;
+        --bs-btn-active-border-color: #131619;
+    }
+
+    .card { 
+      background-color: var(--card-bg) !important; 
+      color: var(--text-color) !important;
+      border-color: var(--border-color) !important;
+    }
+
+    /* ナビゲーションバーの色 */
+    .navbar-custom {
+        background-color: var(--primary-color) !important;
+    }
+    .navbar-custom .nav-link, .navbar-custom .navbar-brand {
+        color: var(--light-color) !important;
+    }
+
+    [data-theme="dark"] .card { 
+      background-color: var(--card-bg) !important; 
+      color: var(--text-color) !important;
+      border-color: var(--border-color) !important;
+    }
+    [data-theme="dark"] .navbar-custom {
+      background-color: #0d1117 !important; /* ダークモード用ナビゲーションバー */
+    }
+    [data-theme="dark"] .alert { 
+      background-color: var(--card-bg) !important;
+      border-color: var(--border-color) !important;
+      color: var(--text-color) !important;
+    }
+    [data-theme="dark"] .table { 
+      color: var(--text-color) !important; 
+    }
+    [data-theme="dark"] .table td, [data-theme="dark"] .table th { 
+      border-color: var(--border-color) !important; 
+    }
+
+    /* 今後開発予定の項目をグレーアウト */
+    .future-feature {
+        color: var(--text-muted-color) !important;
+        font-style: italic;
+    }
+    
+    /* 学習ストリーク表示スタイル */
+    .streak-display {
+      background: linear-gradient(45deg, #FF6B35, #F7931E);
+      color: white;
+      border-radius: 25px;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      display: inline-block;
+      margin: 0.5rem 0;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from { box-shadow: 0 0 5px rgba(255, 107, 53, 0.3); }
+      to { box-shadow: 0 0 20px rgba(255, 107, 53, 0.6); }
+    }
+    
+    [data-theme="dark"] .streak-display {
+      background: linear-gradient(45deg, #FF6B35, #F7931E);
+    }
+    
+    /* SRS用バッジ */
+    .badge.bg-gold {
+      background-color: #ffd700 !important;
+      color: #000 !important;
+    }
+
+    /* 解答結果画面のスタイル */
+    .card-correct {
+      border-color: var(--success-color) !important;
+      background-color: #d4edda !important; /* 淡い緑 */
+    }
+    .card-incorrect {
+      border-color: var(--danger-color) !important;
+      background-color: #f8d7da !important; /* 淡い赤 */
+    }
+    [data-theme="dark"] .card-correct {
+      border-color: var(--success-color) !important;
+      background-color: #1e3c2f !important; /* ダークモード用の緑 */
+    }
+    [data-theme="dark"] .card-incorrect {
+      border-color: var(--danger-color) !important;
+      background-color: #4e2b31 !important; /* ダークモード用の赤 */
+    }
+    </style>
+
+    <!-- Service Worker登録をコメントアウト -->
+    {#
+    <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
           navigator.serviceWorker.register('/sw.js');
         });
       }
-    </script> #}
+    </script>
+    #}
     {% block head %}{% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+<nav class="navbar navbar-expand-lg navbar-custom mb-4">
   <div class="container-fluid">
     <a class="navbar-brand" href="/" style="color: white !important;">RCCM試験問題集</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,10 +217,17 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link" href="/quiz" style="color: white !important;">問題</a></li>
-        <li class="nav-item"><a class="nav-link" href="/statistics" style="color: white !important;">回答結果分析</a></li>
+        <li class="nav-item"><a class="nav-link" href="/statistics" style="color: white !important;">解答結果分析</a></li>
         <li class="nav-item"><a class="nav-link" href="/categories" style="color: white !important;">分野別</a></li>
+        <li class="nav-item"><a class="nav-link" href="/review" style="color: white !important;">復習リスト</a></li>
+        <li class="nav-item"><a class="nav-link" href="/srs_stats" style="color: white !important;">学習進捗</a></li>
         <li class="nav-item"><a class="nav-link" href="/reset" style="color: white !important;">リセット</a></li>
         <li class="nav-item"><a class="nav-link" href="/help" style="color: white !important;">ヘルプ</a></li>
+        <li class="nav-item ms-2">
+          <button class="btn btn-outline-light btn-sm" onclick="toggleTheme()" id="themeToggle" title="ダークモード切替">
+            🌙
+          </button>
+        </li>
       </ul>
     </div>
   </div>
@@ -47,6 +245,10 @@
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- メインJavaScript（分離版） -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
 {% block scripts %}{% endblock %}
 </body>
 </html> 
