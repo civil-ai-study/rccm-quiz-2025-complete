@@ -46,8 +46,46 @@
         <li>カテゴリ別の成績詳細や、最近の解答履歴、日別の正答率なども確認できます。</li>
     </ul>
 
-    <h2 class="mt-4">7. その他</h2>
+    <h2 class="mt-4">7. トラブルシューティング</h2>
+    <div class="alert alert-warning">
+        <h5><i class="fas fa-exclamation-triangle"></i> 問題が正常に動作しない場合</h5>
+        <p>以下の症状がある場合は、下記の解決方法をお試しください：</p>
+        <ul>
+            <li>毎回同じ1問目が出題される</li>
+            <li>正解時に「次の問題へ」ボタンが表示されない</li>
+            <li>問題番号が正しく表示されない</li>
+        </ul>
+        
+        <h6>解決方法：</h6>
+        <ol>
+            <li><strong>ブラウザの再読み込み:</strong> Ctrl + F5 (Windows) / Cmd + R (Mac) で強制リロード</li>
+            <li><strong>キャッシュクリア:</strong> <a href="/reset" class="btn btn-sm btn-outline-secondary">設定リセット</a> ページからデータリセット</li>
+            <li><strong>完全リセット:</strong> <button class="btn btn-sm btn-danger" onclick="forceReset()">強制リセット実行</button></li>
+        </ol>
+    </div>
+
+    <h2 class="mt-4">8. その他</h2>
     <p>アプリケーションを終了するには、ブラウザのタブまたはウィンドウを閉じてください。</p>
 
 </div>
+
+<script>
+function forceReset() {
+    if (confirm('完全リセットを実行しますか？\n学習データがすべて削除されます。')) {
+        fetch('/force_reset')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                window.location.href = '/';
+            } else {
+                alert('リセットに失敗しました: ' + data.error);
+            }
+        })
+        .catch(error => {
+            alert('エラーが発生しました: ' + error);
+        });
+    }
+}
+</script>
 {% endblock %} 

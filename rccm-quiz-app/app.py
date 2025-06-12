@@ -376,8 +376,11 @@ def quiz():
             logger.info(f"セッション更新: 現在{current_no} -> 次{next_no}, 総問題数{len(quiz_question_ids)}")
 
             # 次の問題の準備
-            is_last_question = next_no >= len(quiz_question_ids)
-            next_question_index = next_no if not is_last_question else None
+            is_last_question = (current_no + 1) >= len(quiz_question_ids)
+            next_question_index = current_no + 1 if not is_last_question else None
+            
+            # デバッグログ追加
+            logger.info(f"ボタン表示判定: current_no={current_no}, total={len(quiz_question_ids)}, is_last={is_last_question}, next_index={next_question_index}")
 
             # フィードバック画面に渡すデータを準備
             feedback_data = {
@@ -804,6 +807,9 @@ def reset():
     """リセット画面"""
     if request.method == 'POST':
         session.clear()
+        # 強制的なキャッシュクリア
+        clear_questions_cache()
+        logger.info("セッションとキャッシュを完全リセット")
         return redirect(url_for('index'))
     
     # 現在のデータ分析
@@ -818,6 +824,27 @@ def reset():
         analytics['accuracy'] = round((correct / len(history)) * 100, 1)
     
     return render_template('reset_confirm.html', analytics=analytics)
+
+@app.route('/force_reset')
+def force_reset():
+    """強制リセット（トラブルシューティング用）"""
+    try:
+        # セッション完全削除
+        session.clear()
+        # キャッシュクリア
+        clear_questions_cache()
+        # セッションIDも新規生成
+        session['session_id'] = os.urandom(16).hex()
+        session.permanent = True
+        logger.info("強制リセット実行完了")
+        return jsonify({
+            'success': True, 
+            'message': '完全リセットが完了しました。ページを再読み込みしてください。',
+            'new_session_id': session['session_id']
+        })
+    except Exception as e:
+        logger.error(f"強制リセットエラー: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 @app.route('/help')
 def help_page():
