@@ -3,26 +3,26 @@
  * PWAオフライン対応・キャッシュ管理
  */
 
-const CACHE_NAME = 'rccm-quiz-v1.0.0'; // 初期キャッシュ名に戻す
+const CACHE_NAME = 'rccm-quiz-v2.0.0'; // モバイル対応版
 
 const urlsToCache = [
   '/',
-  '/static/css/style.css', // 必要に応じて適切なCSSファイルパスを追加
-  '/static/js/script.js',  // 必要に応じて適切なJSファイルパスを追加
-  '/manifest.json',
-  // アプリケーションの主要なHTMLや静的ファイルをリスト
-  // '/templates/index.html', // HTMLは通常キャッシュしないか、ネットワーク優先
-  // '/templates/quiz.html',
-  // '/templates/result.html',
-  // '/templates/statistics.html',
-  // '/templates/categories.html',
-  // '/templates/error.html',
+  '/static/js/mobile-features.js',
+  '/static/manifest.json',
+  // Core app pages
+  '/quiz',
+  '/categories',
+  '/statistics',
+  '/ai_analysis',
+  '/exam_simulator',
   // Bootstrap CSS (CDN)
   'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css',
   // Bootstrap JS (CDN)
   'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js',
   // Chart.js (CDN)
-  'https://cdn.jsdelivr.net/npm/chart.js'
+  'https://cdn.jsdelivr.net/npm/chart.js',
+  // FontAwesome
+  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 
 // インストール時のキャッシュ

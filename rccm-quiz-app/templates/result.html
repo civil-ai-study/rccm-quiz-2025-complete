@@ -1,69 +1,368 @@
 {% extends 'base.html' %}
 {% block title %}結果 | RCCM試験問題集{% endblock %}
 {% block content %}
-<div class="card">
-  <div class="card-header">問題結果</div>
-  <div class="card-body">
-    <h4>合計正答数: {{ correct_count }} / {{ total_questions }}</h4>
+<div class="container-fluid">
+  <!-- モバイル対応ヘッダー -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="fas fa-chart-bar text-primary"></i> 問題結果</h2>
+    <div class="mobile-controls">
+      <button type="button" id="voiceBtn" class="btn btn-sm btn-outline-primary me-2" title="音声読み上げ (Space)">
+        <i class="fas fa-volume-up"></i>
+      </button>
+      <button type="button" id="mobileMenuBtn" class="btn btn-sm btn-outline-secondary" title="モバイルメニュー">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- 成績サマリーカード -->
+  <div class="card result-summary-card mb-4">
+    <div class="card-body text-center">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <div class="score-metric">
+            <div class="score-value">{{ correct_count }}</div>
+            <div class="score-label">正答数</div>
+            <div class="score-total">/ {{ total_questions }}</div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="accuracy-metric">
+            {% set accuracy = (correct_count / total_questions * 100) if total_questions > 0 else 0.0 %}
+            <div class="accuracy-value {% if accuracy < 60 %}text-danger{% elif accuracy > 80 %}text-success{% else %}text-warning{% endif %}">
+              {{ "{:.1f}".format(accuracy) }}%
+            </div>
+            <div class="accuracy-label">正答率</div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          {% if elapsed_time %}
+          <div class="time-metric">
+            <div class="time-value">{{ "%.1f"|format(elapsed_time) }}s</div>
+            <div class="time-label">経過時間</div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
 
     {% if elapsed_time %}
       <p>経過時間: {{ elapsed_time }}</p>
     {% endif %}
 
-    <h5 class="mt-4">分野別成績</h5>
-    {% if category_scores %}
-    <table class="table table-bordered table-striped mt-3">
-      <thead>
-        <tr>
-          <th>分野名</th>
-          <th>正答数</th>
-          <th>正答率</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for category, score_info in category_scores.items() %}
-        <tr>
-          <td>{{ category }}</td>
-          <td>{{ score_info.correct }} / {{ score_info.total }} 問正解</td>
-          <td>
-            {% set accuracy = (score_info.correct / score_info.total * 100) if score_info.total > 0 else 0.0 %}
-            <span class="{% if accuracy < 60 %}text-danger{% elif accuracy > 80 %}text-success{% endif %}">
-              {{ "{:.1f}".format(accuracy) }}%
-            </span>
-            {% if accuracy < 60 %}
-              <span class="text-danger">（弱点分野）</span>
-            {% elif accuracy > 80 %}
-              <span class="text-success">（得意分野）</span>
-            {% endif %}
-          </td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-    {% else %}
-      <p>分野別成績データがありません。</p>
-    {% endif %}
-
-    <div class="card mb-4">
-        <div class="card-header">次のアクション</div>
-        <div class="card-body d-flex flex-wrap gap-2">
-            <div class="w-100 mb-2">
-                <p>AIおすすめ学習カテゴリ: <strong>{{ recommended_category }}</strong></p>
-            </div>
-            <a href="/quiz?reset=1" class="btn btn-primary mb-2">もう一度問題を始める</a>
-            <a href="/statistics" class="btn btn-warning mb-2">回答結果分析</a>
-            <a href="/categories" class="btn btn-info mb-2">カテゴリー一覧に戻る</a>
-            <a href="#" class="btn btn-dark mb-2 disabled ms-auto" tabindex="-1" aria-disabled="true">AIおすすめカテゴリーを学習（今後開発予定）</a>
-        </div>
+  <!-- 分野別成績 -->
+  <div class="card category-scores-card mb-4">
+    <div class="card-header">
+      <h5 class="mb-0"><i class="fas fa-list-alt"></i> 分野別成績</h5>
     </div>
-
-    {% if weak_category_details %}
-      <p>あなたの弱点分野: <strong>{{ weak_category_details.name }}</strong></p>
-       {% if not recommended_category or recommended_category != weak_category_details.name %}
-          <a href="/quiz?category={{ weak_category_details.name }}" class="btn btn-warning mt-2">弱点分野を克服</a>
-       {% endif %}
-    {% endif %}
-
+    <div class="card-body">
+      {% if category_scores %}
+      <div class="category-scores-mobile">
+        {% for category, score_info in category_scores.items() %}
+        <div class="category-score-item">
+          <div class="category-name">{{ category }}</div>
+          <div class="category-stats">
+            <div class="category-correct">{{ score_info.correct }} / {{ score_info.total }}</div>
+            <div class="category-accuracy">
+              {% set accuracy = (score_info.correct / score_info.total * 100) if score_info.total > 0 else 0.0 %}
+              <span class="accuracy-badge {% if accuracy < 60 %}badge-danger{% elif accuracy > 80 %}badge-success{% else %}badge-warning{% endif %}">
+                {{ "{:.1f}".format(accuracy) }}%
+              </span>
+              {% if accuracy < 60 %}
+                <span class="category-label text-danger">弱点分野</span>
+              {% elif accuracy > 80 %}
+                <span class="category-label text-success">得意分野</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      
+      <!-- デスクトップ用テーブル -->
+      <div class="d-none d-md-block">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>分野名</th>
+              <th>正答数</th>
+              <th>正答率</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for category, score_info in category_scores.items() %}
+            <tr>
+              <td>{{ category }}</td>
+              <td>{{ score_info.correct }} / {{ score_info.total }} 問正解</td>
+              <td>
+                {% set accuracy = (score_info.correct / score_info.total * 100) if score_info.total > 0 else 0.0 %}
+                <span class="{% if accuracy < 60 %}text-danger{% elif accuracy > 80 %}text-success{% endif %}">
+                  {{ "{:.1f}".format(accuracy) }}%
+                </span>
+                {% if accuracy < 60 %}
+                  <span class="text-danger">（弱点分野）</span>
+                {% elif accuracy > 80 %}
+                  <span class="text-success">（得意分野）</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+        <p class="text-muted">分野別成績データがありません。</p>
+      {% endif %}
+    </div>
   </div>
+
+  <!-- 次のアクション -->
+  <div class="card actions-card mb-4">
+    <div class="card-header">
+      <h5 class="mb-0"><i class="fas fa-compass"></i> 次のアクション</h5>
+    </div>
+    <div class="card-body">
+      {% if recommended_category %}
+      <div class="recommendation-section mb-3">
+        <div class="recommendation-label">AIおすすめ学習カテゴリ:</div>
+        <div class="recommendation-value">{{ recommended_category }}</div>
+      </div>
+      {% endif %}
+      
+      <div class="action-buttons">
+        <div class="row g-2">
+          <div class="col-md-6">
+            <a href="/quiz?reset=1" class="btn btn-primary w-100 action-btn">
+              <i class="fas fa-redo"></i> もう一度問題を始める
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="/statistics" class="btn btn-warning w-100 action-btn">
+              <i class="fas fa-chart-line"></i> 回答結果分析
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="/categories" class="btn btn-info w-100 action-btn">
+              <i class="fas fa-th-list"></i> カテゴリー一覧
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="/" class="btn btn-outline-primary w-100 action-btn">
+              <i class="fas fa-home"></i> ホームに戻る
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if weak_category_details %}
+  <!-- 弱点分野対策 -->
+  <div class="card weakness-card">
+    <div class="card-header bg-warning text-dark">
+      <h5 class="mb-0"><i class="fas fa-exclamation-triangle"></i> 弱点分野対策</h5>
+    </div>
+    <div class="card-body">
+      <p class="weakness-message">あなたの弱点分野: <strong class="weakness-category">{{ weak_category_details.name }}</strong></p>
+      {% if not recommended_category or recommended_category != weak_category_details.name %}
+      <a href="/quiz?category={{ weak_category_details.name }}" class="btn btn-warning w-100 weakness-action-btn">
+        <i class="fas fa-target"></i> 弱点分野を克服する
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+
 </div>
+
+<style>
+/* モバイル対応スタイル */
+.mobile-controls {
+  display: flex;
+  align-items: center;
+}
+
+.result-summary-card, .category-scores-card, .actions-card, .weakness-card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.score-metric, .accuracy-metric, .time-metric {
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.score-value, .accuracy-value, .time-value {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.score-label, .accuracy-label, .time-label {
+  font-size: 0.9rem;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.score-total {
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+.category-scores-mobile {
+  display: block;
+}
+
+.category-score-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  border-left: 4px solid #007bff;
+}
+
+.category-name {
+  font-weight: bold;
+  color: #495057;
+}
+
+.category-stats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.category-correct {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.accuracy-badge {
+  padding: 4px 8px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.badge-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.badge-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.category-label {
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+
+.recommendation-section {
+  background-color: #e3f2fd;
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 4px solid #2196f3;
+}
+
+.recommendation-label {
+  font-size: 0.9rem;
+  color: #1976d2;
+  margin-bottom: 5px;
+}
+
+.recommendation-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #0d47a1;
+}
+
+.action-btn {
+  transition: all 0.3s ease;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.weakness-card {
+  border-left: 4px solid #ffc107;
+}
+
+.weakness-message {
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.weakness-category {
+  color: #856404;
+}
+
+.weakness-action-btn {
+  transition: all 0.3s ease;
+  padding: 12px;
+}
+
+.weakness-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .mobile-controls button {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .score-metric, .accuracy-metric, .time-metric {
+    padding: 15px 10px;
+  }
+  
+  .score-value, .accuracy-value, .time-value {
+    font-size: 1.5rem;
+  }
+  
+  .category-score-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .category-stats {
+    align-self: flex-end;
+  }
+  
+  .action-btn {
+    margin-bottom: 10px;
+  }
+  
+  .category-scores-mobile {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .category-scores-mobile {
+    display: none;
+  }
+}
+</style>
 {% endblock %} 

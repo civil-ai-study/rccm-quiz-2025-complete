@@ -10,10 +10,75 @@
     🔥 連続学習: <span id="streak-counter">0</span>日目
   </div>
   
-  <div class="d-grid gap-3 col-md-6 mx-auto mb-4 mt-4">
-    <a href="/quiz" class="btn btn-primary btn-lg"><strong>ランダム出題開始</strong></a>
-    <a href="/categories" class="btn btn-info btn-lg"><strong>カテゴリー別出題開始</strong></a>
-    <a href="/statistics" class="btn btn-secondary btn-lg"><strong>回答結果分析</strong></a>
+  <!-- 初心者向けガイダンス -->
+  <div class="alert alert-info text-center mb-4">
+    <h5><i class="fas fa-lightbulb"></i> 学習を始めよう！</h5>
+    <p class="mb-0">初めての方は「<strong>問題を解く</strong>」から始めて、慣れてきたら他の機能もお試しください。</p>
+  </div>
+
+  <!-- メイン学習機能 -->
+  <div class="row mb-4">
+    <div class="col-md-6 mx-auto">
+      <div class="d-grid gap-3">
+        <a href="/quiz" class="btn btn-primary btn-lg" style="padding: 1rem;">
+          <i class="fas fa-play-circle me-2"></i>
+          <strong>問題を解く</strong>
+          <small class="d-block text-light">ランダムに問題が出題されます</small>
+        </a>
+        <a href="/categories" class="btn btn-info btn-lg" style="padding: 1rem;">
+          <i class="fas fa-list me-2"></i>
+          <strong>分野別学習</strong>
+          <small class="d-block text-light">苦手分野を集中的に学習</small>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 学習支援機能 -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <h6 class="text-center text-muted mb-3">学習支援機能</h6>
+      <div class="d-grid gap-2 col-md-8 mx-auto">
+        <a href="/review" class="btn btn-warning" id="reviewBtn">
+          <i class="fas fa-bookmark me-2"></i>復習リスト <span id="reviewCount" class="badge bg-light text-dark ms-2">0</span>
+        </a>
+        <a href="/statistics" class="btn btn-outline-secondary">
+          <i class="fas fa-chart-bar me-2"></i>学習記録を見る
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 高度な機能（折りたたみ可能） -->
+  <div class="text-center">
+    <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#advancedFeatures">
+      <i class="fas fa-cog me-1"></i>その他の機能
+    </button>
+  </div>
+  
+  <div class="collapse mt-3" id="advancedFeatures">
+    <div class="row g-2">
+      <div class="col-md-6">
+        <a href="/adaptive_quiz" class="btn btn-success btn-sm w-100">
+          <i class="fas fa-brain me-1"></i>AI適応学習
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="/exam_simulator" class="btn btn-danger btn-sm w-100">
+          <i class="fas fa-graduation-cap me-1"></i>模擬試験
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="/ai_analysis" class="btn btn-outline-warning btn-sm w-100">
+          <i class="fas fa-chart-line me-1"></i>弱点分析
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="/achievements" class="btn btn-outline-secondary btn-sm w-100">
+          <i class="fas fa-trophy me-1"></i>達成記録
+        </a>
+      </div>
+    </div>
   </div>
 
   {# 開発予定の機能リストは画面下部に移動し、スタイルを調整 #}
@@ -28,4 +93,28 @@
   </div>
 
 </div>
+
+<script>
+// ゲーミフィケーション状態を取得
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/api/gamification/status')
+        .then(response => response.json())
+        .then(data => {
+            if (data.streak !== undefined) {
+                document.getElementById('streak-counter').textContent = data.streak;
+                
+                // ストリーク表示の色を調整
+                const streakDisplay = document.querySelector('.streak-display');
+                if (data.streak >= 7) {
+                    streakDisplay.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+                } else if (data.streak >= 3) {
+                    streakDisplay.style.background = 'linear-gradient(45deg, #ffc107, #fd7e14)';
+                }
+            }
+        })
+        .catch(error => {
+            console.log('ゲーミフィケーション状態の取得に失敗:', error);
+        });
+});
+</script>
 {% endblock %} 

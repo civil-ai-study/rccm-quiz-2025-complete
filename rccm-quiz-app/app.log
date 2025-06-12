@@ -1,0 +1,173 @@
+2025-06-11 21:17:14,981 - __main__ - INFO - 問題データの読み込み開始
+2025-06-11 21:17:14,982 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/questions.csv
+2025-06-11 21:17:14,984 - utils - INFO - ファイルサイズ: 26061 bytes
+2025-06-11 21:17:14,994 - utils - INFO - 読み込み成功: shift_jis エンコーディング
+2025-06-11 21:17:14,995 - utils - INFO - データ読み込み完了: 100行, エンコーディング: shift_jis
+2025-06-11 21:17:15,004 - utils - INFO - 有効な問題データ: 100問
+2025-06-11 21:17:15,005 - __main__ - INFO - 問題データ読み込み完了: 100問
+2025-06-11 21:17:15,005 - __main__ - INFO - アプリケーション初期化完了: 100問読み込み
+ * Serving Flask app 'app'
+ * Debug mode: on
+2025-06-11 21:17:15,021 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.44.152:5000
+2025-06-11 21:17:15,021 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-11 21:17:15,022 - werkzeug - INFO -  * Restarting with stat
+2025-06-11 21:17:15,468 - __main__ - INFO - 問題データの読み込み開始
+2025-06-11 21:17:15,469 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/questions.csv
+2025-06-11 21:17:15,475 - utils - INFO - ファイルサイズ: 26061 bytes
+2025-06-11 21:17:15,489 - utils - INFO - 読み込み成功: shift_jis エンコーディング
+2025-06-11 21:17:15,490 - utils - INFO - データ読み込み完了: 100行, エンコーディング: shift_jis
+2025-06-11 21:17:15,501 - utils - INFO - 有効な問題データ: 100問
+2025-06-11 21:17:15,502 - __main__ - INFO - 問題データ読み込み完了: 100問
+2025-06-11 21:17:15,502 - __main__ - INFO - アプリケーション初期化完了: 100問読み込み
+2025-06-11 21:17:15,507 - werkzeug - WARNING -  * Debugger is active!
+2025-06-11 21:17:15,508 - werkzeug - INFO -  * Debugger PIN: 838-149-708
+2025-06-11 21:17:31,021 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:17:31] "HEAD / HTTP/1.1" 200 -
+2025-06-11 21:17:45,517 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:17:45] "GET /debug HTTP/1.1" 200 -
+2025-06-11 21:18:05,916 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/favicon.ico
+2025-06-11 21:18:05,924 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-11 21:18:05,951 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/icon-144x144.png
+2025-06-11 21:18:05,955 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:05] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-11 21:18:08,070 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:18:08,072 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:08] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:18:20,278 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/icon-144x144.png
+2025-06-11 21:18:20,285 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:20] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-11 21:18:22,155 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:18:22,158 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:22] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:18:24,994 - gamification - INFO - ストリーク更新: 1日連続
+2025-06-11 21:18:24,994 - gamification - INFO - 新しいバッジ獲得: ['first_quiz']
+2025-06-11 21:18:24,995 - __main__ - INFO - 回答処理完了: 問題34, 正答False, レベル0, ストリーク1日
+2025-06-11 21:18:25,007 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:25] "POST /quiz HTTP/1.1" 200 -
+2025-06-11 21:18:25,046 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:25] "GET /static/js/mobile-features.js HTTP/1.1" 200 -
+2025-06-11 21:18:25,225 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:25] "GET /static/sw.js HTTP/1.1" 200 -
+2025-06-11 21:18:25,249 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:25] "GET / HTTP/1.1" 200 -
+2025-06-11 21:18:25,253 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:25] "GET /static/manifest.json HTTP/1.1" 200 -
+2025-06-11 21:18:25,254 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:25] "[36mGET /static/js/mobile-features.js HTTP/1.1[0m" 304 -
+2025-06-11 21:18:25,257 - __main__ - INFO - 問題選択完了: 復習0問, 新規10問
+2025-06-11 21:18:25,260 - __main__ - INFO - 新しいクイズセッション開始: 10問, カテゴリ: 全体
+2025-06-11 21:18:25,314 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:25] "GET /categories HTTP/1.1" 200 -
+2025-06-11 21:18:25,322 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:25] "GET /quiz HTTP/1.1" 200 -
+2025-06-11 21:18:25,332 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:25] "GET /statistics HTTP/1.1" 200 -
+2025-06-11 21:18:25,337 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/static/icons/favicon-32x32.png
+2025-06-11 21:18:25,352 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:25] "[33mGET /static/icons/favicon-32x32.png HTTP/1.1[0m" 404 -
+2025-06-11 21:18:25,394 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:25] "GET /exam_simulator HTTP/1.1" 200 -
+2025-06-11 21:18:25,396 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:25] "GET /ai_analysis HTTP/1.1" 200 -
+2025-06-11 21:18:25,420 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/static/icons/favicon-16x16.png
+2025-06-11 21:18:25,425 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/icon-144x144.png
+2025-06-11 21:18:25,427 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:25] "[33mGET /static/icons/favicon-16x16.png HTTP/1.1[0m" 404 -
+2025-06-11 21:18:25,429 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:25] "[33mGET /icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-11 21:18:28,690 - gamification - INFO - ストリーク更新: 1日連続
+2025-06-11 21:18:28,692 - __main__ - INFO - 回答処理完了: 問題34, 正答False, レベル0, ストリーク1日
+2025-06-11 21:18:28,697 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:28] "POST /quiz HTTP/1.1" 200 -
+2025-06-11 21:18:28,736 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:28] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-06-11 21:18:28,820 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:28] "GET /manifest.json HTTP/1.1" 200 -
+2025-06-11 21:18:28,877 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/static/icons/icon-144x144.png
+2025-06-11 21:18:28,881 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:28] "[33mGET /static/icons/icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-11 21:18:30,489 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:18:30,494 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:30] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:18:33,741 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/static/icons/icon-144x144.png
+2025-06-11 21:18:33,749 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:33] "[33mGET /static/icons/icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-11 21:18:35,615 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:18:35,619 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:35] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:18:36,645 - gamification - INFO - ストリーク更新: 1日連続
+2025-06-11 21:18:36,646 - __main__ - INFO - 回答処理完了: 問題63, 正答False, レベル0, ストリーク1日
+2025-06-11 21:18:36,651 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:36] "POST /quiz HTTP/1.1" 200 -
+2025-06-11 21:18:36,877 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/static/icons/icon-144x144.png
+2025-06-11 21:18:36,881 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:36] "[33mGET /static/icons/icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-11 21:18:38,645 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:18:38,648 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:38] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:18:46,800 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/static/icons/icon-144x144.png
+2025-06-11 21:18:46,805 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:46] "[33mGET /static/icons/icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-11 21:18:48,615 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:18:48,618 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:48] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:18:49,002 - gamification - INFO - ストリーク更新: 1日連続
+2025-06-11 21:18:49,003 - __main__ - INFO - 回答処理完了: 問題63, 正答False, レベル0, ストリーク1日
+2025-06-11 21:18:49,008 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:49] "POST /quiz HTTP/1.1" 200 -
+2025-06-11 21:18:49,174 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/static/icons/icon-144x144.png
+2025-06-11 21:18:49,180 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:49] "[33mGET /static/icons/icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-11 21:18:50,990 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:18:50,994 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:18:50] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:19:20,205 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:19:20,211 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:19:20] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:19:29,460 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/static/icons/icon-144x144.png
+2025-06-11 21:19:29,466 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:19:29] "[33mGET /static/icons/icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-11 21:19:31,421 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:19:31,426 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:19:31] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:19:36,656 - gamification - INFO - ストリーク更新: 1日連続
+2025-06-11 21:19:36,658 - gamification - INFO - 新しいバッジ獲得: ['perfect_score']
+2025-06-11 21:19:36,658 - __main__ - INFO - 回答処理完了: 問題63, 正答True, レベル1, ストリーク1日
+2025-06-11 21:19:36,664 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:19:36] "POST /quiz HTTP/1.1" 200 -
+2025-06-11 21:19:36,822 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/static/icons/icon-144x144.png
+2025-06-11 21:19:36,827 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:19:36] "[33mGET /static/icons/icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-11 21:19:38,664 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:19:38,668 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:19:38] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:19:47,819 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/static/icons/icon-144x144.png
+2025-06-11 21:19:47,822 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:19:47] "[33mGET /static/icons/icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-11 21:19:49,637 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:19:49,644 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:19:49] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:20:09,621 - gamification - INFO - ストリーク更新: 1日連続
+2025-06-11 21:20:09,621 - __main__ - INFO - 回答処理完了: 問題63, 正答True, レベル2, ストリーク1日
+2025-06-11 21:20:09,626 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:20:09] "POST /quiz HTTP/1.1" 200 -
+2025-06-11 21:20:09,777 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/static/icons/icon-144x144.png
+2025-06-11 21:20:09,781 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:20:09] "[33mGET /static/icons/icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-11 21:20:11,667 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:20:11,671 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:20:11] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:20:12,407 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/static/icons/icon-144x144.png
+2025-06-11 21:20:12,414 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:20:12] "[33mGET /static/icons/icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-11 21:20:14,286 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:20:14,291 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:20:14] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:20:16,701 - gamification - INFO - ストリーク更新: 1日連続
+2025-06-11 21:20:16,702 - __main__ - INFO - 回答処理完了: 問題63, 正答True, レベル3, ストリーク1日
+2025-06-11 21:20:16,708 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:20:16] "POST /quiz HTTP/1.1" 200 -
+2025-06-11 21:20:16,854 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/static/icons/icon-144x144.png
+2025-06-11 21:20:16,858 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:20:16] "[33mGET /static/icons/icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-11 21:20:18,354 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/static/icons/icon-144x144.png
+2025-06-11 21:20:18,359 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:20:18] "[33mGET /static/icons/icon-144x144.png HTTP/1.1[0m" 404 -
+2025-06-11 21:20:18,669 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:20:18,675 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:20:18] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:20:20,167 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:20:20,173 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:20:20] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:20:49,393 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:20:49,398 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:20:49] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:23:41,160 - werkzeug - INFO -  * Detected change in '/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/app.py', reloading
+2025-06-11 21:23:41,278 - werkzeug - INFO -  * Restarting with stat
+2025-06-11 21:23:41,998 - __main__ - INFO - 問題データの読み込み開始
+2025-06-11 21:23:41,999 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/questions.csv
+2025-06-11 21:23:42,002 - utils - INFO - ファイルサイズ: 26061 bytes
+2025-06-11 21:23:42,012 - utils - INFO - 読み込み成功: shift_jis エンコーディング
+2025-06-11 21:23:42,013 - utils - INFO - データ読み込み完了: 100行, エンコーディング: shift_jis
+2025-06-11 21:23:42,023 - utils - INFO - 有効な問題データ: 100問
+2025-06-11 21:23:42,024 - __main__ - INFO - 問題データ読み込み完了: 100問
+2025-06-11 21:23:42,024 - __main__ - INFO - アプリケーション初期化完了: 100問読み込み
+2025-06-11 21:23:42,028 - werkzeug - WARNING -  * Debugger is active!
+2025-06-11 21:23:42,029 - werkzeug - INFO -  * Debugger PIN: 838-149-708
+2025-06-11 21:23:56,304 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 21:23:56,328 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 21:23:56] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2025-06-11 21:24:07,076 - werkzeug - INFO -  * Detected change in '/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/app.py', reloading
+2025-06-11 21:24:07,163 - werkzeug - INFO -  * Restarting with stat
+2025-06-11 21:24:07,645 - __main__ - INFO - 問題データの読み込み開始
+2025-06-11 21:24:07,646 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/questions.csv
+2025-06-11 21:24:07,649 - utils - INFO - ファイルサイズ: 26061 bytes
+2025-06-11 21:24:07,659 - utils - INFO - 読み込み成功: shift_jis エンコーディング
+2025-06-11 21:24:07,660 - utils - INFO - データ読み込み完了: 100行, エンコーディング: shift_jis
+2025-06-11 21:24:07,673 - utils - INFO - 有効な問題データ: 100問
+2025-06-11 21:24:07,674 - __main__ - INFO - 問題データ読み込み完了: 100問
+2025-06-11 21:24:07,674 - __main__ - INFO - アプリケーション初期化完了: 100問読み込み
+2025-06-11 21:24:07,679 - werkzeug - WARNING -  * Debugger is active!
+2025-06-11 21:24:07,680 - werkzeug - INFO -  * Debugger PIN: 838-149-708
+2025-06-11 21:24:31,696 - werkzeug - INFO -  * Detected change in '/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/app.py', reloading
+2025-06-11 21:24:31,775 - werkzeug - INFO -  * Restarting with stat
+2025-06-11 21:24:32,345 - __main__ - INFO - 問題データの読み込み開始
+2025-06-11 21:24:32,346 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/questions.csv
+2025-06-11 21:24:32,348 - utils - INFO - ファイルサイズ: 26061 bytes
+2025-06-11 21:24:32,358 - utils - INFO - 読み込み成功: shift_jis エンコーディング
+2025-06-11 21:24:32,358 - utils - INFO - データ読み込み完了: 100行, エンコーディング: shift_jis
+2025-06-11 21:24:32,371 - utils - INFO - 有効な問題データ: 100問
+2025-06-11 21:24:32,371 - __main__ - INFO - 問題データ読み込み完了: 100問
+2025-06-11 21:24:32,372 - __main__ - INFO - アプリケーション初期化完了: 100問読み込み
+2025-06-11 21:24:32,377 - werkzeug - WARNING -  * Debugger is active!
+2025-06-11 21:24:32,378 - werkzeug - INFO -  * Debugger PIN: 838-149-708
+2025-06-11 22:33:33,224 - __main__ - WARNING - 404エラー: http://127.0.0.1:5000/sw.js
+2025-06-11 22:33:33,243 - werkzeug - INFO - 127.0.0.1 - - [11/Jun/2025 22:33:33] "[33mGET /sw.js HTTP/1.1[0m" 404 -

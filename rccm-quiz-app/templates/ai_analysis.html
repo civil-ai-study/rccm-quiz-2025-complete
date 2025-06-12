@@ -1,0 +1,317 @@
+{% extends "base.html" %}
+
+{% block title %}AI弱点分析 - RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- ヘッダー -->
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-brain text-info"></i> AI弱点分析</h2>
+                <a href="{{ url_for('index') }}" class="btn btn-outline-primary">
+                    <i class="fas fa-home"></i> ホームに戻る
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 分析信頼度 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <div class="d-flex align-items-center">
+                    <div class="mr-3">
+                        <i class="fas fa-chart-line fa-2x"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <strong>分析信頼度: {{ "%.0f"|format((analysis.confidence_score or 0) * 100) }}%</strong>
+                        <div class="progress mt-2" style="height: 8px;">
+                            <div class="progress-bar bg-info" style="width: {{ (analysis.confidence_score or 0) * 100 }}%"></div>
+                        </div>
+                        {% if analysis.confidence_score < 0.5 %}
+                        <small class="text-muted">より正確な分析のため、さらに問題に挑戦することをお勧めします。</small>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 弱点エリア分析 -->
+    {% if analysis.weak_areas %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-exclamation-triangle text-warning"></i> 弱点エリア分析</h4>
+                </div>
+                <div class="card-body">
+                    {% for category, info in analysis.weak_areas.items() %}
+                    <div class="weak-area-item mb-4 p-3 border rounded">
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <h5 class="mb-1">{{ category }}</h5>
+                                <span class="badge badge-{{ 'danger' if info.priority > 0.7 else 'warning' if info.priority > 0.4 else 'info' }}">
+                                    優先度: {{ info.priority|round(2) }}
+                                </span>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="progress mb-2">
+                                    <div class="progress-bar bg-{{ 'danger' if info.weakness_score > 0.7 else 'warning' if info.weakness_score > 0.4 else 'success' }}" 
+                                         style="width: {{ info.weakness_score * 100 }}%"></div>
+                                </div>
+                                <small class="text-muted">
+                                    弱点度: {{ "%.1f"|format(info.weakness_score * 100) }}% | 
+                                    信頼度: {{ "%.1f"|format(info.confidence * 100) }}%
+                                </small>
+                            </div>
+                            <div class="col-md-3 text-right">
+                                <div class="mb-2">
+                                    <strong>推奨学習:</strong>
+                                    {% if info.recommended_focus == 'fundamental_review' %}
+                                        <span class="badge badge-danger">基礎復習</span>
+                                    {% elif info.recommended_focus == 'targeted_practice' %}
+                                        <span class="badge badge-warning">重点練習</span>
+                                    {% elif info.recommended_focus == 'speed_improvement' %}
+                                        <span class="badge badge-info">速度改善</span>
+                                    {% else %}
+                                        <span class="badge badge-success">応用挑戦</span>
+                                    {% endif %}
+                                </div>
+                                {% if info.details %}
+                                <small class="text-muted">
+                                    正答率: {{ "%.1f"|format(info.details.accuracy * 100) }}%<br>
+                                    平均時間: {{ "%.1f"|format(info.details.avg_time) }}秒
+                                </small>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-success text-center">
+                <div class="display-4 mb-3">🎉</div>
+                <h4>素晴らしい成績です！</h4>
+                <p>現在、特に重大な弱点は検出されませんでした。継続的な学習で更なる向上を目指しましょう。</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 学習プラン -->
+    {% if analysis.learning_plan %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-route text-success"></i> 個人学習プラン</h4>
+                </div>
+                <div class="card-body">
+                    {% set plan = analysis.learning_plan %}
+                    
+                    {% if plan.primary_focus %}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="card border-warning">
+                                <div class="card-header bg-warning text-white">
+                                    <h6 class="mb-0"><i class="fas fa-star"></i> 優先学習分野</h6>
+                                </div>
+                                <div class="card-body">
+                                    <h5>{{ plan.primary_focus.category }}</h5>
+                                    <p><strong>推奨問題数:</strong> {{ plan.primary_focus.recommended_questions }}問/日</p>
+                                    <p><strong>学習アプローチ:</strong> 
+                                        {% if plan.primary_focus.study_approach == 'intensive_study' %}
+                                            集中学習
+                                        {% elif plan.primary_focus.study_approach == 'regular_practice' %}
+                                            通常練習
+                                        {% else %}
+                                            軽い復習
+                                        {% endif %}
+                                    </p>
+                                    <p><strong>改善予想期間:</strong> {{ plan.primary_focus.expected_improvement_days }}日</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {% if plan.secondary_focus %}
+                        <div class="col-md-6">
+                            <div class="card border-info">
+                                <div class="card-header bg-info text-white">
+                                    <h6 class="mb-0"><i class="fas fa-plus"></i> 補助学習分野</h6>
+                                </div>
+                                <div class="card-body">
+                                    <h5>{{ plan.secondary_focus.category }}</h5>
+                                    <p><strong>推奨問題数:</strong> {{ plan.secondary_focus.recommended_questions }}問/日</p>
+                                    <p><strong>アプローチ:</strong> 復習と練習</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    
+                    <!-- 日々の推奨 -->
+                    {% if plan.daily_recommendation %}
+                    <div class="alert alert-light border">
+                        <h6><i class="fas fa-calendar-day"></i> 今日の推奨学習</h6>
+                        <p class="mb-2"><strong>{{ plan.daily_recommendation.message }}</strong></p>
+                        <p class="mb-0">
+                            推奨問題数: {{ plan.daily_recommendation.recommended_questions }}問 | 
+                            重点分野: {{ plan.daily_recommendation.focus }}
+                        </p>
+                        {% if plan.daily_recommendation.specific_advice %}
+                        <small class="text-muted">{{ plan.daily_recommendation.specific_advice }}</small>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    
+                    {% if plan.motivation_message %}
+                    <div class="alert alert-success">
+                        <i class="fas fa-heart"></i> {{ plan.motivation_message }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 推奨学習モード -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-cogs text-primary"></i> 推奨学習モード</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5>
+                                現在の推奨: 
+                                <span class="badge badge-primary badge-lg">
+                                    {% if recommended_mode == 'foundation' %}
+                                        基礎固めモード
+                                    {% elif recommended_mode == 'balanced' %}
+                                        バランスモード
+                                    {% elif recommended_mode == 'challenge' %}
+                                        チャレンジモード
+                                    {% else %}
+                                        復習モード
+                                    {% endif %}
+                                </span>
+                            </h5>
+                            
+                            {% set mode_info = learning_modes[recommended_mode] %}
+                            <p class="text-muted">
+                                弱点学習: {{ (mode_info.weak_area_ratio * 100)|int }}% | 
+                                新規問題: {{ (mode_info.new_question_ratio * 100)|int }}% | 
+                                復習: {{ (mode_info.review_ratio * 100)|int }}%
+                            </p>
+                            
+                            <div class="mt-3">
+                                {% for mode, config in learning_modes.items() %}
+                                <div class="mode-option {% if mode == recommended_mode %}recommended{% endif %} mb-2 p-2 border rounded">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <strong>
+                                                {% if mode == 'foundation' %}
+                                                    基礎固めモード
+                                                {% elif mode == 'balanced' %}
+                                                    バランスモード
+                                                {% elif mode == 'challenge' %}
+                                                    チャレンジモード
+                                                {% else %}
+                                                    復習モード
+                                                {% endif %}
+                                            </strong>
+                                            {% if mode == recommended_mode %}
+                                                <span class="badge badge-success ml-2">推奨</span>
+                                            {% endif %}
+                                        </div>
+                                        <a href="{{ url_for('adaptive_quiz', mode=mode) }}" class="btn btn-sm btn-outline-primary">
+                                            このモードで開始
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="mb-3">
+                                <i class="fas fa-robot fa-5x text-info"></i>
+                            </div>
+                            <p class="text-muted">AIがあなたの学習データを分析し、最適な学習モードを推奨します。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- アクションボタン -->
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <a href="{{ url_for('adaptive_quiz', mode=recommended_mode) }}" class="btn btn-primary btn-lg mr-2">
+                <i class="fas fa-brain"></i> AI推奨モードで学習開始
+            </a>
+            <a href="{{ url_for('learning_plan') }}" class="btn btn-info btn-lg mr-2">
+                <i class="fas fa-calendar-alt"></i> 詳細学習プラン
+            </a>
+            <a href="{{ url_for('statistics') }}" class="btn btn-secondary btn-lg">
+                <i class="fas fa-chart-bar"></i> 詳細統計
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+.weak-area-item {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    transition: all 0.3s ease;
+}
+
+.weak-area-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.mode-option {
+    transition: all 0.3s ease;
+}
+
+.mode-option:hover {
+    background-color: #f8f9fa;
+}
+
+.mode-option.recommended {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+    border-color: #2196f3 !important;
+}
+
+.progress {
+    height: 10px;
+}
+
+.badge-lg {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+}
+
+@media (max-width: 768px) {
+    .fa-5x {
+        font-size: 3rem !important;
+    }
+    
+    .weak-area-item .row > div {
+        margin-bottom: 1rem;
+    }
+}
+</style>
+{% endblock %}
