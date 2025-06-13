@@ -2,103 +2,203 @@
 {% block title %}問題 | RCCM試験問題集{% endblock %}
 {% block content %}
 <div class="container">
-    <!-- 進捗表示 -->
-    <div class="card mb-3">
+    <!-- 進捗表示 - アクセシビリティ強化 -->
+    <div class="card mb-3" role="banner">
         <div class="card-body p-2">
-            <div class="d-flex justify-content-between align-items-center">
-                <span class="badge bg-primary fs-6">問題 {{ current_no }}/{{ total_questions }}</span>
-                {% if question.category %}
-                <span class="badge bg-success">{{ question.category }}</span>
-                {% endif %}
-                {% if question.difficulty %}
-                <span class="badge bg-warning text-dark">{{ question.difficulty }}レベル</span>
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <div class="progress-info" role="status" aria-live="polite">
+                    <span class="badge bg-primary fs-6" aria-label="進捗">問題 {{ current_no }}/{{ total_questions }}</span>
+                    <div class="progress mt-2" style="height: 6px; width: 120px;" role="progressbar" aria-valuenow="{{ current_no }}" aria-valuemin="1" aria-valuemax="{{ total_questions }}">
+                        <div class="progress-bar" style="width: {{ (current_no / total_questions * 100) if total_questions > 0 else 0 }}%"></div>
+                    </div>
+                </div>
                 
-                <!-- SRS情報表示 -->
-                {% if is_review_question %}
-                <span class="badge bg-info">🔄 復習問題</span>
-                {% else %}
-                <span class="badge bg-secondary">🆕 新問題</span>
-                {% endif %}
-                {% endif %}
+                <div class="question-meta d-flex flex-wrap gap-2">
+                    {% if question.category %}
+                    <span class="badge bg-success" title="分野">
+                        <i class="fas fa-tag me-1" aria-hidden="true"></i>{{ question.category }}
+                    </span>
+                    {% endif %}
+                    {% if question.difficulty %}
+                    <span class="badge bg-warning text-dark" title="難易度">
+                        <i class="fas fa-star me-1" aria-hidden="true"></i>{{ question.difficulty }}レベル
+                    </span>
+                    {% endif %}
+                    
+                    <!-- SRS情報表示 -->
+                    {% if is_review_question %}
+                    <span class="badge bg-info" title="復習問題">
+                        <i class="fas fa-redo me-1" aria-hidden="true"></i>復習問題
+                    </span>
+                    {% else %}
+                    <span class="badge bg-secondary" title="新しい問題">
+                        <i class="fas fa-plus me-1" aria-hidden="true"></i>新問題
+                    </span>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- 問題カード -->
-<div class="card quiz-container">
+    <!-- 問題カード - アクセシビリティ強化 -->
+<div class="card quiz-container" role="main">
         <div class="card-header bg-light d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">📝 問題</h5>
-            <div class="mobile-controls">
-                <button type="button" id="voiceBtn" class="btn btn-sm btn-outline-primary me-2" title="音声読み上げ (Space)">
-                    <i class="fas fa-volume-up"></i>
+            <h1 class="h5 mb-0" id="question-title">
+                <i class="fas fa-question-circle me-2" aria-hidden="true"></i>問題
+            </h1>
+            <div class="quiz-controls" role="toolbar" aria-label="問題支援ツール">
+                <button type="button" id="voiceBtn" class="btn btn-sm btn-outline-primary me-2" 
+                        title="音声読み上げ (Shift+V)" aria-label="問題文を読み上げ">
+                    <i class="fas fa-volume-up" aria-hidden="true"></i>
+                    <span class="visually-hidden">音声読み上げ</span>
                 </button>
-                <button type="button" id="mobileMenuBtn" class="btn btn-sm btn-outline-secondary" title="モバイルメニュー">
-                    <i class="fas fa-bars"></i>
+                <button type="button" id="timerToggle" class="btn btn-sm btn-outline-info me-2" 
+                        title="タイマー表示切り替え" aria-label="タイマー表示切り替え">
+                    <i class="fas fa-clock" aria-hidden="true"></i>
+                    <span id="timer-display" class="ms-1">0:00</span>
+                </button>
+                <button type="button" id="mobileMenuBtn" class="btn btn-sm btn-outline-secondary d-md-none" 
+                        title="メニュー表示" aria-label="モバイルメニュー">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
                 </button>
             </div>
   </div>
   <div class="card-body">
-            <!-- 問題文 -->
-            <div class="p-3 mb-4 bg-light border-start border-primary border-4">
-                <h6 class="fw-bold lh-base question-text">{{ question.question }}</h6>
+            <!-- 問題文 - 読みやすさ向上 -->
+            <div class="question-container p-3 mb-4 bg-light border-start border-primary border-4" role="article">
+                <!-- 年度表示 -->
+                {% if question.year %}
+                <div class="mb-2">
+                    <span class="badge bg-info text-white">
+                        <i class="fas fa-calendar-alt me-1"></i>{{ question.year }}年度 過去問
+                    </span>
+                    {% if question.question_type == 'specialist' %}
+                    <span class="badge bg-success ms-1">
+                        <i class="fas fa-cogs me-1"></i>4-2 専門科目
+                    </span>
+                    {% elif question.question_type == 'basic' %}
+                    <span class="badge bg-warning text-dark ms-1">
+                        <i class="fas fa-graduation-cap me-1"></i>4-1 基礎科目
+                    </span>
+                    {% endif %}
+                </div>
+                {% endif %}
+                
+                <h2 class="h6 fw-bold lh-base question-text" id="question-content" aria-describedby="question-hints">
+                    {{ question.question }}
+                </h2>
+                
+                <!-- 問題読み上げ用非表示テキスト -->
+                <div class="visually-hidden" id="question-for-screen-reader">
+                    {% if question.year %}{{ question.year }}年度の過去問です。{% endif %}
+                    問題文: {{ question.question }}
+                    選択肢は4つあります。AからDの中から正しい答えを選んでください。
+                </div>
+                
+                <!-- 問題ヒント -->
+                <div id="question-hints" class="mt-2">
+                    <small class="text-muted">
+                        <i class="fas fa-lightbulb me-1" aria-hidden="true"></i>
+                        ヒント: 選択肢を注意深く読み、最も適切な答えを選んでください。
+                    </small>
+                </div>
             </div>
 
-            <!-- 選択肢フォーム -->
-            <form method="POST" action="/quiz" id="quizForm">
+            <!-- 選択肢フォーム - アクセシビリティ強化 -->
+            <form method="POST" action="/quiz" id="quizForm" role="form" aria-labelledby="question-title">
                 <input type="hidden" name="qid" value="{{ question.id }}">
                 <input type="hidden" name="elapsed" value="0" id="elapsedTime">
                 
-                <div class="mb-4">
+                <fieldset class="mb-4">
+                    <legend class="visually-hidden">選択肢一覧 - 正しい答えを一つ選んでください</legend>
+                    
                     <!-- 選択肢A -->
-                    <div class="form-check option-item answer-option p-3 mb-3 border rounded" onclick="selectOption('A')">
-                        <input class="form-check-input" type="radio" name="answer" value="A" id="optionA">
+                    <div class="form-check option-item answer-option p-3 mb-3 border rounded" 
+                         role="button" tabindex="0" 
+                         onclick="selectOption('A')" 
+                         onkeypress="handleOptionKeypress(event, 'A')"
+                         aria-describedby="option-a-desc">
+                        <input class="form-check-input" type="radio" name="answer" value="A" id="optionA" 
+                               aria-describedby="option-a-text">
                         <label class="form-check-label w-100 cursor-pointer" for="optionA">
                             <div class="d-flex align-items-start">
-                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0 option-letter">A</span>
-                                <span class="flex-grow-1 option-text">{{ question.option_a }}</span>
+                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0 option-letter" aria-hidden="true">A</span>
+                                <span class="flex-grow-1 option-text" id="option-a-text">{{ question.option_a }}</span>
                             </div>
                         </label>
+                        <div class="visually-hidden" id="option-a-desc">選択肢A: {{ question.option_a }}</div>
                     </div>
 
                     <!-- 選択肢B -->
-                    <div class="form-check option-item answer-option p-3 mb-3 border rounded" onclick="selectOption('B')">
-                        <input class="form-check-input" type="radio" name="answer" value="B" id="optionB">
+                    <div class="form-check option-item answer-option p-3 mb-3 border rounded" 
+                         role="button" tabindex="0" 
+                         onclick="selectOption('B')" 
+                         onkeypress="handleOptionKeypress(event, 'B')"
+                         aria-describedby="option-b-desc">
+                        <input class="form-check-input" type="radio" name="answer" value="B" id="optionB" 
+                               aria-describedby="option-b-text">
                         <label class="form-check-label w-100 cursor-pointer" for="optionB">
                             <div class="d-flex align-items-start">
-                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0 option-letter">B</span>
-                                <span class="flex-grow-1 option-text">{{ question.option_b }}</span>
+                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0 option-letter" aria-hidden="true">B</span>
+                                <span class="flex-grow-1 option-text" id="option-b-text">{{ question.option_b }}</span>
                             </div>
                         </label>
+                        <div class="visually-hidden" id="option-b-desc">選択肢B: {{ question.option_b }}</div>
                     </div>
 
                     <!-- 選択肢C -->
-                    <div class="form-check option-item answer-option p-3 mb-3 border rounded" onclick="selectOption('C')">
-                        <input class="form-check-input" type="radio" name="answer" value="C" id="optionC">
+                    <div class="form-check option-item answer-option p-3 mb-3 border rounded" 
+                         role="button" tabindex="0" 
+                         onclick="selectOption('C')" 
+                         onkeypress="handleOptionKeypress(event, 'C')"
+                         aria-describedby="option-c-desc">
+                        <input class="form-check-input" type="radio" name="answer" value="C" id="optionC" 
+                               aria-describedby="option-c-text">
                         <label class="form-check-label w-100 cursor-pointer" for="optionC">
                             <div class="d-flex align-items-start">
-                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0 option-letter">C</span>
-                                <span class="flex-grow-1 option-text">{{ question.option_c }}</span>
+                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0 option-letter" aria-hidden="true">C</span>
+                                <span class="flex-grow-1 option-text" id="option-c-text">{{ question.option_c }}</span>
                             </div>
                         </label>
+                        <div class="visually-hidden" id="option-c-desc">選択肢C: {{ question.option_c }}</div>
                     </div>
 
                     <!-- 選択肢D -->
-                    <div class="form-check option-item answer-option p-3 mb-3 border rounded" onclick="selectOption('D')">
-                        <input class="form-check-input" type="radio" name="answer" value="D" id="optionD">
+                    <div class="form-check option-item answer-option p-3 mb-3 border rounded" 
+                         role="button" tabindex="0" 
+                         onclick="selectOption('D')" 
+                         onkeypress="handleOptionKeypress(event, 'D')"
+                         aria-describedby="option-d-desc">
+                        <input class="form-check-input" type="radio" name="answer" value="D" id="optionD" 
+                               aria-describedby="option-d-text">
                         <label class="form-check-label w-100 cursor-pointer" for="optionD">
                             <div class="d-flex align-items-start">
-                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0 option-letter">D</span>
-                                <span class="flex-grow-1 option-text">{{ question.option_d }}</span>
+                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0 option-letter" aria-hidden="true">D</span>
+                                <span class="flex-grow-1 option-text" id="option-d-text">{{ question.option_d }}</span>
                             </div>
-            </label>
+                        </label>
+                        <div class="visually-hidden" id="option-d-desc">選択肢D: {{ question.option_d }}</div>
                     </div>
-                </div>
+                </fieldset>
 
-                <!-- 解答ボタン -->
+                <!-- 解答ボタン - エラーハンドリング強化 -->
                 <div class="text-center mb-4">
-                    <button type="submit" class="btn btn-success btn-lg px-5" id="submitBtn" disabled>
-                        ✅ 解答する
+                    <div id="form-errors" class="alert alert-danger d-none" role="alert" aria-live="assertive">
+                        <i class="fas fa-exclamation-triangle me-2" aria-hidden="true"></i>
+                        <span id="error-message"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success btn-lg px-5" id="submitBtn" 
+                            disabled aria-describedby="submit-help">
+                        <i class="fas fa-check me-2" aria-hidden="true"></i>解答する
+                        <div class="spinner-border spinner-border-sm ms-2 d-none" id="submit-spinner" role="status">
+                            <span class="visually-hidden">処理中...</span>
+                        </div>
                     </button>
+                    
+                    <div id="submit-help" class="form-text mt-2">
+                        選択肢を選んでから解答ボタンをクリックしてください。
+                    </div>
                 </div>
             </form>
 

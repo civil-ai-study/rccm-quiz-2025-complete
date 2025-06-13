@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理者ダッシュボード - RCCM学習アプリ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .dashboard-card {
+            transition: transform 0.2s;
+            height: 100%;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+        }
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .alert-item {
+            border-left: 4px solid;
+            border-radius: 0;
+        }
+        .alert-critical {
+            border-left-color: #dc3545;
+            background-color: #f8d7da;
+        }
+        .alert-warning {
+            border-left-color: #ffc107;
+            background-color: #fff3cd;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 20px 0;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #667eea;
+        }
+        .table-hover tbody tr:hover {
+            background-color: rgba(102, 126, 234, 0.1);
+        }
+        .progress-thin {
+            height: 8px;
+        }
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .status-success { background-color: #28a745; }
+        .status-warning { background-color: #ffc107; }
+        .status-danger { background-color: #dc3545; }
+        .sidebar {
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .sidebar .nav-link {
+            color: rgba(255,255,255,0.8);
+            transition: all 0.3s;
+        }
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- サイドバー -->
+            <div class="col-md-2 p-0 sidebar">
+                <div class="p-3">
+                    <h5><i class="fas fa-tachometer-alt me-2"></i>管理者ダッシュボード</h5>
+                </div>
+                <nav class="nav nav-pills flex-column">
+                    <a class="nav-link active" href="#overview" data-bs-toggle="pill">
+                        <i class="fas fa-chart-line me-2"></i>概要
+                    </a>
+                    <a class="nav-link" href="#questions" data-bs-toggle="pill">
+                        <i class="fas fa-question-circle me-2"></i>問題管理
+                    </a>
+                    <a class="nav-link" href="#users" data-bs-toggle="pill">
+                        <i class="fas fa-users me-2"></i>ユーザー管理
+                    </a>
+                    <a class="nav-link" href="#content" data-bs-toggle="pill">
+                        <i class="fas fa-book me-2"></i>コンテンツ分析
+                    </a>
+                    <a class="nav-link" href="#performance" data-bs-toggle="pill">
+                        <i class="fas fa-rocket me-2"></i>パフォーマンス
+                    </a>
+                    <a class="nav-link" href="#reports" data-bs-toggle="pill">
+                        <i class="fas fa-file-alt me-2"></i>レポート
+                    </a>
+                </nav>
+                <div class="mt-auto p-3">
+                    <a href="/" class="btn btn-outline-light btn-sm">
+                        <i class="fas fa-arrow-left me-2"></i>アプリに戻る
+                    </a>
+                </div>
+            </div>
+
+            <!-- メインコンテンツ -->
+            <div class="col-md-10">
+                <div class="p-4">
+                    <div class="tab-content">
+                        <!-- 概要タブ -->
+                        <div class="tab-pane fade show active" id="overview">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h2><i class="fas fa-chart-line me-2"></i>システム概要</h2>
+                                <button class="btn btn-primary" onclick="refreshData()">
+                                    <i class="fas fa-sync-alt me-2"></i>更新
+                                </button>
+                            </div>
+
+                            <!-- 重要指標 -->
+                            <div class="row mb-4">
+                                <div class="col-md-3">
+                                    <div class="card metric-card dashboard-card">
+                                        <div class="card-body text-center">
+                                            <div class="metric-value" id="total-questions">{{ overview.questions.total_questions | default(0) }}</div>
+                                            <div class="metric-label">総問題数</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card metric-card dashboard-card">
+                                        <div class="card-body text-center">
+                                            <div class="metric-value" id="total-users">{{ overview.users.total_count | default(0) }}</div>
+                                            <div class="metric-label">総ユーザー数</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card metric-card dashboard-card">
+                                        <div class="card-body text-center">
+                                            <div class="metric-value" id="active-users">{{ overview.users.active_count | default(0) }}</div>
+                                            <div class="metric-label">アクティブユーザー</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card metric-card dashboard-card">
+                                        <div class="card-body text-center">
+                                            <div class="metric-value" id="system-health">{{ "%.1f"|format(overview.performance.response_time * 1000 | default(100)) }}ms</div>
+                                            <div class="metric-label">平均応答時間</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- アラートとグラフ -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card dashboard-card">
+                                        <div class="card-header">
+                                            <h5><i class="fas fa-exclamation-triangle me-2"></i>システムアラート</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            {% if overview.alerts %}
+                                                {% for alert in overview.alerts %}
+                                                <div class="alert alert-{{ 'critical' if alert.type == 'critical' else 'warning' }} alert-item mb-2">
+                                                    <i class="fas fa-{{ 'exclamation-circle' if alert.type == 'critical' else 'exclamation-triangle' }} me-2"></i>
+                                                    {{ alert.message }}
+                                                </div>
+                                                {% endfor %}
+                                            {% else %}
+                                                <div class="alert alert-success">
+                                                    <i class="fas fa-check-circle me-2"></i>
+                                                    システムは正常に動作しています
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card dashboard-card">
+                                        <div class="card-header">
+                                            <h5><i class="fas fa-chart-pie me-2"></i>部門別問題分布</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="chart-container">
+                                                <canvas id="departmentChart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 問題管理タブ -->
+                        <div class="tab-pane fade" id="questions">
+                            <h2><i class="fas fa-question-circle me-2"></i>問題管理</h2>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-12">
+                                    <div class="card dashboard-card">
+                                        <div class="card-header">
+                                            <h5>問題統計サマリー</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <strong>総問題数:</strong> <span id="q-total">{{ questions.total_questions | default(0) }}</span>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <strong>部門数:</strong> <span id="q-departments">{{ questions.by_department | length | default(0) }}</span>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <strong>カテゴリ数:</strong> <span id="q-categories">{{ questions.by_category | length | default(0) }}</span>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <strong>データ品質スコア:</strong> 
+                                                    <span class="badge bg-{{ 'success' if questions.question_quality.quality_score > 0.8 else 'warning' if questions.question_quality.quality_score > 0.6 else 'danger' }}">
+                                                        {{ "%.1f"|format(questions.question_quality.quality_score * 100 | default(0)) }}%
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card dashboard-card">
+                                        <div class="card-header">
+                                            <h5>部門別内訳</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>部門</th>
+                                                            <th class="text-end">問題数</th>
+                                                            <th>割合</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% if questions.by_department %}
+                                                            {% for dept, count in questions.by_department.items() %}
+                                                            <tr>
+                                                                <td>{{ dept }}</td>
+                                                                <td class="text-end">{{ count }}</td>
+                                                                <td>
+                                                                    <div class="progress progress-thin">
+                                                                        <div class="progress-bar" style="width: {{ (count / questions.total_questions * 100) if questions.total_questions > 0 else 0 }}%"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card dashboard-card">
+                                        <div class="card-header">
+                                            <h5>データ品質分析</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            {% if questions.question_quality.issues %}
+                                                <div class="alert alert-warning">
+                                                    <strong>品質問題が{{ questions.question_quality.total_issues }}件見つかりました:</strong>
+                                                    <ul class="mb-0 mt-2">
+                                                        {% for issue in questions.question_quality.issues[:5] %}
+                                                        <li>{{ issue }}</li>
+                                                        {% endfor %}
+                                                        {% if questions.question_quality.issues | length > 5 %}
+                                                        <li><em>他 {{ questions.question_quality.issues | length - 5 }} 件...</em></li>
+                                                        {% endif %}
+                                                    </ul>
+                                                </div>
+                                            {% else %}
+                                                <div class="alert alert-success">
+                                                    <i class="fas fa-check-circle me-2"></i>
+                                                    データ品質に問題はありません
+                                                </div>
+                                            {% endif %}
+                                            
+                                            <h6>整合性チェック結果:</h6>
+                                            <ul class="list-unstyled">
+                                                <li><span class="status-indicator status-{{ 'success' if questions.data_integrity.unique_ids == questions.data_integrity.total_questions else 'danger' }}"></span>
+                                                    ユニークID: {{ questions.data_integrity.unique_ids }}/{{ questions.data_integrity.total_questions }}</li>
+                                                <li><span class="status-indicator status-{{ 'success' if questions.data_integrity.missing_ids == 0 else 'warning' }}"></span>
+                                                    欠損ID: {{ questions.data_integrity.missing_ids }}件</li>
+                                                <li><span class="status-indicator status-{{ 'success' if questions.data_integrity.duplicate_ids | length == 0 else 'danger' }}"></span>
+                                                    重複ID: {{ questions.data_integrity.duplicate_ids | length }}件</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ユーザー管理タブ -->
+                        <div class="tab-pane fade" id="users">
+                            <h2><i class="fas fa-users me-2"></i>ユーザー管理</h2>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-4">
+                                    <div class="card dashboard-card">
+                                        <div class="card-body text-center">
+                                            <h3 class="text-primary">{{ users.total_users | default(0) }}</h3>
+                                            <p class="text-muted">総ユーザー数</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card dashboard-card">
+                                        <div class="card-body text-center">
+                                            <h3 class="text-success">{{ users.active_users_last_7days | default(0) }}</h3>
+                                            <p class="text-muted">7日間アクティブ</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card dashboard-card">
+                                        <div class="card-body text-center">
+                                            <h3 class="text-info">{{ "%.1f"|format(users.average_accuracy * 100 | default(0)) }}%</h3>
+                                            <p class="text-muted">平均正答率</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card dashboard-card">
+                                        <div class="card-header">
+                                            <h5>学習パターン分布</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="chart-container">
+                                                <canvas id="learningPatternsChart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card dashboard-card">
+                                        <div class="card-header">
+                                            <h5>部門別人気度</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>部門</th>
+                                                            <th class="text-end">学習回数</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% if users.department_popularity %}
+                                                            {% for dept, count in users.department_popularity.items() | sort(attribute=1, reverse=true) %}
+                                                            <tr>
+                                                                <td>{{ dept }}</td>
+                                                                <td class="text-end">{{ count }}</td>
+                                                            </tr>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- コンテンツ分析タブ -->
+                        <div class="tab-pane fade" id="content">
+                            <h2><i class="fas fa-book me-2"></i>コンテンツ分析</h2>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="card dashboard-card">
+                                        <div class="card-header">
+                                            <h5>最も難しい問題 TOP 5</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>問題ID</th>
+                                                            <th class="text-end">正答率</th>
+                                                            <th class="text-end">挑戦回数</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% if content.hardest_questions %}
+                                                            {% for item in content.hardest_questions[:5] %}
+                                                            <tr>
+                                                                <td>{{ item.id }}</td>
+                                                                <td class="text-end">
+                                                                    <span class="badge bg-danger">{{ "%.1f"|format(item.stats.accuracy * 100) }}%</span>
+                                                                </td>
+                                                                <td class="text-end">{{ item.stats.attempted }}</td>
+                                                            </tr>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card dashboard-card">
+                                        <div class="card-header">
+                                            <h5>最も易しい問題 TOP 5</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>問題ID</th>
+                                                            <th class="text-end">正答率</th>
+                                                            <th class="text-end">挑戦回数</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% if content.easiest_questions %}
+                                                            {% for item in content.easiest_questions[:5] %}
+                                                            <tr>
+                                                                <td>{{ item.id }}</td>
+                                                                <td class="text-end">
+                                                                    <span class="badge bg-success">{{ "%.1f"|format(item.stats.accuracy * 100) }}%</span>
+                                                                </td>
+                                                                <td class="text-end">{{ item.stats.attempted }}</td>
+                                                            </tr>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% if content.recommendations %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card dashboard-card">
+                                        <div class="card-header">
+                                            <h5><i class="fas fa-lightbulb me-2"></i>改善提案</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            {% for recommendation in content.recommendations %}
+                                            <div class="alert alert-info">
+                                                <i class="fas fa-info-circle me-2"></i>{{ recommendation }}
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- パフォーマンスタブ -->
+                        <div class="tab-pane fade" id="performance">
+                            <h2><i class="fas fa-rocket me-2"></i>パフォーマンス監視</h2>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-3">
+                                    <div class="card dashboard-card">
+                                        <div class="card-body text-center">
+                                            <h4 class="text-success">{{ "%.1f"|format(performance.data_quality_score * 100 | default(0)) }}%</h4>
+                                            <p class="text-muted">データ品質スコア</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card dashboard-card">
+                                        <div class="card-body text-center">
+                                            <h4 class="text-info">{{ "%.1f"|format(performance.user_engagement_score * 100 | default(0)) }}%</h4>
+                                            <p class="text-muted">ユーザーエンゲージメント</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card dashboard-card">
+                                        <div class="card-body text-center">
+                                            <h4 class="text-warning">{{ "%.1f"|format(performance.learning_effectiveness.average_improvement * 100 | default(0)) }}%</h4>
+                                            <p class="text-muted">学習改善度</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card dashboard-card">
+                                        <div class="card-body text-center">
+                                            <h4 class="text-primary">{{ "%.1f"|format(performance.learning_effectiveness.knowledge_retention * 100 | default(0)) }}%</h4>
+                                            <p class="text-muted">知識定着率</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card dashboard-card">
+                                        <div class="card-header">
+                                            <h5>技術指標</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="list-unstyled">
+                                                <li><strong>データ読み込み時間:</strong> {{ "%.3f"|format(performance.technical_metrics.data_load_time | default(0)) }}秒</li>
+                                                <li><strong>推定メモリ使用量:</strong> {{ performance.technical_metrics.memory_usage.total_estimated | default("不明") }}</li>
+                                                <li><strong>問題データサイズ:</strong> {{ performance.technical_metrics.memory_usage.questions_data | default("不明") }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card dashboard-card">
+                                        <div class="card-header">
+                                            <h5>ファイルサイズ</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ファイル</th>
+                                                            <th class="text-end">サイズ</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% if performance.technical_metrics.file_sizes %}
+                                                            {% for filename, size in performance.technical_metrics.file_sizes.items() %}
+                                                            <tr>
+                                                                <td>{{ filename }}</td>
+                                                                <td class="text-end">{{ size }}</td>
+                                                            </tr>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- レポートタブ -->
+                        <div class="tab-pane fade" id="reports">
+                            <h2><i class="fas fa-file-alt me-2"></i>レポート生成</h2>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card dashboard-card">
+                                        <div class="card-header">
+                                            <h5>クイックレポート</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="d-grid gap-2">
+                                                <button class="btn btn-primary" onclick="generateReport('comprehensive')">
+                                                    <i class="fas fa-file-pdf me-2"></i>総合レポート
+                                                </button>
+                                                <button class="btn btn-outline-primary" onclick="generateReport('users')">
+                                                    <i class="fas fa-users me-2"></i>ユーザーレポート
+                                                </button>
+                                                <button class="btn btn-outline-primary" onclick="generateReport('content')">
+                                                    <i class="fas fa-book me-2"></i>コンテンツレポート
+                                                </button>
+                                                <button class="btn btn-outline-primary" onclick="generateReport('performance')">
+                                                    <i class="fas fa-chart-line me-2"></i>パフォーマンスレポート
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card dashboard-card">
+                                        <div class="card-header">
+                                            <h5>生成されたレポート</h5>
+                                        </div>
+                                        <div class="card-body" id="report-list">
+                                            <p class="text-muted">レポートを生成すると、ここに表示されます。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // データ更新
+        function refreshData() {
+            location.reload();
+        }
+
+        // レポート生成
+        function generateReport(type) {
+            const reportList = document.getElementById('report-list');
+            const timestamp = new Date().toLocaleString('ja-JP');
+            
+            fetch(`/admin/api/reports/${type}`, {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(data => {
+                const reportItem = document.createElement('div');
+                reportItem.className = 'alert alert-success';
+                reportItem.innerHTML = `
+                    <i class="fas fa-check-circle me-2"></i>
+                    <strong>${type}レポート</strong> - ${timestamp}
+                    <button class="btn btn-sm btn-outline-success float-end" onclick="downloadReport('${type}')">
+                        <i class="fas fa-download"></i> ダウンロード
+                    </button>
+                `;
+                
+                if (reportList.querySelector('.text-muted')) {
+                    reportList.innerHTML = '';
+                }
+                reportList.appendChild(reportItem);
+            })
+            .catch(error => {
+                console.error('レポート生成エラー:', error);
+                alert('レポート生成に失敗しました');
+            });
+        }
+
+        // レポートダウンロード
+        function downloadReport(type) {
+            const data = JSON.stringify({{ data | tojson if data else '{}' }}, null, 2);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `rccm_${type}_report_${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // チャート初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 部門別分布チャート
+            {% if overview.questions.department_distribution %}
+            const departmentCtx = document.getElementById('departmentChart').getContext('2d');
+            new Chart(departmentCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: {{ overview.questions.department_distribution.keys() | list | tojson }},
+                    datasets: [{
+                        data: {{ overview.questions.department_distribution.values() | list | tojson }},
+                        backgroundColor: [
+                            '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+                            '#9966FF', '#FF9F40', '#FF6384', '#C9CBCF'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            {% endif %}
+
+            // 学習パターンチャート
+            {% if users.learning_patterns %}
+            const learningPatternsCtx = document.getElementById('learningPatternsChart').getContext('2d');
+            new Chart(learningPatternsCtx, {
+                type: 'bar',
+                data: {
+                    labels: {{ users.learning_patterns.keys() | list | tojson }},
+                    datasets: [{
+                        label: 'ユーザー数',
+                        data: {{ users.learning_patterns.values() | list | tojson }},
+                        backgroundColor: '#667eea'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            {% endif %}
+        });
+    </script>
+</body>
+</html>

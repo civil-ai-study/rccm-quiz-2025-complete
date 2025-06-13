@@ -48,6 +48,56 @@ function updateStreak() {
     return streak;
 }
 
+// キーボードショートカット表示機能
+function showKeyboardShortcuts() {
+    const shortcuts = `
+<div class="modal fade" id="shortcutsModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">キーボードショートカット一覧</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <h6><i class="fas fa-graduation-cap me-2"></i>問題解答時</h6>
+        <ul class="list-unstyled mb-3">
+          <li><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> - 選択肢A〜D選択</li>
+          <li><kbd>Enter</kbd> - 解答送信</li>
+          <li><kbd>Shift</kbd> + <kbd>V</kbd> - 音声読み上げ</li>
+        </ul>
+        <h6><i class="fas fa-keyboard me-2"></i>全画面共通</h6>
+        <ul class="list-unstyled mb-3">
+          <li><kbd>Alt</kbd> + <kbd>D</kbd> - ダークモード切替</li>
+          <li><kbd>Alt</kbd> + <kbd>H</kbd> - ホームに戻る</li>
+          <li><kbd>Ctrl</kbd> + <kbd>/</kbd> - ヘルプ表示</li>
+        </ul>
+        <h6><i class="fas fa-mobile-alt me-2"></i>モバイル</h6>
+        <ul class="list-unstyled">
+          <li>画面タップ - 選択肢選択</li>
+          <li>スワイプ - ページ切り替え（対応ページ）</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">了解</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+    
+    // 既存のモーダルを削除
+    const existingModal = document.getElementById('shortcutsModal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+    
+    // 新しいモーダルを挿入
+    document.body.insertAdjacentHTML('beforeend', shortcuts);
+    
+    // モーダル表示
+    const modal = new bootstrap.Modal(document.getElementById('shortcutsModal'));
+    modal.show();
+}
+
 // しおり機能
 function bookmarkQuestion(questionId) {
     let bookmarks = JSON.parse(localStorage.getItem('rccm_bookmarks') || '[]');

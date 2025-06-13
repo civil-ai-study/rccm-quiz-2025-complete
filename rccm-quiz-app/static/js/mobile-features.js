@@ -29,6 +29,8 @@ class MobileFeatures {
         this.setupVoiceFeatures();
         this.setupKeyboardShortcuts();
         this.setupPerformanceMonitoring();
+        this.setupAccessibilityFeatures();
+        this.setupErrorBoundary();
         this.loadSettings();
         
         console.log('Mobile features initialized');
@@ -663,6 +665,85 @@ class MobileFeatures {
         const menu = document.querySelector('.context-menu');
         if (menu) {
             menu.remove();
+        }
+    }
+
+    // アクセシビリティ機能の設定
+    setupAccessibilityFeatures() {
+        this.setupKeyboardNavigation();
+        this.setupScreenReaderSupport();
+    }
+
+    setupKeyboardNavigation() {
+        // アプリ全体のキーボードショートカット
+        document.addEventListener('keydown', (e) => {
+            if (e.altKey) {
+                switch (e.key) {
+                    case 'h':
+                    case 'H':
+                        e.preventDefault();
+                        window.location.href = '/';
+                        break;
+                    case 'd':
+                    case 'D':
+                        e.preventDefault();
+                        if (window.toggleTheme) window.toggleTheme();
+                        break;
+                }
+            }
+            if (e.ctrlKey && e.key === '/') {
+                e.preventDefault();
+                window.location.href = '/help';
+            }
+        });
+    }
+
+    setupScreenReaderSupport() {
+        // 動的コンテンツの読み上げ支援
+        const liveRegion = document.createElement('div');
+        liveRegion.setAttribute('aria-live', 'polite');
+        liveRegion.setAttribute('aria-atomic', 'true');
+        liveRegion.className = 'sr-only';
+        liveRegion.id = 'live-announcements';
+        document.body.appendChild(liveRegion);
+    }
+
+    // エラーバウンダリの設定
+    setupErrorBoundary() {
+        // グローバルエラーハンドラー
+        window.addEventListener('error', (e) => {
+            this.handleError({
+                type: 'javascript',
+                message: e.message,
+                filename: e.filename,
+                line: e.lineno,
+                stack: e.error ? e.error.stack : 'スタックトレースなし'
+            });
+        });
+
+        // Promise エラーハンドラー
+        window.addEventListener('unhandledrejection', (e) => {
+            this.handleError({
+                type: 'promise',
+                message: e.reason ? e.reason.toString() : 'Promise rejection'
+            });
+        });
+    }
+
+    handleError(errorInfo) {
+        console.error('Application Error:', errorInfo);
+        const userMessage = this.getUserFriendlyErrorMessage(errorInfo);
+        this.showToast(userMessage, 'error');
+    }
+
+    getUserFriendlyErrorMessage(errorInfo) {
+        switch (errorInfo.type) {
+            case 'network':
+                return 'ネットワーク接続に問題があります。';
+            case 'javascript':
+                return 'ページを更新してもう一度お試しください。';
+            default:
+                return 'エラーが発生しました。';
         }
     }
 }

@@ -1,0 +1,606 @@
+{% extends "base.html" %}
+
+{% block title %}部門別詳細統計 - RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- ヘッダー -->
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-chart-line text-primary"></i> 部門別詳細統計分析</h2>
+                <div>
+                    <a href="{{ url_for('statistics') }}" class="btn btn-outline-secondary mr-2">
+                        <i class="fas fa-chart-bar"></i> 基本統計
+                    </a>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-home"></i> ホーム
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 概要統計 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-overview"></i> 学習概要</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <h3 class="text-primary">{{ report.overview.total_questions }}</h3>
+                                <p class="text-muted">総問題数</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <h3 class="text-success">{{ "%.1f"|format(report.overview.overall_accuracy * 100) }}%</h3>
+                                <p class="text-muted">総合正答率</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <h3 class="text-info">{{ report.overview.departments_studied }}</h3>
+                                <p class="text-muted">学習部門数</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <h3 class="text-warning">{{ "%.0f"|format(report.overview.department_coverage * 100) }}%</h3>
+                                <p class="text-muted">部門カバー率</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <div class="progress" style="height: 15px;">
+                            <div class="progress-bar bg-success" style="width: {{ report.overview.overall_accuracy * 100 }}%"></div>
+                        </div>
+                        <small class="text-muted mt-1 d-block">{{ report.overview.performance_summary }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 部門別詳細分析 -->
+    {% if report.department_analysis %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-building text-info"></i> 部門別成績分析</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for dept_id, dept_data in report.department_analysis.items() %}
+                        <div class="col-lg-6 col-xl-4 mb-4">
+                            <div class="card h-100 border-left" style="border-left-color: {{ dept_data.color }} !important; border-left-width: 4px !important;">
+                                <div class="card-header" style="background-color: {{ dept_data.color }}; color: white;">
+                                    <h6 class="mb-0">
+                                        {{ dept_data.icon }} {{ dept_data.name }}
+                                        <span class="badge badge-light float-right">{{ dept_data.performance_grade }}</span>
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <!-- 基本成績 -->
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between">
+                                            <span>正答率:</span>
+                                            <strong>{{ "%.1f"|format(dept_data.accuracy * 100) }}%</strong>
+                                        </div>
+                                        <div class="progress mt-1" style="height: 6px;">
+                                            <div class="progress-bar bg-{{ 'success' if dept_data.accuracy > 0.7 else 'warning' if dept_data.accuracy > 0.5 else 'danger' }}" 
+                                                 style="width: {{ dept_data.accuracy * 100 }}%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 詳細統計 -->
+                                    <div class="small text-muted">
+                                        <div class="d-flex justify-content-between">
+                                            <span>問題数:</span>
+                                            <span>{{ dept_data.total_questions }}問</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>平均時間:</span>
+                                            <span>{{ "%.1f"|format(dept_data.avg_time_per_question) }}秒</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>最近の正答率:</span>
+                                            <span>{{ "%.1f"|format(dept_data.recent_accuracy * 100) }}%</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>カバー分野:</span>
+                                            <span>{{ dept_data.categories_covered }}分野</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 改善傾向 -->
+                                    {% if dept_data.improvement_trend > 0.05 %}
+                                    <div class="mt-2">
+                                        <span class="badge badge-success">
+                                            <i class="fas fa-arrow-up"></i> 改善中 (+{{ "%.1f"|format(dept_data.improvement_trend * 100) }}%)
+                                        </span>
+                                    </div>
+                                    {% elif dept_data.improvement_trend < -0.05 %}
+                                    <div class="mt-2">
+                                        <span class="badge badge-warning">
+                                            <i class="fas fa-arrow-down"></i> 要注意 ({{ "%.1f"|format(dept_data.improvement_trend * 100) }}%)
+                                        </span>
+                                    </div>
+                                    {% else %}
+                                    <div class="mt-2">
+                                        <span class="badge badge-info">
+                                            <i class="fas fa-minus"></i> 安定
+                                        </span>
+                                    </div>
+                                    {% endif %}
+                                    
+                                    <!-- 問題種別別成績 -->
+                                    {% if dept_data.question_type_analysis %}
+                                    <div class="mt-3 pt-2 border-top">
+                                        <small class="text-muted d-block mb-2">問題種別別成績:</small>
+                                        {% for type_id, type_data in dept_data.question_type_analysis.items() %}
+                                        <div class="d-flex justify-content-between small">
+                                            <span>{{ '基礎' if type_id == 'basic' else '専門' if type_id == 'specialist' else type_id }}:</span>
+                                            <span>{{ "%.1f"|format(type_data.accuracy * 100) }}% ({{ type_data.total_questions }}問)</span>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    
+                                    <!-- 学習推奨 -->
+                                    <div class="mt-3 p-2 bg-light rounded">
+                                        <small class="text-muted">
+                                            <i class="fas fa-lightbulb"></i> {{ dept_data.study_recommendation }}
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="{{ url_for('ai_analysis', department=dept_id) }}" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-brain"></i> AI分析
+                                    </a>
+                                    <a href="{{ url_for('adaptive_quiz', department=dept_id, mode='department_mastery') }}" class="btn btn-sm btn-outline-success ml-2">
+                                        <i class="fas fa-play"></i> 学習開始
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 問題種別分析 -->
+    {% if report.question_type_analysis %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-layer-group text-success"></i> 問題種別分析（4-1基礎 vs 4-2専門）</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for type_id, type_data in report.question_type_analysis.items() %}
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-{{ 'warning' if type_id == 'basic' else 'success' }}">
+                                <div class="card-header bg-{{ 'warning' if type_id == 'basic' else 'success' }} text-white">
+                                    <h6 class="mb-0">
+                                        {{ type_data.name }}
+                                        <span class="badge badge-light float-right">{{ type_data.performance_grade }}</span>
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span>正答率:</span>
+                                            <h5 class="mb-0">{{ "%.1f"|format(type_data.accuracy * 100) }}%</h5>
+                                        </div>
+                                        <div class="progress mt-2" style="height: 8px;">
+                                            <div class="progress-bar bg-{{ 'warning' if type_id == 'basic' else 'success' }}" 
+                                                 style="width: {{ type_data.accuracy * 100 }}%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="small text-muted">
+                                        <div class="d-flex justify-content-between">
+                                            <span>問題数:</span>
+                                            <span>{{ type_data.total_questions }}問</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>平均時間:</span>
+                                            <span>{{ "%.1f"|format(type_data.avg_time_per_question) }}秒</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 部門別成績トップ3 -->
+                                    {% if type_data.department_performance %}
+                                    <div class="mt-3 pt-2 border-top">
+                                        <small class="text-muted d-block mb-2">部門別成績（上位3位）:</small>
+                                        {% for dept_id, dept_perf in (type_data.department_performance.items() | list | sort(attribute='1.accuracy', reverse=true))[:3] %}
+                                        <div class="d-flex justify-content-between small">
+                                            <span>{{ dept_perf.department_name }}</span>
+                                            <span>{{ "%.1f"|format(dept_perf.accuracy * 100) }}%</span>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    
+                                    <div class="mt-3 p-2 bg-light rounded">
+                                        <small class="text-muted">
+                                            <i class="fas fa-target"></i> {{ type_data.study_focus }}
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 基礎→専門相関分析 -->
+    {% if report.cross_analysis.basic_specialist_correlations %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-link text-info"></i> 基礎→専門学習効果分析</h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        基礎理解（4-1）が専門成績（4-2）に与える影響を分析します。正の相関が高いほど、基礎学習が専門成績向上に効果的です。
+                    </div>
+                    
+                    <div class="row">
+                        {% for correlation in report.cross_analysis.basic_specialist_correlations %}
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-left border-{{ 'success' if correlation.foundation_strength else 'warning' }}" 
+                                 style="border-left-width: 4px !important;">
+                                <div class="card-body">
+                                    <h6>{{ correlation.department_name }}</h6>
+                                    
+                                    <div class="mb-2">
+                                        <div class="d-flex justify-content-between">
+                                            <span class="small">基礎（4-1）:</span>
+                                            <span class="badge badge-{{ 'success' if correlation.basic_accuracy > 0.7 else 'warning' }}">
+                                                {{ "%.1f"|format(correlation.basic_accuracy * 100) }}%
+                                            </span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span class="small">専門（4-2）:</span>
+                                            <span class="badge badge-{{ 'success' if correlation.specialist_accuracy > 0.6 else 'warning' }}">
+                                                {{ "%.1f"|format(correlation.specialist_accuracy * 100) }}%
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="progress mb-2" style="height: 6px;">
+                                        <div class="progress-bar bg-warning" style="width: {{ correlation.basic_accuracy * 100 }}%"></div>
+                                    </div>
+                                    <div class="progress mb-2" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: {{ correlation.specialist_accuracy * 100 }}%"></div>
+                                    </div>
+                                    
+                                    <div class="small text-muted">
+                                        <div class="d-flex justify-content-between">
+                                            <span>学習効率:</span>
+                                            <span>{{ "%.2f"|format(correlation.learning_efficiency) }}</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>相関:</span>
+                                            <span class="text-{{ 'success' if correlation.correlation > 0 else 'danger' }}">
+                                                {{ "%.1f"|format(correlation.correlation * 100) }}%
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    {% if not correlation.foundation_strength %}
+                                    <div class="mt-2">
+                                        <small class="text-warning">
+                                            <i class="fas fa-exclamation-triangle"></i> 
+                                            基礎理解の向上で専門成績の大幅改善が期待できます
+                                        </small>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 学習効率分析 -->
+    {% if report.learning_efficiency %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-tachometer-alt text-warning"></i> 学習効率分析</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <h4 class="text-primary">{{ "%.2f"|format(report.learning_efficiency.overall_efficiency_score) }}</h4>
+                                <p class="text-muted">効率スコア (正答数/分)</p>
+                                <span class="badge badge-{{ 'success' if report.learning_efficiency.overall_efficiency_score > 1.5 else 'warning' if report.learning_efficiency.overall_efficiency_score > 1.0 else 'danger' }}">
+                                    {{ report.learning_efficiency.efficiency_grade }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <h4 class="text-info">{{ "%.1f"|format(report.learning_efficiency.avg_time_per_question) }}</h4>
+                                <p class="text-muted">平均回答時間 (秒)</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <h4 class="text-success">{{ "%.1f"|format(report.learning_efficiency.accuracy_rate * 100) }}%</h4>
+                                <p class="text-muted">正答率</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {% if report.learning_efficiency.time_management_advice %}
+                    <div class="mt-3 alert alert-light">
+                        <i class="fas fa-clock"></i> {{ report.learning_efficiency.time_management_advice }}
+                    </div>
+                    {% endif %}
+                    
+                    <!-- 部門別効率 -->
+                    {% if report.learning_efficiency.department_efficiency %}
+                    <div class="mt-4">
+                        <h6>部門別学習効率:</h6>
+                        <div class="row">
+                            {% for dept_id, dept_efficiency in report.learning_efficiency.department_efficiency.items() %}
+                            <div class="col-md-6 mb-2">
+                                <div class="d-flex justify-content-between align-items-center p-2 border rounded">
+                                    <span>{{ departments.get(dept_id, {}).get('name', dept_id) }}</span>
+                                    <div class="text-right">
+                                        <span class="badge badge-primary">{{ "%.2f"|format(dept_efficiency.efficiency_score) }}</span>
+                                        <small class="text-muted ml-2">{{ "%.1f"|format(dept_efficiency.avg_time) }}秒</small>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 習熟度評価 -->
+    {% if report.mastery_assessment.department_mastery %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-medal text-warning"></i> 習熟度レベル評価</h5>
+                </div>
+                <div class="card-body">
+                    <!-- 習熟度サマリー -->
+                    {% set mastery_summary = report.mastery_assessment.overall_mastery_summary %}
+                    <div class="alert alert-info mb-4">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6>習熟度分布:</h6>
+                                {% for level, count in mastery_summary.mastery_distribution.items() %}
+                                <span class="badge badge-{{ 'success' if level == '上級' else 'warning' if level == '中級' else 'secondary' }} mr-2">
+                                    {{ level }}: {{ count }}部門
+                                </span>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <h6>学習部門: {{ mastery_summary.total_departments }}部門</h6>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 部門別習熟度 -->
+                    <div class="row">
+                        {% for dept_id, mastery_data in report.mastery_assessment.department_mastery.items() %}
+                        <div class="col-md-6 col-lg-4 mb-3">
+                            <div class="card border-{{ 'success' if mastery_data.mastery_level == '上級' else 'warning' if mastery_data.mastery_level == '中級' else 'secondary' }}">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6>{{ mastery_data.department_name }}</h6>
+                                        <span class="badge badge-{{ 'success' if mastery_data.mastery_level == '上級' else 'warning' if mastery_data.mastery_level == '中級' else 'secondary' }}">
+                                            {{ mastery_data.mastery_level }}
+                                        </span>
+                                    </div>
+                                    
+                                    <div class="small text-muted">
+                                        <div class="d-flex justify-content-between">
+                                            <span>総合成績:</span>
+                                            <span>{{ "%.1f"|format(mastery_data.overall_accuracy * 100) }}%</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>最近の成績:</span>
+                                            <span>{{ "%.1f"|format(mastery_data.recent_accuracy * 100) }}%</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>問題数:</span>
+                                            <span>{{ mastery_data.total_questions }}問</span>
+                                        </div>
+                                    </div>
+                                    
+                                    {% if mastery_data.improvement_trend > 0.05 %}
+                                    <div class="mt-2">
+                                        <small class="text-success">
+                                            <i class="fas fa-arrow-up"></i> 成長中 (+{{ "%.1f"|format(mastery_data.improvement_trend * 100) }}%)
+                                        </small>
+                                    </div>
+                                    {% elif mastery_data.improvement_trend < -0.05 %}
+                                    <div class="mt-2">
+                                        <small class="text-warning">
+                                            <i class="fas fa-arrow-down"></i> 要復習 ({{ "%.1f"|format(mastery_data.improvement_trend * 100) }}%)
+                                        </small>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 学習推奨 -->
+    {% if report.recommendations %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-success">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fas fa-lightbulb"></i> AI学習推奨</h5>
+                </div>
+                <div class="card-body">
+                    <!-- 優先部門 -->
+                    {% if report.recommendations.priority_departments %}
+                    <div class="mb-4">
+                        <h6><i class="fas fa-flag"></i> 優先学習部門:</h6>
+                        {% for priority in report.recommendations.priority_departments %}
+                        <div class="alert alert-{{ 'danger' if priority.accuracy < 0.5 else 'warning' if priority.accuracy < 0.7 else 'info' }}">
+                            <strong>{{ priority.name }}</strong> (正答率: {{ "%.1f"|format(priority.accuracy * 100) }}%)
+                            <br><small>{{ priority.recommendation }}</small>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <!-- 学習戦略 -->
+                    {% if report.recommendations.study_strategy %}
+                    <div class="mb-4">
+                        <h6><i class="fas fa-strategy"></i> 推奨学習戦略:</h6>
+                        <ul class="list-unstyled">
+                            {% for strategy in report.recommendations.study_strategy %}
+                            <li><i class="fas fa-arrow-right text-primary"></i> {{ strategy }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- 次のステップ -->
+                    {% if report.recommendations.next_steps %}
+                    <div>
+                        <h6><i class="fas fa-steps"></i> 次のステップ:</h6>
+                        <ol>
+                            {% for step in report.recommendations.next_steps %}
+                            <li>{{ step }}</li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 時系列トレンド（チャート用） -->
+    {% if report.time_series_analysis.weekly_trend %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-chart-line text-info"></i> 学習進捗トレンド</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="weeklyTrendChart" height="100"></canvas>
+                    <p class="text-muted mt-2">週次の正答率推移を表示します。傾向: {{ report.time_series_analysis.trend_direction }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Chart.js スクリプト -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// 週次トレンドチャート
+{% if report.time_series_analysis.weekly_trend %}
+const weeklyData = {{ report.time_series_analysis.weekly_trend | tojson }};
+const ctx = document.getElementById('weeklyTrendChart').getContext('2d');
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: weeklyData.map(d => d.week),
+        datasets: [{
+            label: '正答率',
+            data: weeklyData.map(d => d.accuracy * 100),
+            borderColor: 'rgb(75, 192, 192)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            tension: 0.1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: '週次正答率トレンド'
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                    callback: function(value) {
+                        return value + '%';
+                    }
+                }
+            }
+        }
+    }
+});
+{% endif %}
+</script>
+
+<style>
+.border-left {
+    border-left: 4px solid !important;
+}
+
+.card-header {
+    border-radius: 0.375rem 0.375rem 0 0 !important;
+}
+
+.progress {
+    height: 8px;
+}
+
+.badge-lg {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+}
+
+@media (max-width: 768px) {
+    .col-lg-6.col-xl-4 {
+        margin-bottom: 1rem;
+    }
+}
+</style>
+{% endblock %}

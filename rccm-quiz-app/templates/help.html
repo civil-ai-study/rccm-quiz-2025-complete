@@ -1,91 +1,335 @@
 {% extends 'base.html' %}
-{% block title %}ヘルプ・操作説明 | RCCM試験問題集{% endblock %}
+{% block title %}ヘルプ・使い方ガイド | RCCM試験問題集{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
-    <h1>ヘルプ・操作説明</h1>
-    <p class="lead">このアプリケーションの使い方についてご説明します。</p>
-
-    <h2 class="mt-4">1. はじめに</h2>
-    <p>このアプリケーションは、RCCM試験対策のための問題集アプリです。ランダム出題や分野別の学習、学習履歴の確認ができます。</p>
-
-    <h2 class="mt-4">2. 初期画面</h2>
-    <p>アプリを起動すると表示される画面です。</p>
-    <ul>
-        <li><strong>ランダム出題開始:</strong> 全体の問題からランダムに{{ total_questions }}問出題します。（注：現在の設定では{{ total_questions }}問ですが、設定により変動します）</li>
-        <li><strong>カテゴリー別出題開始:</strong> 分野を選択して学習を開始します。</li>
-        <li><strong>回答結果分析:</strong> これまでの学習履歴や分野ごとの成績を確認できます。</li>
-    </ul>
-
-    <h2 class="mt-4">3. 問題解答画面</h2>
-    <p>問題が表示される画面です。</p>
-    <ul>
-        <li>問題文と選択肢 (A, B, C, D) が表示されます。</li>
-        <li>適切な選択肢を選び、「解答する」ボタンをクリックしてください。</li>
-        <li>現在の問題番号と合計問題数が画面上部に表示されます。</li>
-    </ul>
-
-    <h2 class="mt-4">4. 結果画面</h2>
-    <p>問題解答セッションが終了すると表示される画面です。</p>
-    <ul>
-        <li>合計正答数と出題数が表示されます。</li>
-        <li>分野別成績の表では、分野ごとの解答数、正答数、正答率が確認できます。正答率に応じてセルの色が変化し、得意・苦手分野を把握できます。</li>
-    </ul>
-
-    <h2 class="mt-4">5. カテゴリー別問題選択画面</h2>
-    <p>「カテゴリー別出題開始」ボタンをクリックすると表示される画面です。</p>
-    <ul>
-        <li>分野ごとの問題数、解答済み数、正答数、正答率が表示された表が見えます。</li>
-        <li>各分野の右側にある「学習」ボタンをクリックすると、その分野の問題が出題されます。</li>
-    </ul>
-
-    <h2 class="mt-4">6. 回答結果分析画面</h2>
-    <p>「回答結果分析」ボタンをクリックすると表示される画面です。</p>
-    <ul>
-        <li>全体の解答数、正答率、平均解答時間などの統計情報が表示されます。</li>
-        <li>カテゴリ別の成績詳細や、最近の解答履歴、日別の正答率なども確認できます。</li>
-    </ul>
-
-    <h2 class="mt-4">7. トラブルシューティング</h2>
-    <div class="alert alert-warning">
-        <h5><i class="fas fa-exclamation-triangle"></i> 問題が正常に動作しない場合</h5>
-        <p>以下の症状がある場合は、下記の解決方法をお試しください：</p>
-        <ul>
-            <li>毎回同じ1問目が出題される</li>
-            <li>正解時に「次の問題へ」ボタンが表示されない</li>
-            <li>問題番号が正しく表示されない</li>
-        </ul>
-        
-        <h6>解決方法：</h6>
-        <ol>
-            <li><strong>ブラウザの再読み込み:</strong> Ctrl + F5 (Windows) / Cmd + R (Mac) で強制リロード</li>
-            <li><strong>キャッシュクリア:</strong> <a href="/reset" class="btn btn-sm btn-outline-secondary">設定リセット</a> ページからデータリセット</li>
-            <li><strong>完全リセット:</strong> <button class="btn btn-sm btn-danger" onclick="forceReset()">強制リセット実行</button></li>
-        </ol>
+    <div class="text-center mb-5">
+        <h1 class="display-4">📖 RCCM試験問題集 使い方ガイド</h1>
+        <p class="lead text-muted">初心者でも安心！RCCM受験生のための完全ガイド</p>
     </div>
 
-    <h2 class="mt-4">8. その他</h2>
-    <p>アプリケーションを終了するには、ブラウザのタブまたはウィンドウを閉じてください。</p>
+    <!-- 初心者向けクイックスタート -->
+    <div class="card border-primary mb-5">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0"><i class="fas fa-rocket me-2"></i>⚡ 5分でわかる！クイックスタート</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 text-center mb-3">
+                    <div class="step-circle">1</div>
+                    <h5>部門を選択</h5>
+                    <p class="small">あなたの受験部門<br>（道路、河川砂防など）を選択</p>
+                </div>
+                <div class="col-md-4 text-center mb-3">
+                    <div class="step-circle">2</div>
+                    <h5>基礎→専門の順で学習</h5>
+                    <p class="small">4-1基礎科目で基礎固め<br>↓<br>4-2専門科目で実力向上</p>
+                </div>
+                <div class="col-md-4 text-center mb-3">
+                    <div class="step-circle">3</div>
+                    <h5>復習で完璧に</h5>
+                    <p class="small">間違えた問題を<br>復習リストで再挑戦</p>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <a href="/" class="btn btn-primary btn-lg">今すぐ始める！</a>
+            </div>
+        </div>
+    </div>
 
+    <!-- RCCM12部門について -->
+    <div class="card border-success mb-4">
+        <div class="card-header bg-success text-white">
+            <h3 class="mb-0"><i class="fas fa-graduation-cap me-2"></i>RCCM12専門部門について</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>このアプリでは、以下の12部門の過去問が利用できます：</strong></p>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">🛣️ <strong>道路</strong></li>
+                        <li class="list-group-item">🚇 <strong>トンネル</strong></li>
+                        <li class="list-group-item">🌊 <strong>河川、砂防及び海岸・海洋</strong></li>
+                        <li class="list-group-item">🏙️ <strong>都市計画及び地方計画</strong></li>
+                        <li class="list-group-item">🌸 <strong>造園</strong></li>
+                        <li class="list-group-item">🌱 <strong>建設環境</strong></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">🏗️ <strong>鋼構造及びコンクリート</strong></li>
+                        <li class="list-group-item">🪨 <strong>土質及び基礎</strong></li>
+                        <li class="list-group-item">📋 <strong>施工計画、施工設備及び積算</strong></li>
+                        <li class="list-group-item">💧 <strong>上水道及び工業用水道</strong></li>
+                        <li class="list-group-item">🌲 <strong>森林土木</strong></li>
+                        <li class="list-group-item">🌾 <strong>農業土木</strong></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert alert-info mt-3">
+                <i class="fas fa-info-circle me-2"></i>
+                <strong>重要：</strong>あなたの受験部門を最初に選択してください。他の部門の問題は試験に出題されません。
+            </div>
+        </div>
+    </div>
+
+    <!-- 学習フローの詳細説明 -->
+    <div class="card border-warning mb-4">
+        <div class="card-header bg-warning text-dark">
+            <h3 class="mb-0"><i class="fas fa-route me-2"></i>推奨学習フロー</h3>
+        </div>
+        <div class="card-body">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker bg-primary">1</div>
+                    <div class="timeline-content">
+                        <h5>部門選択</h5>
+                        <p>ホーム画面で<strong>あなたの受験部門</strong>を選択</p>
+                        <small class="text-muted">例：道路部門を受験する場合は「道路」ボタンをクリック</small>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker bg-warning">2</div>
+                    <div class="timeline-content">
+                        <h5>4-1 基礎科目で基礎固め</h5>
+                        <p>全部門共通の基礎問題（202問）で基礎知識を確認</p>
+                        <small class="text-muted">測量、土質、構造力学、建設マネジメントなどの基礎</small>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker bg-success">3</div>
+                    <div class="timeline-content">
+                        <h5>4-2 専門科目で実力向上</h5>
+                        <p>選択した部門の専門問題で実践力を身につける</p>
+                        <small class="text-muted">年度別（2008-2018年）過去問で総仕上げ</small>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker bg-info">4</div>
+                    <div class="timeline-content">
+                        <h5>復習で弱点克服</h5>
+                        <p>間違えた問題を復習リストで再度挑戦</p>
+                        <small class="text-muted">苦手分野を重点的に学習</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 機能詳細説明 -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-info text-white">
+                    <h4><i class="fas fa-play-circle me-2"></i>問題解答機能</h4>
+                </div>
+                <div class="card-body">
+                    <h6>📝 問題画面</h6>
+                    <ul>
+                        <li>問題文と4つの選択肢（A, B, C, D）が表示</li>
+                        <li>問題番号（例：5/10）で進捗を確認</li>
+                        <li>年度表示で出題年を確認可能</li>
+                        <li>タイマーで解答時間を測定</li>
+                    </ul>
+                    
+                    <h6>✅ 解答フィードバック</h6>
+                    <ul>
+                        <li>正解・不正解を即座に表示</li>
+                        <li>詳細な解説で理解を深める</li>
+                        <li>「次の問題へ」で続行</li>
+                        <li>復習登録で後で見直し</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-secondary text-white">
+                    <h4><i class="fas fa-chart-bar me-2"></i>学習進捗機能</h4>
+                </div>
+                <div class="card-body">
+                    <h6>📊 統計・分析</h6>
+                    <ul>
+                        <li>全体の正答率・解答数を確認</li>
+                        <li>部門別・分野別の成績表示</li>
+                        <li>学習時間の記録</li>
+                        <li>弱点分野の特定</li>
+                    </ul>
+                    
+                    <h6>🔖 復習リスト</h6>
+                    <ul>
+                        <li>間違えた問題を自動保存</li>
+                        <li>重要度別に並び替え</li>
+                        <li>復習専用セッションを開始</li>
+                        <li>マスターした問題は自動削除</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- よくある質問 -->
+    <div class="card border-secondary mb-4">
+        <div class="card-header bg-light">
+            <h3 class="mb-0"><i class="fas fa-question-circle me-2"></i>よくある質問（FAQ）</h3>
+        </div>
+        <div class="card-body">
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq1">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                            Q. 他の部門の問題も見ることはできますか？
+                        </button>
+                    </h2>
+                    <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <strong>A.</strong> はい、可能です。ただし、あなたの受験部門以外の問題は実際の試験には出題されません。参考程度にとどめることをお勧めします。
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                            Q. 1回のセッションで何問出題されますか？
+                        </button>
+                    </h2>
+                    <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <strong>A.</strong> デフォルトでは10問ずつ出題されます。短時間で集中して学習できるよう設計されています。
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                            Q. 学習データは保存されますか？
+                        </button>
+                    </h2>
+                    <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <strong>A.</strong> はい、ブラウザのセッション機能を使用して学習履歴、復習リスト、統計データが保存されます。ブラウザを閉じても一定期間データは保持されます。
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq4">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                            Q. 基礎科目と専門科目はどちらから始めるべきですか？
+                        </button>
+                    </h2>
+                    <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <strong>A.</strong> <strong>4-1 基礎科目</strong>から始めることを強く推奨します。基礎がしっかりしていないと専門科目の理解が困難になります。基礎で70%以上の正答率を目指してから専門に進みましょう。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 困ったときは -->
+    <div class="card border-danger">
+        <div class="card-header bg-danger text-white">
+            <h3 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i>困ったときは</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>🔄 リセット方法</h5>
+                    <ul>
+                        <li><strong>セッションリセット:</strong> ホームボタンをクリック</li>
+                        <li><strong>ブラウザキャッシュクリア:</strong> Ctrl+F5（Windows）/ Cmd+R（Mac）</li>
+                        <li><strong>学習データ初期化:</strong> ブラウザの設定でサイトデータを削除</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5>⚠️ トラブルシューティング</h5>
+                    <ul>
+                        <li><strong>問題が表示されない:</strong> ページをリロード</li>
+                        <li><strong>ボタンが反応しない:</strong> しばらく待ってから再試行</li>
+                        <li><strong>統計が正しくない:</strong> 一度ホームに戻って再確認</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert alert-warning mt-3">
+                <i class="fas fa-lightbulb me-2"></i>
+                <strong>ヒント：</strong>アプリは最新のブラウザ（Chrome、Firefox、Safari、Edge）で最適化されています。古いブラウザでは正常に動作しない場合があります。
+            </div>
+        </div>
+    </div>
+
+    <!-- 戻るボタン -->
+    <div class="text-center mt-5 mb-4">
+        <a href="/" class="btn btn-lg btn-primary">
+            <i class="fas fa-home me-2"></i>ホームに戻る
+        </a>
+    </div>
 </div>
 
-<script>
-function forceReset() {
-    if (confirm('完全リセットを実行しますか？\n学習データがすべて削除されます。')) {
-        fetch('/force_reset')
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert(data.message);
-                window.location.href = '/';
-            } else {
-                alert('リセットに失敗しました: ' + data.error);
-            }
-        })
-        .catch(error => {
-            alert('エラーが発生しました: ' + error);
-        });
-    }
+<style>
+.step-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 1rem;
 }
-</script>
-{% endblock %} 
+
+.timeline {
+    position: relative;
+    padding-left: 3rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #dee2e6;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -45px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.timeline-content {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+}
+
+.timeline-content h5 {
+    margin-bottom: 0.5rem;
+    color: #495057;
+}
+</style>
+
+{% endblock %}

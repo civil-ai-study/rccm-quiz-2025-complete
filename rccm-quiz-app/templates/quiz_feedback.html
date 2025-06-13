@@ -121,6 +121,18 @@
         </div>
         {% endif %}
         
+        <!-- 動的難易度調整通知 -->
+        {% if difficulty_adjustment.adjusted %}
+        <div class="mt-3">
+            <div class="alert alert-info alert-sm">
+                <i class="fas fa-cogs me-2"></i>
+                <strong>難易度が自動調整されました:</strong> 
+                {{ difficulty_adjustment.old_level }} → <strong>{{ difficulty_adjustment.new_level }}</strong>
+                <small class="d-block text-muted">学習パフォーマンスに基づく最適化です</small>
+            </div>
+        </div>
+        {% endif %}
+        
         <!-- サブアクション -->
         <div class="mt-4 sub-actions">
             <div class="row g-2 justify-content-center">
