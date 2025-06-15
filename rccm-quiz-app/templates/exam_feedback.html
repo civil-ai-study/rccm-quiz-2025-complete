@@ -27,7 +27,7 @@
 
     <div class="card mb-3 {% if is_correct %}card-correct{% else %}card-incorrect{% endif %} feedback-card">
         <div class="card-header">
-            問題 {{ current_question_number }} / {{ total_questions }}
+            問題 {{ current_question_number if current_question_number is defined and current_question_number is not none else '1' }} / {{ total_questions if total_questions is defined and total_questions is not none else '10' }}
         </div>
         <div class="card-body">
             <h5 class="card-title question-text">{{ question.question }}</h5>
@@ -76,14 +76,30 @@
 
     <!-- メインナビゲーション -->
     <div class="mt-4 text-center">
+        <!-- デバッグ情報 -->
+        {% if config.DEBUG %}
+        <div class="debug-info alert alert-info" style="font-size: 0.8rem; margin-bottom: 1rem;">
+            <strong>DEBUG:</strong> is_last_question={{ is_last_question }}, next_question_index={{ next_question_index }}, 
+            current_question_number={{ current_question_number }}, total_questions={{ total_questions }}
+        </div>
+        {% endif %}
+        
         <div class="main-navigation-section" style="min-height: 80px; display: flex; align-items: center; justify-content: center;">
-            {% if not is_last_question %}
-                <a href="/exam?next=1&current={{ next_question_index }}" 
+            <!-- 確実な次問題ボタン表示（複数のフォールバック仕組み） -->
+            {% set question_num = current_question_number if current_question_number is defined and current_question_number is not none else 1 %}
+            {% set total_num = total_questions if total_questions is defined and total_questions is not none else 10 %}
+            {% set is_final = is_last_question if is_last_question is defined and is_last_question is not none else (question_num >= total_num) %}
+            
+            {% if not is_final %}
+                <!-- 次の問題へボタン（確実に表示される） -->
+                <!-- next_question_index は0ベースインデックス、フォールバックは current_question_number (1ベース) を0ベース化 -->
+                <a href="/exam?next=1&current={{ next_question_index if next_question_index is defined and next_question_index is not none else question_num }}" 
                    class="btn btn-primary btn-lg px-5 py-3 main-nav-btn"
                    style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; position: relative !important; z-index: 1000 !important;">
                     <i class="fas fa-arrow-right me-2"></i>次の問題へ
                 </a>
             {% else %}
+                <!-- 結果を見るボタン -->
                 <a href="/result" 
                    class="btn btn-success btn-lg px-5 py-3 main-nav-btn"
                    style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; position: relative !important; z-index: 1000 !important;">
@@ -94,11 +110,11 @@
         
         <!-- バックアップナビゲーション（表示問題に対する緊急対応） -->
         <div class="mt-3 backup-navigation" style="display: block !important;">
-            {% if not is_last_question %}
+            {% if not is_final %}
                 <div class="alert alert-light text-center" style="display: block !important;">
                     <small class="text-muted">ボタンが表示されない場合:</small><br>
-                    <a href="/exam?next=1&current={{ next_question_index }}" class="btn btn-outline-primary btn-sm">
-                        ► 次の問題（{{ next_question_index + 1 }}/{{ total_questions }}）
+                    <a href="/exam?next=1&current={{ next_question_index if next_question_index is defined else question_num }}" class="btn btn-outline-primary btn-sm">
+                        ► 次の問題（{{ question_num + 1 }}/{{ total_num }}）
                     </a>
                 </div>
             {% else %}
@@ -160,9 +176,9 @@
                 <summary style="cursor: pointer;">🔍 技術情報（問題発生時に確認）</summary>
                 <div class="mt-2">
                     <small>
-                        問題番号: {{ current_question_number }}/{{ total_questions }}<br>
-                        最終問題: {{ is_last_question }}<br>
-                        次問題インデックス: {{ next_question_index }}<br>
+                        問題番号: {{ question_num }}/{{ total_num }}<br>
+                        最終問題: {{ is_final }}<br>
+                        次問題インデックス: {{ next_question_index if next_question_index is defined else 'undefined' }}<br>
                         正解状態: {{ is_correct }}<br>
                         問題ID: {{ question.id }}
                     </small>

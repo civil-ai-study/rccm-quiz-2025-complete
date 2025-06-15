@@ -92,13 +92,15 @@ def after_request(response):
 
 # セキュリティ機能
 def sanitize_input(input_string):
-    """入力値をサニタイズ"""
+    """入力値をサニタイズ（日本語対応）"""
     if not input_string:
         return ""
-    # HTMLエスケープ
-    sanitized = html.escape(str(input_string))
-    # 不正なパターンを除去
-    sanitized = re.sub(r'[<>"\']', '', sanitized)
+    # 文字列に変換
+    sanitized = str(input_string)
+    # 危険なHTMLタグのみ除去（日本語文字は保持）
+    sanitized = re.sub(r'<[^>]*>', '', sanitized)
+    # SQLインジェクション対策（クォートのみエスケープ）
+    sanitized = sanitized.replace("'", "").replace('"', '')
     return sanitized.strip()
 
 def validate_exam_parameters(**kwargs):
@@ -395,9 +397,27 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         available_questions = [q for q in available_questions if q.get('department') == department]
         logger.info(f"部門フィルタ適用: {department}, 結果: {len(available_questions)}問")
     
-    # カテゴリでフィルタリング
+    # カテゴリでフィルタリング（文字化け考慮）
     if requested_category != '全体':
+        pre_category_count = len(available_questions)
+        # 正確な文字列マッチング
         available_questions = [q for q in available_questions if q.get('category') == requested_category]
+        
+        # 文字化けしている場合のフォールバック（部分マッチ）
+        if len(available_questions) == 0 and requested_category:
+            # 文字化けを考慮した部分マッチ
+            logger.warning(f"正確なカテゴリマッチ失敗: {requested_category}, 部分マッチを試行")
+            for q in [q for q in all_questions if q.get('question_type') == question_type]:
+                category = q.get('category', '')
+                # 道路、トンネル等の主要カテゴリのマッチング
+                if ('道路' in category and ('道' in requested_category or 'road' in requested_category.lower())) or \
+                   ('トンネル' in category and ('トンネル' in requested_category or 'tunnel' in requested_category.lower())) or \
+                   ('河川' in category and ('河川' in requested_category or 'civil' in requested_category.lower())) or \
+                   ('土質' in category and ('土質' in requested_category or 'soil' in requested_category.lower())):
+                    if q not in available_questions:
+                        available_questions.append(q)
+        
+        logger.info(f"カテゴリフィルタ適用: {requested_category}, {pre_category_count} → {len(available_questions)}問")
     
     # 年度でフィルタリング（専門科目のみ対象）
     if year:
@@ -680,6 +700,13 @@ def exam():
             current_no = session.get('exam_current', 0)
             exam_question_ids = session.get('exam_question_ids', [])
             
+            # 安全チェック: exam_question_idsが空の場合はエラーを返す
+            if not exam_question_ids:
+                logger.error(f"POST処理エラー: exam_question_idsが空です。問題ID: {qid}")
+                return render_template('error.html', 
+                                     error="セッション情報が異常です。ホームに戻って再度お試しください。",
+                                     error_type="session_error")
+            
             # 現在の問題番号をより正確に特定
             for i, q_id in enumerate(exam_question_ids):
                 if str(q_id) == str(qid):
@@ -709,21 +736,30 @@ def exam():
             logger.info(f"セッション更新: 現在{current_no} -> 次{next_no}, 総問題数{len(exam_question_ids)}")
 
             # 次の問題の準備
+            # current_no は回答した問題のインデックス（0ベース）
+            # next_no は次に表示される問題のインデックス（セッションに保存済み）
             is_last_question = (current_no >= len(exam_question_ids) - 1)
-            next_question_index = current_no + 1 if not is_last_question else None
+            
+            # 次の問題のインデックスは、セッションに保存されたnext_noを使用
+            # これにより、テンプレート内のURLが正しく生成される
+            next_question_index = next_no if not is_last_question else None
             
             # デバッグログ追加
-            logger.info(f"ボタン表示判定: current_no={current_no}, total={len(exam_question_ids)}, is_last={is_last_question}, next_index={next_question_index}")
+            logger.info(f"ボタン表示判定: current_no={current_no}, next_no={next_no}, total={len(exam_question_ids)}, is_last={is_last_question}, next_index={next_question_index}")
 
             # フィードバック画面に渡すデータを準備
+            # 安全なデフォルト値を保証
+            safe_total_questions = max(1, len(exam_question_ids)) if exam_question_ids else 10
+            safe_current_number = max(1, current_no + 1)
+            
             feedback_data = {
                 'question': question,
                 'user_answer': answer,
                 'is_correct': is_correct,
                 'is_last_question': is_last_question,
                 'next_question_index': next_question_index,
-                'total_questions': len(exam_question_ids),
-                'current_question_number': max(1, current_no + 1),
+                'total_questions': safe_total_questions,
+                'current_question_number': safe_current_number,  # 回答した問題の番号（1ベース）
                 'category': session.get('exam_category', '全体'),
                 'srs_info': srs_info,
                 'is_review_question': srs_info['total_attempts'] > 1,
@@ -734,6 +770,9 @@ def exam():
                 'badge_info': [gamification_manager.get_badge_info(badge) for badge in new_badges],
                 'difficulty_adjustment': difficulty_adjustment
             }
+
+            # フィードバック画面の重要な変数をログ出力
+            logger.info(f"フィードバック変数: is_last_question={feedback_data['is_last_question']}, next_question_index={feedback_data['next_question_index']}, current_question_number={feedback_data['current_question_number']}, total_questions={feedback_data['total_questions']}")
 
             return render_template('exam_feedback.html', **feedback_data)
 
@@ -746,10 +785,54 @@ def exam():
             requested_question_type = session.get('selected_question_type', '')
             requested_year = session.get('selected_year')
         else:
-            # GETパラメータの取得とサニタイズ
-            requested_category = sanitize_input(request.args.get('category', '全体'))
-            requested_department = sanitize_input(request.args.get('department', session.get('selected_department', '')))
-            requested_question_type = sanitize_input(request.args.get('question_type', session.get('selected_question_type', '')))
+            # GETパラメータの取得（URLデコード対応）
+            raw_category = request.args.get('category', '全体')
+            raw_department = request.args.get('department', session.get('selected_department', ''))
+            raw_question_type = request.args.get('question_type', session.get('selected_question_type', ''))
+            
+            # URLデコード（日本語対応・強化版）
+            import urllib.parse
+            try:
+                # URLエンコーディングされた日本語文字を検出してデコード
+                if raw_category:
+                    # URLエンコーディングの検出（%文字または文字化け文字の検出）
+                    if '%' in str(raw_category) or any(ord(c) > 127 for c in str(raw_category)):
+                        try:
+                            raw_category = urllib.parse.unquote(raw_category, encoding='utf-8')
+                        except:
+                            # UTF-8でダメな場合はShift_JISも試す
+                            try:
+                                raw_category = urllib.parse.unquote(raw_category, encoding='shift_jis')
+                            except:
+                                pass
+                    logger.info(f"カテゴリデコード結果: {raw_category}")
+                
+                if raw_department:
+                    if '%' in str(raw_department) or any(ord(c) > 127 for c in str(raw_department)):
+                        try:
+                            raw_department = urllib.parse.unquote(raw_department, encoding='utf-8')
+                        except:
+                            try:
+                                raw_department = urllib.parse.unquote(raw_department, encoding='shift_jis')
+                            except:
+                                pass
+                
+                if raw_question_type:
+                    if '%' in str(raw_question_type) or any(ord(c) > 127 for c in str(raw_question_type)):
+                        try:
+                            raw_question_type = urllib.parse.unquote(raw_question_type, encoding='utf-8')
+                        except:
+                            try:
+                                raw_question_type = urllib.parse.unquote(raw_question_type, encoding='shift_jis')
+                            except:
+                                pass
+            except Exception as e:
+                logger.warning(f"URLデコードエラー: {e}")
+            
+            # サニタイズ（日本語保持）
+            requested_category = sanitize_input(raw_category)
+            requested_department = sanitize_input(raw_department)
+            requested_question_type = sanitize_input(raw_question_type)
             
             # type=basicパラメータの処理（基礎科目専用）
             exam_type = sanitize_input(request.args.get('type'))
@@ -758,6 +841,31 @@ def exam():
                 requested_department = ''  # 基礎科目は部門不問
                 requested_category = '全体'  # カテゴリも全体に設定
                 logger.info("基礎科目専用モード: question_type=basic, department=None")
+            
+            # カテゴリ選択時の問題種別自動判定
+            if requested_category and requested_category != '全体' and not requested_question_type:
+                if requested_category == '共通':
+                    requested_question_type = 'basic'
+                    requested_department = ''
+                    logger.info("共通カテゴリ: 基礎科目に自動設定")
+                else:
+                    # 道路、土質及び基礎等の専門部門カテゴリ
+                    requested_question_type = 'specialist'
+                    # カテゴリから部門を推定
+                    category_to_dept = {
+                        '道路': 'road',
+                        '土質及び基礎': 'soil_foundation',
+                        '河川砂防': 'civil_planning',
+                        '鋼構造及びコンクリート': 'steel_concrete',
+                        '農業土木': 'agriculture',
+                        '施工計画・施工設備及び積算': 'construction_planning',
+                        '森林土木': 'forestry',
+                        'トンネル': 'tunnel',
+                        '建設環境': 'construction_env'
+                    }
+                    if requested_category in category_to_dept:
+                        requested_department = category_to_dept[requested_category]
+                    logger.info(f"専門カテゴリ: {requested_category} -> question_type=specialist, department={requested_department}")
         
         # 年度パラメータの取得とサニタイズ
         requested_year = sanitize_input(request.args.get('year'))
@@ -805,6 +913,8 @@ def exam():
         # デバッグログ
         logger.info(f"GET処理: current_no={current_no}, exam_question_ids={exam_question_ids[:5] if exam_question_ids else []}, is_next={is_next_request}, total_ids={len(exam_question_ids)}")
         logger.info(f"セッション詳細: session keys={list(session.keys())}, exam_current={session.get('exam_current', 'MISSING')}")
+        logger.info(f"問題種別情報: requested_question_type={requested_question_type}, session_question_type={session.get('selected_question_type')}, department={requested_department}")
+        logger.info(f"カテゴリ情報: requested_category={requested_category}, session_category={session_category}")
 
         # ★追加: 特定の問題表示の場合
         if specific_qid:
@@ -841,12 +951,21 @@ def exam():
 
         # セッション初期化判定 (qid指定がない場合)
         # 次の問題への遷移要求の場合はリセットしない
-        logger.info(f"リセット判定: is_next={is_next_request}, exam_ids={bool(exam_question_ids)}, category_match={requested_category == session_category}, current_no={current_no}, len={len(exam_question_ids)}")
+        session_question_type = session.get('selected_question_type')
+        session_department = session.get('selected_department')
+        
+        category_match = requested_category == session_category
+        question_type_match = requested_question_type == session_question_type
+        department_match = requested_department == session_department
+        
+        logger.info(f"リセット判定: is_next={is_next_request}, exam_ids={bool(exam_question_ids)}, category_match={category_match}, question_type_match={question_type_match}, department_match={department_match}, current_no={current_no}, len={len(exam_question_ids)}")
         
         need_reset = (not is_next_request and (
                     not exam_question_ids or
                     request.args.get('reset') == '1' or
-                    requested_category != session_category or
+                    not category_match or
+                    not question_type_match or
+                    not department_match or
                     current_no >= len(exam_question_ids)))
         
         logger.info(f"need_reset = {need_reset}")
@@ -912,15 +1031,18 @@ def exam():
         # デバッグログ: 表示数値の確認
         logger.info(f"問題表示: {display_current}/{display_total} (内部: current_no={current_no}, total_ids={len(exam_question_ids)})")
         
-        return render_template(
-            'exam.html',
-            question=question,
-            total_questions=display_total,
-            current_no=display_current,
-            current_question_number=display_current,  # 一貫性のため両方を提供
-            srs_info=question_srs,
-            is_review_question=question_srs.get('total_attempts', 0) > 0
-        )
+        # テンプレート変数をデバッグ用に記録
+        template_vars = {
+            'question': question,
+            'total_questions': display_total,
+            'current_no': display_current,
+            'current_question_number': display_current,
+            'srs_info': question_srs,
+            'is_review_question': question_srs.get('total_attempts', 0) > 0
+        }
+        logger.info(f"テンプレート変数: current_no={template_vars['current_no']} (type:{type(template_vars['current_no'])}), total_questions={template_vars['total_questions']}")
+        
+        return render_template('exam.html', **template_vars)
     except Exception as e:
         logger.error(f"quiz関数でエラー: {e}")
         return render_template('error.html', error="問題表示中にエラーが発生しました。")
@@ -3685,6 +3807,9 @@ try:
     
 except Exception as e:
     logger.error(f"アプリケーション初期化エラー: {e}")
+    logger.info("基本機能で続行します")
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001)
+    logger.info("RCCM試験問題集アプリケーション起動中...")
+    logger.info("アクセスURL: http://localhost:5003")
+    app.run(debug=True, host='0.0.0.0', port=5003)
