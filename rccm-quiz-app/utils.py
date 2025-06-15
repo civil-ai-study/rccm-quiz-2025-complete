@@ -401,9 +401,7 @@ def load_rccm_data_files(data_dir: str) -> List[Dict]:
             for q in basic_questions:
                 q['question_type'] = 'basic'
                 q['department'] = q.get('department', 'road')  # デフォルト部門
-                # 年度情報を追加（4-1は通常最新年度として扱う）
-                if not q.get('year'):
-                    q['year'] = 2018  # 最新年度を設定
+                # 基礎科目には年度情報を設定しない（年度不問）
             all_questions.extend(basic_questions)
             file_count += 1
             logger.info(f"4-1基礎データ読み込み完了: {len(basic_questions)}問")

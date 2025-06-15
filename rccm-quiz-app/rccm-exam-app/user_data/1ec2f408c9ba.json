@@ -1,0 +1,218 @@
+{
+  "history": [
+    {
+      "category": "材料",
+      "correct_answer": "C",
+      "date": "2025-06-12 14:40:12",
+      "elapsed": 5.0,
+      "id": 42,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "A"
+    },
+    {
+      "category": "測量",
+      "correct_answer": "D",
+      "date": "2025-06-12 14:40:12",
+      "elapsed": 5.0,
+      "id": 31,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "A"
+    },
+    {
+      "category": "法令",
+      "correct_answer": "C",
+      "date": "2025-06-12 14:40:12",
+      "elapsed": 5.0,
+      "id": 46,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "A"
+    },
+    {
+      "category": "新技術",
+      "correct_answer": "D",
+      "date": "2025-06-12 14:40:12",
+      "elapsed": 5.0,
+      "id": 68,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "A"
+    },
+    {
+      "category": "法令",
+      "correct_answer": "B",
+      "date": "2025-06-12 14:40:12",
+      "elapsed": 5.0,
+      "id": 69,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "A"
+    },
+    {
+      "category": "環境",
+      "correct_answer": "C",
+      "date": "2025-06-12 14:40:12",
+      "elapsed": 5.0,
+      "id": 45,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "A"
+    },
+    {
+      "category": "施工",
+      "correct_answer": "C",
+      "date": "2025-06-12 14:40:12",
+      "elapsed": 5.0,
+      "id": 52,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "A"
+    },
+    {
+      "category": "施工",
+      "correct_answer": "C",
+      "date": "2025-06-12 14:40:12",
+      "elapsed": 5.0,
+      "id": 87,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "A"
+    },
+    {
+      "category": "環境",
+      "correct_answer": "B",
+      "date": "2025-06-12 14:40:12",
+      "elapsed": 5.0,
+      "id": 70,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "A"
+    },
+    {
+      "category": "RCCM制度",
+      "correct_answer": "C",
+      "date": "2025-06-12 14:40:12",
+      "elapsed": 5.0,
+      "id": 100,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "A"
+    }
+  ],
+  "srs_data": {
+    "100": {
+      "correct_count": 0,
+      "last_review": "2025-06-12",
+      "level": 0,
+      "next_review": "2025-06-13",
+      "total_attempts": 1
+    },
+    "31": {
+      "correct_count": 0,
+      "last_review": "2025-06-12",
+      "level": 0,
+      "next_review": "2025-06-13",
+      "total_attempts": 1
+    },
+    "42": {
+      "correct_count": 0,
+      "last_review": "2025-06-12",
+      "level": 0,
+      "next_review": "2025-06-13",
+      "total_attempts": 1
+    },
+    "45": {
+      "correct_count": 0,
+      "last_review": "2025-06-12",
+      "level": 0,
+      "next_review": "2025-06-13",
+      "total_attempts": 1
+    },
+    "46": {
+      "correct_count": 0,
+      "last_review": "2025-06-12",
+      "level": 0,
+      "next_review": "2025-06-13",
+      "total_attempts": 1
+    },
+    "52": {
+      "correct_count": 0,
+      "last_review": "2025-06-12",
+      "level": 0,
+      "next_review": "2025-06-13",
+      "total_attempts": 1
+    },
+    "68": {
+      "correct_count": 0,
+      "last_review": "2025-06-12",
+      "level": 0,
+      "next_review": "2025-06-13",
+      "total_attempts": 1
+    },
+    "69": {
+      "correct_count": 0,
+      "last_review": "2025-06-12",
+      "level": 0,
+      "next_review": "2025-06-13",
+      "total_attempts": 1
+    },
+    "70": {
+      "correct_count": 0,
+      "last_review": "2025-06-12",
+      "level": 0,
+      "next_review": "2025-06-13",
+      "total_attempts": 1
+    },
+    "87": {
+      "correct_count": 0,
+      "last_review": "2025-06-12",
+      "level": 0,
+      "next_review": "2025-06-13",
+      "total_attempts": 1
+    }
+  },
+  "category_stats": {
+    "RCCM制度": {
+      "correct": 0,
+      "total": 1
+    },
+    "新技術": {
+      "correct": 0,
+      "total": 1
+    },
+    "施工": {
+      "correct": 0,
+      "total": 2
+    },
+    "材料": {
+      "correct": 0,
+      "total": 1
+    },
+    "法令": {
+      "correct": 0,
+      "total": 2
+    },
+    "測量": {
+      "correct": 0,
+      "total": 1
+    },
+    "環境": {
+      "correct": 0,
+      "total": 2
+    }
+  },
+  "last_updated": "2025-06-12T14:40:12.427706",
+  "user_id": "1ec2f408c9ba"
+}

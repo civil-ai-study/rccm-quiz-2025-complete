@@ -406,7 +406,7 @@ function setupPWAInstall() {
 function updateOfflineStatus() {
     // IndexedDBからオフラインデータの状況を取得
     if ('indexedDB' in window) {
-        const request = indexedDB.open('RCCMQuizApp', 1);
+        const request = indexedDB.open('RCCMQuestionApp', 1);
         
         request.onsuccess = function(event) {
             const db = event.target.result;
@@ -538,7 +538,7 @@ function syncOfflineData() {
 function clearOfflineData() {
     if (confirm('オフラインデータをすべて削除しますか？この操作は取り消せません。')) {
         if ('indexedDB' in window) {
-            const request = indexedDB.open('RCCMQuizApp', 1);
+            const request = indexedDB.open('RCCMQuestionApp', 1);
             
             request.onsuccess = function(event) {
                 const db = event.target.result;

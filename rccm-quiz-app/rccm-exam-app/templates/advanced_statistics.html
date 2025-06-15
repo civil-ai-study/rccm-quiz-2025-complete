@@ -1,0 +1,724 @@
+{% extends "base.html" %}
+
+{% block title %}高度な統計分析 - RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- ヘッダー -->
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-chart-line text-primary"></i> 高度な統計分析</h2>
+                <div>
+                    <button class="btn btn-outline-secondary me-2" onclick="exportReport()">
+                        <i class="fas fa-download"></i> レポート出力
+                    </button>
+                    <a href="{{ url_for('index') }}" class="btn btn-primary">
+                        <i class="fas fa-home"></i> ホームに戻る
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if report.status == 'insufficient_data' %}
+    <!-- データ不足メッセージ -->
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-info text-center py-5">
+                <i class="fas fa-info-circle fa-3x text-info mb-3"></i>
+                <h4>データが不足しています</h4>
+                <p class="mb-3">{{ report.message }}</p>
+                <a href="{{ url_for('quiz') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-play"></i> 問題を始める
+                </a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+
+    <!-- レポート情報 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card report-info-card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-info-circle text-primary"></i> レポート情報</h6>
+                            <ul class="list-unstyled">
+                                <li><strong>レポートID:</strong> {{ report.report_id }}</li>
+                                <li><strong>生成日時:</strong> {{ report.generated_at[:19]|replace('T', ' ') }}</li>
+                                <li><strong>データ信頼度:</strong> 
+                                    <span class="badge {% if report.confidence_score >= 0.8 %}bg-success{% elif report.confidence_score >= 0.6 %}bg-warning{% else %}bg-secondary{% endif %}">
+                                        {{ (report.confidence_score * 100)|round }}%
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-chart-bar text-success"></i> 基本統計</h6>
+                            <ul class="list-unstyled">
+                                <li><strong>総問題数:</strong> {{ report.basic_statistics.total_questions }}問</li>
+                                <li><strong>全体正答率:</strong> {{ (report.basic_statistics.overall_accuracy * 100)|round(1) }}%</li>
+                                <li><strong>学習期間:</strong> {{ report.basic_statistics.study_span_days }}日</li>
+                                <li><strong>アクティブ日数:</strong> {{ report.basic_statistics.active_study_days }}日</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- パフォーマンス概要 -->
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <div class="card performance-overview-card h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-tachometer-alt"></i> パフォーマンス概要
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="metric-item">
+                                <div class="metric-value">{{ (report.basic_statistics.overall_accuracy * 100)|round(1) }}%</div>
+                                <div class="metric-label">全体正答率</div>
+                                <div class="metric-trend">
+                                    {% if report.basic_statistics.improvement_rate > 0 %}
+                                        <i class="fas fa-arrow-up text-success"></i> +{{ (report.basic_statistics.improvement_rate * 100)|round(1) }}%
+                                    {% elif report.basic_statistics.improvement_rate < 0 %}
+                                        <i class="fas fa-arrow-down text-danger"></i> {{ (report.basic_statistics.improvement_rate * 100)|round(1) }}%
+                                    {% else %}
+                                        <i class="fas fa-minus text-muted"></i> 変化なし
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="metric-item">
+                                <div class="metric-value">{{ report.basic_statistics.avg_response_time|round(1) }}秒</div>
+                                <div class="metric-label">平均回答時間</div>
+                                <div class="metric-trend">
+                                    <small class="text-muted">中央値: {{ report.basic_statistics.median_response_time|round(1) }}秒</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 学習傾向グラフ -->
+                    {% if report.trend_analysis.accuracy_series %}
+                    <div class="mt-4">
+                        <h6><i class="fas fa-chart-line"></i> 学習傾向</h6>
+                        <canvas id="trendChart" height="100"></canvas>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card prediction-card h-100">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-crystal-ball"></i> 予測分析
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if report.performance_prediction.prediction != 'insufficient_data' %}
+                    <div class="prediction-item">
+                        <div class="prediction-label">1週間後の予測正答率</div>
+                        <div class="prediction-value">{{ (report.performance_prediction.predicted_accuracy_1week * 100)|round(1) }}%</div>
+                    </div>
+                    <div class="prediction-item">
+                        <div class="prediction-label">1ヶ月後の予測正答率</div>
+                        <div class="prediction-value">{{ (report.performance_prediction.predicted_accuracy_1month * 100)|round(1) }}%</div>
+                    </div>
+                    {% if report.performance_prediction.days_to_80_percent %}
+                    <div class="prediction-item">
+                        <div class="prediction-label">80%達成予測</div>
+                        <div class="prediction-value">{{ report.performance_prediction.days_to_80_percent }}日後</div>
+                    </div>
+                    {% endif %}
+                    <div class="prediction-confidence mt-3">
+                        <small class="text-muted">
+                            予測信頼度: {{ (report.performance_prediction.prediction_confidence * 100)|round }}%
+                        </small>
+                    </div>
+                    {% else %}
+                    <div class="text-center text-muted">
+                        <i class="fas fa-info-circle"></i>
+                        <p>予測に十分なデータがありません</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- カテゴリ別詳細分析 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card category-analysis-card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-layer-group"></i> カテゴリ別詳細分析
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for category, performance in report.basic_statistics.category_performance.items() %}
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <div class="category-card">
+                                <div class="category-header">
+                                    <h6 class="category-name">{{ category }}</h6>
+                                    <div class="category-score">{{ (performance.accuracy * 100)|round(1) }}%</div>
+                                </div>
+                                <div class="category-details">
+                                    <div class="detail-row">
+                                        <span>問題数:</span>
+                                        <span>{{ performance.total_questions }}問</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span>平均時間:</span>
+                                        <span>{{ performance.avg_time|round(1) }}秒</span>
+                                    </div>
+                                </div>
+                                <div class="progress mt-2" style="height: 8px;">
+                                    <div class="progress-bar {% if performance.accuracy >= 0.8 %}bg-success{% elif performance.accuracy >= 0.6 %}bg-warning{% else %}bg-danger{% endif %}"
+                                         style="width: {{ (performance.accuracy * 100)|round(1) }}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 時間分析と効率性 -->
+    <div class="row mb-4">
+        <div class="col-lg-6">
+            <div class="card time-analysis-card h-100">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                        <i class="fas fa-clock"></i> 時間パターン分析
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if report.time_analysis.best_study_hours %}
+                    <h6>最適な学習時間</h6>
+                    <div class="best-hours mb-3">
+                        {% for hour in report.time_analysis.best_study_hours %}
+                        <span class="badge bg-primary me-1">{{ hour }}時</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    {% if report.time_analysis.optimal_session_length %}
+                    <h6>推奨セッション長</h6>
+                    <div class="session-length mb-3">
+                        <span class="fs-5 text-primary">{{ report.time_analysis.optimal_session_length }}分</span>
+                    </div>
+                    {% endif %}
+                    
+                    <h6>学習一貫性</h6>
+                    <div class="consistency-score">
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar bg-info" 
+                                 style="width: {{ (report.time_analysis.consistency_score * 100)|round }}%">
+                                {{ (report.time_analysis.consistency_score * 100)|round }}%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6">
+            <div class="card efficiency-card h-100">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-pie"></i> 学習効率分析
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="efficiency-score-display text-center mb-3">
+                        <div class="efficiency-value">{{ (report.efficiency_analysis.efficiency_score * 100)|round }}%</div>
+                        <div class="efficiency-label">総合効率スコア</div>
+                    </div>
+                    
+                    {% if report.efficiency_analysis.improvement_suggestions %}
+                    <h6>効率改善提案</h6>
+                    <ul class="improvement-list">
+                        {% for suggestion in report.efficiency_analysis.improvement_suggestions %}
+                        <li>{{ suggestion }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 試験準備度評価 -->
+    {% if report.exam_readiness.readiness_score %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card exam-readiness-card">
+                <div class="card-header {% if report.exam_readiness.readiness_level == 'excellent' %}bg-success{% elif report.exam_readiness.readiness_level == 'good' %}bg-primary{% elif report.exam_readiness.readiness_level == 'fair' %}bg-warning text-dark{% else %}bg-danger{% endif %} text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-graduation-cap"></i> 試験準備度評価
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="readiness-score-display text-center">
+                                <div class="readiness-score">{{ (report.exam_readiness.readiness_score * 100)|round }}%</div>
+                                <div class="readiness-level">
+                                    {% if report.exam_readiness.readiness_level == 'excellent' %}
+                                        <span class="badge bg-success">優秀</span>
+                                    {% elif report.exam_readiness.readiness_level == 'good' %}
+                                        <span class="badge bg-primary">良好</span>
+                                    {% elif report.exam_readiness.readiness_level == 'fair' %}
+                                        <span class="badge bg-warning">要改善</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">不十分</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>推奨学習時間</h6>
+                                    <p class="text-primary fs-5">{{ report.exam_readiness.recommended_study_time }}時間</p>
+                                    
+                                    {% if report.exam_readiness.focus_areas %}
+                                    <h6>重点学習分野</h6>
+                                    <div class="focus-areas">
+                                        {% for area in report.exam_readiness.focus_areas %}
+                                        <span class="badge bg-warning text-dark me-1">{{ area }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    {% if report.exam_readiness.exam_strategy %}
+                                    <h6>試験対策戦略</h6>
+                                    <ul class="strategy-list">
+                                        {% for strategy in report.exam_readiness.exam_strategy %}
+                                        <li>{{ strategy }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 推奨アクション -->
+    {% if report.recommendations %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card recommendations-card">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-lightbulb"></i> AI推奨アクション
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for rec in report.recommendations %}
+                        <div class="col-lg-6 mb-3">
+                            <div class="recommendation-card {% if rec.priority == 'high' %}border-danger{% elif rec.priority == 'medium' %}border-warning{% else %}border-info{% endif %}">
+                                <div class="recommendation-header">
+                                    <div class="rec-type">
+                                        {% if rec.type == 'urgent' %}
+                                            <i class="fas fa-exclamation-triangle text-danger"></i>
+                                        {% elif rec.type == 'warning' %}
+                                            <i class="fas fa-exclamation-circle text-warning"></i>
+                                        {% elif rec.type == 'improvement' %}
+                                            <i class="fas fa-arrow-up text-success"></i>
+                                        {% else %}
+                                            <i class="fas fa-info-circle text-info"></i>
+                                        {% endif %}
+                                    </div>
+                                    <div class="rec-priority">
+                                        <span class="badge {% if rec.priority == 'high' %}bg-danger{% elif rec.priority == 'medium' %}bg-warning{% else %}bg-info{% endif %}">
+                                            {{ rec.priority|upper }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <h6 class="recommendation-title">{{ rec.title }}</h6>
+                                <p class="recommendation-description">{{ rec.description }}</p>
+                                <div class="recommendation-action">
+                                    <strong>推奨アクション:</strong> {{ rec.action }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 学習継続のためのアクション -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="action-buttons">
+                <a href="{{ url_for('ai_analysis') }}" class="btn btn-info btn-lg me-3">
+                    <i class="fas fa-brain"></i> AI弱点分析
+                </a>
+                <a href="{{ url_for('adaptive_quiz') }}" class="btn btn-warning btn-lg me-3">
+                    <i class="fas fa-robot"></i> アダプティブ学習
+                </a>
+                <a href="{{ url_for('exam_simulator_page') }}" class="btn btn-success btn-lg">
+                    <i class="fas fa-graduation-cap"></i> 模擬試験
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// ページ読み込み時の初期化
+document.addEventListener('DOMContentLoaded', function() {
+    {% if report.trend_analysis.accuracy_series and report.status != 'insufficient_data' %}
+    createTrendChart();
+    {% endif %}
+});
+
+function createTrendChart() {
+    const ctx = document.getElementById('trendChart').getContext('2d');
+    
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ report.trend_analysis.time_series|tojson }},
+            datasets: [{
+                label: '正答率',
+                data: {{ report.trend_analysis.accuracy_series|map('multiply', 100)|list|tojson }},
+                borderColor: '#007bff',
+                backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: '日付'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: '正答率 (%)'
+                    },
+                    min: 0,
+                    max: 100
+                }
+            }
+        }
+    });
+}
+
+function exportReport() {
+    // レポート出力機能（将来実装）
+    alert('レポート出力機能は開発中です。');
+}
+
+// 印刷用関数
+function printReport() {
+    window.print();
+}
+</script>
+
+<style>
+.report-info-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.performance-overview-card,
+.prediction-card,
+.category-analysis-card,
+.time-analysis-card,
+.efficiency-card,
+.exam-readiness-card,
+.recommendations-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.metric-item {
+    text-align: center;
+    padding: 20px;
+}
+
+.metric-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #007bff;
+    line-height: 1;
+}
+
+.metric-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-top: 5px;
+}
+
+.metric-trend {
+    margin-top: 10px;
+}
+
+.prediction-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.prediction-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.prediction-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #17a2b8;
+}
+
+.category-card {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 15px;
+    height: 100%;
+}
+
+.category-header {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.category-name {
+    font-weight: 600;
+    color: #495057;
+    margin: 0;
+}
+
+.category-score {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: between;
+    margin-bottom: 5px;
+}
+
+.best-hours .badge {
+    font-size: 0.9rem;
+}
+
+.session-length {
+    text-align: center;
+    padding: 10px;
+    background: #e3f2fd;
+    border-radius: 8px;
+}
+
+.efficiency-score-display {
+    padding: 20px;
+}
+
+.efficiency-value {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #6c757d;
+}
+
+.efficiency-label {
+    color: #6c757d;
+    margin-top: 10px;
+}
+
+.improvement-list {
+    padding-left: 20px;
+}
+
+.improvement-list li {
+    margin-bottom: 8px;
+    color: #495057;
+}
+
+.readiness-score-display {
+    padding: 20px;
+}
+
+.readiness-score {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.readiness-level {
+    margin-top: 10px;
+}
+
+.focus-areas .badge {
+    margin-bottom: 5px;
+}
+
+.strategy-list {
+    padding-left: 20px;
+}
+
+.strategy-list li {
+    margin-bottom: 8px;
+    color: #495057;
+}
+
+.recommendation-card {
+    border: 2px solid;
+    border-radius: 10px;
+    padding: 20px;
+    height: 100%;
+}
+
+.recommendation-header {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.rec-type {
+    font-size: 1.5rem;
+}
+
+.recommendation-title {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 10px;
+}
+
+.recommendation-description {
+    color: #6c757d;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.recommendation-action {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.action-buttons {
+    margin: 30px 0;
+}
+
+.action-buttons .btn {
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-weight: 600;
+    margin: 5px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .metric-value {
+        font-size: 2rem;
+    }
+    
+    .efficiency-value,
+    .readiness-score {
+        font-size: 2.5rem;
+    }
+    
+    .category-card {
+        margin-bottom: 15px;
+    }
+    
+    .action-buttons .btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+/* 印刷用スタイル */
+@media print {
+    .action-buttons,
+    .btn {
+        display: none !important;
+    }
+    
+    .card {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .card-header {
+        background: #f0f0f0 !important;
+        color: #000 !important;
+    }
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.metric-item {
+    animation: fadeIn 0.8s ease-out 0.2s both;
+}
+
+.category-card {
+    animation: fadeIn 0.6s ease-out 0.1s both;
+}
+</style>
+{% endblock %}

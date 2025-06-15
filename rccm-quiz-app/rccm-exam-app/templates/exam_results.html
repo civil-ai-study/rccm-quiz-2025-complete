@@ -1,0 +1,579 @@
+{% extends "base.html" %}
+
+{% block title %}試験結果 - {{ results.exam_type|upper }} - RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- ヘッダー -->
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-chart-line text-success"></i> 試験結果</h2>
+                <div>
+                    <a href="{{ url_for('exam_simulator_page') }}" class="btn btn-outline-primary me-2">
+                        <i class="fas fa-redo"></i> 再挑戦
+                    </a>
+                    <a href="{{ url_for('index') }}" class="btn btn-primary">
+                        <i class="fas fa-home"></i> ホームに戻る
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 試験基本情報 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card exam-info-card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-info-circle"></i> 試験情報
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-graduation-cap"></i> 試験詳細</h6>
+                            <ul class="list-unstyled">
+                                <li><strong>試験ID:</strong> {{ results.exam_id }}</li>
+                                <li><strong>試験種別:</strong> {{ results.exam_type|upper }}</li>
+                                <li><strong>実施日:</strong> {{ results.exam_date }}</li>
+                                <li><strong>問題数:</strong> {{ results.total_questions }}問</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-clock"></i> 時間情報</h6>
+                            <ul class="list-unstyled">
+                                <li><strong>所要時間:</strong> {{ "%.1f"|format(results.total_time_minutes) }}分</li>
+                                <li><strong>平均回答時間:</strong> {{ "%.1f"|format(results.avg_time_per_question) }}秒/問</li>
+                                <li><strong>時間効率:</strong> 
+                                    {% if results.time_efficiency == 'excellent' %}
+                                        <span class="badge bg-success">優秀</span>
+                                    {% elif results.time_efficiency == 'good' %}
+                                        <span class="badge bg-primary">良好</span>
+                                    {% elif results.time_efficiency == 'adequate' %}
+                                        <span class="badge bg-warning">適切</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">要改善</span>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 総合結果 -->
+    <div class="row mb-4">
+        <div class="col-lg-6">
+            <div class="card result-summary-card h-100">
+                <div class="card-header {% if results.passed %}bg-success{% else %}bg-danger{% endif %} text-white">
+                    <h5 class="mb-0">
+                        <i class="fas {% if results.passed %}fa-check-circle{% else %}fa-times-circle{% endif %}"></i>
+                        総合結果
+                    </h5>
+                </div>
+                <div class="card-body text-center">
+                    <div class="result-score mb-3">
+                        <div class="score-display">
+                            <span class="score-number">{{ "%.1f"|format(results.percentage) }}</span>
+                            <span class="score-unit">%</span>
+                        </div>
+                        <div class="score-fraction">
+                            {{ results.correct_answers }}/{{ results.total_questions }} 正解
+                        </div>
+                    </div>
+                    
+                    <div class="pass-status mb-3">
+                        {% if results.passed %}
+                            <div class="alert alert-success">
+                                <i class="fas fa-trophy"></i> <strong>合格</strong>
+                                <p class="mb-0">おめでとうございます！合格基準（{{ results.passing_score }}%）を上回りました。</p>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-danger">
+                                <i class="fas fa-times"></i> <strong>不合格</strong>
+                                <p class="mb-0">合格基準（{{ results.passing_score }}%）に達していません。復習を頑張りましょう。</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- 成績の円グラフ -->
+                    <div class="score-chart">
+                        <canvas id="scoreChart" width="200" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6">
+            <div class="card statistics-card h-100">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-pie"></i> 詳細統計
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <!-- カテゴリ別成績 -->
+                    <h6><i class="fas fa-layer-group"></i> カテゴリ別成績</h6>
+                    {% for category, scores in results.category_scores.items() %}
+                    <div class="category-result mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="category-name">{{ category }}</span>
+                            <span class="category-score">{{ scores.correct }}/{{ scores.total }}</span>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            {% set accuracy = (scores.correct / scores.total * 100) if scores.total > 0 else 0 %}
+                            <div class="progress-bar {% if accuracy >= 80 %}bg-success{% elif accuracy >= 60 %}bg-warning{% else %}bg-danger{% endif %}"
+                                 style="width: {{ accuracy }}%"></div>
+                        </div>
+                        <small class="text-muted">{{ "%.1f"|format(accuracy) }}%</small>
+                    </div>
+                    {% endfor %}
+                    
+                    <!-- 難易度別成績 -->
+                    <h6 class="mt-4"><i class="fas fa-signal"></i> 難易度別成績</h6>
+                    {% for difficulty, scores in results.difficulty_scores.items() %}
+                    <div class="difficulty-result mb-2">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="difficulty-name">{{ difficulty }}</span>
+                            <span class="difficulty-score">
+                                {{ scores.correct }}/{{ scores.total }}
+                                ({{ "%.1f"|format((scores.correct / scores.total * 100) if scores.total > 0 else 0) }}%)
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 推奨事項 -->
+    {% if results.recommendations %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card recommendations-card">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                        <i class="fas fa-lightbulb"></i> 学習アドバイス
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for recommendation in results.recommendations %}
+                        <div class="col-md-6 mb-3">
+                            <div class="recommendation-item">
+                                <div class="d-flex align-items-start">
+                                    <div class="recommendation-icon me-3">
+                                        <i class="fas fa-arrow-right text-primary"></i>
+                                    </div>
+                                    <div class="recommendation-text">
+                                        {{ recommendation }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 詳細結果 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card detailed-results-card">
+                <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fas fa-list-alt"></i> 問題別詳細結果
+                    </h5>
+                    <button class="btn btn-sm btn-outline-light" onclick="toggleDetailedResults()">
+                        <i class="fas fa-eye" id="toggleIcon"></i> <span id="toggleText">表示</span>
+                    </button>
+                </div>
+                <div class="card-body" id="detailedResultsBody" style="display: none;">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>カテゴリ</th>
+                                    <th>難易度</th>
+                                    <th>あなたの回答</th>
+                                    <th>正解</th>
+                                    <th>結果</th>
+                                    <th>時間</th>
+                                    <th>問題</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for result in results.detailed_results %}
+                                <tr class="{% if result.is_correct %}table-success{% else %}table-danger{% endif %}">
+                                    <td>{{ result.question_number }}</td>
+                                    <td>{{ result.category }}</td>
+                                    <td>
+                                        <span class="badge {% if result.difficulty == '基本' %}bg-success{% elif result.difficulty == '標準' %}bg-primary{% else %}bg-warning{% endif %}">
+                                            {{ result.difficulty }}
+                                        </span>
+                                    </td>
+                                    <td>{{ result.user_answer or '未回答' }}</td>
+                                    <td>{{ result.correct_answer }}</td>
+                                    <td>
+                                        {% if result.is_correct %}
+                                            <i class="fas fa-check text-success"></i> 正解
+                                        {% else %}
+                                            <i class="fas fa-times text-danger"></i> 不正解
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ "%.1f"|format(result.time_spent) }}秒</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary" 
+                                                onclick="showQuestionDetail({{ result.question_id }})">
+                                            <i class="fas fa-eye"></i> 詳細
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- アクションボタン -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="action-buttons">
+                <a href="{{ url_for('exam_simulator_page') }}" class="btn btn-success btn-lg me-3">
+                    <i class="fas fa-redo"></i> もう一度挑戦
+                </a>
+                <a href="{{ url_for('ai_analysis') }}" class="btn btn-info btn-lg me-3">
+                    <i class="fas fa-brain"></i> AI弱点分析
+                </a>
+                <a href="{{ url_for('adaptive_quiz') }}" class="btn btn-warning btn-lg me-3">
+                    <i class="fas fa-robot"></i> 復習問題
+                </a>
+                <a href="{{ url_for('advanced_statistics') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-chart-bar"></i> 詳細統計
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 問題詳細モーダル -->
+<div class="modal fade" id="questionDetailModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-question-circle"></i> 問題詳細
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="questionDetailBody">
+                <!-- 動的に設定 -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i> 閉じる
+                </button>
+                <button type="button" class="btn btn-primary" onclick="reviewQuestion()">
+                    <i class="fas fa-redo"></i> この問題を復習
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// ページ読み込み時の初期化
+document.addEventListener('DOMContentLoaded', function() {
+    createScoreChart();
+});
+
+function createScoreChart() {
+    const ctx = document.getElementById('scoreChart').getContext('2d');
+    
+    const chart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['正解', '不正解'],
+            datasets: [{
+                data: [{{ results.correct_answers }}, {{ results.incorrect_answers }}],
+                backgroundColor: [
+                    {% if results.passed %}
+                        '#28a745',
+                        '#dc3545'
+                    {% else %}
+                        '#ffc107',
+                        '#dc3545'
+                    {% endif %}
+                ],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true
+                    }
+                }
+            }
+        }
+    });
+}
+
+function toggleDetailedResults() {
+    const body = document.getElementById('detailedResultsBody');
+    const icon = document.getElementById('toggleIcon');
+    const text = document.getElementById('toggleText');
+    
+    if (body.style.display === 'none') {
+        body.style.display = 'block';
+        icon.className = 'fas fa-eye-slash';
+        text.textContent = '非表示';
+    } else {
+        body.style.display = 'none';
+        icon.className = 'fas fa-eye';
+        text.textContent = '表示';
+    }
+}
+
+function showQuestionDetail(questionId) {
+    // 問題詳細を表示（実装例）
+    document.getElementById('questionDetailBody').innerHTML = `
+        <div class="text-center">
+            <i class="fas fa-spinner fa-spin"></i> 読み込み中...
+        </div>
+    `;
+    
+    const modal = new bootstrap.Modal(document.getElementById('questionDetailModal'));
+    modal.show();
+    
+    // 実際の実装では、AJAXで問題詳細を取得
+    // この例では簡単な表示のみ
+    setTimeout(() => {
+        document.getElementById('questionDetailBody').innerHTML = `
+            <div class="alert alert-info">
+                <p><strong>問題ID:</strong> ${questionId}</p>
+                <p>問題の詳細表示機能は実装中です。</p>
+                <p>復習モードで個別に確認することができます。</p>
+            </div>
+        `;
+    }, 1000);
+}
+
+function reviewQuestion() {
+    // 個別問題復習（例：問題?qid=XXX にリダイレクト）
+    const modal = bootstrap.Modal.getInstance(document.getElementById('questionDetailModal'));
+    modal.hide();
+    
+    // 実装例（実際のquestion_idは動的に設定）
+    alert('復習機能は実装中です。通常の問題モードをご利用ください。');
+}
+
+// 印刷用スタイル
+function printResults() {
+    window.print();
+}
+
+// 結果シェア機能（将来の拡張用）
+function shareResults() {
+    const shareData = {
+        title: 'RCCM試験結果',
+        text: `RCCM {{ results.exam_type|upper }} 模擬試験で {{ "%.1f"|format(results.percentage) }}% のスコアを獲得しました！`,
+        url: window.location.href
+    };
+    
+    if (navigator.share) {
+        navigator.share(shareData);
+    } else {
+        // フォールバック: クリップボードにコピー
+        navigator.clipboard.writeText(shareData.text + ' ' + shareData.url)
+            .then(() => alert('結果をクリップボードにコピーしました！'));
+    }
+}
+</script>
+
+<style>
+.exam-info-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.result-summary-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.score-display {
+    font-size: 4rem;
+    font-weight: bold;
+    color: {% if results.passed %}#28a745{% else %}#dc3545{% endif %};
+    line-height: 1;
+}
+
+.score-number {
+    font-size: 4rem;
+}
+
+.score-unit {
+    font-size: 2rem;
+}
+
+.score-fraction {
+    font-size: 1.2rem;
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+.score-chart {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.statistics-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.category-result {
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.category-name {
+    font-weight: 600;
+    color: #495057;
+}
+
+.category-score {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.difficulty-result {
+    padding: 8px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.difficulty-name {
+    font-weight: 600;
+}
+
+.recommendations-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.recommendation-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    height: 100%;
+}
+
+.recommendation-icon {
+    flex-shrink: 0;
+}
+
+.recommendation-text {
+    line-height: 1.5;
+    color: #495057;
+}
+
+.detailed-results-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.action-buttons {
+    margin: 20px 0;
+}
+
+.action-buttons .btn {
+    margin: 5px;
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-weight: 600;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .score-display {
+        font-size: 3rem;
+    }
+    
+    .score-number {
+        font-size: 3rem;
+    }
+    
+    .score-unit {
+        font-size: 1.5rem;
+    }
+    
+    .action-buttons .btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+    
+    .category-result {
+        margin-bottom: 15px;
+    }
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.score-display {
+    animation: fadeIn 1s ease-out 0.3s both;
+}
+
+/* 印刷用スタイル */
+@media print {
+    .action-buttons,
+    .btn,
+    .modal {
+        display: none !important;
+    }
+    
+    .card {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+    }
+    
+    .score-chart {
+        display: none;
+    }
+}
+</style>
+{% endblock %}

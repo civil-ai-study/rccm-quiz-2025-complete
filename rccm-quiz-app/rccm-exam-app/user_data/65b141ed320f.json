@@ -1,0 +1,349 @@
+{
+  "history": [
+    {
+      "category": "土質",
+      "correct_answer": "C",
+      "date": "2025-06-12 09:02:34",
+      "elapsed": 2.9,
+      "id": 63,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "A"
+    },
+    {
+      "category": "品質管理",
+      "correct_answer": "C",
+      "date": "2025-06-12 09:02:41",
+      "elapsed": 2.2,
+      "id": 98,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "B"
+    },
+    {
+      "category": "品質管理",
+      "correct_answer": "C",
+      "date": "2025-06-12 09:50:08",
+      "elapsed": 5.6,
+      "id": 98,
+      "is_correct": true,
+      "is_review": true,
+      "srs_level": 1,
+      "user_answer": "C"
+    },
+    {
+      "category": "施工",
+      "correct_answer": "D",
+      "date": "2025-06-12 09:50:19",
+      "elapsed": 4.5,
+      "id": 54,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "B"
+    },
+    {
+      "category": "品質管理",
+      "correct_answer": "C",
+      "date": "2025-06-12 09:50:51",
+      "elapsed": 10.7,
+      "id": 98,
+      "is_correct": true,
+      "is_review": true,
+      "srs_level": 2,
+      "user_answer": "C"
+    },
+    {
+      "category": "品質管理",
+      "correct_answer": "C",
+      "date": "2025-06-12 09:51:25",
+      "elapsed": 23.9,
+      "id": 98,
+      "is_correct": true,
+      "is_review": true,
+      "srs_level": 3,
+      "user_answer": "C"
+    },
+    {
+      "category": "品質管理",
+      "correct_answer": "C",
+      "date": "2025-06-12 09:51:39",
+      "elapsed": 5.0,
+      "id": 98,
+      "is_correct": true,
+      "is_review": true,
+      "srs_level": 4,
+      "user_answer": "C"
+    },
+    {
+      "category": "品質管理",
+      "correct_answer": "A",
+      "date": "2025-06-12 09:51:49",
+      "elapsed": 8.7,
+      "id": 59,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "B"
+    },
+    {
+      "category": "環境",
+      "correct_answer": "C",
+      "date": "2025-06-12 09:52:10",
+      "elapsed": 19.4,
+      "id": 45,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "C"
+    },
+    {
+      "category": "施工",
+      "correct_answer": "D",
+      "date": "2025-06-12 09:52:19",
+      "elapsed": 8.6,
+      "id": 53,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "D"
+    },
+    {
+      "category": "一般技術",
+      "correct_answer": "D",
+      "date": "2025-06-12 09:52:31",
+      "elapsed": 8.6,
+      "id": 17,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "D"
+    },
+    {
+      "category": "土質",
+      "correct_answer": "C",
+      "date": "2025-06-12 09:52:46",
+      "elapsed": 13.3,
+      "id": 24,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "D"
+    },
+    {
+      "category": "土質",
+      "correct_answer": "C",
+      "date": "2025-06-12 09:53:27",
+      "elapsed": 4.0,
+      "id": 24,
+      "is_correct": true,
+      "is_review": true,
+      "srs_level": 1,
+      "user_answer": "C"
+    },
+    {
+      "category": "品質管理",
+      "correct_answer": "C",
+      "date": "2025-06-12 10:35:34",
+      "elapsed": 3.3,
+      "id": 98,
+      "is_correct": true,
+      "is_review": true,
+      "srs_level": 5,
+      "user_answer": "C"
+    },
+    {
+      "category": "品質管理",
+      "correct_answer": "C",
+      "date": "2025-06-12 10:36:04",
+      "elapsed": 2.4,
+      "id": 98,
+      "is_correct": true,
+      "is_review": true,
+      "srs_level": 5,
+      "user_answer": "C"
+    },
+    {
+      "category": "コンクリート",
+      "correct_answer": "B",
+      "date": "2025-06-12 10:36:11",
+      "elapsed": 5.6,
+      "id": 91,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "B"
+    },
+    {
+      "category": "環境",
+      "correct_answer": "C",
+      "date": "2025-06-12 10:36:18",
+      "elapsed": 5.4,
+      "id": 88,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "C"
+    },
+    {
+      "category": "品質管理",
+      "correct_answer": "C",
+      "date": "2025-06-12 10:36:24",
+      "elapsed": 5.3,
+      "id": 60,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "D"
+    },
+    {
+      "category": "一般技術",
+      "correct_answer": "C",
+      "date": "2025-06-12 10:36:32",
+      "elapsed": 6.9,
+      "id": 99,
+      "is_correct": true,
+      "is_review": false,
+      "srs_level": 1,
+      "user_answer": "C"
+    },
+    {
+      "category": "道路",
+      "correct_answer": "D",
+      "date": "2025-06-12 10:36:39",
+      "elapsed": 4.9,
+      "id": 94,
+      "is_correct": false,
+      "is_review": false,
+      "srs_level": 0,
+      "user_answer": "B"
+    }
+  ],
+  "srs_data": {
+    "17": {
+      "correct_count": 1,
+      "last_review": "2025-06-12",
+      "level": 1,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "24": {
+      "correct_count": 1,
+      "last_review": "2025-06-12",
+      "level": 1,
+      "next_review": "2025-06-15",
+      "total_attempts": 2
+    },
+    "45": {
+      "correct_count": 1,
+      "last_review": "2025-06-12",
+      "level": 1,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "53": {
+      "correct_count": 1,
+      "last_review": "2025-06-12",
+      "level": 1,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "54": {
+      "correct_count": 0,
+      "last_review": "2025-06-12",
+      "level": 0,
+      "next_review": "2025-06-13",
+      "total_attempts": 1
+    },
+    "59": {
+      "correct_count": 0,
+      "last_review": "2025-06-12",
+      "level": 0,
+      "next_review": "2025-06-13",
+      "total_attempts": 1
+    },
+    "60": {
+      "correct_count": 0,
+      "last_review": "2025-06-12",
+      "level": 0,
+      "next_review": "2025-06-13",
+      "total_attempts": 1
+    },
+    "63": {
+      "correct_count": 0,
+      "last_review": "2025-06-12",
+      "level": 0,
+      "next_review": "2025-06-13",
+      "total_attempts": 1
+    },
+    "88": {
+      "correct_count": 1,
+      "last_review": "2025-06-12",
+      "level": 1,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "91": {
+      "correct_count": 1,
+      "last_review": "2025-06-12",
+      "level": 1,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "94": {
+      "correct_count": 0,
+      "last_review": "2025-06-12",
+      "level": 0,
+      "next_review": "2025-06-13",
+      "total_attempts": 1
+    },
+    "98": {
+      "correct_count": 6,
+      "last_review": "2025-06-12",
+      "level": 5,
+      "next_review": "2025-12-09",
+      "total_attempts": 7
+    },
+    "99": {
+      "correct_count": 1,
+      "last_review": "2025-06-12",
+      "level": 1,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    }
+  },
+  "category_stats": {
+    "コンクリート": {
+      "correct": 1,
+      "total": 1
+    },
+    "一般技術": {
+      "correct": 2,
+      "total": 2
+    },
+    "品質管理": {
+      "correct": 6,
+      "total": 9
+    },
+    "土質": {
+      "correct": 1,
+      "total": 3
+    },
+    "施工": {
+      "correct": 1,
+      "total": 2
+    },
+    "環境": {
+      "correct": 2,
+      "total": 2
+    },
+    "道路": {
+      "correct": 0,
+      "total": 1
+    }
+  },
+  "last_updated": "2025-06-12T10:36:43.736519",
+  "user_id": "65b141ed320f"
+}

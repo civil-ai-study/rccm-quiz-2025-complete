@@ -5,9 +5,12 @@ from datetime import datetime, timedelta
 from collections import defaultdict
 import logging
 from typing import Dict, List
+import re
+import html
+from functools import wraps
 
 # 新しいファイルからインポート
-from config import Config, QuizConfig, SRSConfig, DataConfig, RCCMConfig
+from config import Config, ExamConfig, SRSConfig, DataConfig, RCCMConfig
 from utils import load_questions_improved, DataLoadError, DataValidationError, get_sample_data_improved, load_rccm_data_files
 from data_manager import DataManager, SessionDataManager
 from gamification import gamification_manager
@@ -51,6 +54,124 @@ session_data_manager = SessionDataManager(data_manager)
 _questions_cache = None
 _cache_timestamp = None
 
+# セキュリティ機能
+def sanitize_input(input_string):
+    """入力値をサニタイズ"""
+    if not input_string:
+        return ""
+    # HTMLエスケープ
+    sanitized = html.escape(str(input_string))
+    # 不正なパターンを除去
+    sanitized = re.sub(r'[<>"\']', '', sanitized)
+    return sanitized.strip()
+
+def validate_exam_parameters(**kwargs):
+    """クイズパラメータの検証"""
+    valid_departments = list(RCCMConfig.DEPARTMENTS.keys())
+    valid_question_types = ['basic', 'specialist']
+    valid_years = list(range(2008, 2020))
+    
+    errors = []
+    
+    # 部門検証
+    if 'department' in kwargs and kwargs['department']:
+        if kwargs['department'] not in valid_departments:
+            errors.append(f"無効な部門: {kwargs['department']}")
+    
+    # 問題種別検証
+    if 'question_type' in kwargs and kwargs['question_type']:
+        if kwargs['question_type'] not in valid_question_types:
+            errors.append(f"無効な問題種別: {kwargs['question_type']}")
+    
+    # 年度検証
+    if 'year' in kwargs and kwargs['year']:
+        try:
+            year = int(kwargs['year'])
+            if year not in valid_years:
+                errors.append(f"無効な年度: {year}")
+        except (ValueError, TypeError):
+            errors.append(f"年度は数値で指定してください: {kwargs['year']}")
+    
+    # 問題数検証
+    if 'size' in kwargs and kwargs['size']:
+        try:
+            size = int(kwargs['size'])
+            if size < 1 or size > 50:
+                errors.append(f"問題数は1-50の範囲で指定してください: {size}")
+        except (ValueError, TypeError):
+            errors.append(f"問題数は数値で指定してください: {kwargs['size']}")
+    
+    return errors
+
+def rate_limit_check(max_requests=100, window_minutes=60):
+    """レート制限チェック"""
+    now = datetime.now()
+    window_start = now - timedelta(minutes=window_minutes)
+    
+    # セッションからリクエスト履歴を取得
+    request_history = session.get('request_history', [])
+    
+    # 古いリクエストを除去
+    request_history = [req_time for req_time in request_history if datetime.fromisoformat(req_time) > window_start]
+    
+    # 現在のリクエストを追加
+    request_history.append(now.isoformat())
+    
+    # セッションに保存
+    session['request_history'] = request_history
+    session.modified = True
+    
+    # レート制限チェック
+    if len(request_history) > max_requests:
+        return False
+    
+    return True
+
+def validate_question_data_integrity(questions):
+    """問題データの整合性チェックと自動修復"""
+    valid_questions = []
+    
+    for i, question in enumerate(questions):
+        try:
+            # 必須フィールドのチェック
+            if not question.get('id') or not question.get('question'):
+                logger.warning(f"問題{i+1}: 必須フィールドが不足")
+                continue
+            
+            # 選択肢の完整性チェック
+            options = ['option_a', 'option_b', 'option_c', 'option_d']
+            if not all(question.get(opt) for opt in options):
+                logger.warning(f"問題{question.get('id')}: 選択肢が不完全")
+                continue
+            
+            # 正解の妥当性チェック
+            correct_answer = question.get('correct_answer', '').upper()
+            if correct_answer not in ['A', 'B', 'C', 'D']:
+                logger.warning(f"問題{question.get('id')}: 正解が無効 ({correct_answer})")
+                continue
+            
+            # 部門・問題種別の整合性チェック
+            question_type = question.get('question_type', '')
+            if question_type not in ['basic', 'specialist']:
+                # 年度があれば専門、なければ基礎と推定
+                if question.get('year'):
+                    question['question_type'] = 'specialist'
+                else:
+                    question['question_type'] = 'basic'
+                logger.debug(f"問題{question.get('id')}: 問題種別を推定設定 ({question['question_type']})")
+            
+            valid_questions.append(question)
+            
+        except Exception as e:
+            logger.error(f"問題{i+1}の検証エラー: {e}")
+            continue
+    
+    removed_count = len(questions) - len(valid_questions)
+    if removed_count > 0:
+        logger.warning(f"データ整合性チェック: {removed_count}問を除外しました")
+    
+    return valid_questions
+
 def load_questions():
     """
     RCCM統合問題データの読み込み（4-1基礎・4-2専門対応）
@@ -75,10 +196,12 @@ def load_questions():
         questions = load_rccm_data_files(data_dir)
         
         if questions:
-            _questions_cache = questions
+            # データ整合性チェック
+            validated_questions = validate_question_data_integrity(questions)
+            _questions_cache = validated_questions
             _cache_timestamp = current_time
-            logger.info(f"RCCM統合データ読み込み完了: {len(questions)}問")
-            return questions
+            logger.info(f"RCCM統合データ読み込み完了: {len(validated_questions)}問 (検証済み)")
+            return validated_questions
         else:
             raise DataLoadError("統合データが空でした")
         
@@ -181,7 +304,7 @@ def get_due_questions(user_session, all_questions):
 def get_mixed_questions(user_session, all_questions, requested_category='全体', session_size=None, department='', question_type='', year=None):
     """新問題と復習問題をミックスした出題（RCCM部門対応版）"""
     if session_size is None:
-        session_size = QuizConfig.QUESTIONS_PER_SESSION
+        session_size = ExamConfig.QUESTIONS_PER_SESSION
     
     due_questions = get_due_questions(user_session, all_questions)
     
@@ -210,10 +333,26 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
     # 問題フィルタリング条件
     available_questions = all_questions
     
-    # 問題種別でフィルタリング（最優先）
+    # 問題種別でフィルタリング（最優先・厳格）
     if question_type:
         available_questions = [q for q in available_questions if q.get('question_type') == question_type]
         logger.info(f"問題種別フィルタ適用: {question_type}, 結果: {len(available_questions)}問")
+        
+        # 専門科目の場合、基礎科目の完全除外
+        if question_type == 'specialist':
+            pre_filter_count = len(available_questions)
+            available_questions = [q for q in available_questions 
+                                 if q.get('question_type') == 'specialist' 
+                                 and q.get('year') is not None]  # 年度情報必須（専門科目のみ）
+            logger.info(f"専門科目厳格フィルタ: {pre_filter_count} → {len(available_questions)}問")
+            
+            # さらに部門との整合性をチェック
+            if department:
+                dept_match_questions = [q for q in available_questions 
+                                      if q.get('department') == department]
+                if dept_match_questions:
+                    available_questions = dept_match_questions
+                    logger.info(f"専門科目部門マッチング: {len(available_questions)}問")
     
     # 部門でフィルタリング（基礎科目の場合はスキップ）
     if department and question_type != 'basic':
@@ -224,9 +363,13 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
     if requested_category != '全体':
         available_questions = [q for q in available_questions if q.get('category') == requested_category]
     
-    # 年度でフィルタリング
+    # 年度でフィルタリング（専門科目のみ対象）
     if year:
-        available_questions = [q for q in available_questions if str(q.get('year', '')) == str(year)]
+        pre_year_count = len(available_questions)
+        available_questions = [q for q in available_questions 
+                              if str(q.get('year', '')) == str(year) 
+                              and q.get('question_type') == 'specialist']
+        logger.info(f"年度フィルタ適用: {year}年度, {pre_year_count} → {len(available_questions)}問")
     
     # 既に選択済みの問題を除外
     selected_ids = [int(q.get('id', 0)) for q in selected_questions]
@@ -303,10 +446,15 @@ def force_refresh():
     response.headers['Expires'] = '0'
     return response
 
-@app.route('/quiz', methods=['GET', 'POST'])
-def quiz():
+@app.route('/exam', methods=['GET', 'POST'])
+def exam():
     """SRS対応のquiz関数（統合版）"""
     try:
+        # レート制限チェック
+        if not rate_limit_check():
+            return render_template('error.html', 
+                                 error="リクエストが多すぎます。しばらく待ってから再度お試しください。",
+                                 error_type="rate_limit")
         all_questions = load_questions()
         if not all_questions:
             logger.error("問題データが空")
@@ -314,9 +462,24 @@ def quiz():
 
         # POST処理（回答送信）
         if request.method == 'POST':
-            answer = request.form.get('answer')
-            qid = request.form.get('qid')
-            elapsed = request.form.get('elapsed', '0')
+            # 入力値のサニタイズと検証
+            answer = sanitize_input(request.form.get('answer'))
+            qid = sanitize_input(request.form.get('qid'))
+            elapsed = sanitize_input(request.form.get('elapsed', '0'))
+            
+            # 回答値の検証
+            if answer not in ['A', 'B', 'C', 'D']:
+                return render_template('error.html', 
+                                     error="無効な回答が選択されました。",
+                                     error_type="invalid_input")
+            
+            # 問題IDの検証
+            try:
+                qid = int(qid)
+            except (ValueError, TypeError):
+                return render_template('error.html', 
+                                     error="無効な問題IDです。",
+                                     error_type="invalid_question")
 
             if not answer or not qid:
                 logger.warning("不完全な回答データ")
@@ -357,7 +520,7 @@ def quiz():
                 'id': qid,
                 'category': question.get('category', '不明'),
                 'department': question.get('department', session.get('selected_department', '')),
-                'question_type': question.get('question_type', session.get('selected_question_type', '')),
+                'question_type': question.get('question_type', session.get('selected_question_type', 'basic')),
                 'is_correct': is_correct,
                 'user_answer': answer,
                 'correct_answer': question.get('correct_answer', ''),
@@ -422,11 +585,11 @@ def quiz():
             
             # セッション進行管理
             # POST処理でも現在の問題番号を正確に取得
-            current_no = session.get('quiz_current', 0)
-            quiz_question_ids = session.get('quiz_question_ids', [])
+            current_no = session.get('exam_current', 0)
+            exam_question_ids = session.get('exam_question_ids', [])
             
             # 現在の問題番号をより正確に特定
-            for i, q_id in enumerate(quiz_question_ids):
+            for i, q_id in enumerate(exam_question_ids):
                 if str(q_id) == str(qid):
                     current_no = i
                     break
@@ -436,7 +599,7 @@ def quiz():
             
             # セッションの一括更新（競合回避）
             session_final_updates = {
-                'quiz_current': next_no,
+                'exam_current': next_no,
                 'last_update': datetime.now().isoformat(),
                 'history': session.get('history', [])  # 履歴を明示的に保持
             }
@@ -447,18 +610,18 @@ def quiz():
             session.modified = True
             
             # セッション保存の確認
-            saved_current = session.get('quiz_current', 'NOT_FOUND')
-            logger.info(f"セッション保存確認: quiz_current = {saved_current}")
+            saved_current = session.get('exam_current', 'NOT_FOUND')
+            logger.info(f"セッション保存確認: exam_current = {saved_current}")
 
             logger.info(f"回答処理完了: 問題{qid}, 正答{is_correct}, レベル{srs_info['level']}, ストリーク{current_streak}日")
-            logger.info(f"セッション更新: 現在{current_no} -> 次{next_no}, 総問題数{len(quiz_question_ids)}")
+            logger.info(f"セッション更新: 現在{current_no} -> 次{next_no}, 総問題数{len(exam_question_ids)}")
 
             # 次の問題の準備
-            is_last_question = (current_no >= len(quiz_question_ids) - 1)
+            is_last_question = (current_no >= len(exam_question_ids) - 1)
             next_question_index = current_no + 1 if not is_last_question else None
             
             # デバッグログ追加
-            logger.info(f"ボタン表示判定: current_no={current_no}, total={len(quiz_question_ids)}, is_last={is_last_question}, next_index={next_question_index}")
+            logger.info(f"ボタン表示判定: current_no={current_no}, total={len(exam_question_ids)}, is_last={is_last_question}, next_index={next_question_index}")
 
             # フィードバック画面に渡すデータを準備
             feedback_data = {
@@ -467,9 +630,9 @@ def quiz():
                 'is_correct': is_correct,
                 'is_last_question': is_last_question,
                 'next_question_index': next_question_index,
-                'total_questions': len(quiz_question_ids),
-                'current_question_number': current_no + 1,
-                'category': session.get('quiz_category', '全体'),
+                'total_questions': len(exam_question_ids),
+                'current_question_number': max(1, current_no + 1),
+                'category': session.get('exam_category', '全体'),
                 'srs_info': srs_info,
                 'is_review_question': srs_info['total_attempts'] > 1,
                 'user_answer_text': question.get(f'option_{answer.lower()}', '不明な回答'),
@@ -480,59 +643,76 @@ def quiz():
                 'difficulty_adjustment': difficulty_adjustment
             }
 
-            return render_template('quiz_feedback.html', **feedback_data)
+            return render_template('exam_feedback.html', **feedback_data)
 
         # GET処理（問題表示）
         # 次の問題への遷移の場合は現在のセッション情報を使用
         is_next_request = request.args.get('next') == '1'  # 次の問題へのリクエスト
         if is_next_request:
-            requested_category = session.get('quiz_category', '全体')
+            requested_category = session.get('exam_category', '全体')
             requested_department = session.get('selected_department', '')
             requested_question_type = session.get('selected_question_type', '')
             requested_year = session.get('selected_year')
         else:
-            requested_category = request.args.get('category', '全体')
-            requested_department = request.args.get('department', session.get('selected_department', ''))
-            requested_question_type = request.args.get('question_type', session.get('selected_question_type', ''))
+            # GETパラメータの取得とサニタイズ
+            requested_category = sanitize_input(request.args.get('category', '全体'))
+            requested_department = sanitize_input(request.args.get('department', session.get('selected_department', '')))
+            requested_question_type = sanitize_input(request.args.get('question_type', session.get('selected_question_type', '')))
             
             # type=basicパラメータの処理（基礎科目専用）
-            quiz_type = request.args.get('type')
-            if quiz_type == 'basic':
+            exam_type = sanitize_input(request.args.get('type'))
+            if exam_type == 'basic':
                 requested_question_type = 'basic'
                 requested_department = ''  # 基礎科目は部門不問
                 requested_category = '全体'  # カテゴリも全体に設定
                 logger.info("基礎科目専用モード: question_type=basic, department=None")
         
-        # 年度パラメータの取得
-        requested_year = request.args.get('year')
+        # 年度パラメータの取得とサニタイズ
+        requested_year = sanitize_input(request.args.get('year'))
+        if requested_year:
+            logger.info(f"年度指定: {requested_year}年度の問題を取得")
         
-        session_size = request.args.get('size', QuizConfig.QUESTIONS_PER_SESSION)
-        specific_qid = request.args.get('qid')
+        session_size = sanitize_input(request.args.get('size', str(ExamConfig.QUESTIONS_PER_SESSION)))
+        specific_qid = sanitize_input(request.args.get('qid'))
+        
+        # パラメータ検証
+        validation_errors = validate_exam_parameters(
+            department=requested_department,
+            question_type=requested_question_type,
+            year=requested_year,
+            size=session_size
+        )
+        
+        if validation_errors:
+            error_message = "無効なパラメータが指定されました：" + "、".join(validation_errors)
+            return render_template('error.html', 
+                                 error=error_message,
+                                 error_type="invalid_input")
 
         try:
             session_size = int(session_size)
         except (ValueError, TypeError):
-            session_size = QuizConfig.QUESTIONS_PER_SESSION
+            session_size = ExamConfig.QUESTIONS_PER_SESSION
 
         # セッション管理
-        quiz_question_ids = session.get('quiz_question_ids', [])
+        exam_question_ids = session.get('exam_question_ids', [])
         # URLパラメータから現在の問題番号を取得（競合回避）
         url_current = request.args.get('current')
         if is_next_request and url_current:
             try:
                 current_no = int(url_current)
                 # セッションも同期
-                session['quiz_current'] = current_no
+                session['exam_current'] = current_no
                 session.modified = True
             except ValueError:
-                current_no = session.get('quiz_current', 0)
+                current_no = session.get('exam_current', 0)
         else:
-            current_no = session.get('quiz_current', 0)
-        session_category = session.get('quiz_category', '全体')
+            current_no = session.get('exam_current', 0)
+        session_category = session.get('exam_category', '全体')
         
         # デバッグログ
-        logger.info(f"GET処理: current_no={current_no}, quiz_question_ids={quiz_question_ids[:5] if quiz_question_ids else []}, is_next={is_next_request}, total_ids={len(quiz_question_ids)}")
-        logger.info(f"セッション詳細: session keys={list(session.keys())}, quiz_current={session.get('quiz_current', 'MISSING')}")
+        logger.info(f"GET処理: current_no={current_no}, exam_question_ids={exam_question_ids[:5] if exam_question_ids else []}, is_next={is_next_request}, total_ids={len(exam_question_ids)}")
+        logger.info(f"セッション詳細: session keys={list(session.keys())}, exam_current={session.get('exam_current', 'MISSING')}")
 
         # ★追加: 特定の問題表示の場合
         if specific_qid:
@@ -544,9 +724,9 @@ def quiz():
                     return render_template('error.html', error=f"指定された問題が見つかりません (ID: {specific_qid})。")
 
                 # この問題を単独セッションとして設定
-                session['quiz_question_ids'] = [specific_qid]
-                session['quiz_current'] = 0
-                session['quiz_category'] = question.get('category', '全体')
+                session['exam_question_ids'] = [specific_qid]
+                session['exam_current'] = 0
+                session['exam_category'] = question.get('category', '全体')
                 session.modified = True
 
                 # SRS情報を取得
@@ -554,10 +734,11 @@ def quiz():
                 question_srs = srs_data.get(str(specific_qid), {})
 
                 return render_template(
-                    'quiz.html',
+                    'exam.html',
                     question=question,
                     total_questions=1,
                     current_no=1,
+                    current_question_number=1,  # 一貫性のため両方を提供
                     srs_info=question_srs,
                     is_review_question=question_srs.get('total_attempts', 0) > 0
                 )
@@ -568,13 +749,13 @@ def quiz():
 
         # セッション初期化判定 (qid指定がない場合)
         # 次の問題への遷移要求の場合はリセットしない
-        logger.info(f"リセット判定: is_next={is_next_request}, quiz_ids={bool(quiz_question_ids)}, category_match={requested_category == session_category}, current_no={current_no}, len={len(quiz_question_ids)}")
+        logger.info(f"リセット判定: is_next={is_next_request}, exam_ids={bool(exam_question_ids)}, category_match={requested_category == session_category}, current_no={current_no}, len={len(exam_question_ids)}")
         
         need_reset = (not is_next_request and (
-                    not quiz_question_ids or
+                    not exam_question_ids or
                     request.args.get('reset') == '1' or
                     requested_category != session_category or
-                    current_no >= len(quiz_question_ids)))
+                    current_no >= len(exam_question_ids)))
         
         logger.info(f"need_reset = {need_reset}")
 
@@ -588,9 +769,9 @@ def quiz():
             logger.info(f"問題ID一覧: {question_ids}")
 
             # セッション情報を更新（部門・問題種別情報も保存）
-            session['quiz_question_ids'] = question_ids
-            session['quiz_current'] = 0
-            session['quiz_category'] = requested_category
+            session['exam_question_ids'] = question_ids
+            session['exam_current'] = 0
+            session['exam_category'] = requested_category
             if requested_department:
                 session['selected_department'] = requested_department
             if requested_question_type:
@@ -599,7 +780,7 @@ def quiz():
                 session['selected_year'] = requested_year
             session.modified = True
 
-            quiz_question_ids = question_ids
+            exam_question_ids = question_ids
             current_no = 0
 
             filter_desc = []
@@ -615,12 +796,12 @@ def quiz():
             logger.info(f"新しい問題セッション開始: {len(question_ids)}問, フィルタ: {', '.join(filter_desc) if filter_desc else '全体'}")
 
         # 範囲チェック
-        if current_no >= len(quiz_question_ids):
-            logger.info(f"範囲チェック: current_no({current_no}) >= len({len(quiz_question_ids)}) - resultにリダイレクト")
+        if current_no >= len(exam_question_ids):
+            logger.info(f"範囲チェック: current_no({current_no}) >= len({len(exam_question_ids)}) - resultにリダイレクト")
             return redirect(url_for('result'))
 
         # 現在の問題を取得
-        current_question_id = quiz_question_ids[current_no]
+        current_question_id = exam_question_ids[current_no]
         logger.info(f"問題ID取得: current_no={current_no}, question_id={current_question_id}")
         question = next((q for q in all_questions if int(q.get('id', 0)) == current_question_id), None)
 
@@ -632,11 +813,19 @@ def quiz():
         srs_data = session.get('srs_data', {})
         question_srs = srs_data.get(str(current_question_id), {})
 
+        # 表示用の数値を検証して設定
+        display_current = max(1, current_no + 1)  # 最小値1を保証
+        display_total = max(1, len(exam_question_ids))  # 最小値1を保証
+        
+        # デバッグログ: 表示数値の確認
+        logger.info(f"問題表示: {display_current}/{display_total} (内部: current_no={current_no}, total_ids={len(exam_question_ids)})")
+        
         return render_template(
-            'quiz.html',
+            'exam.html',
             question=question,
-            total_questions=len(quiz_question_ids),
-            current_no=current_no + 1,
+            total_questions=display_total,
+            current_no=display_current,
+            current_question_number=display_current,  # 一貫性のため両方を提供
             srs_info=question_srs,
             is_review_question=question_srs.get('total_attempts', 0) > 0
         )
@@ -644,16 +833,16 @@ def quiz():
         logger.error(f"quiz関数でエラー: {e}")
         return render_template('error.html', error="問題表示中にエラーが発生しました。")
 
-@app.route('/quiz/next')
-def quiz_next():
+@app.route('/exam/next')
+def exam_next():
     """次の問題に進む"""
-    current_no = session.get('quiz_current', 0)
-    quiz_question_ids = session.get('quiz_question_ids', [])
+    current_no = session.get('exam_current', 0)
+    exam_question_ids = session.get('exam_question_ids', [])
     
-    if current_no >= len(quiz_question_ids):
+    if current_no >= len(exam_question_ids):
         return redirect(url_for('result'))
     
-    category = session.get('quiz_category', '全体')
+    category = session.get('exam_category', '全体')
     return redirect(url_for('quiz', category=category))
 
 @app.route('/result')
@@ -668,12 +857,12 @@ def result():
         logger.info(f"セッション内容(最初の5件): {dict(list(session.items())[:5])}")
         
         
-        quiz_question_ids = session.get('quiz_question_ids', [])
-        session_size = len(quiz_question_ids) if quiz_question_ids else QuizConfig.QUESTIONS_PER_SESSION
+        exam_question_ids = session.get('exam_question_ids', [])
+        session_size = len(exam_question_ids) if exam_question_ids else ExamConfig.QUESTIONS_PER_SESSION
         
         # 履歴が空の場合は適切にハンドリング（ダミーデータは削除）
         if not history:
-            logger.info("履歴なしのため/quizにリダイレクト")
+            logger.info("履歴なしのため/examにリダイレクト")
             return redirect(url_for('quiz'))
             
         recent_history = history[-session_size:] if len(history) >= session_size else history
@@ -683,22 +872,32 @@ def result():
         total_questions = len(recent_history) if recent_history else 1
         elapsed_time = sum(h.get('elapsed', 0) for h in recent_history)
         
-        # カテゴリ別成績
-        category_scores = {}
+        # 共通・専門別成績
+        basic_specialty_scores = {
+            'basic': {'correct': 0, 'total': 0},
+            'specialty': {'correct': 0, 'total': 0}
+        }
+        
         for h in recent_history:
-            cat = h.get('category', '不明')
-            if cat not in category_scores:
-                category_scores[cat] = {'correct': 0, 'total': 0}
-            category_scores[cat]['total'] += 1
+            # 問題IDまたはファイル名から4-1（基礎）か4-2（専門）かを判定
+            question_id = h.get('question_id', '')
+            file_source = h.get('file_source', '')
+            
+            if '4-1' in str(question_id) or '4-1' in file_source:
+                score_type = 'basic'
+            else:
+                score_type = 'specialty'
+            
+            basic_specialty_scores[score_type]['total'] += 1
             if h.get('is_correct'):
-                category_scores[cat]['correct'] += 1
+                basic_specialty_scores[score_type]['correct'] += 1
         
         return render_template(
             'result.html',
             correct_count=correct_count,
             total_questions=total_questions,
             elapsed_time=elapsed_time,
-            category_scores=category_scores
+            basic_specialty_scores=basic_specialty_scores
         )
         
     except Exception as e:
@@ -725,21 +924,34 @@ def statistics():
             overall_stats['total_accuracy'] = correct / total * 100 if total > 0 else 0.0
             overall_stats['average_time_per_question'] = round(total_time / total, 1) if total > 0 else None
         
-        # カテゴリ別詳細
-        category_details = {}
-        cat_stats = session.get('category_stats', {})
+        # 共通・専門別詳細
+        basic_specialty_details = {
+            'basic': {'total_answered': 0, 'correct_count': 0, 'accuracy': 0.0},
+            'specialty': {'total_answered': 0, 'correct_count': 0, 'accuracy': 0.0}
+        }
         
-        for cat, stat in cat_stats.items():
-            total = stat.get('total', 0)
-            correct = stat.get('correct', 0)
-            category_details[cat] = {
-                'total_answered': total,
-                'correct_count': correct,
-                'accuracy': (correct / total * 100) if total > 0 else 0.0
-            }
+        # 履歴から共通・専門別データを集計
+        for h in history:
+            question_id = h.get('id', h.get('question_id', ''))
+            question_type = h.get('question_type', '')
+            
+            if question_type == 'basic' or '4-1' in str(question_id):
+                score_type = 'basic'
+            else:
+                score_type = 'specialty'
+            
+            basic_specialty_details[score_type]['total_answered'] += 1
+            if h.get('is_correct'):
+                basic_specialty_details[score_type]['correct_count'] += 1
+        
+        # 正答率計算
+        for score_type in ['basic', 'specialty']:
+            total = basic_specialty_details[score_type]['total_answered']
+            correct = basic_specialty_details[score_type]['correct_count']
+            basic_specialty_details[score_type]['accuracy'] = (correct / total * 100) if total > 0 else 0.0
         
         # 最近の履歴
-        quiz_history = history[-30:] if history else []
+        exam_history = history[-30:] if history else []
         
         # 日付別統計
         daily_stats = defaultdict(lambda: {'total': 0, 'correct': 0})
@@ -760,8 +972,8 @@ def statistics():
         return render_template(
             'statistics.html',
             overall_stats=overall_stats,
-            category_details=category_details,
-            quiz_history=quiz_history,
+            basic_specialty_details=basic_specialty_details,
+            exam_history=exam_history,
             daily_accuracy_list=daily_accuracy_list
         )
         
@@ -1034,16 +1246,31 @@ def department_study(department):
 
 @app.route('/categories')
 def categories():
-    """カテゴリ画面（レガシー互換性のため維持）"""
+    """部門別問題選択画面（選択部門+共通のみ表示）"""
     try:
         questions = load_questions()
         cat_stats = session.get('category_stats', {})
         
-        # カテゴリ情報を集計
+        # 現在選択されている部門を取得
+        selected_department = session.get('selected_department', request.args.get('department'))
+        
+        # カテゴリ情報を集計（選択部門+共通のみ）
         category_details = {}
         for q in questions:
             cat = q.get('category')
-            if cat:
+            q_dept = q.get('department', '')
+            q_type = q.get('question_type', '')
+            
+            # フィルタリング: 共通問題 OR 選択部門の専門問題のみ
+            include_question = False
+            if q_type == 'basic' or cat == '共通':  # 基礎科目（共通）は常に表示
+                include_question = True
+            elif selected_department and q_dept == selected_department and q_type == 'specialist':  # 選択部門の専門問題のみ
+                include_question = True
+            elif not selected_department:  # 部門未選択の場合は全表示
+                include_question = True
+            
+            if include_question and cat:
                 if cat not in category_details:
                     category_details[cat] = {
                         'total_questions': 0,
@@ -1356,7 +1583,7 @@ def force_reset():
 @app.route('/help')
 def help_page():
     """ヘルプページ"""
-    return render_template('help.html', total_questions=QuizConfig.QUESTIONS_PER_SESSION)
+    return render_template('help.html', total_questions=ExamConfig.QUESTIONS_PER_SESSION)
 
 @app.route('/debug')
 def debug_page():
@@ -1432,36 +1659,81 @@ def remove_bookmark():
         return jsonify({'success': False, 'error': str(e)}), 500
 
 
-@app.route('/quiz/review')
+@app.route('/exam/review')
 def review_quiz():
     """復習リストの問題のみで問題練習を開始"""
     try:
         all_questions = load_questions()
         bookmarks = session.get('bookmarks', [])
+        priority_mode = request.args.get('priority', '')  # high=要注意問題優先
+        department_filter = request.args.get('department', '')  # 部門別フィルター
         
         if not bookmarks:
-            return render_template('error.html', error="復習リストが空です。まず問題を復習登録してください。")
+            return render_template('error.html', 
+                                 error="復習リストが空です。まず問題を解いて間違えた問題を復習登録してください。",
+                                 error_type="no_bookmarks")
         
         # ブックマークされた問題を取得
         review_questions = []
         for question in all_questions:
             if str(question.get('id')) in bookmarks:
+                # 部門フィルターが指定されている場合、該当部門の問題のみ
+                if department_filter:
+                    question_dept = question.get('department', '')
+                    if question_dept != department_filter:
+                        continue
                 review_questions.append(question)
         
         if not review_questions:
-            return render_template('error.html', error="復習対象の問題が見つかりません。")
+            return render_template('error.html', 
+                                 error="復習対象の問題が見つかりません。別の部門を選択するか、もう一度問題を復習登録してください。",
+                                 error_type="no_questions")
         
-        # 復習問題をランダムに並び替え
-        random.shuffle(review_questions)
+        # カテゴリ名のベース設定
+        if department_filter:
+            dept_info = RCCMConfig.DEPARTMENTS.get(department_filter, {})
+            dept_name = dept_info.get('name', department_filter)
+            base_category = f'{dept_name}部門復習'
+        else:
+            base_category = '復習問題'
+        
+        # 優先度モードに応じて問題をソート
+        if priority_mode == 'high':
+            # 要注意問題優先：SRSデータを使用して間違いの多い問題を優先
+            srs_data = session.get('srs_data', {})
+            
+            def get_difficulty_score(question):
+                q_id = str(question.get('id'))
+                if q_id in srs_data:
+                    attempts = srs_data[q_id].get('total_attempts', 0)
+                    correct = srs_data[q_id].get('correct_count', 0)
+                    if attempts > 0:
+                        error_rate = 1 - (correct / attempts)
+                        return error_rate * 100 + attempts  # エラー率 + 試行回数で優先度計算
+                return 0
+            
+            # 難易度スコア順でソート（降順：高スコア=要注意問題が優先）
+            review_questions.sort(key=get_difficulty_score, reverse=True)
+            category_name = f'要注意問題優先({base_category})'
+            logger.info(f"要注意問題優先モード: {len(review_questions)}問を難易度順にソート")
+        else:
+            # ランダム復習モード
+            random.shuffle(review_questions)
+            category_name = base_category
+            logger.info(f"ランダム復習モード: {len(review_questions)}問をランダムに並び替え")
         
         # セッションに設定
         question_ids = [int(q.get('id', 0)) for q in review_questions]
-        session['quiz_question_ids'] = question_ids
-        session['quiz_current'] = 0
-        session['quiz_category'] = '復習問題'
+        session['exam_question_ids'] = question_ids
+        session['exam_current'] = 0
+        session['exam_category'] = category_name
         session.modified = True
         
-        logger.info(f"復習問題開始: {len(question_ids)}問")
+        logger.info(f"復習問題開始: {len(question_ids)}問, モード: {category_name}")
+        logger.info(f"復習詳細: priority={priority_mode}, department={department_filter}, 問題ID={question_ids[:5] if question_ids else []}")
+        
+        # セッション状態をデバッグ出力
+        logger.info(f"セッション設定完了: exam_question_ids={len(session.get('exam_question_ids', []))}, exam_current={session.get('exam_current')}, exam_category={session.get('exam_category')}")
         
         # 最初の問題にリダイレクト
         return redirect(url_for('quiz'))
@@ -1585,7 +1857,7 @@ def adaptive_quiz():
     """アダプティブ問題練習モード（部門別対応版）"""
     try:
         learning_mode = request.args.get('mode', 'balanced')
-        session_size = int(request.args.get('size', QuizConfig.QUESTIONS_PER_SESSION))
+        session_size = int(request.args.get('size', ExamConfig.QUESTIONS_PER_SESSION))
         department = request.args.get('department', session.get('selected_department', ''))
         
         all_questions = load_questions()
@@ -1605,8 +1877,8 @@ def adaptive_quiz():
         
         # アダプティブセッション開始（部門情報も保存）
         question_ids = [int(q.get('id', 0)) for q in adaptive_questions]
-        session['quiz_question_ids'] = question_ids
-        session['quiz_current'] = 0
+        session['exam_question_ids'] = question_ids
+        session['exam_current'] = 0
         
         # カテゴリ名を部門別に調整
         category_name = 'AI適応学習'
@@ -1614,7 +1886,7 @@ def adaptive_quiz():
             dept_name = RCCMConfig.DEPARTMENTS.get(department, {}).get('name', department)
             category_name = f'AI適応学習 ({dept_name})'
         
-        session['quiz_category'] = category_name
+        session['exam_category'] = category_name
         session['adaptive_mode'] = learning_mode
         if department:
             session['selected_department'] = department
@@ -1635,7 +1907,7 @@ def integrated_learning():
     try:
         # パラメータ取得
         learning_mode = request.args.get('mode', 'basic_to_specialist')
-        session_size = int(request.args.get('size', QuizConfig.QUESTIONS_PER_SESSION))
+        session_size = int(request.args.get('size', ExamConfig.QUESTIONS_PER_SESSION))
         department = request.args.get('department', session.get('selected_department', ''))
         
         # 連携学習モードの検証
@@ -1662,8 +1934,8 @@ def integrated_learning():
         
         # 連携学習セッション開始
         question_ids = [int(q.get('id', 0)) for q in integrated_questions]
-        session['quiz_question_ids'] = question_ids
-        session['quiz_current'] = 0
+        session['exam_question_ids'] = question_ids
+        session['exam_current'] = 0
         
         # カテゴリ名設定
         mode_names = {
@@ -1676,7 +1948,7 @@ def integrated_learning():
             dept_name = RCCMConfig.DEPARTMENTS.get(department, {}).get('name', department)
             category_name = f'{category_name} ({dept_name})'
         
-        session['quiz_category'] = category_name
+        session['exam_category'] = category_name
         session['adaptive_mode'] = learning_mode
         session['foundation_mastery'] = foundation_mastery
         if department:

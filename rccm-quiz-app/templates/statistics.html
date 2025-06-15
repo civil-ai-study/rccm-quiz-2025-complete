@@ -12,18 +12,18 @@
             </div>
         </div>
     </div>
-    <!-- 分野別正答率 横棒グラフ（コンパクト化） -->
+    <!-- 共通・専門別正答率 横棒グラフ（コンパクト化） -->
     <div class="card mb-3">
-        <div class="card-header">分野別回答結果</div>
+        <div class="card-header">共通・専門別回答結果</div>
         <div class="card-body">
-            <canvas id="categoryBarChart" height="120"></canvas>
-            <p class="text-muted mt-2 mb-0">各分野の正答率を横棒グラフで表示します。</p>
+            <canvas id="basicSpecialtyChart" height="120"></canvas>
+            <p class="text-muted mt-2 mb-0">4-1基礎科目（共通）と4-2専門科目の正答率を表示します。</p>
         </div>
     </div>
     <div class="card mb-3">
         <div class="card-header">全体サマリー</div>
         <div class="card-body">
-            <p><strong>実施した問題数:</strong> {{ overall_stats.total_quizzes | default('データなし') }}</p>
+            <p><strong>実施した問題数:</strong> {{ overall_stats.total_questions | default('データなし') }}</p>
             <p><strong>全問題の累計正答率:</strong> {{ '%.1f' % (overall_stats.total_accuracy|default(0.0)) }}%</p>
             <p><strong>平均解答時間:</strong> {{ overall_stats.average_time_per_question | default('データなし') }} 秒/問</p>
             {% set accuracy = overall_stats.total_accuracy|default(0.0) %}
@@ -41,42 +41,38 @@
         </div>
     </div>
     <div class="card mb-3">
-        <div class="card-header">分野別詳細回答結果</div>
+        <div class="card-header">共通・専門別詳細回答結果</div>
         <div class="card-body p-0">
-            {% if category_details %}
+            {% if basic_specialty_details %}
             <div class="table-responsive">
                 <table class="table table-sm table-striped table-bordered mb-0" style="font-size:0.92em;">
                     <thead class="table-light">
                         <tr>
-                            <th style="width: 90px;">分野</th>
+                            <th style="width: 150px;">科目区分</th>
                             <th style="width: 60px;">解答数</th>
                             <th style="width: 60px;">正答数</th>
                             <th style="width: 70px;">正答率(%)</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {% for category, detail in category_details.items() %}
                         <tr>
-                            <td>{{ category }}</td>
-                            <td>{{ detail.total_answered }}</td>
-                            <td>{{ detail.correct_count }}</td>
-                            <td>{{ '%.1f' % (detail.accuracy|default(0.0)) }}</td>
+                            <td>4-1 基礎科目（共通）</td>
+                            <td>{{ basic_specialty_details.basic.total_answered }}</td>
+                            <td>{{ basic_specialty_details.basic.correct_count }}</td>
+                            <td>{{ '%.1f' % (basic_specialty_details.basic.accuracy|default(0.0)) }}</td>
                         </tr>
-                    {% endfor %}
+                        <tr>
+                            <td>4-2 専門科目</td>
+                            <td>{{ basic_specialty_details.specialty.total_answered }}</td>
+                            <td>{{ basic_specialty_details.specialty.correct_count }}</td>
+                            <td>{{ '%.1f' % (basic_specialty_details.specialty.accuracy|default(0.0)) }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
             {% else %}
-                <p class="m-3">分野別統計データがありません。</p>
+                <p class="m-3">共通・専門別統計データがありません。</p>
             {% endif %}
-        </div>
-    </div>
-
-    <div class="card mb-4">
-        <div class="card-header">分野別回答バランス（レーダーチャート）</div>
-        <div class="card-body py-2">
-            <canvas id="categoryRadarChart" height="220" style="max-width:400px; display:block; margin:0 auto;"></canvas>
-            <p class="text-muted mt-2 mb-0" style="font-size:0.92em;">分野ごとのバランス・強み弱みをレーダーチャートで表示します。</p>
         </div>
     </div>
 
@@ -123,18 +119,21 @@
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-// 分野別正答率データ
-const categoryData = {{ category_details | tojson | safe }};
+// 共通・専門別正答率データ
+const basicSpecialtyData = {{ basic_specialty_details | tojson | safe }};
 // 横棒グラフ
-const ctxBar = document.getElementById('categoryBarChart').getContext('2d');
+const ctxBar = document.getElementById('basicSpecialtyChart').getContext('2d');
 const barChart = new Chart(ctxBar, {
     type: 'bar',
     data: {
-        labels: Object.keys(categoryData),
+        labels: ['4-1 基礎科目（共通）', '4-2 専門科目'],
         datasets: [{
             label: '正答率（%）',
-            data: Object.values(categoryData).map(d => d.accuracy),
-            backgroundColor: Object.values(categoryData).map(d => d.accuracy >= 80 ? '#4CAF50' : d.accuracy >= 50 ? '#FF9800' : '#F44336'),
+            data: basicSpecialtyData ? [
+                basicSpecialtyData.basic ? basicSpecialtyData.basic.accuracy : 0,
+                basicSpecialtyData.specialty ? basicSpecialtyData.specialty.accuracy : 0
+            ] : [0, 0],
+            backgroundColor: ['#2196F3', '#4CAF50'],
             borderWidth: 1,
             barThickness: 18
         }]
@@ -172,42 +171,7 @@ const barChart = new Chart(ctxBar, {
         }
     }
 });
-// レーダーチャート
-const ctxRadar = document.getElementById('categoryRadarChart').getContext('2d');
-const radarChart = new Chart(ctxRadar, {
-    type: 'radar',
-    data: {
-        labels: Object.keys(categoryData),
-        datasets: [{
-            label: '分野別正答率',
-            data: Object.values(categoryData).map(d => d.accuracy),
-            backgroundColor: Object.values(categoryData).map(d => d.accuracy >= 80 ? 'rgba(54, 162, 235, 0.2)' : d.accuracy >= 50 ? 'rgba(255, 206, 86, 0.2)' : 'rgba(255, 99, 132, 0.2)'),
-            borderColor: Object.values(categoryData).map(d => d.accuracy >= 80 ? 'rgba(54, 162, 235, 1)' : d.accuracy >= 50 ? 'rgba(255, 206, 86, 1)' : 'rgba(255, 99, 132, 1)'),
-            pointBackgroundColor: Object.values(categoryData).map(d => d.accuracy >= 80 ? 'rgba(54, 162, 235, 1)' : d.accuracy >= 50 ? 'rgba(255, 206, 86, 1)' : 'rgba(255, 99, 132, 1)'),
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: Object.values(categoryData).map(d => d.accuracy >= 80 ? 'rgba(54, 162, 235, 1)' : d.accuracy >= 50 ? 'rgba(255, 206, 86, 1)' : 'rgba(255, 99, 132, 1)')
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: { display: false },
-            title: { display: false }
-        },
-        scales: {
-            r: {
-                min: 0,
-                max: 100,
-                ticks: { stepSize: 20, font: { size: 10 } }
-            }
-        },
-        animation: {
-            duration: 600,
-            easing: 'easeOutQuart'
-        }
-    }
-});
+
 // 成績推移グラフ（日ごとの正答率%）
 const dailyAccuracyList = {{ daily_accuracy_list|tojson|safe }};
 const trendLabels = dailyAccuracyList.map(d => d.date);

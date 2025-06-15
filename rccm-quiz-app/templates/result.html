@@ -51,68 +51,45 @@
       <p>経過時間: {{ elapsed_time }}</p>
     {% endif %}
 
-  <!-- 分野別成績 -->
+  <!-- 共通・専門別成績 -->
   <div class="card category-scores-card mb-4">
     <div class="card-header">
-      <h5 class="mb-0"><i class="fas fa-list-alt"></i> 分野別成績</h5>
+      <h5 class="mb-0"><i class="fas fa-chart-pie"></i> 共通・専門別成績</h5>
     </div>
     <div class="card-body">
-      {% if category_scores %}
-      <div class="category-scores-mobile">
-        {% for category, score_info in category_scores.items() %}
-        <div class="category-score-item">
-          <div class="category-name">{{ category }}</div>
-          <div class="category-stats">
-            <div class="category-correct">{{ score_info.correct }} / {{ score_info.total }}</div>
-            <div class="category-accuracy">
-              {% set accuracy = (score_info.correct / score_info.total * 100) if score_info.total > 0 else 0.0 %}
-              <span class="accuracy-badge {% if accuracy < 60 %}badge-danger{% elif accuracy > 80 %}badge-success{% else %}badge-warning{% endif %}">
-                {{ "{:.1f}".format(accuracy) }}%
+      {% if basic_specialty_scores %}
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <div class="score-type-card">
+            <h6 class="text-primary"><i class="fas fa-graduation-cap me-2"></i>4-1 基礎科目（共通）</h6>
+            <div class="score-display">
+              <span class="score-number">{{ basic_specialty_scores.basic.correct }}</span>
+              <span class="score-separator">/</span>
+              <span class="score-total">{{ basic_specialty_scores.basic.total }}</span>
+              <span class="score-percentage">
+                {% set accuracy = (basic_specialty_scores.basic.correct / basic_specialty_scores.basic.total * 100) if basic_specialty_scores.basic.total > 0 else 0.0 %}
+                ({{ "{:.1f}".format(accuracy) }}%)
               </span>
-              {% if accuracy < 60 %}
-                <span class="category-label text-danger">弱点分野</span>
-              {% elif accuracy > 80 %}
-                <span class="category-label text-success">得意分野</span>
-              {% endif %}
             </div>
           </div>
         </div>
-        {% endfor %}
-      </div>
-      
-      <!-- デスクトップ用テーブル -->
-      <div class="d-none d-md-block">
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>分野名</th>
-              <th>正答数</th>
-              <th>正答率</th>
-            </tr>
-          </thead>
-          <tbody>
-          {% for category, score_info in category_scores.items() %}
-            <tr>
-              <td>{{ category }}</td>
-              <td>{{ score_info.correct }} / {{ score_info.total }} 問正解</td>
-              <td>
-                {% set accuracy = (score_info.correct / score_info.total * 100) if score_info.total > 0 else 0.0 %}
-                <span class="{% if accuracy < 60 %}text-danger{% elif accuracy > 80 %}text-success{% endif %}">
-                  {{ "{:.1f}".format(accuracy) }}%
-                </span>
-                {% if accuracy < 60 %}
-                  <span class="text-danger">（弱点分野）</span>
-                {% elif accuracy > 80 %}
-                  <span class="text-success">（得意分野）</span>
-                {% endif %}
-              </td>
-            </tr>
-          {% endfor %}
-          </tbody>
-        </table>
+        <div class="col-md-6 mb-3">
+          <div class="score-type-card">
+            <h6 class="text-success"><i class="fas fa-cogs me-2"></i>4-2 専門科目</h6>
+            <div class="score-display">
+              <span class="score-number">{{ basic_specialty_scores.specialty.correct }}</span>
+              <span class="score-separator">/</span>
+              <span class="score-total">{{ basic_specialty_scores.specialty.total }}</span>
+              <span class="score-percentage">
+                {% set accuracy = (basic_specialty_scores.specialty.correct / basic_specialty_scores.specialty.total * 100) if basic_specialty_scores.specialty.total > 0 else 0.0 %}
+                ({{ "{:.1f}".format(accuracy) }}%)
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
       {% else %}
-        <p class="text-muted">分野別成績データがありません。</p>
+        <p class="text-muted">共通・専門別成績データがありません。</p>
       {% endif %}
     </div>
   </div>
@@ -133,7 +110,7 @@
       <div class="action-buttons">
         <div class="row g-2">
           <div class="col-md-6">
-            <a href="/quiz?reset=1" class="btn btn-primary w-100 action-btn">
+            <a href="/exam?reset=1" class="btn btn-primary w-100 action-btn">
               <i class="fas fa-redo"></i> もう一度問題を始める
             </a>
           </div>
@@ -166,7 +143,7 @@
     <div class="card-body">
       <p class="weakness-message">あなたの弱点分野: <strong class="weakness-category">{{ weak_category_details.name }}</strong></p>
       {% if not recommended_category or recommended_category != weak_category_details.name %}
-      <a href="/quiz?category={{ weak_category_details.name }}" class="btn btn-warning w-100 weakness-action-btn">
+      <a href="/exam?category={{ weak_category_details.name }}" class="btn btn-warning w-100 weakness-action-btn">
         <i class="fas fa-target"></i> 弱点分野を克服する
       </a>
       {% endif %}
@@ -323,6 +300,41 @@
 .weakness-action-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
+}
+
+/* 共通・専門別成績のスタイル */
+.score-type-card {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 4px solid #007bff;
+  text-align: center;
+}
+
+.score-display {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+.score-number {
+  font-weight: bold;
+  color: #007bff;
+  font-size: 2rem;
+}
+
+.score-separator {
+  color: #6c757d;
+  margin: 0 5px;
+}
+
+.score-total {
+  color: #6c757d;
+}
+
+.score-percentage {
+  color: #495057;
+  font-size: 1.2rem;
+  margin-left: 10px;
 }
 
 /* レスポンシブ対応 */

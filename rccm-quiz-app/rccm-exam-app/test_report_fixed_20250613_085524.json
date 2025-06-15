@@ -1,0 +1,184 @@
+{
+  "data_integrity_test": {
+    "total_questions": 3344,
+    "department_distribution": {
+      "road": 2092,
+      "civil_planning": 218,
+      "agriculture": 260,
+      "forestry": 260,
+      "construction_env": 249,
+      "urban_planning": 265
+    },
+    "missing_department": 0,
+    "filtered_civil_planning": 218,
+    "filtered_road": 2092,
+    "filtered_railway": 0,
+    "filtered_port_airport": 0,
+    "filtered_power_civil": 0,
+    "filtered_construction_env": 249,
+    "filtered_urban_planning": 265,
+    "filtered_construction_mgmt": 0,
+    "filtered_forestry": 260,
+    "filtered_fisheries": 0,
+    "filtered_agriculture": 260,
+    "filtered_comprehensive": 0,
+    "category_distribution": {
+      "共通": 202,
+      "道路": 260,
+      "土質及び基礎": 277,
+      "河川砂防": 30,
+      "鋼構造及びコンクリート": 162,
+      "農業土木": 260,
+      "施工計画・施工設備及び積算": 30,
+      "森林土木": 260,
+      "トンネル": 260,
+      "建設環境": 249,
+      "都市計画及び地方計画": 157,
+      "上水道及び工業用水道": 209,
+      "造園": 260,
+      "河川砂防海岸": 90,
+      "鋼構造コンクリート": 90,
+      "施工計画施工設備積算": 80,
+      "都市計画地方計画": 108,
+      "上水道工業用水道": 59,
+      "河川砂防海岸海洋": 20,
+      "施工計画積算": 30,
+      "河川砂防及び海岸・海洋": 19,
+      "施工計画、施工設備及び積算": 30,
+      "施工計画": 88,
+      "未分類": 54,
+      "河川、砂防及び海岸・海洋": 59,
+      "レガシーデータ": 1
+    },
+    "question_type_distribution": {
+      "basic": 203,
+      "specialist": 3141
+    }
+  },
+  "performance_test": {
+    "mode_balanced_time": 0.19506001472473145,
+    "mode_foundation_time": 0.01574230194091797,
+    "mode_specialist_focused_time": 0.17446064949035645,
+    "data_load_time": 2.3276302814483643,
+    "memory_usage": {
+      "start": 83.35546875,
+      "end": 95.265625,
+      "increase": 11.91015625
+    }
+  },
+  "edge_case_test": {
+    "minimal_history": {
+      "selected_count": 2,
+      "success": true
+    },
+    "insufficient_dept_data": {
+      "selected_count": 0,
+      "success": true
+    },
+    "mode_switching": {
+      "foundation": {
+        "count": 2,
+        "departments": [
+          "road",
+          "road"
+        ]
+      },
+      "balanced": {
+        "count": 3,
+        "departments": [
+          "road",
+          "road",
+          "road"
+        ]
+      },
+      "specialist_focused": {
+        "count": 4,
+        "departments": [
+          "road",
+          "road",
+          "road",
+          "road"
+        ]
+      }
+    },
+    "bulk_requests": {
+      "requests": 20,
+      "total_time": 0.01953601837158203,
+      "avg_time": 0.0009768009185791016
+    },
+    "ai_empty_data": {
+      "success": true,
+      "has_result": true
+    }
+  },
+  "functional_test": {
+    "balanced_road": {
+      "success": true,
+      "selected_count": 3,
+      "selected_departments": [
+        "road",
+        "road",
+        "road"
+      ]
+    },
+    "balanced_civil_planning": {
+      "success": true,
+      "selected_count": 0,
+      "selected_departments": []
+    },
+    "balanced_agriculture": {
+      "success": true,
+      "selected_count": 0,
+      "selected_departments": []
+    },
+    "foundation_road": {
+      "success": true,
+      "selected_count": 2,
+      "selected_departments": [
+        "road",
+        "road"
+      ]
+    },
+    "foundation_civil_planning": {
+      "success": true,
+      "selected_count": 0,
+      "selected_departments": []
+    },
+    "foundation_agriculture": {
+      "success": true,
+      "selected_count": 0,
+      "selected_departments": []
+    },
+    "specialist_focused_road": {
+      "success": true,
+      "selected_count": 4,
+      "selected_departments": [
+        "road",
+        "road",
+        "road",
+        "road"
+      ]
+    },
+    "specialist_focused_civil_planning": {
+      "success": true,
+      "selected_count": 0,
+      "selected_departments": []
+    },
+    "specialist_focused_agriculture": {
+      "success": true,
+      "selected_count": 0,
+      "selected_departments": []
+    },
+    "ai_analysis": {
+      "success": true,
+      "result_keys": [
+        "weak_areas",
+        "learning_plan",
+        "analysis_details",
+        "confidence_score",
+        "recommendation_priority"
+      ]
+    }
+  },
+  "errors": []
+}

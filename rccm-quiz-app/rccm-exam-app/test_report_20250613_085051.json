@@ -1,0 +1,29 @@
+{
+  "startup_test": {
+    "app_startup": false
+  },
+  "data_integrity_test": {
+    "total_questions": 3344,
+    "department_distribution": {
+      "road": 2092,
+      "civil_planning": 218,
+      "agriculture": 260,
+      "forestry": 260,
+      "construction_env": 249,
+      "urban_planning": 265
+    },
+    "missing_department": 0,
+    "error": "'AdaptiveLearningEngine' object has no attribute 'filter_questions_by_department'"
+  },
+  "performance_test": {
+    "error": "AdaptiveLearningEngine.get_adaptive_questions() got an unexpected keyword argument 'mode'"
+  },
+  "edge_case_test": {
+    "error": "AdaptiveLearningEngine.get_adaptive_questions() got an unexpected keyword argument 'mode'"
+  },
+  "errors": [
+    "データ整合性テスト: 'AdaptiveLearningEngine' object has no attribute 'filter_questions_by_department'",
+    "パフォーマンステスト: AdaptiveLearningEngine.get_adaptive_questions() got an unexpected keyword argument 'mode'",
+    "エッジケーステスト: AdaptiveLearningEngine.get_adaptive_questions() got an unexpected keyword argument 'mode'"
+  ]
+}

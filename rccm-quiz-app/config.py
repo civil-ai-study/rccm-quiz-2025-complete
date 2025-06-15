@@ -14,7 +14,7 @@ class Config:
     SESSION_COOKIE_SAMESITE = 'Lax'
     PERMANENT_SESSION_LIFETIME = 3600
 
-class QuizConfig:
+class ExamConfig:
     """問題・学習設定"""
     QUESTIONS_PER_SESSION = int(os.environ.get('QUESTIONS_PER_SESSION', 10))
     

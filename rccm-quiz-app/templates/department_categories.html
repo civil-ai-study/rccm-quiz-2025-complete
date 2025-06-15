@@ -249,7 +249,7 @@ document.querySelectorAll('.category-card').forEach(card => {
             const category = this.dataset.category;
             const departmentId = '{{ department.id }}';
             const questionType = '{{ question_type.id }}';
-            window.location.href = `/quiz?department=${departmentId}&question_type=${questionType}&category=${encodeURIComponent(category)}`;
+            window.location.href = `/exam?department=${departmentId}&question_type=${questionType}&category=${encodeURIComponent(category)}`;
         }
     });
 });

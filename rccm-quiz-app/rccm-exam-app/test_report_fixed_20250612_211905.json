@@ -1,0 +1,164 @@
+{
+  "data_integrity_test": {
+    "total_questions": 2481,
+    "department_distribution": {
+      "road": 1601,
+      "civil_planning": 152,
+      "agriculture": 180,
+      "forestry": 180,
+      "construction_env": 175,
+      "urban_planning": 183,
+      "comprehensive": 5,
+      "construction_mgmt": 5
+    },
+    "missing_department": 0,
+    "filtered_civil_planning": 152,
+    "filtered_road": 1601,
+    "filtered_railway": 0,
+    "filtered_port_airport": 0,
+    "filtered_power_civil": 0,
+    "filtered_construction_env": 175,
+    "filtered_urban_planning": 183,
+    "filtered_construction_mgmt": 5,
+    "filtered_forestry": 180,
+    "filtered_fisheries": 0,
+    "filtered_agriculture": 180,
+    "filtered_comprehensive": 5,
+    "category_distribution": {
+      "共通": 202,
+      "道路": 190,
+      "土質及び基礎": 197,
+      "河川砂防": 30,
+      "鋼構造及びコンクリート": 142,
+      "農業土木": 180,
+      "施工計画・施工設備及び積算": 30,
+      "森林土木": 180,
+      "トンネル": 180,
+      "建設環境": 170,
+      "都市計画及び地方計画": 155,
+      "上水道及び工業用水道": 189,
+      "造園": 178,
+      "河川砂防及び海岸・海洋": 19,
+      "施工計画、施工設備及び積算": 30,
+      "施工計画": 88,
+      "未分類": 54,
+      "河川、砂防及び海岸・海洋": 59,
+      "河川砂防海岸": 30,
+      "鋼構造コンクリート": 30,
+      "都市計画地方計画": 28,
+      "施工計画施工設備積算": 30,
+      "コンクリート": 10,
+      "土質": 10,
+      "河川": 10,
+      "測量": 10,
+      "一般技術": 5,
+      "構造力学": 4,
+      "水理学": 4,
+      "材料": 5,
+      "環境": 5,
+      "法令": 5,
+      "維持管理": 5,
+      "施工": 6,
+      "新技術": 5,
+      "品質管理": 5,
+      "RCCM制度": 1
+    },
+    "question_type_distribution": {
+      "basic": 302,
+      "specialist": 2179
+    }
+  },
+  "performance_test": {
+    "error": "'list' object has no attribute 'items'"
+  },
+  "edge_case_test": {
+    "minimal_history": {
+      "selected_count": 2,
+      "success": true
+    },
+    "insufficient_dept_data": {
+      "selected_count": 0,
+      "success": true
+    },
+    "mode_switching": {
+      "foundation": {
+        "count": 2,
+        "departments": [
+          "road",
+          "road"
+        ]
+      },
+      "balanced": {
+        "count": 3,
+        "departments": [
+          "road",
+          "road",
+          "road"
+        ]
+      },
+      "specialist_focused": {
+        "count": 4,
+        "departments": [
+          "road",
+          "road",
+          "road",
+          "road"
+        ]
+      }
+    },
+    "bulk_requests": {
+      "requests": 20,
+      "total_time": 0.008875608444213867,
+      "avg_time": 0.00044378042221069334
+    },
+    "ai_empty_data": {
+      "success": false,
+      "error": "AILearningAnalyzer.analyze_weak_areas() takes from 2 to 3 positional arguments but 4 were given"
+    }
+  },
+  "functional_test": {
+    "balanced_road": {
+      "success": false,
+      "error": "'list' object has no attribute 'items'"
+    },
+    "balanced_civil_planning": {
+      "success": false,
+      "error": "'list' object has no attribute 'items'"
+    },
+    "balanced_agriculture": {
+      "success": false,
+      "error": "'list' object has no attribute 'items'"
+    },
+    "foundation_road": {
+      "success": false,
+      "error": "'list' object has no attribute 'items'"
+    },
+    "foundation_civil_planning": {
+      "success": false,
+      "error": "'list' object has no attribute 'items'"
+    },
+    "foundation_agriculture": {
+      "success": false,
+      "error": "'list' object has no attribute 'items'"
+    },
+    "specialist_focused_road": {
+      "success": false,
+      "error": "'list' object has no attribute 'items'"
+    },
+    "specialist_focused_civil_planning": {
+      "success": false,
+      "error": "'list' object has no attribute 'items'"
+    },
+    "specialist_focused_agriculture": {
+      "success": false,
+      "error": "'list' object has no attribute 'items'"
+    },
+    "ai_analysis": {
+      "success": false,
+      "error": "AILearningAnalyzer.analyze_weak_areas() takes from 2 to 3 positional arguments but 4 were given"
+    }
+  },
+  "errors": [
+    "パフォーマンステスト: 'list' object has no attribute 'items'"
+  ]
+}

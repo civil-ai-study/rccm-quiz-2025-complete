@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}復習リスト | RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4"><i class="fas fa-bookmark text-warning"></i> 復習リスト</h1>
+    
+    {% if message %}
+    <div class="alert alert-info">
+        <h4 class="alert-heading">復習リストが空です</h4>
+        <p>{{ message }}</p>
+        <hr>
+        <a href="/exam" class="btn btn-primary">問題を始める</a>
+    </div>
+    {% else %}
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <p class="lead">登録された復習問題: <strong>{{ total_count or 0 }}問</strong></p>
+        </div>
+        <div class="col-md-4 text-end">
+            <a href="/exam/review" class="btn btn-success btn-lg">
+                <i class="fas fa-play"></i> 復習問題開始
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for question in questions %}
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span class="badge bg-primary">問題 {{ question.id }}</span>
+                    <span class="badge bg-info">{{ question.category or '分野未設定' }}</span>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">{{ question.question[:100] }}{% if question.question|length > 100 %}...{% endif %}</h6>
+                    <div class="d-grid gap-2">
+                        <a href="/exam?qid={{ question.id }}" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-redo"></i> この問題を解く
+                        </a>
+                        <button class="btn btn-outline-danger btn-sm" onclick="removeFromReview('{{ question.id }}')">
+                            <i class="fas fa-trash"></i> 復習リストから除外
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-outline-secondary">
+            <i class="fas fa-home"></i> ホームに戻る
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function removeFromReview(questionId) {
+    if (!confirm('この問題を復習リストから除外しますか？')) {
+        return;
+    }
+    
+    fetch('/api/bookmark', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question_id: questionId }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('復習リストから除外しました');
+            location.reload(); // ページを再読み込み
+        } else {
+            alert('除外に失敗しました: ' + (data.error || '不明なエラー'));
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('除外処理中にエラーが発生しました。');
+    });
+}
+</script>
+{% endblock %} 

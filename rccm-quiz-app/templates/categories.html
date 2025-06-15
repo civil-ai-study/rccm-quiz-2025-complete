@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}分野別 | RCCM試験問題集{% endblock %}
+{% block title %}部門別 | RCCM試験問題集{% endblock %}
 {% block content %}
 <div class="container-fluid">
     <!-- モバイル対応ヘッダー -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2><i class="fas fa-th-list text-primary"></i> 分野別問題選択</h2>
+        <h2><i class="fas fa-th-list text-primary"></i> 部門別問題選択</h2>
         <div class="mobile-controls">
             <button type="button" id="voiceBtn" class="btn btn-sm btn-outline-primary me-2" title="音声読み上げ (Space)">
                 <i class="fas fa-volume-up"></i>
@@ -23,7 +23,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h5 class="category-name mb-0">{{ category }}</h5>
-                    <a href="/quiz?category={{ category }}" class="btn btn-primary btn-sm study-btn">
+                    <a href="/exam?category={{ category }}" class="btn btn-primary btn-sm study-btn">
                         <i class="fas fa-play"></i> 学習
                     </a>
                 </div>
@@ -82,7 +82,7 @@
                         <table class="table table-sm table-striped table-bordered mb-0" style="font-size:0.95em;">
                             <thead class="table-light">
                                 <tr>
-                                    <th style="width: 120px;">分野</th>
+                                    <th style="width: 120px;">部門</th>
                                     <th style="width: 100px;">選択</th>
                                     <th style="width: 80px;">問題数</th>
                                     <th style="width: 100px;">解答済み</th>
@@ -94,8 +94,8 @@
                             <tbody>
                             {% for category, detail in category_details.items() %}
                                 <tr>
-                                    <td><a href="/quiz?category={{ category }}"><strong>{{ category }}</strong></a></td>
-                                    <td><a href="/quiz?category={{ category }}" class="btn btn-sm btn-primary">学習</a></td>
+                                    <td><a href="/exam?category={{ category }}"><strong>{{ category }}</strong></a></td>
+                                    <td><a href="/exam?category={{ category }}" class="btn btn-sm btn-primary">学習</a></td>
                                     <td>{{ detail.total_questions }}</td>
                                     <td>{{ detail.total_answered }}</td>
                                     <td>{{ detail.correct_count }}</td>
@@ -119,14 +119,14 @@
     <!-- グラフカード -->
     <div class="card chart-card mb-4">
         <div class="card-header">
-            <h5 class="mb-0"><i class="fas fa-chart-bar"></i> 分野別正答率グラフ</h5>
+            <h5 class="mb-0"><i class="fas fa-chart-bar"></i> 部門別正答率グラフ</h5>
         </div>
         <div class="card-body">
             <div class="chart-container">
                 <canvas id="categoryBarChart" width="400" height="200"></canvas>
             </div>
             <p class="text-muted mt-2">
-                <i class="fas fa-info-circle"></i> グラフは分野ごとの正答率を示します。
+                <i class="fas fa-info-circle"></i> グラフは部門ごとの正答率を示します。
             </p>
         </div>
     </div>
@@ -140,7 +140,7 @@
                 </a>
             </div>
             <div class="col-md-6">
-                <a href="/quiz" class="btn btn-primary w-100 nav-btn">
+                <a href="/exam" class="btn btn-primary w-100 nav-btn">
                     <i class="fas fa-random"></i> ランダム出題
                 </a>
             </div>

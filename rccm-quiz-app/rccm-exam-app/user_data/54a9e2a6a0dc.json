@@ -1,0 +1,232 @@
+{
+  "history": [
+    {
+      "category": "河川砂防海岸海洋",
+      "correct_answer": "A",
+      "date": "2025-06-14 19:48:06",
+      "department": "civil_planning",
+      "difficulty": "標準",
+      "elapsed": 2.6,
+      "id": 1013,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "specialist",
+      "srs_level": 0,
+      "user_answer": "C"
+    },
+    {
+      "category": "河川、砂防及び海岸・海洋",
+      "correct_answer": "A",
+      "date": "2025-06-14 19:48:18",
+      "department": "civil_planning",
+      "difficulty": "標準",
+      "elapsed": 2.8,
+      "id": 3213,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "specialist",
+      "srs_level": 0,
+      "user_answer": "D"
+    },
+    {
+      "category": "河川、砂防及び海岸・海洋",
+      "correct_answer": "B",
+      "date": "2025-06-14 19:49:11",
+      "department": "civil_planning",
+      "difficulty": "標準",
+      "elapsed": 2.6,
+      "id": 3188,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "specialist",
+      "srs_level": 0,
+      "user_answer": "C"
+    },
+    {
+      "category": "河川砂防海岸",
+      "correct_answer": "D",
+      "date": "2025-06-14 19:49:18",
+      "department": "civil_planning",
+      "difficulty": "標準",
+      "elapsed": 1.7,
+      "id": 1246,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "specialist",
+      "srs_level": 0,
+      "user_answer": "C"
+    },
+    {
+      "category": "河川砂防海岸",
+      "correct_answer": "C",
+      "date": "2025-06-14 19:49:25",
+      "department": "civil_planning",
+      "difficulty": "標準",
+      "elapsed": 2.6,
+      "id": 3608,
+      "is_correct": true,
+      "is_review": false,
+      "question_type": "specialist",
+      "srs_level": 1,
+      "user_answer": "C"
+    },
+    {
+      "category": "河川、砂防及び海岸・海洋",
+      "correct_answer": "A",
+      "date": "2025-06-14 19:49:28",
+      "department": "civil_planning",
+      "difficulty": "標準",
+      "elapsed": 1.9,
+      "id": 2797,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "specialist",
+      "srs_level": 0,
+      "user_answer": "D"
+    },
+    {
+      "category": "河川砂防海岸",
+      "correct_answer": "A",
+      "date": "2025-06-14 19:50:09",
+      "department": "civil_planning",
+      "difficulty": "標準",
+      "elapsed": 2.0,
+      "id": 1237,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "specialist",
+      "srs_level": 0,
+      "user_answer": "C"
+    },
+    {
+      "category": "河川、砂防及び海岸・海洋",
+      "correct_answer": "B",
+      "date": "2025-06-14 19:50:17",
+      "department": "civil_planning",
+      "difficulty": "標準",
+      "elapsed": 1.8,
+      "id": 3192,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "specialist",
+      "srs_level": 0,
+      "user_answer": "D"
+    },
+    {
+      "category": "河川砂防海岸",
+      "correct_answer": "A",
+      "date": "2025-06-14 19:51:28",
+      "department": "civil_planning",
+      "difficulty": "標準",
+      "elapsed": 69.2,
+      "id": 636,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "specialist",
+      "srs_level": 0,
+      "user_answer": "D"
+    },
+    {
+      "category": "河川砂防海岸",
+      "correct_answer": "D",
+      "date": "2025-06-14 19:51:33",
+      "department": "civil_planning",
+      "difficulty": "標準",
+      "elapsed": 3.0,
+      "id": 1223,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "specialist",
+      "srs_level": 0,
+      "user_answer": "C"
+    }
+  ],
+  "srs_data": {
+    "1013": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "1223": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "1237": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "1246": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "2797": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "3188": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "3192": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "3213": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "3608": {
+      "correct_count": 1,
+      "last_review": "2025-06-14",
+      "level": 1,
+      "next_review": "2025-06-17",
+      "total_attempts": 1
+    },
+    "636": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    }
+  },
+  "category_stats": {
+    "河川、砂防及び海岸・海洋": {
+      "correct": 0,
+      "total": 4
+    },
+    "河川砂防海岸": {
+      "correct": 1,
+      "total": 5
+    },
+    "河川砂防海岸海洋": {
+      "correct": 0,
+      "total": 1
+    }
+  },
+  "last_updated": "2025-06-14T19:51:54.454065",
+  "user_id": "54a9e2a6a0dc"
+}

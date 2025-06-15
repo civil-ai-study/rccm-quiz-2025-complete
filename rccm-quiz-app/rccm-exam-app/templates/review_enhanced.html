@@ -1,0 +1,290 @@
+{% extends "base.html" %}
+{% block title %}復習リスト | RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- ヘッダー -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="mb-2"><i class="fas fa-bookmark text-warning me-2"></i>復習リスト</h1>
+            <p class="text-muted">間違えた問題を繰り返し学習して完全にマスターしましょう</p>
+        </div>
+        <div class="col-md-4 text-end">
+            <a href="/" class="btn btn-outline-secondary me-2">
+                <i class="fas fa-home me-1"></i>ホーム
+            </a>
+        </div>
+    </div>
+    
+    {% if message %}
+    <!-- 復習リストが空の場合 -->
+    <div class="alert alert-info text-center">
+        <div class="mb-3">
+            <i class="fas fa-check-circle text-success" style="font-size: 3rem;"></i>
+        </div>
+        <h4 class="alert-heading">素晴らしい！復習リストが空です</h4>
+        <p class="mb-3">{{ message }}</p>
+        <a href="/exam" class="btn btn-primary btn-lg">
+            <i class="fas fa-play me-2"></i>新しい問題に挑戦
+        </a>
+    </div>
+    {% else %}
+    
+    <!-- 統計情報 -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark">
+                <div class="card-body text-center">
+                    <h3 class="mb-0">{{ total_count or 0 }}</h3>
+                    <small>復習対象問題</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-danger text-white">
+                <div class="card-body text-center">
+                    <h3 class="mb-0">{{ many_errors_count or 0 }}</h3>
+                    <small>要注意問題 (3回以上)</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body text-center">
+                    <h3 class="mb-0">{{ department_count or 0 }}</h3>
+                    <small>関連部門数</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body text-center">
+                    <h3 class="mb-0">{{ (correct_rate * 100)|round(1) if correct_rate else 0 }}%</h3>
+                    <small>直近正答率</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 学習オプション -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="fas fa-cogs me-2"></i>復習学習オプション</h5>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <a href="/exam/review" class="btn btn-success w-100 btn-lg">
+                        <i class="fas fa-random me-2"></i>
+                        <div><strong>ランダム復習</strong></div>
+                        <small class="d-block">あなたが保存した全ての復習問題からランダムに出題</small>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/exam/review?priority=high" class="btn btn-danger w-100 btn-lg">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <div><strong>要注意問題優先</strong></div>
+                        <small class="d-block">間違いが多く苦手な問題を優先的に出題。難しい問題を集中攻略</small>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-info w-100 btn-lg" data-bs-toggle="modal" data-bs-target="#departmentFilterModal">
+                        <i class="fas fa-filter me-2"></i>
+                        <div><strong>部門別復習</strong></div>
+                        <small class="d-block">選択した部門（道路、河川砂防など）の復習問題のみを出題</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 復習問題リスト -->
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0"><i class="fas fa-list me-2"></i>復習問題一覧</h5>
+            <div>
+                <button class="btn btn-sm btn-outline-warning" onclick="selectAll()">
+                    <i class="fas fa-check-square me-1"></i>全選択
+                </button>
+                <button class="btn btn-sm btn-outline-danger" onclick="removeSelected()">
+                    <i class="fas fa-trash me-1"></i>選択削除
+                </button>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th width="50"><input type="checkbox" id="selectAllCheckbox" onchange="toggleAll()"></th>
+                            <th width="80">問題ID</th>
+                            <th>問題文</th>
+                            <th width="100">部門</th>
+                            <th width="80">間違い回数</th>
+                            <th width="100">最終挑戦</th>
+                            <th width="150">アクション</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for question in questions %}
+                        <tr class="{% if question.error_count >= 3 %}table-danger{% elif question.error_count >= 2 %}table-warning{% endif %}">
+                            <td>
+                                <input type="checkbox" class="question-checkbox" value="{{ question.id }}">
+                            </td>
+                            <td>
+                                <span class="badge bg-primary">{{ question.id }}</span>
+                            </td>
+                            <td>
+                                <div class="question-preview">
+                                    {{ question.question[:80] }}{% if question.question|length > 80 %}...{% endif %}
+                                </div>
+                                {% if question.year %}
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar me-1"></i>{{ question.year }}年度
+                                </small>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <span class="badge bg-info">{{ question.department_name or question.category or '不明' }}</span>
+                            </td>
+                            <td class="text-center">
+                                {% if question.error_count >= 3 %}
+                                <span class="badge bg-danger">{{ question.error_count }}回</span>
+                                {% elif question.error_count >= 2 %}
+                                <span class="badge bg-warning text-dark">{{ question.error_count }}回</span>
+                                {% else %}
+                                <span class="badge bg-secondary">{{ question.error_count }}回</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <small class="text-muted">{{ question.last_attempted or '未記録' }}</small>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="/exam?qid={{ question.id }}" class="btn btn-outline-primary" title="この問題を解く">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                    <button class="btn btn-outline-danger" onclick="removeFromReview('{{ question.id }}')" title="復習リストから除外">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- 部門別フィルターモーダル -->
+<div class="modal fade" id="departmentFilterModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">部門別復習</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>特定の部門の復習問題のみを学習できます。</p>
+                <div class="d-grid gap-2">
+                    {% for dept_key, dept_info in departments.items() %}
+                    <a href="/exam/review?department={{ dept_key }}" class="btn btn-outline-primary">
+                        <i class="{{ dept_info.icon }} me-2"></i>{{ dept_info.name }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// 全選択/解除
+function toggleAll() {
+    const selectAll = document.getElementById('selectAllCheckbox');
+    const checkboxes = document.querySelectorAll('.question-checkbox');
+    checkboxes.forEach(cb => cb.checked = selectAll.checked);
+}
+
+function selectAll() {
+    const checkboxes = document.querySelectorAll('.question-checkbox');
+    checkboxes.forEach(cb => cb.checked = true);
+    document.getElementById('selectAllCheckbox').checked = true;
+}
+
+// 選択した問題を復習リストから削除
+function removeSelected() {
+    const selected = Array.from(document.querySelectorAll('.question-checkbox:checked')).map(cb => cb.value);
+    if (selected.length === 0) {
+        alert('削除する問題を選択してください。');
+        return;
+    }
+    
+    if (confirm(`選択した${selected.length}問を復習リストから削除しますか？`)) {
+        fetch('/api/review/bulk_remove', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({question_ids: selected})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('削除に失敗しました: ' + data.error);
+            }
+        })
+        .catch(error => {
+            alert('削除中にエラーが発生しました: ' + error);
+        });
+    }
+}
+
+// 個別削除
+function removeFromReview(questionId) {
+    if (confirm('この問題を復習リストから削除しますか？')) {
+        fetch('/api/review/remove', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({question_id: questionId})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('削除に失敗しました: ' + data.error);
+            }
+        })
+        .catch(error => {
+            alert('削除中にエラーが発生しました: ' + error);
+        });
+    }
+}
+</script>
+
+<style>
+.question-preview {
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+}
+
+.btn-group-sm .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+</style>
+{% endblock %}

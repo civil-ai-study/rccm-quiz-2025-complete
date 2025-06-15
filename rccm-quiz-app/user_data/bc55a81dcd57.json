@@ -1,0 +1,228 @@
+{
+  "history": [
+    {
+      "category": "共通",
+      "correct_answer": "D",
+      "date": "2025-06-14 13:49:33",
+      "department": "road",
+      "difficulty": "標準",
+      "elapsed": 27.3,
+      "id": 41,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "basic",
+      "srs_level": 0,
+      "user_answer": "C"
+    },
+    {
+      "category": "共通",
+      "correct_answer": "B",
+      "date": "2025-06-14 13:49:38",
+      "department": "road",
+      "difficulty": "標準",
+      "elapsed": 2.6,
+      "id": 194,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "basic",
+      "srs_level": 0,
+      "user_answer": "C"
+    },
+    {
+      "category": "共通",
+      "correct_answer": "C",
+      "date": "2025-06-14 13:49:41",
+      "department": "road",
+      "difficulty": "標準",
+      "elapsed": 2.5,
+      "id": 177,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "basic",
+      "srs_level": 0,
+      "user_answer": "D"
+    },
+    {
+      "category": "共通",
+      "correct_answer": "B",
+      "date": "2025-06-14 13:49:45",
+      "department": "road",
+      "difficulty": "標準",
+      "elapsed": 2.1,
+      "id": 126,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "basic",
+      "srs_level": 0,
+      "user_answer": "C"
+    },
+    {
+      "category": "共通",
+      "correct_answer": "D",
+      "date": "2025-06-14 13:49:48",
+      "department": "road",
+      "difficulty": "標準",
+      "elapsed": 2.0,
+      "id": 144,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "basic",
+      "srs_level": 0,
+      "user_answer": "A"
+    },
+    {
+      "category": "共通",
+      "correct_answer": "D",
+      "date": "2025-06-14 13:49:55",
+      "department": "road",
+      "difficulty": "標準",
+      "elapsed": 5.0,
+      "id": 23,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "basic",
+      "srs_level": 0,
+      "user_answer": "B"
+    },
+    {
+      "category": "レガシーデータ",
+      "correct_answer": "A",
+      "date": "2025-06-14 13:49:58",
+      "department": "road",
+      "difficulty": "標準",
+      "elapsed": 1.8,
+      "id": 3884,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "basic",
+      "srs_level": 0,
+      "user_answer": "C"
+    },
+    {
+      "category": "共通",
+      "correct_answer": "C",
+      "date": "2025-06-14 13:50:01",
+      "department": "road",
+      "difficulty": "標準",
+      "elapsed": 1.5,
+      "id": 68,
+      "is_correct": true,
+      "is_review": false,
+      "question_type": "basic",
+      "srs_level": 1,
+      "user_answer": "C"
+    },
+    {
+      "category": "共通",
+      "correct_answer": "B",
+      "date": "2025-06-14 13:50:05",
+      "department": "road",
+      "difficulty": "標準",
+      "elapsed": 2.5,
+      "id": 87,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "basic",
+      "srs_level": 0,
+      "user_answer": "D"
+    },
+    {
+      "category": "共通",
+      "correct_answer": "B",
+      "date": "2025-06-14 13:50:08",
+      "department": "road",
+      "difficulty": "標準",
+      "elapsed": 1.8,
+      "id": 142,
+      "is_correct": false,
+      "is_review": false,
+      "question_type": "basic",
+      "srs_level": 0,
+      "user_answer": "C"
+    }
+  ],
+  "srs_data": {
+    "126": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "142": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "144": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "177": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "194": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "23": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "3884": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "41": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    },
+    "68": {
+      "correct_count": 1,
+      "last_review": "2025-06-14",
+      "level": 1,
+      "next_review": "2025-06-17",
+      "total_attempts": 1
+    },
+    "87": {
+      "correct_count": 0,
+      "last_review": "2025-06-14",
+      "level": 0,
+      "next_review": "2025-06-15",
+      "total_attempts": 1
+    }
+  },
+  "category_stats": {
+    "レガシーデータ": {
+      "correct": 0,
+      "total": 1
+    },
+    "共通": {
+      "correct": 1,
+      "total": 9
+    }
+  },
+  "last_updated": "2025-06-14T13:52:16.030343",
+  "user_id": "bc55a81dcd57"
+}

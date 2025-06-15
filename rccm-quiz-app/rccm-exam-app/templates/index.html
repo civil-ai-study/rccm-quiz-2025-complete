@@ -1,0 +1,438 @@
+{% extends 'base.html' %}
+{% block title %}ホーム | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="text-center">
+  <h1 class="mb-4">RCCM試験問題集アプリ</h1>
+  <p>RCCM試験対策用Webアプリです。</p>
+  
+  <!-- 学習ストリーク表示 -->
+  <div class="streak-display">
+    🔥 連続学習: <span id="streak-counter">0</span>日目
+  </div>
+  
+  <!-- 初心者向けガイダンス強化 -->
+  <div class="beginner-guide mb-4" id="beginnerGuide" style="display: none;">
+    <div class="alert alert-primary d-flex align-items-center mb-3" role="alert">
+      <i class="fas fa-lightbulb me-3 fs-4" aria-hidden="true"></i>
+      <div class="flex-grow-1">
+        <h5 class="alert-heading mb-2">はじめての方へ</h5>
+        <p class="mb-2">RCCM試験対策を効率的に進めるため、まずは<strong>問題を解く</strong>から始めることをお勧めします。</p>
+        <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#quickGuide" aria-expanded="false" aria-controls="quickGuide">
+          <i class="fas fa-question-circle me-1"></i>詳しい使い方を見る
+        </button>
+      </div>
+      <button type="button" class="btn-close" aria-label="ガイドを閉じる" onclick="dismissGuide()"></button>
+    </div>
+    
+    <div class="collapse" id="quickGuide">
+      <div class="card border-primary">
+        <div class="card-body">
+          <h6><i class="fas fa-route me-2"></i>推奨学習フロー</h6>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <div class="step-card">
+                <div class="step-number">1</div>
+                <h6>問題を解く</h6>
+                <p class="small text-muted">まずはランダム出題で実力を確認</p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="step-card">
+                <div class="step-number">2</div>
+                <h6>部門別学習</h6>
+                <p class="small text-muted">専門部門の問題を重点的に学習</p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="step-card">
+                <div class="step-number">3</div>
+                <h6>復習・統計確認</h6>
+                <p class="small text-muted">間違えた問題を復習し、進捗を確認</p>
+              </div>
+            </div>
+          </div>
+          <div class="alert alert-info mt-3">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong>ヒント:</strong> 各機能には詳細な説明があります。わからないことがあれば「ヘルプ」ボタンをクリックしてください。<br>
+            <strong>新機能:</strong> ソーシャル学習、AI分析、認定追跡など豊富な学習支援機能を利用できます。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- メイン学習機能 - 部門選択重視デザイン -->
+  <div class="row mb-4">
+    <div class="col-md-10 mx-auto">
+      <!-- 部門選択メインセクション -->
+      <div class="card border-success shadow-lg mb-4" style="border-width: 3px;">
+        <div class="card-header bg-success text-white text-center py-3">
+          <h4 class="mb-0"><i class="fas fa-building me-2"></i>受験部門を選択してください</h4>
+          <small>あなたの専門分野に特化した学習を始めましょう</small>
+        </div>
+        <div class="card-body p-4">
+          <!-- RCCM12専門部門（コンパクトデザイン） -->
+          <h6 class="text-muted mb-3"><i class="fas fa-graduation-cap me-2"></i>RCCM12専門部門</h6>
+          <div class="row g-2 mb-4">
+            <!-- 1行目 -->
+            <div class="col-md-4 col-lg-3">
+              <a href="/department_study/road" class="btn btn-primary w-100 compact-dept-btn">
+                <i class="fas fa-road me-1"></i><strong>道路</strong>
+              </a>
+            </div>
+            <div class="col-md-4 col-lg-3">
+              <a href="/department_study/tunnel" class="btn btn-secondary w-100 compact-dept-btn">
+                <i class="fas fa-mountain me-1"></i><strong>トンネル</strong>
+              </a>
+            </div>
+            <div class="col-md-4 col-lg-3">
+              <a href="/department_study/civil_planning" class="btn btn-info w-100 compact-dept-btn">
+                <i class="fas fa-water me-1"></i><strong>河川・砂防・海岸</strong>
+              </a>
+            </div>
+            <div class="col-md-4 col-lg-3">
+              <a href="/department_study/urban_planning" class="btn w-100 compact-dept-btn" style="background-color: #9C27B0; border-color: #9C27B0; color: white;">
+                <i class="fas fa-city me-1"></i><strong>都市・地方計画</strong>
+              </a>
+            </div>
+            
+            <!-- 2行目 -->
+            <div class="col-md-4 col-lg-3">
+              <a href="/department_study/landscape" class="btn w-100 compact-dept-btn" style="background-color: #E91E63; border-color: #E91E63; color: white;">
+                <i class="fas fa-leaf me-1"></i><strong>造園</strong>
+              </a>
+            </div>
+            <div class="col-md-4 col-lg-3">
+              <a href="/department_study/construction_env" class="btn btn-success w-100 compact-dept-btn">
+                <i class="fas fa-seedling me-1"></i><strong>建設環境</strong>
+              </a>
+            </div>
+            <div class="col-md-4 col-lg-3">
+              <a href="/department_study/steel_concrete" class="btn btn-dark w-100 compact-dept-btn">
+                <i class="fas fa-hammer me-1"></i><strong>鋼構造・コンクリート</strong>
+              </a>
+            </div>
+            <div class="col-md-4 col-lg-3">
+              <a href="/department_study/soil_foundation" class="btn w-100 compact-dept-btn" style="background-color: #8D6E63; border-color: #8D6E63; color: white;">
+                <i class="fas fa-cubes me-1"></i><strong>土質・基礎</strong>
+              </a>
+            </div>
+            
+            <!-- 3行目 -->
+            <div class="col-md-4 col-lg-3">
+              <a href="/department_study/construction_planning" class="btn btn-warning w-100 compact-dept-btn">
+                <i class="fas fa-clipboard-list me-1"></i><strong>施工計画・積算</strong>
+              </a>
+            </div>
+            <div class="col-md-4 col-lg-3">
+              <a href="/department_study/water_supply" class="btn w-100 compact-dept-btn" style="background-color: #00BCD4; border-color: #00BCD4; color: white;">
+                <i class="fas fa-tint me-1"></i><strong>上水道・工業用水</strong>
+              </a>
+            </div>
+            <div class="col-md-4 col-lg-3">
+              <a href="/department_study/forestry" class="btn w-100 compact-dept-btn" style="background-color: #8BC34A; border-color: #8BC34A; color: white;">
+                <i class="fas fa-tree me-1"></i><strong>森林土木</strong>
+              </a>
+            </div>
+            <div class="col-md-4 col-lg-3">
+              <a href="/department_study/agriculture" class="btn w-100 compact-dept-btn" style="background-color: #CDDC39; border-color: #CDDC39; color: black;">
+                <i class="fas fa-wheat-awn me-1"></i><strong>農業土木</strong>
+              </a>
+            </div>
+          </div>
+          
+          
+          <!-- 共通学習（4-1基礎のみ） -->
+          <div class="mt-4 pt-3 border-top">
+            <h6 class="text-muted mb-3"><i class="fas fa-book me-2"></i>共通学習</h6>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <a href="/exam?type=basic" class="btn btn-warning w-100" style="padding: 1rem;">
+                  <i class="fas fa-graduation-cap me-2"></i>
+                  <div><strong>4-1 基礎科目（必須）</strong></div>
+                  <small class="d-block">全部門共通の基礎問題</small>
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a href="/review" class="btn btn-info w-100" style="padding: 1rem;" id="reviewBtnMain">
+                  <i class="fas fa-bookmark me-2"></i>
+                  <div><strong>復習リスト</strong></div>
+                  <small class="d-block">間違えた問題をもう一度</small>
+                  <span id="reviewCountMain" class="badge bg-light text-dark position-absolute top-0 end-0 m-2">0</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- その他の学習方法（従来方式） -->
+      <div class="text-center mb-3">
+        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#traditionalMethods" aria-expanded="false">
+          <i class="fas fa-cog me-2"></i>その他の学習方法
+        </button>
+      </div>
+      
+      <div class="collapse" id="traditionalMethods">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <a href="/exam" class="btn btn-outline-primary w-100" style="padding: 1rem;" aria-describedby="quiz-desc">
+              <i class="fas fa-play-circle me-2" aria-hidden="true"></i>
+              <strong>ランダム学習</strong>
+              <small class="d-block text-muted" id="question-desc">全問題からランダム出題（全3884問）</small>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="/categories" class="btn btn-outline-info w-100" style="padding: 1rem;" aria-describedby="categories-desc">
+              <i class="fas fa-list me-2" aria-hidden="true"></i>
+              <strong>従来方式学習</strong>
+              <small class="d-block text-muted" id="categories-desc">旧方式での学習（参考用）</small>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 復習機能（最重要） -->
+  <div class="row mb-4">
+    <div class="col-md-8 mx-auto">
+      <div class="card border-warning shadow">
+        <div class="card-header bg-warning text-dark text-center">
+          <h5 class="mb-0"><i class="fas fa-bookmark me-2"></i>復習リスト - 最重要機能</h5>
+        </div>
+        <div class="card-body text-center">
+          <p class="mb-3">間違えた問題を復習して、確実に知識を定着させましょう</p>
+          <a href="/review" class="btn btn-warning btn-lg" id="reviewBtnMain">
+            <i class="fas fa-redo me-2"></i>復習問題を解く
+            <span id="reviewCountMain" class="badge bg-dark ms-2">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 学習記録・統計 -->
+  <div class="row mb-4">
+    <div class="col-md-8 mx-auto">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <a href="/statistics" class="btn btn-outline-primary w-100 h-100 d-flex flex-column justify-content-center" style="padding: 2rem;">
+            <i class="fas fa-chart-bar fs-2 mb-2"></i>
+            <div><strong>学習記録</strong></div>
+            <small class="text-muted">進捗と成績を確認</small>
+          </a>
+        </div>
+        <div class="col-md-6">
+          <a href="/help" class="btn btn-outline-info w-100 h-100 d-flex flex-column justify-content-center" style="padding: 2rem;">
+            <i class="fas fa-question-circle fs-2 mb-2"></i>
+            <div><strong>使い方ガイド</strong></div>
+            <small class="text-muted">操作方法とヒント</small>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- その他の学習機能 -->
+  <div class="text-center mb-3">
+    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#otherFeatures" aria-expanded="false">
+      <i class="fas fa-tools me-2"></i>その他の学習機能
+    </button>
+  </div>
+  
+  <div class="collapse" id="otherFeatures">
+    <div class="row g-3 mb-3">
+      <div class="col-md-6">
+        <a href="/exam_simulator" class="btn btn-outline-primary w-100">
+          <i class="fas fa-clock me-2"></i>模擬試験
+          <div><small class="d-block text-muted">本番形式での総合テスト</small></div>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-outline-info w-100" onclick="showKeyboardShortcuts()">
+          <i class="fas fa-keyboard me-2"></i>ショートカット
+          <div><small class="d-block text-muted">効率的な操作方法</small></div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- アクセシビリティ情報・更新情報 -->
+  <div class="mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card border-light">
+          <div class="card-body p-3">
+            <h6 class="card-title text-muted"><i class="fas fa-universal-access me-2"></i>アクセシビリティ</h6>
+            <ul class="list-unstyled small text-muted mb-0">
+              <li><i class="fas fa-keyboard me-1"></i>キーボードナビゲーション対応</li>
+              <li><i class="fas fa-eye me-1"></i>スクリーンリーダー対応</li>
+              <li><i class="fas fa-adjust me-1"></i>コントラスト比AA準拠</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card border-light">
+          <div class="card-body p-3">
+            <h6 class="card-title text-muted"><i class="fas fa-info-circle me-2"></i>今後の機能</h6>
+            <ul class="list-unstyled small text-muted mb-0">
+              <li><i class="fas fa-mobile-alt me-1"></i>PWA・オフライン対応</li>
+              <li><i class="fas fa-brain me-1"></i>AI学習推奨強化</li>
+              <li><i class="fas fa-chart-pie me-1"></i>詳細弱点分析</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ゲーミフィケーション状態を取得
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/api/gamification/status')
+        .then(response => response.json())
+        .then(data => {
+            if (data.streak !== undefined) {
+                document.getElementById('streak-counter').textContent = data.streak;
+                
+                // ストリーク表示の色を調整
+                const streakDisplay = document.querySelector('.streak-display');
+                if (data.streak >= 7) {
+                    streakDisplay.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+                } else if (data.streak >= 3) {
+                    streakDisplay.style.background = 'linear-gradient(45deg, #ffc107, #fd7e14)';
+                }
+            }
+        })
+        .catch(error => {
+            console.log('ゲーミフィケーション状態の取得に失敗:', error);
+        });
+});
+
+// UI/UX改善用追加機能
+// パフォーマンスモニタリング
+if ('performance' in window) {
+    window.addEventListener('load', function() {
+        const loadTime = performance.now();
+        if (loadTime > 3000) {
+            console.warn('ページ読み込みが遅いです:', loadTime + 'ms');
+        }
+    });
+}
+
+console.log('🚀 RCCM学習アプリ - UI/UX改善版');
+console.log('📚 アクセシビリティ強化・初心者ガイダンス完備');
+
+// 初心者ガイダンス表示制御
+function showBeginnerGuideIfNeeded() {
+    const hasVisited = localStorage.getItem('rccm_has_visited');
+    const guideDismissed = localStorage.getItem('rccm_guide_dismissed');
+    if (!hasVisited && !guideDismissed) {
+        document.getElementById('beginnerGuide').style.display = 'block';
+        localStorage.setItem('rccm_has_visited', 'true');
+    }
+}
+
+function dismissGuide() {
+    document.getElementById('beginnerGuide').style.display = 'none';
+    localStorage.setItem('rccm_guide_dismissed', 'true');
+}
+
+// ページ読み込み時に初心者ガイダンスを表示
+document.addEventListener('DOMContentLoaded', function() {
+    showBeginnerGuideIfNeeded();
+});
+
+// 部門ボタンのスタイル追加
+const departmentStyles = `
+.department-btn {
+    padding: 1.5rem 1rem !important;
+    text-align: center;
+    border: 2px solid #dee2e6;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.department-btn:hover {
+    border-color: #0d6efd;
+    background-color: #0d6efd;
+    color: white !important;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+}
+
+.department-btn-small {
+    padding: 0.75rem 0.5rem !important;
+    text-align: center;
+    border: 1px solid #dee2e6;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.department-btn-small:hover {
+    border-color: #6c757d;
+    background-color: #6c757d;
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+.card.border-success {
+    border-color: #28a745 !important;
+}
+
+.card-header.bg-success {
+    background: linear-gradient(135deg, #28a745, #20c997) !important;
+}
+
+.major-department-btn {
+    padding: 2rem 1rem !important;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.major-department-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.major-department-btn .h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.compact-dept-btn {
+    padding: 0.75rem 0.5rem !important;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    border-radius: 8px;
+}
+
+.compact-dept-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+`;
+
+// スタイルを動的に追加
+const styleSheet = document.createElement('style');
+styleSheet.textContent = departmentStyles;
+document.head.appendChild(styleSheet);
+</script>
+{% endblock %} 
