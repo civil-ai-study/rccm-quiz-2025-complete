@@ -3,14 +3,15 @@
  * PWAオフライン対応・キャッシュ管理
  */
 
-const CACHE_NAME = 'rccm-quiz-v2.0.0'; // モバイル対応版
+const CACHE_NAME = 'rccm-exam-v3.0.0'; // 試験対応版 - 強制更新対応
 
 const urlsToCache = [
   '/',
   '/static/js/mobile-features.js',
+  '/static/js/exam.js',
   '/static/manifest.json',
-  // Core app pages
-  '/quiz',
+  // Core app pages - quiz → exam に変更
+  '/exam',
   '/categories',
   '/statistics',
   '/ai_analysis',

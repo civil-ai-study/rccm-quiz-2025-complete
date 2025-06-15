@@ -122,12 +122,16 @@ class CacheManager:
     """
     
     def __init__(self):
+        # 企業環境用に拡張されたキャッシュ設定
         self.caches = {
-            'questions': LRUCache(maxsize=10, ttl=3600),  # 問題データ
-            'validation': LRUCache(maxsize=50, ttl=1800),  # データ検証結果
-            'csv_parsing': LRUCache(maxsize=20, ttl=3600),  # CSV解析結果
-            'file_metadata': LRUCache(maxsize=100, ttl=300),  # ファイルメタデータ
-            'department_mapping': LRUCache(maxsize=200, ttl=7200),  # 部門マッピング
+            'questions': LRUCache(maxsize=50, ttl=7200),  # 問題データ（企業用拡張）
+            'validation': LRUCache(maxsize=100, ttl=3600),  # データ検証結果
+            'csv_parsing': LRUCache(maxsize=50, ttl=7200),  # CSV解析結果
+            'file_metadata': LRUCache(maxsize=200, ttl=600),  # ファイルメタデータ
+            'department_mapping': LRUCache(maxsize=500, ttl=14400),  # 部門マッピング
+            'user_sessions': LRUCache(maxsize=1000, ttl=1800),  # ユーザーセッション
+            'question_filters': LRUCache(maxsize=200, ttl=3600),  # 問題フィルター
+            'aggregated_stats': LRUCache(maxsize=100, ttl=900),  # 集計統計
         }
         self.background_executor = ThreadPoolExecutor(max_workers=2, thread_name_prefix='cache_bg')
         
@@ -553,4 +557,173 @@ def get_sample_data_improved() -> List[Dict]:
             'keywords': 'セメント,凝結時間,品質管理',
             'practical_tip': '現場では気温や湿度によって凝結時間が変化するため、季節に応じた施工計画の調整が必要です。'
         }
-    ] 
+    ]
+
+# === 企業環境用CSVデータアクセス最適化 ===
+
+class EnterpriseDataManager:
+    """
+    企業環境でのCSVデータアクセス最適化
+    大量同時アクセス・高速読み込み対応
+    """
+    
+    def __init__(self, data_dir: str = 'data', cache_manager: CacheManager = None):
+        self.data_dir = data_dir
+        self.cache_manager = cache_manager or cache_manager_instance
+        self.file_watcher = {}
+        self.preload_executor = ThreadPoolExecutor(max_workers=4, thread_name_prefix='preload')
+        self.compression_enabled = True
+        
+    def preload_all_data(self):
+        """
+        アプリケーション起動時にすべてのCSVデータを事前読み込み
+        企業環境での高速レスポンス確保
+        """
+        logger.info("CSVデータの事前読み込み開始（企業環境最適化）")
+        
+        try:
+            csv_files = [
+                '4-1.csv',  # 基礎科目
+                '4-2_2008.csv', '4-2_2009.csv', '4-2_2010.csv',
+                '4-2_2011.csv', '4-2_2012.csv', '4-2_2013.csv',
+                '4-2_2014.csv', '4-2_2015.csv', '4-2_2016.csv',
+                '4-2_2017.csv', '4-2_2018.csv'
+            ]
+            
+            # 並列読み込みで高速化
+            futures = []
+            for csv_file in csv_files:
+                future = self.preload_executor.submit(self._preload_single_file, csv_file)
+                futures.append(future)
+            
+            # 結果確認
+            loaded_count = 0
+            for future in futures:
+                try:
+                    if future.result():
+                        loaded_count += 1
+                except Exception as e:
+                    logger.error(f"CSVファイル事前読み込みエラー: {e}")
+            
+            logger.info(f"CSVデータ事前読み込み完了: {loaded_count}/{len(csv_files)} ファイル")
+            return loaded_count == len(csv_files)
+            
+        except Exception as e:
+            logger.error(f"CSVデータ事前読み込み失敗: {e}")
+            return False
+    
+    def _preload_single_file(self, filename: str) -> bool:
+        """単一CSVファイルの事前読み込み"""
+        try:
+            file_path = os.path.join(self.data_dir, filename)
+            if not os.path.exists(file_path):
+                return False
+            
+            # キャッシュキー生成
+            cache_key = f"csv_preload_{filename}"
+            
+            # ファイルサイズとタイムスタンプでキャッシュ判定
+            stat = os.stat(file_path)
+            metadata_key = f"{cache_key}_metadata"
+            current_metadata = f"{stat.st_size}_{stat.st_mtime}"
+            
+            metadata_cache = self.cache_manager.get_cache('file_metadata')
+            cached_metadata = metadata_cache.get(metadata_key)
+            
+            if cached_metadata == current_metadata:
+                # メタデータが一致する場合はキャッシュ済み
+                return True
+            
+            # ファイル読み込み
+            data = load_questions_improved([file_path])
+            
+            # キャッシュに保存
+            questions_cache = self.cache_manager.get_cache('questions')
+            questions_cache.put(cache_key, data)
+            metadata_cache.put(metadata_key, current_metadata)
+            
+            logger.debug(f"事前読み込み完了: {filename} ({len(data)}問)")
+            return True
+            
+        except Exception as e:
+            logger.error(f"ファイル事前読み込みエラー {filename}: {e}")
+            return False
+    
+    def get_optimized_data(self, filename: str) -> List[Dict]:
+        """
+        最適化されたデータ取得
+        キャッシュファーストアプローチ
+        """
+        cache_key = f"csv_preload_{filename}"
+        questions_cache = self.cache_manager.get_cache('questions')
+        
+        # キャッシュから取得試行
+        cached_data = questions_cache.get(cache_key)
+        if cached_data:
+            return cached_data
+        
+        # キャッシュミス時はリアルタイム読み込み
+        logger.info(f"キャッシュミス - リアルタイム読み込み: {filename}")
+        file_path = os.path.join(self.data_dir, filename)
+        data = load_questions_improved([file_path])
+        
+        # 結果をキャッシュに保存
+        questions_cache.put(cache_key, data)
+        return data
+    
+    def get_file_integrity_check(self) -> Dict[str, Any]:
+        """
+        CSVファイルの整合性チェック
+        企業環境でのデータ品質保証
+        """
+        try:
+            integrity_report = {
+                'timestamp': datetime.now().isoformat(),
+                'files': {},
+                'total_questions': 0,
+                'status': 'healthy'
+            }
+            
+            # 各CSVファイルをチェック
+            for filename in os.listdir(self.data_dir):
+                if filename.endswith('.csv') and not filename.endswith(('_backup.csv', '_fixed.csv')):
+                    file_path = os.path.join(self.data_dir, filename)
+                    
+                    try:
+                        # ファイル基本情報
+                        stat = os.stat(file_path)
+                        
+                        # データ読み込みテスト
+                        data = self.get_optimized_data(filename)
+                        
+                        integrity_report['files'][filename] = {
+                            'size_bytes': stat.st_size,
+                            'modified': datetime.fromtimestamp(stat.st_mtime).isoformat(),
+                            'question_count': len(data),
+                            'status': 'ok'
+                        }
+                        integrity_report['total_questions'] += len(data)
+                        
+                    except Exception as e:
+                        integrity_report['files'][filename] = {
+                            'status': 'error',
+                            'error': str(e)
+                        }
+                        integrity_report['status'] = 'degraded'
+            
+            logger.info(f"データ整合性チェック完了: {integrity_report['total_questions']}問")
+            return integrity_report
+            
+        except Exception as e:
+            logger.error(f"データ整合性チェックエラー: {e}")
+            return {
+                'timestamp': datetime.now().isoformat(),
+                'status': 'error',
+                'error': str(e)
+            }
+
+# グローバルキャッシュマネージャーインスタンス
+cache_manager_instance = CacheManager()
+
+# グローバルインスタンス（企業環境用）
+enterprise_data_manager = EnterpriseDataManager(cache_manager=cache_manager_instance) 

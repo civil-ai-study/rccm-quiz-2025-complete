@@ -28,19 +28,25 @@ class DataManager:
             os.makedirs(self.data_dir)
             logger.info(f"データディレクトリ作成: {self.data_dir}")
     
-    def get_user_id(self, session_id: str) -> str:
+    def get_user_id(self, session_id: str, user_name: str = None) -> str:
         """
-        セッションIDからユーザーIDを生成
-        プライバシー保護のため、ハッシュ化
+        セッションIDまたはユーザー名からユーザーIDを生成
+        企業環境対応: ユーザー名優先でID生成
         """
-        return hashlib.md5(session_id.encode()).hexdigest()[:12]
+        if user_name:
+            # ユーザー名ベースのID生成（企業環境対応）
+            clean_name = user_name.replace(' ', '_').replace('　', '_')
+            return f"user_{hashlib.md5(clean_name.encode('utf-8')).hexdigest()[:8]}"
+        else:
+            # 従来のセッションIDベース（後方互換性）
+            return hashlib.md5(session_id.encode()).hexdigest()[:12]
     
-    def save_user_data(self, session_id: str, data: Dict[str, Any]) -> bool:
+    def save_user_data(self, session_id: str, data: Dict[str, Any], user_name: str = None) -> bool:
         """
-        ユーザーデータの保存
+        ユーザーデータの保存（企業環境対応）
         """
         try:
-            user_id = self.get_user_id(session_id)
+            user_id = self.get_user_id(session_id, user_name)
             file_path = os.path.join(self.data_dir, f"{user_id}.json")
             
             # 既存データがあれば読み込み
@@ -68,12 +74,12 @@ class DataManager:
             logger.error(f"ユーザーデータ保存エラー: {e}")
             return False
     
-    def load_user_data(self, session_id: str) -> Dict[str, Any]:
+    def load_user_data(self, session_id: str, user_name: str = None) -> Dict[str, Any]:
         """
-        ユーザーデータの読み込み
+        ユーザーデータの読み込み（企業環境対応）
         """
         try:
-            user_id = self.get_user_id(session_id)
+            user_id = self.get_user_id(session_id, user_name)
             file_path = os.path.join(self.data_dir, f"{user_id}.json")
             
             if not os.path.exists(file_path):
@@ -156,46 +162,247 @@ class SessionDataManager:
     def __init__(self, data_manager: DataManager):
         self.data_manager = data_manager
     
-    def save_session_data(self, session, session_id: str):
+    def save_session_data(self, session, session_id: str, user_name: str = None):
         """
-        セッションデータをファイルに保存
+        セッションデータをファイルに保存（企業環境対応）
         """
         # 保存対象データの選択
         save_data = {
+            'user_name': user_name or session.get('user_name', ''),
             'history': session.get('history', []),
             'srs_data': session.get('srs_data', {}),
             'category_stats': session.get('category_stats', {}),
+            'bookmarks': session.get('bookmarks', []),
+            'last_updated': datetime.now().isoformat()
         }
         
         # LocalStorageデータは含めない（クライアント側で管理）
-        return self.data_manager.save_user_data(session_id, save_data)
+        return self.data_manager.save_user_data(session_id, save_data, user_name)
     
-    def load_session_data(self, session, session_id: str):
+    def load_session_data(self, session, session_id: str, user_name: str = None):
         """
-        ファイルからセッションデータを復元
+        ファイルからセッションデータを復元（企業環境対応）
         """
-        data = self.data_manager.load_user_data(session_id)
+        data = self.data_manager.load_user_data(session_id, user_name)
         
         if data:
             session['history'] = data.get('history', [])
-            session['srs_data'] = data.get('srs_data', {}),
-            session['category_stats'] = data.get('category_stats', {}),
+            session['srs_data'] = data.get('srs_data', {})
+            session['category_stats'] = data.get('category_stats', {})
+            session['bookmarks'] = data.get('bookmarks', [])
             session.modified = True
             
-            logger.info("セッションデータ復元完了")
+            logger.info(f"セッションデータ復元完了 - ユーザー: {user_name or 'セッション'}")
             return True
         
         return False
     
-    def auto_save_trigger(self, session, session_id: str):
+    def auto_save_trigger(self, session, session_id: str, user_name: str = None):
         """
-        自動保存のトリガー
+        自動保存のトリガー（企業環境対応）
         """
         # 一定の条件で自動保存
         history_count = len(session.get('history', []))
         
         # 10問ごと、または1時間ごとに自動保存
         if history_count > 0 and (history_count % 10 == 0):
-            return self.save_session_data(session, session_id)
+            return self.save_session_data(session, session_id, user_name)
         
-        return True 
+        return True
+
+# 企業環境用ユーザー管理機能
+class EnterpriseUserManager:
+    """
+    企業環境での複数ユーザー管理
+    マルチユーザー対応、進捗管理、統計情報
+    """
+    
+    def __init__(self, data_manager: DataManager):
+        self.data_manager = data_manager
+    
+    def get_all_users(self) -> Dict[str, Dict[str, Any]]:
+        """
+        全ユーザーの一覧と基本統計を取得
+        """
+        try:
+            users = {}
+            data_dir = self.data_manager.data_dir
+            
+            if not os.path.exists(data_dir):
+                return users
+            
+            # 全てのユーザーデータファイルを確認
+            for filename in os.listdir(data_dir):
+                if filename.endswith('.json') and not filename.startswith('backup'):
+                    file_path = os.path.join(data_dir, filename)
+                    
+                    try:
+                        with open(file_path, 'r', encoding='utf-8') as f:
+                            data = json.load(f)
+                        
+                        user_id = filename[:-5]  # .json を除去
+                        user_name = data.get('user_name', f'ユーザー_{user_id[:8]}')
+                        
+                        # 基本統計計算
+                        history = data.get('history', [])
+                        total_questions = len(history)
+                        correct_answers = sum(1 for h in history if h.get('is_correct', False))
+                        accuracy = (correct_answers / total_questions * 100) if total_questions > 0 else 0
+                        
+                        # 学習日数計算
+                        study_dates = set()
+                        for h in history:
+                            if h.get('timestamp'):
+                                date_str = h['timestamp'][:10]
+                                study_dates.add(date_str)
+                        
+                        users[user_id] = {
+                            'user_name': user_name,
+                            'total_questions': total_questions,
+                            'correct_answers': correct_answers,
+                            'accuracy': round(accuracy, 1),
+                            'study_days': len(study_dates),
+                            'last_study': data.get('last_updated', '未記録'),
+                            'srs_questions': len(data.get('srs_data', {})),
+                            'bookmarks': len(data.get('bookmarks', []))
+                        }
+                        
+                    except Exception as e:
+                        logger.error(f"ユーザーファイル読み込みエラー {filename}: {e}")
+                        continue
+            
+            return users
+            
+        except Exception as e:
+            logger.error(f"全ユーザー取得エラー: {e}")
+            return {}
+    
+    def get_user_progress_report(self, user_name: str) -> Dict[str, Any]:
+        """
+        特定ユーザーの詳細進捗レポート
+        """
+        try:
+            # ユーザー名からuser_idを生成
+            user_id = self.data_manager.get_user_id("", user_name)
+            data = self.data_manager.load_user_data("", user_name)
+            
+            if not data:
+                return {'error': 'ユーザーデータが見つかりません'}
+            
+            history = data.get('history', [])
+            srs_data = data.get('srs_data', {})
+            category_stats = data.get('category_stats', {})
+            
+            # 詳細統計計算
+            total_questions = len(history)
+            correct_answers = sum(1 for h in history if h.get('is_correct', False))
+            accuracy = (correct_answers / total_questions * 100) if total_questions > 0 else 0
+            
+            # 部門別統計
+            department_stats = {}
+            for h in history:
+                dept = h.get('department', '不明')
+                if dept not in department_stats:
+                    department_stats[dept] = {'total': 0, 'correct': 0}
+                department_stats[dept]['total'] += 1
+                if h.get('is_correct', False):
+                    department_stats[dept]['correct'] += 1
+            
+            # 部門別正答率計算
+            for dept in department_stats:
+                total = department_stats[dept]['total']
+                correct = department_stats[dept]['correct']
+                department_stats[dept]['accuracy'] = (correct / total * 100) if total > 0 else 0
+            
+            # 学習パターン分析
+            study_pattern = self._analyze_study_pattern(history)
+            
+            report = {
+                'user_name': user_name,
+                'user_id': user_id,
+                'overview': {
+                    'total_questions': total_questions,
+                    'correct_answers': correct_answers,
+                    'accuracy': round(accuracy, 1),
+                    'study_days': len(set(h.get('timestamp', '')[:10] for h in history if h.get('timestamp'))),
+                    'srs_questions': len(srs_data),
+                    'bookmarks': len(data.get('bookmarks', []))
+                },
+                'department_performance': department_stats,
+                'study_pattern': study_pattern,
+                'recent_activity': history[-10:] if history else [],
+                'srs_status': self._get_srs_status(srs_data),
+                'generated_at': datetime.now().isoformat()
+            }
+            
+            return report
+            
+        except Exception as e:
+            logger.error(f"ユーザー進捗レポートエラー: {e}")
+            return {'error': str(e)}
+    
+    def _analyze_study_pattern(self, history: list) -> Dict[str, Any]:
+        """学習パターンの分析"""
+        if not history:
+            return {}
+        
+        # 時間帯分析
+        hour_distribution = {}
+        for h in history:
+            timestamp = h.get('timestamp', '')
+            if len(timestamp) >= 13:
+                hour = int(timestamp[11:13])
+                hour_distribution[hour] = hour_distribution.get(hour, 0) + 1
+        
+        # 最も活発な時間帯
+        peak_hour = max(hour_distribution.items(), key=lambda x: x[1])[0] if hour_distribution else None
+        
+        # 連続学習日数
+        dates = sorted(set(h.get('timestamp', '')[:10] for h in history if h.get('timestamp')))
+        streak = self._calculate_streak(dates)
+        
+        return {
+            'peak_study_hour': peak_hour,
+            'current_streak': streak,
+            'total_study_sessions': len(dates),
+            'avg_questions_per_session': len(history) / len(dates) if dates else 0
+        }
+    
+    def _calculate_streak(self, dates: list) -> int:
+        """連続学習日数の計算"""
+        if not dates:
+            return 0
+        
+        from datetime import datetime, timedelta
+        today = datetime.now().date()
+        streak = 0
+        
+        for i, date_str in enumerate(reversed(dates)):
+            try:
+                date = datetime.strptime(date_str, '%Y-%m-%d').date()
+                expected_date = today - timedelta(days=i)
+                if date == expected_date:
+                    streak += 1
+                else:
+                    break
+            except:
+                break
+        
+        return streak
+    
+    def _get_srs_status(self, srs_data: dict) -> Dict[str, int]:
+        """SRS問題の状態統計"""
+        status = {'new': 0, 'learning': 0, 'review': 0, 'mastered': 0}
+        
+        for question_id, data in srs_data.items():
+            level = data.get('level', 0)
+            if level == 0:
+                status['new'] += 1
+            elif level <= 2:
+                status['learning'] += 1
+            elif level <= 4:
+                status['review'] += 1
+            else:
+                status['mastered'] += 1
+        
+        return status 

@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  rccm-app:
+    build: .
+    container_name: rccm-quiz-app
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=enterprise
+      - FLASK_HOST=0.0.0.0
+      - FLASK_PORT=5000
+      - WORKERS=4
+      - MAX_CONCURRENT_USERS=100
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./data:/app/data:rw
+      - ./user_data:/app/user_data:rw
+      - ./logs:/app/logs:rw
+      - ./backups:/app/backups:rw
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - rccm-network
+
+  # オプション: Redis（将来のセッション管理強化用）
+  redis:
+    image: redis:7-alpine
+    container_name: rccm-redis
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    networks:
+      - rccm-network
+    restart: unless-stopped
+    profiles:
+      - redis
+
+  # オプション: Nginx（リバースプロキシ用）
+  nginx:
+    image: nginx:alpine
+    container_name: rccm-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - rccm-app
+    networks:
+      - rccm-network
+    restart: unless-stopped
+    profiles:
+      - nginx
+
+volumes:
+  redis-data:
+
+networks:
+  rccm-network:
+    driver: bridge

@@ -5,6 +5,41 @@
   <h1 class="mb-4">RCCM試験問題集アプリ</h1>
   <p>RCCM試験対策用Webアプリです。</p>
   
+  <!-- ユーザー識別セクション（企業環境対応） -->
+  <div class="user-identification mb-4" id="userSection">
+    {% if session.get('user_name') %}
+    <div class="alert alert-success d-inline-block">
+      <i class="fas fa-user me-2"></i>
+      <strong>{{ session.get('user_name') }}</strong> さん、お疲れ様です！
+      <button class="btn btn-sm btn-outline-secondary ms-2" onclick="changeUser()">
+        <i class="fas fa-user-edit"></i> ユーザー変更
+      </button>
+    </div>
+    {% else %}
+    <div class="card mx-auto" style="max-width: 400px;">
+      <div class="card-body">
+        <h5 class="card-title">
+          <i class="fas fa-user-plus me-2"></i>ユーザー名を入力してください
+        </h5>
+        <p class="text-muted small">学習進捗を個別管理するためのユーザー識別です</p>
+        <form method="POST" action="/set_user" class="d-flex gap-2">
+          <input type="text" name="user_name" class="form-control" 
+                 placeholder="山田太郎" required maxlength="20" 
+                 pattern="[a-zA-Z0-9ひらがなカタカナ漢字\s]+" 
+                 title="日本語、英数字、スペースが使用できます">
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-arrow-right"></i> 開始
+          </button>
+        </form>
+        <small class="text-muted">
+          <i class="fas fa-info-circle"></i> 
+          複数人で利用する場合は、それぞれ異なる名前を入力してください
+        </small>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  
   <!-- 学習ストリーク表示 -->
   <div class="streak-display">
     🔥 連続学習: <span id="streak-counter">0</span>日目
@@ -312,6 +347,34 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('ゲーミフィケーション状態の取得に失敗:', error);
         });
 });
+
+// ユーザー変更機能（企業環境での複数ユーザー対応）
+function changeUser() {
+    if (confirm('ユーザーを変更しますか？\n現在の学習セッションデータは保持されます。')) {
+        window.location.href = '/change_user';
+    }
+}
+
+// キャッシュクリア機能
+function clearCache() {
+    // Service Worker のキャッシュクリア
+    if ('serviceWorker' in navigator && 'caches' in window) {
+        caches.keys().then(function(cacheNames) {
+            return Promise.all(
+                cacheNames.map(function(cacheName) {
+                    return caches.delete(cacheName);
+                })
+            );
+        }).then(function() {
+            console.log('キャッシュクリア完了');
+            // ページリロード
+            window.location.reload(true);
+        });
+    } else {
+        // 通常のハードリロード
+        window.location.reload(true);
+    }
+}
 
 // UI/UX改善用追加機能
 // パフォーマンスモニタリング

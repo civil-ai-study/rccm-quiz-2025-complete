@@ -50,9 +50,45 @@ app.config['SESSION_USE_SIGNER'] = True
 data_manager = DataManager()
 session_data_manager = SessionDataManager(data_manager)
 
+# 企業環境用ユーザー管理
+from data_manager import EnterpriseUserManager
+enterprise_user_manager = EnterpriseUserManager(data_manager)
+
+# 企業環境用データ管理
+from utils import enterprise_data_manager
+
 # 問題データのキャッシュ
 _questions_cache = None
 _cache_timestamp = None
+
+# 強力なキャッシュ制御ヘッダーを設定（マルチユーザー・企業環境対応）
+@app.after_request
+def after_request(response):
+    """
+    全てのレスポンスにキャッシュ制御ヘッダーを追加
+    企業環境での複数ユーザー利用に対応
+    """
+    # 強力なキャッシュ制御でブラウザキャッシュを無効化
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    
+    # セキュリティヘッダー追加
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-Frame-Options'] = 'DENY'
+    response.headers['X-XSS-Protection'] = '1; mode=block'
+    
+    # CORS対応（企業環境でのクロスオリジンアクセス）
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+    
+    # サービスワーカー更新強制
+    if '/sw.js' in request.path:
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response.headers['Service-Worker-Allowed'] = '/'
+    
+    return response
 
 # セキュリティ機能
 def sanitize_input(input_string):
@@ -407,35 +443,91 @@ def before_request():
         session['session_id'] = os.urandom(16).hex()
         session_id = session['session_id']
     
-    # 初回アクセス時にデータを復元
+    # 初回アクセス時にデータを復元（ユーザー名考慮）
     if 'data_loaded' not in session:
-        session_data_manager.load_session_data(session, session_id)
+        user_name = session.get('user_name')
+        session_data_manager.load_session_data(session, session_id, user_name)
         session['data_loaded'] = True
 
 @app.after_request
-def after_request(response):
-    """リクエスト後の処理（自動保存）"""
+def after_request_data_save(response):
+    """リクエスト後の処理（自動保存・ユーザー名考慮）"""
     session_id = session.get('session_id')
     if session_id and session.get('history'):
+        user_name = session.get('user_name')
         # 自動保存のトリガー
-        session_data_manager.auto_save_trigger(session, session_id)
+        session_data_manager.auto_save_trigger(session, session_id, user_name)
     
     return response
 
 @app.route('/')
 def index():
-    """ホーム画面"""
-    if 'history' not in session:
-        session['history'] = []
-    if 'category_stats' not in session:
-        session['category_stats'] = {}
-    
-    session.modified = True
-    response = make_response(render_template('index.html'))
-    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-    response.headers['Pragma'] = 'no-cache'
-    response.headers['Expires'] = '0'
-    return response
+    """ホーム画面（ユーザー識別対応）"""
+    try:
+        # セッション初期化
+        if 'history' not in session:
+            session['history'] = []
+        if 'category_stats' not in session:
+            session['category_stats'] = {}
+        
+        user_name = session.get('user_name')
+        if user_name:
+            logger.info(f"ホームページアクセス - ユーザー: {user_name}")
+        else:
+            logger.info("ホームページアクセス - 未認証ユーザー")
+        
+        session.modified = True
+        return render_template('index.html')
+        
+    except Exception as e:
+        logger.error(f"ホームページエラー: {e}")
+        return render_template('error.html', error_message=str(e)), 500
+
+@app.route('/set_user', methods=['POST'])
+def set_user():
+    """ユーザー名を設定（企業環境での個別識別）"""
+    try:
+        user_name = request.form.get('user_name', '').strip()
+        
+        if not user_name:
+            return redirect(url_for('index'))
+        
+        # 入力値のサニタイズ
+        user_name = sanitize_input(user_name)
+        
+        # ユーザー名の長さ制限
+        if len(user_name) > 20:
+            user_name = user_name[:20]
+        
+        # セッションにユーザー名を保存
+        session['user_name'] = user_name
+        session['user_id'] = f"user_{hash(user_name) % 100000:05d}"  # 簡易ユーザーID生成
+        session['login_time'] = datetime.now().isoformat()
+        
+        logger.info(f"ユーザー設定完了: {user_name} (ID: {session['user_id']})")
+        return redirect(url_for('index'))
+        
+    except Exception as e:
+        logger.error(f"ユーザー設定エラー: {e}")
+        return redirect(url_for('index'))
+
+@app.route('/change_user')
+def change_user():
+    """ユーザー変更（ログアウト）"""
+    try:
+        old_user = session.get('user_name', '不明')
+        
+        # ユーザー情報のみクリア（学習データは保持）
+        session.pop('user_name', None)
+        session.pop('user_id', None)
+        session.pop('login_time', None)
+        
+        logger.info(f"ユーザー変更: {old_user} がログアウト")
+        return redirect(url_for('index'))
+        
+    except Exception as e:
+        logger.error(f"ユーザー変更エラー: {e}")
+        return redirect(url_for('index'))
 
 @app.route('/force_refresh')
 def force_refresh():
@@ -3476,10 +3568,121 @@ def api_personalization_ui(user_id):
         logger.error(f"UI個人化API エラー: {e}")
         return jsonify({'error': str(e)}), 500
 
-# 初期化
+# 企業環境用管理API
+@app.route('/api/enterprise/users')
+def api_enterprise_users():
+    """全ユーザー一覧API（企業環境用）"""
+    try:
+        users = enterprise_user_manager.get_all_users()
+        
+        return jsonify({
+            'success': True,
+            'users': users,
+            'total_users': len(users),
+            'generated_at': datetime.now().isoformat()
+        })
+        
+    except Exception as e:
+        logger.error(f"企業ユーザー一覧API エラー: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/enterprise/user/<user_name>/report')
+def api_enterprise_user_report(user_name):
+    """ユーザー詳細進捗レポートAPI（企業環境用）"""
+    try:
+        report = enterprise_user_manager.get_user_progress_report(user_name)
+        
+        if 'error' in report:
+            return jsonify({'success': False, 'error': report['error']}), 404
+        
+        return jsonify({
+            'success': True,
+            'report': report
+        })
+        
+    except Exception as e:
+        logger.error(f"企業ユーザーレポートAPI エラー: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/enterprise/dashboard')
+def enterprise_dashboard():
+    """企業環境用管理ダッシュボード"""
+    try:
+        # 管理者向けダッシュボード表示
+        users = enterprise_user_manager.get_all_users()
+        
+        return render_template('enterprise_dashboard.html', users=users)
+        
+    except Exception as e:
+        logger.error(f"企業ダッシュボードエラー: {e}")
+        return render_template('error.html', error_message=str(e)), 500
+
+@app.route('/api/enterprise/data/integrity')
+def api_enterprise_data_integrity():
+    """データ整合性チェックAPI（企業環境用）"""
+    try:
+        integrity_report = enterprise_data_manager.get_file_integrity_check()
+        
+        return jsonify({
+            'success': True,
+            'integrity_report': integrity_report
+        })
+        
+    except Exception as e:
+        logger.error(f"データ整合性チェックAPI エラー: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/enterprise/cache/stats')
+def api_enterprise_cache_stats():
+    """キャッシュ統計API（企業環境用）"""
+    try:
+        from utils import cache_manager_instance
+        cache_stats = cache_manager_instance.get_stats()
+        
+        return jsonify({
+            'success': True,
+            'cache_stats': cache_stats,
+            'timestamp': datetime.now().isoformat()
+        })
+        
+    except Exception as e:
+        logger.error(f"キャッシュ統計API エラー: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/enterprise/cache/clear', methods=['POST'])
+def api_enterprise_cache_clear():
+    """キャッシュクリアAPI（企業環境用）"""
+    try:
+        from utils import cache_manager_instance
+        cache_manager_instance.clear_all()
+        
+        return jsonify({
+            'success': True,
+            'message': 'キャッシュをクリアしました',
+            'timestamp': datetime.now().isoformat()
+        })
+        
+    except Exception as e:
+        logger.error(f"キャッシュクリアAPI エラー: {e}")
+        return jsonify({'error': str(e)}), 500
+
+# 初期化（企業環境最適化）
 try:
+    # 従来の読み込み（後方互換性）
     initial_questions = load_questions()
-    logger.info(f"アプリケーション初期化完了: {len(initial_questions)}問読み込み")
+    logger.info(f"基本アプリケーション初期化完了: {len(initial_questions)}問読み込み")
+    
+    # 企業環境用データ事前読み込み
+    preload_success = enterprise_data_manager.preload_all_data()
+    if preload_success:
+        logger.info("企業環境用データ事前読み込み完了 - 高速アクセス準備完了")
+    else:
+        logger.warning("企業環境用データ事前読み込み部分失敗 - 基本機能は利用可能")
+    
+    # データ整合性チェック
+    integrity_report = enterprise_data_manager.get_file_integrity_check()
+    logger.info(f"データ整合性チェック: {integrity_report['status']} - 総計{integrity_report['total_questions']}問")
+    
 except Exception as e:
     logger.error(f"アプリケーション初期化エラー: {e}")
 

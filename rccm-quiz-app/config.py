@@ -192,14 +192,64 @@ class LogConfig:
 class DevelopmentConfig(Config):
     DEBUG = True
     SESSION_COOKIE_SECURE = False
+    TESTING = True
 
 class ProductionConfig(Config):
     DEBUG = False
     SESSION_COOKIE_SECURE = True
+    TESTING = False
+
+class EnterpriseConfig(Config):
+    """企業環境用設定"""
+    DEBUG = False
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = 'Strict'
+    PERMANENT_SESSION_LIFETIME = 28800  # 8時間
+    TESTING = False
+    
+    # 企業セキュリティ強化
+    WTF_CSRF_ENABLED = True
+    WTF_CSRF_TIME_LIMIT = None
+    
+    # パフォーマンス設定
+    SEND_FILE_MAX_AGE_DEFAULT = 0  # 静的ファイルキャッシュ無効
+    TEMPLATES_AUTO_RELOAD = False
+    
+    # ログ設定（企業環境用）
+    LOG_LEVEL = 'WARNING'
+    LOG_FILE = '/var/log/rccm_app.log'
+    
+    # マルチユーザー設定
+    MAX_CONCURRENT_USERS = int(os.environ.get('MAX_CONCURRENT_USERS', 100))
+    USER_SESSION_TIMEOUT = 3600  # 1時間のアイドルタイムアウト
+
+class ServerConfig:
+    """サーバー配置用設定"""
+    
+    # サーバー設定
+    HOST = os.environ.get('FLASK_HOST', '0.0.0.0')
+    PORT = int(os.environ.get('FLASK_PORT', 5000))
+    WORKERS = int(os.environ.get('WORKERS', 4))
+    
+    # データベース設定（将来の拡張用）
+    DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:///rccm_app.db')
+    
+    # Redis設定（セッション管理用）
+    REDIS_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+    
+    # ファイルストレージ設定
+    DATA_DIR = os.environ.get('DATA_DIR', '/app/data')
+    UPLOAD_DIR = os.environ.get('UPLOAD_DIR', '/app/uploads')
+    
+    # バックアップ設定
+    BACKUP_DIR = os.environ.get('BACKUP_DIR', '/app/backups')
+    AUTO_BACKUP_INTERVAL = int(os.environ.get('AUTO_BACKUP_INTERVAL', 3600))  # 1時間
 
 # 設定選択
 config = {
     'development': DevelopmentConfig,
     'production': ProductionConfig,
+    'enterprise': EnterpriseConfig,
     'default': DevelopmentConfig
 } 
