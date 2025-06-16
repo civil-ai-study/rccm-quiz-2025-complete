@@ -13,14 +13,45 @@
         <a href="/exam" class="btn btn-primary">問題を始める</a>
     </div>
     {% else %}
-    <div class="row mb-4">
-        <div class="col-md-8">
-            <p class="lead">登録された復習問題: <strong>{{ total_count or 0 }}問</strong></p>
+    <!-- 復習システム説明カード -->
+    <div class="card mb-4 border-info">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0"><i class="fas fa-brain me-2"></i>🎯 科学的復習システム（SRS）</h5>
         </div>
-        <div class="col-md-4 text-end">
-            <a href="/exam/review" class="btn btn-success btn-lg">
-                <i class="fas fa-play"></i> 復習問題開始
-            </a>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <p class="mb-2"><strong>登録された復習問題: {{ total_count or 0 }}問</strong></p>
+                    <div class="small text-muted">
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="fas fa-sort-amount-down text-warning me-2 mt-1"></i>
+                            <div>
+                                <strong>優先度ベース選択:</strong> ランダムではなく、弱点スコア（間違い率 + 難易度 + 期限超過）で最も復習が必要な問題を優先的に出題
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="fas fa-target text-danger me-2 mt-1"></i>
+                            <div>
+                                <strong>弱点集中攻略:</strong> 間違いが多い問題ほど高頻度で出題され、苦手分野を効率的に克服
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-trophy text-success me-2 mt-1"></i>
+                            <div>
+                                <strong>自動卒業システム:</strong> 5回連続正解で「マスター認定」→ 復習リストから自動除外
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <a href="/exam/review" class="btn btn-success btn-lg mb-2 w-100">
+                        <i class="fas fa-play me-2"></i>復習問題開始
+                    </a>
+                    <small class="text-muted d-block">
+                        <i class="fas fa-clock me-1"></i>最適タイミングで弱点を攻略
+                    </small>
+                </div>
+            </div>
         </div>
     </div>
 

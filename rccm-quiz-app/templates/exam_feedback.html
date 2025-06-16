@@ -14,14 +14,14 @@
         </div>
     </div>
     
-    <!-- 正解・不正解表示（センタリング） -->
+    <!-- 正解・不正解表示（センタリング） - エラーメッセージと区別するため改善 -->
     <div class="text-center mb-4">
         {% if is_correct %}
             <h1 class="display-3 text-success fw-bold result-title">✓ 正解！</h1>
             <p class="lead text-success">おめでとうございます！</p>
         {% else %}
-            <h1 class="display-3 text-danger fw-bold result-title">× 不正解</h1>
-            <p class="lead text-danger">次はがんばりましょう！</p>
+            <h1 class="display-3 fw-bold result-title" style="color: #6f42c1;">△ 惜しい！</h1>
+            <p class="lead" style="color: #6f42c1;">次回はきっと正解できます！</p>
         {% endif %}
     </div>
 
@@ -76,8 +76,8 @@
 
     <!-- メインナビゲーション -->
     <div class="mt-4 text-center">
-        <!-- デバッグ情報 -->
-        {% if config.DEBUG %}
+        <!-- デバッグ情報（本番では非表示） -->
+        {% if false %}
         <div class="debug-info alert alert-info" style="font-size: 0.8rem; margin-bottom: 1rem;">
             <strong>DEBUG:</strong> is_last_question={{ is_last_question }}, next_question_index={{ next_question_index }}, 
             current_question_number={{ current_question_number }}, total_questions={{ total_questions }}
@@ -91,12 +91,12 @@
             {% set is_final = is_last_question if is_last_question is defined and is_last_question is not none else (question_num >= total_num) %}
             
             {% if not is_final %}
-                <!-- 次の問題へボタン（確実に表示される） -->
+                <!-- 次の問題へボタン（確実に表示される） - 視認性強化 -->
                 <!-- next_question_index は0ベースインデックス、フォールバックは current_question_number (1ベース) を0ベース化 -->
                 <a href="/exam?next=1&current={{ next_question_index if next_question_index is defined and next_question_index is not none else question_num }}" 
                    class="btn btn-primary btn-lg px-5 py-3 main-nav-btn"
-                   style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; position: relative !important; z-index: 1000 !important;">
-                    <i class="fas fa-arrow-right me-2"></i>次の問題へ
+                   style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; position: relative !important; z-index: 1000 !important; background-color: #0d6efd !important; border: 3px solid #0d6efd !important; box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3) !important;">
+                    <i class="fas fa-arrow-right me-2"></i>次の問題へ ({{ question_num + 1 }}/{{ total_num }})
                 </a>
             {% else %}
                 <!-- 結果を見るボタン -->
@@ -105,25 +105,6 @@
                    style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; position: relative !important; z-index: 1000 !important;">
                     <i class="fas fa-chart-bar me-2"></i>結果を見る
                 </a>
-            {% endif %}
-        </div>
-        
-        <!-- バックアップナビゲーション（表示問題に対する緊急対応） -->
-        <div class="mt-3 backup-navigation" style="display: block !important;">
-            {% if not is_final %}
-                <div class="alert alert-light text-center" style="display: block !important;">
-                    <small class="text-muted">ボタンが表示されない場合:</small><br>
-                    <a href="/exam?next=1&current={{ next_question_index if next_question_index is defined else question_num }}" class="btn btn-outline-primary btn-sm">
-                        ► 次の問題（{{ question_num + 1 }}/{{ total_num }}）
-                    </a>
-                </div>
-            {% else %}
-                <div class="alert alert-light text-center" style="display: block !important;">
-                    <small class="text-muted">ボタンが表示されない場合:</small><br>
-                    <a href="/result" class="btn btn-outline-success btn-sm">
-                        ◆ 結果画面へ
-                    </a>
-                </div>
             {% endif %}
         </div>
         
@@ -137,8 +118,8 @@
         </div>
         {% endif %}
         
-        <!-- 動的難易度調整通知 -->
-        {% if difficulty_adjustment.adjusted %}
+        <!-- 動的難易度調整通知 - 削除（ユーザー要求による） -->
+        {% if false %}
         <div class="mt-3">
             <div class="alert alert-info alert-sm">
                 <i class="fas fa-cogs me-2"></i>
@@ -152,11 +133,14 @@
         <!-- サブアクション -->
         <div class="mt-4 sub-actions">
             <div class="row g-2 justify-content-center">
+                {% if is_correct %}
+                <!-- 正解時のみ復習登録ボタンを表示（悩んだ場合の復習用） -->
                 <div class="col-auto">
                     <button class="btn btn-warning btn-lg bookmark-btn" onclick="bookmarkQuestion('{{ question.id }}')">
                         <i class="fas fa-bookmark me-2"></i>復習登録
                     </button>
                 </div>
+                {% endif %}
                 <div class="col-auto">
                     <a href="/exam?qid={{ question.id }}" class="btn btn-info btn-lg">
                         <i class="fas fa-redo me-2"></i>この問題をもう一度
