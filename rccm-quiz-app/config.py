@@ -16,14 +16,15 @@ class Config:
 
 class ExamConfig:
     """問題・学習設定"""
-    QUESTIONS_PER_SESSION = int(os.environ.get('QUESTIONS_PER_SESSION', 10))
+    # 🔥 CRITICAL: 絶対に10問固定（ユーザー要求による）
+    QUESTIONS_PER_SESSION = 10
     
     # セッション長オプション
     SESSION_SIZES = {
-        'quick': 5,      # 短時間学習
-        'standard': 10,  # 標準
-        'intensive': 20, # 集中学習
-        'unlimited': -1  # 制限なし
+        'quick': 10,     # 全て10問に統一
+        'standard': 10,  # 全て10問に統一
+        'intensive': 10, # 全て10問に統一
+        'unlimited': 10  # 全て10問に統一
     }
 
 class SRSConfig:

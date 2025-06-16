@@ -12,18 +12,19 @@ from functools import wraps
 # 新しいファイルからインポート
 from config import Config, ExamConfig, SRSConfig, DataConfig, RCCMConfig
 from utils import load_questions_improved, DataLoadError, DataValidationError, get_sample_data_improved, load_rccm_data_files
-from data_manager import DataManager, SessionDataManager
-from gamification import gamification_manager
-from ai_analyzer import ai_analyzer
-from adaptive_learning import adaptive_engine
-from exam_simulator import exam_simulator
-from advanced_analytics import advanced_analytics
-from mobile_features import mobile_manager
-from learning_optimizer import learning_optimizer
-from admin_dashboard import admin_dashboard
-from social_learning import social_learning_manager
-from api_integration import api_manager
-from advanced_personalization import advanced_personalization
+
+# 企業環境最適化: 遅延インポートで重複読み込み防止
+gamification_manager = None
+ai_analyzer = None
+adaptive_engine = None  
+exam_simulator = None
+advanced_analytics = None
+mobile_manager = None
+learning_optimizer = None
+admin_dashboard = None
+social_learning_manager = None
+api_manager = None  
+advanced_personalization = None
 
 # ログ設定
 logging.basicConfig(
@@ -46,16 +47,11 @@ app.config.from_object(Config)
 app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_USE_SIGNER'] = True
 
-# データ管理初期化
-data_manager = DataManager()
-session_data_manager = SessionDataManager(data_manager)
-
-# 企業環境用ユーザー管理
-from data_manager import EnterpriseUserManager
-enterprise_user_manager = EnterpriseUserManager(data_manager)
-
-# 企業環境用データ管理
-from utils import enterprise_data_manager
+# 企業環境最適化: 遅延初期化で重複読み込み防止
+data_manager = None
+session_data_manager = None
+enterprise_user_manager = None
+enterprise_data_manager = None
 
 # 問題データのキャッシュ
 _questions_cache = None
@@ -67,11 +63,19 @@ def after_request(response):
     """
     全てのレスポンスにキャッシュ制御ヘッダーを追加
     企業環境での複数ユーザー利用に対応
+    🔥 CRITICAL: ユーザー要求による超強力キャッシュクリア
     """
-    # 強力なキャッシュ制御でブラウザキャッシュを無効化
-    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    # 🔥 ULTRA強力なキャッシュ制御でブラウザキャッシュを完全無効化
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0, private'
     response.headers['Pragma'] = 'no-cache'
-    response.headers['Expires'] = '0'
+    response.headers['Expires'] = '-1'  # 過去の日付で強制期限切れ
+    
+    # 🔥 問題関連ページの追加キャッシュクリア（ユーザー要求による）
+    if any(path in request.path for path in ['/exam', '/result', '/review', '/feedback']):
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0, private, no-transform'
+        response.headers['Last-Modified'] = 'Wed, 11 Jan 1984 05:00:00 GMT'  # 強制古い日付
+        response.headers['ETag'] = '"0"'  # 無効なETAG
+        response.headers['Vary'] = '*'    # 全リクエストで異なることを示す
     
     # セキュリティヘッダー追加
     response.headers['X-Content-Type-Options'] = 'nosniff'
@@ -103,10 +107,246 @@ def sanitize_input(input_string):
     sanitized = sanitized.replace("'", "").replace('"', '')
     return sanitized.strip()
 
+# =============================================================================
+# 高度なSRS（間隔反復学習）システム - 忘却曲線ベース
+# =============================================================================
+
+def calculate_next_review_date(correct_count, wrong_count, last_interval=1):
+    """
+    忘却曲線に基づく次回復習日の計算
+    
+    Args:
+        correct_count: 連続正解回数
+        wrong_count: 間違い回数
+        last_interval: 前回の間隔（日数）
+    
+    Returns:
+        次回復習日時と間隔（日数）
+    """
+    from datetime import datetime, timedelta
+    
+    # 基本間隔設定（エビングハウスの忘却曲線ベース）
+    base_intervals = [1, 3, 7, 14, 30, 90, 180, 365]  # 日数
+    
+    # 難易度係数（間違いが多いほど頻繁に復習）
+    difficulty_factor = max(0.1, 1.0 - (wrong_count * 0.1))
+    
+    # 習熟度レベル（正解回数に基づく）
+    mastery_level = min(correct_count, len(base_intervals) - 1)
+    
+    # 次回間隔を計算
+    base_interval = base_intervals[mastery_level]
+    adjusted_interval = max(1, int(base_interval * difficulty_factor))
+    
+    # 次回復習日を計算
+    next_review = datetime.now() + timedelta(days=adjusted_interval)
+    
+    return next_review, adjusted_interval
+
+def update_advanced_srs_data(question_id, is_correct, session):
+    """
+    高度なSRSデータの更新
+    
+    Args:
+        question_id: 問題ID
+        is_correct: 正解かどうか
+        session: セッションオブジェクト
+    
+    Returns:
+        更新されたSRSデータ
+    """
+    from datetime import datetime
+    
+    # SRSデータの初期化
+    if 'advanced_srs' not in session:
+        session['advanced_srs'] = {}
+    
+    srs_data = session['advanced_srs']
+    qid_str = str(question_id)
+    
+    # 問題のSRSデータを取得または初期化
+    if qid_str not in srs_data:
+        srs_data[qid_str] = {
+            'correct_count': 0,
+            'wrong_count': 0,
+            'total_attempts': 0,
+            'first_attempt': datetime.now().isoformat(),
+            'last_attempt': datetime.now().isoformat(),
+            'mastered': False,
+            'difficulty_level': 5,  # 1-10 (1=易しい, 10=難しい)
+            'next_review': datetime.now().isoformat(),
+            'interval_days': 1
+        }
+    
+    question_data = srs_data[qid_str]
+    
+    # 🔥 CRITICAL: 既存データの後方互換性保証（ウルトラシンク修正）
+    # interval_daysが存在しない古いデータに対する修正
+    if 'interval_days' not in question_data:
+        question_data['interval_days'] = 1
+        logger.info(f"SRS後方互換性修正: 問題ID {qid_str} にinterval_days=1を追加")
+    
+    # 統計更新
+    question_data['total_attempts'] += 1
+    question_data['last_attempt'] = datetime.now().isoformat()
+    
+    if is_correct:
+        question_data['correct_count'] += 1
+        # 難易度を下げる（正解したので少し易しくなったと判定）
+        question_data['difficulty_level'] = max(1, question_data['difficulty_level'] - 0.5)
+        
+        # 5回正解でマスター判定
+        if question_data['correct_count'] >= 5:
+            question_data['mastered'] = True
+            logger.info(f"問題 {question_id} がマスターレベルに到達（5回正解）")
+        
+    else:
+        question_data['wrong_count'] += 1
+        # 難易度を上げる（間違えたので難しいと判定）
+        question_data['difficulty_level'] = min(10, question_data['difficulty_level'] + 1.0)
+        # 間違えた場合はマスター状態を解除
+        question_data['mastered'] = False
+    
+    # 次回復習日の計算
+    if not question_data['mastered']:
+        next_review, interval = calculate_next_review_date(
+            question_data['correct_count'],
+            question_data['wrong_count'],
+            question_data['interval_days']
+        )
+        question_data['next_review'] = next_review.isoformat()
+        question_data['interval_days'] = interval
+    
+    session['advanced_srs'] = srs_data
+    session.modified = True
+    
+    logger.info(f"SRS更新: 問題{question_id} - 正解:{question_data['correct_count']}, "
+               f"間違い:{question_data['wrong_count']}, 難易度:{question_data['difficulty_level']:.1f}, "
+               f"マスター:{question_data['mastered']}")
+    
+    return question_data
+
+def get_due_review_questions(session, max_count=50):
+    """
+    復習が必要な問題を取得（優先度順）
+    
+    Args:
+        session: セッションオブジェクト
+        max_count: 最大取得数
+    
+    Returns:
+        復習が必要な問題IDのリスト（優先度順）
+    """
+    from datetime import datetime
+    
+    if 'advanced_srs' not in session:
+        return []
+    
+    srs_data = session['advanced_srs']
+    now = datetime.now()
+    due_questions = []
+    
+    for qid, data in srs_data.items():
+        # マスター済みの問題はスキップ
+        if data.get('mastered', False):
+            continue
+        
+        try:
+            next_review = datetime.fromisoformat(data['next_review'])
+            if next_review <= now:
+                # 優先度を計算（間違いが多い＋期限が過ぎているほど高優先度）
+                days_overdue = (now - next_review).days
+                wrong_ratio = data['wrong_count'] / max(1, data['total_attempts'])
+                priority = (wrong_ratio * 100) + days_overdue + data['difficulty_level']
+                
+                due_questions.append((qid, priority, data))
+        except (ValueError, KeyError):
+            # 日時解析エラーの場合は優先度最高で追加
+            due_questions.append((qid, 999, data))
+    
+    # 優先度順（降順）でソートして返す
+    due_questions.sort(key=lambda x: x[1], reverse=True)
+    
+    result = [qid for qid, priority, data in due_questions[:max_count]]
+    logger.info(f"復習対象問題: {len(result)}問（全体: {len(due_questions)}問）")
+    
+    return result
+
+def get_adaptive_review_list(session):
+    """
+    アダプティブな復習リストを生成
+    間違いが多い問題ほど頻繁に出題される
+    
+    Args:
+        session: セッションオブジェクト
+    
+    Returns:
+        復習問題IDのリスト（頻度調整済み）
+    """
+    if 'advanced_srs' not in session:
+        return []
+    
+    srs_data = session['advanced_srs']
+    weighted_questions = []
+    
+    for qid, data in srs_data.items():
+        # マスター済みの問題はスキップ
+        if data.get('mastered', False):
+            continue
+        
+        # 重み計算（間違いが多いほど高い重み）
+        wrong_count = data.get('wrong_count', 0)
+        total_attempts = data.get('total_attempts', 1)
+        difficulty = data.get('difficulty_level', 5)
+        
+        # 重み = 間違い率 × 難易度レベル × 係数
+        weight = (wrong_count / total_attempts) * difficulty * 2
+        weight = max(1, int(weight))  # 最低でも1回は含める
+        
+        # 重みに応じて複数回追加（重要な問題ほど出現頻度が高くなる）
+        for _ in range(weight):
+            weighted_questions.append(qid)
+    
+    # シャッフルして自然な順序にする
+    import random
+    random.shuffle(weighted_questions)
+    
+    logger.info(f"アダプティブ復習リスト生成: {len(weighted_questions)}問（重み付き）")
+    return weighted_questions
+
+def cleanup_mastered_questions(session):
+    """
+    マスター済み問題の旧復習リストからの除去
+    
+    Args:
+        session: セッションオブジェクト
+    
+    Returns:
+        削除された問題数
+    """
+    if 'advanced_srs' not in session:
+        return 0
+    
+    srs_data = session['advanced_srs']
+    bookmarks = session.get('bookmarks', [])
+    removed_count = 0
+    
+    # マスター済み問題を旧復習リストから除去
+    for qid, data in srs_data.items():
+        if data.get('mastered', False) and qid in bookmarks:
+            bookmarks.remove(qid)
+            removed_count += 1
+            logger.info(f"マスター済み問題を復習リストから除去: {qid}")
+    
+    session['bookmarks'] = bookmarks
+    session.modified = True
+    
+    return removed_count
+
 def validate_exam_parameters(**kwargs):
     """クイズパラメータの検証"""
     valid_departments = list(RCCMConfig.DEPARTMENTS.keys())
-    valid_question_types = ['basic', 'specialist']
+    valid_question_types = ['basic', 'specialist', 'review']
     valid_years = list(range(2008, 2020))
     
     errors = []
@@ -141,7 +381,7 @@ def validate_exam_parameters(**kwargs):
     
     return errors
 
-def rate_limit_check(max_requests=100, window_minutes=60):
+def rate_limit_check(max_requests=1000, window_minutes=60):
     """レート制限チェック"""
     now = datetime.now()
     window_start = now - timedelta(minutes=window_minutes)
@@ -277,40 +517,142 @@ def clear_questions_cache():
     _cache_timestamp = None
     logger.info("問題データキャッシュをクリア")
 
-def update_srs_data(question_id, is_correct, user_session):
-    """間隔反復学習データの更新（設定統合版）"""
-    if 'srs_data' not in user_session:
-        user_session['srs_data'] = {}
-    
-    srs_data = user_session['srs_data']
-    today = datetime.now().date()
-    
-    if str(question_id) not in srs_data:
-        srs_data[str(question_id)] = {
-            'level': 0,
-            'last_review': today.isoformat(),
-            'next_review': today.isoformat(),
-            'correct_count': 0,
-            'total_attempts': 0
-        }
-    
-    question_data = srs_data[str(question_id)]
-    question_data['total_attempts'] += 1
-    question_data['last_review'] = today.isoformat()
-    
-    if is_correct:
-        question_data['correct_count'] += 1
-        question_data['level'] = min(question_data['level'] + 1, 5)
-    else:
-        question_data['level'] = max(question_data['level'] - 1, 0)
-    
-    # 設定から間隔を取得
-    interval_days = SRSConfig.INTERVALS[question_data['level']]
-    next_review_date = today + timedelta(days=interval_days)
-    question_data['next_review'] = next_review_date.isoformat()
-    
-    user_session['srs_data'] = srs_data
-    return question_data
+# 🔥 CRITICAL: ウルトラシンク復習セッション管理システム（統合管理）
+def validate_review_session_integrity(session_data):
+    """復習セッションの整合性を検証し、必要に応じて修復する"""
+    try:
+        exam_question_ids = session_data.get('exam_question_ids', [])
+        exam_current = session_data.get('exam_current', 0)
+        selected_question_type = session_data.get('selected_question_type', '')
+        
+        # 復習セッションの基本チェック
+        if selected_question_type != 'review':
+            return False, "復習セッションではありません"
+        
+        if not exam_question_ids or not isinstance(exam_question_ids, list):
+            return False, "復習問題リストが無効です"
+        
+        if exam_current < 0 or exam_current > len(exam_question_ids):
+            return False, f"現在位置が範囲外です: {exam_current}/{len(exam_question_ids)}"
+        
+        # 問題IDの有効性チェック
+        for qid in exam_question_ids:
+            if not isinstance(qid, int) or qid <= 0:
+                return False, f"無効な問題ID: {qid}"
+        
+        logger.debug(f"復習セッション整合性チェック成功: {len(exam_question_ids)}問, 位置{exam_current}")
+        return True, "OK"
+        
+    except Exception as e:
+        logger.error(f"復習セッション整合性チェックエラー: {e}")
+        return False, str(e)
+
+def create_robust_review_session(user_session, all_questions, review_type='mixed'):
+    """堅牢な復習セッションを作成する（ウルトラシンク版）"""
+    try:
+        logger.info(f"堅牢復習セッション作成開始: タイプ={review_type}")
+        
+        # 復習対象問題を収集
+        review_question_ids = set()
+        
+        # SRSデータから復習必要問題を取得
+        srs_data = user_session.get('advanced_srs', {})
+        due_questions = get_due_questions(user_session, all_questions)
+        for due_item in due_questions:
+            qid = due_item['question'].get('id')
+            if qid:
+                review_question_ids.add(int(qid))
+        
+        # ブックマークから復習問題を取得
+        bookmarks = user_session.get('bookmarks', [])
+        for bookmark_id in bookmarks:
+            try:
+                review_question_ids.add(int(bookmark_id))
+            except (ValueError, TypeError):
+                continue
+        
+        # 積極的な復習候補を追加（間違いの多い問題）
+        history = user_session.get('history', [])
+        wrong_questions = []
+        for entry in history[-50:]:  # 直近50問をチェック
+            if not entry.get('is_correct', True):  # 間違えた問題
+                qid = entry.get('question_id')
+                if qid:
+                    wrong_questions.append(int(qid))
+        
+        # 間違いの多い問題を優先的に追加
+        for qid in wrong_questions[-10:]:  # 最近10問の間違い
+            review_question_ids.add(qid)
+        
+        # 有効な問題IDのみを保持
+        valid_review_ids = []
+        for qid in review_question_ids:
+            # 問題データが存在するかチェック
+            if any(int(q.get('id', 0)) == qid for q in all_questions):
+                valid_review_ids.append(qid)
+        
+        # 最低限の復習問題数を保証
+        if len(valid_review_ids) < 3:
+            # ランダムに問題を追加
+            random_questions = random.sample(all_questions, min(7, len(all_questions)))
+            for q in random_questions:
+                qid = int(q.get('id', 0))
+                if qid not in valid_review_ids:
+                    valid_review_ids.append(qid)
+                if len(valid_review_ids) >= 10:  # 最大4-10問
+                    break
+        
+        # 問題数を適切に調整
+        if len(valid_review_ids) > 10:
+            valid_review_ids = valid_review_ids[:10]  # 最大10問に制限
+        
+        valid_review_ids.sort()  # 一貫性のためにソート
+        
+        logger.info(f"堅牢復習セッション作成完了: {len(valid_review_ids)}問")
+        logger.info(f"復習問題ID: {valid_review_ids[:5]}..." if len(valid_review_ids) > 5 else f"復習問題ID: {valid_review_ids}")
+        
+        return valid_review_ids
+        
+    except Exception as e:
+        logger.error(f"堅牢復習セッション作成エラー: {e}")
+        # フォールバック: シンプルな復習セッション
+        fallback_questions = random.sample(all_questions, min(5, len(all_questions)))
+        return [int(q.get('id', 0)) for q in fallback_questions]
+
+def safe_update_review_session(session_data, question_ids, current_index=0):
+    """復習セッションを安全に更新する"""
+    try:
+        # セッションクリア（復習関連のみ）
+        review_keys_to_clear = [
+            'exam_question_ids', 'exam_current', 'exam_category',
+            'selected_question_type', 'selected_department', 'selected_year'
+        ]
+        
+        for key in review_keys_to_clear:
+            session_data.pop(key, None)
+        
+        # 新しい復習セッションデータを設定
+        session_data.update({
+            'exam_question_ids': question_ids,
+            'exam_current': current_index,
+            'exam_category': f'復習問題（統合{len(question_ids)}問）',
+            'selected_question_type': 'review',
+            'review_session_active': True,
+            'review_session_created': datetime.now().isoformat(),
+            'review_session_protected': True  # 保護フラグ
+        })
+        
+        session_data.permanent = True
+        session_data.modified = True
+        
+        logger.info(f"復習セッション安全更新完了: {len(question_ids)}問, 現在位置{current_index}")
+        return True
+        
+    except Exception as e:
+        logger.error(f"復習セッション安全更新エラー: {e}")
+        return False
+
+# Removed old update_srs_data function - replaced with update_advanced_srs_data
 
 def get_due_questions(user_session, all_questions):
     """復習が必要な問題を取得"""
@@ -341,8 +683,8 @@ def get_due_questions(user_session, all_questions):
 
 def get_mixed_questions(user_session, all_questions, requested_category='全体', session_size=None, department='', question_type='', year=None):
     """新問題と復習問題をミックスした出題（RCCM部門対応版）"""
-    if session_size is None:
-        session_size = ExamConfig.QUESTIONS_PER_SESSION
+    # 🔥 CRITICAL: 絶対に10問固定（ユーザー要求による）
+    session_size = 10
     
     due_questions = get_due_questions(user_session, all_questions)
     
@@ -365,35 +707,78 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         
         selected_questions.append(question)
     
-    # 残りを新問題で埋める
+    # 残りを新問題で埋める（学習効率重視の選択）
     remaining_count = session_size - len(selected_questions)
     
     # 問題フィルタリング条件
     available_questions = all_questions
     
+    # AI学習分析による弱点重視出題
+    weak_categories = []
+    if user_session.get('history'):
+        from ai_analyzer import ai_analyzer
+        weak_analysis = ai_analyzer.analyze_weak_areas(user_session, department)
+        weak_categories = weak_analysis.get('weak_categories', [])
+    
     # 問題種別でフィルタリング（最優先・厳格）
     if question_type:
-        available_questions = [q for q in available_questions if q.get('question_type') == question_type]
-        logger.info(f"問題種別フィルタ適用: {question_type}, 結果: {len(available_questions)}問")
+        # 基礎科目の場合
+        if question_type == 'basic':
+            available_questions = [q for q in available_questions 
+                                 if q.get('question_type') == 'basic' 
+                                 and q.get('year') is None]  # 基礎科目は年度なし
+            logger.info(f"基礎科目フィルタ適用: 結果 {len(available_questions)}問")
         
-        # 専門科目の場合、基礎科目の完全除外
-        if question_type == 'specialist':
-            pre_filter_count = len(available_questions)
+        # 専門科目の場合
+        elif question_type == 'specialist':
             available_questions = [q for q in available_questions 
                                  if q.get('question_type') == 'specialist' 
-                                 and q.get('year') is not None]  # 年度情報必須（専門科目のみ）
-            logger.info(f"専門科目厳格フィルタ: {pre_filter_count} → {len(available_questions)}問")
+                                 and q.get('year') is not None]  # 専門科目は年度必須
+            logger.info(f"専門科目フィルタ適用: 結果 {len(available_questions)}問")
+        
+        # その他の場合
+        else:
+            available_questions = [q for q in available_questions if q.get('question_type') == question_type]
+            logger.info(f"問題種別フィルタ適用: {question_type}, 結果: {len(available_questions)}問")
+        
+        # 専門科目で部門指定がある場合のみ部門フィルタ適用
+        if question_type == 'specialist' and department:
+            # 英語部門キーを日本語カテゴリに変換するマッピング
+            department_to_category_mapping = {
+                'road': '道路',
+                'tunnel': 'トンネル', 
+                'civil_planning': '河川・砂防及び海岸・海洋',
+                'urban_planning': '都市計画及び地方計画',
+                'landscape': '造園',
+                'construction_env': '建設環境',
+                'steel_concrete': '鋼構造及びコンクリート',
+                'soil_foundation': '土質及び基礎',
+                'construction_planning': '施工計画・施工設備及び積算',
+                'water_supply': '上水道及び工業用水道',
+                'forestry': '森林土木',
+                'agriculture': '農業土木'
+            }
             
-            # さらに部門との整合性をチェック
-            if department:
+            # 英語キーから日本語カテゴリに変換
+            target_category = department_to_category_mapping.get(department, department)
+            logger.info(f"部門フィルタリング: {department} → {target_category}")
+            
+            # 日本語カテゴリでマッチング（category フィールドを使用）
+            # 🔥 鋼構造部門の特別処理: 両方のカテゴリを拾う
+            if department == 'steel_concrete':
                 dept_match_questions = [q for q in available_questions 
-                                      if q.get('department') == department]
-                if dept_match_questions:
-                    available_questions = dept_match_questions
-                    logger.info(f"専門科目部門マッチング: {len(available_questions)}問")
+                                      if q.get('category') in ['鋼構造及びコンクリート', '鋼構造コンクリート']]
+            else:
+                dept_match_questions = [q for q in available_questions 
+                                      if q.get('category') == target_category]
+            if dept_match_questions:
+                available_questions = dept_match_questions
+                logger.info(f"専門科目部門マッチング成功: {len(available_questions)}問")
+            else:
+                logger.warning(f"専門科目部門マッチング失敗: {target_category} に該当する問題が見つかりません")
     
-    # 部門でフィルタリング（基礎科目の場合はスキップ）
-    if department and question_type != 'basic':
+    # 部門でフィルタリング（基礎科目の場合はスキップ、専門科目で既に適用済みの場合もスキップ）
+    elif department and question_type != 'basic' and question_type != 'specialist':
         available_questions = [q for q in available_questions if q.get('department') == department]
         logger.info(f"部門フィルタ適用: {department}, 結果: {len(available_questions)}問")
     
@@ -454,29 +839,52 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
 
 @app.before_request
 def before_request():
-    """リクエスト前の処理（改善版）"""
+    """リクエスト前の処理（企業環境最適化版）"""
     session.permanent = True
     
-    # セッションIDの取得
-    session_id = session.get('session_id')
-    if not session_id:
+    # セッションIDの取得（簡素化）
+    if 'session_id' not in session:
         session['session_id'] = os.urandom(16).hex()
-        session_id = session['session_id']
     
-    # 初回アクセス時にデータを復元（ユーザー名考慮）
+    # データロード済みフラグの確認（競合回避）
     if 'data_loaded' not in session:
-        user_name = session.get('user_name')
-        session_data_manager.load_session_data(session, session_id, user_name)
+        # 軽量化: 基本的なセッション初期化のみ
         session['data_loaded'] = True
+        session['exam_question_ids'] = []
+        session['exam_current'] = 0
+        session['history'] = []
+        session['bookmarks'] = []
+        session['srs_data'] = {}
+        
+        # 企業環境用データロードは必要時のみ実行
+        fast_mode = os.environ.get('RCCM_FAST_MODE', 'true').lower() == 'true'
+        if not fast_mode:
+            # 従来のデータロード（後方互換性）
+            try:
+                user_name = session.get('user_name')
+                session_data_manager.load_session_data(session, session['session_id'], user_name)
+            except Exception as e:
+                logger.warning(f"セッションデータロード失敗（続行可能）: {e}")
 
 @app.after_request
 def after_request_data_save(response):
-    """リクエスト後の処理（自動保存・ユーザー名考慮）"""
-    session_id = session.get('session_id')
-    if session_id and session.get('history'):
-        user_name = session.get('user_name')
-        # 自動保存のトリガー
-        session_data_manager.auto_save_trigger(session, session_id, user_name)
+    """リクエスト後の処理（企業環境最適化版）"""
+    # 高速化モードでは自動保存を軽量化
+    fast_mode = os.environ.get('RCCM_FAST_MODE', 'true').lower() == 'true'
+    
+    if not fast_mode:
+        # 従来のデータ保存（後方互換性）
+        session_id = session.get('session_id')
+        if session_id and session.get('history'):
+            try:
+                user_name = session.get('user_name')
+                session_data_manager.auto_save_trigger(session, session_id, user_name)
+            except Exception as e:
+                logger.warning(f"セッション自動保存失敗（続行可能）: {e}")
+    
+    # セッション修正フラグを明示的に設定
+    if hasattr(session, 'modified'):
+        session.modified = True
     
     return response
 
@@ -484,7 +892,24 @@ def after_request_data_save(response):
 def index():
     """ホーム画面（ユーザー識別対応）"""
     try:
-        # セッション初期化
+        # 🔥 CRITICAL: セッション完全クリア（ユーザー要求による）
+        # 問題途中でホームに戻った場合、全ての問題関連情報をクリア
+        session_keys_to_clear = [
+            'exam_question_ids', 'exam_current', 'exam_category',
+            'selected_department', 'selected_question_type', 'selected_year',
+            'request_history'  # 古いリクエスト履歴もクリア
+        ]
+        
+        cleared_keys = []
+        for key in session_keys_to_clear:
+            if key in session:
+                del session[key]
+                cleared_keys.append(key)
+        
+        if cleared_keys:
+            logger.info(f"ホーム画面: セッション情報クリア - {cleared_keys}")
+        
+        # 必要最小限のセッション初期化のみ実行
         if 'history' not in session:
             session['history'] = []
         if 'category_stats' not in session:
@@ -562,18 +987,45 @@ def force_refresh():
 def exam():
     """SRS対応のquiz関数（統合版）"""
     try:
+        # 🔥 CRITICAL: ウルトラシンク セッション整合性チェック・自動修復
+        if 'exam_question_ids' in session:
+            exam_ids = session.get('exam_question_ids', [])
+            current_no = session.get('exam_current', 0)
+            
+            # セッション破損チェック（ウルトラシンク強化版）
+            if not isinstance(exam_ids, list) or not isinstance(current_no, int) or not exam_ids:
+                logger.warning("セッション破損検出 - 自動リセット実行")
+                session.pop('exam_question_ids', None)
+                session.pop('exam_current', None)
+                session.pop('exam_category', None)
+                session.modified = True
+        
         # レート制限チェック
         if not rate_limit_check():
             return render_template('error.html', 
                                  error="リクエストが多すぎます。しばらく待ってから再度お試しください。",
                                  error_type="rate_limit")
-        all_questions = load_questions()
+        # データディレクトリの設定
+        data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
+        all_questions = load_rccm_data_files(data_dir)
         if not all_questions:
             logger.error("問題データが空")
             return render_template('error.html', error="問題データが存在しません。")
 
         # POST処理（回答送信）
         if request.method == 'POST':
+            # デバッグ: POST処理時のセッション状態を完全ログ出力
+            logger.info("=== POST処理開始 - セッション状態デバッグ ===")
+            logger.info(f"セッションキー: {list(session.keys())}")
+            logger.info(f"exam_question_ids: {session.get('exam_question_ids', 'MISSING')}")
+            logger.info(f"exam_current: {session.get('exam_current', 'MISSING')}")
+            logger.info(f"exam_category: {session.get('exam_category', 'MISSING')}")
+            logger.info(f"selected_question_type: {session.get('selected_question_type', 'MISSING')}")
+            logger.info(f"selected_department: {session.get('selected_department', 'MISSING')}")
+            logger.info(f"session_id: {session.get('session_id', 'MISSING')}")
+            logger.info(f"data_loaded: {session.get('data_loaded', 'MISSING')}")
+            logger.info("==========================================")
+            
             # 入力値のサニタイズと検証
             answer = sanitize_input(request.form.get('answer'))
             qid = sanitize_input(request.form.get('qid'))
@@ -612,17 +1064,42 @@ def exam():
             # 正誤判定
             is_correct = (str(answer).strip() == str(question.get('correct_answer', '').strip()))
 
-            # 正解時は復習リストから除外
+            # 高度なSRS（間隔反復学習）システムでの復習管理
+            srs_info = update_advanced_srs_data(qid, is_correct, session)
+            
+            # 旧復習リストとの互換性維持 + マスター済み問題の自動削除
+            bookmarks = session.get('bookmarks', [])
             if is_correct:
-                bookmarks = session.get('bookmarks', [])
-                if str(qid) in bookmarks:
+                # マスター済み（5回正解）の場合は復習リストから完全除外
+                if srs_info.get('mastered', False):
+                    if str(qid) in bookmarks:
+                        bookmarks.remove(str(qid))
+                        session['bookmarks'] = bookmarks
+                        session.modified = True
+                        logger.info(f"🏆 マスター達成により復習リストから除外: 問題ID {qid}")
+                # 正解だが未マスターの場合は旧システムでも除外（新システムで管理）
+                elif str(qid) in bookmarks:
                     bookmarks.remove(str(qid))
                     session['bookmarks'] = bookmarks
                     session.modified = True
-                    logger.info(f"正解により復習リストから除外: 問題ID {qid}")
-
-            # SRSデータを更新
-            srs_info = update_srs_data(qid, is_correct, session)
+                    logger.info(f"✅ 正解により一時的に復習リストから除外: 問題ID {qid} (SRSで管理)")
+            else:
+                # 不正解時は旧復習リストにも追加（互換性のため）
+                if str(qid) not in bookmarks:
+                    bookmarks.append(str(qid))
+                    session['bookmarks'] = bookmarks
+                    session.modified = True
+                    logger.info(f"❌ 不正解により復習リストに追加: 問題ID {qid}")
+            
+            # マスター済み問題の一括クリーンアップ
+            cleanup_mastered_questions(session)
+            
+            # 従来のSRSデータも更新（既存機能との互換性）
+            try:
+                old_srs_info = update_advanced_srs_data(qid, is_correct, session)
+            except:
+                # 既存SRS関数がない場合はスキップ
+                pass
 
             # 履歴に追加
             if 'history' not in session:
@@ -638,7 +1115,7 @@ def exam():
                 'correct_answer': question.get('correct_answer', ''),
                 'date': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                 'elapsed': float(elapsed),
-                'srs_level': srs_info['level'],
+                'srs_level': srs_info.get('difficulty_level', 5),
                 'is_review': srs_info['total_attempts'] > 1,
                 'difficulty': question.get('difficulty', '標準')
             }
@@ -700,28 +1177,379 @@ def exam():
             current_no = session.get('exam_current', 0)
             exam_question_ids = session.get('exam_question_ids', [])
             
-            # 安全チェック: exam_question_idsが空の場合はエラーを返す
+            # 安全チェック: exam_question_idsが空の場合はセッション再構築
             if not exam_question_ids:
-                logger.error(f"POST処理エラー: exam_question_idsが空です。問題ID: {qid}")
-                return render_template('error.html', 
-                                     error="セッション情報が異常です。ホームに戻って再度お試しください。",
-                                     error_type="session_error")
+                logger.warning(f"POST処理: exam_question_idsが空です。セッション再構築を試行。問題ID: {qid}")
+                
+                # セッション再構築を試行
+                try:
+                    # 基礎科目の場合のフォールバック
+                    question_type = session.get('selected_question_type', 'basic')
+                    department = session.get('selected_department', '')
+                    
+                    # 🔥 ウルトラシンク包括修正: 全問題種別統一セッション再構築システム
+                    from utils import load_questions_improved
+                    all_questions = load_questions_improved()
+                    
+                    logger.info(f"セッション再構築開始: 問題ID={qid}, 種別={question_type}, 部門={department}")
+                    
+                    # 🔥 STEP1: まず問題IDから実際の問題を特定
+                    target_question = None
+                    for q in all_questions:
+                        if int(q.get('id', 0)) == qid:
+                            target_question = q
+                            break
+                    
+                    if not target_question:
+                        raise ValueError(f"問題ID {qid} が全問題データベースに見つかりません")
+                    
+                    actual_question_type = target_question.get('question_type', 'unknown')
+                    actual_category = target_question.get('category', '不明')
+                    actual_year = target_question.get('year')
+                    
+                    logger.info(f"問題特定: ID={qid}, 実際の種別={actual_question_type}, カテゴリ={actual_category}, 年度={actual_year}")
+                    
+                    # 🔥 STEP2: 問題種別に応じたセッション再構築（統一フローシート）
+                    if question_type == 'review':
+                        # 復習モード: 既存の復習リストを使用
+                        stored_review_ids = session.get('exam_question_ids', [])
+                        if stored_review_ids and qid in stored_review_ids:
+                            current_index = stored_review_ids.index(qid)
+                            session['exam_current'] = current_index
+                            session.modified = True
+                            exam_question_ids = stored_review_ids
+                            current_no = current_index
+                            logger.info(f"復習セッション再構築成功: {len(stored_review_ids)}問, 現在位置{current_index}")
+                        else:
+                            # 🔥 CRITICAL: 復習問題IDが見つからない場合の安定復習セッション再生成（ウルトラシンク修正）
+                            logger.warning(f"復習問題ID {qid} がセッション内に見つからないため、安定復習セッション再生成実行")
+                            
+                            # 現在のSRSデータとブックマークから復習セッションを再生成
+                            srs_data = session.get('advanced_srs', {})
+                            bookmarks = session.get('bookmarks', [])
+                            
+                            # 復習対象問題IDを統合（安定版）
+                            all_review_ids = set()
+                            
+                            # SRSデータから復習問題を取得
+                            for review_qid, srs_info in srs_data.items():
+                                if review_qid and str(review_qid).strip() and isinstance(srs_info, dict):
+                                    all_review_ids.add(str(review_qid))
+                            
+                            # ブックマークから復習問題を取得
+                            for review_qid in bookmarks:
+                                if review_qid and str(review_qid).strip():
+                                    all_review_ids.add(str(review_qid))
+                            
+                            # 現在の問題IDを最優先で含める
+                            all_review_ids.add(str(qid))
+                            
+                            # 安定した順序でソート（数値IDに変換）
+                            review_question_ids = []
+                            for review_id in sorted(all_review_ids):
+                                try:
+                                    num_id = int(review_id)
+                                    # 問題データが存在するかチェック
+                                    if any(int(q.get('id', 0)) == num_id for q in all_questions):
+                                        review_question_ids.append(num_id)
+                                except (ValueError, TypeError):
+                                    logger.warning(f"無効な復習問題ID: {review_id}")
+                                    continue
+                            
+                            if review_question_ids:
+                                # 現在の問題の位置を正確に特定
+                                try:
+                                    current_index = review_question_ids.index(qid)
+                                except ValueError:
+                                    current_index = 0  # 見つからない場合は最初から
+                                
+                                # セッション状態を確実に更新
+                                session['exam_question_ids'] = review_question_ids
+                                session['exam_current'] = current_index
+                                session['selected_question_type'] = 'review'
+                                session['exam_category'] = f'復習問題（再構築{len(review_question_ids)}問）'
+                                session['review_session_restored'] = True  # 復習セッション復旧フラグ
+                                session.modified = True
+                                
+                                exam_question_ids = review_question_ids
+                                current_no = current_index
+                                
+                                logger.info(f"安定復習セッション再生成成功: {len(review_question_ids)}問, 現在位置{current_index}, 問題ID{qid}")
+                            else:
+                                # 最低限の復習セッションを作成
+                                logger.warning(f"復習問題データ不足のため、現在問題のみの最小復習セッション作成")
+                                minimal_review = [qid]
+                                session['exam_question_ids'] = minimal_review
+                                session['exam_current'] = 0
+                                session['selected_question_type'] = 'review'
+                                session['exam_category'] = '復習問題（最小セッション）'
+                                session['review_session_minimal'] = True
+                                session.modified = True
+                                
+                                exam_question_ids = minimal_review
+                                current_no = 0
+                    
+                    elif actual_question_type == 'basic' or question_type == 'basic':
+                        # 基礎科目(4-1)のセッション再構築
+                        basic_questions = [q for q in all_questions 
+                                         if q.get('question_type') == 'basic']
+                        
+                        if basic_questions:
+                            question_ids = [int(q.get('id', 0)) for q in basic_questions]
+                            current_index = question_ids.index(qid) if qid in question_ids else 0
+                            
+                            session['exam_question_ids'] = question_ids
+                            session['exam_current'] = current_index
+                            session['selected_question_type'] = 'basic'
+                            session['exam_category'] = '基礎科目'
+                            session.modified = True
+                            
+                            exam_question_ids = question_ids
+                            current_no = current_index
+                            
+                            logger.info(f"基礎科目セッション再構築成功: {len(question_ids)}問, 現在位置{current_index}")
+                        else:
+                            raise ValueError("基礎科目データが見つかりません")
+                    
+                    elif actual_question_type == 'specialist' or question_type == 'specialist':
+                        # 専門科目(4-2)のセッション再構築
+                        specialist_questions = [q for q in all_questions 
+                                              if q.get('question_type') == 'specialist']
+                        
+                        # 部門フィルタリング（実際のカテゴリも考慮）
+                        if department:
+                            department_to_category_mapping = {
+                                'road': '道路',
+                                'tunnel': 'トンネル', 
+                                'civil_planning': '河川砂防海岸',
+                                'urban_planning': '都市計画地方計画',
+                                'landscape': '造園',
+                                'construction_env': '建設環境',
+                                'steel_concrete': '鋼構造及びコンクリート',
+                                'soil_foundation': '土質及び基礎',
+                                'construction_planning': '施工計画施工設備積算',
+                                'water_supply': '上水道及び工業用水道',
+                                'forestry': '森林土木',
+                                'agriculture': '農業土木'
+                            }
+                            target_category = department_to_category_mapping.get(department, department)
+                            
+                            # 🔥 カテゴリマッチング（鋼構造部門の特別処理含む）
+                            if department == 'steel_concrete':
+                                specialist_questions = [q for q in specialist_questions 
+                                                      if q.get('category') in ['鋼構造及びコンクリート', '鋼構造コンクリート']]
+                            else:
+                                specialist_questions = [q for q in specialist_questions 
+                                                      if q.get('category') == target_category]
+                        elif actual_category != '不明':
+                            # 部門指定がない場合は実際のカテゴリでフィルタ
+                            specialist_questions = [q for q in specialist_questions 
+                                                  if q.get('category') == actual_category]
+                        
+                        if specialist_questions:
+                            question_ids = [int(q.get('id', 0)) for q in specialist_questions]
+                            current_index = question_ids.index(qid) if qid in question_ids else 0
+                            
+                            session['exam_question_ids'] = question_ids
+                            session['exam_current'] = current_index
+                            session['selected_question_type'] = 'specialist'
+                            session['selected_department'] = department or 'specialist'
+                            session['exam_category'] = actual_category
+                            session.modified = True
+                            
+                            exam_question_ids = question_ids
+                            current_no = current_index
+                            
+                            logger.info(f"専門科目セッション再構築成功: カテゴリ={actual_category}, {len(question_ids)}問, 現在位置{current_index}")
+                        else:
+                            raise ValueError(f"専門科目データが見つかりません: カテゴリ={actual_category}, 部門={department}")
+                    
+                    else:
+                        # 🔥 フォールバック: 共通問題・混合セッション・その他
+                        logger.warning(f"未知の問題種別に対するフォールバック再構築: {question_type} -> {actual_question_type}")
+                        
+                        # 実際の問題種別で再分類
+                        if actual_question_type == 'basic':
+                            # 基礎科目として処理
+                            basic_questions = [q for q in all_questions if q.get('question_type') == 'basic']
+                            if basic_questions:
+                                question_ids = [int(q.get('id', 0)) for q in basic_questions]
+                                current_index = question_ids.index(qid) if qid in question_ids else 0
+                                
+                                session['exam_question_ids'] = question_ids
+                                session['exam_current'] = current_index
+                                session['selected_question_type'] = 'basic'
+                                session['exam_category'] = '基礎科目'
+                                session.modified = True
+                                
+                                exam_question_ids = question_ids
+                                current_no = current_index
+                                
+                                logger.info(f"フォールバック基礎科目再構築成功: {len(question_ids)}問, 現在位置{current_index}")
+                            else:
+                                raise ValueError("フォールバック基礎科目データが見つかりません")
+                        
+                        elif actual_question_type == 'specialist':
+                            # 専門科目として処理（カテゴリベース）
+                            specialist_questions = [q for q in all_questions 
+                                                  if q.get('question_type') == 'specialist' 
+                                                  and q.get('category') == actual_category]
+                            if specialist_questions:
+                                question_ids = [int(q.get('id', 0)) for q in specialist_questions]
+                                current_index = question_ids.index(qid) if qid in question_ids else 0
+                                
+                                session['exam_question_ids'] = question_ids
+                                session['exam_current'] = current_index
+                                session['selected_question_type'] = 'specialist'
+                                session['exam_category'] = actual_category
+                                session.modified = True
+                                
+                                exam_question_ids = question_ids
+                                current_no = current_index
+                                
+                                logger.info(f"フォールバック専門科目再構築成功: カテゴリ={actual_category}, {len(question_ids)}問, 現在位置{current_index}")
+                            else:
+                                raise ValueError(f"フォールバック専門科目データが見つかりません: カテゴリ={actual_category}")
+                        
+                        else:
+                            # 🔥 最終フォールバック: 全問題から同種別を抽出
+                            logger.warning(f"最終フォールバック: 問題種別不明 {actual_question_type}")
+                            similar_questions = [q for q in all_questions 
+                                               if q.get('question_type') == actual_question_type]
+                            if not similar_questions:
+                                # 本当に見つからない場合は全問題
+                                similar_questions = all_questions
+                            
+                            question_ids = [int(q.get('id', 0)) for q in similar_questions]
+                            current_index = question_ids.index(qid) if qid in question_ids else 0
+                            
+                            session['exam_question_ids'] = question_ids
+                            session['exam_current'] = current_index
+                            session['selected_question_type'] = actual_question_type or 'mixed'
+                            session['exam_category'] = actual_category or '混合'
+                            session.modified = True
+                            
+                            exam_question_ids = question_ids
+                            current_no = current_index
+                            
+                            logger.info(f"最終フォールバック再構築成功: 種別={actual_question_type}, {len(question_ids)}問, 現在位置{current_index}")
+                        
+                except Exception as rebuild_error:
+                    logger.error(f"ウルトラシンクセッション再構築失敗: {rebuild_error}")
+                    
+                    # 🔥 ウルトラシンク緊急フォールバック処理
+                    current_question_type = session.get('selected_question_type', '')
+                    
+                    if current_question_type == 'review':
+                        logger.info("復習モード緊急フォールバック - 復習リストに戻る")
+                        session.pop('exam_question_ids', None)
+                        session.pop('exam_current', None)
+                        session.pop('exam_category', None)
+                        session.pop('selected_question_type', None)
+                        session.modified = True
+                        return redirect(url_for('review_list'))
+                    
+                    else:
+                        # 🔥 最終緊急フォールバック: 問題IDから強制セッション作成
+                        logger.warning(f"緊急フォールバック実行: 問題ID {qid} から最小セッション作成")
+                        try:
+                            from utils import load_questions_improved
+                            all_questions = load_questions_improved()
+                            
+                            # 問題IDを中心とした最小セッション作成
+                            session['exam_question_ids'] = [qid]
+                            session['exam_current'] = 0
+                            session['selected_question_type'] = 'emergency'
+                            session['exam_category'] = '緊急復旧'
+                            session.modified = True
+                            
+                            exam_question_ids = [qid]
+                            current_no = 0
+                            
+                            logger.info(f"緊急セッション作成成功: 問題ID {qid}")
+                            
+                        except Exception as emergency_error:
+                            logger.error(f"緊急フォールバックも失敗: {emergency_error}")
+                            return render_template('error.html', 
+                                                 error="セッション情報が異常です。ホームに戻って再度お試しください。",
+                                                 error_type="session_complete_failure",
+                                                 details=f"再構築失敗: {str(rebuild_error)}, 緊急失敗: {str(emergency_error)}")
+                
+                # 🔥 再構築後の最終安全チェック
+                if not exam_question_ids:
+                    logger.error(f"ウルトラシンク再構築後もexam_question_idsが空です")
+                    # 緊急最小セッション作成
+                    exam_question_ids = [qid]
+                    current_no = 0
+                    session['exam_question_ids'] = exam_question_ids
+                    session['exam_current'] = current_no
+                    session['selected_question_type'] = 'minimal'
+                    session['exam_category'] = '最小復旧'
+                    session.modified = True
+                    logger.info(f"緊急最小セッション作成: 問題ID {qid}")
             
-            # 現在の問題番号をより正確に特定
+            # 🔥 ウルトラシンク: 現在の問題番号をより正確に特定
             for i, q_id in enumerate(exam_question_ids):
                 if str(q_id) == str(qid):
                     current_no = i
                     break
+            else:
+                # 問題IDが見つからない場合の最終フォールバック
+                logger.warning(f"問題ID {qid} がexam_question_ids内に見つかりません。先頭に設定します。")
+                current_no = 0
+                if qid not in exam_question_ids:
+                    exam_question_ids.insert(0, qid)
+                    session['exam_question_ids'] = exam_question_ids
+                    session.modified = True
 
-            # 次の問題へ進む準備
+            # 次の問題へ進む準備（仮計算）
             next_no = current_no + 1
+
+            # 次の問題の準備（堅牢性を改善）
+            # current_no は回答した問題のインデックス（0ベース）
+            # next_no は次に表示される問題のインデックス（セッションに保存済み）
             
-            # セッションの一括更新（競合回避）
+            # 安全なチェック: exam_question_idsの整合性を確保
+            total_questions_count = len(exam_question_ids) if exam_question_ids else 0
+            safe_current_no = max(0, min(current_no, total_questions_count - 1))
+            safe_next_no = safe_current_no + 1
+            
+            # より堅牢な最終問題判定
+            # 次の問題のインデックスが問題リストの範囲を超えている場合は最終問題
+            is_last_question = (safe_next_no >= total_questions_count)
+            
+            # 次の問題のインデックスを安全に設定
+            next_question_index = safe_next_no if not is_last_question else None
+            
+            # 詳細デバッグログ（セッション状態の完全な記録）
+            logger.info(f"=== 回答処理デバッグ情報 ===")
+            logger.info(f"問題ID: {qid}, 回答: {answer}, 正否: {is_correct}")
+            logger.info(f"セッション状態: current_no={current_no}, next_no={next_no}")
+            logger.info(f"安全値: safe_current_no={safe_current_no}, safe_next_no={safe_next_no}")
+            logger.info(f"問題リスト: 長さ={total_questions_count}, IDs={exam_question_ids[:3]}..." if total_questions_count > 3 else f"問題リスト: IDs={exam_question_ids}")
+            logger.info(f"最終判定: is_last={is_last_question}, next_index={next_question_index}")
+            logger.info(f"セッションキー: {list(session.keys())}")
+            logger.info(f"=========================")
+            
+            # 🔥 CRITICAL: 復習セッション保護付きセッション更新（ウルトラシンク修正）
+            # 復習モードの場合は特別な保護処理
+            is_review_session = (session.get('selected_question_type') == 'review' or
+                               session.get('exam_category', '').startswith('復習'))
+            
             session_final_updates = {
-                'exam_current': next_no,
+                'exam_current': safe_next_no,  # 安全な次の問題インデックスを使用
                 'last_update': datetime.now().isoformat(),
                 'history': session.get('history', [])  # 履歴を明示的に保持
             }
+            
+            # 復習セッションの場合は追加保護
+            if is_review_session:
+                session_final_updates.update({
+                    'selected_question_type': 'review',  # 復習モード維持
+                    'review_session_active': True,       # 復習セッションアクティブフラグ
+                    'review_session_timestamp': datetime.now().isoformat()  # タイムスタンプ
+                })
+                logger.info(f"復習セッション保護: 問題{qid}回答後, 次={safe_next_no}, 総数={total_questions_count}")
             
             for key, value in session_final_updates.items():
                 session[key] = value
@@ -730,27 +1558,14 @@ def exam():
             
             # セッション保存の確認
             saved_current = session.get('exam_current', 'NOT_FOUND')
-            logger.info(f"セッション保存確認: exam_current = {saved_current}")
-
-            logger.info(f"回答処理完了: 問題{qid}, 正答{is_correct}, レベル{srs_info['level']}, ストリーク{current_streak}日")
-            logger.info(f"セッション更新: 現在{current_no} -> 次{next_no}, 総問題数{len(exam_question_ids)}")
-
-            # 次の問題の準備
-            # current_no は回答した問題のインデックス（0ベース）
-            # next_no は次に表示される問題のインデックス（セッションに保存済み）
-            is_last_question = (current_no >= len(exam_question_ids) - 1)
-            
-            # 次の問題のインデックスは、セッションに保存されたnext_noを使用
-            # これにより、テンプレート内のURLが正しく生成される
-            next_question_index = next_no if not is_last_question else None
-            
-            # デバッグログ追加
-            logger.info(f"ボタン表示判定: current_no={current_no}, next_no={next_no}, total={len(exam_question_ids)}, is_last={is_last_question}, next_index={next_question_index}")
+            logger.info(f"セッション保存確認: exam_current = {saved_current} (safe_next_no = {safe_next_no})")
+            logger.info(f"回答処理完了: 問題{qid}, 正答{is_correct}, レベル{srs_info.get('level', 0)}, ストリーク{current_streak}日")
 
             # フィードバック画面に渡すデータを準備
             # 安全なデフォルト値を保証
             safe_total_questions = max(1, len(exam_question_ids)) if exam_question_ids else 10
-            safe_current_number = max(1, current_no + 1)
+            # 問題番号は1ベースだが、total_questions を超えないよう制限
+            safe_current_number = min(max(1, current_no + 1), safe_total_questions)
             
             feedback_data = {
                 'question': question,
@@ -786,17 +1601,29 @@ def exam():
             requested_year = session.get('selected_year')
         else:
             # GETパラメータの取得（URLデコード対応）
-            raw_category = request.args.get('category', '全体')
+            raw_category = request.args.get('category', 'all')
             raw_department = request.args.get('department', session.get('selected_department', ''))
             raw_question_type = request.args.get('question_type', session.get('selected_question_type', ''))
+            
+            # カテゴリパラメータの正規化（英語→日本語）
+            category_mapping = {
+                'all': '全体',
+                'overall': '全体',
+                'general': '全体',
+                '全体': '全体'  # 既に日本語の場合はそのまま
+            }
             
             # URLデコード（日本語対応・強化版）
             import urllib.parse
             try:
                 # URLエンコーディングされた日本語文字を検出してデコード
                 if raw_category:
-                    # URLエンコーディングの検出（%文字または文字化け文字の検出）
-                    if '%' in str(raw_category) or any(ord(c) > 127 for c in str(raw_category)):
+                    # 英語パラメータの場合は日本語にマッピング
+                    if raw_category in category_mapping:
+                        raw_category = category_mapping[raw_category]
+                        logger.info(f"カテゴリ英語→日本語変換: {request.args.get('category')} → {raw_category}")
+                    # URLエンコードされている場合のみデコード
+                    elif '%' in str(raw_category) or any(ord(c) > 127 for c in str(raw_category)):
                         try:
                             raw_category = urllib.parse.unquote(raw_category, encoding='utf-8')
                         except:
@@ -804,7 +1631,7 @@ def exam():
                             try:
                                 raw_category = urllib.parse.unquote(raw_category, encoding='shift_jis')
                             except:
-                                pass
+                                raw_category = '全体'  # フォールバック
                     logger.info(f"カテゴリデコード結果: {raw_category}")
                 
                 if raw_department:
@@ -834,13 +1661,17 @@ def exam():
             requested_department = sanitize_input(raw_department)
             requested_question_type = sanitize_input(raw_question_type)
             
-            # type=basicパラメータの処理（基礎科目専用）
+            # type=basic/specialistパラメータの処理
             exam_type = sanitize_input(request.args.get('type'))
             if exam_type == 'basic':
                 requested_question_type = 'basic'
                 requested_department = ''  # 基礎科目は部門不問
                 requested_category = '全体'  # カテゴリも全体に設定
                 logger.info("基礎科目専用モード: question_type=basic, department=None")
+            elif exam_type == 'specialist':
+                requested_question_type = 'specialist'
+                # 部門とカテゴリは既存の値を保持
+                logger.info(f"専門科目専用モード: question_type=specialist, department={requested_department}")
             
             # カテゴリ選択時の問題種別自動判定
             if requested_category and requested_category != '全体' and not requested_question_type:
@@ -872,10 +1703,18 @@ def exam():
         if requested_year:
             logger.info(f"年度指定: {requested_year}年度の問題を取得")
         
-        session_size = sanitize_input(request.args.get('size', str(ExamConfig.QUESTIONS_PER_SESSION)))
+        # 🔥 CRITICAL: 絶対に10問固定（ユーザー要求による）
+        session_size = 10
         specific_qid = sanitize_input(request.args.get('qid'))
         
-        # パラメータ検証
+        # 🔥 CRITICAL: 復習機能の特別処理（ウルトラシンク修正）
+        # /exam/review からのリダイレクトの場合、departmentが'review'になってしまう問題を修正
+        if requested_department == 'review':
+            logger.info("復習機能からの呼び出し検出 - 部門パラメータを修正")
+            requested_department = ''  # 部門指定をクリア
+            requested_question_type = 'review'  # 問題種別を復習に設定
+        
+        # パラメータ検証（復習機能対応版）
         validation_errors = validate_exam_parameters(
             department=requested_department,
             question_type=requested_question_type,
@@ -960,26 +1799,66 @@ def exam():
         
         logger.info(f"リセット判定: is_next={is_next_request}, exam_ids={bool(exam_question_ids)}, category_match={category_match}, question_type_match={question_type_match}, department_match={department_match}, current_no={current_no}, len={len(exam_question_ids)}")
         
-        need_reset = (not is_next_request and (
-                    not exam_question_ids or
-                    request.args.get('reset') == '1' or
-                    not category_match or
-                    not question_type_match or
-                    not department_match or
-                    current_no >= len(exam_question_ids)))
+        # 🔥 CRITICAL: 強化されたリセット判定（ユーザー要求による）
+        # ホームから戻ってきた場合は必ずリセット
+        referrer_is_home = request.referrer and request.referrer.endswith('/')
+        
+        # 🔥 CRITICAL: 復習モードの詳細判定（ウルトラシンク修正）
+        is_review_mode = (
+            (requested_question_type == 'review' and exam_question_ids) or
+            (session.get('selected_question_type') == 'review' and exam_question_ids) or
+            (session.get('exam_category', '').startswith('復習') and exam_question_ids)
+        )
+        
+        # 🔥 CRITICAL: 復習モード保護強化 - 復習セッション中は不適切なリセットを防止
+        need_reset = (not is_next_request and not is_review_mode and (
+                    not exam_question_ids or                    # 問題IDがない
+                    request.args.get('reset') == '1' or        # 明示的リセット要求
+                    (referrer_is_home and not is_review_mode) or # ホームから来た場合（復習除く）
+                    (not question_type_match and not is_review_mode) or # 問題種別変更（復習除く）
+                    (not department_match and not is_review_mode) or    # 部門変更（復習除く）
+                    len(exam_question_ids) == 0))              # 空の問題リスト
         
         logger.info(f"need_reset = {need_reset}")
 
         if need_reset:
-            # SRSを考慮した問題選択（RCCM部門対応）
-            selected_questions = get_mixed_questions(session, all_questions, requested_category, session_size, requested_department, requested_question_type, requested_year)
-            question_ids = [int(q.get('id', 0)) for q in selected_questions]
+            # 🔥 CRITICAL: セッション情報完全クリア（ユーザー要求による）
+            # 古い問題情報を確実に削除
+            old_session_keys = [
+                'exam_question_ids', 'exam_current', 'exam_category',
+                'selected_department', 'selected_question_type', 'selected_year',
+                'request_history'
+            ]
+            
+            cleared_keys = []
+            for key in old_session_keys:
+                if key in session:
+                    del session[key]
+                    cleared_keys.append(key)
+            
+            if cleared_keys:
+                logger.info(f"問題リセット: セッション完全クリア - {cleared_keys}")
+            
+            # 🔥 CRITICAL: 復習モードの場合は既存のexam_question_idsを使用
+            if requested_question_type == 'review' and session.get('exam_question_ids'):
+                logger.info("復習モード: セッションの既存問題IDを使用")
+                question_ids = session.get('exam_question_ids', [])
+                selected_questions = []
+                # 問題IDから問題データを取得
+                for qid in question_ids:
+                    q = next((question for question in all_questions if int(question.get('id', 0)) == qid), None)
+                    if q:
+                        selected_questions.append(q)
+            else:
+                # SRSを考慮した問題選択（RCCM部門対応）
+                selected_questions = get_mixed_questions(session, all_questions, requested_category, session_size, requested_department, requested_question_type, requested_year)
+                question_ids = [int(q.get('id', 0)) for q in selected_questions]
 
             # デバッグ: 問題選択の詳細ログ
             logger.info(f"問題選択詳細: requested_size={session_size}, selected_count={len(selected_questions)}, question_ids_count={len(question_ids)}")
             logger.info(f"問題ID一覧: {question_ids}")
 
-            # セッション情報を更新（部門・問題種別情報も保存）
+            # セッション情報を新規作成（古い情報は完全削除済み）
             session['exam_question_ids'] = question_ids
             session['exam_current'] = 0
             session['exam_category'] = requested_category
@@ -1006,10 +1885,18 @@ def exam():
             
             logger.info(f"新しい問題セッション開始: {len(question_ids)}問, フィルタ: {', '.join(filter_desc) if filter_desc else '全体'}")
 
-        # 範囲チェック
+        # 🔥 CRITICAL: 復習セッション保護付き範囲チェック（ウルトラシンク修正）
         if current_no >= len(exam_question_ids):
-            logger.info(f"範囲チェック: current_no({current_no}) >= len({len(exam_question_ids)}) - resultにリダイレクト")
-            return redirect(url_for('result'))
+            # 復習モードの場合は結果画面ではなく復習完了処理へ
+            if is_review_mode or session.get('selected_question_type') == 'review':
+                logger.info(f"復習セッション完了: current_no({current_no}) >= len({len(exam_question_ids)}) - 復習結果へ")
+                # 復習セッション用の結果画面に送る
+                session['review_completed'] = True
+                session.modified = True
+                return redirect(url_for('result'))
+            else:
+                logger.info(f"通常セッション完了: current_no({current_no}) >= len({len(exam_question_ids)}) - resultにリダイレクト")
+                return redirect(url_for('result'))
 
         # 現在の問題を取得
         current_question_id = exam_question_ids[current_no]
@@ -1057,7 +1944,7 @@ def exam_next():
         return redirect(url_for('result'))
     
     category = session.get('exam_category', '全体')
-    return redirect(url_for('quiz', category=category))
+    return redirect(url_for('exam', category=category))
 
 @app.route('/result')
 def result():
@@ -1077,7 +1964,7 @@ def result():
         # 履歴が空の場合は適切にハンドリング（ダミーデータは削除）
         if not history:
             logger.info("履歴なしのため/examにリダイレクト")
-            return redirect(url_for('quiz'))
+            return redirect(url_for('exam'))
             
         recent_history = history[-session_size:] if len(history) >= session_size else history
         
@@ -1093,14 +1980,20 @@ def result():
         }
         
         for h in recent_history:
-            # 問題IDまたはファイル名から4-1（基礎）か4-2（専門）かを判定
+            # 問題種別から4-1（基礎）か4-2（専門）かを判定
+            question_type = h.get('question_type', '')
             question_id = h.get('question_id', '')
             file_source = h.get('file_source', '')
             
-            if '4-1' in str(question_id) or '4-1' in file_source:
+            # 優先度: question_type > ID判定 > ファイル名判定
+            if question_type == 'basic' or '4-1' in str(question_id) or '4-1' in file_source:
                 score_type = 'basic'
-            else:
+            elif question_type == 'specialist' or '4-2' in str(question_id) or '4-2' in file_source:
                 score_type = 'specialty'
+            else:
+                # デフォルトは基礎科目とする
+                score_type = 'basic'
+                logger.debug(f"問題種別不明 - 基礎科目として扱う: {h}")
             
             basic_specialty_scores[score_type]['total'] += 1
             if h.get('is_correct'):
@@ -1522,83 +2415,138 @@ def categories():
 
 @app.route('/review')
 def review_list():
-    """復習リスト表示（強化版）"""
+    """復習リスト表示（高度なSRSシステム対応版）"""
     try:
-        # 復習リストから問題IDを取得
-        bookmarks = session.get('bookmarks', [])
-        history = session.get('history', [])
+        # 新しいSRSシステムからデータを取得
+        srs_data = session.get('advanced_srs', {})
+        bookmarks = session.get('bookmarks', [])  # 互換性維持
         
-        if not bookmarks:
+        # すべての復習対象問題を統合
+        all_review_ids = set()
+        all_review_ids.update(srs_data.keys())
+        all_review_ids.update(bookmarks)
+        
+        if not all_review_ids:
             return render_template('review_enhanced.html', 
-                                 message="まだ復習問題が登録されていません。問題を解いて間違えた問題が復習リストに追加されます。",
-                                 departments=RCCMConfig.DEPARTMENTS)
+                                 message="まだ復習問題が登録されていません。問題を解いて間違えることで、科学的な復習システムが自動的に最適な学習計画を作成します。",
+                                 departments=RCCMConfig.DEPARTMENTS,
+                                 srs_stats={
+                                     'total_questions': 0,
+                                     'due_now': 0,
+                                     'mastered': 0,
+                                     'in_progress': 0
+                                 })
         
         # 問題データを読み込み
         all_questions = load_questions()
-        questions = []
+        questions_dict = {str(q.get('id')): q for q in all_questions}
         
-        # 間違い回数の統計を取得
-        error_counts = {}
-        for record in history:
-            if not record.get('is_correct', True):  # 間違えた問題のみ
-                qid = str(record.get('question_id', ''))
-                error_counts[qid] = error_counts.get(qid, 0) + 1
-        
-        # 復習問題の詳細情報を作成
+        # 復習問題の詳細情報を作成（SRSデータ統合）
+        review_questions = []
         departments = set()
-        many_errors_count = 0
         
-        for qid in bookmarks:
-            question = next((q for q in all_questions if str(q.get('id', '')) == str(qid)), None)
-            if question:
-                error_count = error_counts.get(str(qid), 1)
-                if error_count >= 3:
-                    many_errors_count += 1
+        # SRS統計計算
+        srs_stats = {
+            'total_questions': len(all_review_ids),
+            'due_now': 0,
+            'mastered': 0,
+            'in_progress': 0,
+            'high_priority': 0
+        }
+        
+        from datetime import datetime
+        now = datetime.now()
+        
+        for qid in all_review_ids:
+            if qid in questions_dict:
+                question = questions_dict[qid]
                 
-                # 部門名を取得
-                dept_key = question.get('department', '')
-                dept_name = ''
-                if dept_key:
-                    dept_info = RCCMConfig.DEPARTMENTS.get(dept_key, {})
-                    dept_name = dept_info.get('name', dept_key)
-                    departments.add(dept_key)
+                # SRSデータを取得
+                srs_info = srs_data.get(qid, {})
                 
-                # 最終挑戦日を取得
-                last_attempted = ''
-                for record in reversed(history):
-                    if str(record.get('question_id', '')) == str(qid):
-                        last_attempted = record.get('timestamp', '')[:10] if record.get('timestamp') else ''
-                        break
-                
-                questions.append({
-                    'id': question.get('id'),
+                # 基本情報
+                question_data = {
+                    'id': qid,
                     'question': question.get('question', ''),
+                    'department': question.get('department', ''),
+                    'question_type': question.get('question_type', ''),
+                    'year': question.get('year', ''),
                     'category': question.get('category', ''),
-                    'department_name': dept_name,
-                    'year': question.get('year'),
-                    'error_count': error_count,
-                    'last_attempted': last_attempted
-                })
+                    # SRS情報
+                    'correct_count': srs_info.get('correct_count', 0),
+                    'wrong_count': srs_info.get('wrong_count', 0),
+                    'total_attempts': srs_info.get('total_attempts', 0),
+                    'difficulty_level': srs_info.get('difficulty_level', 5),
+                    'mastered': srs_info.get('mastered', False),
+                    'first_attempt': srs_info.get('first_attempt', ''),
+                    'last_attempt': srs_info.get('last_attempt', ''),
+                    'next_review': srs_info.get('next_review', ''),
+                    'interval_days': srs_info.get('interval_days', 1)
+                }
+                
+                # 統計更新
+                if question_data['mastered']:
+                    srs_stats['mastered'] += 1
+                else:
+                    srs_stats['in_progress'] += 1
+                    
+                    # 復習期限チェック
+                    try:
+                        if question_data['next_review']:
+                            next_review = datetime.fromisoformat(question_data['next_review'])
+                            if next_review <= now:
+                                srs_stats['due_now'] += 1
+                        else:
+                            srs_stats['due_now'] += 1  # 未設定は即座に復習対象
+                    except ValueError:
+                        srs_stats['due_now'] += 1
+                    
+                    # 高優先度（間違いが多い）問題
+                    if question_data['wrong_count'] >= 2:
+                        srs_stats['high_priority'] += 1
+                
+                # 部門情報
+                if question_data['department']:
+                    departments.add(question_data['department'])
+                
+                # 優先度計算（表示順序用）
+                if question_data['mastered']:
+                    priority = -1000  # マスター済みは最後
+                else:
+                    wrong_ratio = question_data['wrong_count'] / max(1, question_data['total_attempts'])
+                    overdue_bonus = 0
+                    try:
+                        if question_data['next_review']:
+                            next_review = datetime.fromisoformat(question_data['next_review'])
+                            days_overdue = max(0, (now - next_review).days)
+                            overdue_bonus = days_overdue * 10
+                    except ValueError:
+                        overdue_bonus = 100  # 日時エラーは高優先度
+                    
+                    priority = (wrong_ratio * 100) + overdue_bonus + question_data['difficulty_level']
+                
+                question_data['priority'] = priority
+                review_questions.append(question_data)
         
-        # 統計情報を計算
-        total_count = len(questions)
-        department_count = len(departments)
+        # 優先度順でソート（マスター済み問題は最後）
+        review_questions.sort(key=lambda x: x['priority'], reverse=True)
         
-        # 直近の正答率を計算（最新20問）
-        recent_history = history[-20:] if len(history) >= 20 else history
-        correct_rate = 0
-        if recent_history:
-            correct_count = sum(1 for h in recent_history if h.get('is_correct', False))
-            correct_rate = correct_count / len(recent_history)
+        # マスター済み問題とアクティブ問題を分離
+        active_questions = [q for q in review_questions if not q['mastered']]
+        mastered_questions = [q for q in review_questions if q['mastered']]
+        
+        logger.info(f"復習リスト表示: 総計{len(review_questions)}問, "
+                   f"アクティブ{len(active_questions)}問, マスター済み{len(mastered_questions)}問")
         
         return render_template('review_enhanced.html',
-                             questions=questions,
-                             total_count=total_count,
-                             many_errors_count=many_errors_count,
-                             department_count=department_count,
-                             correct_rate=correct_rate,
-                             departments=RCCMConfig.DEPARTMENTS)
-        
+                             questions=active_questions,
+                             mastered_questions=mastered_questions,
+                             total_count=len(active_questions),
+                             mastered_count=len(mastered_questions),
+                             departments=RCCMConfig.DEPARTMENTS,
+                             srs_stats=srs_stats,
+                             show_srs_details=True)
+    
     except Exception as e:
         logger.error(f"復習リスト表示エラー: {e}")
         return render_template('error.html', error="復習リスト表示中にエラーが発生しました。")
@@ -1687,40 +2635,112 @@ def bulk_remove_from_review():
 
 @app.route('/srs_stats')
 def srs_statistics():
-    """SRS学習統計の表示"""
+    """SRS学習統計の表示（エラー処理強化版）"""
     try:
+        # セッションデータの安全な取得
         srs_data = session.get('srs_data', {})
         
+        # 基本統計の初期化
         stats = {
-            'total_learned': len(srs_data),
+            'total_learned': 0,
             'mastered': 0,
             'review_needed': 0,
-            'learning': 0
+            'learning': 0,
+            'error_data': 0
         }
         
         today = datetime.now().date()
+        processed_data = {}
         
+        # SRSデータの安全な処理
         for question_id, data in srs_data.items():
-            level = data.get('level', 0)
             try:
-                next_review = datetime.fromisoformat(data['next_review']).date()
+                # データが辞書形式かチェック
+                if not isinstance(data, dict):
+                    logger.warning(f"SRS統計: 無効なデータ形式 ID={question_id}, type={type(data)}")
+                    stats['error_data'] += 1
+                    continue
                 
+                # レベルと日時の安全な取得
+                level = int(data.get('level', 0))
+                next_review_str = data.get('next_review')
+                
+                if not next_review_str:
+                    # 復習日が設定されていない場合
+                    stats['learning'] += 1
+                    processed_data[question_id] = {
+                        'level': level,
+                        'status': '学習中',
+                        'next_review': '未設定'
+                    }
+                    continue
+                
+                # 日時の解析
+                try:
+                    next_review = datetime.fromisoformat(next_review_str).date()
+                except (ValueError, TypeError):
+                    # 日時解析失敗時のフォールバック
+                    stats['learning'] += 1
+                    processed_data[question_id] = {
+                        'level': level,
+                        'status': '学習中',
+                        'next_review': '日時エラー'
+                    }
+                    continue
+                
+                # レベルと復習日に基づく分類
                 if level >= 5:
                     stats['mastered'] += 1
+                    status = 'マスター'
                 elif next_review <= today:
                     stats['review_needed'] += 1
+                    status = '復習必要'
                 else:
                     stats['learning'] += 1
-                    
-            except (ValueError, KeyError):
-                logger.warning(f"SRS統計データ解析エラー: ID {question_id}")
-                stats['learning'] += 1
+                    status = '学習中'
+                
+                processed_data[question_id] = {
+                    'level': level,
+                    'status': status,
+                    'next_review': next_review.isoformat()
+                }
+                
+            except Exception as item_error:
+                logger.warning(f"SRS統計処理エラー ID={question_id}: {item_error}")
+                stats['error_data'] += 1
         
-        return render_template('srs_stats.html', stats=stats, srs_data=srs_data)
+        # 合計学習数の更新
+        stats['total_learned'] = stats['mastered'] + stats['review_needed'] + stats['learning']
+        
+        # 学習進捗計算
+        progress_percentage = 0
+        if stats['total_learned'] > 0:
+            progress_percentage = round((stats['mastered'] / stats['total_learned']) * 100, 1)
+        
+        stats['progress_percentage'] = progress_percentage
+        
+        logger.info(f"SRS統計生成完了: 総計={stats['total_learned']}, マスター={stats['mastered']}, 復習必要={stats['review_needed']}")
+        
+        return render_template('srs_stats.html', 
+                             stats=stats, 
+                             srs_data=processed_data,
+                             last_updated=datetime.now().strftime('%Y-%m-%d %H:%M'))
         
     except Exception as e:
         logger.error(f"SRS統計表示エラー: {e}")
-        return render_template('error.html', error="学習統計表示中にエラーが発生しました。")
+        # エラー時のフォールバック表示
+        fallback_stats = {
+            'total_learned': 0,
+            'mastered': 0,
+            'review_needed': 0,
+            'learning': 0,
+            'progress_percentage': 0,
+            'error_data': 0
+        }
+        return render_template('srs_stats.html', 
+                             stats=fallback_stats, 
+                             srs_data={},
+                             error_message="学習統計の読み込み中にエラーが発生しました。問題を続けることで統計が蓄積されます。")
 
 @app.route('/api/data/export')
 def export_data():
@@ -1845,6 +2865,77 @@ def get_bookmarks():
         logger.error(f"ブックマークリスト取得エラー: {e}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/bookmark', methods=['POST'])
+def add_bookmark():
+    """フォーム形式でのブックマーク追加"""
+    try:
+        qid = request.form.get('qid')
+        
+        if not qid:
+            logger.warning("ブックマーク追加: 問題IDが指定されていません")
+            return redirect(request.referrer or '/exam')
+        
+        # セッションにブックマークリストがなければ作成
+        if 'bookmarks' not in session:
+            session['bookmarks'] = []
+        
+        # 問題IDがリストになければ追加
+        if qid not in session['bookmarks']:
+            session['bookmarks'].append(qid)
+            session.modified = True
+            logger.info(f"問題ID {qid} を復習リストに追加しました")
+        
+        return redirect(request.referrer or '/exam')
+        
+    except Exception as e:
+        logger.error(f"ブックマーク追加エラー: {e}")
+        return redirect(request.referrer or '/exam')
+
+@app.route('/bookmarks')
+def bookmarks_page():
+    """復習リストページ（HTMLページ）"""
+    try:
+        # 復習リストから問題IDを取得
+        bookmarks = session.get('bookmarks', [])
+        
+        if not bookmarks:
+            return render_template('bookmarks.html', 
+                                 questions=[],
+                                 total_count=0,
+                                 message="まだ復習問題が登録されていません。")
+        
+        # 問題データを読み込み
+        all_questions = load_questions()
+        questions = []
+        
+        # ブックマークされた問題の詳細情報を取得
+        for qid in bookmarks:
+            question = next((q for q in all_questions if str(q.get('id', '')) == str(qid)), None)
+            if question:
+                # 部門名を取得
+                dept_key = question.get('department', '')
+                dept_name = ''
+                if dept_key:
+                    dept_info = RCCMConfig.DEPARTMENTS.get(dept_key, {})
+                    dept_name = dept_info.get('name', dept_key)
+                
+                questions.append({
+                    'id': question.get('id'),
+                    'question': question.get('question', '')[:100] + '...' if len(question.get('question', '')) > 100 else question.get('question', ''),
+                    'category': question.get('category', ''),
+                    'department_name': dept_name,
+                    'year': question.get('year'),
+                    'question_type': question.get('question_type', '')
+                })
+        
+        return render_template('bookmarks.html',
+                             questions=questions,
+                             total_count=len(questions))
+        
+    except Exception as e:
+        logger.error(f"復習リストページエラー: {e}")
+        return render_template('error.html', error="復習リストの表示中にエラーが発生しました。")
+
 @app.route('/api/bookmark', methods=['DELETE'])
 def remove_bookmark():
     """復習リストから問題を除外"""
@@ -1875,86 +2966,472 @@ def remove_bookmark():
 
 @app.route('/exam/review')
 def review_quiz():
-    """復習リストの問題のみで問題練習を開始"""
+    """🔥 ULTRA堅牢な高度SRSシステム復習問題練習（ウルトラシンク対応）"""
     try:
-        all_questions = load_questions()
-        bookmarks = session.get('bookmarks', [])
-        priority_mode = request.args.get('priority', '')  # high=要注意問題優先
-        department_filter = request.args.get('department', '')  # 部門別フィルター
+        # 🔥 CRITICAL: 包括的エラーハンドリング
+        logger.info("=== 復習開始処理開始 ===")
         
-        if not bookmarks:
+        # 問題データロード（エラーハンドリング強化）
+        try:
+            # データディレクトリの設定
+            data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
+            all_questions = load_rccm_data_files(data_dir)
+            if not all_questions:
+                logger.error("問題データが空です")
+                return render_template('error.html', 
+                                     error="問題データが読み込めませんでした。システム管理者に連絡してください。",
+                                     error_type="data_load_error")
+        except Exception as load_error:
+            logger.error(f"問題データロードエラー: {load_error}")
             return render_template('error.html', 
-                                 error="復習リストが空です。まず問題を解いて間違えた問題を復習登録してください。",
-                                 error_type="no_bookmarks")
+                                 error="問題データの読み込み中にエラーが発生しました。",
+                                 error_type="data_load_exception")
         
-        # ブックマークされた問題を取得
-        review_questions = []
-        for question in all_questions:
-            if str(question.get('id')) in bookmarks:
-                # 部門フィルターが指定されている場合、該当部門の問題のみ
-                if department_filter:
-                    question_dept = question.get('department', '')
-                    if question_dept != department_filter:
+        # 🔥 ULTRA堅牢: 復習対象問題を統合取得（安全性強化・ウルトラシンク対応）
+        try:
+            srs_data = session.get('advanced_srs', {})
+            bookmarks = session.get('bookmarks', [])
+            
+            # データ型チェック（ウルトラシンク対応）
+            if not isinstance(srs_data, dict):
+                logger.warning(f"SRSデータが辞書型ではありません: {type(srs_data)} - 初期化")
+                srs_data = {}
+            if not isinstance(bookmarks, list):
+                logger.warning(f"ブックマークがリスト型ではありません: {type(bookmarks)} - 初期化")
+                bookmarks = []
+            
+            # 🔥 ULTRA堅牢: SRSデータの詳細検証と修復
+            valid_srs_data = {}
+            for qid, srs_info in srs_data.items():
+                try:
+                    # SRS情報の型チェック
+                    if not isinstance(srs_info, dict):
+                        logger.warning(f"SRS情報が無効な型: 問題ID {qid}, 型: {type(srs_info)}")
                         continue
-                review_questions.append(question)
-        
-        if not review_questions:
+                    
+                    # 必須フィールドの存在チェック
+                    required_fields = ['total_attempts', 'wrong_count', 'correct_count']
+                    if all(field in srs_info for field in required_fields):
+                        # 数値の妥当性チェック
+                        total_attempts = int(srs_info.get('total_attempts', 0))
+                        wrong_count = int(srs_info.get('wrong_count', 0))
+                        if total_attempts > 0 and wrong_count >= 0:
+                            valid_srs_data[qid] = srs_info
+                    else:
+                        logger.warning(f"SRS情報に必須フィールドが不足: 問題ID {qid}, フィールド: {srs_info.keys()}")
+                except (ValueError, TypeError) as field_error:
+                    logger.warning(f"SRS情報の数値変換エラー: 問題ID {qid}, エラー: {field_error}")
+                    continue
+            
+            logger.info(f"SRSデータ検証: 元データ{len(srs_data)}問 → 有効データ{len(valid_srs_data)}問")
+            srs_data = valid_srs_data
+            
+            # 🔥 ULTRA堅牢: ブックマークデータの詳細検証と修復
+            valid_bookmarks = []
+            for bookmark in bookmarks:
+                try:
+                    # ブックマークの型チェック（文字列または数値）
+                    if isinstance(bookmark, (str, int)):
+                        bookmark_str = str(bookmark).strip()
+                        if bookmark_str and bookmark_str.isdigit():
+                            valid_bookmarks.append(bookmark_str)
+                    else:
+                        logger.warning(f"ブックマークが無効な型: {bookmark}, 型: {type(bookmark)}")
+                except Exception as bookmark_error:
+                    logger.warning(f"ブックマーク処理エラー: {bookmark}, エラー: {bookmark_error}")
+                    continue
+            
+            logger.info(f"ブックマーク検証: 元データ{len(bookmarks)}問 → 有効データ{len(valid_bookmarks)}問")
+            bookmarks = valid_bookmarks
+                
+            # すべての復習対象問題IDを統合（重複除去）
+            all_review_ids = set()
+            
+            # SRSデータから取得（文字列に変換してから統合）
+            for qid in srs_data.keys():
+                if qid and str(qid).strip():  # 空文字や None をスキップ
+                    all_review_ids.add(str(qid))
+            
+            # ブックマークから取得（文字列に変換してから統合）
+            for qid in bookmarks:
+                if qid and str(qid).strip():  # 空文字や None をスキップ
+                    all_review_ids.add(str(qid))
+            
+            # リストに変換
+            review_question_ids = list(all_review_ids)
+            
+            logger.info(f"復習対象問題統合: SRS={len(srs_data)}問, ブックマーク={len(bookmarks)}問, 統合後={len(review_question_ids)}問")
+            
+        except Exception as integration_error:
+            logger.error(f"復習データ統合エラー: {integration_error}")
             return render_template('error.html', 
-                                 error="復習対象の問題が見つかりません。別の部門を選択するか、もう一度問題を復習登録してください。",
-                                 error_type="no_questions")
+                                 error="復習データの処理中にエラーが発生しました。",
+                                 error_type="data_integration_error")
         
-        # カテゴリ名のベース設定
-        if department_filter:
-            dept_info = RCCMConfig.DEPARTMENTS.get(department_filter, {})
-            dept_name = dept_info.get('name', department_filter)
-            base_category = f'{dept_name}部門復習'
-        else:
-            base_category = '復習問題'
+        if not review_question_ids:
+            # SRSデータがない場合の案内メッセージ
+            srs_data = session.get('advanced_srs', {})
+            if not srs_data:
+                return render_template('error.html', 
+                                     error="復習リストが空です。まず問題を解いて間違えることで、科学的な復習システムが学習を開始します。",
+                                     error_type="no_srs_data")
+            else:
+                return render_template('error.html', 
+                                     error="現在復習が必要な問題がありません。素晴らしい！新しい問題に挑戦するか、時間が経ってから復習してください。",
+                                     error_type="all_mastered")
         
-        # 優先度モードに応じて問題をソート
-        if priority_mode == 'high':
-            # 要注意問題優先：SRSデータを使用して間違いの多い問題を優先
-            srs_data = session.get('srs_data', {})
+        # 🔥 CRITICAL: 問題データマッチングと弱点スコア計算（ウルトラシンク対応）
+        try:
+            # 問題IDから実際の問題データを取得（安全性強化）
+            questions_dict = {}
+            for q in all_questions:
+                try:
+                    q_id = str(q.get('id', ''))
+                    if q_id and q_id.strip():  # 空文字チェック
+                        questions_dict[q_id] = q
+                except Exception as q_parse_error:
+                    logger.warning(f"問題ID変換エラー: {q_parse_error}, question={q}")
+                    continue
             
-            def get_difficulty_score(question):
-                q_id = str(question.get('id'))
-                if q_id in srs_data:
-                    attempts = srs_data[q_id].get('total_attempts', 0)
-                    correct = srs_data[q_id].get('correct_count', 0)
-                    if attempts > 0:
-                        error_rate = 1 - (correct / attempts)
-                        return error_rate * 100 + attempts  # エラー率 + 試行回数で優先度計算
-                return 0
+            logger.info(f"問題辞書作成完了: {len(questions_dict)}問")
             
-            # 難易度スコア順でソート（降順：高スコア=要注意問題が優先）
-            review_questions.sort(key=get_difficulty_score, reverse=True)
-            category_name = f'要注意問題優先({base_category})'
-            logger.info(f"要注意問題優先モード: {len(review_questions)}問を難易度順にソート")
-        else:
-            # ランダム復習モード
-            random.shuffle(review_questions)
-            category_name = base_category
-            logger.info(f"ランダム復習モード: {len(review_questions)}問をランダムに並び替え")
+            review_questions_with_score = []
+            successful_matches = 0
+            failed_matches = 0
+            
+            for qid in review_question_ids:
+                try:
+                    if qid in questions_dict:
+                        question = questions_dict[qid]
+                        
+                        # 弱点スコア計算（安全性強化）
+                        try:
+                            srs_info = srs_data.get(qid, {})
+                            
+                            # 数値データの安全な取得
+                            wrong_count = max(0, int(srs_info.get('wrong_count', 0)))
+                            total_attempts = max(1, int(srs_info.get('total_attempts', 1)))
+                            difficulty_level = max(0, float(srs_info.get('difficulty_level', 5)))
+                            
+                            # 復習期限チェック（エラーハンドリング強化）
+                            overdue_bonus = 0
+                            next_review = srs_info.get('next_review', '')
+                            if next_review:
+                                try:
+                                    from datetime import datetime
+                                    next_review_date = datetime.fromisoformat(next_review)
+                                    days_overdue = max(0, (datetime.now() - next_review_date).days)
+                                    overdue_bonus = min(50, days_overdue * 2)  # 最大50に制限
+                                except Exception as date_error:
+                                    logger.debug(f"日付解析エラー（問題ID: {qid}）: {date_error}")
+                                    overdue_bonus = 5  # デフォルト値
+                            
+                            # 弱点スコア計算（オーバーフロー防止）
+                            error_rate = min(1.0, wrong_count / total_attempts)
+                            weakness_score = min(1000, (error_rate * 100) + difficulty_level + overdue_bonus)
+                            
+                            review_questions_with_score.append({
+                                'question': question,
+                                'weakness_score': weakness_score,
+                                'wrong_count': wrong_count,
+                                'total_attempts': total_attempts,
+                                'overdue_bonus': overdue_bonus
+                            })
+                            
+                            successful_matches += 1
+                            
+                        except Exception as score_error:
+                            logger.warning(f"弱点スコア計算エラー（問題ID: {qid}）: {score_error}")
+                            # エラーが発生した問題もデフォルトスコアで追加
+                            review_questions_with_score.append({
+                                'question': question,
+                                'weakness_score': 50,  # デフォルトスコア
+                                'wrong_count': 1,
+                                'total_attempts': 1,
+                                'overdue_bonus': 0
+                            })
+                            successful_matches += 1
+                    else:
+                        failed_matches += 1
+                        logger.debug(f"問題IDが見つかりません: {qid}")
+                        
+                except Exception as match_error:
+                    logger.warning(f"問題マッチングエラー（ID: {qid}）: {match_error}")
+                    failed_matches += 1
+                    continue
+            
+            logger.info(f"問題マッチング結果: 成功={successful_matches}問, 失敗={failed_matches}問")
+            
+        except Exception as processing_error:
+            logger.error(f"弱点スコア処理の重大エラー: {processing_error}")
+            return render_template('error.html', 
+                                 error="復習問題の評価中にエラーが発生しました。",
+                                 error_type="score_processing_error")
         
-        # セッションに設定
-        question_ids = [int(q.get('id', 0)) for q in review_questions]
-        session['exam_question_ids'] = question_ids
-        session['exam_current'] = 0
-        session['exam_category'] = category_name
-        session.modified = True
+        if not review_questions_with_score:
+            return render_template('error.html', 
+                                 error="復習対象の問題が見つかりません。新しい問題を解いて間違えることで復習リストが作成されます。",
+                                 error_type="no_filtered_questions")
         
-        logger.info(f"復習問題開始: {len(question_ids)}問, モード: {category_name}")
-        logger.info(f"復習詳細: priority={priority_mode}, department={department_filter}, 問題ID={question_ids[:5] if question_ids else []}")
+        # 🔥 ULTRA CRITICAL: 最終問題選択とセッション設定（ウルトラシンク対応）
+        try:
+            # 🔥 ULTRA堅牢: 弱点スコア順でソート（安全なソート・完全エラーハンドリング）
+            try:
+                # 各問題の弱点スコアが数値であることを確認
+                for item in review_questions_with_score:
+                    if not isinstance(item.get('weakness_score'), (int, float)):
+                        item['weakness_score'] = 50.0  # デフォルトスコア
+                
+                review_questions_with_score.sort(key=lambda x: float(x.get('weakness_score', 0)), reverse=True)
+                logger.info(f"弱点スコア順ソート完了: {len(review_questions_with_score)}問")
+            except Exception as sort_error:
+                logger.warning(f"ソートエラー（デフォルト順序を使用）: {sort_error}")
+                # ソートに失敗してもそのまま続行
+            
+            # 🔥 ULTRA CRITICAL: セッション問題数の動的決定（最低保証とユーザー要求バランス）
+            available_questions = len(review_questions_with_score)
+            min_session_size = min(3, available_questions)  # 最低3問、または利用可能問題数
+            target_session_size = 10  # 理想は10問
+            session_size = min(target_session_size, available_questions)  # 利用可能問題数に制限
+            
+            if session_size < min_session_size:
+                logger.error(f"復習問題が不足: 利用可能{available_questions}問, 最低必要{min_session_size}問")
+                return render_template('error.html', 
+                                     error=f"復習問題が不足しています（{available_questions}問）。もう少し問題を解いてから復習してください。",
+                                     error_type="insufficient_review_questions")
+            
+            logger.info(f"復習セッション問題数決定: 理想{target_session_size}問 → 実際{session_size}問（利用可能{available_questions}問）")
+            
+            selected_review_items = review_questions_with_score[:session_size]
+            review_questions = []
+            
+            # 問題データの安全な抽出
+            for item in selected_review_items:
+                try:
+                    question = item.get('question')
+                    if question and question.get('id'):
+                        review_questions.append(question)
+                except Exception as extract_error:
+                    logger.warning(f"問題抽出エラー: {extract_error}")
+                    continue
+            
+            if not review_questions:
+                logger.error("最終的に有効な復習問題が0問になりました")
+                return render_template('error.html', 
+                                     error="復習問題の準備中に問題が発生しました。しばらく待ってから再度お試しください。",
+                                     error_type="final_question_preparation_error")
+            
+            logger.info(f"復習問題最終選択: 全{len(review_questions_with_score)}問中{len(review_questions)}問を弱点スコア順で選択")
+            
+            # 上位問題のスコア情報をログ出力（安全な範囲）
+            for i, item in enumerate(selected_review_items[:min(5, len(selected_review_items))]):
+                try:
+                    q_id = item.get('question', {}).get('id', 'unknown')
+                    score = item.get('weakness_score', 0)
+                    wrong = item.get('wrong_count', 0)
+                    total = item.get('total_attempts', 1)
+                    logger.info(f"  {i+1}位: 問題ID{q_id}, 弱点スコア{score:.1f}, 間違い{wrong}/{total}")
+                except Exception as log_error:
+                    logger.debug(f"ログ出力エラー: {log_error}")
+            
+            # セッションに安全に設定
+            try:
+                category_name = f'復習問題（弱点優先{len(review_questions)}問）'
+                
+                # 問題IDの安全な変換
+                question_ids = []
+                for q in review_questions:
+                    try:
+                        q_id = int(q.get('id', 0))
+                        if q_id > 0:  # 有効なIDのみ追加
+                            question_ids.append(q_id)
+                    except (ValueError, TypeError) as id_error:
+                        logger.warning(f"問題ID変換エラー: {id_error}, question={q}")
+                        continue
+                
+                if not question_ids:
+                    logger.error("有効な問題IDが0個になりました")
+                    return render_template('error.html', 
+                                         error="復習問題IDの処理中にエラーが発生しました。",
+                                         error_type="question_id_processing_error")
+                
+                # 🔥 ULTRA堅牢: セッション変数を安全に設定（ウルトラシンク対応・完全検証）
+                try:
+                    # セッションクリア（競合防止）
+                    session.pop('exam_question_ids', None)
+                    session.pop('exam_current', None)
+                    session.pop('exam_category', None)
+                    session.pop('selected_question_type', None)
+                    session.pop('department', None)
+                    session.pop('selected_department', None)
+                    
+                    # 新しいセッション設定
+                    session['exam_question_ids'] = question_ids
+                    session['exam_current'] = 0
+                    session['exam_category'] = category_name
+                    session['selected_question_type'] = 'review'  # 復習専用タイプ
+                    session['department'] = ''  # 復習では部門指定なし
+                    session['selected_department'] = ''  # セッション再構築用（復習では部門なし）
+                    session.modified = True
+                    
+                    # セッション即座保存強制
+                    session.permanent = False
+                    
+                    logger.info(f"復習セッション設定完了: {len(question_ids)}問, モード: {category_name}")
+                    logger.info(f"復習詳細: 弱点スコア順優先, 全部門対象, 問題ID={question_ids[:5] if question_ids else []}")
+                    
+                except Exception as set_error:
+                    logger.error(f"セッション変数設定エラー: {set_error}")
+                    return render_template('error.html', 
+                                         error="復習セッション変数の設定中にエラーが発生しました。",
+                                         error_type="session_variable_error")
+                
+                # 🔥 ULTRA堅牢: セッション状態の最終確認（複数回検証）
+                verification_attempts = 0
+                max_verification_attempts = 3
+                
+                while verification_attempts < max_verification_attempts:
+                    try:
+                        final_ids = session.get('exam_question_ids', [])
+                        final_current = session.get('exam_current', -1)
+                        final_category = session.get('exam_category', '')
+                        final_question_type = session.get('selected_question_type', '')
+                        
+                        logger.info(f"セッション設定確認 (試行{verification_attempts + 1}): exam_question_ids={len(final_ids) if final_ids else 0}問, exam_current={final_current}, exam_category='{final_category}', question_type='{final_question_type}'")
+                        
+                        # 検証条件
+                        if (final_ids and len(final_ids) > 0 and 
+                            final_current >= 0 and 
+                            final_category and 
+                            final_question_type == 'review'):
+                            logger.info(f"✅ セッション設定検証成功 (試行{verification_attempts + 1})")
+                            break
+                        else:
+                            verification_attempts += 1
+                            if verification_attempts < max_verification_attempts:
+                                logger.warning(f"セッション設定検証失敗 (試行{verification_attempts}) - 再設定中...")
+                                # 再設定
+                                session['exam_question_ids'] = question_ids
+                                session['exam_current'] = 0
+                                session['exam_category'] = category_name
+                                session['selected_question_type'] = 'review'
+                                session.modified = True
+                            else:
+                                logger.error(f"セッション設定検証失敗 (最大試行{max_verification_attempts}回)")
+                                return render_template('error.html', 
+                                                     error="復習セッションの設定検証に失敗しました。ページを再読み込みして再度お試しください。",
+                                                     error_type="session_verification_error")
+                    except Exception as verify_error:
+                        logger.error(f"セッション検証エラー (試行{verification_attempts + 1}): {verify_error}")
+                        verification_attempts += 1
+                
+            except Exception as session_error:
+                logger.error(f"セッション設定エラー: {session_error}")
+                return render_template('error.html', 
+                                     error="復習セッションの準備中にエラーが発生しました。",
+                                     error_type="session_preparation_error")
+            
+        except Exception as final_error:
+            logger.error(f"最終処理エラー: {final_error}")
+            return render_template('error.html', 
+                                 error="復習問題の最終準備中にエラーが発生しました。",
+                                 error_type="final_processing_error")
         
-        # セッション状態をデバッグ出力
-        logger.info(f"セッション設定完了: exam_question_ids={len(session.get('exam_question_ids', []))}, exam_current={session.get('exam_current')}, exam_category={session.get('exam_category')}")
+        logger.info("=== 復習開始処理完了 - examページへリダイレクト ===")
         
         # 最初の問題にリダイレクト
-        return redirect(url_for('quiz'))
+        return redirect(url_for('exam'))
         
     except Exception as e:
-        logger.error(f"復習問題エラー: {e}")
-        return render_template('error.html', error="復習問題の開始中にエラーが発生しました。")
+        logger.error(f"🔥 復習問題開始の重大エラー: {e}")
+        import traceback
+        logger.error(f"詳細エラー情報: {traceback.format_exc()}")
+        return render_template('error.html', 
+                             error="復習問題の開始中に予期しないエラーが発生しました。ページを再読み込みして再度お試しください。",
+                             error_type="critical_review_error")
+
+@app.route('/debug/create_review_data')
+def create_review_test_data():
+    """🔥 復習テスト用ダミーデータ作成（ウルトラシンク対応）"""
+    try:
+        from datetime import datetime, timedelta
+        import random
+        
+        # データディレクトリの設定
+        data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
+        all_questions = load_rccm_data_files(data_dir)
+        if not all_questions:
+            return "問題データが見つかりません", 400
+        
+        # ランダムに10-20問を選択してSRSデータを作成
+        sample_size = min(20, len(all_questions))
+        sample_questions = random.sample(all_questions, sample_size)
+        
+        srs_data = {}
+        bookmarks = []
+        
+        for i, question in enumerate(sample_questions):
+            q_id = str(question.get('id', ''))
+            if not q_id:
+                continue
+                
+            # 多様な復習データを作成
+            wrong_count = random.randint(1, 5)
+            total_attempts = wrong_count + random.randint(1, 3)
+            difficulty_level = random.uniform(3.0, 8.0)
+            
+            # 復習期限（一部は期限切れに設定）
+            days_ago = random.randint(-5, 10)  # 過去5日〜未来10日
+            next_review = (datetime.now() + timedelta(days=days_ago)).isoformat()
+            
+            srs_data[q_id] = {
+                'wrong_count': wrong_count,
+                'total_attempts': total_attempts,
+                'difficulty_level': difficulty_level,
+                'next_review': next_review,
+                'correct_count': total_attempts - wrong_count,
+                'mastered': False
+            }
+            
+            # 一部をブックマークにも追加
+            if i < 5:
+                bookmarks.append(q_id)
+        
+        # セッションに保存
+        session['advanced_srs'] = srs_data
+        session['bookmarks'] = bookmarks
+        session.modified = True
+        
+        logger.info(f"復習テストデータ作成: SRS={len(srs_data)}問, ブックマーク={len(bookmarks)}問")
+        
+        return f"""
+        <h2>🔥 復習テストデータ作成完了！</h2>
+        <p>SRSデータ: {len(srs_data)}問</p>
+        <p>ブックマーク: {len(bookmarks)}問</p>
+        <p><a href="/review">復習リストを確認</a></p>
+        <p><a href="/exam/review">復習開始をテスト</a></p>
+        <p><a href="/">ホームに戻る</a></p>
+        """
+        
+    except Exception as e:
+        logger.error(f"復習テストデータ作成エラー: {e}")
+        return f"エラー: {e}", 500
+
+@app.route('/debug/clear_session')
+def clear_session_debug():
+    """🔥 セッションクリア（デバッグ用）"""
+    try:
+        # 復習関連データのみクリア
+        session.pop('advanced_srs', None)
+        session.pop('bookmarks', None)
+        session.pop('exam_question_ids', None)
+        session.pop('exam_current', None)
+        session.pop('exam_category', None)
+        session.modified = True
+        
+        return "セッションクリア完了"
+    except Exception as e:
+        return f"エラー: {e}", 500
 
 @app.route('/achievements')
 def achievements():
@@ -2071,7 +3548,8 @@ def adaptive_quiz():
     """アダプティブ問題練習モード（部門別対応版）"""
     try:
         learning_mode = request.args.get('mode', 'balanced')
-        session_size = int(request.args.get('size', ExamConfig.QUESTIONS_PER_SESSION))
+        # 🔥 CRITICAL: 絶対に10問固定（ユーザー要求による）
+        session_size = 10
         department = request.args.get('department', session.get('selected_department', ''))
         
         all_questions = load_questions()
@@ -2121,7 +3599,8 @@ def integrated_learning():
     try:
         # パラメータ取得
         learning_mode = request.args.get('mode', 'basic_to_specialist')
-        session_size = int(request.args.get('size', ExamConfig.QUESTIONS_PER_SESSION))
+        # 🔥 CRITICAL: 絶対に10問固定（ユーザー要求による）
+        session_size = 10
         department = request.args.get('department', session.get('selected_department', ''))
         
         # 連携学習モードの検証
@@ -3788,26 +5267,72 @@ def api_enterprise_cache_clear():
         logger.error(f"キャッシュクリアAPI エラー: {e}")
         return jsonify({'error': str(e)}), 500
 
-# 初期化（企業環境最適化）
+# 初期化（企業環境最適化 - 重複読み込み解決版）
 try:
-    # 従来の読み込み（後方互換性）
-    initial_questions = load_questions()
-    logger.info(f"基本アプリケーション初期化完了: {len(initial_questions)}問読み込み")
+    # 環境変数で読み込み方式を選択（デフォルト: 高速化モード）
+    fast_mode = os.environ.get('RCCM_FAST_MODE', 'true').lower() == 'true'
     
-    # 企業環境用データ事前読み込み
-    preload_success = enterprise_data_manager.preload_all_data()
-    if preload_success:
-        logger.info("企業環境用データ事前読み込み完了 - 高速アクセス準備完了")
+    if fast_mode:
+        # 高速化モード: 遅延インポートでデータ管理初期化
+        logger.info("🚀 高速化モード: 企業環境用データ読み込み開始")
+        
+        # 遅延インポート: データ管理
+        from data_manager import DataManager, SessionDataManager, EnterpriseUserManager
+        from utils import enterprise_data_manager as edm
+        
+        # グローバル変数に代入
+        data_manager = DataManager()
+        session_data_manager = SessionDataManager(data_manager)
+        enterprise_user_manager = EnterpriseUserManager(data_manager)
+        enterprise_data_manager = edm
+        
+        # 遅延インポート: 機能モジュール
+        from gamification import gamification_manager as gam_mgr
+        from ai_analyzer import ai_analyzer as ai_ana
+        from adaptive_learning import adaptive_engine as adp_eng
+        from exam_simulator import exam_simulator as exam_sim
+        from advanced_analytics import advanced_analytics as adv_ana
+        from mobile_features import mobile_manager as mob_mgr
+        from learning_optimizer import learning_optimizer as lrn_opt
+        from admin_dashboard import admin_dashboard as adm_dash
+        from social_learning import social_learning_manager as soc_mgr
+        from api_integration import api_manager as api_mgr
+        from advanced_personalization import advanced_personalization as adv_per
+        
+        # グローバル変数に代入
+        gamification_manager = gam_mgr
+        ai_analyzer = ai_ana
+        adaptive_engine = adp_eng
+        exam_simulator = exam_sim
+        advanced_analytics = adv_ana
+        mobile_manager = mob_mgr
+        learning_optimizer = lrn_opt
+        admin_dashboard = adm_dash
+        social_learning_manager = soc_mgr
+        api_manager = api_mgr
+        advanced_personalization = adv_per
+        
+        preload_success = enterprise_data_manager.preload_all_data()
+        if preload_success:
+            logger.info("✅ 企業環境用データ事前読み込み完了 - 高速アクセス準備完了")
+            
+            # データ整合性チェック（軽量版）
+            integrity_report = enterprise_data_manager.get_file_integrity_check()
+            logger.info(f"📊 データ整合性チェック: {integrity_report['status']} - 総計{integrity_report['total_questions']}問")
+        else:
+            logger.warning("⚠️ 企業環境用データ読み込み失敗 - 従来モードに切り替え")
+            # フォールバック: 従来の読み込み
+            initial_questions = load_questions()
+            logger.info(f"📂 従来モード: {len(initial_questions)}問読み込み完了")
     else:
-        logger.warning("企業環境用データ事前読み込み部分失敗 - 基本機能は利用可能")
-    
-    # データ整合性チェック
-    integrity_report = enterprise_data_manager.get_file_integrity_check()
-    logger.info(f"データ整合性チェック: {integrity_report['status']} - 総計{integrity_report['total_questions']}問")
+        # 従来モード: 後方互換性保持
+        logger.info("📂 従来モード: 基本データ読み込み")
+        initial_questions = load_questions()
+        logger.info(f"✅ 基本アプリケーション初期化完了: {len(initial_questions)}問読み込み")
     
 except Exception as e:
-    logger.error(f"アプリケーション初期化エラー: {e}")
-    logger.info("基本機能で続行します")
+    logger.error(f"❌ アプリケーション初期化エラー: {e}")
+    logger.info("🔄 基本機能で続行します")
 
 if __name__ == '__main__':
     logger.info("RCCM試験問題集アプリケーション起動中...")

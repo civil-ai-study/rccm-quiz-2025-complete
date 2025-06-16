@@ -708,9 +708,11 @@ class MobileFeatures {
         document.body.appendChild(liveRegion);
     }
 
-    // エラーバウンダリの設定
+    // エラーバウンダリの設定（デバッグ用に一時無効化）
     setupErrorBoundary() {
-        // グローバルエラーハンドラー
+        console.log('Error boundary setup - DISABLED FOR DEBUGGING');
+        // グローバルエラーハンドラー - 一時的にコメントアウト
+        /*
         window.addEventListener('error', (e) => {
             this.handleError({
                 type: 'javascript',
@@ -728,6 +730,7 @@ class MobileFeatures {
                 message: e.reason ? e.reason.toString() : 'Promise rejection'
             });
         });
+        */
     }
 
     handleError(errorInfo) {

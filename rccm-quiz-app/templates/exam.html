@@ -1,107 +1,45 @@
 {% extends 'base.html' %}
-{% block title %}問題 | RCCM試験問題集{% endblock %}
+{% block title %}RCCM試験 | RCCM試験問題集{% endblock %}
 {% block content %}
 <div class="container">
-    <!-- 進捗表示 - アクセシビリティ強化 -->
-    <div class="card mb-3" role="banner">
-        <div class="card-body p-2">
-            <div class="d-flex justify-content-between align-items-center flex-wrap">
-                <div class="progress-info" role="status" aria-live="polite">
-                    <span class="badge bg-primary fs-6" aria-label="進捗">問題 {{ current_no }}/{{ total_questions }}</span>
-                    <div class="progress mt-2" style="height: 6px; width: 120px;" role="progressbar" aria-valuenow="{{ current_no }}" aria-valuemin="1" aria-valuemax="{{ total_questions }}">
-                        <div class="progress-bar" style="width: {{ (current_no / total_questions * 100) if total_questions > 0 else 0 }}%"></div>
-                    </div>
+    <!-- 進捗表示 - 年度情報強化版 -->
+    <div class="card mb-1" role="banner">
+        <div class="card-body p-1">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="progress-info d-flex align-items-center gap-2" role="status" aria-live="polite">
+                    <span class="badge bg-primary" style="font-size: 0.8rem;" aria-label="進捗">{{ current_no if current_no is defined and current_no is not none else '1' }}/{{ total_questions if total_questions is defined and total_questions is not none else '10' }}</span>
+                    <!-- 年度表示を左上に配置（4-2専門科目の場合） -->
+                    {% if question.year %}
+                    <span class="badge bg-success text-white fw-bold year-badge" style="font-size: 0.8rem;">📅 {{ question.year }}年度過去問</span>
+                    {% endif %}
                 </div>
-                
-                <div class="question-meta d-flex flex-wrap gap-2">
-                    {% if question.category %}
-                    <span class="badge bg-light text-muted border" title="分野" style="font-size: 0.8rem;">
-                        <i class="fas fa-tag me-1" aria-hidden="true"></i>{{ question.category }}
-                    </span>
-                    {% endif %}
-                    {% if question.difficulty %}
-                    <span class="badge bg-light text-muted border" title="難易度" style="font-size: 0.8rem;">
-                        <i class="fas fa-star me-1" aria-hidden="true"></i>{{ question.difficulty }}レベル
-                    </span>
-                    {% endif %}
-                    
-                    <!-- SRS情報表示 -->
+                <div class="question-meta d-flex align-items-center gap-1">
                     {% if is_review_question %}
-                    <span class="badge bg-light text-muted border" title="復習問題" style="font-size: 0.8rem;">
-                        <i class="fas fa-redo me-1" aria-hidden="true"></i>復習問題
-                    </span>
-                    {% else %}
-                    <span class="badge bg-light text-muted border" title="新しい問題" style="font-size: 0.8rem;">
-                        <i class="fas fa-plus me-1" aria-hidden="true"></i>新問題
-                    </span>
+                    <span class="badge bg-warning text-dark" style="font-size: 0.7rem;">🔄 復習</span>
+                    {% endif %}
+                    {% if question.question_type == 'specialist' %}
+                    <span class="badge bg-info text-white" style="font-size: 0.7rem;">4-2 専門</span>
+                    {% elif question.question_type == 'basic' %}
+                    <span class="badge bg-secondary text-white" style="font-size: 0.7rem;">4-1 基礎</span>
                     {% endif %}
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 問題カード - アクセシビリティ強化 -->
+    <!-- 問題カード - 圧縮版 -->
 <div class="card question-container" role="main">
-        <div class="card-header bg-light d-flex justify-content-between align-items-center">
-            <h1 class="h5 mb-0" id="question-title">
-                <i class="fas fa-question-circle me-2" aria-hidden="true"></i>問題
-            </h1>
-            <div class="question-controls" role="toolbar" aria-label="問題支援ツール">
-                <button type="button" id="voiceBtn" class="btn btn-sm btn-outline-primary me-2" 
-                        title="音声読み上げ (Shift+V)" aria-label="問題文を読み上げ">
-                    <i class="fas fa-volume-up" aria-hidden="true"></i>
-                    <span class="visually-hidden">音声読み上げ</span>
-                </button>
-                <button type="button" id="timerToggle" class="btn btn-sm btn-outline-info me-2" 
-                        title="タイマー表示切り替え" aria-label="タイマー表示切り替え">
-                    <i class="fas fa-clock" aria-hidden="true"></i>
-                    <span id="timer-display" class="ms-1">0:00</span>
-                </button>
-                <button type="button" id="mobileMenuBtn" class="btn btn-sm btn-outline-secondary d-md-none" 
-                        title="メニュー表示" aria-label="モバイルメニュー">
-                    <i class="fas fa-bars" aria-hidden="true"></i>
-                </button>
+        <div class="card-header bg-light p-1">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-bold" style="font-size: 0.9rem;">RCCM試験</span>
+                <span id="timer-display" class="text-muted" style="font-size: 0.8rem;">0:00</span>
             </div>
   </div>
-  <div class="card-body">
-            <!-- 問題文 - 読みやすさ向上 -->
-            <div class="question-container p-3 mb-4 bg-light border-start border-primary border-4" role="article">
-                <!-- 年度表示（専門科目のみ） -->
-                {% if question.year and question.question_type == 'specialist' %}
-                <div class="mb-2">
-                    <span class="badge bg-light text-muted border" style="font-size: 0.8rem;">
-                        <i class="fas fa-calendar-alt me-1"></i>{{ question.year }}年度 過去問
-                    </span>
-                    <span class="badge bg-light text-muted border ms-1" style="font-size: 0.8rem;">
-                        <i class="fas fa-cogs me-1"></i>4-2 専門科目
-                    </span>
-                </div>
-                {% elif question.question_type == 'basic' %}
-                <div class="mb-2">
-                    <span class="badge bg-light text-muted border" style="font-size: 0.8rem;">
-                        <i class="fas fa-graduation-cap me-1"></i>4-1 基礎科目（共通）
-                    </span>
-                </div>
-                {% endif %}
-                
-                <h2 class="h6 fw-bold lh-base question-text" id="question-content" aria-describedby="question-hints">
+  <div class="card-body p-2">
+            <!-- 問題内容 - 圧縮版 -->
+            <div class="question-container p-1 mb-1" role="article">
+                <div class="question-text fw-bold" id="question-content" style="font-size: 0.95rem; line-height: 1.3;">
                     {{ question.question }}
-                </h2>
-                
-                <!-- 問題読み上げ用非表示テキスト -->
-                <div class="visually-hidden" id="question-for-screen-reader">
-                    {% if question.question_type == 'specialist' and question.year %}{{ question.year }}年度の過去問です。{% endif %}
-                    {% if question.question_type == 'basic' %}4-1基礎科目の問題です。{% elif question.question_type == 'specialist' %}4-2専門科目の問題です。{% endif %}
-                    問題文: {{ question.question }}
-                    選択肢は4つあります。AからDの中から正しい答えを選んでください。
-                </div>
-                
-                <!-- 問題ヒント -->
-                <div id="question-hints" class="mt-2">
-                    <small class="text-muted">
-                        <i class="fas fa-lightbulb me-1" aria-hidden="true"></i>
-                        ヒント: 選択肢を注意深く読み、最も適切な答えを選んでください。
-                    </small>
                 </div>
             </div>
 
@@ -110,125 +48,74 @@
                 <input type="hidden" name="qid" value="{{ question.id }}">
                 <input type="hidden" name="elapsed" value="0" id="elapsedTime">
                 
-                <fieldset class="mb-4">
-                    <legend class="visually-hidden">選択肢一覧 - 正しい答えを一つ選んでください</legend>
+                <fieldset class="mb-2">
+                    <legend class="visually-hidden">選択肢一覧</legend>
                     
                     <!-- 選択肢A -->
-                    <div class="form-check option-item answer-option p-3 mb-3 border rounded" 
-                         role="button" tabindex="0" 
-                         onclick="selectOption('A')" 
-                         onkeypress="handleOptionKeypress(event, 'A')"
-                         aria-describedby="option-a-desc">
-                        <input class="form-check-input" type="radio" name="answer" value="A" id="optionA" 
-                               aria-describedby="option-a-text">
-                        <label class="form-check-label w-100 cursor-pointer" for="optionA">
+                    <div class="form-check option-item p-1 mb-1 border rounded" 
+                         onclick="selectOption('A', event)" style="cursor: pointer;">
+                        <input class="form-check-input" type="radio" name="answer" value="A" id="optionA">
+                        <label class="form-check-label w-100" for="optionA" style="cursor: pointer;">
                             <div class="d-flex align-items-start">
-                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0 option-letter" aria-hidden="true">A</span>
-                                <span class="flex-grow-1 option-text" id="option-a-text">{{ question.option_a }}</span>
+                                <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">A</span>
+                                <span class="option-text" style="font-size: 0.9rem;">{{ question.option_a }}</span>
                             </div>
                         </label>
-                        <div class="visually-hidden" id="option-a-desc">選択肢A: {{ question.option_a }}</div>
                     </div>
 
                     <!-- 選択肢B -->
-                    <div class="form-check option-item answer-option p-3 mb-3 border rounded" 
-                         role="button" tabindex="0" 
-                         onclick="selectOption('B')" 
-                         onkeypress="handleOptionKeypress(event, 'B')"
-                         aria-describedby="option-b-desc">
-                        <input class="form-check-input" type="radio" name="answer" value="B" id="optionB" 
-                               aria-describedby="option-b-text">
-                        <label class="form-check-label w-100 cursor-pointer" for="optionB">
+                    <div class="form-check option-item p-1 mb-1 border rounded" 
+                         onclick="selectOption('B', event)" style="cursor: pointer;">
+                        <input class="form-check-input" type="radio" name="answer" value="B" id="optionB">
+                        <label class="form-check-label w-100" for="optionB" style="cursor: pointer;">
                             <div class="d-flex align-items-start">
-                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0 option-letter" aria-hidden="true">B</span>
-                                <span class="flex-grow-1 option-text" id="option-b-text">{{ question.option_b }}</span>
+                                <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">B</span>
+                                <span class="option-text" style="font-size: 0.9rem;">{{ question.option_b }}</span>
                             </div>
                         </label>
-                        <div class="visually-hidden" id="option-b-desc">選択肢B: {{ question.option_b }}</div>
                     </div>
 
                     <!-- 選択肢C -->
-                    <div class="form-check option-item answer-option p-3 mb-3 border rounded" 
-                         role="button" tabindex="0" 
-                         onclick="selectOption('C')" 
-                         onkeypress="handleOptionKeypress(event, 'C')"
-                         aria-describedby="option-c-desc">
-                        <input class="form-check-input" type="radio" name="answer" value="C" id="optionC" 
-                               aria-describedby="option-c-text">
-                        <label class="form-check-label w-100 cursor-pointer" for="optionC">
+                    <div class="form-check option-item p-1 mb-1 border rounded" 
+                         onclick="selectOption('C', event)" style="cursor: pointer;">
+                        <input class="form-check-input" type="radio" name="answer" value="C" id="optionC">
+                        <label class="form-check-label w-100" for="optionC" style="cursor: pointer;">
                             <div class="d-flex align-items-start">
-                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0 option-letter" aria-hidden="true">C</span>
-                                <span class="flex-grow-1 option-text" id="option-c-text">{{ question.option_c }}</span>
+                                <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">C</span>
+                                <span class="option-text" style="font-size: 0.9rem;">{{ question.option_c }}</span>
                             </div>
                         </label>
-                        <div class="visually-hidden" id="option-c-desc">選択肢C: {{ question.option_c }}</div>
                     </div>
 
                     <!-- 選択肢D -->
-                    <div class="form-check option-item answer-option p-3 mb-3 border rounded" 
-                         role="button" tabindex="0" 
-                         onclick="selectOption('D')" 
-                         onkeypress="handleOptionKeypress(event, 'D')"
-                         aria-describedby="option-d-desc">
-                        <input class="form-check-input" type="radio" name="answer" value="D" id="optionD" 
-                               aria-describedby="option-d-text">
-                        <label class="form-check-label w-100 cursor-pointer" for="optionD">
+                    <div class="form-check option-item p-1 mb-1 border rounded" 
+                         onclick="selectOption('D', event)" style="cursor: pointer;">
+                        <input class="form-check-input" type="radio" name="answer" value="D" id="optionD">
+                        <label class="form-check-label w-100" for="optionD" style="cursor: pointer;">
                             <div class="d-flex align-items-start">
-                                <span class="badge bg-primary me-3 mt-1 flex-shrink-0 option-letter" aria-hidden="true">D</span>
-                                <span class="flex-grow-1 option-text" id="option-d-text">{{ question.option_d }}</span>
+                                <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">D</span>
+                                <span class="option-text" style="font-size: 0.9rem;">{{ question.option_d }}</span>
                             </div>
                         </label>
-                        <div class="visually-hidden" id="option-d-desc">選択肢D: {{ question.option_d }}</div>
                     </div>
                 </fieldset>
 
-                <!-- 解答ボタン - エラーハンドリング強化 -->
-                <div class="text-center mb-4">
-                    <div id="form-errors" class="alert alert-danger d-none" role="alert" aria-live="assertive">
-                        <i class="fas fa-exclamation-triangle me-2" aria-hidden="true"></i>
-                        <span id="error-message"></span>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-success btn-lg px-5" id="submitBtn" 
-                            disabled aria-describedby="submit-help">
-                        <i class="fas fa-check me-2" aria-hidden="true"></i>解答する
-                        <div class="spinner-border spinner-border-sm ms-2 d-none" id="submit-spinner" role="status">
-                            <span class="visually-hidden">処理中...</span>
-                        </div>
+                <!-- 解答ボタン - 圧縮版 -->
+                <div class="text-center mb-1">
+                    <button type="submit" class="btn btn-success btn-lg" id="submitBtn" 
+                            disabled style="width: 100%; max-width: 300px;">
+                        解答する
                     </button>
-                    
-                    <div id="submit-help" class="form-text mt-2">
-                        選択肢を選んでから解答ボタンをクリックしてください。
-                    </div>
                 </div>
             </form>
 
-            <!-- 参考情報 -->
-            {% if question.reference %}
-            <div class="alert alert-info">
-                <h6><i class="bi bi-book"></i> 参考基準</h6>
-                <p class="mb-0">{{ question.reference }}</p>
-            </div>
-          {% endif %}
-
-            <!-- キーワード（学習支援） -->
-            {% if question.keywords %}
-            <div class="mt-3">
-                <small class="text-muted">
-                    <strong>関連キーワード:</strong> 
-                    {% for keyword in question.keywords.split('・') %}
-                    <span class="badge bg-light text-muted border me-1" style="font-size: 0.75rem;">{{ keyword }}</span>
-        {% endfor %}
-                </small>
-            </div>
-            {% endif %}
       </div>
     </div>
 
     <!-- ナビゲーション -->
-    <div class="text-center mt-4">
-        <a href="/" class="btn btn-outline-secondary me-2">🏠 ホーム</a>
-        <a href="/categories" class="btn btn-outline-primary">📚 分野選択</a>
+    <div class="text-center mt-1">
+        <a href="/" class="btn btn-outline-secondary btn-sm me-1" style="font-size: 0.8rem;">ホーム</a>
+        <a href="/categories" class="btn btn-outline-primary btn-sm" style="font-size: 0.8rem;">分野選択</a>
   </div>
 </div>
 
@@ -463,202 +350,107 @@
 </style>
 
 <script>
+// グローバル変数
 let startTime = Date.now();
 
-function selectOption(option) {
+// グローバル関数：選択肢クリック処理
+function selectOption(option, event) {
+    console.log(`🔍 selectOption called: option=${option}, event=`, event);
+    
     // 既存の選択を解除
     document.querySelectorAll('.option-item').forEach(item => {
         item.classList.remove('selected');
     });
     
     // 新しい選択を設定
-    const selectedItem = event.currentTarget;
-    selectedItem.classList.add('selected');
-    document.getElementById('option' + option).checked = true;
-    document.getElementById('submitBtn').disabled = false;
+    const selectedItem = event ? event.currentTarget : document.querySelector(`#option${option}`).closest('.option-item');
+    console.log(`🔍 selectedItem:`, selectedItem);
+    
+    if (selectedItem) {
+        selectedItem.classList.add('selected');
+    }
+    
+    // ラジオボタンをチェック
+    const radioButton = document.getElementById('option' + option);
+    console.log(`🔍 radioButton:`, radioButton);
+    if (radioButton) {
+        radioButton.checked = true;
+    }
+    
+    // 送信ボタンを有効化
+    const submitBtn = document.getElementById('submitBtn');
+    console.log(`🔍 submitBtn:`, submitBtn);
+    if (submitBtn) {
+        submitBtn.disabled = false;
+        console.log(`✅ submitBtn enabled!`);
+    } else {
+        console.error(`❌ submitBtn not found!`);
+    }
     
     // 選択効果音（オプション）
-    selectedItem.style.transform = 'scale(1.02)';
-    setTimeout(() => {
-        selectedItem.style.transform = '';
-    }, 150);
+    if (selectedItem) {
+        selectedItem.style.transform = 'scale(1.02)';
+        setTimeout(() => {
+            selectedItem.style.transform = '';
+        }, 150);
+    }
 }
 
-// 問題ページ用のquestionId定義
-const questionId = '{{ question.id }}';
+// グローバル関数：キーボード操作
+function handleOptionKeypress(event, option) {
+    if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        selectOption(option, event);
+    }
+}
 
-// updateStreak()の呼び出しをフォーム送信時に追加
-document.getElementById('questionForm').addEventListener('submit', function(e) {
-    const selected = document.querySelector('input[name="answer"]:checked');
-    if (!selected) {
-        e.preventDefault();
-        alert('選択肢を選んでください。');
-        return;
-    }
-    
-    // 経過時間を計算
-    const elapsedSeconds = (Date.now() - startTime) / 1000;
-    document.getElementById('elapsedTime').value = elapsedSeconds.toFixed(1);
-    
-    // 送信ボタンの状態変更
-    const btn = document.getElementById('submitBtn');
-    btn.innerHTML = '⏳ 判定中...';
-    btn.disabled = true;
-    
-    // フォーム送信アニメーション
-    btn.style.transform = 'scale(0.95)';
-    setTimeout(() => {
-        btn.style.transform = '';
-    }, 200);
-    
-    // ストリークを更新
-    updateStreak();
-});
-
-// ページ読み込み時の初期化
-document.addEventListener('DOMContentLoaded', function() {
-    // 選択肢にホバー効果のためのイベントリスナー追加
-    document.querySelectorAll('.option-item').forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            if (!this.classList.contains('selected')) {
-                this.style.transform = 'translateX(5px)';
-            }
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            if (!this.classList.contains('selected')) {
-                this.style.transform = '';
-            }
-        });
-    });
-    
-    // 高度なキーボードショートカット
-    document.addEventListener('keydown', function(e) {
-        // 1-4キーで選択肢選択
-        if (e.key >= '1' && e.key <= '4') {
-            e.preventDefault();
-            const options = ['A', 'B', 'C', 'D'];
-            const optionIndex = parseInt(e.key) - 1;
-            if (optionIndex < options.length) {
-                selectOption(options[optionIndex]);
-                // スクリーンリーダー用のお知らせ
-                announceToScreenReader(`選択肢${options[optionIndex]}を選択しました`);
-            }
-        }
-        
-        // Enterキーで回答送信
-        if (e.key === 'Enter' && e.ctrlKey) {
-            e.preventDefault();
-            const submitBtn = document.getElementById('submitBtn');
-            if (submitBtn && !submitBtn.disabled) {
-                submitBtn.click();
-                announceToScreenReader('回答を送信しました');
-            }
-        }
-        
-        // Spaceキーで音声読み上げ
-        if (e.key === ' ' && e.ctrlKey) {
-            e.preventDefault();
-            const voiceBtn = document.getElementById('voiceBtn');
-            if (voiceBtn) {
-                voiceBtn.click();
-            }
-        }
-    });
-    
-    // スクリーンリーダー用のライブリージョン関数
-    function announceToScreenReader(message) {
-        const announcement = document.createElement('div');
-        announcement.setAttribute('aria-live', 'polite');
-        announcement.setAttribute('aria-atomic', 'true');
-        announcement.className = 'visually-hidden';
-        announcement.textContent = message;
-        document.body.appendChild(announcement);
-        
-        // 3秒後に要素を削除
-        setTimeout(() => {
-            document.body.removeChild(announcement);
-        }, 3000);
-    }
-    
-    // キーボードナビゲーション説明の表示/非表示
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'F1') {
-            e.preventDefault();
-            showKeyboardHelp();
-        }
-    });
-    
-    function showKeyboardHelp() {
-        const helpText = `
-        キーボードショートカット:
-        - 1-4キー: 選択肢A-Dを選択
-        - Ctrl+Enter: 回答送信
-        - Ctrl+Space: 音声読み上げ
-        - F1: このヘルプを表示
-        - Tab/Shift+Tab: フォーカス移動
-        `;
-        
-        if (confirm(helpText + '\n\nOKを押して閉じる')) {
-            // ヘルプを閉じる
-            return;
-        }
-    }
-    
-    // 古いキーボードショートカットコード
-    /*
-    document.addEventListener('keydown', function(e) {
-        if (e.key >= '1' && e.key <= '4') {
-            const options = ['A', 'B', 'C', 'D'];
-            const optionIndex = parseInt(e.key) - 1;
-            if (optionIndex < options.length) {
-                const optionElement = document.querySelector(`.option-item:nth-child(${optionIndex + 1})`);
-                if (optionElement) {
-                    optionElement.click();
-                }
-            }
-        }
-        
-        // Enterキーで解答送信
-        if (e.key === 'Enter' && !document.getElementById('submitBtn').disabled) {
-            document.getElementById('questionForm').submit();
-        }
-    });
-    
-    // プログレスバーのアニメーション
-    const progressBadge = document.querySelector('.badge.bg-primary');
-    if (progressBadge) {
-        progressBadge.style.opacity = '0';
-        progressBadge.style.transform = 'scale(0.8)';
-        
-        setTimeout(() => {
-            progressBadge.style.transition = 'all 0.5s ease';
-            progressBadge.style.opacity = '1';
-            progressBadge.style.transform = 'scale(1)';
-        }, 300);
-    }
-    
-    // 学習支援メッセージ
-    console.log('💡 学習のコツ: 選択肢を消去法で絞り込み、根拠を持って解答しましょう');
-    console.log('⌨️ ショートカット: 1-4キーで選択肢選択、Enterキーで解答送信');
-});
-
-// タイマー表示（オプション）
+// タイマー関数
 function updateTimer() {
     const elapsed = Math.floor((Date.now() - startTime) / 1000);
     const minutes = Math.floor(elapsed / 60);
     const seconds = elapsed % 60;
     const timerText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
     
-    // タイマー表示エリアがあれば更新
     const timerElement = document.getElementById('timer');
     if (timerElement) {
         timerElement.textContent = timerText;
     }
 }
 
-// 1秒ごとにタイマー更新
-setInterval(updateTimer, 1000);
+// DOMContentLoaded内での初期化
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('📱 DOM読み込み完了');
+    
+    // フォーム送信処理
+    const questionForm = document.getElementById('questionForm');
+    if (questionForm) {
+        questionForm.addEventListener('submit', function(e) {
+            const selected = document.querySelector('input[name="answer"]:checked');
+            if (!selected) {
+                e.preventDefault();
+                alert('選択肢を選んでください。');
+                return;
+            }
+            
+            const elapsedSeconds = (Date.now() - startTime) / 1000;
+            const elapsedInput = document.getElementById('elapsedTime');
+            if (elapsedInput) {
+                elapsedInput.value = elapsedSeconds.toFixed(1);
+            }
+            
+            const btn = document.getElementById('submitBtn');
+            if (btn) {
+                btn.innerHTML = '⏳ 判定中...';
+                btn.disabled = true;
+            }
+        });
+    }
+    
+    // 1秒ごとにタイマー更新
+    setInterval(updateTimer, 1000);
+    
+    console.log('✅ 初期化完了');
+});
 </script>
 {% endblock %}
 

@@ -94,18 +94,10 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ url_for('department_categories', department_id=department.id, question_type=type_id) }}" 
+                    <a href="{{ url_for('exam', department=department.id, question_type=type_id, category='all') }}" 
                        class="btn btn-primary btn-block">
-                        <i class="fas fa-book-open"></i> {{ type_info.name }}を学習
+                        <i class="fas fa-play"></i> {{ type_info.name }}を学習開始
                     </a>
-                    
-                    <!-- クイック学習ボタン -->
-                    <div class="mt-2">
-                        <a href="{{ url_for('quiz', department=department.id, question_type=type_id, category='全体') }}" 
-                           class="btn btn-outline-primary btn-sm">
-                            <i class="fas fa-play"></i> すぐに問題を解く
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -179,7 +171,7 @@ document.querySelectorAll('.question-type-card').forEach(card => {
         if (!e.target.closest('a')) {
             const typeId = this.dataset.type;
             const departmentId = '{{ department.id }}';
-            window.location.href = `/departments/${departmentId}/types/${typeId}/categories`;
+            window.location.href = `/exam?department=${departmentId}&question_type=${typeId}&category=all`;
         }
     });
 });

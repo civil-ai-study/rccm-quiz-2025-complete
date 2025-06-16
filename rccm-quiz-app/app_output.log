@@ -1,253 +1,93 @@
-2025-06-12 16:01:09,456 - __main__ - INFO - 問題データの読み込み開始
-2025-06-12 16:01:09,457 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/questions.csv
-2025-06-12 16:01:09,459 - utils - INFO - ファイルサイズ: 26061 bytes
-2025-06-12 16:01:09,467 - utils - INFO - 読み込み成功: shift_jis エンコーディング
-2025-06-12 16:01:09,468 - utils - INFO - データ読み込み完了: 100行, エンコーディング: shift_jis
-2025-06-12 16:01:09,477 - utils - INFO - 有効な問題データ: 100問
-2025-06-12 16:01:09,478 - __main__ - INFO - 問題データ読み込み完了: 100問
-2025-06-12 16:01:09,478 - __main__ - INFO - アプリケーション初期化完了: 100問読み込み
+2025-06-16 10:58:30,378 - __main__ - INFO - 🚀 高速化モード: 企業環境用データ読み込み開始
+2025-06-16 10:58:30,424 - utils - INFO - RCCM統合データ読み込み開始: data
+2025-06-16 10:58:30,426 - utils - INFO - 問題データ読み込み開始: data/4-1.csv
+2025-06-16 10:58:30,428 - utils - INFO - ファイルサイズ: 92168 bytes
+2025-06-16 10:58:30,441 - utils - INFO - 読み込み成功: utf-8 エンコーディング
+2025-06-16 10:58:30,442 - utils - INFO - データ読み込み完了: 202行, エンコーディング: utf-8
+2025-06-16 10:58:30,457 - utils - INFO - 有効な問題データ: 202問
+2025-06-16 10:58:30,457 - utils - INFO - 4-1基礎データ読み込み完了: 202問
+2025-06-16 10:58:30,459 - utils - INFO - 問題データ読み込み開始: data/4-2_2008.csv
+2025-06-16 10:58:30,461 - utils - INFO - ファイルサイズ: 200456 bytes
+2025-06-16 10:58:30,479 - utils - INFO - 読み込み成功: utf-8 エンコーディング
+2025-06-16 10:58:30,479 - utils - INFO - データ読み込み完了: 360行, エンコーディング: utf-8
+2025-06-16 10:58:30,507 - utils - INFO - 有効な問題データ: 360問
+2025-06-16 10:58:30,508 - utils - INFO - 4-2専門データ2008年読み込み完了: 360問
+2025-06-16 10:58:30,510 - utils - INFO - 問題データ読み込み開始: data/4-2_2009.csv
+2025-06-16 10:58:30,513 - utils - INFO - ファイルサイズ: 206977 bytes
+2025-06-16 10:58:30,533 - utils - INFO - 読み込み成功: utf-8 エンコーディング
+2025-06-16 10:58:30,533 - utils - INFO - データ読み込み完了: 359行, エンコーディング: utf-8
+2025-06-16 10:58:30,562 - utils - INFO - 有効な問題データ: 359問
+2025-06-16 10:58:30,563 - utils - INFO - 4-2専門データ2009年読み込み完了: 359問
+2025-06-16 10:58:30,565 - utils - INFO - 問題データ読み込み開始: data/4-2_2010.csv
+2025-06-16 10:58:30,568 - utils - INFO - ファイルサイズ: 157993 bytes
+2025-06-16 10:58:30,582 - utils - INFO - 読み込み成功: utf-8 エンコーディング
+2025-06-16 10:58:30,583 - utils - INFO - データ読み込み完了: 239行, エンコーディング: utf-8
+2025-06-16 10:58:30,601 - utils - INFO - 有効な問題データ: 239問
+2025-06-16 10:58:30,602 - utils - INFO - 4-2専門データ2010年読み込み完了: 239問
+2025-06-16 10:58:30,603 - utils - INFO - 問題データ読み込み開始: data/4-2_2011.csv
+2025-06-16 10:58:30,605 - utils - INFO - ファイルサイズ: 235229 bytes
+2025-06-16 10:58:30,625 - utils - INFO - 読み込み成功: utf-8 エンコーディング
+2025-06-16 10:58:30,626 - utils - INFO - データ読み込み完了: 360行, エンコーディング: utf-8
+2025-06-16 10:58:30,655 - utils - INFO - 有効な問題データ: 360問
+2025-06-16 10:58:30,656 - utils - INFO - 4-2専門データ2011年読み込み完了: 360問
+2025-06-16 10:58:30,659 - utils - INFO - 問題データ読み込み開始: data/4-2_2012.csv
+2025-06-16 10:58:30,661 - utils - INFO - ファイルサイズ: 199097 bytes
+2025-06-16 10:58:30,681 - utils - INFO - 読み込み成功: utf-8 エンコーディング
+2025-06-16 10:58:30,681 - utils - INFO - データ読み込み完了: 307行, エンコーディング: utf-8
+2025-06-16 10:58:30,707 - utils - INFO - 有効な問題データ: 307問
+2025-06-16 10:58:30,708 - utils - INFO - 4-2専門データ2012年読み込み完了: 307問
+2025-06-16 10:58:30,710 - utils - INFO - 問題データ読み込み開始: data/4-2_2013.csv
+2025-06-16 10:58:30,712 - utils - INFO - ファイルサイズ: 183685 bytes
+2025-06-16 10:58:30,727 - utils - INFO - 読み込み成功: utf-8 エンコーディング
+2025-06-16 10:58:30,728 - utils - INFO - データ読み込み完了: 300行, エンコーディング: utf-8
+2025-06-16 10:58:30,749 - utils - INFO - 有効な問題データ: 300問
+2025-06-16 10:58:30,750 - utils - INFO - 4-2専門データ2013年読み込み完了: 300問
+2025-06-16 10:58:30,752 - utils - INFO - 問題データ読み込み開始: data/4-2_2014.csv
+2025-06-16 10:58:30,755 - utils - INFO - ファイルサイズ: 155568 bytes
+2025-06-16 10:58:30,772 - utils - INFO - 読み込み成功: utf-8 エンコーディング
+2025-06-16 10:58:30,773 - utils - INFO - データ読み込み完了: 240行, エンコーディング: utf-8
+2025-06-16 10:58:30,792 - utils - INFO - 有効な問題データ: 240問
+2025-06-16 10:58:30,793 - utils - INFO - 4-2専門データ2014年読み込み完了: 240問
+2025-06-16 10:58:30,798 - utils - INFO - 問題データ読み込み開始: data/4-2_2015.csv
+2025-06-16 10:58:30,801 - utils - INFO - ファイルサイズ: 272405 bytes
+2025-06-16 10:58:30,824 - utils - INFO - 読み込み成功: utf-8 エンコーディング
+2025-06-16 10:58:30,824 - utils - INFO - データ読み込み完了: 358行, エンコーディング: utf-8
+2025-06-16 10:58:30,851 - utils - INFO - 有効な問題データ: 358問
+2025-06-16 10:58:30,852 - utils - INFO - 4-2専門データ2015年読み込み完了: 358問
+2025-06-16 10:58:30,854 - utils - INFO - 問題データ読み込み開始: data/4-2_2016.csv
+2025-06-16 10:58:30,857 - utils - INFO - ファイルサイズ: 290835 bytes
+2025-06-16 10:58:30,880 - utils - INFO - 読み込み成功: utf-8 エンコーディング
+2025-06-16 10:58:30,880 - utils - INFO - データ読み込み完了: 361行, エンコーディング: utf-8
+2025-06-16 10:58:30,907 - utils - INFO - 有効な問題データ: 361問
+2025-06-16 10:58:30,908 - utils - INFO - 4-2専門データ2016年読み込み完了: 361問
+2025-06-16 10:58:30,911 - utils - INFO - 問題データ読み込み開始: data/4-2_2017.csv
+2025-06-16 10:58:30,915 - utils - INFO - ファイルサイズ: 381560 bytes
+2025-06-16 10:58:30,942 - utils - INFO - 読み込み成功: utf-8 エンコーディング
+2025-06-16 10:58:30,943 - utils - INFO - データ読み込み完了: 440行, エンコーディング: utf-8
+2025-06-16 10:58:30,976 - utils - INFO - 有効な問題データ: 440問
+2025-06-16 10:58:30,978 - utils - INFO - 4-2専門データ2017年読み込み完了: 440問
+2025-06-16 10:58:30,980 - utils - INFO - 問題データ読み込み開始: data/4-2_2018.csv
+2025-06-16 10:58:30,983 - utils - INFO - ファイルサイズ: 310682 bytes
+2025-06-16 10:58:31,005 - utils - INFO - 読み込み成功: utf-8 エンコーディング
+2025-06-16 10:58:31,006 - utils - INFO - データ読み込み完了: 357行, エンコーディング: utf-8
+2025-06-16 10:58:31,033 - utils - INFO - 有効な問題データ: 357問
+2025-06-16 10:58:31,034 - utils - INFO - 4-2専門データ2018年読み込み完了: 357問
+2025-06-16 10:58:31,037 - utils - INFO - ID衝突解決: 基礎=202問, 専門=3681問, その他=0問
+2025-06-16 10:58:31,038 - utils - INFO - 🚀 企業環境最適化: データキャッシュ完了 - 次回読み込み高速化
+2025-06-16 10:58:31,038 - utils - INFO - RCCM統合データ読み込み完了: 12ファイル, 総計3883問
+2025-06-16 10:58:31,039 - utils - INFO - 4-2専門データ対象年度: [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]
+2025-06-16 10:58:31,039 - admin_dashboard - INFO - 管理者ダッシュボード初期化: 3883問読み込み完了
+2025-06-16 10:58:31,049 - social_learning - INFO - ソーシャル学習機能初期化完了
+2025-06-16 10:58:31,058 - api_integration - INFO - プロフェッショナルAPI統合機能初期化完了
+2025-06-16 10:58:31,064 - advanced_personalization - INFO - 高度な個人化エンジン初期化完了
+2025-06-16 10:58:31,065 - utils - INFO - CSVデータの事前読み込み開始（企業環境最適化）
+2025-06-16 10:58:31,071 - utils - INFO - CSVデータ事前読み込み完了: 12/12 ファイル
+2025-06-16 10:58:31,072 - __main__ - INFO - ✅ 企業環境用データ事前読み込み完了 - 高速アクセス準備完了
+2025-06-16 10:58:31,086 - utils - INFO - データ整合性チェック完了: 3883問
+2025-06-16 10:58:31,086 - __main__ - INFO - 📊 データ整合性チェック: healthy - 総計3883問
+2025-06-16 10:58:31,087 - __main__ - INFO - RCCM試験問題集アプリケーション起動中...
+2025-06-16 10:58:31,087 - __main__ - INFO - アクセスURL: http://localhost:5003
  * Serving Flask app 'app'
  * Debug mode: on
-2025-06-12 16:01:09,486 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://172.18.44.152:5000
-2025-06-12 16:01:09,487 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-06-12 16:01:09,488 - werkzeug - INFO -  * Restarting with stat
-2025-06-12 16:01:09,985 - __main__ - INFO - 問題データの読み込み開始
-2025-06-12 16:01:09,986 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/questions.csv
-2025-06-12 16:01:09,988 - utils - INFO - ファイルサイズ: 26061 bytes
-2025-06-12 16:01:10,003 - utils - INFO - 読み込み成功: shift_jis エンコーディング
-2025-06-12 16:01:10,004 - utils - INFO - データ読み込み完了: 100行, エンコーディング: shift_jis
-2025-06-12 16:01:10,015 - utils - INFO - 有効な問題データ: 100問
-2025-06-12 16:01:10,016 - __main__ - INFO - 問題データ読み込み完了: 100問
-2025-06-12 16:01:10,016 - __main__ - INFO - アプリケーション初期化完了: 100問読み込み
-2025-06-12 16:01:10,020 - werkzeug - WARNING -  * Debugger is active!
-2025-06-12 16:01:10,021 - werkzeug - INFO -  * Debugger PIN: 141-655-016
-2025-06-12 16:01:17,016 - werkzeug - INFO - 127.0.0.1 - - [12/Jun/2025 16:01:17] "GET / HTTP/1.1" 200 -
-2025-06-12 16:01:23,138 - werkzeug - INFO - 127.0.0.1 - - [12/Jun/2025 16:01:23] "GET /departments HTTP/1.1" 200 -
-2025-06-12 16:01:30,558 - werkzeug - INFO - 127.0.0.1 - - [12/Jun/2025 16:01:30] "GET /departments/road/types HTTP/1.1" 200 -
-2025-06-12 16:10:19,360 - werkzeug - INFO -  * Detected change in '/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/utils.py', reloading
-2025-06-12 16:10:19,480 - werkzeug - INFO -  * Restarting with stat
-2025-06-12 16:10:20,066 - __main__ - INFO - 問題データの読み込み開始
-2025-06-12 16:10:20,066 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/questions.csv
-2025-06-12 16:10:20,071 - utils - INFO - ファイルサイズ: 26061 bytes
-2025-06-12 16:10:20,087 - utils - INFO - 読み込み成功: shift_jis エンコーディング
-2025-06-12 16:10:20,088 - utils - INFO - データ読み込み完了: 100行, エンコーディング: shift_jis
-2025-06-12 16:10:20,100 - utils - INFO - 有効な問題データ: 100問
-2025-06-12 16:10:20,100 - __main__ - INFO - 問題データ読み込み完了: 100問
-2025-06-12 16:10:20,101 - __main__ - INFO - アプリケーション初期化完了: 100問読み込み
-2025-06-12 16:10:20,109 - werkzeug - WARNING -  * Debugger is active!
-2025-06-12 16:10:20,110 - werkzeug - INFO -  * Debugger PIN: 141-655-016
-2025-06-12 16:10:29,682 - werkzeug - INFO -  * Detected change in '/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/app.py', reloading
-2025-06-12 16:10:29,787 - werkzeug - INFO -  * Restarting with stat
-2025-06-12 16:10:30,284 - __main__ - INFO - 問題データの読み込み開始
-2025-06-12 16:10:30,284 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/questions.csv
-2025-06-12 16:10:30,287 - utils - INFO - ファイルサイズ: 26061 bytes
-2025-06-12 16:10:30,300 - utils - INFO - 読み込み成功: shift_jis エンコーディング
-2025-06-12 16:10:30,301 - utils - INFO - データ読み込み完了: 100行, エンコーディング: shift_jis
-2025-06-12 16:10:30,317 - utils - INFO - 有効な問題データ: 100問
-2025-06-12 16:10:30,318 - __main__ - INFO - 問題データ読み込み完了: 100問
-2025-06-12 16:10:30,318 - __main__ - INFO - アプリケーション初期化完了: 100問読み込み
-2025-06-12 16:10:30,323 - werkzeug - WARNING -  * Debugger is active!
-2025-06-12 16:10:30,328 - werkzeug - INFO -  * Debugger PIN: 141-655-016
-2025-06-12 16:11:00,909 - werkzeug - INFO -  * Detected change in '/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/app.py', reloading
-2025-06-12 16:11:01,016 - werkzeug - INFO -  * Restarting with stat
-2025-06-12 16:11:01,663 - __main__ - INFO - RCCM統合問題データの読み込み開始
-2025-06-12 16:11:01,664 - utils - INFO - RCCM統合データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data
-2025-06-12 16:11:01,667 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2008.csv
-2025-06-12 16:11:01,670 - utils - INFO - ファイルサイズ: 200125 bytes
-2025-06-12 16:11:01,683 - utils - INFO - 読み込み成功: utf-8 エンコーディング
-2025-06-12 16:11:01,684 - utils - INFO - データ読み込み完了: 360行, エンコーディング: utf-8
-2025-06-12 16:11:01,714 - utils - WARNING - データ検証エラー 行292: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:01,715 - utils - WARNING - データ検証エラー 行293: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:01,723 - utils - WARNING - データ検証エラー 行345: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:01,725 - utils - WARNING - データ検証エラー 行352: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:01,727 - utils - WARNING - 検証エラーのある行: 4件
-2025-06-12 16:11:01,729 - utils - WARNING - 行292: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:01,729 - utils - WARNING - 行293: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:01,730 - utils - WARNING - 行345: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:01,730 - utils - WARNING - 行352: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:01,730 - utils - INFO - 有効な問題データ: 356問
-2025-06-12 16:11:01,733 - utils - INFO - 4-2専門データ2008年読み込み完了: 356問
-2025-06-12 16:11:01,735 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2009.csv
-2025-06-12 16:11:01,739 - utils - INFO - ファイルサイズ: 206899 bytes
-2025-06-12 16:11:01,748 - utils - ERROR - CSV解析エラー: Error tokenizing data. C error: Expected 12 fields in line 101, saw 13
-
-2025-06-12 16:11:01,749 - utils - WARNING - 4-2専門データ2009年読み込みエラー: CSVファイルの形式が正しくありません: Error tokenizing data. C error: Expected 12 fields in line 101, saw 13
-
-2025-06-12 16:11:01,752 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2010.csv
-2025-06-12 16:11:01,757 - utils - INFO - ファイルサイズ: 158574 bytes
-2025-06-12 16:11:01,764 - utils - ERROR - CSV解析エラー: Error tokenizing data. C error: Expected 12 fields in line 9, saw 13
-
-2025-06-12 16:11:01,765 - utils - WARNING - 4-2専門データ2010年読み込みエラー: CSVファイルの形式が正しくありません: Error tokenizing data. C error: Expected 12 fields in line 9, saw 13
-
-2025-06-12 16:11:01,767 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2011.csv
-2025-06-12 16:11:01,772 - utils - INFO - ファイルサイズ: 235879 bytes
-2025-06-12 16:11:01,782 - utils - ERROR - CSV解析エラー: Error tokenizing data. C error: Expected 12 fields in line 313, saw 16
-
-2025-06-12 16:11:01,783 - utils - WARNING - 4-2専門データ2011年読み込みエラー: CSVファイルの形式が正しくありません: Error tokenizing data. C error: Expected 12 fields in line 313, saw 16
-
-2025-06-12 16:11:01,786 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2012.csv
-2025-06-12 16:11:01,792 - utils - INFO - ファイルサイズ: 199100 bytes
-2025-06-12 16:11:01,804 - utils - INFO - 読み込み成功: utf-8 エンコーディング
-2025-06-12 16:11:01,806 - utils - INFO - データ読み込み完了: 307行, エンコーディング: utf-8
-2025-06-12 16:11:01,846 - utils - INFO - 有効な問題データ: 307問
-2025-06-12 16:11:01,849 - utils - INFO - 4-2専門データ2012年読み込み完了: 307問
-2025-06-12 16:11:01,852 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2013.csv
-2025-06-12 16:11:01,856 - utils - INFO - ファイルサイズ: 183850 bytes
-2025-06-12 16:11:01,863 - utils - ERROR - CSV解析エラー: Error tokenizing data. C error: Expected 12 fields in line 4, saw 14
-
-2025-06-12 16:11:01,864 - utils - WARNING - 4-2専門データ2013年読み込みエラー: CSVファイルの形式が正しくありません: Error tokenizing data. C error: Expected 12 fields in line 4, saw 14
-
-2025-06-12 16:11:01,866 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2014.csv
-2025-06-12 16:11:01,870 - utils - INFO - ファイルサイズ: 156164 bytes
-2025-06-12 16:11:01,878 - utils - ERROR - CSV解析エラー: Error tokenizing data. C error: Expected 12 fields in line 54, saw 13
-
-2025-06-12 16:11:01,879 - utils - WARNING - 4-2専門データ2014年読み込みエラー: CSVファイルの形式が正しくありません: Error tokenizing data. C error: Expected 12 fields in line 54, saw 13
-
-2025-06-12 16:11:01,881 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2015.csv
-2025-06-12 16:11:01,884 - utils - INFO - ファイルサイズ: 272408 bytes
-2025-06-12 16:11:01,898 - utils - INFO - 読み込み成功: utf-8 エンコーディング
-2025-06-12 16:11:01,899 - utils - INFO - データ読み込み完了: 358行, エンコーディング: utf-8
-2025-06-12 16:11:01,942 - utils - INFO - 有効な問題データ: 358問
-2025-06-12 16:11:01,944 - utils - INFO - 4-2専門データ2015年読み込み完了: 358問
-2025-06-12 16:11:01,947 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2016.csv
-2025-06-12 16:11:01,950 - utils - INFO - ファイルサイズ: 290838 bytes
-2025-06-12 16:11:01,964 - utils - INFO - 読み込み成功: utf-8 エンコーディング
-2025-06-12 16:11:01,965 - utils - INFO - データ読み込み完了: 361行, エンコーディング: utf-8
-2025-06-12 16:11:02,010 - utils - INFO - 有効な問題データ: 361問
-2025-06-12 16:11:02,013 - utils - INFO - 4-2専門データ2016年読み込み完了: 361問
-2025-06-12 16:11:02,015 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2017.csv
-2025-06-12 16:11:02,019 - utils - INFO - ファイルサイズ: 381563 bytes
-2025-06-12 16:11:02,033 - utils - INFO - 読み込み成功: utf-8 エンコーディング
-2025-06-12 16:11:02,034 - utils - INFO - データ読み込み完了: 440行, エンコーディング: utf-8
-2025-06-12 16:11:02,074 - utils - INFO - 有効な問題データ: 440問
-2025-06-12 16:11:02,077 - utils - INFO - 4-2専門データ2017年読み込み完了: 440問
-2025-06-12 16:11:02,079 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2018.csv
-2025-06-12 16:11:02,083 - utils - INFO - ファイルサイズ: 310685 bytes
-2025-06-12 16:11:02,095 - utils - INFO - 読み込み成功: utf-8 エンコーディング
-2025-06-12 16:11:02,096 - utils - INFO - データ読み込み完了: 357行, エンコーディング: utf-8
-2025-06-12 16:11:02,130 - utils - INFO - 有効な問題データ: 357問
-2025-06-12 16:11:02,132 - utils - INFO - 4-2専門データ2018年読み込み完了: 357問
-2025-06-12 16:11:02,135 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/questions.csv
-2025-06-12 16:11:02,141 - utils - INFO - ファイルサイズ: 26061 bytes
-2025-06-12 16:11:02,154 - utils - INFO - 読み込み成功: shift_jis エンコーディング
-2025-06-12 16:11:02,155 - utils - INFO - データ読み込み完了: 100行, エンコーディング: shift_jis
-2025-06-12 16:11:02,163 - utils - INFO - 有効な問題データ: 100問
-2025-06-12 16:11:02,164 - utils - INFO - レガシーデータ読み込み完了: 100問
-2025-06-12 16:11:02,165 - utils - INFO - RCCM統合データ読み込み完了: 7ファイル, 総計2279問
-2025-06-12 16:11:02,165 - utils - INFO - 4-2専門データ対象年度: [2008, 2012, 2015, 2016, 2017, 2018]
-2025-06-12 16:11:02,166 - __main__ - INFO - RCCM統合データ読み込み完了: 2279問
-2025-06-12 16:11:02,166 - __main__ - INFO - アプリケーション初期化完了: 2279問読み込み
-2025-06-12 16:11:02,171 - werkzeug - WARNING -  * Debugger is active!
-2025-06-12 16:11:02,172 - werkzeug - INFO -  * Debugger PIN: 141-655-016
-2025-06-12 16:11:07,420 - __main__ - INFO - 問題データキャッシュをクリア
-2025-06-12 16:11:07,421 - werkzeug - INFO - 127.0.0.1 - - [12/Jun/2025 16:11:07] "POST /api/cache/clear HTTP/1.1" 200 -
-2025-06-12 16:11:18,545 - __main__ - INFO - RCCM統合問題データの読み込み開始
-2025-06-12 16:11:18,546 - utils - INFO - RCCM統合データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data
-2025-06-12 16:11:18,548 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2008.csv
-2025-06-12 16:11:18,550 - utils - INFO - ファイルサイズ: 200125 bytes
-2025-06-12 16:11:18,556 - utils - INFO - 読み込み成功: utf-8 エンコーディング
-2025-06-12 16:11:18,556 - utils - INFO - データ読み込み完了: 360行, エンコーディング: utf-8
-2025-06-12 16:11:18,583 - utils - WARNING - データ検証エラー 行292: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:18,583 - utils - WARNING - データ検証エラー 行293: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:18,588 - utils - WARNING - データ検証エラー 行345: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:18,590 - utils - WARNING - データ検証エラー 行352: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:18,592 - utils - WARNING - 検証エラーのある行: 4件
-2025-06-12 16:11:18,592 - utils - WARNING - 行292: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:18,593 - utils - WARNING - 行293: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:18,593 - utils - WARNING - 行345: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:18,593 - utils - WARNING - 行352: 正解選択肢が無効: 出題不適切
-2025-06-12 16:11:18,594 - utils - INFO - 有効な問題データ: 356問
-2025-06-12 16:11:18,595 - utils - INFO - 4-2専門データ2008年読み込み完了: 356問
-2025-06-12 16:11:18,596 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2009.csv
-2025-06-12 16:11:18,598 - utils - INFO - ファイルサイズ: 206899 bytes
-2025-06-12 16:11:18,602 - utils - ERROR - CSV解析エラー: Error tokenizing data. C error: Expected 12 fields in line 101, saw 13
-
-2025-06-12 16:11:18,603 - utils - WARNING - 4-2専門データ2009年読み込みエラー: CSVファイルの形式が正しくありません: Error tokenizing data. C error: Expected 12 fields in line 101, saw 13
-
-2025-06-12 16:11:18,604 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2010.csv
-2025-06-12 16:11:18,607 - utils - INFO - ファイルサイズ: 158574 bytes
-2025-06-12 16:11:18,610 - utils - ERROR - CSV解析エラー: Error tokenizing data. C error: Expected 12 fields in line 9, saw 13
-
-2025-06-12 16:11:18,610 - utils - WARNING - 4-2専門データ2010年読み込みエラー: CSVファイルの形式が正しくありません: Error tokenizing data. C error: Expected 12 fields in line 9, saw 13
-
-2025-06-12 16:11:18,612 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2011.csv
-2025-06-12 16:11:18,614 - utils - INFO - ファイルサイズ: 235879 bytes
-2025-06-12 16:11:18,618 - utils - ERROR - CSV解析エラー: Error tokenizing data. C error: Expected 12 fields in line 313, saw 16
-
-2025-06-12 16:11:18,618 - utils - WARNING - 4-2専門データ2011年読み込みエラー: CSVファイルの形式が正しくありません: Error tokenizing data. C error: Expected 12 fields in line 313, saw 16
-
-2025-06-12 16:11:18,620 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2012.csv
-2025-06-12 16:11:18,622 - utils - INFO - ファイルサイズ: 199100 bytes
-2025-06-12 16:11:18,631 - utils - INFO - 読み込み成功: utf-8 エンコーディング
-2025-06-12 16:11:18,632 - utils - INFO - データ読み込み完了: 307行, エンコーディング: utf-8
-2025-06-12 16:11:18,662 - utils - INFO - 有効な問題データ: 307問
-2025-06-12 16:11:18,663 - utils - INFO - 4-2専門データ2012年読み込み完了: 307問
-2025-06-12 16:11:18,665 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2013.csv
-2025-06-12 16:11:18,668 - utils - INFO - ファイルサイズ: 183850 bytes
-2025-06-12 16:11:18,671 - utils - ERROR - CSV解析エラー: Error tokenizing data. C error: Expected 12 fields in line 4, saw 14
-
-2025-06-12 16:11:18,672 - utils - WARNING - 4-2専門データ2013年読み込みエラー: CSVファイルの形式が正しくありません: Error tokenizing data. C error: Expected 12 fields in line 4, saw 14
-
-2025-06-12 16:11:18,673 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2014.csv
-2025-06-12 16:11:18,677 - utils - INFO - ファイルサイズ: 156164 bytes
-2025-06-12 16:11:18,681 - utils - ERROR - CSV解析エラー: Error tokenizing data. C error: Expected 12 fields in line 54, saw 13
-
-2025-06-12 16:11:18,682 - utils - WARNING - 4-2専門データ2014年読み込みエラー: CSVファイルの形式が正しくありません: Error tokenizing data. C error: Expected 12 fields in line 54, saw 13
-
-2025-06-12 16:11:18,684 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2015.csv
-2025-06-12 16:11:18,687 - utils - INFO - ファイルサイズ: 272408 bytes
-2025-06-12 16:11:18,695 - utils - INFO - 読み込み成功: utf-8 エンコーディング
-2025-06-12 16:11:18,696 - utils - INFO - データ読み込み完了: 358行, エンコーディング: utf-8
-2025-06-12 16:11:18,733 - utils - INFO - 有効な問題データ: 358問
-2025-06-12 16:11:18,735 - utils - INFO - 4-2専門データ2015年読み込み完了: 358問
-2025-06-12 16:11:18,736 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2016.csv
-2025-06-12 16:11:18,740 - utils - INFO - ファイルサイズ: 290838 bytes
-2025-06-12 16:11:18,756 - utils - INFO - 読み込み成功: utf-8 エンコーディング
-2025-06-12 16:11:18,757 - utils - INFO - データ読み込み完了: 361行, エンコーディング: utf-8
-2025-06-12 16:11:18,795 - utils - INFO - 有効な問題データ: 361問
-2025-06-12 16:11:18,797 - utils - INFO - 4-2専門データ2016年読み込み完了: 361問
-2025-06-12 16:11:18,799 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2017.csv
-2025-06-12 16:11:18,801 - utils - INFO - ファイルサイズ: 381563 bytes
-2025-06-12 16:11:18,810 - utils - INFO - 読み込み成功: utf-8 エンコーディング
-2025-06-12 16:11:18,811 - utils - INFO - データ読み込み完了: 440行, エンコーディング: utf-8
-2025-06-12 16:11:18,863 - utils - INFO - 有効な問題データ: 440問
-2025-06-12 16:11:18,866 - utils - INFO - 4-2専門データ2017年読み込み完了: 440問
-2025-06-12 16:11:18,868 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2018.csv
-2025-06-12 16:11:18,870 - utils - INFO - ファイルサイズ: 310685 bytes
-2025-06-12 16:11:18,880 - utils - INFO - 読み込み成功: utf-8 エンコーディング
-2025-06-12 16:11:18,880 - utils - INFO - データ読み込み完了: 357行, エンコーディング: utf-8
-2025-06-12 16:11:18,928 - utils - INFO - 有効な問題データ: 357問
-2025-06-12 16:11:18,930 - utils - INFO - 4-2専門データ2018年読み込み完了: 357問
-2025-06-12 16:11:18,933 - utils - INFO - 問題データ読み込み開始: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/questions.csv
-2025-06-12 16:11:18,936 - utils - INFO - ファイルサイズ: 26061 bytes
-2025-06-12 16:11:18,945 - utils - INFO - 読み込み成功: shift_jis エンコーディング
-2025-06-12 16:11:18,946 - utils - INFO - データ読み込み完了: 100行, エンコーディング: shift_jis
-2025-06-12 16:11:18,959 - utils - INFO - 有効な問題データ: 100問
-2025-06-12 16:11:18,962 - utils - INFO - レガシーデータ読み込み完了: 100問
-2025-06-12 16:11:18,968 - utils - INFO - RCCM統合データ読み込み完了: 7ファイル, 総計2279問
-2025-06-12 16:11:18,970 - utils - INFO - 4-2専門データ対象年度: [2008, 2012, 2015, 2016, 2017, 2018]
-2025-06-12 16:11:18,970 - __main__ - INFO - RCCM統合データ読み込み完了: 2279問
-2025-06-12 16:11:19,007 - werkzeug - INFO - 127.0.0.1 - - [12/Jun/2025 16:11:19] "GET /departments/road/types/specialist/categories HTTP/1.1" 200 -
-2025-06-12 16:11:48,051 - __main__ - INFO - GET処理: current_no=0, quiz_question_ids=[], is_next=False, total_ids=0
-2025-06-12 16:11:48,057 - __main__ - INFO - セッション詳細: session keys=['_permanent', 'session_id', 'data_loaded'], quiz_current=MISSING
-2025-06-12 16:11:48,058 - __main__ - INFO - リセット判定: is_next=False, quiz_ids=False, category_match=False, current_no=0, len=0
-2025-06-12 16:11:48,059 - __main__ - INFO - need_reset = True
-2025-06-12 16:11:48,060 - __main__ - INFO - 問題選択完了: 復習0問, 新規0問, フィルタ:[部門:道路, 種別:4-2 選択科目, カテゴリ:éè·¯]
-2025-06-12 16:11:48,060 - __main__ - INFO - 問題選択詳細: requested_size=10, selected_count=0, question_ids_count=0
-2025-06-12 16:11:48,061 - __main__ - INFO - 問題ID一覧: []
-2025-06-12 16:11:48,061 - __main__ - INFO - 新しい問題セッション開始: 0問, フィルタ: 部門:道路, 種別:4-2 選択科目, カテゴリ:éè·¯
-2025-06-12 16:11:48,062 - __main__ - INFO - 範囲チェック: current_no(0) >= len(0) - resultにリダイレクト
-2025-06-12 16:11:48,064 - werkzeug - INFO - 127.0.0.1 - - [12/Jun/2025 16:11:48] "[32mGET /quiz?department=road&question_type=specialist&category=é\x81\x93è·¯ HTTP/1.1[0m" 302 -
-2025-06-12 16:12:33,710 - __main__ - INFO - GET処理: current_no=0, quiz_question_ids=[], is_next=False, total_ids=0
-2025-06-12 16:12:33,711 - __main__ - INFO - セッション詳細: session keys=['_permanent', 'session_id', 'data_loaded'], quiz_current=MISSING
-2025-06-12 16:12:33,712 - __main__ - INFO - リセット判定: is_next=False, quiz_ids=False, category_match=False, current_no=0, len=0
-2025-06-12 16:12:33,713 - __main__ - INFO - need_reset = True
-2025-06-12 16:12:33,715 - __main__ - INFO - 問題選択完了: 復習0問, 新規10問, フィルタ:[部門:道路, 種別:4-2 選択科目, カテゴリ:道路]
-2025-06-12 16:12:33,716 - __main__ - INFO - 問題選択詳細: requested_size=10, selected_count=10, question_ids_count=10
-2025-06-12 16:12:33,716 - __main__ - INFO - 問題ID一覧: [686, 1850, 1401, 1035, 1396, 1408, 1404, 28, 1392, 669]
-2025-06-12 16:12:33,717 - __main__ - INFO - 新しい問題セッション開始: 10問, フィルタ: 部門:道路, 種別:4-2 選択科目, カテゴリ:道路
-2025-06-12 16:12:33,717 - __main__ - INFO - 問題ID取得: current_no=0, question_id=686
-2025-06-12 16:12:33,739 - werkzeug - INFO - 127.0.0.1 - - [12/Jun/2025 16:12:33] "GET /quiz?department=road&question_type=specialist&category=道路 HTTP/1.1" 200 -
+Address already in use
+Port 5003 is in use by another program. Either identify and stop that program, or start the server with a different port.

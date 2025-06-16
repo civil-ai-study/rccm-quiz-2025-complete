@@ -23,7 +23,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h5 class="category-name mb-0">{{ category }}</h5>
-                    <a href="/exam?category={{ category }}" class="btn btn-primary btn-sm study-btn">
+                    <a href="/exam?category={{ category|urlencode }}" class="btn btn-primary btn-sm study-btn">
                         <i class="fas fa-play"></i> 学習
                     </a>
                 </div>
@@ -94,8 +94,8 @@
                             <tbody>
                             {% for category, detail in category_details.items() %}
                                 <tr>
-                                    <td><a href="/exam?category={{ category }}"><strong>{{ category }}</strong></a></td>
-                                    <td><a href="/exam?category={{ category }}" class="btn btn-sm btn-primary">学習</a></td>
+                                    <td><a href="/exam?category={{ category|urlencode }}"><strong>{{ category }}</strong></a></td>
+                                    <td><a href="/exam?category={{ category|urlencode }}" class="btn btn-sm btn-primary">学習</a></td>
                                     <td>{{ detail.total_questions }}</td>
                                     <td>{{ detail.total_answered }}</td>
                                     <td>{{ detail.correct_count }}</td>

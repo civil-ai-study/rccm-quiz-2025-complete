@@ -391,7 +391,20 @@ def validate_question_data(row: pd.Series, index: int) -> Optional[Dict]:
 def load_rccm_data_files(data_dir: str) -> List[Dict]:
     """
     RCCM専用：4-1基礎・4-2専門データファイルの統合読み込み
+    企業環境最適化: 重複読み込み防止機能付き
     """
+    global _data_already_loaded, _data_load_lock
+    
+    # 重複読み込み防止チェック
+    with _data_load_lock:
+        if _data_already_loaded:
+            logger.info("🚀 企業環境最適化: データ既読み込み済み - スキップ")
+            # キャッシュから既存データを返す
+            if hasattr(cache_manager_instance, '_global_questions_cache'):
+                return cache_manager_instance._global_questions_cache
+            else:
+                logger.warning("⚠️ キャッシュデータが見つかりません - 読み込み続行")
+    
     logger.info(f"RCCM統合データ読み込み開始: {data_dir}")
     
     all_questions = []
@@ -404,8 +417,10 @@ def load_rccm_data_files(data_dir: str) -> List[Dict]:
             basic_questions = load_questions_improved(basic_file)
             for q in basic_questions:
                 q['question_type'] = 'basic'
-                q['department'] = q.get('department', 'road')  # デフォルト部門
+                q['department'] = 'common'  # 基礎科目は共通
+                q['category'] = '共通'  # カテゴリも統一
                 # 基礎科目には年度情報を設定しない（年度不問）
+                q['year'] = None
             all_questions.extend(basic_questions)
             file_count += 1
             logger.info(f"4-1基礎データ読み込み完了: {len(basic_questions)}問")
@@ -424,6 +439,9 @@ def load_rccm_data_files(data_dir: str) -> List[Dict]:
                     q['year'] = year
                     # カテゴリから部門を推定
                     q['department'] = map_category_to_department(q.get('category', ''))
+                    # 専門科目であることを明確に標記
+                    if not q.get('category'):
+                        q['category'] = '専門科目'
                 
                 all_questions.extend(year_questions)
                 specialist_years.append(year)
@@ -432,22 +450,18 @@ def load_rccm_data_files(data_dir: str) -> List[Dict]:
             except Exception as e:
                 logger.warning(f"4-2専門データ{year}年読み込みエラー: {e}")
     
-    # レガシーデータ読み込み
-    legacy_file = os.path.join(data_dir, 'questions.csv')
-    if os.path.exists(legacy_file):
-        try:
-            legacy_questions = load_questions_improved(legacy_file)
-            for q in legacy_questions:
-                q['question_type'] = q.get('question_type', 'basic')
-                q['department'] = q.get('department', map_category_to_department(q.get('category', '')))
-            all_questions.extend(legacy_questions)
-            file_count += 1
-            logger.info(f"レガシーデータ読み込み完了: {len(legacy_questions)}問")
-        except Exception as e:
-            logger.warning(f"レガシーデータ読み込みエラー: {e}")
+    # 注: 旧questions.csvファイル（レガシーデータ）は使用しません
+    # RCCM試験データは4-1.csvと4-2_*.csvから読み込まれます
     
     # IDの重複チェック・調整
     all_questions = resolve_id_conflicts(all_questions)
+    
+    # 企業環境最適化: データロード完了フラグとキャッシュ設定
+    with _data_load_lock:
+        _data_already_loaded = True
+        # グローバルキャッシュに保存
+        cache_manager_instance._global_questions_cache = all_questions
+        logger.info("🚀 企業環境最適化: データキャッシュ完了 - 次回読み込み高速化")
     
     logger.info(f"RCCM統合データ読み込み完了: {file_count}ファイル, 総計{len(all_questions)}問")
     logger.info(f"4-2専門データ対象年度: {specialist_years}")
@@ -511,25 +525,74 @@ def map_category_to_department(category: str) -> str:
 
 def resolve_id_conflicts(questions: List[Dict]) -> List[Dict]:
     """
-    IDの重複を解決し、一意のIDを設定
+    IDの重複を解決し、一意のIDを設定（問題種別別に範囲分け）
+    基礎科目: 1-1000, 専門科目: 1001-10000
     """
     used_ids = set()
     resolved_questions = []
-    next_id = 1
     
-    for q in questions:
+    # 基礎科目と専門科目を分離して処理
+    basic_questions = [q for q in questions if q.get('question_type') == 'basic']
+    specialist_questions = [q for q in questions if q.get('question_type') == 'specialist']
+    other_questions = [q for q in questions if q.get('question_type') not in ['basic', 'specialist']]
+    
+    # 基礎科目のID範囲: 1-1000
+    next_basic_id = 1
+    for q in basic_questions:
         original_id = q.get('id')
         
-        # 重複IDの場合は新しいIDを割り当て
-        while next_id in used_ids:
-            next_id += 1
+        # 重複チェック
+        while next_basic_id in used_ids and next_basic_id <= 1000:
+            next_basic_id += 1
         
-        q['id'] = next_id
+        if next_basic_id > 1000:
+            logger.warning("基礎科目のID範囲を超過しました")
+            next_basic_id = 1
+            while next_basic_id in used_ids:
+                next_basic_id += 1
+        
+        q['id'] = next_basic_id
         q['original_id'] = original_id
-        used_ids.add(next_id)
+        used_ids.add(next_basic_id)
         resolved_questions.append(q)
-        next_id += 1
+        next_basic_id += 1
     
+    # 専門科目のID範囲: 1001-10000
+    next_specialist_id = 1001
+    for q in specialist_questions:
+        original_id = q.get('id')
+        
+        # 重複チェック
+        while next_specialist_id in used_ids and next_specialist_id <= 10000:
+            next_specialist_id += 1
+        
+        if next_specialist_id > 10000:
+            logger.warning("専門科目のID範囲を超過しました")
+            next_specialist_id = 1001
+            while next_specialist_id in used_ids:
+                next_specialist_id += 1
+        
+        q['id'] = next_specialist_id
+        q['original_id'] = original_id
+        used_ids.add(next_specialist_id)
+        resolved_questions.append(q)
+        next_specialist_id += 1
+    
+    # その他の問題: 10001以降
+    next_other_id = 10001
+    for q in other_questions:
+        original_id = q.get('id')
+        
+        while next_other_id in used_ids:
+            next_other_id += 1
+        
+        q['id'] = next_other_id
+        q['original_id'] = original_id
+        used_ids.add(next_other_id)
+        resolved_questions.append(q)
+        next_other_id += 1
+    
+    logger.info(f"ID衝突解決: 基礎={len(basic_questions)}問, 専門={len(specialist_questions)}問, その他={len(other_questions)}問")
     return resolved_questions
 
 def get_sample_data_improved() -> List[Dict]:
@@ -635,7 +698,7 @@ class EnterpriseDataManager:
                 return True
             
             # ファイル読み込み
-            data = load_questions_improved([file_path])
+            data = load_questions_improved(file_path)
             
             # キャッシュに保存
             questions_cache = self.cache_manager.get_cache('questions')
@@ -665,7 +728,7 @@ class EnterpriseDataManager:
         # キャッシュミス時はリアルタイム読み込み
         logger.info(f"キャッシュミス - リアルタイム読み込み: {filename}")
         file_path = os.path.join(self.data_dir, filename)
-        data = load_questions_improved([file_path])
+        data = load_questions_improved(file_path)
         
         # 結果をキャッシュに保存
         questions_cache.put(cache_key, data)
@@ -694,7 +757,8 @@ class EnterpriseDataManager:
                         stat = os.stat(file_path)
                         
                         # データ読み込みテスト
-                        data = self.get_optimized_data(filename)
+                        file_path_full = os.path.join(self.data_dir, filename)
+                        data = load_questions_improved(file_path_full)
                         
                         integrity_report['files'][filename] = {
                             'size_bytes': stat.st_size,
@@ -722,7 +786,11 @@ class EnterpriseDataManager:
                 'error': str(e)
             }
 
-# グローバルキャッシュマネージャーインスタンス
+# 企業環境最適化: 重複読み込み防止フラグ
+_data_already_loaded = False
+_data_load_lock = threading.Lock()
+
+# グローバルキャッシュマネージャーインスタンス  
 cache_manager_instance = CacheManager()
 
 # グローバルインスタンス（企業環境用）
