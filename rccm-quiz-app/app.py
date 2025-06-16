@@ -8,6 +8,10 @@ from typing import Dict, List
 import re
 import html
 from functools import wraps
+import threading
+import fcntl
+import time
+import uuid
 
 # 新しいファイルからインポート
 from config import Config, ExamConfig, SRSConfig, DataConfig, RCCMConfig
@@ -35,6 +39,10 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
+
+# 🔥 CRITICAL: セッション競合状態解決のためのロック管理
+session_locks = {}
+lock_cleanup_lock = threading.Lock()
 logger = logging.getLogger(__name__)
 
 # Flask アプリケーション初期化
@@ -56,6 +64,50 @@ enterprise_data_manager = None
 # 問題データのキャッシュ
 _questions_cache = None
 _cache_timestamp = None
+
+# 🔥 CRITICAL: セッション安全性確保のための排他制御関数
+def get_session_lock(user_id):
+    """ユーザー固有のセッションロックを取得"""
+    global session_locks, lock_cleanup_lock
+    
+    with lock_cleanup_lock:
+        if user_id not in session_locks:
+            session_locks[user_id] = threading.RLock()
+        return session_locks[user_id]
+
+def cleanup_old_locks():
+    """古いロックをクリーンアップ（メモリリーク防止）"""
+    global session_locks, lock_cleanup_lock
+    
+    try:
+        with lock_cleanup_lock:
+            # 使用されていないロックを定期的にクリーンアップ
+            # 本番環境では定期タスクで実行
+            if len(session_locks) > 100:  # 100ユーザー以上でクリーンアップ
+                # 実装を簡略化：全てクリア（実際の使用中ロックは再作成される）
+                session_locks.clear()
+                logger.info("セッションロックのクリーンアップを実行しました")
+    except Exception as e:
+        logger.error(f"ロッククリーンアップエラー: {e}")
+
+def generate_unique_session_id():
+    """一意なセッションIDを生成"""
+    return f"{uuid.uuid4().hex[:8]}_{int(time.time())}"
+
+def safe_session_operation(user_id, operation_func, *args, **kwargs):
+    """セッション操作を安全に実行（排他制御付き）"""
+    if not user_id:
+        logger.error("user_idが提供されていません - セッション操作をスキップ")
+        return None
+    
+    session_lock = get_session_lock(user_id)
+    
+    try:
+        with session_lock:
+            return operation_func(*args, **kwargs)
+    except Exception as e:
+        logger.error(f"セッション操作エラー (user_id: {user_id}): {e}")
+        return None
 
 # 強力なキャッシュ制御ヘッダーを設定（マルチユーザー・企業環境対応）
 @app.after_request
@@ -693,7 +745,7 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
                           int(session_size * SRSConfig.MAX_REVIEW_RATIO))
     selected_questions = []
     
-    # 復習問題を追加（部門・問題種別でもフィルタリング）
+    # 復習問題を追加（部門・問題種別・年度でもフィルタリング）
     for i, due_item in enumerate(due_questions):
         if i >= max_review_count:
             break
@@ -703,6 +755,9 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         if department and question.get('department') != department:
             continue
         if question_type and question.get('question_type') != question_type:
+            continue
+        # 🚨 年度フィルタリング追加（ウルトラシンク修正）
+        if year and str(question.get('year', '')) != str(year):
             continue
         
         selected_questions.append(question)
@@ -744,38 +799,35 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         # 専門科目で部門指定がある場合のみ部門フィルタ適用
         if question_type == 'specialist' and department:
             # 英語部門キーを日本語カテゴリに変換するマッピング
+            # ✅ CSVファイル統一化により簡素化されたマッピング
             department_to_category_mapping = {
                 'road': '道路',
                 'tunnel': 'トンネル', 
-                'civil_planning': '河川・砂防及び海岸・海洋',
+                'civil_planning': '河川、砂防及び海岸・海洋',
                 'urban_planning': '都市計画及び地方計画',
                 'landscape': '造園',
                 'construction_env': '建設環境',
                 'steel_concrete': '鋼構造及びコンクリート',
                 'soil_foundation': '土質及び基礎',
-                'construction_planning': '施工計画・施工設備及び積算',
+                'construction_planning': '施工計画、施工設備及び積算',
                 'water_supply': '上水道及び工業用水道',
                 'forestry': '森林土木',
                 'agriculture': '農業土木'
             }
             
             # 英語キーから日本語カテゴリに変換
-            target_category = department_to_category_mapping.get(department, department)
-            logger.info(f"部門フィルタリング: {department} → {target_category}")
+            target_categories = department_to_category_mapping.get(department, department)
+            logger.info(f"部門フィルタリング: {department} → {target_categories}")
             
             # 日本語カテゴリでマッチング（category フィールドを使用）
-            # 🔥 鋼構造部門の特別処理: 両方のカテゴリを拾う
-            if department == 'steel_concrete':
-                dept_match_questions = [q for q in available_questions 
-                                      if q.get('category') in ['鋼構造及びコンクリート', '鋼構造コンクリート']]
-            else:
-                dept_match_questions = [q for q in available_questions 
-                                      if q.get('category') == target_category]
+            # ✅ CSVファイル統一化により簡素化されたマッチング
+            dept_match_questions = [q for q in available_questions 
+                                  if q.get('category') == target_categories]
             if dept_match_questions:
                 available_questions = dept_match_questions
                 logger.info(f"専門科目部門マッチング成功: {len(available_questions)}問")
             else:
-                logger.warning(f"専門科目部門マッチング失敗: {target_category} に該当する問題が見つかりません")
+                logger.warning(f"専門科目部門マッチング失敗: {target_categories} に該当する問題が見つかりません")
     
     # 部門でフィルタリング（基礎科目の場合はスキップ、専門科目で既に適用済みの場合もスキップ）
     elif department and question_type != 'basic' and question_type != 'specialist':
@@ -928,11 +980,15 @@ def index():
         logger.error(f"ホームページエラー: {e}")
         return render_template('error.html', error_message=str(e)), 500
 
-@app.route('/set_user', methods=['POST'])
+@app.route('/set_user', methods=['POST', 'GET'])
 def set_user():
     """ユーザー名を設定（企業環境での個別識別）"""
     try:
-        user_name = request.form.get('user_name', '').strip()
+        # POST/GET両方に対応（テスト用）
+        if request.method == 'POST':
+            user_name = request.form.get('user_name', '').strip()
+        else:
+            user_name = request.args.get('user', '').strip()
         
         if not user_name:
             return redirect(url_for('index'))
@@ -944,10 +1000,19 @@ def set_user():
         if len(user_name) > 20:
             user_name = user_name[:20]
         
+        # 🔥 CRITICAL: セッション競合回避 - 一意なセッションIDを生成
+        unique_session_id = generate_unique_session_id()
+        base_user_id = f"user_{hash(user_name) % 100000:05d}"
+        session_aware_user_id = f"{base_user_id}_{unique_session_id}"
+        
         # セッションにユーザー名を保存
         session['user_name'] = user_name
-        session['user_id'] = f"user_{hash(user_name) % 100000:05d}"  # 簡易ユーザーID生成
+        session['user_id'] = session_aware_user_id  # セッション固有の一意ID
+        session['base_user_id'] = base_user_id      # データ永続化用の基本ID
+        session['session_id'] = unique_session_id   # セッション識別用
         session['login_time'] = datetime.now().isoformat()
+        
+        logger.info(f"🔒 セッション安全性確保: {user_name} (セッションID: {unique_session_id}, ユーザーID: {session_aware_user_id})")
         
         logger.info(f"ユーザー設定完了: {user_name} (ID: {session['user_id']})")
         return redirect(url_for('index'))
@@ -1453,8 +1518,8 @@ def exam():
                         # 🔥 最終緊急フォールバック: 問題IDから強制セッション作成
                         logger.warning(f"緊急フォールバック実行: 問題ID {qid} から最小セッション作成")
                         try:
-                            from utils import load_questions_improved
-                            all_questions = load_questions_improved()
+                            # 🔥 CRITICAL: load_questions()関数を使用（引数なし）
+                            all_questions = load_questions()
                             
                             # 問題IDを中心とした最小セッション作成
                             session['exam_question_ids'] = [qid]
@@ -1792,12 +1857,14 @@ def exam():
         # 次の問題への遷移要求の場合はリセットしない
         session_question_type = session.get('selected_question_type')
         session_department = session.get('selected_department')
+        session_year = session.get('selected_year')  # 🚨 年度マッチング追加
         
         category_match = requested_category == session_category
         question_type_match = requested_question_type == session_question_type
         department_match = requested_department == session_department
+        year_match = requested_year == session_year  # 🚨 年度マッチング判定追加
         
-        logger.info(f"リセット判定: is_next={is_next_request}, exam_ids={bool(exam_question_ids)}, category_match={category_match}, question_type_match={question_type_match}, department_match={department_match}, current_no={current_no}, len={len(exam_question_ids)}")
+        logger.info(f"リセット判定: is_next={is_next_request}, exam_ids={bool(exam_question_ids)}, category_match={category_match}, question_type_match={question_type_match}, department_match={department_match}, year_match={year_match}, current_no={current_no}, len={len(exam_question_ids)}")
         
         # 🔥 CRITICAL: 強化されたリセット判定（ユーザー要求による）
         # ホームから戻ってきた場合は必ずリセット
@@ -1811,12 +1878,14 @@ def exam():
         )
         
         # 🔥 CRITICAL: 復習モード保護強化 - 復習セッション中は不適切なリセットを防止
+        # 🚨 年度変更時のリセット判定を追加（ウルトラシンク修正）
         need_reset = (not is_next_request and not is_review_mode and (
                     not exam_question_ids or                    # 問題IDがない
                     request.args.get('reset') == '1' or        # 明示的リセット要求
                     (referrer_is_home and not is_review_mode) or # ホームから来た場合（復習除く）
                     (not question_type_match and not is_review_mode) or # 問題種別変更（復習除く）
                     (not department_match and not is_review_mode) or    # 部門変更（復習除く）
+                    (not year_match and not is_review_mode) or          # 🚨 年度変更（復習除く）
                     len(exam_question_ids) == 0))              # 空の問題リスト
         
         logger.info(f"need_reset = {need_reset}")
@@ -5336,5 +5405,6 @@ except Exception as e:
 
 if __name__ == '__main__':
     logger.info("RCCM試験問題集アプリケーション起動中...")
+    logger.info("アクセスURL: http://172.18.44.152:5003")
     logger.info("アクセスURL: http://localhost:5003")
     app.run(debug=True, host='0.0.0.0', port=5003)
