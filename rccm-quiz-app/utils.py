@@ -482,6 +482,11 @@ def map_category_to_department(category: str) -> str:
         # 河川砂防海岸（年度による表記の違いに対応）
         '河川、砂防及び海岸・海洋': 'civil_planning',
         '河川砂防海岸': 'civil_planning',
+        '河川砂防': 'civil_planning',  # 2008年度
+        '河川砂防海岸海洋': 'civil_planning',  # 2010年度
+        '河川砂防及び海岸・海洋': 'civil_planning',  # 2012年度
+        '河川、砂防及び海岸･海洋': 'civil_planning',  # 2013年度
+        '河川・砂防及び海岸・海洋': 'civil_planning',  # 2014年度
         
         # 都市計画（年度による表記の違いに対応）
         '都市計画及び地方計画': 'urban_planning',
