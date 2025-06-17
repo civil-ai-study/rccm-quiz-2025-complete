@@ -2392,6 +2392,13 @@ def department_study(department):
                               if q.get('question_type') == 'specialist' and q.get('department') == department_key]
         specialist_history = [h for h in session.get('history', []) 
                              if h.get('question_type') == 'specialist' and h.get('department') == department_key]
+        
+        # デバッグログ追加
+        logger.info(f"🔍 DEBUG specialist_questions: department={department_key}, count={len(specialist_questions)}")
+        if len(specialist_questions) > 0:
+            sample = specialist_questions[0]
+            logger.info(f"🔍 DEBUG sample question: dept={sample.get('department')}, type={sample.get('question_type')}, id={sample.get('id')}")
+        
         specialist_stats = {
             'total_questions': len(specialist_questions),
             'answered': len(specialist_history),
