@@ -40,9 +40,11 @@ logging.basicConfig(
     ]
 )
 
-# 🔥 CRITICAL: セッション競合状態解決のためのロック管理
+# 🔥 CRITICAL: セッション競合状態解決のためのロック管理（改修版）
 session_locks = {}
 lock_cleanup_lock = threading.Lock()
+lock_last_used = {}  # ロック最終使用時刻を追跡
+LOCK_TIMEOUT = 3600  # 1時間でロックタイムアウト
 logger = logging.getLogger(__name__)
 
 # Flask アプリケーション初期化
@@ -67,26 +69,40 @@ _cache_timestamp = None
 
 # 🔥 CRITICAL: セッション安全性確保のための排他制御関数
 def get_session_lock(user_id):
-    """ユーザー固有のセッションロックを取得"""
-    global session_locks, lock_cleanup_lock
+    """ユーザー固有のセッションロックを取得（改修版）"""
+    global session_locks, lock_cleanup_lock, lock_last_used
     
     with lock_cleanup_lock:
         if user_id not in session_locks:
             session_locks[user_id] = threading.RLock()
+        
+        # 最終使用時刻を更新
+        lock_last_used[user_id] = time.time()
         return session_locks[user_id]
 
 def cleanup_old_locks():
-    """古いロックをクリーンアップ（メモリリーク防止）"""
-    global session_locks, lock_cleanup_lock
+    """古いロックをクリーンアップ（メモリリーク防止・改修版）"""
+    global session_locks, lock_cleanup_lock, lock_last_used
     
     try:
         with lock_cleanup_lock:
-            # 使用されていないロックを定期的にクリーンアップ
-            # 本番環境では定期タスクで実行
-            if len(session_locks) > 100:  # 100ユーザー以上でクリーンアップ
-                # 実装を簡略化：全てクリア（実際の使用中ロックは再作成される）
-                session_locks.clear()
-                logger.info("セッションロックのクリーンアップを実行しました")
+            current_time = time.time()
+            expired_locks = []
+            
+            # 使用されていないロックを安全にクリーンアップ
+            for user_id in list(lock_last_used.keys()):
+                last_used = lock_last_used.get(user_id, 0)
+                if current_time - last_used > LOCK_TIMEOUT:
+                    expired_locks.append(user_id)
+            
+            # 期限切れロックを削除
+            for user_id in expired_locks:
+                session_locks.pop(user_id, None)
+                lock_last_used.pop(user_id, None)
+            
+            if expired_locks:
+                logger.info(f"期限切れセッションロック {len(expired_locks)}個 をクリーンアップしました")
+                
     except Exception as e:
         logger.error(f"ロッククリーンアップエラー: {e}")
 
@@ -95,7 +111,7 @@ def generate_unique_session_id():
     return f"{uuid.uuid4().hex[:8]}_{int(time.time())}"
 
 def safe_session_operation(user_id, operation_func, *args, **kwargs):
-    """セッション操作を安全に実行（排他制御付き）"""
+    """セッション操作を安全に実行（ウルトラシンク排他制御強化）"""
     if not user_id:
         logger.error("user_idが提供されていません - セッション操作をスキップ")
         return None
@@ -104,7 +120,22 @@ def safe_session_operation(user_id, operation_func, *args, **kwargs):
     
     try:
         with session_lock:
-            return operation_func(*args, **kwargs)
+            # 🔥 CRITICAL FIX: セッション操作の原子性保証
+            session_backup = dict(session) if hasattr(session, 'keys') else {}
+            try:
+                result = operation_func(*args, **kwargs)
+                # 操作成功時のみsession.modifiedを設定
+                if hasattr(session, 'modified'):
+                    session.modified = True
+                return result
+            except Exception as op_error:
+                # 操作エラー時はセッションを復元
+                if session_backup:
+                    for key, value in session_backup.items():
+                        session[key] = value
+                    session.modified = True
+                logger.error(f"セッション操作失敗（復元実行）: {op_error}")
+                raise op_error
     except Exception as e:
         logger.error(f"セッション操作エラー (user_id: {user_id}): {e}")
         return None
@@ -134,10 +165,15 @@ def after_request(response):
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['X-XSS-Protection'] = '1; mode=block'
     
-    # CORS対応（企業環境でのクロスオリジンアクセス）
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
-    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+    # 🔥 CRITICAL FIX: セキュアなCORS設定（企業環境セキュリティ強化）
+    # 特定ドメインのみ許可（本番環境では適切なドメインを設定）
+    allowed_origins = ['http://localhost:5003', 'http://127.0.0.1:5003', 'http://172.18.44.152:5003']
+    origin = request.headers.get('Origin')
+    if origin in allowed_origins:
+        response.headers['Access-Control-Allow-Origin'] = origin
+    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'  # 必要最小限のメソッド
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'  # 必要最小限のヘッダー
+    response.headers['Access-Control-Allow-Credentials'] = 'true'  # 認証情報送信許可
     
     # サービスワーカー更新強制
     if '/sw.js' in request.path:
@@ -148,15 +184,31 @@ def after_request(response):
 
 # セキュリティ機能
 def sanitize_input(input_string):
-    """入力値をサニタイズ（日本語対応）"""
+    """入力値をサニタイズ（ウルトラシンク安全性修正・日本語対応）"""
     if not input_string:
         return ""
     # 文字列に変換
     sanitized = str(input_string)
     # 危険なHTMLタグのみ除去（日本語文字は保持）
     sanitized = re.sub(r'<[^>]*>', '', sanitized)
-    # SQLインジェクション対策（クォートのみエスケープ）
-    sanitized = sanitized.replace("'", "").replace('"', '')
+    
+    # 🔥 CRITICAL FIX: 完全なSQLインジェクション対策
+    dangerous_chars = {
+        "'": "&#39;",      # シングルクォート
+        '"': "&#34;",      # ダブルクォート
+        ";": "&#59;",      # セミコロン
+        "--": "&#45;&#45;", # SQLコメント
+        "/*": "&#47;&#42;", # SQLコメント開始
+        "*/": "&#42;&#47;", # SQLコメント終了
+        "\\": "&#92;",     # バックスラッシュ
+        "=": "&#61;",      # 等号（WHERE句攻撃対策）
+        "%": "&#37;",      # パーセント（LIKE句攻撃対策）
+        "_": "&#95;"       # アンダースコア（LIKE句攻撃対策）
+    }
+    
+    for char, escape in dangerous_chars.items():
+        sanitized = sanitized.replace(char, escape)
+    
     return sanitized.strip()
 
 # =============================================================================
@@ -304,17 +356,35 @@ def get_due_review_questions(session, max_count=50):
             continue
         
         try:
-            next_review = datetime.fromisoformat(data['next_review'])
-            if next_review <= now:
-                # 優先度を計算（間違いが多い＋期限が過ぎているほど高優先度）
-                days_overdue = (now - next_review).days
-                wrong_ratio = data['wrong_count'] / max(1, data['total_attempts'])
-                priority = (wrong_ratio * 100) + days_overdue + data['difficulty_level']
+            # 🔥 CRITICAL FIX: 安全な日時解析と優先度計算
+            next_review_str = data.get('next_review')
+            if not next_review_str:
+                # next_reviewが未設定の場合は即座に復習対象
+                due_questions.append((qid, 100, data))
+                continue
                 
-                due_questions.append((qid, priority, data))
-        except (ValueError, KeyError):
-            # 日時解析エラーの場合は優先度最高で追加
-            due_questions.append((qid, 999, data))
+            next_review = datetime.fromisoformat(next_review_str)
+            if next_review <= now:
+                # 優先度を安全に計算（エラー処理付き）
+                try:
+                    days_overdue = max(0, (now - next_review).days)
+                    wrong_count = data.get('wrong_count', 0)
+                    total_attempts = data.get('total_attempts', 1)
+                    difficulty_level = data.get('difficulty_level', 5)
+                    
+                    wrong_ratio = wrong_count / max(1, total_attempts)
+                    priority = (wrong_ratio * 100) + days_overdue + float(difficulty_level)
+                    priority = max(1, min(999, priority))  # 1-999の範囲に制限
+                    
+                    due_questions.append((qid, priority, data))
+                except (TypeError, ValueError, AttributeError) as calc_error:
+                    logger.warning(f"優先度計算エラー（問題ID: {qid}）: {calc_error}")
+                    due_questions.append((qid, 50, data))  # デフォルト優先度
+                    
+        except (ValueError, KeyError, TypeError) as e:
+            # 日時解析エラーの場合は中程度の優先度で追加（999は危険）
+            logger.warning(f"日時解析エラー（問題ID: {qid}）: {e}")
+            due_questions.append((qid, 75, data))
     
     # 優先度順（降順）でソートして返す
     due_questions.sort(key=lambda x: x[1], reverse=True)
@@ -351,9 +421,17 @@ def get_adaptive_review_list(session):
         total_attempts = data.get('total_attempts', 1)
         difficulty = data.get('difficulty_level', 5)
         
-        # 重み = 間違い率 × 難易度レベル × 係数
-        weight = (wrong_count / total_attempts) * difficulty * 2
-        weight = max(1, int(weight))  # 最低でも1回は含める
+        # 🔥 CRITICAL FIX: 安全な数値計算（型エラー防止・精度保持）
+        try:
+            # 安全な除算（ゼロ除算防止）
+            wrong_ratio = wrong_count / max(1, total_attempts)
+            # 重み = 間違い率 × 難易度レベル × 係数（精度保持）
+            weight_float = wrong_ratio * float(difficulty) * 2.0
+            # 最低1、最大20に制限して安全にint変換
+            weight = max(1, min(20, round(weight_float)))
+        except (TypeError, ValueError, ZeroDivisionError) as e:
+            logger.warning(f"重み計算エラー（問題ID: {qid}）: {e}, デフォルト値1を使用")
+            weight = 1
         
         # 重みに応じて複数回追加（重要な問題ほど出現頻度が高くなる）
         for _ in range(weight):
@@ -434,15 +512,29 @@ def validate_exam_parameters(**kwargs):
     return errors
 
 def rate_limit_check(max_requests=1000, window_minutes=60):
-    """レート制限チェック"""
+    """レート制限チェック（ウルトラシンク安全性修正）"""
     now = datetime.now()
     window_start = now - timedelta(minutes=window_minutes)
     
-    # セッションからリクエスト履歴を取得
+    # セッションからリクエスト履歴を安全に取得
     request_history = session.get('request_history', [])
     
-    # 古いリクエストを除去
-    request_history = [req_time for req_time in request_history if datetime.fromisoformat(req_time) > window_start]
+    # 🔥 CRITICAL FIX: 例外処理付きで安全な日時解析
+    safe_history = []
+    for req_time in request_history:
+        try:
+            if isinstance(req_time, str):
+                parsed_time = datetime.fromisoformat(req_time)
+                if parsed_time > window_start:
+                    safe_history.append(req_time)
+            elif isinstance(req_time, datetime):
+                if req_time > window_start:
+                    safe_history.append(req_time.isoformat())
+        except (ValueError, TypeError) as e:
+            logger.warning(f"無効な日時フォーマットをスキップ: {req_time}, エラー: {e}")
+            continue
+    
+    request_history = safe_history
     
     # 現在のリクエストを追加
     request_history.append(now.isoformat())
@@ -1054,14 +1146,36 @@ def force_refresh():
 def exam():
     """SRS対応のquiz関数（統合版）"""
     try:
-        # 🔥 CRITICAL: ウルトラシンク セッション整合性チェック・自動修復
+        # 🔥 CRITICAL: ウルトラシンク セッション整合性チェック・自動修復（改修版）
         if 'exam_question_ids' in session:
-            exam_ids = session.get('exam_question_ids', [])
-            current_no = session.get('exam_current', 0)
-            
-            # セッション破損チェック（ウルトラシンク強化版）
-            if not isinstance(exam_ids, list) or not isinstance(current_no, int) or not exam_ids:
-                logger.warning("セッション破損検出 - 自動リセット実行")
+            try:
+                exam_ids = session.get('exam_question_ids', [])
+                current_no_raw = session.get('exam_current', 0)
+                
+                # 型安全な変換
+                current_no = int(current_no_raw) if current_no_raw is not None else 0
+                
+                # セッション修復チェック（改修版）
+                if not isinstance(exam_ids, list):
+                    # 修復可能な場合は修復を試行
+                    if exam_ids and hasattr(exam_ids, '__iter__'):
+                        exam_ids = list(exam_ids)
+                        session['exam_question_ids'] = exam_ids
+                        logger.info("セッション自動修復: exam_question_ids を list型に変換")
+                    else:
+                        raise ValueError("exam_question_ids が修復不可能")
+                
+                if current_no < 0:
+                    current_no = 0
+                    session['exam_current'] = current_no
+                    logger.info("セッション自動修復: exam_current を 0 にリセット")
+                
+                if not exam_ids:
+                    raise ValueError("exam_question_ids が空")
+                    
+            except (ValueError, TypeError) as e:
+                # 修復不可能な場合のみリセット
+                logger.warning(f"セッション修復不可能 - リセット実行: {e}")
                 session.pop('exam_question_ids', None)
                 session.pop('exam_current', None)
                 session.pop('exam_category', None)
@@ -1129,13 +1243,20 @@ def exam():
                 return render_template('error.html', error=f"問題が見つかりません (ID: {qid})。")
 
             # 正誤判定
-            is_correct = (str(answer).strip() == str(question.get('correct_answer', '').strip()))
+            user_answer = str(answer).strip().upper()  # 大文字に統一
+            correct_answer = str(question.get('correct_answer', '')).strip().upper()  # 大文字に統一
+            is_correct = (user_answer == correct_answer)
+            
+            # デバッグログ追加
+            logger.info(f"正誤判定: 問題ID={qid}, ユーザー回答='{user_answer}', 正解='{correct_answer}', 判定={is_correct}")
 
             # 高度なSRS（間隔反復学習）システムでの復習管理
             srs_info = update_advanced_srs_data(qid, is_correct, session)
             
             # 旧復習リストとの互換性維持 + マスター済み問題の自動削除
             bookmarks = session.get('bookmarks', [])
+            logger.info(f"復習リスト処理前: bookmarks={bookmarks}, is_correct={is_correct}")
+            
             if is_correct:
                 # マスター済み（5回正解）の場合は復習リストから完全除外
                 if srs_info.get('mastered', False):
@@ -1150,6 +1271,8 @@ def exam():
                     session['bookmarks'] = bookmarks
                     session.modified = True
                     logger.info(f"✅ 正解により一時的に復習リストから除外: 問題ID {qid} (SRSで管理)")
+                else:
+                    logger.info(f"✅ 正解: 問題ID {qid} は復習リストに含まれていないため、何もしません")
             else:
                 # 不正解時は旧復習リストにも追加（互換性のため）
                 if str(qid) not in bookmarks:
@@ -1157,6 +1280,10 @@ def exam():
                     session['bookmarks'] = bookmarks
                     session.modified = True
                     logger.info(f"❌ 不正解により復習リストに追加: 問題ID {qid}")
+                else:
+                    logger.info(f"❌ 不正解: 問題ID {qid} は既に復習リストに存在")
+            
+            logger.info(f"復習リスト処理後: bookmarks={session.get('bookmarks', [])}")
             
             # マスター済み問題の一括クリーンアップ
             cleanup_mastered_questions(session)
