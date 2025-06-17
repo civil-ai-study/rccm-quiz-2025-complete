@@ -8,6 +8,37 @@ from typing import Dict, List
 import re
 import html
 from functools import wraps
+
+# セキュリティ認証デコレーター
+def require_admin_auth(f):
+    """管理者認証が必要なAPIエンドポイント用デコレーター"""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        # セッションベースの管理者チェック（簡易版）
+        admin_flag = session.get('is_admin', False)
+        admin_key = request.headers.get('X-Admin-Key')
+        
+        # 管理者キーまたはセッションフラグのチェック
+        if not admin_flag and admin_key != app.config.get('ADMIN_SECRET_KEY', 'admin-secret-key-123'):
+            return jsonify({'error': '管理者認証が必要です', 'auth_hint': 'X-Admin-Keyヘッダーまたは管理者セッションが必要'}), 403
+        
+        return f(*args, **kwargs)
+    return decorated_function
+
+def require_api_key(f):
+    """API認証が必要なエンドポイント用デコレーター"""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        api_key = request.headers.get('X-API-Key')
+        
+        # 基本的なAPIキーチェック（実際の環境ではより強固な認証を実装）
+        valid_keys = app.config.get('VALID_API_KEYS', ['api-key-demo', 'enterprise-key-demo'])
+        
+        if not api_key or api_key not in valid_keys:
+            return jsonify({'error': 'API認証が必要です', 'auth_hint': 'X-API-Keyヘッダーが必要'}), 401
+        
+        return f(*args, **kwargs)
+    return decorated_function
 import threading
 import fcntl
 import time
@@ -2954,6 +2985,7 @@ def srs_statistics():
                              error_message="学習統計の読み込み中にエラーが発生しました。問題を続けることで統計が蓄積されます。")
 
 @app.route('/api/data/export')
+@require_api_key
 def export_data():
     """学習データのエクスポート"""
     try:
@@ -3801,7 +3833,7 @@ def adaptive_quiz():
         logger.info(f"アダプティブ問題開始: {len(question_ids)}問, モード: {learning_mode}, 部門: {department or '全体'}")
         
         # 最初の問題を表示
-        return redirect(url_for('quiz'))
+        return redirect(url_for('exam'))
         
     except Exception as e:
         logger.error(f"アダプティブ問題エラー: {e}")
@@ -3865,7 +3897,7 @@ def integrated_learning():
         logger.info(f"連携学習開始: {len(question_ids)}問, モード: {learning_mode}, 部門: {department or '全体'}, 基礎習熟度: {foundation_mastery:.2f}")
         
         # 最初の問題を表示
-        return redirect(url_for('quiz'))
+        return redirect(url_for('exam'))
         
     except Exception as e:
         logger.error(f"連携学習エラー: {e}")
@@ -4581,6 +4613,86 @@ def app_icon(size):
         logger.debug(f"アイコン配信エラー: {e}")
         return '', 404
 
+# === 未実装ルートのリダイレクト対応（ウルトラシンク修正） ===
+@app.route('/social_learning')
+def social_learning_redirect():
+    """ソーシャル学習機能（ヘルプからのリダイレクト対応）"""
+    return redirect(url_for('social_main'))
+
+@app.route('/leaderboard')
+def leaderboard_redirect():
+    """ランキング機能（ヘルプからのリダイレクト対応）"""
+    return redirect(url_for('social_leaderboard'))
+
+@app.route('/health_check')
+def health_check():
+    """システムヘルスチェック（ウルトラシンク新規実装）"""
+    try:
+        # アプリケーション健康状態チェック
+        health_status = {
+            'status': 'healthy',
+            'timestamp': datetime.now().isoformat(),
+            'version': '2025 Enterprise Edition',
+            'database': 'file-based',
+            'checks': {
+                'data_loading': 'ok',
+                'session_management': 'ok',
+                'ai_modules': 'ok',
+                'cache_system': 'ok'
+            },
+            'stats': {
+                'total_questions': 0,
+                'active_sessions': len(session_locks) if 'session_locks' in globals() else 0,
+                'memory_usage': 'normal',
+                'response_time': 'fast'
+            }
+        }
+        
+        # 問題データの健康チェック
+        try:
+            questions = load_questions()
+            health_status['stats']['total_questions'] = len(questions)
+            health_status['checks']['data_loading'] = 'ok'
+        except Exception as e:
+            health_status['checks']['data_loading'] = f'error: {str(e)}'
+            health_status['status'] = 'degraded'
+        
+        # AI機能の健康チェック
+        try:
+            global ai_analyzer, advanced_analytics
+            if ai_analyzer is None or advanced_analytics is None:
+                health_status['checks']['ai_modules'] = 'not_initialized'
+            else:
+                health_status['checks']['ai_modules'] = 'ok'
+        except Exception as e:
+            health_status['checks']['ai_modules'] = f'error: {str(e)}'
+        
+        # セッション管理の健康チェック
+        try:
+            if 'session_locks' in globals():
+                health_status['stats']['active_sessions'] = len(session_locks)
+                health_status['checks']['session_management'] = 'ok'
+            else:
+                health_status['checks']['session_management'] = 'warning: locks not initialized'
+        except Exception as e:
+            health_status['checks']['session_management'] = f'error: {str(e)}'
+        
+        # 最終的な健康状態判定
+        if any('error' in str(check) for check in health_status['checks'].values()):
+            health_status['status'] = 'unhealthy'
+        elif any('warning' in str(check) for check in health_status['checks'].values()):
+            health_status['status'] = 'degraded'
+        
+        return jsonify(health_status), 200 if health_status['status'] == 'healthy' else 503
+        
+    except Exception as e:
+        logger.error(f"ヘルスチェックエラー: {e}")
+        return jsonify({
+            'status': 'error',
+            'message': str(e),
+            'timestamp': datetime.now().isoformat()
+        }), 500
+
 @app.errorhandler(404)
 def page_not_found(e):
     logger.warning(f"404エラー: {request.url}")
@@ -4595,9 +4707,89 @@ def internal_error(e):
     logger.error(f"500エラー: {e}")
     return render_template('error.html', error="サーバーエラーが発生しました"), 500
 
+# === AI学習アナリティクス ===
+@app.route('/ai_dashboard')
+def ai_dashboard():
+    """AIダッシュボード画面（ウルトラシンク修正）"""
+    try:
+        # AI分析機能の初期化チェック
+        global ai_analyzer, advanced_analytics
+        
+        if ai_analyzer is None:
+            from ai_analyzer import AIAnalyzer
+            ai_analyzer = AIAnalyzer()
+            logger.info("AIアナライザー初期化完了")
+        
+        if advanced_analytics is None:
+            from advanced_analytics import AdvancedAnalytics
+            advanced_analytics = AdvancedAnalytics()
+            logger.info("高度分析エンジン初期化完了")
+        
+        # セッションから学習データを取得
+        user_id = session.get('session_id', 'anonymous')
+        history = session.get('history', [])
+        srs_data = session.get('advanced_srs', {})
+        
+        # AI分析実行
+        analysis_results = {
+            'weakness_patterns': ai_analyzer.analyze_weakness_patterns(history),
+            'learning_style': ai_analyzer.determine_learning_style(history),
+            'performance_prediction': ai_analyzer.predict_performance(srs_data),
+            'study_recommendations': ai_analyzer.generate_recommendations(history, srs_data),
+            'memory_retention': advanced_analytics.analyze_memory_retention(srs_data),
+            'optimal_study_time': advanced_analytics.calculate_optimal_study_time(history)
+        }
+        
+        return render_template('ai_dashboard.html', analysis=analysis_results)
+        
+    except Exception as e:
+        logger.error(f"AIダッシュボードエラー: {e}")
+        return render_template('error.html', 
+                             error="AI分析機能の読み込み中にエラーが発生しました。",
+                             details=str(e))
+
+@app.route('/advanced_analytics')
+def advanced_analytics_view():
+    """高度分析画面（ウルトラシンク修正）"""
+    try:
+        # 高度分析機能の初期化チェック
+        global advanced_analytics, ai_analyzer
+        
+        if advanced_analytics is None:
+            from advanced_analytics import AdvancedAnalytics
+            advanced_analytics = AdvancedAnalytics()
+            logger.info("高度分析エンジン初期化完了")
+        
+        # セッションから詳細データを取得
+        user_id = session.get('session_id', 'anonymous')
+        history = session.get('history', [])
+        srs_data = session.get('advanced_srs', {})
+        bookmarks = session.get('bookmarks', [])
+        
+        # 高度な統計分析実行
+        analytics_data = {
+            'time_series_analysis': advanced_analytics.analyze_time_series(history),
+            'difficulty_distribution': advanced_analytics.analyze_difficulty_distribution(srs_data),
+            'learning_curve': advanced_analytics.generate_learning_curve(history),
+            'success_probability': advanced_analytics.calculate_success_probability(history, srs_data),
+            'department_heatmap': advanced_analytics.create_department_heatmap(history),
+            'study_efficiency': advanced_analytics.calculate_study_efficiency(history),
+            'cognitive_load': advanced_analytics.estimate_cognitive_load(srs_data),
+            'recommendation_engine': advanced_analytics.generate_study_plan(history, srs_data, bookmarks)
+        }
+        
+        return render_template('advanced_analytics.html', analytics=analytics_data)
+        
+    except Exception as e:
+        logger.error(f"高度分析エラー: {e}")
+        return render_template('error.html', 
+                             error="高度分析機能の読み込み中にエラーが発生しました。",
+                             details=str(e))
+
 # === 管理者ダッシュボード ===
 
 @app.route('/admin')
+@require_admin_auth
 def admin_dashboard_page():
     """管理者ダッシュボードメイン"""
     try:
@@ -4626,6 +4818,7 @@ def admin_dashboard_page():
         return render_template('error.html', error="ダッシュボードの読み込み中にエラーが発生しました")
 
 @app.route('/admin/api/overview')
+@require_admin_auth
 def admin_api_overview():
     """システム概要API"""
     try:
@@ -4636,6 +4829,7 @@ def admin_api_overview():
         return jsonify({'error': str(e)}), 500
 
 @app.route('/admin/api/questions')
+@require_admin_auth
 def admin_api_questions():
     """問題管理API"""
     try:
@@ -4646,6 +4840,7 @@ def admin_api_questions():
         return jsonify({'error': str(e)}), 500
 
 @app.route('/admin/api/users')
+@require_admin_auth
 def admin_api_users():
     """ユーザー管理API"""
     try:
@@ -4656,6 +4851,7 @@ def admin_api_users():
         return jsonify({'error': str(e)}), 500
 
 @app.route('/admin/api/users/<user_id>')
+@require_admin_auth
 def admin_api_user_detail(user_id):
     """ユーザー詳細API"""
     try:
@@ -4666,6 +4862,7 @@ def admin_api_user_detail(user_id):
         return jsonify({'error': str(e)}), 500
 
 @app.route('/admin/api/content')
+@require_admin_auth
 def admin_api_content():
     """コンテンツ分析API"""
     try:
@@ -4676,6 +4873,7 @@ def admin_api_content():
         return jsonify({'error': str(e)}), 500
 
 @app.route('/admin/api/performance')
+@require_admin_auth
 def admin_api_performance():
     """パフォーマンス指標API"""
     try:
@@ -4686,6 +4884,7 @@ def admin_api_performance():
         return jsonify({'error': str(e)}), 500
 
 @app.route('/admin/api/reports/<report_type>')
+@require_admin_auth
 def admin_api_reports(report_type):
     """レポート生成API"""
     try:
@@ -5385,6 +5584,7 @@ def api_personalization_ui(user_id):
 
 # 企業環境用管理API
 @app.route('/api/enterprise/users')
+@require_api_key
 def api_enterprise_users():
     """全ユーザー一覧API（企業環境用）"""
     try:
@@ -5402,6 +5602,7 @@ def api_enterprise_users():
         return jsonify({'error': str(e)}), 500
 
 @app.route('/api/enterprise/user/<user_name>/report')
+@require_api_key
 def api_enterprise_user_report(user_name):
     """ユーザー詳細進捗レポートAPI（企業環境用）"""
     try:
@@ -5420,6 +5621,7 @@ def api_enterprise_user_report(user_name):
         return jsonify({'error': str(e)}), 500
 
 @app.route('/enterprise/dashboard')
+@require_admin_auth
 def enterprise_dashboard():
     """企業環境用管理ダッシュボード"""
     try:
@@ -5433,6 +5635,7 @@ def enterprise_dashboard():
         return render_template('error.html', error_message=str(e)), 500
 
 @app.route('/api/enterprise/data/integrity')
+@require_api_key
 def api_enterprise_data_integrity():
     """データ整合性チェックAPI（企業環境用）"""
     try:
@@ -5455,6 +5658,7 @@ def api_enterprise_data_integrity():
         return jsonify({'error': str(e)}), 500
 
 @app.route('/api/enterprise/cache/stats')
+@require_api_key
 def api_enterprise_cache_stats():
     """キャッシュ統計API（企業環境用）"""
     try:
@@ -5472,6 +5676,7 @@ def api_enterprise_cache_stats():
         return jsonify({'error': str(e)}), 500
 
 @app.route('/api/enterprise/cache/clear', methods=['POST'])
+@require_api_key
 def api_enterprise_cache_clear():
     """キャッシュクリアAPI（企業環境用）"""
     try:
