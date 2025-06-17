@@ -428,12 +428,34 @@ class AdvancedAnalytics:
         if not dates:
             return 0
         
-        dates = sorted(set(dates))
-        if len(dates) < 2:
+        # 不正な日付フォーマットをフィルタリング
+        valid_dates = []
+        for date_str in dates:
+            try:
+                # 日付形式の検証と修正
+                if len(date_str) == 10 and date_str.count('-') == 2:
+                    parts = date_str.split('-')
+                    if len(parts) == 3 and all(part.isdigit() or (part.startswith('-') and part[1:].isdigit()) for part in parts):
+                        # 負の値を修正
+                        year = int(parts[0])
+                        month = max(1, min(12, abs(int(parts[1]))))
+                        day = max(1, min(31, abs(int(parts[2]))))
+                        
+                        corrected_date = f"{year:04d}-{month:02d}-{day:02d}"
+                        datetime.fromisoformat(corrected_date)  # 検証
+                        valid_dates.append(corrected_date)
+            except (ValueError, IndexError):
+                continue
+        
+        if not valid_dates:
+            return 0
+        
+        valid_dates = sorted(set(valid_dates))
+        if len(valid_dates) < 2:
             return 1
         
-        start_date = datetime.fromisoformat(dates[0])
-        end_date = datetime.fromisoformat(dates[-1])
+        start_date = datetime.fromisoformat(valid_dates[0])
+        end_date = datetime.fromisoformat(valid_dates[-1])
         return (end_date - start_date).days + 1
     
     def _calculate_trend_slope(self, accuracy_series: List[float]) -> float:

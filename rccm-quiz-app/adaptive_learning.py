@@ -184,6 +184,10 @@ class AdaptiveLearningEngine:
                              learning_mode: str = 'balanced', department: str = None) -> List[Dict]:
         """AI分析に基づくアダプティブ問題選択（部門別対応版）"""
         
+        # None チェック
+        if user_session.get('history') is None:
+            user_session['history'] = []
+        
         mode_config = self.learning_modes.get(learning_mode, self.learning_modes['balanced'])
         
         # 学習者レベル評価（動的難易度制御）

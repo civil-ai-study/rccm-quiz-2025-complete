@@ -27,6 +27,10 @@ class AILearningAnalyzer:
         """包括的な弱点分析（部門別対応版）"""
         history = user_session.get('history', [])
         
+        # None チェック
+        if history is None:
+            history = []
+        
         # 部門別フィルタリング
         if department_filter:
             history = [h for h in history if h.get('department') == department_filter]

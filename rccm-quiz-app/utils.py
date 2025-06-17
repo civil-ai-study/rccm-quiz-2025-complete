@@ -71,13 +71,15 @@ class LRUCache:
         with self.lock:
             if key in self.cache:
                 self.cache.pop(key)
-            elif len(self.cache) >= self.maxsize:
-                # 最も古いエントリを削除
-                oldest_key = next(iter(self.cache))
-                del self.cache[oldest_key]
-                del self.timestamps[oldest_key]
-                if oldest_key in self.access_count:
-                    del self.access_count[oldest_key]
+            elif len(self.cache) >= self.maxsize and self.maxsize > 0:
+                # 最も古いエントリを安全に削除（改修版）
+                try:
+                    oldest_key = next(iter(self.cache))
+                    del self.cache[oldest_key]
+                    self.timestamps.pop(oldest_key, None)  # safe removal
+                    self.access_count.pop(oldest_key, None)  # safe removal
+                except (StopIteration, KeyError) as e:
+                    logger.warning(f"Cache cleanup error: {e}")
             
             self.cache[key] = value
             self.timestamps[key] = time.time()
