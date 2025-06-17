@@ -914,7 +914,8 @@ def before_request():
             # 従来のデータロード（後方互換性）
             try:
                 user_name = session.get('user_name')
-                session_data_manager.load_session_data(session, session['session_id'], user_name)
+                if session_data_manager:
+                    session_data_manager.load_session_data(session, session['session_id'], user_name)
             except Exception as e:
                 logger.warning(f"セッションデータロード失敗（続行可能）: {e}")
 
@@ -930,7 +931,8 @@ def after_request_data_save(response):
         if session_id and session.get('history'):
             try:
                 user_name = session.get('user_name')
-                session_data_manager.auto_save_trigger(session, session_id, user_name)
+                if session_data_manager:
+                    session_data_manager.auto_save_trigger(session, session_id, user_name)
             except Exception as e:
                 logger.warning(f"セッション自動保存失敗（続行可能）: {e}")
     
@@ -2826,11 +2828,14 @@ def export_data():
         if not session_id:
             return jsonify({'error': 'セッションが見つかりません'}), 400
         
-        export_data = data_manager.get_data_export(session_id)
-        if export_data:
-            return jsonify(export_data)
+        if data_manager:
+            export_data = data_manager.get_data_export(session_id)
+            if export_data:
+                return jsonify(export_data)
+            else:
+                return jsonify({'error': 'エクスポートデータが見つかりません'}), 404
         else:
-            return jsonify({'error': 'エクスポートデータがありません'}), 404
+            return jsonify({'error': 'データマネージャーが利用できません'}), 503
             
     except Exception as e:
         logger.error(f"データエクスポートエラー: {e}")
@@ -5298,7 +5303,14 @@ def enterprise_dashboard():
 def api_enterprise_data_integrity():
     """データ整合性チェックAPI（企業環境用）"""
     try:
-        integrity_report = enterprise_data_manager.get_file_integrity_check()
+        if enterprise_data_manager:
+            integrity_report = enterprise_data_manager.get_file_integrity_check()
+        else:
+            integrity_report = {
+                'timestamp': datetime.now().isoformat(),
+                'status': 'unavailable',
+                'message': 'Enterprise data manager not available'
+            }
         
         return jsonify({
             'success': True,
@@ -5352,15 +5364,22 @@ try:
         # 高速化モード: 遅延インポートでデータ管理初期化
         logger.info("🚀 高速化モード: 企業環境用データ読み込み開始")
         
-        # 遅延インポート: データ管理
-        from data_manager import DataManager, SessionDataManager, EnterpriseUserManager
-        from utils import enterprise_data_manager as edm
-        
-        # グローバル変数に代入
-        data_manager = DataManager()
-        session_data_manager = SessionDataManager(data_manager)
-        enterprise_user_manager = EnterpriseUserManager(data_manager)
-        enterprise_data_manager = edm
+        # 遅延インポート: データ管理（エラー回避）
+        try:
+            from data_manager import DataManager, SessionDataManager, EnterpriseUserManager
+            from utils import enterprise_data_manager as edm
+            
+            # グローバル変数に代入
+            data_manager = DataManager()
+            session_data_manager = SessionDataManager(data_manager)
+            enterprise_user_manager = EnterpriseUserManager(data_manager)
+            enterprise_data_manager = edm
+        except ImportError as e:
+            logger.warning(f"Data manager import error: {e} - Using basic functionality")
+            from utils import enterprise_data_manager
+            data_manager = None
+            session_data_manager = None
+            enterprise_user_manager = None
         
         # 遅延インポート: 機能モジュール
         from gamification import gamification_manager as gam_mgr
