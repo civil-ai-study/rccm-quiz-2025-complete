@@ -438,7 +438,7 @@ def load_rccm_data_files(data_dir: str) -> List[Dict]:
     
     # 4-2専門データファイル読み込み（年度別）
     specialist_years = []
-    for year in range(2008, 2020):  # 2008-2019年の範囲で確認
+    for year in range(2008, 2019):  # 2008-2018年の範囲で確認
         specialist_file = os.path.join(data_dir, f'4-2_{year}.csv')
         if os.path.exists(specialist_file):
             try:
