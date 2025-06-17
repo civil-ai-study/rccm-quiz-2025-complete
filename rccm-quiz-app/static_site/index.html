@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCCM試験問題集2025 - Google Sites版</title>
+    
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            border: none;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            cursor: pointer;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .stats-badge {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 5px;
+        }
+        
+        .progress-ring {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+        }
+        
+        .progress-ring circle {
+            fill: transparent;
+            stroke: #e9ecef;
+            stroke-width: 8;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        
+        .progress-ring .progress {
+            stroke: #667eea;
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-container">
+            <!-- ヘッダー -->
+            <div class="text-center mb-5">
+                <h1 class="display-4 fw-bold text-primary mb-3">
+                    <i class="fas fa-graduation-cap me-3"></i>
+                    RCCM試験問題集2025
+                </h1>
+                <p class="lead text-muted">Google Sites版 - Enterprise Edition</p>
+                <div class="stats-badge">3,883問完全収録</div>
+                <div class="stats-badge">8部門対応</div>
+                <div class="stats-badge">AI学習支援</div>
+            </div>
+            
+            <!-- ユーザー設定 -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-6">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">
+                                <i class="fas fa-user me-2"></i>学習開始
+                            </h5>
+                            <input type="text" id="userName" class="form-control mb-3" placeholder="お名前を入力してください" maxlength="20">
+                            <button class="btn btn-primary" onclick="startLearning()">
+                                <i class="fas fa-play me-2"></i>学習開始
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 学習進捗表示 -->
+            <div class="row mb-4" id="progressSection" style="display: none;">
+                <div class="col-md-12">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5 class="text-center mb-4">
+                                <i class="fas fa-chart-line me-2"></i>学習進捗
+                            </h5>
+                            <div class="row">
+                                <div class="col-md-3 text-center">
+                                    <div class="progress-ring">
+                                        <svg width="120" height="120">
+                                            <circle cx="60" cy="60" r="45"></circle>
+                                            <circle cx="60" cy="60" r="45" class="progress" id="progressCircle"></circle>
+                                        </svg>
+                                        <div class="position-absolute top-50 start-50 translate-middle">
+                                            <strong id="progressPercent">0%</strong>
+                                        </div>
+                                    </div>
+                                    <p class="mt-2">総合進捗</p>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-6 col-md-3 text-center">
+                                            <h4 class="text-primary mb-0" id="totalAnswered">0</h4>
+                                            <small class="text-muted">回答済み</small>
+                                        </div>
+                                        <div class="col-6 col-md-3 text-center">
+                                            <h4 class="text-success mb-0" id="correctCount">0</h4>
+                                            <small class="text-muted">正解数</small>
+                                        </div>
+                                        <div class="col-6 col-md-3 text-center">
+                                            <h4 class="text-info mb-0" id="accuracyRate">0%</h4>
+                                            <small class="text-muted">正答率</small>
+                                        </div>
+                                        <div class="col-6 col-md-3 text-center">
+                                            <h4 class="text-warning mb-0" id="streakDays">0</h4>
+                                            <small class="text-muted">連続日数</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 部門選択 -->
+            <div class="row g-3 mb-4" id="departmentSection" style="display: none;">
+                <div class="col-12">
+                    <h4 class="text-center mb-4">
+                        <i class="fas fa-building me-2"></i>専門部門を選択
+                    </h4>
+                </div>
+                <div class="col-md-3 col-sm-6" onclick="selectDepartment('road')">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-road fa-2x text-primary mb-3"></i>
+                            <h6>道路部門</h6>
+                            <small class="text-muted">道路設計・施工</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" onclick="selectDepartment('river')">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-water fa-2x text-info mb-3"></i>
+                            <h6>河川部門</h6>
+                            <small class="text-muted">河川・ダム工事</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" onclick="selectDepartment('sabo')">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-mountain fa-2x text-success mb-3"></i>
+                            <h6>砂防部門</h6>
+                            <small class="text-muted">砂防・地すべり</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" onclick="selectDepartment('steel')">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-industry fa-2x text-secondary mb-3"></i>
+                            <h6>鋼構造部門</h6>
+                            <small class="text-muted">橋梁・鋼構造物</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" onclick="selectDepartment('tunnel')">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-circle fa-2x text-dark mb-3"></i>
+                            <h6>トンネル部門</h6>
+                            <small class="text-muted">トンネル工事</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" onclick="selectDepartment('construction')">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-hard-hat fa-2x text-warning mb-3"></i>
+                            <h6>施工管理部門</h6>
+                            <small class="text-muted">施工計画・管理</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" onclick="selectDepartment('machinery')">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-cogs fa-2x text-danger mb-3"></i>
+                            <h6>機械部門</h6>
+                            <small class="text-muted">建設機械</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" onclick="selectDepartment('port')">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-ship fa-2x text-primary mb-3"></i>
+                            <h6>港湾空港部門</h6>
+                            <small class="text-muted">港湾・空港工事</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 問題種別選択 -->
+            <div class="row g-3 mb-4" id="typeSection" style="display: none;">
+                <div class="col-12">
+                    <h4 class="text-center mb-4">
+                        <i class="fas fa-list me-2"></i>問題種別を選択
+                    </h4>
+                </div>
+                <div class="col-md-6" onclick="selectType('basic')">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-book fa-3x text-success mb-3"></i>
+                            <h5>4-1 基礎問題</h5>
+                            <p class="text-muted">共通基礎知識 (202問)</p>
+                            <div class="stats-badge">基礎力養成</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" onclick="selectType('specialist')">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-graduation-cap fa-3x text-primary mb-3"></i>
+                            <h5>4-2 専門問題</h5>
+                            <p class="text-muted">専門技術知識 (3,681問)</p>
+                            <div class="stats-badge">専門力強化</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 問題表示エリア -->
+            <div id="quizSection" style="display: none;">
+                <div class="card feature-card">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h5 class="mb-0">
+                                    <span id="questionCounter">問題 1/10</span>
+                                    <span class="badge bg-primary ms-2" id="categoryBadge">基礎問題</span>
+                                </h5>
+                            </div>
+                            <div class="col-auto">
+                                <div class="progress" style="width: 200px; height: 8px;">
+                                    <div class="progress-bar" id="quizProgress" style="width: 10%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="question-text mb-4" id="questionText">
+                            問題が読み込まれます...
+                        </h6>
+                        <div id="optionsContainer">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-primary text-start" onclick="selectAnswer('A')">
+                                    <strong>A.</strong> <span id="optionA">選択肢A</span>
+                                </button>
+                                <button class="btn btn-outline-primary text-start" onclick="selectAnswer('B')">
+                                    <strong>B.</strong> <span id="optionB">選択肢B</span>
+                                </button>
+                                <button class="btn btn-outline-primary text-start" onclick="selectAnswer('C')">
+                                    <strong>C.</strong> <span id="optionC">選択肢C</span>
+                                </button>
+                                <button class="btn btn-outline-primary text-start" onclick="selectAnswer('D')">
+                                    <strong>D.</strong> <span id="optionD">選択肢D</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <button class="btn btn-success me-2" id="nextButton" onclick="nextQuestion()" disabled>
+                                次の問題へ <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <button class="btn btn-warning" onclick="bookmarkQuestion()">
+                                <i class="fas fa-bookmark"></i> ブックマーク
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 回答結果表示 -->
+                <div id="answerResult" class="mt-3" style="display: none;">
+                    <div class="alert" id="resultAlert">
+                        <h6 id="resultText">結果表示</h6>
+                        <div id="explanationText" class="mt-2"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 結果表示 -->
+            <div id="resultSection" style="display: none;">
+                <div class="card feature-card">
+                    <div class="card-body text-center">
+                        <h3 class="mb-4">
+                            <i class="fas fa-trophy text-warning me-2"></i>
+                            テスト完了！
+                        </h3>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h2 class="text-primary" id="finalScore">0/10</h2>
+                                <p>正解数</p>
+                            </div>
+                            <div class="col-md-4">
+                                <h2 class="text-success" id="finalAccuracy">0%</h2>
+                                <p>正答率</p>
+                            </div>
+                            <div class="col-md-4">
+                                <h2 class="text-info" id="finalTime">0分</h2>
+                                <p>所要時間</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <button class="btn btn-primary me-2" onclick="restartQuiz()">
+                                <i class="fas fa-redo me-2"></i>もう一度
+                            </button>
+                            <button class="btn btn-success" onclick="goHome()">
+                                <i class="fas fa-home me-2"></i>ホームに戻る
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- フッター -->
+            <div class="text-center mt-5">
+                <p class="text-muted">
+                    <i class="fas fa-copyright me-1"></i>
+                    RCCM試験問題集2025 - Google Sites版 | 
+                    <a href="#" onclick="showHelp()" class="text-decoration-none">ヘルプ</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script src="js/app.js"></script>
+</body>
+</html>

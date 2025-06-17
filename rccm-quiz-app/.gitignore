@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Flask
+instance/
+.webassets-cache
+
+# Testing & Debug Files
+*test*.py
+*debug*.py
+*manual*.py
+*stress*.py
+*regression*.py
+*verification*.py
+*fix*.py
+*navigation*.py
+*comprehensive*.py
+*final*.py
+*health*.py
+*analyze*.py
+*answer*.py
+*basic*.py
+*simple*.py
+test_*.py
+debug_*.py
+
+# Log Files
+*.log
+*_output.log
+*_debug.log
+*_test.log
+*_server.log
+*_restart.log
+
+# Cookie Files  
+*.txt
+cookies*.txt
+*_cookies.txt
+test_cookies.txt
+
+# Temporary Files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# HTML Output Files
+current_exam.html
+
+# Distribution Files (keep only main app)
+app_exe版.py
+build_exe_improved.spec
+requirements_minimal.txt
+配布完成パッケージ構成.md
+Windows環境EXE化手順.md
+
+# IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# User Data (optional - for local testing)
+user_data/
+session_data/
+api_data/
+social_data/
+personalization_data/
+
+# Backup Files
+*.backup
+data/*.backup

@@ -1,0 +1,186 @@
+{
+  "test_time": "2025-06-16T18:36:19.730107",
+  "departments": {
+    "road": {
+      "name": "道路",
+      "categories_page_accessible": true,
+      "has_year_selection_ui": true,
+      "year_selection_button": "年度別問題を選択",
+      "year_container": "Found",
+      "year_buttons": [
+        "2018年度",
+        "2017年度",
+        "2016年度",
+        "2015年度",
+        "2014年度",
+        "2013年度",
+        "2012年度",
+        "2011年度",
+        "2010年度",
+        "2009年度",
+        "2008年度"
+      ],
+      "working_year_links": [
+        "2018年度 -> 📅 2018年度過去問",
+        "2017年度 -> 📅 2017年度過去問",
+        "2016年度 -> 📅 2016年度過去問"
+      ],
+      "failed_year_links": [],
+      "javascript_function": true
+    },
+    "tunnel": {
+      "name": "トンネル",
+      "categories_page_accessible": true,
+      "has_year_selection_ui": true,
+      "year_selection_button": "年度別問題を選択",
+      "year_container": "Found",
+      "year_buttons": [
+        "2018年度",
+        "2017年度",
+        "2016年度",
+        "2015年度",
+        "2014年度",
+        "2013年度",
+        "2012年度",
+        "2011年度",
+        "2010年度",
+        "2009年度",
+        "2008年度"
+      ],
+      "working_year_links": [
+        "2018年度 -> 📅 2018年度過去問",
+        "2017年度 -> 📅 2017年度過去問",
+        "2016年度 -> 📅 2016年度過去問"
+      ],
+      "failed_year_links": [],
+      "javascript_function": true
+    },
+    "river": {
+      "name": "河川砂防",
+      "categories_page_accessible": true,
+      "has_year_selection_ui": false,
+      "year_selection_button": null,
+      "year_container": null,
+      "year_buttons": [],
+      "working_year_links": [],
+      "failed_year_links": [],
+      "javascript_function": false,
+      "error": "Error page displayed"
+    },
+    "steel": {
+      "name": "鋼構造",
+      "categories_page_accessible": true,
+      "has_year_selection_ui": false,
+      "year_selection_button": null,
+      "year_container": null,
+      "year_buttons": [],
+      "working_year_links": [],
+      "failed_year_links": [],
+      "javascript_function": false,
+      "error": "Error page displayed"
+    },
+    "soil": {
+      "name": "土質",
+      "categories_page_accessible": true,
+      "has_year_selection_ui": false,
+      "year_selection_button": null,
+      "year_container": null,
+      "year_buttons": [],
+      "working_year_links": [],
+      "failed_year_links": [],
+      "javascript_function": false,
+      "error": "Error page displayed"
+    },
+    "concrete": {
+      "name": "コンクリート",
+      "categories_page_accessible": true,
+      "has_year_selection_ui": false,
+      "year_selection_button": null,
+      "year_container": null,
+      "year_buttons": [],
+      "working_year_links": [],
+      "failed_year_links": [],
+      "javascript_function": false,
+      "error": "Error page displayed"
+    },
+    "bridge": {
+      "name": "橋梁",
+      "categories_page_accessible": true,
+      "has_year_selection_ui": false,
+      "year_selection_button": null,
+      "year_container": null,
+      "year_buttons": [],
+      "working_year_links": [],
+      "failed_year_links": [],
+      "javascript_function": false,
+      "error": "Error page displayed"
+    },
+    "harbor": {
+      "name": "港湾",
+      "categories_page_accessible": true,
+      "has_year_selection_ui": false,
+      "year_selection_button": null,
+      "year_container": null,
+      "year_buttons": [],
+      "working_year_links": [],
+      "failed_year_links": [],
+      "javascript_function": false,
+      "error": "Error page displayed"
+    },
+    "airport": {
+      "name": "空港",
+      "categories_page_accessible": true,
+      "has_year_selection_ui": false,
+      "year_selection_button": null,
+      "year_container": null,
+      "year_buttons": [],
+      "working_year_links": [],
+      "failed_year_links": [],
+      "javascript_function": false,
+      "error": "Error page displayed"
+    },
+    "urban": {
+      "name": "都市計画",
+      "categories_page_accessible": true,
+      "has_year_selection_ui": false,
+      "year_selection_button": null,
+      "year_container": null,
+      "year_buttons": [],
+      "working_year_links": [],
+      "failed_year_links": [],
+      "javascript_function": false,
+      "error": "Error page displayed"
+    },
+    "environment": {
+      "name": "環境",
+      "categories_page_accessible": true,
+      "has_year_selection_ui": false,
+      "year_selection_button": null,
+      "year_container": null,
+      "year_buttons": [],
+      "working_year_links": [],
+      "failed_year_links": [],
+      "javascript_function": false,
+      "error": "Error page displayed"
+    },
+    "maintenance": {
+      "name": "維持管理",
+      "categories_page_accessible": true,
+      "has_year_selection_ui": false,
+      "year_selection_button": null,
+      "year_container": null,
+      "year_buttons": [],
+      "working_year_links": [],
+      "failed_year_links": [],
+      "javascript_function": false,
+      "error": "Error page displayed"
+    }
+  },
+  "summary": {
+    "total_departments": 12,
+    "departments_with_year_ui": 2,
+    "total_year_buttons": 22,
+    "successful_year_links": 6,
+    "failed_year_links": 0
+  }
+}

@@ -5404,7 +5404,34 @@ except Exception as e:
     logger.info("🔄 基本機能で続行します")
 
 if __name__ == '__main__':
-    logger.info("RCCM試験問題集アプリケーション起動中...")
-    logger.info("アクセスURL: http://172.18.44.152:5003")
-    logger.info("アクセスURL: http://localhost:5003")
-    app.run(debug=True, host='0.0.0.0', port=5003)
+    # 🔥 本番環境のポート設定: Renderではポート10000を使用
+    port = int(os.environ.get('PORT', 5003))
+    host = '0.0.0.0' if os.environ.get('FLASK_ENV') == 'production' else '0.0.0.0'
+    debug_mode = os.environ.get('FLASK_ENV') != 'production'
+    
+    # サーバー配布版の場合の起動ログ
+    if os.environ.get('FLASK_ENV') == 'production':
+        logger.info("🌐 RCCM試験問題集2025 - サーバー配布版起動")
+        logger.info("📊 問題データ事前読み込み開始...")
+        try:
+            questions = load_questions()
+            logger.info(f"✅ 問題データ読み込み完了: {len(questions)}問")
+        except Exception as e:
+            logger.error(f"⚠️ 問題データ読み込み警告: {e}")
+    else:
+        # 開発環境の場合のWSL2 IPアドレス表示
+        logger.info("RCCM試験問題集アプリケーション起動中...")
+        logger.info("アクセスURL: http://172.18.44.152:5003")
+        logger.info("アクセスURL: http://localhost:5003")
+    
+    # サーバー起動
+    logger.info(f"🚀 RCCM試験問題集2025 Enterprise Edition 起動中...")
+    logger.info(f"📡 Host: {host}, Port: {port}, Debug: {debug_mode}")
+    
+    app.run(
+        host=host,
+        port=port,
+        debug=debug_mode,
+        threaded=True,
+        use_reloader=False
+    )

@@ -1,5 +1,5 @@
 # data_check.py - データ整合性確認スクリプト
-import pandas as pd
+import csv
 import os
 
 def validate_questions_data():
@@ -11,14 +11,20 @@ def validate_questions_data():
         return False
     
     try:
-        df = pd.read_csv(csv_path)
-        print(f"✅ CSVファイル読み込み成功: {len(df)}行")
+        with open(csv_path, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            rows = list(reader)
+        print(f"✅ CSVファイル読み込み成功: {len(rows)}行")
         
         # 必要列の確認
         required_columns = ['id', 'category', 'question', 'option_a', 'option_b', 
                           'option_c', 'option_d', 'correct_answer', 'explanation']
         
-        missing_columns = [col for col in required_columns if col not in df.columns]
+        if rows:
+            columns = list(rows[0].keys())
+        else:
+            columns = []
+        missing_columns = [col for col in required_columns if col not in columns]
         if missing_columns:
             print(f"❌ 不足している列: {missing_columns}")
             return False
@@ -27,7 +33,11 @@ def validate_questions_data():
         
         # データ内容の確認
         print(f"📊 カテゴリ別問題数:")
-        category_counts = df['category'].value_counts()
+        # カテゴリ別の集計
+        category_counts = {}
+        for row in rows:
+            category = row.get('category', '不明')
+            category_counts[category] = category_counts.get(category, 0) + 1
         for category, count in category_counts.items():
             print(f"  - {category}: {count}問")
         
