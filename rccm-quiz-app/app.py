@@ -2395,11 +2395,17 @@ def department_study(department):
         specialist_history = [h for h in session.get('history', []) 
                              if h.get('question_type') == 'specialist' and h.get('department') == department_key]
         
-        # デバッグログ追加
-        logger.info(f"🔍 DEBUG specialist_questions: department={department_key}, count={len(specialist_questions)}")
+        # ウルトラシンク強化デバッグログ
+        logger.error(f"🚨 CRITICAL DEBUG: department={department_key}, total_questions={len(questions)}")
+        logger.error(f"🚨 CRITICAL DEBUG: specialist_questions count={len(specialist_questions)}")
+        all_road = [q for q in questions if q.get('department') == 'road']
+        logger.error(f"🚨 CRITICAL DEBUG: road_questions total={len(all_road)}")
         if len(specialist_questions) > 0:
             sample = specialist_questions[0]
-            logger.info(f"🔍 DEBUG sample question: dept={sample.get('department')}, type={sample.get('question_type')}, id={sample.get('id')}")
+            logger.error(f"🚨 CRITICAL DEBUG sample: dept={sample.get('department')}, type={sample.get('question_type')}, id={sample.get('id')}")
+        elif len(all_road) > 0:
+            sample_road = all_road[0] 
+            logger.error(f"🚨 CRITICAL DEBUG road sample: dept={sample_road.get('department')}, type={sample_road.get('question_type')}, id={sample_road.get('id')}")
         
         specialist_stats = {
             'total_questions': len(specialist_questions),
