@@ -3,7 +3,7 @@ RCCM学習アプリ - ユーティリティ関数
 エラーハンドリング強化版 & 高性能キャッシュシステム
 """
 
-import pandas as pd
+import csv
 import os
 import logging
 import threading
@@ -258,19 +258,22 @@ def load_questions_improved(csv_path: str) -> List[Dict]:
         for encoding in encodings:
             try:
                 logger.debug(f"エンコーディング試行: {encoding}")
-                df = pd.read_csv(csv_path, encoding=encoding)
-                used_encoding = encoding
-                logger.info(f"読み込み成功: {encoding} エンコーディング")
-                break
+                with open(csv_path, 'r', encoding=encoding, newline='') as f:
+                    reader = csv.DictReader(f)
+                    rows = list(reader)
+                    if not rows:
+                        logger.error("CSVファイルにデータがありません")
+                        raise DataLoadError("CSVファイルにデータがありません")
+                    df = rows
+                    used_encoding = encoding
+                    logger.info(f"読み込み成功: {encoding} エンコーディング")
+                    break
             except UnicodeDecodeError as e:
                 logger.debug(f"エンコーディングエラー {encoding}: {e}")
                 continue
-            except pd.errors.EmptyDataError:
-                logger.error("CSVファイルにデータがありません")
-                raise DataLoadError("CSVファイルにデータがありません")
-            except pd.errors.ParserError as e:
+            except Exception as e:
                 logger.error(f"CSV解析エラー: {e}")
-                raise DataLoadError(f"CSVファイルの形式が正しくありません: {e}")
+                continue
         
         # 解析結果をキャッシュに保存
         if df is not None and csv_cache:
@@ -280,7 +283,7 @@ def load_questions_improved(csv_path: str) -> List[Dict]:
         logger.error("すべてのエンコーディングで読み込みに失敗")
         raise DataLoadError("CSVファイルのエンコーディングを特定できません")
     
-    if df.empty:
+    if not df:
         logger.error("CSVファイルにデータがありません")
         raise DataLoadError("CSVファイルにデータがありません")
     
@@ -292,7 +295,13 @@ def load_questions_improved(csv_path: str) -> List[Dict]:
         'option_c', 'option_d', 'correct_answer'
     ]
     
-    missing_columns = [col for col in required_columns if col not in df.columns]
+    # データフレームの最初の行からカラムを取得
+    if df:
+        columns = list(df[0].keys())
+    else:
+        columns = []
+    
+    missing_columns = [col for col in required_columns if col not in columns]
     if missing_columns:
         error_msg = f"必須列が不足: {missing_columns}"
         logger.error(error_msg)
@@ -302,7 +311,7 @@ def load_questions_improved(csv_path: str) -> List[Dict]:
     valid_questions = []
     validation_errors = []
     
-    for index, row in df.iterrows():
+    for index, row in enumerate(df):
         try:
             validated_question = validate_question_data(row, index)
             if validated_question:
@@ -327,12 +336,12 @@ def load_questions_improved(csv_path: str) -> List[Dict]:
     logger.info(f"有効な問題データ: {len(valid_questions)}問")
     return valid_questions
 
-def validate_question_data(row: pd.Series, index: int) -> Optional[Dict]:
+def validate_question_data(row: Dict[str, Any], index: int) -> Optional[Dict]:
     """
     個別問題データの検証
     """
     # ID検証
-    if pd.isna(row.get('id')) or row.get('id') == '':
+    if not row.get('id') or row.get('id') == '':
         raise DataValidationError("IDが空です")
     
     try:
@@ -341,10 +350,10 @@ def validate_question_data(row: pd.Series, index: int) -> Optional[Dict]:
         raise DataValidationError(f"IDが数値ではありません: {row.get('id')}")
     
     # 必須フィールド検証
-    if not row.get('question') or pd.isna(row.get('question')):
+    if not row.get('question') or row.get('question') == '':
         raise DataValidationError("問題文が空です")
     
-    if not row.get('correct_answer') or pd.isna(row.get('correct_answer')):
+    if not row.get('correct_answer') or row.get('correct_answer') == '':
         raise DataValidationError("正解が指定されていません")
     
     # 正解選択肢検証
@@ -361,12 +370,12 @@ def validate_question_data(row: pd.Series, index: int) -> Optional[Dict]:
     }
     
     for option_key, option_text in options.items():
-        if not option_text or pd.isna(option_text):
+        if not option_text or option_text == '':
             raise DataValidationError(f"選択肢{option_key}が空です")
     
     # 正解選択肢に対応するオプションが存在するか確認
-    correct_option = options.get(correct_answer);
-    if not correct_option or pd.isna(correct_option):
+    correct_option = options.get(correct_answer)
+    if not correct_option or correct_option == '':
         raise DataValidationError(f"正解選択肢{correct_answer}に対応するオプションがありません")
     
     # データ正規化
