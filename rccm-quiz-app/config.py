@@ -7,7 +7,7 @@ import os
 
 class Config:
     """基本設定"""
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'rccm-quiz-secret-key-2024-ultra-secure'
+    SECRET_KEY = os.environ.get('SECRET_KEY') or os.urandom(32).hex()
     SESSION_COOKIE_NAME = 'rccm_session'
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SECURE = os.environ.get('FLASK_ENV') == 'production'

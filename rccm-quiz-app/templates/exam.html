@@ -44,7 +44,7 @@
             </div>
 
             <!-- 選択肢フォーム - アクセシビリティ強化 -->
-            <form method="POST" action="/exam" id="questionForm" role="form" aria-labelledby="question-title">
+            <form method="POST" action="/exam" id="questionForm" role="form" aria-labelledby="question-title" onsubmit="return validateQuizForm()">
                 <input type="hidden" name="qid" value="{{ question.id }}">
                 <input type="hidden" name="elapsed" value="0" id="elapsedTime">
                 
@@ -135,7 +135,8 @@
 .option-item.selected {
     background-color: #e8f5e8 !important;
     border-color: #4caf50 !important;
-    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+    border-width: 2px !important;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3) !important;
 }
 
 .cursor-pointer {
@@ -451,6 +452,25 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('✅ 初期化完了');
 });
+
+// フォーム送信前の検証
+function validateQuizForm() {
+    const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+    
+    if (!selectedAnswer) {
+        alert('選択肢を選んでください。');
+        return false;
+    }
+    
+    // 経過時間を設定
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const elapsedInput = document.getElementById('elapsedTime');
+    if (elapsedInput) {
+        elapsedInput.value = elapsed;
+    }
+    
+    return true;
+}
 </script>
 {% endblock %}
 

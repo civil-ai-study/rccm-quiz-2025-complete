@@ -36,8 +36,8 @@
           <i class="fas fa-user-plus me-2"></i>ユーザー名を入力してください
         </h5>
         <p class="text-muted small">学習進捗を個別管理するためのユーザー識別です</p>
-        <form method="POST" action="/set_user" class="d-flex gap-2">
-          <input type="text" name="user_name" class="form-control" 
+        <form method="POST" action="/set_user" class="d-flex gap-2" onsubmit="return validateUserName()">
+          <input type="text" name="user_name" class="form-control" id="userName"
                  placeholder="山田太郎" required maxlength="20" 
                  title="日本語、英数字、長音符、中点、スペースが使用できます">
           <button type="submit" class="btn btn-primary">
@@ -718,5 +718,35 @@ const departmentStyles = `
 const styleSheet = document.createElement('style');
 styleSheet.textContent = departmentStyles;
 document.head.appendChild(styleSheet);
+
+// ユーザー名入力検証
+function validateUserName() {
+    const userNameInput = document.getElementById('userName');
+    const userName = userNameInput.value.trim();
+    
+    if (!userName) {
+        alert('ユーザー名を入力してください。');
+        userNameInput.focus();
+        return false;
+    }
+    
+    if (userName.length > 20) {
+        alert('ユーザー名は20文字以内で入力してください。');
+        userNameInput.focus();
+        return false;
+    }
+    
+    // 危険な文字をチェック
+    const dangerousChars = ['<', '>', '&', '"', "'", ';', '--', '/*', '*/', '\\'];
+    for (let char of dangerousChars) {
+        if (userName.includes(char)) {
+            alert('使用できない文字が含まれています。日本語、英数字、長音符、中点、スペースのみ使用可能です。');
+            userNameInput.focus();
+            return false;
+        }
+    }
+    
+    return true;
+}
 </script>
 {% endblock %} 

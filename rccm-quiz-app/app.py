@@ -19,7 +19,7 @@ def require_admin_auth(f):
         admin_key = request.headers.get('X-Admin-Key')
         
         # 管理者キーまたはセッションフラグのチェック
-        if not admin_flag and admin_key != app.config.get('ADMIN_SECRET_KEY', 'admin-secret-key-123'):
+        if not admin_flag and admin_key != app.config.get('ADMIN_SECRET_KEY', os.environ.get('ADMIN_SECRET_KEY', 'change-this-in-production')):
             return jsonify({'error': '管理者認証が必要です', 'auth_hint': 'X-Admin-Keyヘッダーまたは管理者セッションが必要'}), 403
         
         return f(*args, **kwargs)
@@ -32,7 +32,7 @@ def require_api_key(f):
         api_key = request.headers.get('X-API-Key')
         
         # 基本的なAPIキーチェック（実際の環境ではより強固な認証を実装）
-        valid_keys = app.config.get('VALID_API_KEYS', ['api-key-demo', 'enterprise-key-demo'])
+        valid_keys = app.config.get('VALID_API_KEYS', os.environ.get('VALID_API_KEYS', 'demo-key-change-in-production').split(','))
         
         if not api_key or api_key not in valid_keys:
             return jsonify({'error': 'API認証が必要です', 'auth_hint': 'X-API-Keyヘッダーが必要'}), 401
@@ -140,6 +140,33 @@ def cleanup_old_locks():
 def generate_unique_session_id():
     """一意なセッションIDを生成"""
     return f"{uuid.uuid4().hex[:8]}_{int(time.time())}"
+
+def _validate_session_integrity():
+    """セッション整合性チェック"""
+    try:
+        # 基本フィールドの型チェック
+        if 'exam_question_ids' in session and not isinstance(session['exam_question_ids'], list):
+            session['exam_question_ids'] = []
+            logger.warning("exam_question_idsの型修正")
+        
+        if 'exam_current' in session and not isinstance(session['exam_current'], int):
+            session['exam_current'] = 0
+            logger.warning("exam_currentの型修正")
+        
+        if 'history' in session and not isinstance(session['history'], list):
+            session['history'] = []
+            logger.warning("historyの型修正")
+        
+        # 範囲チェック
+        exam_ids = session.get('exam_question_ids', [])
+        current = session.get('exam_current', 0)
+        
+        if exam_ids and current >= len(exam_ids):
+            session['exam_current'] = max(0, len(exam_ids) - 1)
+            logger.warning(f"exam_currentの範囲修正: {current} -> {session['exam_current']}")
+            
+    except Exception as e:
+        logger.error(f"セッション整合性チェックエラー: {e}")
 
 def safe_session_operation(user_id, operation_func, *args, **kwargs):
     """セッション操作を安全に実行（ウルトラシンク排他制御強化）"""
@@ -1061,6 +1088,16 @@ def before_request():
     """リクエスト前の処理（企業環境最適化版）"""
     session.permanent = True
     
+    # セッションタイムアウトチェック
+    if 'last_activity' in session:
+        last_activity = datetime.fromisoformat(session['last_activity'])
+        if datetime.now() - last_activity > timedelta(hours=8):  # 8時間でタイムアウト
+            session.clear()
+            logger.info("セッションタイムアウトによりクリア")
+    
+    # 最終アクティビティ時間を更新
+    session['last_activity'] = datetime.now().isoformat()
+    
     # セッションIDの取得（簡素化）
     if 'session_id' not in session:
         session['session_id'] = os.urandom(16).hex()
@@ -1074,17 +1111,20 @@ def before_request():
         session['history'] = []
         session['bookmarks'] = []
         session['srs_data'] = {}
-        
-        # 企業環境用データロードは必要時のみ実行
-        fast_mode = os.environ.get('RCCM_FAST_MODE', 'true').lower() == 'true'
-        if not fast_mode:
-            # 従来のデータロード（後方互換性）
-            try:
-                user_name = session.get('user_name')
-                if session_data_manager:
-                    session_data_manager.load_session_data(session, session['session_id'], user_name)
-            except Exception as e:
-                logger.warning(f"セッションデータロード失敗（続行可能）: {e}")
+    
+    # セッション整合性チェック
+    _validate_session_integrity()
+    
+    # 企業環境用データロードは必要時のみ実行
+    fast_mode = os.environ.get('RCCM_FAST_MODE', 'true').lower() == 'true'
+    if not fast_mode:
+        # 従来のデータロード（後方互換性）
+        try:
+            user_name = session.get('user_name')
+            if session_data_manager:
+                session_data_manager.load_session_data(session, session['session_id'], user_name)
+        except Exception as e:
+            logger.warning(f"セッションデータロード失敗（続行可能）: {e}")
 
 @app.after_request
 def after_request_data_save(response):
@@ -2239,7 +2279,13 @@ def result():
             logger.info("履歴なしのため/examにリダイレクト")
             return redirect(url_for('exam'))
             
+        # 現在のセッションの履歴のみを取得（最新10問）
         recent_history = history[-session_size:] if len(history) >= session_size else history
+        
+        # セッション完了の確認：正確に10問解答されたかチェック
+        session_completed = len(recent_history) == session_size
+        if not session_completed and len(history) > 0:
+            logger.warning(f"セッション未完了: 履歴={len(recent_history)}問, 期待値={session_size}問")
         
         # 基本統計
         correct_count = sum(1 for h in recent_history if h.get('is_correct', False))
@@ -2592,10 +2638,27 @@ def department_study(department):
         }
         
         # 4-2専門問題（選択部門のみ）の統計
+        # 部門キーを日本語カテゴリに変換
+        department_to_category_mapping = {
+            'road': '道路',
+            'tunnel': 'トンネル', 
+            'civil_planning': '河川、砂防及び海岸・海洋',
+            'urban_planning': '都市計画及び地方計画',
+            'landscape': '造園',
+            'construction_env': '建設環境',
+            'steel_concrete': '鋼構造及びコンクリート',
+            'soil_foundation': '土質及び基礎',
+            'construction_planning': '施工計画、施工設備及び積算',
+            'water_supply': '上水道及び工業用水道',
+            'forestry': '森林土木',
+            'agriculture': '農業土木'
+        }
+        target_category = department_to_category_mapping.get(department_key, department_key)
+        
         specialist_questions = [q for q in questions 
-                              if q.get('question_type') == 'specialist' and q.get('department') == department_key]
+                              if q.get('question_type') == 'specialist' and q.get('category') == target_category]
         specialist_history = [h for h in session.get('history', []) 
-                             if h.get('question_type') == 'specialist' and h.get('department') == department_key]
+                             if h.get('question_type') == 'specialist' and h.get('category') == target_category]
         
         # ウルトラシンク強化デバッグログ
         logger.error(f"🚨 CRITICAL DEBUG: department={department_key}, total_questions={len(questions)}")
@@ -4783,6 +4846,16 @@ def page_not_found(e):
 def internal_error(e):
     logger.error(f"500エラー: {e}")
     return render_template('error.html', error="サーバーエラーが発生しました"), 500
+
+@app.errorhandler(403)
+def forbidden(e):
+    logger.warning(f"403エラー: {request.url}")
+    return render_template('error.html', error="アクセスが拒否されました"), 403
+
+@app.errorhandler(400)
+def bad_request(e):
+    logger.warning(f"400エラー: {request.url}")
+    return render_template('error.html', error="不正なリクエストです"), 400
 
 # === AI学習アナリティクス ===
 @app.route('/ai_dashboard')
