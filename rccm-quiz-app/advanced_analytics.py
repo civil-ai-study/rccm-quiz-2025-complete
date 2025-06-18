@@ -24,6 +24,344 @@ class AdvancedAnalytics:
             'very_low': 0.2
         }
     
+    def analyze_time_series(self, history: List[Dict]) -> Dict[str, Any]:
+        """時系列分析（高度分析用）"""
+        if not history:
+            return {'trends': [], 'patterns': []}
+        
+        # 日別正答率の計算
+        daily_performance = defaultdict(list)
+        for item in history:
+            date_str = item.get('timestamp', '')[:10] if item.get('timestamp') else 'unknown'
+            daily_performance[date_str].append(item.get('is_correct', False))
+        
+        trends = []
+        for date, results in daily_performance.items():
+            if results:
+                accuracy = sum(results) / len(results)
+                trends.append({
+                    'date': date,
+                    'accuracy': accuracy,
+                    'question_count': len(results)
+                })
+        
+        return {
+            'trends': sorted(trends, key=lambda x: x['date']),
+            'total_days': len(trends),
+            'avg_daily_questions': statistics.mean([t['question_count'] for t in trends]) if trends else 0
+        }
+    
+    def analyze_difficulty_distribution(self, srs_data: Dict) -> Dict[str, Any]:
+        """難易度分布分析（高度分析用）"""
+        if not srs_data:
+            return {'distribution': {}, 'summary': {}}
+        
+        difficulty_counts = defaultdict(int)
+        difficulty_accuracy = defaultdict(list)
+        
+        for qid, data in srs_data.items():
+            if isinstance(data, dict):
+                difficulty = data.get('difficulty_level', 5)
+                total = data.get('total_attempts', 0)
+                correct = data.get('correct_count', 0)
+                
+                difficulty_counts[difficulty] += 1
+                if total > 0:
+                    difficulty_accuracy[difficulty].append(correct / total)
+        
+        distribution = {}
+        for level in range(1, 11):  # 1-10の難易度
+            count = difficulty_counts.get(level, 0)
+            accuracy = statistics.mean(difficulty_accuracy[level]) if difficulty_accuracy[level] else 0
+            distribution[str(level)] = {
+                'count': count,
+                'accuracy': accuracy
+            }
+        
+        return {
+            'distribution': distribution,
+            'summary': {
+                'total_questions': sum(difficulty_counts.values()),
+                'avg_difficulty': statistics.mean(difficulty_counts.keys()) if difficulty_counts else 5
+            }
+        }
+    
+    def generate_learning_curve(self, history: List[Dict]) -> Dict[str, Any]:
+        """学習曲線生成（高度分析用）"""
+        if len(history) < 5:
+            return {'curve_points': [], 'trend': 'insufficient_data'}
+        
+        # 5問ごとの正答率を計算
+        curve_points = []
+        for i in range(0, len(history), 5):
+            batch = history[i:i+5]
+            if batch:
+                accuracy = sum(1 for item in batch if item.get('is_correct', False)) / len(batch)
+                curve_points.append({
+                    'session': i // 5 + 1,
+                    'accuracy': accuracy,
+                    'questions': len(batch)
+                })
+        
+        # トレンド分析
+        if len(curve_points) >= 2:
+            first_half = curve_points[:len(curve_points)//2]
+            second_half = curve_points[len(curve_points)//2:]
+            
+            first_avg = statistics.mean([p['accuracy'] for p in first_half])
+            second_avg = statistics.mean([p['accuracy'] for p in second_half])
+            
+            if second_avg > first_avg + 0.1:
+                trend = 'improving'
+            elif second_avg < first_avg - 0.1:
+                trend = 'declining'
+            else:
+                trend = 'stable'
+        else:
+            trend = 'insufficient_data'
+        
+        return {
+            'curve_points': curve_points,
+            'trend': trend,
+            'improvement_rate': (curve_points[-1]['accuracy'] - curve_points[0]['accuracy']) if len(curve_points) >= 2 else 0
+        }
+    
+    def calculate_success_probability(self, history: List[Dict], srs_data: Dict) -> Dict[str, Any]:
+        """成功確率計算（高度分析用）"""
+        if not history and not srs_data:
+            return {'probability': 0, 'confidence': 0}
+        
+        # 最近の成績から予測
+        recent_accuracy = 0
+        if history:
+            recent_items = history[-20:]  # 最新20問
+            recent_accuracy = sum(1 for item in recent_items if item.get('is_correct', False)) / len(recent_items)
+        
+        # SRSデータから習熟度計算
+        mastery_level = 0
+        if srs_data:
+            mastery_scores = []
+            for qid, data in srs_data.items():
+                if isinstance(data, dict):
+                    total = data.get('total_attempts', 0)
+                    correct = data.get('correct_count', 0)
+                    if total > 0:
+                        mastery_scores.append(correct / total)
+            mastery_level = statistics.mean(mastery_scores) if mastery_scores else 0
+        
+        # 総合確率計算
+        combined_score = (recent_accuracy * 0.6 + mastery_level * 0.4)
+        success_probability = min(95, combined_score * 100)  # 最大95%
+        
+        return {
+            'probability': round(success_probability, 1),
+            'confidence': 0.8 if len(history) > 10 else 0.5,
+            'factors': {
+                'recent_performance': recent_accuracy,
+                'overall_mastery': mastery_level
+            }
+        }
+    
+    def create_department_heatmap(self, history: List[Dict]) -> Dict[str, Any]:
+        """部門別ヒートマップ作成（高度分析用）"""
+        department_data = defaultdict(lambda: {'correct': 0, 'total': 0})
+        
+        for item in history:
+            dept = item.get('department', 'unknown')
+            department_data[dept]['total'] += 1
+            if item.get('is_correct', False):
+                department_data[dept]['correct'] += 1
+        
+        heatmap = {}
+        for dept, data in department_data.items():
+            accuracy = data['correct'] / data['total'] if data['total'] > 0 else 0
+            heatmap[dept] = {
+                'accuracy': accuracy,
+                'intensity': min(1.0, data['total'] / 20),  # 問題数による強度
+                'question_count': data['total']
+            }
+        
+        return {
+            'heatmap': heatmap,
+            'total_departments': len(heatmap),
+            'coverage': sum(1 for d in heatmap.values() if d['question_count'] > 0)
+        }
+    
+    def calculate_study_efficiency(self, history: List[Dict]) -> Dict[str, Any]:
+        """学習効率計算（高度分析用）"""
+        if not history:
+            return {'efficiency': 0, 'factors': {}}
+        
+        # 回答時間あたりの正答率
+        time_efficiency = []
+        accuracy_over_time = []
+        
+        for item in history:
+            response_time = item.get('response_time', 60)  # デフォルト60秒
+            is_correct = item.get('is_correct', False)
+            
+            if response_time > 0:
+                efficiency = (1 if is_correct else 0) / (response_time / 60)  # 分単位
+                time_efficiency.append(efficiency)
+            
+            accuracy_over_time.append(1 if is_correct else 0)
+        
+        avg_efficiency = statistics.mean(time_efficiency) if time_efficiency else 0
+        overall_accuracy = statistics.mean(accuracy_over_time) if accuracy_over_time else 0
+        
+        return {
+            'efficiency': round(avg_efficiency, 3),
+            'factors': {
+                'time_management': avg_efficiency,
+                'accuracy': overall_accuracy,
+                'consistency': 1 - statistics.stdev(time_efficiency) if len(time_efficiency) > 1 else 0
+            },
+            'rating': 'high' if avg_efficiency > 0.8 else 'medium' if avg_efficiency > 0.4 else 'low'
+        }
+    
+    def estimate_cognitive_load(self, srs_data: Dict) -> Dict[str, Any]:
+        """認知負荷推定（高度分析用）"""
+        if not srs_data:
+            return {'load': 0, 'factors': {}}
+        
+        # 難易度の分散と平均から認知負荷を推定
+        difficulties = []
+        attempts = []
+        
+        for qid, data in srs_data.items():
+            if isinstance(data, dict):
+                difficulty = data.get('difficulty_level', 5)
+                total_attempts = data.get('total_attempts', 0)
+                
+                difficulties.append(difficulty)
+                attempts.append(total_attempts)
+        
+        if not difficulties:
+            return {'load': 0, 'factors': {}}
+        
+        avg_difficulty = statistics.mean(difficulties)
+        difficulty_variance = statistics.variance(difficulties) if len(difficulties) > 1 else 0
+        avg_attempts = statistics.mean(attempts) if attempts else 0
+        
+        # 認知負荷スコア計算
+        cognitive_load = (avg_difficulty / 10) * 0.4 + (difficulty_variance / 10) * 0.3 + min(1, avg_attempts / 5) * 0.3
+        
+        return {
+            'load': round(cognitive_load, 3),
+            'factors': {
+                'average_difficulty': avg_difficulty,
+                'difficulty_variance': difficulty_variance,
+                'retry_frequency': avg_attempts
+            },
+            'level': 'high' if cognitive_load > 0.7 else 'medium' if cognitive_load > 0.4 else 'low'
+        }
+    
+    def generate_study_plan(self, history: List[Dict], srs_data: Dict, bookmarks: List) -> Dict[str, Any]:
+        """学習プラン生成（高度分析用）"""
+        recommendations = []
+        
+        # 弱点分野の特定
+        weak_areas = self._identify_weak_areas(history)
+        for area in weak_areas:
+            recommendations.append({
+                'type': 'weakness_focus',
+                'priority': 'high',
+                'title': f"{area['category']}の強化",
+                'description': f"正答率{area['accuracy']:.1%}の改善が必要",
+                'estimated_time': '30分/日'
+            })
+        
+        # 復習スケジュール
+        if srs_data:
+            due_reviews = sum(1 for data in srs_data.values() 
+                            if isinstance(data, dict) and self._is_review_due(data))
+            if due_reviews > 0:
+                recommendations.append({
+                    'type': 'review',
+                    'priority': 'medium',
+                    'title': f'復習問題 {due_reviews}問',
+                    'description': 'スケジュールされた復習問題を完了してください',
+                    'estimated_time': f'{due_reviews * 2}分'
+                })
+        
+        return {
+            'recommendations': recommendations[:6],
+            'total_study_time': sum(self._parse_time(r.get('estimated_time', '0分')) for r in recommendations),
+            'priority_areas': len([r for r in recommendations if r['priority'] == 'high'])
+        }
+    
+    def _identify_weak_areas(self, history: List[Dict]) -> List[Dict]:
+        """弱点分野特定のヘルパー"""
+        category_performance = defaultdict(list)
+        
+        for item in history:
+            category = item.get('category', 'unknown')
+            is_correct = item.get('is_correct', False)
+            category_performance[category].append(is_correct)
+        
+        weak_areas = []
+        for category, results in category_performance.items():
+            if len(results) >= 3:  # 最低3問以上
+                accuracy = sum(results) / len(results)
+                if accuracy < 0.7:  # 70%未満を弱点とする
+                    weak_areas.append({
+                        'category': category,
+                        'accuracy': accuracy,
+                        'sample_size': len(results)
+                    })
+        
+        return sorted(weak_areas, key=lambda x: x['accuracy'])[:3]  # 上位3つの弱点
+    
+    def _is_review_due(self, srs_data: Dict) -> bool:
+        """復習期限チェックのヘルパー"""
+        next_review = srs_data.get('next_review', '')
+        if not next_review:
+            return False
+        
+        try:
+            review_date = datetime.fromisoformat(next_review.replace('Z', '+00:00'))
+            return review_date <= datetime.now()
+        except:
+            return False
+    
+    def _parse_time(self, time_str: str) -> int:
+        """時間文字列をパースして分数に変換"""
+        if '分' in time_str:
+            return int(time_str.replace('分', '').replace('/日', ''))
+        return 0
+    
+    def analyze_memory_retention(self, srs_data: Dict) -> Dict[str, Any]:
+        """記憶保持分析（AIダッシュボード用）"""
+        if not srs_data:
+            return {'retention_rate': 0, 'factors': {}}
+        
+        retention_scores = []
+        for qid, data in srs_data.items():
+            if isinstance(data, dict):
+                total = data.get('total_attempts', 0)
+                correct = data.get('correct_count', 0)
+                interval = data.get('interval_days', 1)
+                
+                if total > 0:
+                    # 間隔が長いほど記憶保持が困難
+                    base_retention = correct / total
+                    interval_factor = max(0.5, 1 - (interval - 1) * 0.1)  # 間隔による減衰
+                    retention_scores.append(base_retention * interval_factor)
+        
+        if not retention_scores:
+            return {'retention_rate': 0, 'factors': {}}
+        
+        avg_retention = statistics.mean(retention_scores)
+        
+        return {
+            'retention_rate': round(avg_retention, 3),
+            'factors': {
+                'consistency': 1 - statistics.stdev(retention_scores) if len(retention_scores) > 1 else 1,
+                'long_term_memory': sum(1 for score in retention_scores if score > 0.8) / len(retention_scores)
+            },
+            'level': 'excellent' if avg_retention > 0.8 else 'good' if avg_retention > 0.6 else 'needs_improvement'
+        }
+    
     def generate_comprehensive_report(self, user_session: Dict, 
                                     exam_results: List[Dict] = None) -> Dict[str, Any]:
         """包括的な学習レポートの生成"""

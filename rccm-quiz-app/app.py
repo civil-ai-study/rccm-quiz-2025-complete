@@ -4737,7 +4737,7 @@ def ai_dashboard():
             'performance_prediction': ai_analyzer.predict_performance(srs_data),
             'study_recommendations': ai_analyzer.generate_recommendations(history, srs_data),
             'memory_retention': advanced_analytics.analyze_memory_retention(srs_data),
-            'optimal_study_time': advanced_analytics.calculate_optimal_study_time(history)
+            'study_efficiency': advanced_analytics.calculate_study_efficiency(history)
         }
         
         return render_template('ai_dashboard.html', analysis=analysis_results)

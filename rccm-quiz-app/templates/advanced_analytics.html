@@ -162,9 +162,9 @@
                             <div class="col-md-4">
                                 <h6>今週の重点項目</h6>
                                 <ul class="list-group">
-                                    {% for item in analytics.recommendation_engine.weekly_focus[:5] %}
+                                    {% for item in analytics.recommendation_engine.recommendations[:5] %}
                                     <li class="list-group-item">
-                                        <i class="fas fa-arrow-right text-danger"></i> {{ item }}
+                                        <i class="fas fa-arrow-right text-danger"></i> {{ item.title if item.title else item }}
                                     </li>
                                     {% endfor %}
                                 </ul>
@@ -172,7 +172,7 @@
                             <div class="col-md-4">
                                 <h6>推奨学習順序</h6>
                                 <ol class="list-group list-group-numbered">
-                                    {% for step in analytics.recommendation_engine.study_order[:5] %}
+                                    {% for step in analytics.recommendation_engine.recommendations[:5] %}
                                     <li class="list-group-item">{{ step }}</li>
                                     {% endfor %}
                                 </ol>

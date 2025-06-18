@@ -22,6 +22,119 @@ class AILearningAnalyzer:
     def __init__(self):
         self.confidence_threshold = 0.7  # 分析結果の信頼度閾値
         self.min_samples = 5  # 分析に必要な最小サンプル数
+    
+    def analyze_weakness_patterns(self, history: List[Dict]) -> Dict[str, Any]:
+        """弱点パターン分析（AIダッシュボード用）"""
+        if not history:
+            return {'patterns': [], 'confidence': 0.0}
+        
+        # カテゴリ別正答率分析
+        category_accuracy = defaultdict(list)
+        for item in history:
+            if 'category' in item and 'is_correct' in item:
+                category_accuracy[item['category']].append(item['is_correct'])
+        
+        patterns = []
+        for category, results in category_accuracy.items():
+            accuracy = sum(results) / len(results) if results else 0
+            if accuracy < 0.6:  # 60%未満を弱点とする
+                patterns.append({
+                    'category': category,
+                    'accuracy': accuracy,
+                    'sample_size': len(results),
+                    'weakness_level': 'high' if accuracy < 0.4 else 'medium'
+                })
+        
+        return {
+            'patterns': patterns,
+            'confidence': min(1.0, len(history) / 20),  # 20問で最大信頼度
+            'total_analyzed': len(history)
+        }
+    
+    def determine_learning_style(self, history: List[Dict]) -> Dict[str, Any]:
+        """学習スタイル判定（AIダッシュボード用）"""
+        if not history:
+            return {'style': 'unknown', 'confidence': 0.0}
+        
+        # 回答時間分析
+        response_times = [item.get('response_time', 0) for item in history if item.get('response_time')]
+        avg_time = statistics.mean(response_times) if response_times else 0
+        
+        # 正答率の時系列変化
+        correct_rates = []
+        for i in range(0, len(history), 5):
+            batch = history[i:i+5]
+            if batch:
+                rate = sum(1 for item in batch if item.get('is_correct', False)) / len(batch)
+                correct_rates.append(rate)
+        
+        # 学習スタイル判定
+        if avg_time > 60:  # 1分以上
+            style = 'analytical'  # 分析型
+        elif avg_time < 20:  # 20秒未満
+            style = 'intuitive'  # 直感型
+        else:
+            style = 'balanced'  # バランス型
+        
+        return {
+            'style': style,
+            'confidence': min(1.0, len(history) / 15),
+            'avg_response_time': avg_time,
+            'improvement_trend': correct_rates[-1] - correct_rates[0] if len(correct_rates) > 1 else 0
+        }
+    
+    def predict_performance(self, srs_data: Dict) -> Dict[str, Any]:
+        """パフォーマンス予測（AIダッシュボード用）"""
+        if not srs_data:
+            return {'predicted_score': 0, 'confidence': 0.0}
+        
+        # SRSデータから習熟度を計算
+        mastery_scores = []
+        for qid, data in srs_data.items():
+            if isinstance(data, dict):
+                total = data.get('total_attempts', 0)
+                correct = data.get('correct_count', 0)
+                if total > 0:
+                    mastery_scores.append(correct / total)
+        
+        if not mastery_scores:
+            return {'predicted_score': 0, 'confidence': 0.0}
+        
+        avg_mastery = statistics.mean(mastery_scores)
+        predicted_score = min(100, avg_mastery * 100 + 10)  # 予測スコア
+        
+        return {
+            'predicted_score': round(predicted_score, 1),
+            'confidence': min(1.0, len(mastery_scores) / 10),
+            'mastery_level': 'high' if avg_mastery > 0.8 else 'medium' if avg_mastery > 0.6 else 'low',
+            'analyzed_questions': len(mastery_scores)
+        }
+    
+    def generate_recommendations(self, history: List[Dict], srs_data: Dict) -> List[Dict]:
+        """学習推奨事項生成（AIダッシュボード用）"""
+        recommendations = []
+        
+        # 弱点分析結果から推奨
+        weakness_analysis = self.analyze_weakness_patterns(history)
+        for pattern in weakness_analysis.get('patterns', []):
+            recommendations.append({
+                'type': 'weakness_focus',
+                'title': f"{pattern['category']}の集中学習",
+                'description': f"正答率{pattern['accuracy']:.1%}の分野を重点的に学習することをお勧めします",
+                'priority': 'high' if pattern['weakness_level'] == 'high' else 'medium'
+            })
+        
+        # 学習スタイルから推奨
+        style_analysis = self.determine_learning_style(history)
+        if style_analysis['style'] == 'analytical':
+            recommendations.append({
+                'type': 'study_method',
+                'title': '詳細解説モードの活用',
+                'description': '分析型の学習スタイルのため、解説をじっくり読むことをお勧めします',
+                'priority': 'medium'
+            })
+        
+        return recommendations[:5]  # 上位5つの推奨事項
         
     def analyze_weak_areas(self, user_session: Dict, department_filter: str = None) -> Dict[str, Any]:
         """包括的な弱点分析（部門別対応版）"""
