@@ -215,32 +215,48 @@ def after_request(response):
 
 # セキュリティ機能
 def sanitize_input(input_string):
-    """入力値をサニタイズ（ウルトラシンク安全性修正・日本語対応）"""
+    """入力値をサニタイズ（ウルトラシンク安全性修正・日本語対応強化版）"""
     if not input_string:
         return ""
-    # 文字列に変換
-    sanitized = str(input_string)
+    
+    # 文字列に変換して空白の正規化
+    sanitized = str(input_string).strip()
+    
     # 危険なHTMLタグのみ除去（日本語文字は保持）
     sanitized = re.sub(r'<[^>]*>', '', sanitized)
     
-    # 🔥 CRITICAL FIX: 完全なSQLインジェクション対策
-    dangerous_chars = {
-        "'": "&#39;",      # シングルクォート
-        '"': "&#34;",      # ダブルクォート
-        ";": "&#59;",      # セミコロン
-        "--": "&#45;&#45;", # SQLコメント
-        "/*": "&#47;&#42;", # SQLコメント開始
-        "*/": "&#42;&#47;", # SQLコメント終了
-        "\\": "&#92;",     # バックスラッシュ
-        "=": "&#61;",      # 等号（WHERE句攻撃対策）
-        "%": "&#37;",      # パーセント（LIKE句攻撃対策）
-        "_": "&#95;"       # アンダースコア（LIKE句攻撃対策）
-    }
+    # ユーザー名の場合のみ日本語文字を保護（特殊処理）
+    # 🔥 CRITICAL FIX: 日本語ユーザー名のエラー対策
+    if any(ord(char) > 127 for char in sanitized):  # 日本語文字が含まれている場合
+        # 日本語を含む場合は最小限のサニタイズのみ実行
+        dangerous_chars_minimal = {
+            "<": "&lt;",
+            ">": "&gt;",
+            "&": "&amp;",
+            "'": "&#39;",
+            '"': "&quot;"
+        }
+        for char, escape in dangerous_chars_minimal.items():
+            sanitized = sanitized.replace(char, escape)
+    else:
+        # 英数字のみの場合は通常のサニタイズを実行
+        dangerous_chars = {
+            "'": "&#39;",      # シングルクォート
+            '"': "&#34;",      # ダブルクォート
+            ";": "&#59;",      # セミコロン
+            "--": "&#45;&#45;", # SQLコメント
+            "/*": "&#47;&#42;", # SQLコメント開始
+            "*/": "&#42;&#47;", # SQLコメント終了
+            "\\": "&#92;",     # バックスラッシュ
+            "=": "&#61;",      # 等号（WHERE句攻撃対策）
+            "%": "&#37;",      # パーセント（LIKE句攻撃対策）
+            "_": "&#95;"       # アンダースコア（LIKE句攻撃対策）
+        }
+        
+        for char, escape in dangerous_chars.items():
+            sanitized = sanitized.replace(char, escape)
     
-    for char, escape in dangerous_chars.items():
-        sanitized = sanitized.replace(char, escape)
-    
-    return sanitized.strip()
+    return sanitized
 
 # =============================================================================
 # 高度なSRS（間隔反復学習）システム - 忘却曲線ベース
@@ -2793,6 +2809,39 @@ def review_list():
         logger.error(f"復習リスト表示エラー: {e}")
         return render_template('error.html', error="復習リスト表示中にエラーが発生しました。")
 
+@app.route('/api/review/count')
+def api_review_count():
+    """復習問題数を取得（ウルトラシンク追加・ホーム画面表示用）"""
+    try:
+        srs_data = session.get('srs_data', {})
+        
+        # 復習対象問題の数をカウント
+        review_count = 0
+        current_time = datetime.now()
+        
+        for question_id, data in srs_data.items():
+            if isinstance(data, dict):
+                # 次回復習日をチェック
+                next_review = data.get('next_review', '')
+                if next_review:
+                    try:
+                        review_date = datetime.fromisoformat(next_review.replace('Z', '+00:00'))
+                        if review_date <= current_time:
+                            review_count += 1
+                    except:
+                        # 日付パースエラーの場合は復習対象に含める
+                        review_count += 1
+                else:
+                    # next_reviewが設定されていない場合も復習対象
+                    review_count += 1
+        
+        logger.info(f"復習問題数API呼び出し: {review_count}問")
+        return jsonify({'count': review_count, 'success': True})
+        
+    except Exception as e:
+        logger.error(f"復習問題数取得エラー: {e}")
+        return jsonify({'count': 0, 'error': str(e), 'success': False})
+
 @app.route('/api/review/questions', methods=['POST'])
 def get_review_questions():
     """復習リストの問題詳細を一括取得"""
@@ -4617,12 +4666,12 @@ def app_icon(size):
 @app.route('/social_learning')
 def social_learning_redirect():
     """ソーシャル学習機能（ヘルプからのリダイレクト対応）"""
-    return redirect(url_for('social_main'))
+    return redirect(url_for('social_learning_page'))
 
 @app.route('/leaderboard')
 def leaderboard_redirect():
     """ランキング機能（ヘルプからのリダイレクト対応）"""
-    return redirect(url_for('social_leaderboard'))
+    return redirect('/social/leaderboard')
 
 @app.route('/health_check')
 def health_check():
@@ -4713,7 +4762,7 @@ def ai_dashboard():
     """AIダッシュボード"""
     try:
         # セッションデータ取得
-        user_session = get_user_session()
+        user_session = session
         history = user_session.get('history', [])
         srs_data = user_session.get('srs_data', {})
         
@@ -4780,7 +4829,7 @@ def advanced_analytics_view():
     """高度分析"""
     try:
         # セッションデータ取得
-        user_session = get_user_session()
+        user_session = session
         history = user_session.get('history', [])
         srs_data = user_session.get('srs_data', {})
         

@@ -302,8 +302,17 @@ class SocialLearningManager:
                 
                 # 期間フィルタ
                 if cutoff_date:
-                    history = [h for h in history if 
-                             datetime.fromisoformat(h.get('date', '')) >= cutoff_date]
+                    filtered_history = []
+                    for h in history:
+                        try:
+                            date_str = h.get('date', '')
+                            if date_str:
+                                date_obj = datetime.fromisoformat(date_str)
+                                if date_obj >= cutoff_date:
+                                    filtered_history.append(h)
+                        except (ValueError, TypeError):
+                            continue
+                    history = filtered_history
                 
                 # 部門フィルタ
                 if department:
@@ -796,9 +805,11 @@ class SocialLearningManager:
         dates = set()
         for entry in history:
             try:
-                date = datetime.fromisoformat(entry.get('date', '')).date()
-                dates.add(date)
-            except:
+                date_str = entry.get('date', '')
+                if date_str:
+                    date = datetime.fromisoformat(date_str).date()
+                    dates.add(date)
+            except (ValueError, TypeError):
                 continue
         
         return len(dates)
