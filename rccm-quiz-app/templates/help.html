@@ -348,12 +348,11 @@
                                 </div>
                             </div>
                             <div class="text-center mt-3">
-                                <a href="/ai_dashboard" class="btn btn-primary btn-lg me-2">
-                                    <i class="fas fa-robot me-2"></i>AIダッシュボード
-                                </a>
-                                <a href="/advanced_analytics" class="btn btn-outline-primary btn-lg">
-                                    <i class="fas fa-chart-line me-2"></i>高度分析
-                                </a>
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    <strong>AI機能は現在メンテナンス中です</strong><br>
+                                    <small>基本機能（問題解答・復習・統計）は正常にご利用いただけます</small>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -729,7 +728,7 @@
                                         <strong>「AI分析が動作しない」</strong>
                                         <ol>
                                             <li>十分な学習データが累積されるまで待つ</li>
-                                            <li><a href="/ai_dashboard" class="btn btn-sm btn-info">AIダッシュボード</a>で状況確認</li>
+                                            <li>統計ページで学習状況を確認</li>
                                             <li>ジャバスクリプト有効化を確認</li>
                                         </ol>
                                     </div>
@@ -859,10 +858,10 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-4 col-6 mb-3">
-                <a href="/ai_dashboard" class="btn btn-info btn-lg w-100 h-100 d-flex flex-column justify-content-center">
-                    <i class="fas fa-robot mb-2"></i>
-                    <span>AIダッシュボード</span>
-                </a>
+                <div class="btn btn-secondary btn-lg w-100 h-100 d-flex flex-column justify-content-center" style="opacity: 0.5;">
+                    <i class="fas fa-wrench mb-2"></i>
+                    <span>メンテナンス中</span>
+                </div>
             </div>
             <div class="col-lg-2 col-md-4 col-6 mb-3">
                 <a href="/review" class="btn btn-warning btn-lg w-100 h-100 d-flex flex-column justify-content-center">
@@ -900,6 +899,163 @@
                 </div>
             </div>
         </div>
+    </div>
+    
+    <!-- AI機能プレビュー（メンテナンス中のため静的表示） -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <h4><i class="fas fa-wrench me-2"></i>AI機能プレビュー（メンテナンス中）</h4>
+                <p>以下は将来実装予定のAI機能のプレビューです。現在はメンテナンス中のため、参考としてご覧ください。</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- AIダッシュボードプレビュー -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-primary" style="opacity: 0.7;">
+                <div class="card-header bg-primary text-white">
+                    <h4><i class="fas fa-robot"></i> AIダッシュボードプレビュー</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="alert alert-info text-center">
+                                <h5>学習スタイル</h5>
+                                <h3><i class="fas fa-user-graduate"></i> 分析型</h3>
+                                <small>あなたに最適な学習方法</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="alert alert-success text-center">
+                                <h5>パフォーマンス予測</h5>
+                                <h3><i class="fas fa-chart-line"></i> 78%</h3>
+                                <small>現在の理解度</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="alert alert-warning text-center">
+                                <h5>推奨学習時間</h5>
+                                <h3><i class="fas fa-clock"></i> 30分/日</h3>
+                                <small>効率的な学習時間</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 弱点パターン分析 -->
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-brain text-danger"></i> 弱点パターン分析</h6>
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>🔴 コンクリート工学</span>
+                                    <span class="badge bg-danger">要改善 45%</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>🟡 土質工学</span>
+                                    <span class="badge bg-warning">注意 62%</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>🟢 施工管理</span>
+                                    <span class="badge bg-success">良好 85%</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-lightbulb text-primary"></i> AI学習推奨</h6>
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <ul class="mb-0">
+                                        <li><strong>コンクリート工学の集中学習</strong> - 週3回、20分ずつ</li>
+                                        <li><strong>基礎から応用への段階学習</strong> - 理論→実務の順番</li>
+                                        <li><strong>復習スケジュール</strong> - 3日後、1週間後、1ヶ月後</li>
+                                        <li><strong>関連問題の横断学習</strong> - 構造力学との連携</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 高度分析プレビュー -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-info" style="opacity: 0.7;">
+                <div class="card-header bg-info text-white">
+                    <h4><i class="fas fa-chart-line"></i> 高度分析プレビュー</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <h5>学習効率スコア</h5>
+                            <div class="display-4 text-primary">73%</div>
+                            <small class="text-muted">平均: 65%</small>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <h5>認知負荷</h5>
+                            <div class="display-4 text-warning">中</div>
+                            <small class="text-muted">最適範囲内</small>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <h5>成功確率</h5>
+                            <div class="display-4 text-success">82%</div>
+                            <small class="text-muted">試験合格予測</small>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <h5>学習曲線</h5>
+                            <div class="display-4 text-info">成長期</div>
+                            <small class="text-muted">現在のフェーズ</small>
+                        </div>
+                    </div>
+                    
+                    <!-- 学習推奨エンジン -->
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <h6>今週の重点項目</h6>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <i class="fas fa-arrow-right text-danger"></i> コンクリート工学の強化
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-arrow-right text-warning"></i> 構造力学の復習
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-arrow-right text-info"></i> 施工管理の維持
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>推奨学習順序</h6>
+                            <ol class="list-group list-group-numbered">
+                                <li class="list-group-item">基礎理論の確認</li>
+                                <li class="list-group-item">応用問題への挑戦</li>
+                                <li class="list-group-item">総合問題での定着確認</li>
+                            </ol>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>学習スケジュール</h6>
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <p><strong>総学習時間:</strong> 180分/週</p>
+                                    <p><strong>優先分野:</strong> 2分野</p>
+                                    <p><strong>復習問題:</strong> 25問</p>
+                                    <p><strong>新規問題:</strong> 15問</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="alert alert-secondary mt-4">
+        <h6><i class="fas fa-info-circle me-2"></i>注意事項</h6>
+        <p class="mb-0">上記のAI機能は現在メンテナンス中です。基本機能（問題解答・復習・統計）は正常にご利用いただけます。AI機能の復旧時期は未定ですが、アプリの基本機能で十分な学習効果を得ることができます。</p>
     </div>
 
 </div>

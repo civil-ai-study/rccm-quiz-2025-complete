@@ -4710,81 +4710,19 @@ def internal_error(e):
 # === AI学習アナリティクス ===
 @app.route('/ai_dashboard')
 def ai_dashboard():
-    """AIダッシュボード画面（ウルトラシンク修正）"""
-    try:
-        # AI分析機能の初期化チェック
-        global ai_analyzer, advanced_analytics
-        
-        if ai_analyzer is None:
-            from ai_analyzer import AIAnalyzer
-            ai_analyzer = AIAnalyzer()
-            logger.info("AIアナライザー初期化完了")
-        
-        if advanced_analytics is None:
-            from advanced_analytics import AdvancedAnalytics
-            advanced_analytics = AdvancedAnalytics()
-            logger.info("高度分析エンジン初期化完了")
-        
-        # セッションから学習データを取得
-        user_id = session.get('session_id', 'anonymous')
-        history = session.get('history', [])
-        srs_data = session.get('advanced_srs', {})
-        
-        # AI分析実行
-        analysis_results = {
-            'weakness_patterns': ai_analyzer.analyze_weakness_patterns(history),
-            'learning_style': ai_analyzer.determine_learning_style(history),
-            'performance_prediction': ai_analyzer.predict_performance(srs_data),
-            'study_recommendations': ai_analyzer.generate_recommendations(history, srs_data),
-            'memory_retention': advanced_analytics.analyze_memory_retention(srs_data),
-            'study_efficiency': advanced_analytics.calculate_study_efficiency(history)
-        }
-        
-        return render_template('ai_dashboard.html', analysis=analysis_results)
-        
-    except Exception as e:
-        logger.error(f"AIダッシュボードエラー: {e}")
-        return render_template('error.html', 
-                             error="AI分析機能の読み込み中にエラーが発生しました。",
-                             details=str(e))
+    """AIダッシュボード（メンテナンス中）"""
+    return render_template('error.html', 
+                         error="AI機能は現在メンテナンス中です",
+                         error_type="maintenance",
+                         error_message="基本機能（問題解答・復習・統計）は正常にご利用いただけます。<br><br><a href='/' class='btn btn-primary'>ホームに戻る</a>")
 
 @app.route('/advanced_analytics')
 def advanced_analytics_view():
-    """高度分析画面（ウルトラシンク修正）"""
-    try:
-        # 高度分析機能の初期化チェック
-        global advanced_analytics, ai_analyzer
-        
-        if advanced_analytics is None:
-            from advanced_analytics import AdvancedAnalytics
-            advanced_analytics = AdvancedAnalytics()
-            logger.info("高度分析エンジン初期化完了")
-        
-        # セッションから詳細データを取得
-        user_id = session.get('session_id', 'anonymous')
-        history = session.get('history', [])
-        srs_data = session.get('advanced_srs', {})
-        bookmarks = session.get('bookmarks', [])
-        
-        # 高度な統計分析実行
-        analytics_data = {
-            'time_series_analysis': advanced_analytics.analyze_time_series(history),
-            'difficulty_distribution': advanced_analytics.analyze_difficulty_distribution(srs_data),
-            'learning_curve': advanced_analytics.generate_learning_curve(history),
-            'success_probability': advanced_analytics.calculate_success_probability(history, srs_data),
-            'department_heatmap': advanced_analytics.create_department_heatmap(history),
-            'study_efficiency': advanced_analytics.calculate_study_efficiency(history),
-            'cognitive_load': advanced_analytics.estimate_cognitive_load(srs_data),
-            'recommendation_engine': advanced_analytics.generate_study_plan(history, srs_data, bookmarks)
-        }
-        
-        return render_template('advanced_analytics.html', analytics=analytics_data)
-        
-    except Exception as e:
-        logger.error(f"高度分析エラー: {e}")
-        return render_template('error.html', 
-                             error="高度分析機能の読み込み中にエラーが発生しました。",
-                             details=str(e))
+    """高度分析（メンテナンス中）"""
+    return render_template('error.html', 
+                         error="高度分析機能は現在メンテナンス中です",
+                         error_type="maintenance",
+                         error_message="基本機能（問題解答・復習・統計）は正常にご利用いただけます。<br><br><a href='/statistics' class='btn btn-success me-2'>統計を見る</a><a href='/' class='btn btn-primary'>ホームに戻る</a>")
 
 # === 管理者ダッシュボード ===
 
