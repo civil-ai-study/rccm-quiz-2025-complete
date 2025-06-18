@@ -1010,6 +1010,34 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
     random.shuffle(new_questions)
     selected_questions.extend(new_questions[:remaining_count])
     
+    # 🔥 CRITICAL: 10問保証のためのフォールバック機能（ウルトラシンク修正）
+    if len(selected_questions) < 10:
+        shortage = 10 - len(selected_questions)
+        logger.warning(f"問題数不足を検出: {len(selected_questions)}問 (不足: {shortage}問) - フォールバック実行")
+        
+        # フォールバック1: フィルタを緩和して問題を追加
+        selected_ids = [int(q.get('id', 0)) for q in selected_questions]
+        fallback_questions = [q for q in all_questions if int(q.get('id', 0)) not in selected_ids]
+        
+        # 問題種別は維持しつつ、他のフィルタを緩和
+        if question_type:
+            fallback_questions = [q for q in fallback_questions if q.get('question_type') == question_type]
+        
+        random.shuffle(fallback_questions)
+        additional_questions = fallback_questions[:shortage]
+        selected_questions.extend(additional_questions)
+        
+        logger.info(f"フォールバック完了: {len(additional_questions)}問追加, 合計{len(selected_questions)}問")
+        
+        # フォールバック2: それでも不足の場合は全問題から選択
+        if len(selected_questions) < 10:
+            final_shortage = 10 - len(selected_questions)
+            selected_ids = [int(q.get('id', 0)) for q in selected_questions]
+            final_fallback = [q for q in all_questions if int(q.get('id', 0)) not in selected_ids]
+            random.shuffle(final_fallback)
+            selected_questions.extend(final_fallback[:final_shortage])
+            logger.info(f"最終フォールバック完了: {final_shortage}問追加, 最終合計{len(selected_questions)}問")
+    
     random.shuffle(selected_questions)
     
     filter_info = []
