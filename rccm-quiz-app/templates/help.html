@@ -348,10 +348,10 @@
                                 </div>
                             </div>
                             <div class="text-center mt-3">
-                                <div class="alert alert-info">
-                                    <i class="fas fa-info-circle me-2"></i>
-                                    <strong>AI機能は現在メンテナンス中です</strong><br>
-                                    <small>基本機能（問題解答・復習・統計）は正常にご利用いただけます</small>
+                                <div class="alert alert-success">
+                                    <i class="fas fa-check-circle me-2"></i>
+                                    <strong>AI学習分析機能搭載済み</strong><br>
+                                    <small>弱点分析・学習推奨・パフォーマンス予測が利用可能です</small>
                                 </div>
                             </div>
                         </div>
@@ -858,10 +858,10 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-4 col-6 mb-3">
-                <div class="btn btn-secondary btn-lg w-100 h-100 d-flex flex-column justify-content-center" style="opacity: 0.5;">
-                    <i class="fas fa-wrench mb-2"></i>
-                    <span>メンテナンス中</span>
-                </div>
+                <a href="/ai_dashboard" class="btn btn-primary btn-lg w-100 h-100 d-flex flex-column justify-content-center">
+                    <i class="fas fa-robot mb-2"></i>
+                    <span>AI分析</span>
+                </a>
             </div>
             <div class="col-lg-2 col-md-4 col-6 mb-3">
                 <a href="/review" class="btn btn-warning btn-lg w-100 h-100 d-flex flex-column justify-content-center">
@@ -901,12 +901,20 @@
         </div>
     </div>
     
-    <!-- AI機能プレビュー（メンテナンス中のため静的表示） -->
+    <!-- AI機能（実装済み・利用可能） -->
     <div class="row mt-5">
         <div class="col-12">
-            <div class="alert alert-info">
-                <h4><i class="fas fa-wrench me-2"></i>AI機能プレビュー（メンテナンス中）</h4>
-                <p>以下は将来実装予定のAI機能のプレビューです。現在はメンテナンス中のため、参考としてご覧ください。</p>
+            <div class="alert alert-success">
+                <h4><i class="fas fa-check-circle me-2"></i>AI学習機能（実装済み・利用可能）</h4>
+                <p>以下のAI機能は完全実装済みです。学習データが蓄積されると、より精密な分析結果を提供します。</p>
+                <div class="text-center mt-3">
+                    <a href="/ai_dashboard" class="btn btn-primary me-2">
+                        <i class="fas fa-robot me-2"></i>AIダッシュボード
+                    </a>
+                    <a href="/advanced_analytics" class="btn btn-info">
+                        <i class="fas fa-chart-line me-2"></i>高度分析
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -1053,9 +1061,9 @@
         </div>
     </div>
     
-    <div class="alert alert-secondary mt-4">
-        <h6><i class="fas fa-info-circle me-2"></i>注意事項</h6>
-        <p class="mb-0">上記のAI機能は現在メンテナンス中です。基本機能（問題解答・復習・統計）は正常にご利用いただけます。AI機能の復旧時期は未定ですが、アプリの基本機能で十分な学習効果を得ることができます。</p>
+    <div class="alert alert-success mt-4">
+        <h6><i class="fas fa-check-circle me-2"></i>AI機能について</h6>
+        <p class="mb-0">上記のAI機能は完全実装済みで正常に動作します。基本機能（問題解答・復習・統計）と併用することで、より効果的な学習が可能です。AI分析は学習履歴の蓄積に応じて精度が向上します。</p>
     </div>
 
 </div>

@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 # バッジ定義
 ACHIEVEMENT_BADGES = {
-    'first_quiz': {
+    'first_mondai': {
         'name': '初回問題完了',
         'description': '初めて問題を完了しました！',
         'icon': '🎯',
@@ -151,8 +151,8 @@ class GamificationManager:
         accuracy = correct_count / total_questions if total_questions > 0 else 0
         
         # 初回問題バッジ
-        if 'first_quiz' not in earned_badges and total_questions >= 1:
-            new_badges.append('first_quiz')
+        if 'first_mondai' not in earned_badges and total_questions >= 1:
+            new_badges.append('first_mondai')
         
         # 百問達成バッジ
         if 'hundred_questions' not in earned_badges and total_questions >= 100:

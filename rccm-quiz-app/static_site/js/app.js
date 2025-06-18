@@ -147,7 +147,7 @@ async function loadQuestions(department, type) {
         
         console.log(`問題データ読み込み完了: ${questions.length}問 (総数: ${allQuestions.length}問)`);
         
-        // クイズ開始
+        // 問題開始
         startQuiz();
         
     } catch (error) {
@@ -213,7 +213,7 @@ function shuffleArray(array) {
     return shuffled;
 }
 
-// クイズ開始
+// 問題開始
 function startQuiz() {
     currentQuestionIndex = 0;
     userAnswers = [];
@@ -227,7 +227,7 @@ function startQuiz() {
     // 最初の問題を表示
     displayQuestion();
     
-    console.log('クイズ開始');
+    console.log('問題開始');
 }
 
 // 問題表示
@@ -388,7 +388,7 @@ function showResults() {
     // 進捗保存
     saveQuizResult(correctAnswers, totalQuestions, accuracy, timeElapsed);
     
-    console.log(`クイズ完了: ${correctAnswers}/${totalQuestions} (${accuracy}%)`);
+    console.log(`問題完了: ${correctAnswers}/${totalQuestions} (${accuracy}%)`);
 }
 
 // ユーザー進捗更新
@@ -450,7 +450,7 @@ function updateProgressDisplay() {
     circle.style.strokeDashoffset = offset;
 }
 
-// クイズ結果保存
+// 問題結果保存
 function saveQuizResult(correct, total, accuracy, time) {
     const result = {
         date: new Date().toISOString(),
@@ -485,7 +485,7 @@ function loadUserProgress() {
     userProgress = stored ? JSON.parse(stored) : {};
 }
 
-// クイズ再開始
+// 問題再開始
 function restartQuiz() {
     document.getElementById('resultSection').style.display = 'none';
     document.getElementById('typeSection').style.display = 'block';
@@ -512,7 +512,7 @@ function showHelp() {
 1. お名前を入力して学習開始
 2. 専門部門を選択
 3. 問題種別(基礎/専門)を選択
-4. 10問のクイズに挑戦
+4. 10問の問題に挑戦
 
 【機能】
 • 進捗管理: 学習状況を自動保存

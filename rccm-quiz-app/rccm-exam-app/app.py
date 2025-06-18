@@ -66,7 +66,7 @@ def sanitize_input(input_string):
     return sanitized.strip()
 
 def validate_exam_parameters(**kwargs):
-    """クイズパラメータの検証"""
+    """問題パラメータの検証"""
     valid_departments = list(RCCMConfig.DEPARTMENTS.keys())
     valid_question_types = ['basic', 'specialist']
     valid_years = list(range(2008, 2020))
