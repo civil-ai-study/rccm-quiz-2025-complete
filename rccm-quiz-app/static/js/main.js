@@ -48,6 +48,30 @@ function updateStreak() {
     return streak;
 }
 
+// ユーザー名スキップ機能
+function skipUserName() {
+    // 匿名ユーザーとして設定
+    fetch('/set_user', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'user_name=匿名ユーザー_' + Date.now()
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.reload();
+        } else {
+            console.error('ユーザー設定エラー');
+        }
+    })
+    .catch(error => {
+        console.error('通信エラー:', error);
+        // エラーが発生してもページをリロードして継続
+        window.location.reload();
+    });
+}
+
 // キーボードショートカット表示機能
 function showKeyboardShortcuts() {
     const shortcuts = `

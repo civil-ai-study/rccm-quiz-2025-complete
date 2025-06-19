@@ -60,7 +60,15 @@
       "Bash(# プロセスを確認\nps aux | grep -E \"(powershell|screenshot)\" | grep -v grep | head -5)",
       "Bash(# Windowsパスで直接バックグラウンド実行\nnohup powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"\\\\\\\\wsl.localhost\\\\Ubuntu\\\\root\\\\windows-to-wsl2-screenshots\\\\auto-clipboard-monitor.ps1\" > ~/.screenshots/monitor.log 2>&1 &\n\n# プロセスIDを取得\necho \"プロセスID: $!\"\necho \"✅ スクリーンショット監視をバックグラウンドで開始しました\")",
       "Bash(# ログファイルの最新内容を確認\ntail -5 ~/.screenshots/monitor.log)",
-      "Bash(watch:*)"
+      "Bash(watch:*)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "Bash(check-screenshot-monitor)",
+      "Bash(dos2unix:*)",
+      "Bash(npx:*)",
+      "Bash(99)",
+      "Bash(stop-screenshot-monitor:*)",
+      "Bash(wslpath:*)",
+      "WebFetch(domain:api.github.com)"
     ],
     "deny": []
   }

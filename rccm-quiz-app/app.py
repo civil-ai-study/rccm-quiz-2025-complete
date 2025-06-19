@@ -1200,7 +1200,8 @@ def set_user():
             user_name = request.args.get('user', '').strip()
         
         if not user_name:
-            return redirect(url_for('index'))
+            # 空の場合は匿名ユーザーとして処理
+            user_name = f"匿名ユーザー_{int(time.time())}"
         
         # 入力値のサニタイズ
         user_name = sanitize_input(user_name)
@@ -6015,30 +6016,67 @@ def enterprise_dashboard_redirect():
     """企業ダッシュボードリダイレクト（既存機能への橋渡し）"""
     return redirect('/enterprise/dashboard')
 
+@app.route('/health')
+def health_status():
+    """ヘルスチェックエンドポイント（Render起動確認用）"""
+    return jsonify({
+        'status': 'ok',
+        'app': 'RCCM Quiz App',
+        'version': '2025.1',
+        'timestamp': datetime.now().isoformat()
+    })
+
+# グローバルエラーハンドラー
+@app.errorhandler(404)
+def not_found_error(error):
+    """404エラーハンドラー"""
+    logger.warning(f"404エラー: {request.url}")
+    return render_template('error.html', 
+                         error_message="ページが見つかりません",
+                         error_type="not_found"), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    """500エラーハンドラー"""
+    logger.error(f"500エラー: {str(error)}")
+    return render_template('error.html', 
+                         error_message="内部サーバーエラーが発生しました",
+                         error_type="server_error"), 500
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    """未処理例外ハンドラー"""
+    logger.error(f"未処理例外: {str(e)}", exc_info=True)
+    return render_template('error.html', 
+                         error_message="予期しないエラーが発生しました",
+                         error_type="unexpected_error"), 500
+
 if __name__ == '__main__':
     # 🔥 本番環境のポート設定: Renderではポート10000を使用
     port = int(os.environ.get('PORT', 5003))
     host = '0.0.0.0' if os.environ.get('FLASK_ENV') == 'production' else '0.0.0.0'
     debug_mode = os.environ.get('FLASK_ENV') != 'production'
     
-    # サーバー配布版の場合の起動ログ
-    if os.environ.get('FLASK_ENV') == 'production':
-        logger.info("🌐 RCCM試験問題集2025 - サーバー配布版起動")
-        logger.info("📊 問題データ事前読み込み開始...")
-        try:
-            questions = load_questions()
-            logger.info(f"✅ 問題データ読み込み完了: {len(questions)}問")
-        except Exception as e:
-            logger.error(f"⚠️ 問題データ読み込み警告: {e}")
+    # 本番環境検出（Render対応）
+    is_production = (
+        os.environ.get('FLASK_ENV') == 'production' or 
+        os.environ.get('RENDER') or 
+        os.environ.get('PORT')
+    )
+    
+    # 起動ログ最適化（Render向け高速起動）
+    if is_production:
+        logger.info("🌐 RCCM試験問題集2025 - Production Ready")
+        # Renderでの事前データ読み込みをスキップ（起動時間短縮）
+        logger.info("📡 Fast startup mode enabled")
     else:
         # 開発環境の場合のWSL2 IPアドレス表示
         logger.info("RCCM試験問題集アプリケーション起動中...")
         logger.info("アクセスURL: http://172.18.44.152:5003")
         logger.info("アクセスURL: http://localhost:5003")
     
-    # サーバー起動
-    logger.info(f"🚀 RCCM試験問題集2025 Enterprise Edition 起動中...")
-    logger.info(f"📡 Host: {host}, Port: {port}, Debug: {debug_mode}")
+    # サーバー起動（最適化版）
+    logger.info(f"🚀 RCCM Ready - Host: {host}, Port: {port}")
     
     app.run(
         host=host,
