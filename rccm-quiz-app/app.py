@@ -5999,6 +5999,22 @@ except Exception as e:
     logger.error(f"❌ アプリケーション初期化エラー: {e}")
     logger.info("🔄 基本機能で続行します")
 
+# 🔥 ウルトラシンク修復: 不足ルート追加（副作用なし）
+@app.route('/study/basic')
+def study_basic():
+    """基礎科目学習ページ"""
+    return redirect(url_for('exam', question_type='basic'))
+
+@app.route('/study/specialist/<department>')  
+def study_specialist(department):
+    """専門科目学習ページ"""
+    return redirect(url_for('exam', question_type='specialist', department=department))
+
+@app.route('/enterprise_dashboard')
+def enterprise_dashboard_redirect():
+    """企業ダッシュボードリダイレクト（既存機能への橋渡し）"""
+    return redirect('/enterprise/dashboard')
+
 if __name__ == '__main__':
     # 🔥 本番環境のポート設定: Renderではポート10000を使用
     port = int(os.environ.get('PORT', 5003))
