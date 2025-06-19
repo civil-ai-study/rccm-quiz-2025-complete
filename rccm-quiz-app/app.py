@@ -241,7 +241,7 @@ def after_request(response):
     return response
 
 # セキュリティ機能
-def sanitize_input(input_string):
+def sanitize_input(input_string, allow_underscores=False):
     """入力値をサニタイズ（ウルトラシンク安全性修正・日本語対応強化版）"""
     if not input_string:
         return ""
@@ -277,8 +277,12 @@ def sanitize_input(input_string):
             "\\": "&#92;",     # バックスラッシュ
             "=": "&#61;",      # 等号（WHERE句攻撃対策）
             "%": "&#37;",      # パーセント（LIKE句攻撃対策）
-            "_": "&#95;"       # アンダースコア（LIKE句攻撃対策）
         }
+        
+        # 🔥 CRITICAL FIX: civil_planning等の部門ID対応
+        # アンダースコアの変換はallow_underscores=Falseの場合のみ実行
+        if not allow_underscores:
+            dangerous_chars["_"] = "&#95;"  # アンダースコア（LIKE句攻撃対策）
         
         for char, escape in dangerous_chars.items():
             sanitized = sanitized.replace(char, escape)
@@ -1263,7 +1267,8 @@ def exam():
     """SRS対応の問題関数（統合版）"""
     try:
         # 🔥 CRITICAL: ウルトラシンク セッション整合性チェック・自動修復（改修版）
-        if 'exam_question_ids' in session:
+        # 🚨 BUG FIX: 初回アクセス時(GET)は空セッション許可、回答時(POST)のみ厳格チェック
+        if 'exam_question_ids' in session and request.method == 'POST':
             try:
                 exam_ids = session.get('exam_question_ids', [])
                 current_no_raw = session.get('exam_current', 0)
@@ -1631,13 +1636,13 @@ def exam():
                             department_to_category_mapping = {
                                 'road': '道路',
                                 'tunnel': 'トンネル', 
-                                'civil_planning': '河川砂防海岸',
-                                'urban_planning': '都市計画地方計画',
+                                'civil_planning': '河川、砂防及び海岸・海洋',
+                                'urban_planning': '都市計画及び地方計画',
                                 'landscape': '造園',
                                 'construction_env': '建設環境',
                                 'steel_concrete': '鋼構造及びコンクリート',
                                 'soil_foundation': '土質及び基礎',
-                                'construction_planning': '施工計画施工設備積算',
+                                'construction_planning': '施工計画、施工設備及び積算',
                                 'water_supply': '上水道及び工業用水道',
                                 'forestry': '森林土木',
                                 'agriculture': '農業土木'
@@ -1968,7 +1973,8 @@ def exam():
             
             # サニタイズ（日本語保持）
             requested_category = sanitize_input(raw_category)
-            requested_department = sanitize_input(raw_department)
+            # 🔥 CRITICAL FIX: 部門IDのアンダースコア保護（civil_planning対応）
+            requested_department = sanitize_input(raw_department, allow_underscores=True)
             requested_question_type = sanitize_input(raw_question_type)
             
             # type=basic/specialistパラメータの処理
@@ -1996,10 +2002,10 @@ def exam():
                     category_to_dept = {
                         '道路': 'road',
                         '土質及び基礎': 'soil_foundation',
-                        '河川砂防': 'civil_planning',
+                        '河川、砂防及び海岸・海洋': 'civil_planning',
                         '鋼構造及びコンクリート': 'steel_concrete',
                         '農業土木': 'agriculture',
-                        '施工計画・施工設備及び積算': 'construction_planning',
+                        '施工計画、施工設備及び積算': 'construction_planning',
                         '森林土木': 'forestry',
                         'トンネル': 'tunnel',
                         '建設環境': 'construction_env'
