@@ -1,1 +1,155 @@
-// static/js/exam.js - 問題ページ専用JavaScript\n/**\n * RCCM学習アプリ - 問題ページ機能\n * リンターエラー解消版\n */\n\nlet startTime = Date.now();\nlet questionId; // グローバル変数として定義\n\nfunction selectOption(option) {\n    // 既存の選択を解除\n    document.querySelectorAll('.option-item').forEach(item => {\n        item.classList.remove('selected');\n    });\n    \n    // 新しい選択を設定\n    const selectedItem = event.currentTarget;\n    selectedItem.classList.add('selected');\n    document.getElementById('option' + option).checked = true;\n    document.getElementById('submitBtn').disabled = false;\n    \n    // 選択効果音（オプション）\n    selectedItem.style.transform = 'scale(1.02)';\n    setTimeout(() => {\n        selectedItem.style.transform = '';\n    }, 150);\n}\n\nfunction initializeQuiz(qId) {\n    questionId = qId;\n    \n    // フォーム送信時の処理\n    const examForm = document.getElementById('examForm');\n    if (examForm) {\n        examForm.addEventListener('submit', function(e) {\n            const selected = document.querySelector('input[name=\"answer\"]:checked');\n            if (!selected) {\n                e.preventDefault();\n                alert('選択肢を選んでください。');\n                return;\n            }\n            \n            // 経過時間を計算\n            const elapsedSeconds = (Date.now() - startTime) / 1000;\n            document.getElementById('elapsedTime').value = elapsedSeconds.toFixed(1);\n            \n            // ストリークを更新\n            if (typeof updateStreak === 'function') {\n                updateStreak();\n            }\n            \n            // 送信ボタンの状態変更\n            const btn = document.getElementById('submitBtn');\n            btn.innerHTML = '⏳ 判定中...';\n            btn.disabled = true;\n            \n            // フォーム送信アニメーション\n            btn.style.transform = 'scale(0.95)';\n            setTimeout(() => {\n                btn.style.transform = '';\n            }, 200);\n        });\n    }\n    \n    // 選択肢にホバー効果のためのイベントリスナー追加\n    document.querySelectorAll('.option-item').forEach(item => {\n        item.addEventListener('mouseenter', function() {\n            if (!this.classList.contains('selected')) {\n                this.style.transform = 'translateX(5px)';\n            }\n        });\n        \n        item.addEventListener('mouseleave', function() {\n            if (!this.classList.contains('selected')) {\n                this.style.transform = '';\n            }\n        });\n    });\n    \n    // しおり状態の確認と設定\n    if (typeof checkBookmarkStatus === 'function' && checkBookmarkStatus(questionId)) {\n        const bookmarkBtn = document.getElementById('bookmarkBtn');\n        if (bookmarkBtn) {\n            bookmarkBtn.innerHTML = '✅ 登録済み';\n            bookmarkBtn.disabled = true;\n            bookmarkBtn.classList.remove('btn-outline-warning');\n            bookmarkBtn.classList.add('btn-success');\n        }\n    }\n    \n    // キーボードショートカット\n    document.addEventListener('keydown', function(e) {\n        // 1-4キーで選択肢選択\n        if (e.key >= '1' && e.key <= '4') {\n            const options = ['A', 'B', 'C', 'D'];\n            const optionIndex = parseInt(e.key) - 1;\n            if (optionIndex < options.length) {\n                const optionElement = document.querySelector(\`.option-item:nth-child(${optionIndex + 1})\`);\n                if (optionElement) {\n                    optionElement.click();\n                }\n            }\n        }\n        \n        // Enterキーで解答送信\n        if (e.key === 'Enter' && !document.getElementById('submitBtn').disabled) {\n            document.getElementById('examForm').submit();\n        }\n        \n        // Bキーでしおり登録\n        if (e.key === 'b' || e.key === 'B') {\n            const bookmarkBtn = document.getElementById('bookmarkBtn');\n            if (bookmarkBtn && !bookmarkBtn.disabled) {\n                bookmarkBtn.click();\n            }\n        }\n    });\n    \n    // プログレスバーのアニメーション\n    const progressBadge = document.querySelector('.badge.bg-primary');\n    if (progressBadge) {\n        progressBadge.style.opacity = '0';\n        progressBadge.style.transform = 'scale(0.8)';\n        \n        setTimeout(() => {\n            progressBadge.style.transition = 'all 0.5s ease';\n            progressBadge.style.opacity = '1';\n            progressBadge.style.transform = 'scale(1)';\n        }, 300);\n    }\n    \n    // 学習支援メッセージ\n    console.log('💡 学習のコツ: 選択肢を消去法で絞り込み、根拠を持って解答しましょう');\n    console.log('⌨️ ショートカット: 1-4キーで選択肢選択、Enterキーで解答送信、Bキーで復習登録');\n}\n\n// タイマー表示\nfunction updateTimer() {\n    const elapsed = Math.floor((Date.now() - startTime) / 1000);\n    const minutes = Math.floor(elapsed / 60);\n    const seconds = elapsed % 60;\n    const timerText = \`${minutes}:${seconds.toString().padStart(2, '0')}\`;\n    \n    const timerElement = document.getElementById('timer');\n    if (timerElement) {\n        timerElement.textContent = timerText;\n    }\n}\n\n// 1秒ごとにタイマー更新\nsetInterval(updateTimer, 1000);\n\n// グローバル関数として公開\nwindow.selectOption = selectOption;\nwindow.initializeQuiz = initializeQuiz; 
+// static/js/exam.js - 問題ページ専用JavaScript
+/**
+ * RCCM学習アプリ - 問題ページ機能
+ * リンターエラー解消版
+ */
+
+let startTime = Date.now();
+let questionId; // グローバル変数として定義
+
+function selectOption(option) {
+    // 既存の選択を解除
+    document.querySelectorAll('.option-item').forEach(item => {
+        item.classList.remove('selected');
+    });
+    
+    // 新しい選択を設定
+    const selectedItem = event.currentTarget;
+    selectedItem.classList.add('selected');
+    document.getElementById('option' + option).checked = true;
+    document.getElementById('submitBtn').disabled = false;
+    
+    // 選択効果音（オプション）
+    selectedItem.style.transform = 'scale(1.02)';
+    setTimeout(() => {
+        selectedItem.style.transform = '';
+    }, 150);
+}
+
+function initializeQuiz(qId) {
+    questionId = qId;
+    
+    // フォーム送信時の処理
+    const examForm = document.getElementById('examForm');
+    if (examForm) {
+        examForm.addEventListener('submit', function(e) {
+            const selected = document.querySelector('input[name="answer"]:checked');
+            if (!selected) {
+                e.preventDefault();
+                alert('選択肢を選んでください。');
+                return;
+            }
+            
+            // 経過時間を計算
+            const elapsedSeconds = (Date.now() - startTime) / 1000;
+            document.getElementById('elapsedTime').value = elapsedSeconds.toFixed(1);
+            
+            // ストリークを更新
+            if (typeof updateStreak === 'function') {
+                updateStreak();
+            }
+            
+            // 送信ボタンの状態変更
+            const btn = document.getElementById('submitBtn');
+            btn.innerHTML = '⏳ 判定中...';
+            btn.disabled = true;
+            
+            // フォーム送信アニメーション
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                btn.style.transform = '';
+            }, 200);
+        });
+    }
+    
+    // 選択肢にホバー効果のためのイベントリスナー追加
+    document.querySelectorAll('.option-item').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            if (!this.classList.contains('selected')) {
+                this.style.transform = 'translateX(5px)';
+            }
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            if (!this.classList.contains('selected')) {
+                this.style.transform = '';
+            }
+        });
+    });
+    
+    // しおり状態の確認と設定
+    if (typeof checkBookmarkStatus === 'function' && checkBookmarkStatus(questionId)) {
+        const bookmarkBtn = document.getElementById('bookmarkBtn');
+        if (bookmarkBtn) {
+            bookmarkBtn.innerHTML = '✅ 登録済み';
+            bookmarkBtn.disabled = true;
+            bookmarkBtn.classList.remove('btn-outline-warning');
+            bookmarkBtn.classList.add('btn-success');
+        }
+    }
+    
+    // キーボードショートカット
+    document.addEventListener('keydown', function(e) {
+        // 1-4キーで選択肢選択
+        if (e.key >= '1' && e.key <= '4') {
+            const options = ['A', 'B', 'C', 'D'];
+            const optionIndex = parseInt(e.key) - 1;
+            if (optionIndex < options.length) {
+                const optionElement = document.querySelector(`.option-item:nth-child(${optionIndex + 1})`);
+                if (optionElement) {
+                    optionElement.click();
+                }
+            }
+        }
+        
+        // Enterキーで解答送信
+        if (e.key === 'Enter' && !document.getElementById('submitBtn').disabled) {
+            document.getElementById('examForm').submit();
+        }
+        
+        // Bキーでしおり登録
+        if (e.key === 'b' || e.key === 'B') {
+            const bookmarkBtn = document.getElementById('bookmarkBtn');
+            if (bookmarkBtn && !bookmarkBtn.disabled) {
+                bookmarkBtn.click();
+            }
+        }
+    });
+    
+    // プログレスバーのアニメーション
+    const progressBadge = document.querySelector('.badge.bg-primary');
+    if (progressBadge) {
+        progressBadge.style.opacity = '0';
+        progressBadge.style.transform = 'scale(0.8)';
+        
+        setTimeout(() => {
+            progressBadge.style.transition = 'all 0.5s ease';
+            progressBadge.style.opacity = '1';
+            progressBadge.style.transform = 'scale(1)';
+        }, 300);
+    }
+    
+    // 学習支援メッセージ
+    console.log('💡 学習のコツ: 選択肢を消去法で絞り込み、根拠を持って解答しましょう');
+    console.log('⌨️ ショートカット: 1-4キーで選択肢選択、Enterキーで解答送信、Bキーで復習登録');
+}
+
+// タイマー表示
+function updateTimer() {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const minutes = Math.floor(elapsed / 60);
+    const seconds = elapsed % 60;
+    const timerText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    
+    const timerElement = document.getElementById('timer');
+    if (timerElement) {
+        timerElement.textContent = timerText;
+    }
+}
+
+// 1秒ごとにタイマー更新
+setInterval(updateTimer, 1000);
+
+// グローバル関数として公開
+window.selectOption = selectOption;
+window.initializeQuiz = initializeQuiz;

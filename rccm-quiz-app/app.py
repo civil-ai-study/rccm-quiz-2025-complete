@@ -19,7 +19,8 @@ def require_admin_auth(f):
         admin_key = request.headers.get('X-Admin-Key')
         
         # 管理者キーまたはセッションフラグのチェック
-        if not admin_flag and admin_key != app.config.get('ADMIN_SECRET_KEY', os.environ.get('ADMIN_SECRET_KEY', 'change-this-in-production')):
+        from flask import current_app
+        if not admin_flag and admin_key != current_app.config.get('ADMIN_SECRET_KEY', os.environ.get('ADMIN_SECRET_KEY', 'change-this-in-production')):
             return jsonify({'error': '管理者認証が必要です', 'auth_hint': 'X-Admin-Keyヘッダーまたは管理者セッションが必要'}), 403
         
         return f(*args, **kwargs)
@@ -32,7 +33,8 @@ def require_api_key(f):
         api_key = request.headers.get('X-API-Key')
         
         # 基本的なAPIキーチェック（実際の環境ではより強固な認証を実装）
-        valid_keys = app.config.get('VALID_API_KEYS', os.environ.get('VALID_API_KEYS', 'demo-key-change-in-production').split(','))
+        from flask import current_app
+        valid_keys = current_app.config.get('VALID_API_KEYS', os.environ.get('VALID_API_KEYS', 'demo-key-change-in-production').split(','))
         
         if not api_key or api_key not in valid_keys:
             return jsonify({'error': 'API認証が必要です', 'auth_hint': 'X-API-Keyヘッダーが必要'}), 401
@@ -192,11 +194,37 @@ def safe_session_operation(user_id, operation_func, *args, **kwargs):
                     for key, value in session_backup.items():
                         session[key] = value
                     session.modified = True
-                logger.error(f"セッション操作失敗（復元実行）: {op_error}")
+                logger.error(f"セッション操作失敗（復元実行） - ユーザー: {user_id}, エラー: {op_error}")
                 raise op_error
     except Exception as e:
         logger.error(f"セッション操作エラー (user_id: {user_id}): {e}")
         return None
+
+def safe_session_update(key, value):
+    """セッション更新を安全に実行するヘルパー関数"""
+    user_id = session.get('user_id')
+    if not user_id:
+        # user_idが無い場合は直接更新（初期化時など）
+        session[key] = value
+        return
+    
+    def update_operation():
+        session[key] = value
+        logger.debug(f"セッション安全更新: {key} = {type(value).__name__}")
+        return value
+    
+    return safe_session_operation(user_id, update_operation)
+
+def safe_session_get(key, default=None):
+    """セッション読み取りを安全に実行するヘルパー関数"""
+    user_id = session.get('user_id')
+    if not user_id:
+        return session.get(key, default)
+    
+    def get_operation():
+        return session.get(key, default)
+    
+    return safe_session_operation(user_id, get_operation)
 
 # 強力なキャッシュ制御ヘッダーを設定（マルチユーザー・企業環境対応）
 @app.after_request
@@ -546,8 +574,7 @@ def cleanup_mastered_questions(session):
             removed_count += 1
             logger.info(f"マスター済み問題を復習リストから除去: {qid}")
     
-    session['bookmarks'] = bookmarks
-    session.modified = True
+    safe_session_update('bookmarks', bookmarks)
     
     return removed_count
 
@@ -1111,10 +1138,10 @@ def before_request():
         # 軽量化: 基本的なセッション初期化のみ
         session['data_loaded'] = True
         session['exam_question_ids'] = []
-        session['exam_current'] = 0
-        session['history'] = []
-        session['bookmarks'] = []
-        session['srs_data'] = {}
+        safe_session_update('exam_current', 0)
+        safe_session_update('history', [])
+        safe_session_update('bookmarks', [])
+        safe_session_update('srs_data', {})
     
     # セッション整合性チェック
     _validate_session_integrity()
@@ -1220,6 +1247,7 @@ def set_user():
         session_aware_user_id = f"{base_user_id}_{unique_session_id}"
         
         # セッションにユーザー名を保存
+        # 初回ログイン時は user_id が未設定なので直接更新
         session['user_name'] = user_name
         session['user_id'] = session_aware_user_id  # セッション固有の一意ID
         session['base_user_id'] = base_user_id      # データ永続化用の基本ID
@@ -1281,14 +1309,14 @@ def exam():
                     # 修復可能な場合は修復を試行
                     if exam_ids and hasattr(exam_ids, '__iter__'):
                         exam_ids = list(exam_ids)
-                        session['exam_question_ids'] = exam_ids
+                        safe_session_update('exam_question_ids', exam_ids)
                         logger.info("セッション自動修復: exam_question_ids を list型に変換")
                     else:
                         raise ValueError("exam_question_ids が修復不可能")
                 
                 if current_no < 0:
                     current_no = 0
-                    session['exam_current'] = current_no
+                    safe_session_update('exam_current', current_no)
                     logger.info("セッション自動修復: exam_current を 0 にリセット")
                 
                 if not exam_ids:
@@ -1668,7 +1696,7 @@ def exam():
                             session['exam_question_ids'] = question_ids
                             session['exam_current'] = current_index
                             session['selected_question_type'] = 'specialist'
-                            session['selected_department'] = department or 'specialist'
+                            safe_session_update('selected_department', department or 'specialist')
                             session['exam_category'] = actual_category
                             session.modified = True
                             
@@ -2183,7 +2211,7 @@ def exam():
             session['exam_current'] = 0
             session['exam_category'] = requested_category
             if requested_department:
-                session['selected_department'] = requested_department
+                safe_session_update('selected_department', requested_department)
             if requested_question_type:
                 session['selected_question_type'] = requested_question_type
             if requested_year:
@@ -3195,7 +3223,7 @@ def force_reset():
         # キャッシュクリア
         clear_questions_cache()
         # セッションIDも新規生成
-        session['session_id'] = os.urandom(16).hex()
+        safe_session_update('session_id', os.urandom(16).hex())
         session.permanent = True
         logger.info("強制リセット実行完了")
         return jsonify({
