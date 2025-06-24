@@ -249,6 +249,49 @@
       border-color: var(--danger-color) !important;
       background-color: #4e2b31 !important; /* ダークモード用の赤 */
     }
+    
+    /* アクセシビリティ改善：大きなボタンクラス */
+    .btn-accessibility-lg {
+      min-height: 48px !important;
+      padding: 12px 24px !important;
+      font-size: 1.1rem !important;
+      font-weight: 500 !important;
+      border-radius: 8px !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    .btn-accessibility-xl {
+      min-height: 56px !important;
+      padding: 16px 32px !important;
+      font-size: 1.25rem !important;
+      font-weight: 600 !important;
+      border-radius: 10px !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    /* タッチターゲットサイズの確保（WCAG基準） */
+    .touch-target {
+      min-width: 44px !important;
+      min-height: 44px !important;
+    }
+    
+    /* フォーカスインジケーターの強化 */
+    button:focus,
+    input:focus,
+    select:focus,
+    textarea:focus,
+    a:focus {
+      outline: 3px solid var(--accent-color) !important;
+      outline-offset: 2px !important;
+    }
+    
+    /* シニアユーザー向けの読みやすいフォントサイズ */
+    @media (min-width: 768px) {
+      .senior-friendly {
+        font-size: 1.125rem !important;
+        line-height: 1.75 !important;
+      }
+    }
     </style>
 
     <!-- Service Worker & PWA 登録 -->

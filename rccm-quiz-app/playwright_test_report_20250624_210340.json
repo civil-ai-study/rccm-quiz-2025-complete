@@ -1,0 +1,132 @@
+{
+  "test_time": "2025-06-24T21:03:01.160477",
+  "duration": "0:00:39.767486",
+  "summary": {
+    "total_tests": 5,
+    "successful": 4,
+    "failed": 1,
+    "success_rate": 80.0
+  },
+  "results": [
+    {
+      "test": "基本フロー",
+      "steps": [
+        {
+          "step": "ホームページアクセス",
+          "success": true
+        }
+      ],
+      "success": false,
+      "error": "Page.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"a.btn.btn-primary.btn-lg.btn-accessibility-lg[href=\\\"/exam?question_type=basic\\\"]\")\n"
+    },
+    {
+      "test": "レスポンシブデザイン",
+      "devices": [
+        {
+          "device": "iPhone 12",
+          "success": true,
+          "nav_visible": true,
+          "screenshot": "playwright_responsive_iPhone 12_20250624_210333.png"
+        },
+        {
+          "device": "iPad",
+          "success": true,
+          "nav_visible": true,
+          "screenshot": "playwright_responsive_iPad_20250624_210334.png"
+        },
+        {
+          "device": "Desktop",
+          "success": true,
+          "nav_visible": true,
+          "screenshot": "playwright_responsive_Desktop_20250624_210335.png"
+        }
+      ],
+      "success": true
+    },
+    {
+      "test": "アクセシビリティ",
+      "checks": [
+        {
+          "check": "画像alt属性",
+          "coverage": "100.0%",
+          "success": true
+        },
+        {
+          "check": "フォームラベル",
+          "coverage": "100.0%",
+          "success": true
+        },
+        {
+          "check": "見出し構造",
+          "h1_count": 1,
+          "h2_count": 0,
+          "success": true
+        },
+        {
+          "check": "キーボードナビゲーション",
+          "first_focused": "A",
+          "success": true
+        }
+      ],
+      "success": true
+    },
+    {
+      "test": "エラーハンドリング",
+      "cases": [
+        {
+          "case": "存在しないページ",
+          "status": 404,
+          "has_error_message": true,
+          "success": true
+        },
+        {
+          "case": "不正なパラメータ",
+          "status": 200,
+          "has_error_message": true,
+          "success": true
+        },
+        {
+          "case": "SQLインジェクション試行",
+          "status": 200,
+          "has_error_message": false,
+          "success": true
+        }
+      ],
+      "success": true
+    },
+    {
+      "test": "パフォーマンス",
+      "metrics": [
+        {
+          "page": "ホーム",
+          "load_time": "0.97s",
+          "dom_nodes": 188,
+          "js_errors": 0,
+          "success": true
+        },
+        {
+          "page": "基礎問題",
+          "load_time": "0.66s",
+          "dom_nodes": 110,
+          "js_errors": 0,
+          "success": true
+        },
+        {
+          "page": "部門一覧",
+          "load_time": "0.58s",
+          "dom_nodes": 82,
+          "js_errors": 0,
+          "success": true
+        },
+        {
+          "page": "統計",
+          "load_time": "0.59s",
+          "dom_nodes": 118,
+          "js_errors": 0,
+          "success": true
+        }
+      ],
+      "success": true
+    }
+  ]
+}

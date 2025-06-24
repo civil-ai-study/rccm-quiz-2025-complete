@@ -38,9 +38,9 @@
   <div class="card-body p-2">
             <!-- 問題内容 - 圧縮版 -->
             <div class="question-container p-1 mb-1" role="article">
-                <div class="question-text fw-bold" id="question-content" style="font-size: 0.95rem; line-height: 1.3;">
+                <h3 class="question-text fw-bold" id="question-title" style="font-size: 0.95rem; line-height: 1.3;">
                     {{ question.question }}
-                </div>
+                </h3>
             </div>
 
             <!-- 選択肢フォーム - アクセシビリティ強化 -->
@@ -102,7 +102,7 @@
 
                 <!-- 解答ボタン - 圧縮版 -->
                 <div class="text-center mb-1">
-                    <button type="submit" class="btn btn-success btn-lg" id="submitBtn" 
+                    <button type="submit" class="btn btn-success btn-lg btn-accessibility-lg touch-target" id="submitBtn" 
                             disabled style="width: 100%; max-width: 300px;">
                         解答する
                     </button>
@@ -114,8 +114,8 @@
 
     <!-- ナビゲーション -->
     <div class="text-center mt-1">
-        <a href="/" class="btn btn-outline-secondary btn-sm me-1" style="font-size: 0.8rem;">ホーム</a>
-        <a href="/categories" class="btn btn-outline-primary btn-sm" style="font-size: 0.8rem;">分野選択</a>
+        <a href="/" class="btn btn-outline-secondary btn-sm me-1 touch-target" style="font-size: 0.8rem; min-height: 44px; display: inline-flex; align-items: center;">ホーム</a>
+        <a href="/categories" class="btn btn-outline-primary btn-sm touch-target" style="font-size: 0.8rem; min-height: 44px; display: inline-flex; align-items: center;">分野選択</a>
   </div>
 </div>
 

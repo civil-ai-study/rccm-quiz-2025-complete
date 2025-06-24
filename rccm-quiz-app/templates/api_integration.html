@@ -517,7 +517,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="include_personal_data">
+                                                <input class="form-check-input" type="checkbox" name="include_personal_data" aria-label="個人情報を含める">
                                                 <label class="form-check-label">
                                                     個人データを含める
                                                 </label>
@@ -682,25 +682,25 @@
                     <form id="createApiKeyForm">
                         <div class="mb-3">
                             <label class="form-label">組織名 *</label>
-                            <input type="text" class="form-control" name="organization" required>
+                            <input type="text" class="form-control" name="organization" required aria-label="組織名入力欄">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">権限</label>
                             <div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="permissions" value="read_users">
+                                    <input class="form-check-input" type="checkbox" name="permissions" value="read_users" aria-label="ユーザー情報の読み取り権限">
                                     <label class="form-check-label">ユーザー情報読み取り</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="permissions" value="read_progress">
+                                    <input class="form-check-input" type="checkbox" name="permissions" value="read_progress" aria-label="学習進捗の読み取り権限">
                                     <label class="form-check-label">進捗データ読み取り</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="permissions" value="generate_reports">
+                                    <input class="form-check-input" type="checkbox" name="permissions" value="generate_reports" aria-label="レポート生成権限">
                                     <label class="form-check-label">レポート生成</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="permissions" value="manage_certifications">
+                                    <input class="form-check-input" type="checkbox" name="permissions" value="manage_certifications" aria-label="認定管理権限">
                                     <label class="form-check-label">認定管理</label>
                                 </div>
                             </div>

@@ -1,0 +1,132 @@
+{
+  "test_time": "2025-06-24T20:55:59.671776",
+  "duration": "0:00:39.891466",
+  "summary": {
+    "total_tests": 5,
+    "successful": 4,
+    "failed": 1,
+    "success_rate": 80.0
+  },
+  "results": [
+    {
+      "test": "基本フロー",
+      "steps": [
+        {
+          "step": "ホームページアクセス",
+          "success": true
+        }
+      ],
+      "success": false,
+      "error": "Page.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"a:has-text(\\\"基礎\\\")\")\n    - locator resolved to <a class=\"dept-btn-small\" href=\"/department_study/soil_foundation\">土質基礎</a>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    56 × waiting for element to be visible, enabled and stable\n       - element is not visible\n     - retrying click action\n       - waiting 500ms\n"
+    },
+    {
+      "test": "レスポンシブデザイン",
+      "devices": [
+        {
+          "device": "iPhone 12",
+          "success": true,
+          "nav_visible": true,
+          "screenshot": "playwright_responsive_iPhone 12_20250624_205632.png"
+        },
+        {
+          "device": "iPad",
+          "success": true,
+          "nav_visible": true,
+          "screenshot": "playwright_responsive_iPad_20250624_205633.png"
+        },
+        {
+          "device": "Desktop",
+          "success": true,
+          "nav_visible": true,
+          "screenshot": "playwright_responsive_Desktop_20250624_205634.png"
+        }
+      ],
+      "success": true
+    },
+    {
+      "test": "アクセシビリティ",
+      "checks": [
+        {
+          "check": "画像alt属性",
+          "coverage": "100.0%",
+          "success": true
+        },
+        {
+          "check": "フォームラベル",
+          "coverage": "0.0%",
+          "success": false
+        },
+        {
+          "check": "見出し構造",
+          "h1_count": 1,
+          "h2_count": 0,
+          "success": true
+        },
+        {
+          "check": "キーボードナビゲーション",
+          "first_focused": "A",
+          "success": true
+        }
+      ],
+      "success": true
+    },
+    {
+      "test": "エラーハンドリング",
+      "cases": [
+        {
+          "case": "存在しないページ",
+          "status": 404,
+          "has_error_message": true,
+          "success": true
+        },
+        {
+          "case": "不正なパラメータ",
+          "status": 200,
+          "has_error_message": true,
+          "success": true
+        },
+        {
+          "case": "SQLインジェクション試行",
+          "status": 200,
+          "has_error_message": false,
+          "success": true
+        }
+      ],
+      "success": true
+    },
+    {
+      "test": "パフォーマンス",
+      "metrics": [
+        {
+          "page": "ホーム",
+          "load_time": "0.96s",
+          "dom_nodes": 188,
+          "js_errors": 0,
+          "success": true
+        },
+        {
+          "page": "基礎問題",
+          "load_time": "0.59s",
+          "dom_nodes": 110,
+          "js_errors": 0,
+          "success": true
+        },
+        {
+          "page": "部門一覧",
+          "load_time": "0.58s",
+          "dom_nodes": 82,
+          "js_errors": 0,
+          "success": true
+        },
+        {
+          "page": "統計",
+          "load_time": "0.57s",
+          "dom_nodes": 118,
+          "js_errors": 0,
+          "success": true
+        }
+      ],
+      "success": true
+    }
+  ]
+}

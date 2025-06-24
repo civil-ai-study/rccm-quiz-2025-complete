@@ -1,0 +1,505 @@
+{
+  "test_time": "2025-06-24T20:47:50.482162",
+  "duration": "0:00:14.340204",
+  "summary": {
+    "total_personas": 10,
+    "total_actions": 48,
+    "total_success": 46,
+    "total_errors": 2,
+    "total_warnings": 0,
+    "overall_success_rate": 95.83333333333334
+  },
+  "persona_results": [
+    {
+      "name": "新規ユーザー太郎",
+      "description": "20代男性、初めてのアクセス",
+      "characteristics": {
+        "age": 25,
+        "gender": "male",
+        "tech_savvy": true,
+        "first_time": true
+      },
+      "total_actions": 4,
+      "success_actions": 4,
+      "error_count": 0,
+      "warning_count": 0,
+      "success_rate": 100.0,
+      "errors": [],
+      "warnings": [],
+      "test_results": [
+        {
+          "timestamp": "2025-06-24T20:47:50.502873",
+          "action": "ホーム画面初回アクセス",
+          "success": true,
+          "details": "ステータス: 200"
+        },
+        {
+          "timestamp": "2025-06-24T20:47:50.514608",
+          "action": "ヘルプページ確認",
+          "success": true,
+          "details": ""
+        },
+        {
+          "timestamp": "2025-06-24T20:47:50.529225",
+          "action": "初めての問題挑戦",
+          "success": true,
+          "details": ""
+        },
+        {
+          "timestamp": "2025-06-24T20:47:50.561369",
+          "action": "最初の解答送信",
+          "success": true,
+          "details": ""
+        }
+      ]
+    },
+    {
+      "name": "シニア花子",
+      "description": "60代女性、ゆっくり操作",
+      "characteristics": {
+        "age": 65,
+        "gender": "female",
+        "tech_savvy": false,
+        "slow_operation": true
+      },
+      "total_actions": 4,
+      "success_actions": 3,
+      "error_count": 1,
+      "warning_count": 0,
+      "success_rate": 75.0,
+      "errors": [
+        {
+          "timestamp": "2025-06-24T20:47:53.067994",
+          "action": "大きなボタンの存在確認",
+          "success": false,
+          "details": "標準サイズのみ"
+        }
+      ],
+      "warnings": [],
+      "test_results": [
+        {
+          "timestamp": "2025-06-24T20:47:53.067785",
+          "action": "ホーム画面アクセス（時間をかけて）",
+          "success": true,
+          "details": ""
+        },
+        {
+          "timestamp": "2025-06-24T20:47:53.067908",
+          "action": "読みやすい文字サイズ確認",
+          "success": true,
+          "details": "文字サイズ指定あり"
+        },
+        {
+          "timestamp": "2025-06-24T20:47:53.067994",
+          "action": "大きなボタンの存在確認",
+          "success": false,
+          "details": "標準サイズのみ"
+        },
+        {
+          "timestamp": "2025-06-24T20:47:58.098640",
+          "action": "じっくり考えて解答",
+          "success": true,
+          "details": ""
+        }
+      ]
+    },
+    {
+      "name": "視覚サポート必要さん",
+      "description": "スクリーンリーダー使用者",
+      "characteristics": {
+        "disability": "visual",
+        "uses_screen_reader": true,
+        "needs_high_contrast": true
+      },
+      "total_actions": 5,
+      "success_actions": 4,
+      "error_count": 1,
+      "warning_count": 0,
+      "success_rate": 80.0,
+      "errors": [
+        {
+          "timestamp": "2025-06-24T20:47:58.601781",
+          "action": "アクセシビリティ属性確認",
+          "success": false,
+          "details": "問題: 入力フィールドにラベルがない可能性"
+        }
+      ],
+      "warnings": [],
+      "test_results": [
+        {
+          "timestamp": "2025-06-24T20:47:58.601660",
+          "action": "ホーム画面アクセス",
+          "success": true,
+          "details": ""
+        },
+        {
+          "timestamp": "2025-06-24T20:47:58.601697",
+          "action": "見出し構造の確認",
+          "success": true,
+          "details": "適切な見出しあり"
+        },
+        {
+          "timestamp": "2025-06-24T20:47:58.601781",
+          "action": "アクセシビリティ属性確認",
+          "success": false,
+          "details": "問題: 入力フィールドにラベルがない可能性"
+        },
+        {
+          "timestamp": "2025-06-24T20:47:58.610447",
+          "action": "フォーム要素のラベル確認",
+          "success": true,
+          "details": "ラベルあり"
+        },
+        {
+          "timestamp": "2025-06-24T20:47:58.610467",
+          "action": "キーボードナビゲーション対応",
+          "success": true,
+          "details": "デフォルトtab順"
+        }
+      ]
+    },
+    {
+      "name": "スマホ太郎",
+      "description": "スマートフォンからアクセス",
+      "characteristics": {
+        "device": "mobile",
+        "screen_size": "small",
+        "touch_interface": true
+      },
+      "total_actions": 4,
+      "success_actions": 4,
+      "error_count": 0,
+      "warning_count": 0,
+      "success_rate": 100.0,
+      "errors": [],
+      "warnings": [],
+      "test_results": [
+        {
+          "timestamp": "2025-06-24T20:47:59.114407",
+          "action": "モバイルでホーム画面アクセス",
+          "success": true,
+          "details": ""
+        },
+        {
+          "timestamp": "2025-06-24T20:47:59.114480",
+          "action": "レスポンシブデザイン確認",
+          "success": true,
+          "details": "viewport: True, responsive: True"
+        },
+        {
+          "timestamp": "2025-06-24T20:47:59.114489",
+          "action": "タッチ操作対応",
+          "success": true,
+          "details": "ボタン要素あり"
+        },
+        {
+          "timestamp": "2025-06-24T20:47:59.126118",
+          "action": "横向き表示対応",
+          "success": true,
+          "details": ""
+        }
+      ]
+    },
+    {
+      "name": "低速太郎",
+      "description": "3G回線でアクセス",
+      "characteristics": {
+        "connection": "3G",
+        "bandwidth": "low",
+        "timeout_sensitive": true
+      },
+      "total_actions": 3,
+      "success_actions": 3,
+      "error_count": 0,
+      "warning_count": 0,
+      "success_rate": 100.0,
+      "errors": [],
+      "warnings": [],
+      "test_results": [
+        {
+          "timestamp": "2025-06-24T20:47:59.629882",
+          "action": "ホーム画面読み込み",
+          "success": true,
+          "details": "読み込み時間: 0.00秒"
+        },
+        {
+          "timestamp": "2025-06-24T20:47:59.629946",
+          "action": "画像最適化確認",
+          "success": true,
+          "details": "画像数: 0"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:01.655729",
+          "action": "低速での解答送信",
+          "success": true,
+          "details": "送信時間: 0.01秒"
+        }
+      ]
+    },
+    {
+      "name": "International User",
+      "description": "English speaker from USA",
+      "characteristics": {
+        "language": "en-US",
+        "timezone": "PST",
+        "currency": "USD"
+      },
+      "total_actions": 4,
+      "success_actions": 4,
+      "error_count": 0,
+      "warning_count": 0,
+      "success_rate": 100.0,
+      "errors": [],
+      "warnings": [],
+      "test_results": [
+        {
+          "timestamp": "2025-06-24T20:48:02.158372",
+          "action": "Access with English headers",
+          "success": true,
+          "details": ""
+        },
+        {
+          "timestamp": "2025-06-24T20:48:02.158585",
+          "action": "Character encoding check",
+          "success": true,
+          "details": "UTF-8 support"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:02.158623",
+          "action": "Japanese content display",
+          "success": true,
+          "details": "Japanese characters found"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:02.163626",
+          "action": "Exam access from different timezone",
+          "success": true,
+          "details": ""
+        }
+      ]
+    },
+    {
+      "name": "管理者権限田中",
+      "description": "システム管理者",
+      "characteristics": {
+        "role": "admin",
+        "permissions": [
+          "read",
+          "write",
+          "delete",
+          "admin"
+        ],
+        "trusted": true
+      },
+      "total_actions": 5,
+      "success_actions": 5,
+      "error_count": 0,
+      "warning_count": 0,
+      "success_rate": 100.0,
+      "errors": [],
+      "warnings": [],
+      "test_results": [
+        {
+          "timestamp": "2025-06-24T20:48:02.666588",
+          "action": "管理者として通常アクセス",
+          "success": true,
+          "details": ""
+        },
+        {
+          "timestamp": "2025-06-24T20:48:02.667167",
+          "action": "管理画面アクセス",
+          "success": true,
+          "details": "ステータス: 403"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:02.689638",
+          "action": "API統合画面アクセス",
+          "success": true,
+          "details": "ステータス: 200"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:02.708087",
+          "action": "統計情報アクセス",
+          "success": true,
+          "details": ""
+        },
+        {
+          "timestamp": "2025-06-24T20:48:02.716743",
+          "action": "管理ダッシュボードアクセス",
+          "success": true,
+          "details": "ステータス: 404"
+        }
+      ]
+    },
+    {
+      "name": "ゲスト訪問者",
+      "description": "ログインなしの一時利用者",
+      "characteristics": {
+        "role": "guest",
+        "permissions": [
+          "read"
+        ],
+        "temporary": true
+      },
+      "total_actions": 4,
+      "success_actions": 4,
+      "error_count": 0,
+      "warning_count": 0,
+      "success_rate": 100.0,
+      "errors": [],
+      "warnings": [],
+      "test_results": [
+        {
+          "timestamp": "2025-06-24T20:48:03.220249",
+          "action": "ゲストアクセス",
+          "success": true,
+          "details": ""
+        },
+        {
+          "timestamp": "2025-06-24T20:48:03.230251",
+          "action": "ゲストで問題アクセス",
+          "success": true,
+          "details": "ゲストでも問題解答可能"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:03.230264",
+          "action": "セッション保存確認",
+          "success": true,
+          "details": "セッションあり"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:03.246824",
+          "action": "ゲストで復習機能アクセス",
+          "success": true,
+          "details": "ステータス: 200"
+        }
+      ]
+    },
+    {
+      "name": "悪意のあるユーザー",
+      "description": "セキュリティテスト",
+      "characteristics": {
+        "intent": "malicious",
+        "test_type": "security",
+        "ethical": true
+      },
+      "total_actions": 5,
+      "success_actions": 5,
+      "error_count": 0,
+      "warning_count": 0,
+      "success_rate": 100.0,
+      "errors": [],
+      "warnings": [],
+      "test_results": [
+        {
+          "timestamp": "2025-06-24T20:48:03.750578",
+          "action": "SQLインジェクション防御確認",
+          "success": true,
+          "details": "ステータス: 200 - 適切に処理"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:03.756410",
+          "action": "XSS防御確認",
+          "success": true,
+          "details": "スクリプトがエスケープされている"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:03.757616",
+          "action": "パストラバーサル防御確認",
+          "success": true,
+          "details": "ステータス: 404 - アクセス拒否"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:03.765717",
+          "action": "大量データ処理",
+          "success": true,
+          "details": "ステータス: 200"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:03.766717",
+          "action": "認証バイパス防御確認",
+          "success": true,
+          "details": "ステータス: 403 - アクセス制御あり"
+        }
+      ]
+    },
+    {
+      "name": "特殊文字太郎",
+      "description": "特殊文字や絵文字を多用",
+      "characteristics": {
+        "input_type": "special_characters",
+        "uses_emoji": true,
+        "uses_unicode": true
+      },
+      "total_actions": 10,
+      "success_actions": 10,
+      "error_count": 0,
+      "warning_count": 0,
+      "success_rate": 100.0,
+      "errors": [],
+      "warnings": [],
+      "test_results": [
+        {
+          "timestamp": "2025-06-24T20:48:04.270603",
+          "action": "絵文字パラメータでアクセス",
+          "success": true,
+          "details": "ステータス: 200"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:04.277290",
+          "action": "特殊文字解答: 🅰️",
+          "success": true,
+          "details": "ステータス: 200"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:04.283706",
+          "action": "特殊文字解答: ①",
+          "success": true,
+          "details": "ステータス: 200"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:04.288595",
+          "action": "特殊文字解答: Ａ",
+          "success": true,
+          "details": "ステータス: 200"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:04.294922",
+          "action": "特殊文字解答: あ",
+          "success": true,
+          "details": "ステータス: 200"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:04.297289",
+          "action": "特殊文字解答: ＠",
+          "success": true,
+          "details": "ステータス: 200"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:04.302000",
+          "action": "特殊文字解答: ™",
+          "success": true,
+          "details": "ステータス: 200"
+        },
+        {
+          "timestamp": "2025-06-24T20:48:04.308088",
+          "action": "Unicode文字付きパラメータ",
+          "success": true,
+          "details": ""
+        },
+        {
+          "timestamp": "2025-06-24T20:48:04.311271",
+          "action": "ゼロ幅文字を含む入力",
+          "success": true,
+          "details": ""
+        },
+        {
+          "timestamp": "2025-06-24T20:48:04.321532",
+          "action": "制御文字を含む入力",
+          "success": true,
+          "details": ""
+        }
+      ]
+    }
+  ]
+}

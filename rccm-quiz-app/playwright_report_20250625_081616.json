@@ -1,0 +1,170 @@
+{
+  "test_time": "2025-06-25T08:16:04.031612",
+  "duration": "0:00:12.644084",
+  "base_url": "http://localhost:5003",
+  "summary": {
+    "total_tests": 7,
+    "successful": 4,
+    "failed": 3,
+    "success_rate": 57.14285714285714
+  },
+  "test_results": [
+    {
+      "test": "basic_flow",
+      "device": "desktop",
+      "steps": [
+        {
+          "step": "home",
+          "success": true
+        }
+      ],
+      "success": false,
+      "error": "Page.wait_for_selector: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator(\"h1:has-text(\\\"試験問題\\\")\") to be visible\n"
+    },
+    {
+      "test": "question_types",
+      "device": "desktop",
+      "types_tested": [
+        {
+          "type": "multiple_choice_4",
+          "success": true,
+          "count": 4
+        },
+        {
+          "type": "specialist_multiple_choice",
+          "success": true,
+          "count": 4
+        }
+      ],
+      "success": true
+    },
+    {
+      "test": "time_features",
+      "device": "desktop",
+      "features": [
+        {
+          "feature": "timer_display",
+          "success": true,
+          "initial_time": "0:00"
+        }
+      ],
+      "success": false,
+      "error": "'NoneType' object has no attribute 'first'"
+    },
+    {
+      "test": "result_analysis",
+      "device": "desktop",
+      "analytics": [
+        {
+          "type": "statistics_display",
+          "success": true,
+          "elements_found": 9
+        }
+      ],
+      "success": true
+    },
+    {
+      "test": "study_history",
+      "device": "desktop",
+      "features": [
+        {
+          "feature": "review_list",
+          "success": true,
+          "items_found": 8
+        },
+        {
+          "feature": "srs_system",
+          "success": true
+        }
+      ],
+      "success": true
+    },
+    {
+      "test": "error_handling",
+      "device": "desktop",
+      "cases": [
+        {
+          "case": "404_error",
+          "success": true,
+          "status": 404
+        },
+        {
+          "case": "invalid_parameter",
+          "success": true,
+          "handling": "redirect_or_error"
+        }
+      ],
+      "success": true
+    },
+    {
+      "test": "mobile_experience",
+      "device": "mobile",
+      "features": [
+        {
+          "feature": "navigation",
+          "visible": true
+        },
+        {
+          "feature": "touch_targets",
+          "large_buttons": 1,
+          "total_checked": 5
+        },
+        {
+          "feature": "no_horizontal_scroll",
+          "success": true,
+          "viewport_width": 390,
+          "content_width": 390
+        }
+      ],
+      "success": false,
+      "error": "'NoneType' object has no attribute 'first'"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "desktop_home",
+      "filename": "screenshot_desktop_home_20250625_081605.png",
+      "timestamp": "20250625_081605"
+    },
+    {
+      "name": "desktop_question_types",
+      "filename": "screenshot_desktop_question_types_20250625_081610.png",
+      "timestamp": "20250625_081610"
+    },
+    {
+      "name": "desktop_statistics",
+      "filename": "screenshot_desktop_statistics_20250625_081612.png",
+      "timestamp": "20250625_081612"
+    },
+    {
+      "name": "desktop_review",
+      "filename": "screenshot_desktop_review_20250625_081613.png",
+      "timestamp": "20250625_081613"
+    },
+    {
+      "name": "desktop_404_error",
+      "filename": "screenshot_desktop_404_error_20250625_081613.png",
+      "timestamp": "20250625_081613"
+    },
+    {
+      "name": "mobile_responsive_home",
+      "filename": "screenshot_mobile_responsive_home_20250625_081615.png",
+      "timestamp": "20250625_081615"
+    },
+    {
+      "name": "mobile_question",
+      "filename": "screenshot_mobile_question_20250625_081615.png",
+      "timestamp": "20250625_081615"
+    }
+  ],
+  "recommendations": {
+    "mobile": "Good",
+    "features_to_add": [
+      "User registration/login",
+      "Text input questions",
+      "Image-based questions",
+      "Progress visualization",
+      "PWA support"
+    ]
+  }
+}

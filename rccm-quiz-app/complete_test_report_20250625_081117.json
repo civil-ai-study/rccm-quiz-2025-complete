@@ -1,0 +1,2695 @@
+{
+  "test_time": "2025-06-25T08:10:47.553043",
+  "duration": "0:00:29.577317",
+  "summary": {
+    "total_actions": 106,
+    "success_actions": 25,
+    "success_rate": 23.58490566037736,
+    "total_errors": 176,
+    "total_warnings": 0,
+    "total_ui_issues": 5,
+    "avg_response_time": 0.009183435854704484,
+    "slow_responses": 0
+  },
+  "persona_results": [
+    {
+      "persona_id": 1,
+      "name": "初心者学習者",
+      "description": "全機能を順番に体験",
+      "start_time": "2025-06-25T08:10:47.551883",
+      "actions": [
+        {
+          "timestamp": "2025-06-25T08:10:48.006789",
+          "action": "ホームページアクセス",
+          "success": true,
+          "details": "",
+          "response_time": 0.026737213134765625
+        },
+        {
+          "timestamp": "2025-06-25T08:10:48.023119",
+          "action": "ヘルプページ確認",
+          "success": false,
+          "details": "初心者向けガイダンス確認",
+          "response_time": 0.015631675720214844
+        },
+        {
+          "timestamp": "2025-06-25T08:10:48.040000",
+          "action": "基礎問題開始",
+          "success": true,
+          "details": "セッション開始",
+          "response_time": 0.016817569732666016
+        },
+        {
+          "timestamp": "2025-06-25T08:10:48.568785",
+          "action": "問題1解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.028001785278320312
+        },
+        {
+          "timestamp": "2025-06-25T08:10:49.090072",
+          "action": "問題2解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.02030658721923828
+        },
+        {
+          "timestamp": "2025-06-25T08:10:49.607038",
+          "action": "問題3解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.016204833984375
+        },
+        {
+          "timestamp": "2025-06-25T08:10:50.123017",
+          "action": "問題4解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.01514291763305664
+        },
+        {
+          "timestamp": "2025-06-25T08:10:50.640526",
+          "action": "問題5解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.01664280891418457
+        },
+        {
+          "timestamp": "2025-06-25T08:10:50.656634",
+          "action": "統計確認",
+          "success": true,
+          "details": "",
+          "response_time": 0.01606607437133789
+        },
+        {
+          "timestamp": "2025-06-25T08:10:50.682675",
+          "action": "復習リスト確認",
+          "success": true,
+          "details": "",
+          "response_time": 0.025989294052124023
+        }
+      ],
+      "errors": [
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>ヘルプ・使い方ガイ"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:48.023119",
+          "action": "ヘルプページ確認",
+          "success": false,
+          "details": "初心者向けガイダンス確認",
+          "response_time": 0.015631675720214844
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:48.568785",
+          "action": "問題1解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.028001785278320312
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:49.090072",
+          "action": "問題2解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.02030658721923828
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:49.607038",
+          "action": "問題3解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.016204833984375
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:50.123017",
+          "action": "問題4解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.01514291763305664
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:50.640526",
+          "action": "問題5解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.01664280891418457
+        }
+      ],
+      "warnings": [],
+      "screenshots": [
+        {
+          "page": "home",
+          "path": "screenshot_persona1_home.png",
+          "timestamp": "2025-06-25T08:10:52.001412"
+        },
+        {
+          "page": "exam",
+          "path": "screenshot_persona1_exam.png",
+          "timestamp": "2025-06-25T08:10:52.678058"
+        }
+      ],
+      "performance_metrics": [
+        {
+          "action": "ホームページアクセス",
+          "response_time": 0.026737213134765625,
+          "timestamp": "2025-06-25T08:10:48.006699"
+        },
+        {
+          "action": "ヘルプページ確認",
+          "response_time": 0.015631675720214844,
+          "timestamp": "2025-06-25T08:10:48.022434"
+        },
+        {
+          "action": "基礎問題開始",
+          "response_time": 0.016817569732666016,
+          "timestamp": "2025-06-25T08:10:48.039954"
+        },
+        {
+          "action": "問題1解答",
+          "response_time": 0.028001785278320312,
+          "timestamp": "2025-06-25T08:10:48.568674"
+        },
+        {
+          "action": "問題2解答",
+          "response_time": 0.02030658721923828,
+          "timestamp": "2025-06-25T08:10:49.089967"
+        },
+        {
+          "action": "問題3解答",
+          "response_time": 0.016204833984375,
+          "timestamp": "2025-06-25T08:10:49.606946"
+        },
+        {
+          "action": "問題4解答",
+          "response_time": 0.01514291763305664,
+          "timestamp": "2025-06-25T08:10:50.122928"
+        },
+        {
+          "action": "問題5解答",
+          "response_time": 0.01664280891418457,
+          "timestamp": "2025-06-25T08:10:50.640430"
+        },
+        {
+          "action": "統計確認",
+          "response_time": 0.01606607437133789,
+          "timestamp": "2025-06-25T08:10:50.656598"
+        },
+        {
+          "action": "復習リスト確認",
+          "response_time": 0.025989294052124023,
+          "timestamp": "2025-06-25T08:10:50.682629"
+        }
+      ],
+      "ui_issues": [],
+      "console_errors": []
+    },
+    {
+      "persona_id": 2,
+      "name": "中級者",
+      "description": "弱点分析機能重点チェック",
+      "start_time": "2025-06-25T08:10:47.551960",
+      "actions": [
+        {
+          "timestamp": "2025-06-25T08:10:52.689198",
+          "action": "専門問題開始",
+          "success": true,
+          "details": "道路部門選択",
+          "response_time": 0.01104116439819336
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.704753",
+          "action": "専門問題1解答",
+          "success": false,
+          "details": "解答: X",
+          "response_time": 0.015432119369506836
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.719586",
+          "action": "専門問題2解答",
+          "success": false,
+          "details": "解答: A",
+          "response_time": 0.014719724655151367
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.731318",
+          "action": "専門問題3解答",
+          "success": false,
+          "details": "解答: A",
+          "response_time": 0.01157069206237793
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.736643",
+          "action": "専門問題4解答",
+          "success": false,
+          "details": "解答: X",
+          "response_time": 0.0052490234375
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.746542",
+          "action": "専門問題5解答",
+          "success": false,
+          "details": "解答: B",
+          "response_time": 0.009797811508178711
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.756693",
+          "action": "専門問題6解答",
+          "success": false,
+          "details": "解答: C",
+          "response_time": 0.00999307632446289
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.761318",
+          "action": "専門問題7解答",
+          "success": false,
+          "details": "解答: X",
+          "response_time": 0.004548311233520508
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.769585",
+          "action": "専門問題8解答",
+          "success": false,
+          "details": "解答: D",
+          "response_time": 0.008055448532104492
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.779649",
+          "action": "専門問題9解答",
+          "success": false,
+          "details": "解答: B",
+          "response_time": 0.009941577911376953
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.784696",
+          "action": "専門問題10解答",
+          "success": false,
+          "details": "解答: X",
+          "response_time": 0.004966259002685547
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.826698",
+          "action": "AI弱点分析アクセス",
+          "success": false,
+          "details": "",
+          "response_time": 0.041912078857421875
+        }
+      ],
+      "errors": [
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.704753",
+          "action": "専門問題1解答",
+          "success": false,
+          "details": "解答: X",
+          "response_time": 0.015432119369506836
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.719586",
+          "action": "専門問題2解答",
+          "success": false,
+          "details": "解答: A",
+          "response_time": 0.014719724655151367
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.731318",
+          "action": "専門問題3解答",
+          "success": false,
+          "details": "解答: A",
+          "response_time": 0.01157069206237793
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.736643",
+          "action": "専門問題4解答",
+          "success": false,
+          "details": "解答: X",
+          "response_time": 0.0052490234375
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.746542",
+          "action": "専門問題5解答",
+          "success": false,
+          "details": "解答: B",
+          "response_time": 0.009797811508178711
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.756693",
+          "action": "専門問題6解答",
+          "success": false,
+          "details": "解答: C",
+          "response_time": 0.00999307632446289
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.761318",
+          "action": "専門問題7解答",
+          "success": false,
+          "details": "解答: X",
+          "response_time": 0.004548311233520508
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.769585",
+          "action": "専門問題8解答",
+          "success": false,
+          "details": "解答: D",
+          "response_time": 0.008055448532104492
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.779649",
+          "action": "専門問題9解答",
+          "success": false,
+          "details": "解答: B",
+          "response_time": 0.009941577911376953
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.784696",
+          "action": "専門問題10解答",
+          "success": false,
+          "details": "解答: X",
+          "response_time": 0.004966259002685547
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:52.826698",
+          "action": "AI弱点分析アクセス",
+          "success": false,
+          "details": "",
+          "response_time": 0.041912078857421875
+        }
+      ],
+      "warnings": [],
+      "screenshots": [
+        {
+          "page": "home",
+          "path": "screenshot_persona2_home.png",
+          "timestamp": "2025-06-25T08:10:53.534034"
+        },
+        {
+          "page": "exam",
+          "path": "screenshot_persona2_exam.png",
+          "timestamp": "2025-06-25T08:10:54.177198"
+        }
+      ],
+      "performance_metrics": [
+        {
+          "action": "専門問題開始",
+          "response_time": 0.01104116439819336,
+          "timestamp": "2025-06-25T08:10:52.689131"
+        },
+        {
+          "action": "専門問題1解答",
+          "response_time": 0.015432119369506836,
+          "timestamp": "2025-06-25T08:10:52.704643"
+        },
+        {
+          "action": "専門問題2解答",
+          "response_time": 0.014719724655151367,
+          "timestamp": "2025-06-25T08:10:52.719486"
+        },
+        {
+          "action": "専門問題3解答",
+          "response_time": 0.01157069206237793,
+          "timestamp": "2025-06-25T08:10:52.731167"
+        },
+        {
+          "action": "専門問題4解答",
+          "response_time": 0.0052490234375,
+          "timestamp": "2025-06-25T08:10:52.736577"
+        },
+        {
+          "action": "専門問題5解答",
+          "response_time": 0.009797811508178711,
+          "timestamp": "2025-06-25T08:10:52.746451"
+        },
+        {
+          "action": "専門問題6解答",
+          "response_time": 0.00999307632446289,
+          "timestamp": "2025-06-25T08:10:52.756546"
+        },
+        {
+          "action": "専門問題7解答",
+          "response_time": 0.004548311233520508,
+          "timestamp": "2025-06-25T08:10:52.761250"
+        },
+        {
+          "action": "専門問題8解答",
+          "response_time": 0.008055448532104492,
+          "timestamp": "2025-06-25T08:10:52.769383"
+        },
+        {
+          "action": "専門問題9解答",
+          "response_time": 0.009941577911376953,
+          "timestamp": "2025-06-25T08:10:52.779553"
+        },
+        {
+          "action": "専門問題10解答",
+          "response_time": 0.004966259002685547,
+          "timestamp": "2025-06-25T08:10:52.784621"
+        },
+        {
+          "action": "AI弱点分析",
+          "response_time": 0.041912078857421875,
+          "timestamp": "2025-06-25T08:10:52.826613"
+        },
+        {
+          "action": "カテゴリ別統計",
+          "response_time": 0.0012938976287841797,
+          "timestamp": "2025-06-25T08:10:52.827999"
+        }
+      ],
+      "ui_issues": [],
+      "console_errors": []
+    },
+    {
+      "persona_id": 3,
+      "name": "上級者",
+      "description": "高速回答での動作確認",
+      "start_time": "2025-06-25T08:10:47.551986",
+      "actions": [
+        {
+          "timestamp": "2025-06-25T08:10:54.184534",
+          "action": "road部門開始",
+          "success": true,
+          "details": "",
+          "response_time": 0.0072557926177978516
+        },
+        {
+          "timestamp": "2025-06-25T08:10:54.198286",
+          "action": "road部門問題1高速解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.008335590362548828
+        },
+        {
+          "timestamp": "2025-06-25T08:10:54.206948",
+          "action": "road部門問題2高速解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.008555889129638672
+        },
+        {
+          "timestamp": "2025-06-25T08:10:54.215000",
+          "action": "road部門問題3高速解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.00795292854309082
+        },
+        {
+          "timestamp": "2025-06-25T08:10:54.224953",
+          "action": "road部門問題4高速解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.009853363037109375
+        },
+        {
+          "timestamp": "2025-06-25T08:10:54.234114",
+          "action": "road部門問題5高速解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.009058952331542969
+        }
+      ],
+      "errors": [
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:54.198286",
+          "action": "road部門問題1高速解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.008335590362548828
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:54.206948",
+          "action": "road部門問題2高速解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.008555889129638672
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:54.215000",
+          "action": "road部門問題3高速解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.00795292854309082
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:54.224953",
+          "action": "road部門問題4高速解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.009853363037109375
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:54.234114",
+          "action": "road部門問題5高速解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.009058952331542969
+        }
+      ],
+      "warnings": [],
+      "screenshots": [
+        {
+          "page": "home",
+          "path": "screenshot_persona3_home.png",
+          "timestamp": "2025-06-25T08:10:54.947747"
+        },
+        {
+          "page": "exam",
+          "path": "screenshot_persona3_exam.png",
+          "timestamp": "2025-06-25T08:10:55.612313"
+        }
+      ],
+      "performance_metrics": [
+        {
+          "action": "road部門開始",
+          "response_time": 0.0072557926177978516,
+          "timestamp": "2025-06-25T08:10:54.184485"
+        },
+        {
+          "action": "river部門開始",
+          "response_time": 0.0025284290313720703,
+          "timestamp": "2025-06-25T08:10:54.187069"
+        },
+        {
+          "action": "steel部門開始",
+          "response_time": 0.0025780200958251953,
+          "timestamp": "2025-06-25T08:10:54.189750"
+        },
+        {
+          "action": "road部門問題1",
+          "response_time": 0.008335590362548828,
+          "timestamp": "2025-06-25T08:10:54.198189"
+        },
+        {
+          "action": "road部門問題2",
+          "response_time": 0.008555889129638672,
+          "timestamp": "2025-06-25T08:10:54.206848"
+        },
+        {
+          "action": "road部門問題3",
+          "response_time": 0.00795292854309082,
+          "timestamp": "2025-06-25T08:10:54.214907"
+        },
+        {
+          "action": "road部門問題4",
+          "response_time": 0.009853363037109375,
+          "timestamp": "2025-06-25T08:10:54.224859"
+        },
+        {
+          "action": "road部門問題5",
+          "response_time": 0.009058952331542969,
+          "timestamp": "2025-06-25T08:10:54.234018"
+        }
+      ],
+      "ui_issues": [],
+      "console_errors": []
+    },
+    {
+      "persona_id": 4,
+      "name": "忙しい社会人",
+      "description": "モバイル表示での学習",
+      "start_time": "2025-06-25T08:10:47.552005",
+      "actions": [
+        {
+          "timestamp": "2025-06-25T08:10:55.614493",
+          "action": "モバイルホームアクセス",
+          "success": true,
+          "details": "",
+          "response_time": 0.0021076202392578125
+        },
+        {
+          "timestamp": "2025-06-25T08:10:55.634013",
+          "action": "モバイル問題1解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.01082611083984375
+        },
+        {
+          "timestamp": "2025-06-25T08:10:55.634018",
+          "action": "学習中断",
+          "success": true,
+          "details": "電車到着のため",
+          "response_time": 0.0
+        },
+        {
+          "timestamp": "2025-06-25T08:10:57.647065",
+          "action": "モバイル問題2解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.010789155960083008
+        },
+        {
+          "timestamp": "2025-06-25T08:10:57.657382",
+          "action": "モバイル問題3解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.010213136672973633
+        }
+      ],
+      "errors": [
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:55.634013",
+          "action": "モバイル問題1解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.01082611083984375
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:57.647065",
+          "action": "モバイル問題2解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.010789155960083008
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:57.657382",
+          "action": "モバイル問題3解答",
+          "success": false,
+          "details": "",
+          "response_time": 0.010213136672973633
+        }
+      ],
+      "warnings": [],
+      "screenshots": [
+        {
+          "page": "home",
+          "path": "screenshot_persona4_home.png",
+          "timestamp": "2025-06-25T08:10:58.385228"
+        },
+        {
+          "page": "exam",
+          "path": "screenshot_persona4_exam.png",
+          "timestamp": "2025-06-25T08:10:59.029775"
+        }
+      ],
+      "performance_metrics": [
+        {
+          "action": "モバイルホーム",
+          "response_time": 0.0021076202392578125,
+          "timestamp": "2025-06-25T08:10:55.614452"
+        },
+        {
+          "action": "スキマ時間学習開始",
+          "response_time": 0.008506536483764648,
+          "timestamp": "2025-06-25T08:10:55.623006"
+        },
+        {
+          "action": "モバイル問題1",
+          "response_time": 0.01082611083984375,
+          "timestamp": "2025-06-25T08:10:55.633919"
+        },
+        {
+          "action": "モバイル問題2",
+          "response_time": 0.010789155960083008,
+          "timestamp": "2025-06-25T08:10:57.646912"
+        },
+        {
+          "action": "モバイル問題3",
+          "response_time": 0.010213136672973633,
+          "timestamp": "2025-06-25T08:10:57.657293"
+        }
+      ],
+      "ui_issues": [
+        {
+          "type": "offline_capability_check",
+          "supported": false,
+          "recommendation": "PWA化を推奨"
+        }
+      ],
+      "console_errors": []
+    },
+    {
+      "persona_id": 5,
+      "name": "学生",
+      "description": "長時間学習での安定性",
+      "start_time": "2025-06-25T08:10:47.552035",
+      "actions": [
+        {
+          "timestamp": "2025-06-25T08:10:59.036335",
+          "action": "長時間学習開始",
+          "success": true,
+          "details": "",
+          "response_time": 0.006473064422607422
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.047026",
+          "action": "長時間学習問題1",
+          "success": false,
+          "details": "解答時間: 30.2秒",
+          "response_time": 0.010578632354736328
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.055997",
+          "action": "長時間学習問題2",
+          "success": false,
+          "details": "解答時間: 44.9秒",
+          "response_time": 0.008864402770996094
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.066181",
+          "action": "長時間学習問題3",
+          "success": false,
+          "details": "解答時間: 18.1秒",
+          "response_time": 0.010073661804199219
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.075401",
+          "action": "長時間学習問題4",
+          "success": false,
+          "details": "解答時間: 29.3秒",
+          "response_time": 0.009068727493286133
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.084635",
+          "action": "長時間学習問題5",
+          "success": false,
+          "details": "解答時間: 41.6秒",
+          "response_time": 0.009125709533691406
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.093755",
+          "action": "長時間学習問題6",
+          "success": false,
+          "details": "解答時間: 23.9秒",
+          "response_time": 0.009017229080200195
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.101993",
+          "action": "長時間学習問題7",
+          "success": false,
+          "details": "解答時間: 46.1秒",
+          "response_time": 0.008136987686157227
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.111760",
+          "action": "長時間学習問題8",
+          "success": false,
+          "details": "解答時間: 25.0秒",
+          "response_time": 0.009589195251464844
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.122741",
+          "action": "長時間学習問題9",
+          "success": false,
+          "details": "解答時間: 49.4秒",
+          "response_time": 0.010812759399414062
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.131716",
+          "action": "長時間学習問題10",
+          "success": false,
+          "details": "解答時間: 58.5秒",
+          "response_time": 0.00884246826171875
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.131720",
+          "action": "休憩",
+          "success": true,
+          "details": "10問完了",
+          "response_time": 0.0
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.147111",
+          "action": "長時間学習問題11",
+          "success": false,
+          "details": "解答時間: 59.7秒",
+          "response_time": 0.008384227752685547
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.155892",
+          "action": "長時間学習問題12",
+          "success": false,
+          "details": "解答時間: 19.4秒",
+          "response_time": 0.008676767349243164
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.165215",
+          "action": "長時間学習問題13",
+          "success": false,
+          "details": "解答時間: 46.7秒",
+          "response_time": 0.00916147232055664
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.176687",
+          "action": "長時間学習問題14",
+          "success": false,
+          "details": "解答時間: 24.8秒",
+          "response_time": 0.011363506317138672
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.186995",
+          "action": "長時間学習問題15",
+          "success": false,
+          "details": "解答時間: 34.6秒",
+          "response_time": 0.010207176208496094
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.195127",
+          "action": "長時間学習問題16",
+          "success": false,
+          "details": "解答時間: 33.1秒",
+          "response_time": 0.008031368255615234
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.205251",
+          "action": "長時間学習問題17",
+          "success": false,
+          "details": "解答時間: 28.8秒",
+          "response_time": 0.010020017623901367
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.214200",
+          "action": "長時間学習問題18",
+          "success": false,
+          "details": "解答時間: 44.3秒",
+          "response_time": 0.008848190307617188
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.222753",
+          "action": "長時間学習問題19",
+          "success": false,
+          "details": "解答時間: 31.7秒",
+          "response_time": 0.008454084396362305
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.234495",
+          "action": "長時間学習問題20",
+          "success": false,
+          "details": "解答時間: 42.3秒",
+          "response_time": 0.011640310287475586
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.234498",
+          "action": "休憩",
+          "success": true,
+          "details": "10問完了",
+          "response_time": 0.0
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.250029",
+          "action": "長時間学習問題21",
+          "success": false,
+          "details": "解答時間: 60.0秒",
+          "response_time": 0.00861358642578125
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.259209",
+          "action": "長時間学習問題22",
+          "success": false,
+          "details": "解答時間: 54.8秒",
+          "response_time": 0.009001970291137695
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.268898",
+          "action": "長時間学習問題23",
+          "success": false,
+          "details": "解答時間: 45.8秒",
+          "response_time": 0.00957489013671875
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.280519",
+          "action": "長時間学習問題24",
+          "success": false,
+          "details": "解答時間: 21.4秒",
+          "response_time": 0.011461973190307617
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.291722",
+          "action": "長時間学習問題25",
+          "success": false,
+          "details": "解答時間: 45.9秒",
+          "response_time": 0.010949850082397461
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.301728",
+          "action": "長時間学習問題26",
+          "success": false,
+          "details": "解答時間: 15.4秒",
+          "response_time": 0.009853363037109375
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.311685",
+          "action": "長時間学習問題27",
+          "success": false,
+          "details": "解答時間: 29.7秒",
+          "response_time": 0.009835958480834961
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.321542",
+          "action": "長時間学習問題28",
+          "success": false,
+          "details": "解答時間: 27.8秒",
+          "response_time": 0.009746313095092773
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.331229",
+          "action": "長時間学習問題29",
+          "success": false,
+          "details": "解答時間: 59.0秒",
+          "response_time": 0.009525537490844727
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.342153",
+          "action": "長時間学習問題30",
+          "success": false,
+          "details": "解答時間: 29.3秒",
+          "response_time": 0.010799884796142578
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.342158",
+          "action": "休憩",
+          "success": true,
+          "details": "10問完了",
+          "response_time": 0.0
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.344397",
+          "action": "30問学習後の統計確認",
+          "success": true,
+          "details": "",
+          "response_time": 0.0021982192993164062
+        }
+      ],
+      "errors": [
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.047026",
+          "action": "長時間学習問題1",
+          "success": false,
+          "details": "解答時間: 30.2秒",
+          "response_time": 0.010578632354736328
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.055997",
+          "action": "長時間学習問題2",
+          "success": false,
+          "details": "解答時間: 44.9秒",
+          "response_time": 0.008864402770996094
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.066181",
+          "action": "長時間学習問題3",
+          "success": false,
+          "details": "解答時間: 18.1秒",
+          "response_time": 0.010073661804199219
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.075401",
+          "action": "長時間学習問題4",
+          "success": false,
+          "details": "解答時間: 29.3秒",
+          "response_time": 0.009068727493286133
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.084635",
+          "action": "長時間学習問題5",
+          "success": false,
+          "details": "解答時間: 41.6秒",
+          "response_time": 0.009125709533691406
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.093755",
+          "action": "長時間学習問題6",
+          "success": false,
+          "details": "解答時間: 23.9秒",
+          "response_time": 0.009017229080200195
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.101993",
+          "action": "長時間学習問題7",
+          "success": false,
+          "details": "解答時間: 46.1秒",
+          "response_time": 0.008136987686157227
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.111760",
+          "action": "長時間学習問題8",
+          "success": false,
+          "details": "解答時間: 25.0秒",
+          "response_time": 0.009589195251464844
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.122741",
+          "action": "長時間学習問題9",
+          "success": false,
+          "details": "解答時間: 49.4秒",
+          "response_time": 0.010812759399414062
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.131716",
+          "action": "長時間学習問題10",
+          "success": false,
+          "details": "解答時間: 58.5秒",
+          "response_time": 0.00884246826171875
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.147111",
+          "action": "長時間学習問題11",
+          "success": false,
+          "details": "解答時間: 59.7秒",
+          "response_time": 0.008384227752685547
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.155892",
+          "action": "長時間学習問題12",
+          "success": false,
+          "details": "解答時間: 19.4秒",
+          "response_time": 0.008676767349243164
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.165215",
+          "action": "長時間学習問題13",
+          "success": false,
+          "details": "解答時間: 46.7秒",
+          "response_time": 0.00916147232055664
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.176687",
+          "action": "長時間学習問題14",
+          "success": false,
+          "details": "解答時間: 24.8秒",
+          "response_time": 0.011363506317138672
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.186995",
+          "action": "長時間学習問題15",
+          "success": false,
+          "details": "解答時間: 34.6秒",
+          "response_time": 0.010207176208496094
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.195127",
+          "action": "長時間学習問題16",
+          "success": false,
+          "details": "解答時間: 33.1秒",
+          "response_time": 0.008031368255615234
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.205251",
+          "action": "長時間学習問題17",
+          "success": false,
+          "details": "解答時間: 28.8秒",
+          "response_time": 0.010020017623901367
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.214200",
+          "action": "長時間学習問題18",
+          "success": false,
+          "details": "解答時間: 44.3秒",
+          "response_time": 0.008848190307617188
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.222753",
+          "action": "長時間学習問題19",
+          "success": false,
+          "details": "解答時間: 31.7秒",
+          "response_time": 0.008454084396362305
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.234495",
+          "action": "長時間学習問題20",
+          "success": false,
+          "details": "解答時間: 42.3秒",
+          "response_time": 0.011640310287475586
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.250029",
+          "action": "長時間学習問題21",
+          "success": false,
+          "details": "解答時間: 60.0秒",
+          "response_time": 0.00861358642578125
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.259209",
+          "action": "長時間学習問題22",
+          "success": false,
+          "details": "解答時間: 54.8秒",
+          "response_time": 0.009001970291137695
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.268898",
+          "action": "長時間学習問題23",
+          "success": false,
+          "details": "解答時間: 45.8秒",
+          "response_time": 0.00957489013671875
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.280519",
+          "action": "長時間学習問題24",
+          "success": false,
+          "details": "解答時間: 21.4秒",
+          "response_time": 0.011461973190307617
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.291722",
+          "action": "長時間学習問題25",
+          "success": false,
+          "details": "解答時間: 45.9秒",
+          "response_time": 0.010949850082397461
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.301728",
+          "action": "長時間学習問題26",
+          "success": false,
+          "details": "解答時間: 15.4秒",
+          "response_time": 0.009853363037109375
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.311685",
+          "action": "長時間学習問題27",
+          "success": false,
+          "details": "解答時間: 29.7秒",
+          "response_time": 0.009835958480834961
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.321542",
+          "action": "長時間学習問題28",
+          "success": false,
+          "details": "解答時間: 27.8秒",
+          "response_time": 0.009746313095092773
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.331229",
+          "action": "長時間学習問題29",
+          "success": false,
+          "details": "解答時間: 59.0秒",
+          "response_time": 0.009525537490844727
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:10:59.342153",
+          "action": "長時間学習問題30",
+          "success": false,
+          "details": "解答時間: 29.3秒",
+          "response_time": 0.010799884796142578
+        }
+      ],
+      "warnings": [],
+      "screenshots": [
+        {
+          "page": "home",
+          "path": "screenshot_persona5_home.png",
+          "timestamp": "2025-06-25T08:11:00.065947"
+        },
+        {
+          "page": "exam",
+          "path": "screenshot_persona5_exam.png",
+          "timestamp": "2025-06-25T08:11:00.756017"
+        }
+      ],
+      "performance_metrics": [
+        {
+          "action": "長時間学習開始",
+          "response_time": 0.006473064422607422,
+          "timestamp": "2025-06-25T08:10:59.036291"
+        },
+        {
+          "action": "問題1",
+          "response_time": 0.010578632354736328,
+          "timestamp": "2025-06-25T08:10:59.046924"
+        },
+        {
+          "action": "問題2",
+          "response_time": 0.008864402770996094,
+          "timestamp": "2025-06-25T08:10:59.055901"
+        },
+        {
+          "action": "問題3",
+          "response_time": 0.010073661804199219,
+          "timestamp": "2025-06-25T08:10:59.066081"
+        },
+        {
+          "action": "問題4",
+          "response_time": 0.009068727493286133,
+          "timestamp": "2025-06-25T08:10:59.075260"
+        },
+        {
+          "action": "問題5",
+          "response_time": 0.009125709533691406,
+          "timestamp": "2025-06-25T08:10:59.084543"
+        },
+        {
+          "action": "問題6",
+          "response_time": 0.009017229080200195,
+          "timestamp": "2025-06-25T08:10:59.093661"
+        },
+        {
+          "action": "問題7",
+          "response_time": 0.008136987686157227,
+          "timestamp": "2025-06-25T08:10:59.101902"
+        },
+        {
+          "action": "問題8",
+          "response_time": 0.009589195251464844,
+          "timestamp": "2025-06-25T08:10:59.111592"
+        },
+        {
+          "action": "問題9",
+          "response_time": 0.010812759399414062,
+          "timestamp": "2025-06-25T08:10:59.122590"
+        },
+        {
+          "action": "問題10",
+          "response_time": 0.00884246826171875,
+          "timestamp": "2025-06-25T08:10:59.131602"
+        },
+        {
+          "action": "セッション2開始",
+          "response_time": 0.006861686706542969,
+          "timestamp": "2025-06-25T08:10:59.138587"
+        },
+        {
+          "action": "問題11",
+          "response_time": 0.008384227752685547,
+          "timestamp": "2025-06-25T08:10:59.147018"
+        },
+        {
+          "action": "問題12",
+          "response_time": 0.008676767349243164,
+          "timestamp": "2025-06-25T08:10:59.155797"
+        },
+        {
+          "action": "問題13",
+          "response_time": 0.00916147232055664,
+          "timestamp": "2025-06-25T08:10:59.165065"
+        },
+        {
+          "action": "問題14",
+          "response_time": 0.011363506317138672,
+          "timestamp": "2025-06-25T08:10:59.176595"
+        },
+        {
+          "action": "問題15",
+          "response_time": 0.010207176208496094,
+          "timestamp": "2025-06-25T08:10:59.186904"
+        },
+        {
+          "action": "問題16",
+          "response_time": 0.008031368255615234,
+          "timestamp": "2025-06-25T08:10:59.195036"
+        },
+        {
+          "action": "問題17",
+          "response_time": 0.010020017623901367,
+          "timestamp": "2025-06-25T08:10:59.205156"
+        },
+        {
+          "action": "問題18",
+          "response_time": 0.008848190307617188,
+          "timestamp": "2025-06-25T08:10:59.214109"
+        },
+        {
+          "action": "問題19",
+          "response_time": 0.008454084396362305,
+          "timestamp": "2025-06-25T08:10:59.222664"
+        },
+        {
+          "action": "問題20",
+          "response_time": 0.011640310287475586,
+          "timestamp": "2025-06-25T08:10:59.234402"
+        },
+        {
+          "action": "セッション3開始",
+          "response_time": 0.00672459602355957,
+          "timestamp": "2025-06-25T08:10:59.241228"
+        },
+        {
+          "action": "問題21",
+          "response_time": 0.00861358642578125,
+          "timestamp": "2025-06-25T08:10:59.249892"
+        },
+        {
+          "action": "問題22",
+          "response_time": 0.009001970291137695,
+          "timestamp": "2025-06-25T08:10:59.259049"
+        },
+        {
+          "action": "問題23",
+          "response_time": 0.00957489013671875,
+          "timestamp": "2025-06-25T08:10:59.268799"
+        },
+        {
+          "action": "問題24",
+          "response_time": 0.011461973190307617,
+          "timestamp": "2025-06-25T08:10:59.280371"
+        },
+        {
+          "action": "問題25",
+          "response_time": 0.010949850082397461,
+          "timestamp": "2025-06-25T08:10:59.291486"
+        },
+        {
+          "action": "問題26",
+          "response_time": 0.009853363037109375,
+          "timestamp": "2025-06-25T08:10:59.301599"
+        },
+        {
+          "action": "問題27",
+          "response_time": 0.009835958480834961,
+          "timestamp": "2025-06-25T08:10:59.311576"
+        },
+        {
+          "action": "問題28",
+          "response_time": 0.009746313095092773,
+          "timestamp": "2025-06-25T08:10:59.321444"
+        },
+        {
+          "action": "問題29",
+          "response_time": 0.009525537490844727,
+          "timestamp": "2025-06-25T08:10:59.331078"
+        },
+        {
+          "action": "問題30",
+          "response_time": 0.010799884796142578,
+          "timestamp": "2025-06-25T08:10:59.342044"
+        },
+        {
+          "action": "学習履歴確認",
+          "response_time": 0.0021982192993164062,
+          "timestamp": "2025-06-25T08:10:59.344362"
+        }
+      ],
+      "ui_issues": [],
+      "console_errors": []
+    },
+    {
+      "persona_id": 6,
+      "name": "高齢学習者",
+      "description": "アクセシビリティ確認",
+      "start_time": "2025-06-25T08:10:47.552053",
+      "actions": [
+        {
+          "timestamp": "2025-06-25T08:11:00.759536",
+          "action": "アクセシビリティチェック",
+          "success": true,
+          "details": "チェック結果: {'large_buttons': True, 'touch_targets': True, 'font_size': True, 'contrast': True}",
+          "response_time": 0.0033273696899414062
+        },
+        {
+          "timestamp": "2025-06-25T08:11:03.781742",
+          "action": "高齢者ペースで問題1解答",
+          "success": false,
+          "details": "2分かけて解答",
+          "response_time": 0.01127314567565918
+        },
+        {
+          "timestamp": "2025-06-25T08:11:06.799189",
+          "action": "高齢者ペースで問題2解答",
+          "success": false,
+          "details": "2分かけて解答",
+          "response_time": 0.014193058013916016
+        },
+        {
+          "timestamp": "2025-06-25T08:11:09.813166",
+          "action": "高齢者ペースで問題3解答",
+          "success": false,
+          "details": "2分かけて解答",
+          "response_time": 0.01063394546508789
+        }
+      ],
+      "errors": [
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:03.781742",
+          "action": "高齢者ペースで問題1解答",
+          "success": false,
+          "details": "2分かけて解答",
+          "response_time": 0.01127314567565918
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:06.799189",
+          "action": "高齢者ペースで問題2解答",
+          "success": false,
+          "details": "2分かけて解答",
+          "response_time": 0.014193058013916016
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:09.813166",
+          "action": "高齢者ペースで問題3解答",
+          "success": false,
+          "details": "2分かけて解答",
+          "response_time": 0.01063394546508789
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>ヘルプ・使い方ガイ"
+        }
+      ],
+      "warnings": [],
+      "screenshots": [
+        {
+          "page": "home",
+          "path": "screenshot_persona6_home.png",
+          "timestamp": "2025-06-25T08:11:10.563597"
+        },
+        {
+          "page": "exam",
+          "path": "screenshot_persona6_exam.png",
+          "timestamp": "2025-06-25T08:11:11.212029"
+        }
+      ],
+      "performance_metrics": [
+        {
+          "action": "ホーム画面",
+          "response_time": 0.0033273696899414062,
+          "timestamp": "2025-06-25T08:11:00.759393"
+        },
+        {
+          "action": "問題開始",
+          "response_time": 0.007581949234008789,
+          "timestamp": "2025-06-25T08:11:00.767131"
+        },
+        {
+          "action": "問題1",
+          "response_time": 0.01127314567565918,
+          "timestamp": "2025-06-25T08:11:03.781598"
+        },
+        {
+          "action": "問題2",
+          "response_time": 0.014193058013916016,
+          "timestamp": "2025-06-25T08:11:06.799092"
+        },
+        {
+          "action": "問題3",
+          "response_time": 0.01063394546508789,
+          "timestamp": "2025-06-25T08:11:09.813029"
+        },
+        {
+          "action": "ヘルプ確認",
+          "response_time": 0.0016858577728271484,
+          "timestamp": "2025-06-25T08:11:09.814862"
+        }
+      ],
+      "ui_issues": [],
+      "console_errors": []
+    },
+    {
+      "persona_id": 7,
+      "name": "視覚障害者",
+      "description": "読み上げ機能テスト",
+      "start_time": "2025-06-25T08:10:47.552073",
+      "actions": [
+        {
+          "timestamp": "2025-06-25T08:11:11.214441",
+          "action": "スクリーンリーダー対応確認",
+          "success": true,
+          "details": "要素数: {'h1_tags': 1, 'alt_attrs': 0, 'aria_labels': 3, 'label_tags': 0, 'role_attrs': 1}",
+          "response_time": 0.0022542476654052734
+        },
+        {
+          "timestamp": "2025-06-25T08:11:11.223189",
+          "action": "フォームアクセシビリティ",
+          "success": false,
+          "details": "ラベル: False, フィールドセット: True",
+          "response_time": 0.008659839630126953
+        }
+      ],
+      "errors": [
+        {
+          "timestamp": "2025-06-25T08:11:11.223189",
+          "action": "フォームアクセシビリティ",
+          "success": false,
+          "details": "ラベル: False, フィールドセット: True",
+          "response_time": 0.008659839630126953
+        }
+      ],
+      "warnings": [],
+      "screenshots": [
+        {
+          "page": "home",
+          "path": "screenshot_persona7_home.png",
+          "timestamp": "2025-06-25T08:11:11.988386"
+        },
+        {
+          "page": "exam",
+          "path": "screenshot_persona7_exam.png",
+          "timestamp": "2025-06-25T08:11:12.661305"
+        }
+      ],
+      "performance_metrics": [
+        {
+          "action": "ホームページ",
+          "response_time": 0.0022542476654052734,
+          "timestamp": "2025-06-25T08:11:11.214313"
+        },
+        {
+          "action": "問題画面",
+          "response_time": 0.008659839630126953,
+          "timestamp": "2025-06-25T08:11:11.223106"
+        }
+      ],
+      "ui_issues": [
+        {
+          "type": "form_labels_missing",
+          "severity": "critical",
+          "wcag": "3.3.2"
+        },
+        {
+          "type": "keyboard_navigation",
+          "tested": false,
+          "note": "フルキーボードナビゲーションテストは手動確認が必要"
+        }
+      ],
+      "console_errors": []
+    },
+    {
+      "persona_id": 8,
+      "name": "低速回線ユーザー",
+      "description": "表示速度確認",
+      "start_time": "2025-06-25T08:10:47.552090",
+      "actions": [
+        {
+          "timestamp": "2025-06-25T08:11:12.664194",
+          "action": "ホームページ読み込み速度",
+          "success": true,
+          "details": "読み込み時間: 0.00秒",
+          "response_time": 0.0028336048126220703
+        },
+        {
+          "timestamp": "2025-06-25T08:11:12.671038",
+          "action": "基礎問題読み込み速度",
+          "success": true,
+          "details": "読み込み時間: 0.01秒",
+          "response_time": 0.006821870803833008
+        },
+        {
+          "timestamp": "2025-06-25T08:11:12.688706",
+          "action": "部門一覧読み込み速度",
+          "success": true,
+          "details": "読み込み時間: 0.02秒",
+          "response_time": 0.017632007598876953
+        }
+      ],
+      "errors": [],
+      "warnings": [],
+      "screenshots": [
+        {
+          "page": "home",
+          "path": "screenshot_persona8_home.png",
+          "timestamp": "2025-06-25T08:11:13.440454"
+        },
+        {
+          "page": "exam",
+          "path": "screenshot_persona8_exam.png",
+          "timestamp": "2025-06-25T08:11:14.076632"
+        }
+      ],
+      "performance_metrics": [
+        {
+          "action": "ホームページ",
+          "response_time": 0.0028336048126220703,
+          "timestamp": "2025-06-25T08:11:12.664180"
+        },
+        {
+          "action": "基礎問題",
+          "response_time": 0.006821870803833008,
+          "timestamp": "2025-06-25T08:11:12.671020"
+        },
+        {
+          "action": "部門一覧",
+          "response_time": 0.017632007598876953,
+          "timestamp": "2025-06-25T08:11:12.688676"
+        },
+        {
+          "action": "リソース確認",
+          "response_time": 0.0020830631256103516,
+          "timestamp": "2025-06-25T08:11:12.690797"
+        },
+        {
+          "action": "問題開始",
+          "response_time": 0.008585691452026367,
+          "timestamp": "2025-06-25T08:11:12.699464"
+        },
+        {
+          "action": "解答送信",
+          "response_time": 0.010663747787475586,
+          "timestamp": "2025-06-25T08:11:12.710208"
+        }
+      ],
+      "ui_issues": [
+        {
+          "type": "optimization_missing",
+          "optimization": "lazy_loading",
+          "impact": "performance"
+        },
+        {
+          "type": "optimization_missing",
+          "optimization": "inline_critical_css",
+          "impact": "performance"
+        }
+      ],
+      "console_errors": []
+    },
+    {
+      "persona_id": 9,
+      "name": "不正解続きユーザー",
+      "description": "エラーハンドリング確認",
+      "start_time": "2025-06-25T08:10:47.553014",
+      "actions": [
+        {
+          "timestamp": "2025-06-25T08:11:14.088242",
+          "action": "連続不正解1",
+          "success": false,
+          "details": "",
+          "response_time": 0.002866029739379883
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.091046",
+          "action": "連続不正解2",
+          "success": false,
+          "details": "",
+          "response_time": 0.0027074813842773438
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.094714",
+          "action": "連続不正解3",
+          "success": false,
+          "details": "",
+          "response_time": 0.0035600662231445312
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.098116",
+          "action": "連続不正解4",
+          "success": false,
+          "details": "",
+          "response_time": 0.0032958984375
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.100947",
+          "action": "連続不正解5",
+          "success": false,
+          "details": "",
+          "response_time": 0.0027310848236083984
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.103712",
+          "action": "連続不正解6",
+          "success": false,
+          "details": "",
+          "response_time": 0.0026662349700927734
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.107091",
+          "action": "連続不正解7",
+          "success": false,
+          "details": "",
+          "response_time": 0.0032694339752197266
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.109799",
+          "action": "連続不正解8",
+          "success": false,
+          "details": "",
+          "response_time": 0.002613067626953125
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.113514",
+          "action": "連続不正解9",
+          "success": false,
+          "details": "",
+          "response_time": 0.0036127567291259766
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.116482",
+          "action": "連続不正解10",
+          "success": false,
+          "details": "",
+          "response_time": 0.002868175506591797
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.120362",
+          "action": "エラー入力処理: 空の解答",
+          "success": true,
+          "details": "ステータス: 200",
+          "response_time": 0.0038521289825439453
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.124691",
+          "action": "エラー入力処理: 数字入力",
+          "success": true,
+          "details": "ステータス: 200",
+          "response_time": 0.004308223724365234
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.128040",
+          "action": "エラー入力処理: XSS試行",
+          "success": true,
+          "details": "ステータス: 200",
+          "response_time": 0.0033330917358398438
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.132578",
+          "action": "エラー入力処理: 日本語入力",
+          "success": true,
+          "details": "ステータス: 200",
+          "response_time": 0.0045163631439208984
+        }
+      ],
+      "errors": [
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.088242",
+          "action": "連続不正解1",
+          "success": false,
+          "details": "",
+          "response_time": 0.002866029739379883
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.091046",
+          "action": "連続不正解2",
+          "success": false,
+          "details": "",
+          "response_time": 0.0027074813842773438
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.094714",
+          "action": "連続不正解3",
+          "success": false,
+          "details": "",
+          "response_time": 0.0035600662231445312
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.098116",
+          "action": "連続不正解4",
+          "success": false,
+          "details": "",
+          "response_time": 0.0032958984375
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.100947",
+          "action": "連続不正解5",
+          "success": false,
+          "details": "",
+          "response_time": 0.0027310848236083984
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.103712",
+          "action": "連続不正解6",
+          "success": false,
+          "details": "",
+          "response_time": 0.0026662349700927734
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.107091",
+          "action": "連続不正解7",
+          "success": false,
+          "details": "",
+          "response_time": 0.0032694339752197266
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.109799",
+          "action": "連続不正解8",
+          "success": false,
+          "details": "",
+          "response_time": 0.002613067626953125
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.113514",
+          "action": "連続不正解9",
+          "success": false,
+          "details": "",
+          "response_time": 0.0036127567291259766
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:14.116482",
+          "action": "連続不正解10",
+          "success": false,
+          "details": "",
+          "response_time": 0.002868175506591797
+        }
+      ],
+      "warnings": [],
+      "screenshots": [
+        {
+          "page": "home",
+          "path": "screenshot_persona9_home.png",
+          "timestamp": "2025-06-25T08:11:14.849898"
+        },
+        {
+          "page": "exam",
+          "path": "screenshot_persona9_exam.png",
+          "timestamp": "2025-06-25T08:11:15.524569"
+        }
+      ],
+      "performance_metrics": [
+        {
+          "action": "問題開始",
+          "response_time": 0.008569478988647461,
+          "timestamp": "2025-06-25T08:11:14.085229"
+        },
+        {
+          "action": "不正解1",
+          "response_time": 0.002866029739379883,
+          "timestamp": "2025-06-25T08:11:14.088143"
+        },
+        {
+          "action": "不正解2",
+          "response_time": 0.0027074813842773438,
+          "timestamp": "2025-06-25T08:11:14.090954"
+        },
+        {
+          "action": "不正解3",
+          "response_time": 0.0035600662231445312,
+          "timestamp": "2025-06-25T08:11:14.094611"
+        },
+        {
+          "action": "不正解4",
+          "response_time": 0.0032958984375,
+          "timestamp": "2025-06-25T08:11:14.098015"
+        },
+        {
+          "action": "不正解5",
+          "response_time": 0.0027310848236083984,
+          "timestamp": "2025-06-25T08:11:14.100852"
+        },
+        {
+          "action": "不正解6",
+          "response_time": 0.0026662349700927734,
+          "timestamp": "2025-06-25T08:11:14.103619"
+        },
+        {
+          "action": "不正解7",
+          "response_time": 0.0032694339752197266,
+          "timestamp": "2025-06-25T08:11:14.106986"
+        },
+        {
+          "action": "不正解8",
+          "response_time": 0.002613067626953125,
+          "timestamp": "2025-06-25T08:11:14.109709"
+        },
+        {
+          "action": "不正解9",
+          "response_time": 0.0036127567291259766,
+          "timestamp": "2025-06-25T08:11:14.113415"
+        },
+        {
+          "action": "不正解10",
+          "response_time": 0.002868175506591797,
+          "timestamp": "2025-06-25T08:11:14.116387"
+        },
+        {
+          "action": "エラー入力: 空の解答",
+          "response_time": 0.0038521289825439453,
+          "timestamp": "2025-06-25T08:11:14.120340"
+        },
+        {
+          "action": "エラー入力: 数字入力",
+          "response_time": 0.004308223724365234,
+          "timestamp": "2025-06-25T08:11:14.124677"
+        },
+        {
+          "action": "エラー入力: XSS試行",
+          "response_time": 0.0033330917358398438,
+          "timestamp": "2025-06-25T08:11:14.128029"
+        },
+        {
+          "action": "エラー入力: 日本語入力",
+          "response_time": 0.0045163631439208984,
+          "timestamp": "2025-06-25T08:11:14.132561"
+        }
+      ],
+      "ui_issues": [],
+      "console_errors": []
+    },
+    {
+      "persona_id": 10,
+      "name": "完璧主義ユーザー",
+      "description": "詳細分析機能確認",
+      "start_time": "2025-06-25T08:10:47.553040",
+      "actions": [
+        {
+          "timestamp": "2025-06-25T08:11:15.525729",
+          "action": "事前統計確認",
+          "success": true,
+          "details": "",
+          "response_time": 0.0011022090911865234
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.558454",
+          "action": "完璧主義的解答1",
+          "success": false,
+          "details": "熟考時間: 88秒",
+          "response_time": 0.021295547485351562
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.579135",
+          "action": "完璧主義的解答2",
+          "success": false,
+          "details": "熟考時間: 114秒",
+          "response_time": 0.02051377296447754
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.590137",
+          "action": "完璧主義的解答3",
+          "success": false,
+          "details": "熟考時間: 63秒",
+          "response_time": 0.01081228256225586
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.598413",
+          "action": "完璧主義的解答4",
+          "success": false,
+          "details": "熟考時間: 79秒",
+          "response_time": 0.00812983512878418
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.609955",
+          "action": "完璧主義的解答5",
+          "success": false,
+          "details": "熟考時間: 110秒",
+          "response_time": 0.011432886123657227
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.618674",
+          "action": "完璧主義的解答6",
+          "success": false,
+          "details": "熟考時間: 80秒",
+          "response_time": 0.008619070053100586
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.626685",
+          "action": "完璧主義的解答7",
+          "success": false,
+          "details": "熟考時間: 79秒",
+          "response_time": 0.007909536361694336
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.633577",
+          "action": "完璧主義的解答8",
+          "success": false,
+          "details": "熟考時間: 62秒",
+          "response_time": 0.00679326057434082
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.641830",
+          "action": "完璧主義的解答9",
+          "success": false,
+          "details": "熟考時間: 117秒",
+          "response_time": 0.008142948150634766
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.651582",
+          "action": "完璧主義的解答10",
+          "success": false,
+          "details": "熟考時間: 108秒",
+          "response_time": 0.009638547897338867
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.653882",
+          "action": "統計分析利用",
+          "success": true,
+          "details": "",
+          "response_time": 0.0021867752075195312
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.660021",
+          "action": "AI分析利用",
+          "success": false,
+          "details": "",
+          "response_time": 0.0059947967529296875
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.663297",
+          "action": "復習リスト利用",
+          "success": true,
+          "details": "",
+          "response_time": 0.0031554698944091797
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.664323",
+          "action": "レポート生成利用",
+          "success": false,
+          "details": "",
+          "response_time": 0.0010128021240234375
+        }
+      ],
+      "errors": [
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.558454",
+          "action": "完璧主義的解答1",
+          "success": false,
+          "details": "熟考時間: 88秒",
+          "response_time": 0.021295547485351562
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.579135",
+          "action": "完璧主義的解答2",
+          "success": false,
+          "details": "熟考時間: 114秒",
+          "response_time": 0.02051377296447754
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.590137",
+          "action": "完璧主義的解答3",
+          "success": false,
+          "details": "熟考時間: 63秒",
+          "response_time": 0.01081228256225586
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.598413",
+          "action": "完璧主義的解答4",
+          "success": false,
+          "details": "熟考時間: 79秒",
+          "response_time": 0.00812983512878418
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.609955",
+          "action": "完璧主義的解答5",
+          "success": false,
+          "details": "熟考時間: 110秒",
+          "response_time": 0.011432886123657227
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.618674",
+          "action": "完璧主義的解答6",
+          "success": false,
+          "details": "熟考時間: 80秒",
+          "response_time": 0.008619070053100586
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.626685",
+          "action": "完璧主義的解答7",
+          "success": false,
+          "details": "熟考時間: 79秒",
+          "response_time": 0.007909536361694336
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.633577",
+          "action": "完璧主義的解答8",
+          "success": false,
+          "details": "熟考時間: 62秒",
+          "response_time": 0.00679326057434082
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.641830",
+          "action": "完璧主義的解答9",
+          "success": false,
+          "details": "熟考時間: 117秒",
+          "response_time": 0.008142948150634766
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>解答結果 | RC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.651582",
+          "action": "完璧主義的解答10",
+          "success": false,
+          "details": "熟考時間: 108秒",
+          "response_time": 0.009638547897338867
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "type": "error_page_detected",
+          "content_snippet": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes\">\n    <title>エラー | RCC"
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.660021",
+          "action": "AI分析利用",
+          "success": false,
+          "details": "",
+          "response_time": 0.0059947967529296875
+        },
+        {
+          "type": "http_error",
+          "status_code": 401,
+          "expected": 200
+        },
+        {
+          "type": "http_error",
+          "status_code": 401,
+          "expected": 200
+        },
+        {
+          "timestamp": "2025-06-25T08:11:15.664323",
+          "action": "レポート生成利用",
+          "success": false,
+          "details": "",
+          "response_time": 0.0010128021240234375
+        }
+      ],
+      "warnings": [],
+      "screenshots": [
+        {
+          "page": "home",
+          "path": "screenshot_persona10_home.png",
+          "timestamp": "2025-06-25T08:11:16.393316"
+        },
+        {
+          "page": "exam",
+          "path": "screenshot_persona10_exam.png",
+          "timestamp": "2025-06-25T08:11:17.058917"
+        }
+      ],
+      "performance_metrics": [
+        {
+          "action": "完璧な準備",
+          "response_time": 0.0011022090911865234,
+          "timestamp": "2025-06-25T08:11:15.525698"
+        },
+        {
+          "action": "問題開始",
+          "response_time": 0.0112152099609375,
+          "timestamp": "2025-06-25T08:11:15.536950"
+        },
+        {
+          "action": "慎重な解答1",
+          "response_time": 0.021295547485351562,
+          "timestamp": "2025-06-25T08:11:15.558297"
+        },
+        {
+          "action": "慎重な解答2",
+          "response_time": 0.02051377296447754,
+          "timestamp": "2025-06-25T08:11:15.578982"
+        },
+        {
+          "action": "慎重な解答3",
+          "response_time": 0.01081228256225586,
+          "timestamp": "2025-06-25T08:11:15.589979"
+        },
+        {
+          "action": "慎重な解答4",
+          "response_time": 0.00812983512878418,
+          "timestamp": "2025-06-25T08:11:15.598281"
+        },
+        {
+          "action": "慎重な解答5",
+          "response_time": 0.011432886123657227,
+          "timestamp": "2025-06-25T08:11:15.609860"
+        },
+        {
+          "action": "慎重な解答6",
+          "response_time": 0.008619070053100586,
+          "timestamp": "2025-06-25T08:11:15.618582"
+        },
+        {
+          "action": "慎重な解答7",
+          "response_time": 0.007909536361694336,
+          "timestamp": "2025-06-25T08:11:15.626592"
+        },
+        {
+          "action": "慎重な解答8",
+          "response_time": 0.00679326057434082,
+          "timestamp": "2025-06-25T08:11:15.633487"
+        },
+        {
+          "action": "慎重な解答9",
+          "response_time": 0.008142948150634766,
+          "timestamp": "2025-06-25T08:11:15.641729"
+        },
+        {
+          "action": "慎重な解答10",
+          "response_time": 0.009638547897338867,
+          "timestamp": "2025-06-25T08:11:15.651478"
+        },
+        {
+          "action": "統計分析",
+          "response_time": 0.0021867752075195312,
+          "timestamp": "2025-06-25T08:11:15.653777"
+        },
+        {
+          "action": "AI分析",
+          "response_time": 0.0059947967529296875,
+          "timestamp": "2025-06-25T08:11:15.659885"
+        },
+        {
+          "action": "復習リスト",
+          "response_time": 0.0031554698944091797,
+          "timestamp": "2025-06-25T08:11:15.663185"
+        },
+        {
+          "action": "レポート生成",
+          "response_time": 0.0010128021240234375,
+          "timestamp": "2025-06-25T08:11:15.664314"
+        }
+      ],
+      "ui_issues": [],
+      "console_errors": []
+    }
+  ],
+  "ui_issues_by_type": {
+    "offline_capability_check": [
+      {
+        "persona": "忙しい社会人",
+        "details": {
+          "type": "offline_capability_check",
+          "supported": false,
+          "recommendation": "PWA化を推奨"
+        }
+      }
+    ],
+    "form_labels_missing": [
+      {
+        "persona": "視覚障害者",
+        "details": {
+          "type": "form_labels_missing",
+          "severity": "critical",
+          "wcag": "3.3.2"
+        }
+      }
+    ],
+    "keyboard_navigation": [
+      {
+        "persona": "視覚障害者",
+        "details": {
+          "type": "keyboard_navigation",
+          "tested": false,
+          "note": "フルキーボードナビゲーションテストは手動確認が必要"
+        }
+      }
+    ],
+    "optimization_missing": [
+      {
+        "persona": "低速回線ユーザー",
+        "details": {
+          "type": "optimization_missing",
+          "optimization": "lazy_loading",
+          "impact": "performance"
+        }
+      },
+      {
+        "persona": "低速回線ユーザー",
+        "details": {
+          "type": "optimization_missing",
+          "optimization": "inline_critical_css",
+          "impact": "performance"
+        }
+      }
+    ]
+  },
+  "priority_issues": {
+    "critical": [],
+    "high": [
+      {
+        "persona": "視覚障害者",
+        "details": {
+          "type": "form_labels_missing",
+          "severity": "critical",
+          "wcag": "3.3.2"
+        }
+      },
+      {
+        "persona": "低速回線ユーザー",
+        "details": {
+          "type": "optimization_missing",
+          "optimization": "lazy_loading",
+          "impact": "performance"
+        }
+      },
+      {
+        "persona": "低速回線ユーザー",
+        "details": {
+          "type": "optimization_missing",
+          "optimization": "inline_critical_css",
+          "impact": "performance"
+        }
+      }
+    ],
+    "medium": [],
+    "low": [
+      {
+        "persona": "忙しい社会人",
+        "details": {
+          "type": "offline_capability_check",
+          "supported": false,
+          "recommendation": "PWA化を推奨"
+        }
+      },
+      {
+        "persona": "視覚障害者",
+        "details": {
+          "type": "keyboard_navigation",
+          "tested": false,
+          "note": "フルキーボードナビゲーションテストは手動確認が必要"
+        }
+      }
+    ]
+  },
+  "recommendations": {
+    "accessibility": [
+      "WCAG AA準拠",
+      "aria-live追加",
+      "フォーカス管理"
+    ],
+    "performance": [
+      "画像最適化",
+      "アセット圧縮",
+      "キャッシュ戦略"
+    ],
+    "ux": [
+      "プログレスバー",
+      "励ましメッセージ",
+      "PWA化",
+      "詳細統計"
+    ]
+  }
+}

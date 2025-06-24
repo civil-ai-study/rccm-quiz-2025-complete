@@ -1,0 +1,241 @@
+{
+  "test_time": "2025-06-25T08:16:44.784585",
+  "duration": "0:00:30.809550",
+  "base_url": "http://localhost:5003",
+  "summary": {
+    "total_tests": 7,
+    "successful": 6,
+    "failed": 1,
+    "success_rate": 85.71428571428571
+  },
+  "test_results": [
+    {
+      "test": "basic_flow",
+      "device": "desktop",
+      "steps": [
+        {
+          "step": "home",
+          "success": true
+        },
+        {
+          "step": "start_quiz",
+          "success": true
+        },
+        {
+          "step": "answer_1",
+          "success": true
+        },
+        {
+          "step": "answer_2",
+          "success": true
+        },
+        {
+          "step": "answer_3",
+          "success": true
+        },
+        {
+          "step": "answer_4",
+          "success": true
+        },
+        {
+          "step": "answer_5",
+          "success": true
+        },
+        {
+          "step": "answer_6",
+          "success": true
+        },
+        {
+          "step": "answer_7",
+          "success": true
+        },
+        {
+          "step": "answer_8",
+          "success": true
+        },
+        {
+          "step": "answer_9",
+          "success": true
+        },
+        {
+          "step": "answer_10",
+          "success": true
+        }
+      ],
+      "success": false,
+      "error": "Page.wait_for_selector: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator(\"h1:has-text(\\\"結果\\\")\") to be visible\n"
+    },
+    {
+      "test": "question_types",
+      "device": "desktop",
+      "types_tested": [
+        {
+          "type": "multiple_choice_4",
+          "success": true,
+          "count": 4
+        },
+        {
+          "type": "specialist_multiple_choice",
+          "success": true,
+          "count": 4
+        }
+      ],
+      "success": true
+    },
+    {
+      "test": "time_features",
+      "device": "desktop",
+      "features": [
+        {
+          "feature": "timer_display",
+          "success": true,
+          "initial_time": "0:00"
+        },
+        {
+          "feature": "answer_time_tracking",
+          "success": true,
+          "note": "内部的に記録（elapsed_timeパラメータ）"
+        }
+      ],
+      "success": true
+    },
+    {
+      "test": "result_analysis",
+      "device": "desktop",
+      "analytics": [
+        {
+          "type": "statistics_display",
+          "success": true,
+          "elements_found": 9
+        }
+      ],
+      "success": true
+    },
+    {
+      "test": "study_history",
+      "device": "desktop",
+      "features": [
+        {
+          "feature": "review_list",
+          "success": true,
+          "items_found": 12
+        },
+        {
+          "feature": "srs_system",
+          "success": true
+        }
+      ],
+      "success": true
+    },
+    {
+      "test": "error_handling",
+      "device": "desktop",
+      "cases": [
+        {
+          "case": "404_error",
+          "success": true,
+          "status": 404
+        },
+        {
+          "case": "invalid_parameter",
+          "success": true,
+          "handling": "redirect_or_error"
+        }
+      ],
+      "success": true
+    },
+    {
+      "test": "mobile_experience",
+      "device": "mobile",
+      "features": [
+        {
+          "feature": "navigation",
+          "visible": true
+        },
+        {
+          "feature": "touch_targets",
+          "large_buttons": 1,
+          "total_checked": 5
+        },
+        {
+          "feature": "no_horizontal_scroll",
+          "success": true,
+          "viewport_width": 390,
+          "content_width": 390
+        },
+        {
+          "feature": "mobile_result_display",
+          "success": true
+        }
+      ],
+      "success": true
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "desktop_home",
+      "filename": "screenshot_desktop_home_20250625_081646.png",
+      "timestamp": "20250625_081646"
+    },
+    {
+      "name": "desktop_question",
+      "filename": "screenshot_desktop_question_20250625_081646.png",
+      "timestamp": "20250625_081646"
+    },
+    {
+      "name": "desktop_last_answer",
+      "filename": "screenshot_desktop_last_answer_20250625_081703.png",
+      "timestamp": "20250625_081703"
+    },
+    {
+      "name": "desktop_question_types",
+      "filename": "screenshot_desktop_question_types_20250625_081708.png",
+      "timestamp": "20250625_081708"
+    },
+    {
+      "name": "desktop_timer",
+      "filename": "screenshot_desktop_timer_20250625_081710.png",
+      "timestamp": "20250625_081710"
+    },
+    {
+      "name": "desktop_statistics",
+      "filename": "screenshot_desktop_statistics_20250625_081711.png",
+      "timestamp": "20250625_081711"
+    },
+    {
+      "name": "desktop_review",
+      "filename": "screenshot_desktop_review_20250625_081712.png",
+      "timestamp": "20250625_081712"
+    },
+    {
+      "name": "desktop_404_error",
+      "filename": "screenshot_desktop_404_error_20250625_081712.png",
+      "timestamp": "20250625_081712"
+    },
+    {
+      "name": "mobile_responsive_home",
+      "filename": "screenshot_mobile_responsive_home_20250625_081713.png",
+      "timestamp": "20250625_081713"
+    },
+    {
+      "name": "mobile_question",
+      "filename": "screenshot_mobile_question_20250625_081714.png",
+      "timestamp": "20250625_081714"
+    },
+    {
+      "name": "mobile_feedback",
+      "filename": "screenshot_mobile_feedback_20250625_081715.png",
+      "timestamp": "20250625_081715"
+    }
+  ],
+  "recommendations": {
+    "mobile": "Good",
+    "features_to_add": [
+      "User registration/login",
+      "Text input questions",
+      "Image-based questions",
+      "Progress visualization",
+      "PWA support"
+    ]
+  }
+}

@@ -1,0 +1,5628 @@
+{
+  "test_duration": "0:00:06.664444",
+  "total_actions": 563,
+  "success_actions": 224,
+  "success_rate": 39.786856127886324,
+  "personas": [
+    {
+      "name": "田中 建設太郎",
+      "profile": "RCCM資格保有15年の経験豊富な技術者",
+      "total_actions": 141,
+      "success_actions": 56,
+      "test_results": [
+        {
+          "persona": "田中 建設太郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:24.222415"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?question_type=basic, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:24.234980"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.235044"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.241331"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.241360"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.241366"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.242684"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.242709"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.242715"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.243807"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.243829"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.243835"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.244819"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.244840"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.244845"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.245849"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.245871"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.245876"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.247121"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.247167"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.247175"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.248556"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.248584"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.248593"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.250099"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.250134"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.250157"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.251421"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.251446"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.251452"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.252634"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:24.252657"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:24.253952"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "URL: /, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:26.360821"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "部門選択画面アクセス",
+          "result": "成功",
+          "details": "URL: /departments, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:26.382981"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "学習統計画面アクセス",
+          "result": "成功",
+          "details": "URL: /statistics, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:26.400800"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "復習リスト画面アクセス",
+          "result": "失敗",
+          "details": "URL: /review_list, ステータス: 404",
+          "timestamp": "2025-06-24T14:52:26.403310"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "ヘルプ画面アクセス",
+          "result": "成功",
+          "details": "URL: /help, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:26.421760"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "道路カテゴリ画面",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:26.423872"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:28.466865"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=road&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:28.476129"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.476169"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.478504"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.478541"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.478548"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.480308"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.480335"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.480342"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.481889"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.481921"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.481929"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.483305"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.483330"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.483340"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.484566"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.484590"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.484595"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.485919"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.485945"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.485951"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.487084"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.487109"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.487114"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.488390"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.488423"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.488433"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.490293"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.490333"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.490346"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.492683"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:28.492711"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:28.495239"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "道路部門2019年",
+          "result": "完走失敗",
+          "details": "エラー発生",
+          "timestamp": "2025-06-24T14:52:28.495249"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:28.496777"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=tunnel&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:28.505886"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.505913"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.507277"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.507304"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.507310"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.508440"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.508464"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.508470"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.509984"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.510010"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.510016"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.511406"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.511436"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.511456"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.512868"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.512892"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.512898"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.514032"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.514058"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.514064"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.515208"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.515230"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.515236"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.517318"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.517355"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.517361"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.519233"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.519445"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.519467"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.521399"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:28.521438"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:28.523696"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "トンネル部門2019年",
+          "result": "完走失敗",
+          "details": "エラー発生",
+          "timestamp": "2025-06-24T14:52:28.523706"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:28.525376"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=civil_planning&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:28.534923"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.534950"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.536292"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.536332"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.536338"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.537540"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.537565"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.537571"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.538815"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.538840"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.538845"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.540024"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.540047"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.540053"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.541194"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.541217"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.541224"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.543366"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.543399"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.543405"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.545016"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.545043"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.545049"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.546691"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.546726"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.546736"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.548279"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:28.548303"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:28.548309"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:28.549768"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:28.549791"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:28.552114"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "河川、砂防及び海岸・海洋部門2019年",
+          "result": "完走失敗",
+          "details": "エラー発生",
+          "timestamp": "2025-06-24T14:52:28.552122"
+        }
+      ]
+    },
+    {
+      "name": "佐藤 土木花子",
+      "profile": "RCCM資格保有12年の経験豊富な技術者",
+      "total_actions": 141,
+      "success_actions": 56,
+      "test_results": [
+        {
+          "persona": "佐藤 土木花子",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:24.757899"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?question_type=basic, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:24.768040"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.768062"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.769691"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.769729"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.769738"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.771713"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.771738"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.771744"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.773243"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.773265"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.773271"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.774876"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.774898"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.774904"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.776425"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.776447"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.776453"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.777911"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.777932"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.777937"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.779208"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.779230"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.779235"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.780344"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.780365"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.780370"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.781629"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:24.781651"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:24.781657"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:24.782965"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:24.782998"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:24.785482"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "URL: /, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:26.926827"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "部門選択画面アクセス",
+          "result": "成功",
+          "details": "URL: /departments, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:26.934250"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "学習統計画面アクセス",
+          "result": "成功",
+          "details": "URL: /statistics, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:26.935525"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "復習リスト画面アクセス",
+          "result": "失敗",
+          "details": "URL: /review_list, ステータス: 404",
+          "timestamp": "2025-06-24T14:52:26.937295"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "ヘルプ画面アクセス",
+          "result": "成功",
+          "details": "URL: /help, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:26.938503"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "河川、砂防及び海岸・海洋カテゴリ画面",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:26.939944"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:29.055984"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=civil_planning&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:29.067652"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.067698"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.070225"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.070282"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.070592"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.074342"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.074379"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.074389"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.076138"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.076173"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.076181"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.078726"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.078772"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.078782"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.080660"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.080695"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.080704"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.082477"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.082514"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.082524"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.084160"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.084192"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.084202"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.085845"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.085881"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.085891"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.094972"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.095216"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.095428"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.097748"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:29.097784"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:29.100356"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "河川、砂防及び海岸・海洋部門2019年",
+          "result": "完走失敗",
+          "details": "エラー発生",
+          "timestamp": "2025-06-24T14:52:29.100370"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:29.102175"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=soil_foundation&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:29.113077"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.113121"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.118783"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.118859"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.118873"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.121288"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.121327"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.121338"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.123495"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.123531"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.123540"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.125506"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.125543"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.125602"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.126930"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.126955"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.126961"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.128072"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.128095"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.128100"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.129407"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.129435"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.129441"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.131611"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.131656"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.131664"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.134463"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.134519"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.134529"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.136525"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:29.136557"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:29.138885"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "土質及び基礎部門2019年",
+          "result": "完走失敗",
+          "details": "エラー発生",
+          "timestamp": "2025-06-24T14:52:29.138896"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:29.140579"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=road&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:29.149918"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.149946"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.151176"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.151201"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.151207"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.152251"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.152274"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.152280"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.153356"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.153380"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.153386"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.154435"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.154457"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.154462"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.155484"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.155506"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.155511"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.158269"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.158312"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.158321"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.160269"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.160296"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.160301"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.161466"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.161490"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.161496"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.162735"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.162760"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.162766"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.163832"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:29.163853"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:29.165380"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "道路部門2019年",
+          "result": "完走失敗",
+          "details": "エラー発生",
+          "timestamp": "2025-06-24T14:52:29.165389"
+        }
+      ]
+    },
+    {
+      "name": "鈴木 構造一郎",
+      "profile": "RCCM資格保有10年の経験豊富な技術者",
+      "total_actions": 141,
+      "success_actions": 56,
+      "test_results": [
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:25.289360"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?question_type=basic, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:25.300948"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.300981"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.303743"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.303778"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.303784"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.305508"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.305534"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.305540"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.307147"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.307170"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.307175"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.308407"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.308428"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.308433"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.309804"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.309825"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.309831"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.311067"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.311088"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.311093"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.312370"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.312391"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.312397"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.313681"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.313702"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.313707"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.315163"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.315184"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.315189"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.318279"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:25.318325"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:25.321425"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "URL: /, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:27.442460"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "部門選択画面アクセス",
+          "result": "成功",
+          "details": "URL: /departments, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:27.447034"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "学習統計画面アクセス",
+          "result": "成功",
+          "details": "URL: /statistics, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:27.447807"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "復習リスト画面アクセス",
+          "result": "失敗",
+          "details": "URL: /review_list, ステータス: 404",
+          "timestamp": "2025-06-24T14:52:27.449219"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "ヘルプ画面アクセス",
+          "result": "成功",
+          "details": "URL: /help, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:27.450552"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "鋼構造及びコンクリートカテゴリ画面",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:27.453162"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:29.668429"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=steel_concrete&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:29.679562"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.679593"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.681071"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.681095"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.681101"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.682505"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.682528"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.682533"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.683758"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.683780"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.683786"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.685063"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.685083"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.685089"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.686152"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.686176"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.686182"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.687331"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.687368"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.687377"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.688504"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.688527"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.688533"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.690262"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.690298"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.690358"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.692403"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.692450"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.692457"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.694042"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:29.694067"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:29.696277"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "鋼構造及びコンクリート部門2019年",
+          "result": "完走失敗",
+          "details": "エラー発生",
+          "timestamp": "2025-06-24T14:52:29.696286"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:29.697912"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=construction_planning&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:29.709313"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.709340"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.710601"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.710625"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.710632"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.711804"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.711829"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.711836"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.712998"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.713022"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.713029"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.714158"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.714181"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.714188"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.715260"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.715284"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.715290"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.717700"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.717748"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.717759"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.720163"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.720197"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.720204"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.721985"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.722011"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.722018"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.723879"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.723907"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.723913"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.725330"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:29.725353"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:29.727443"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "施工計画、施工設備及び積算部門2019年",
+          "result": "完走失敗",
+          "details": "エラー発生",
+          "timestamp": "2025-06-24T14:52:29.727453"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:29.729115"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=road&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:29.739238"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.739265"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.740899"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.740924"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.740931"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.742133"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.742156"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.742162"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.744003"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.744041"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.744049"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.745889"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.745916"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.745923"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.747676"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.747703"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.747708"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.749841"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.749869"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.749875"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.760968"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.760997"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.761003"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.762190"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.762215"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.762221"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.763716"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:29.763748"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:29.763757"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:29.767523"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:29.767550"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:29.770608"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "道路部門2019年",
+          "result": "完走失敗",
+          "details": "エラー発生",
+          "timestamp": "2025-06-24T14:52:29.770631"
+        }
+      ]
+    },
+    {
+      "name": "山田 新人",
+      "profile": "土木業界3年目未満の初心者技術者",
+      "total_actions": 140,
+      "success_actions": 56,
+      "test_results": [
+        {
+          "persona": "山田 新人",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:25.825067"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?question_type=basic, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:25.834038"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.834082"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.836668"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.836713"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.836723"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.838760"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.838790"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.838799"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.840655"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.840703"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.840713"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.843090"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.843132"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.843141"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.845370"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.845398"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.845404"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.846966"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.846993"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.846999"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.848810"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.848846"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.848855"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.851532"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.851567"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.851573"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.853265"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:25.853290"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:25.853297"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:25.854684"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:25.854705"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:25.857622"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "URL: /, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:27.956050"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "部門選択画面アクセス",
+          "result": "成功",
+          "details": "URL: /departments, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:27.961471"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "学習統計画面アクセス",
+          "result": "成功",
+          "details": "URL: /statistics, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:27.962340"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "復習リスト画面アクセス",
+          "result": "失敗",
+          "details": "URL: /review_list, ステータス: 404",
+          "timestamp": "2025-06-24T14:52:27.963750"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "ヘルプ画面アクセス",
+          "result": "成功",
+          "details": "URL: /help, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:27.964402"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:30.274451"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=urban_planning&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:30.286831"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.286903"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.288177"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.288201"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.288207"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.290553"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.290598"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.290608"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.292613"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.292652"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.292658"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.294142"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.294168"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.294174"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.295706"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.295731"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.295751"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.297102"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.297124"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.297130"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.298717"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.298749"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.298758"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.300000"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.300020"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.300025"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.301427"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.301448"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.301454"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.303088"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:30.303119"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:30.305668"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "都市計画及び地方計画部門2019年",
+          "result": "完走失敗",
+          "details": "エラー発生",
+          "timestamp": "2025-06-24T14:52:30.305696"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:30.307640"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=soil_foundation&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:30.319715"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.319742"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.321143"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.321168"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.321173"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.322330"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.322353"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.322359"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.323477"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.323501"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.323506"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.324837"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.324860"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.324866"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.326174"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.326199"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.326205"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.327388"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.327410"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.327415"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.328408"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.328429"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.328434"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.329771"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.329797"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.329803"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.333452"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.333516"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.333841"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.336481"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:30.336522"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:30.338716"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "土質及び基礎部門2019年",
+          "result": "完走失敗",
+          "details": "エラー発生",
+          "timestamp": "2025-06-24T14:52:30.338730"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-24T14:52:30.340624"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=water_supply&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-24T14:52:30.350749"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.350779"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.352130"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.352155"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.352161"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.353395"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.353420"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.353426"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.354589"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.354613"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.354618"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.355731"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.355759"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.355766"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.357944"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.357997"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.358005"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.359543"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.359569"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.359613"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.360836"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.360861"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.360867"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.362270"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.362294"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.362299"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.364296"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "失敗",
+          "details": "ボタンが見つからない",
+          "timestamp": "2025-06-24T14:52:30.364321"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-24T14:52:30.364327"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10解答送信",
+          "result": "失敗",
+          "details": "ステータス: 404",
+          "timestamp": "2025-06-24T14:52:30.365619"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-24T14:52:30.365641"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果画面表示",
+          "result": "失敗",
+          "details": "ステータス: 302",
+          "timestamp": "2025-06-24T14:52:30.367778"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "上水道及び工業用水道部門2019年",
+          "result": "完走失敗",
+          "details": "エラー発生",
+          "timestamp": "2025-06-24T14:52:30.367788"
+        }
+      ]
+    }
+  ],
+  "errors": {
+    "link_errors": [
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "復習リスト画面アクセス",
+        "details": "URL: /review_list, ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "道路カテゴリ画面",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "復習リスト画面アクセス",
+        "details": "URL: /review_list, ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "河川、砂防及び海岸・海洋カテゴリ画面",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "復習リスト画面アクセス",
+        "details": "URL: /review_list, ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "鋼構造及びコンクリートカテゴリ画面",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "復習リスト画面アクセス",
+        "details": "URL: /review_list, ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題1解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題2解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題3解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題4解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題5解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題6解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題7解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題8解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題9解答送信",
+        "details": "ステータス: 404"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "問題10解答送信",
+        "details": "ステータス: 404"
+      }
+    ],
+    "button_errors": [
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "次の問題ボタン確認",
+        "details": "ボタンが見つからない"
+      }
+    ],
+    "navigation_errors": [],
+    "display_errors": [
+      {
+        "persona": "田中 建設太郎",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      },
+      {
+        "persona": "田中 建設太郎",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      },
+      {
+        "persona": "佐藤 土木花子",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      },
+      {
+        "persona": "鈴木 構造一郎",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      },
+      {
+        "persona": "山田 新人",
+        "action": "結果画面表示",
+        "details": "ステータス: 302"
+      }
+    ]
+  },
+  "completion_rate": 200.0,
+  "result_screen_success": 0,
+  "year_2019_success": 0
+}

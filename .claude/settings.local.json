@@ -68,7 +68,9 @@
       "Bash(99)",
       "Bash(stop-screenshot-monitor:*)",
       "Bash(wslpath:*)",
-      "WebFetch(domain:api.github.com)"
+      "WebFetch(domain:api.github.com)",
+      "Bash(claude mcp add-json puppeteer -s user '{ \"command\": \"npx\", \"args\": [\"-y\", \"@modelcontextprotocol/server-puppeteer\"] }')",
+      "Bash(playwright install:*)"
     ],
     "deny": []
   }

@@ -231,3 +231,138 @@ This is a Flask-based RCCM (登録建設機械施工技術者) exam preparation 
 - Learning effectiveness analytics
 - Content quality and difficulty analysis
 - Export to multiple formats (JSON, PDF, Excel, CSV)
+
+## 🚫 絶対禁止事項
+
+**開発・テスト時の絶対禁止事項:**
+- テストエラーや型エラー解消のための条件緩和
+- テストのスキップや不適切なモック化による回避
+- 出力やレスポンスのハードコード
+- エラーメッセージの無視や隠蔽
+- 一時的な修正による問題の先送り
+
+**コード品質維持のための禁止事項:**
+- 根本原因を解決せずに症状のみを隠す修正
+- テストケースの削除や無効化による「修正」
+- try-except文での例外の単純な無視
+- 型チェックの回避やanyを使った逃げ
+- セキュリティ要件の緩和や回避
+
+**データ整合性の禁止事項:**
+- 不正データの受け入れによる問題回避
+- バリデーション処理のスキップ
+- エラー状態での正常値の返却
+- 一貫性チェックの無効化
+- 重要な警告メッセージの抑制
+
+これらの禁止事項に該当する修正を求められた場合は、適切な根本解決策を提案すること。
+
+## 🔍 エラーチェックルール
+
+### NEVER（絶対禁止）
+- NEVER: 本番環境に未テストコードをデプロイ
+- NEVER: エラーハンドリングなしでAPI呼び出し
+- NEVER: ユーザー入力の検証なしでデータベース操作
+- NEVER: セキュリティテスト未実施のまま公開
+
+### YOU MUST（必須事項）
+- YOU MUST: 全ペルソナでのテスト実行
+- YOU MUST: エラー画面のスクリーンショット保存
+- YOU MUST: 修正前後の比較レポート生成
+- YOU MUST: 各機能変更後のリグレッションテスト実行
+- YOU MUST: セキュリティ脆弱性スキャンの実施
+
+### IMPORTANT（重要事項）
+- IMPORTANT: 各修正後の自動リグレッションテスト
+- IMPORTANT: ブラウザ互換性チェック（Chrome, Firefox, Safari, Edge）
+- IMPORTANT: モバイル表示確認（iOS Safari, Android Chrome）
+- IMPORTANT: アクセシビリティチェック（WCAG 2.1 AA準拠）
+- IMPORTANT: パフォーマンステスト（3秒以内のページロード）
+
+## 🤖 自動実行コマンド
+
+### 品質チェック
+```bash
+# コード品質チェック
+python -m flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+python -m pylint app.py
+
+# 型チェック（もしmypyを使用する場合）
+# python -m mypy app.py --ignore-missing-imports
+```
+
+### テスト実行
+```bash
+# 単体テスト
+python -m pytest tests/ -v
+
+# 統合テスト
+python test_ai_features.py
+python test_gamification.py
+
+# ペルソナテスト
+python persona_comprehensive_test.py
+python persona_diversity_test.py
+python ultra_sync_user_behavior_test.py
+
+# E2Eテスト（全ペルソナ）
+python -c "
+import subprocess
+test_files = [
+    'persona_comprehensive_test.py',
+    'persona_diversity_test.py',
+    'ultra_sync_user_behavior_test.py'
+]
+for test in test_files:
+    print(f'Running {test}...')
+    subprocess.run(['python', test])
+"
+```
+
+### 画面キャプチャ
+```bash
+# スクリーンショット取得（Seleniumが必要）
+python screenshot_all_pages.py
+
+# 手動でのエラー画面確認
+python -c "
+from app import app
+with app.test_client() as client:
+    # エラーページの確認
+    print('404 Error:', client.get('/nonexistent').status_code)
+    print('Invalid data:', client.post('/exam', data={'invalid': 'data'}).status_code)
+"
+```
+
+### レポート生成
+```bash
+# テスト結果レポート
+python generate_test_report.py
+
+# カバレッジレポート
+python -m coverage run -m pytest
+python -m coverage report
+python -m coverage html
+
+# パフォーマンスレポート
+python performance_test.py
+```
+
+## 📋 チェックリスト
+
+### デプロイ前チェックリスト
+- [ ] 全ペルソナテスト合格（成功率95%以上）
+- [ ] セキュリティテスト合格（SQLインジェクション、XSS、CSRF）
+- [ ] アクセシビリティテスト合格（スクリーンリーダー対応）
+- [ ] モバイル表示テスト合格
+- [ ] パフォーマンステスト合格（3秒以内）
+- [ ] エラーハンドリング確認
+- [ ] ログ出力確認
+- [ ] バックアップ作成
+
+### 修正後チェックリスト
+- [ ] 影響範囲の特定
+- [ ] リグレッションテスト実行
+- [ ] 修正前後の比較スクリーンショット
+- [ ] パフォーマンス影響確認
+- [ ] ドキュメント更新

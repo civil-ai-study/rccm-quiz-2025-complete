@@ -1,0 +1,1001 @@
+{
+  "test_summary": {
+    "total_tests": 165,
+    "passed": 154,
+    "failed": 11,
+    "success_rate": 93.33333333333333
+  },
+  "test_duration": "0:00:00.527857",
+  "test_results": [
+    {
+      "test_name": "4-2_2019.csv存在確認",
+      "passed": true,
+      "details": "ファイルパス: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2019.csv",
+      "timestamp": "2025-06-24T14:44:49.490693"
+    },
+    {
+      "test_name": "2019年問題数確認",
+      "passed": true,
+      "details": "問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.490776"
+    },
+    {
+      "test_name": "2019年度データ整合性",
+      "passed": true,
+      "details": "全問題の年度が2019: True",
+      "timestamp": "2025-06-24T14:44:49.490834"
+    },
+    {
+      "test_name": "カテゴリ分布確認",
+      "passed": true,
+      "details": "カテゴリ種類: {'森林土木', '建設環境', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '施工計画、施工設備及び積算', '鋼構造及びコンクリート', '農業土木', '造園', '土質及び基礎', '上水道及び工業用水道', '道路', 'トンネル'}",
+      "timestamp": "2025-06-24T14:44:49.490913"
+    },
+    {
+      "test_name": "utils.py CSVプリロードリスト",
+      "passed": true,
+      "details": "CSVファイルリストに4-2_2019.csv含まれる",
+      "timestamp": "2025-06-24T14:44:49.508597"
+    },
+    {
+      "test_name": "load_rccm年度範囲",
+      "passed": true,
+      "details": "range(2008, 2020)で2019年を含む",
+      "timestamp": "2025-06-24T14:44:49.511348"
+    },
+    {
+      "test_name": "department_categories年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.515332"
+    },
+    {
+      "test_name": "department_study年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.518962"
+    },
+    {
+      "test_name": "Flask 2019年ルート",
+      "passed": true,
+      "details": "ステータスコード: 200",
+      "timestamp": "2025-06-24T14:44:49.572511"
+    },
+    {
+      "test_name": "カテゴリページ2019年ボタン",
+      "passed": false,
+      "details": "2019年度ボタン表示確認",
+      "timestamp": "2025-06-24T14:44:49.579118"
+    },
+    {
+      "test_name": "データロード2019年問題",
+      "passed": true,
+      "details": "2019年問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.579898"
+    },
+    {
+      "test_name": "部門別2019年分布",
+      "passed": true,
+      "details": "部門別問題数: {'道路': 29, '河川、砂防及び海岸・海洋': 29, '土質及び基礎': 30, '鋼構造及びコンクリート': 31, 'トンネル': 29, '施工計画、施工設備及び積算': 30, '建設環境': 30, '上水道及び工業用水道': 30, '農業土木': 30, '森林土木': 29, '都市計画及び地方計画': 29, '造園': 30}",
+      "timestamp": "2025-06-24T14:44:49.579950"
+    },
+    {
+      "test_name": "static/js/main.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.583276"
+    },
+    {
+      "test_name": "static/js/exam.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.586919"
+    },
+    {
+      "test_name": "static/js/categories.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.590162"
+    },
+    {
+      "test_name": "4-2_2019.csv存在確認",
+      "passed": true,
+      "details": "ファイルパス: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2019.csv",
+      "timestamp": "2025-06-24T14:44:49.592482"
+    },
+    {
+      "test_name": "2019年問題数確認",
+      "passed": true,
+      "details": "問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.592519"
+    },
+    {
+      "test_name": "2019年度データ整合性",
+      "passed": true,
+      "details": "全問題の年度が2019: True",
+      "timestamp": "2025-06-24T14:44:49.592553"
+    },
+    {
+      "test_name": "カテゴリ分布確認",
+      "passed": true,
+      "details": "カテゴリ種類: {'森林土木', '建設環境', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '施工計画、施工設備及び積算', '鋼構造及びコンクリート', '農業土木', '造園', '土質及び基礎', '上水道及び工業用水道', '道路', 'トンネル'}",
+      "timestamp": "2025-06-24T14:44:49.592586"
+    },
+    {
+      "test_name": "utils.py CSVプリロードリスト",
+      "passed": true,
+      "details": "CSVファイルリストに4-2_2019.csv含まれる",
+      "timestamp": "2025-06-24T14:44:49.594104"
+    },
+    {
+      "test_name": "load_rccm年度範囲",
+      "passed": true,
+      "details": "range(2008, 2020)で2019年を含む",
+      "timestamp": "2025-06-24T14:44:49.595565"
+    },
+    {
+      "test_name": "department_categories年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.597271"
+    },
+    {
+      "test_name": "department_study年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.598978"
+    },
+    {
+      "test_name": "Flask 2019年ルート",
+      "passed": true,
+      "details": "ステータスコード: 200",
+      "timestamp": "2025-06-24T14:44:49.606221"
+    },
+    {
+      "test_name": "カテゴリページ2019年ボタン",
+      "passed": false,
+      "details": "2019年度ボタン表示確認",
+      "timestamp": "2025-06-24T14:44:49.607563"
+    },
+    {
+      "test_name": "データロード2019年問題",
+      "passed": true,
+      "details": "2019年問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.608383"
+    },
+    {
+      "test_name": "部門別2019年分布",
+      "passed": true,
+      "details": "部門別問題数: {'道路': 29, '河川、砂防及び海岸・海洋': 29, '土質及び基礎': 30, '鋼構造及びコンクリート': 31, 'トンネル': 29, '施工計画、施工設備及び積算': 30, '建設環境': 30, '上水道及び工業用水道': 30, '農業土木': 30, '森林土木': 29, '都市計画及び地方計画': 29, '造園': 30}",
+      "timestamp": "2025-06-24T14:44:49.608440"
+    },
+    {
+      "test_name": "static/js/main.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.612864"
+    },
+    {
+      "test_name": "static/js/exam.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.617482"
+    },
+    {
+      "test_name": "static/js/categories.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.620783"
+    },
+    {
+      "test_name": "4-2_2019.csv存在確認",
+      "passed": true,
+      "details": "ファイルパス: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2019.csv",
+      "timestamp": "2025-06-24T14:44:49.623230"
+    },
+    {
+      "test_name": "2019年問題数確認",
+      "passed": true,
+      "details": "問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.623269"
+    },
+    {
+      "test_name": "2019年度データ整合性",
+      "passed": true,
+      "details": "全問題の年度が2019: True",
+      "timestamp": "2025-06-24T14:44:49.623303"
+    },
+    {
+      "test_name": "カテゴリ分布確認",
+      "passed": true,
+      "details": "カテゴリ種類: {'森林土木', '建設環境', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '施工計画、施工設備及び積算', '鋼構造及びコンクリート', '農業土木', '造園', '土質及び基礎', '上水道及び工業用水道', '道路', 'トンネル'}",
+      "timestamp": "2025-06-24T14:44:49.623336"
+    },
+    {
+      "test_name": "utils.py CSVプリロードリスト",
+      "passed": true,
+      "details": "CSVファイルリストに4-2_2019.csv含まれる",
+      "timestamp": "2025-06-24T14:44:49.624772"
+    },
+    {
+      "test_name": "load_rccm年度範囲",
+      "passed": true,
+      "details": "range(2008, 2020)で2019年を含む",
+      "timestamp": "2025-06-24T14:44:49.626595"
+    },
+    {
+      "test_name": "department_categories年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.628474"
+    },
+    {
+      "test_name": "department_study年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.630195"
+    },
+    {
+      "test_name": "Flask 2019年ルート",
+      "passed": true,
+      "details": "ステータスコード: 200",
+      "timestamp": "2025-06-24T14:44:49.638102"
+    },
+    {
+      "test_name": "カテゴリページ2019年ボタン",
+      "passed": false,
+      "details": "2019年度ボタン表示確認",
+      "timestamp": "2025-06-24T14:44:49.639676"
+    },
+    {
+      "test_name": "データロード2019年問題",
+      "passed": true,
+      "details": "2019年問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.640647"
+    },
+    {
+      "test_name": "部門別2019年分布",
+      "passed": true,
+      "details": "部門別問題数: {'道路': 29, '河川、砂防及び海岸・海洋': 29, '土質及び基礎': 30, '鋼構造及びコンクリート': 31, 'トンネル': 29, '施工計画、施工設備及び積算': 30, '建設環境': 30, '上水道及び工業用水道': 30, '農業土木': 30, '森林土木': 29, '都市計画及び地方計画': 29, '造園': 30}",
+      "timestamp": "2025-06-24T14:44:49.640726"
+    },
+    {
+      "test_name": "static/js/main.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.645223"
+    },
+    {
+      "test_name": "static/js/exam.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.649626"
+    },
+    {
+      "test_name": "static/js/categories.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.653868"
+    },
+    {
+      "test_name": "4-2_2019.csv存在確認",
+      "passed": true,
+      "details": "ファイルパス: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2019.csv",
+      "timestamp": "2025-06-24T14:44:49.656896"
+    },
+    {
+      "test_name": "2019年問題数確認",
+      "passed": true,
+      "details": "問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.656953"
+    },
+    {
+      "test_name": "2019年度データ整合性",
+      "passed": true,
+      "details": "全問題の年度が2019: True",
+      "timestamp": "2025-06-24T14:44:49.657010"
+    },
+    {
+      "test_name": "カテゴリ分布確認",
+      "passed": true,
+      "details": "カテゴリ種類: {'森林土木', '建設環境', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '施工計画、施工設備及び積算', '鋼構造及びコンクリート', '農業土木', '造園', '土質及び基礎', '上水道及び工業用水道', '道路', 'トンネル'}",
+      "timestamp": "2025-06-24T14:44:49.657064"
+    },
+    {
+      "test_name": "utils.py CSVプリロードリスト",
+      "passed": true,
+      "details": "CSVファイルリストに4-2_2019.csv含まれる",
+      "timestamp": "2025-06-24T14:44:49.659347"
+    },
+    {
+      "test_name": "load_rccm年度範囲",
+      "passed": true,
+      "details": "range(2008, 2020)で2019年を含む",
+      "timestamp": "2025-06-24T14:44:49.661485"
+    },
+    {
+      "test_name": "department_categories年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.664884"
+    },
+    {
+      "test_name": "department_study年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.668241"
+    },
+    {
+      "test_name": "Flask 2019年ルート",
+      "passed": true,
+      "details": "ステータスコード: 200",
+      "timestamp": "2025-06-24T14:44:49.678472"
+    },
+    {
+      "test_name": "カテゴリページ2019年ボタン",
+      "passed": false,
+      "details": "2019年度ボタン表示確認",
+      "timestamp": "2025-06-24T14:44:49.680837"
+    },
+    {
+      "test_name": "データロード2019年問題",
+      "passed": true,
+      "details": "2019年問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.682226"
+    },
+    {
+      "test_name": "部門別2019年分布",
+      "passed": true,
+      "details": "部門別問題数: {'道路': 29, '河川、砂防及び海岸・海洋': 29, '土質及び基礎': 30, '鋼構造及びコンクリート': 31, 'トンネル': 29, '施工計画、施工設備及び積算': 30, '建設環境': 30, '上水道及び工業用水道': 30, '農業土木': 30, '森林土木': 29, '都市計画及び地方計画': 29, '造園': 30}",
+      "timestamp": "2025-06-24T14:44:49.682311"
+    },
+    {
+      "test_name": "static/js/main.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.686934"
+    },
+    {
+      "test_name": "static/js/exam.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.690456"
+    },
+    {
+      "test_name": "static/js/categories.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.694776"
+    },
+    {
+      "test_name": "4-2_2019.csv存在確認",
+      "passed": true,
+      "details": "ファイルパス: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2019.csv",
+      "timestamp": "2025-06-24T14:44:49.697569"
+    },
+    {
+      "test_name": "2019年問題数確認",
+      "passed": true,
+      "details": "問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.697624"
+    },
+    {
+      "test_name": "2019年度データ整合性",
+      "passed": true,
+      "details": "全問題の年度が2019: True",
+      "timestamp": "2025-06-24T14:44:49.697683"
+    },
+    {
+      "test_name": "カテゴリ分布確認",
+      "passed": true,
+      "details": "カテゴリ種類: {'森林土木', '建設環境', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '施工計画、施工設備及び積算', '鋼構造及びコンクリート', '農業土木', '造園', '土質及び基礎', '上水道及び工業用水道', '道路', 'トンネル'}",
+      "timestamp": "2025-06-24T14:44:49.697736"
+    },
+    {
+      "test_name": "utils.py CSVプリロードリスト",
+      "passed": true,
+      "details": "CSVファイルリストに4-2_2019.csv含まれる",
+      "timestamp": "2025-06-24T14:44:49.699376"
+    },
+    {
+      "test_name": "load_rccm年度範囲",
+      "passed": true,
+      "details": "range(2008, 2020)で2019年を含む",
+      "timestamp": "2025-06-24T14:44:49.700976"
+    },
+    {
+      "test_name": "department_categories年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.704278"
+    },
+    {
+      "test_name": "department_study年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.708095"
+    },
+    {
+      "test_name": "Flask 2019年ルート",
+      "passed": true,
+      "details": "ステータスコード: 200",
+      "timestamp": "2025-06-24T14:44:49.716104"
+    },
+    {
+      "test_name": "カテゴリページ2019年ボタン",
+      "passed": false,
+      "details": "2019年度ボタン表示確認",
+      "timestamp": "2025-06-24T14:44:49.717570"
+    },
+    {
+      "test_name": "データロード2019年問題",
+      "passed": true,
+      "details": "2019年問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.718604"
+    },
+    {
+      "test_name": "部門別2019年分布",
+      "passed": true,
+      "details": "部門別問題数: {'道路': 29, '河川、砂防及び海岸・海洋': 29, '土質及び基礎': 30, '鋼構造及びコンクリート': 31, 'トンネル': 29, '施工計画、施工設備及び積算': 30, '建設環境': 30, '上水道及び工業用水道': 30, '農業土木': 30, '森林土木': 29, '都市計画及び地方計画': 29, '造園': 30}",
+      "timestamp": "2025-06-24T14:44:49.718800"
+    },
+    {
+      "test_name": "static/js/main.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.723820"
+    },
+    {
+      "test_name": "static/js/exam.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.728156"
+    },
+    {
+      "test_name": "static/js/categories.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.731973"
+    },
+    {
+      "test_name": "4-2_2019.csv存在確認",
+      "passed": true,
+      "details": "ファイルパス: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2019.csv",
+      "timestamp": "2025-06-24T14:44:49.735634"
+    },
+    {
+      "test_name": "2019年問題数確認",
+      "passed": true,
+      "details": "問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.735717"
+    },
+    {
+      "test_name": "2019年度データ整合性",
+      "passed": true,
+      "details": "全問題の年度が2019: True",
+      "timestamp": "2025-06-24T14:44:49.735778"
+    },
+    {
+      "test_name": "カテゴリ分布確認",
+      "passed": true,
+      "details": "カテゴリ種類: {'森林土木', '建設環境', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '施工計画、施工設備及び積算', '鋼構造及びコンクリート', '農業土木', '造園', '土質及び基礎', '上水道及び工業用水道', '道路', 'トンネル'}",
+      "timestamp": "2025-06-24T14:44:49.735835"
+    },
+    {
+      "test_name": "utils.py CSVプリロードリスト",
+      "passed": true,
+      "details": "CSVファイルリストに4-2_2019.csv含まれる",
+      "timestamp": "2025-06-24T14:44:49.737818"
+    },
+    {
+      "test_name": "load_rccm年度範囲",
+      "passed": true,
+      "details": "range(2008, 2020)で2019年を含む",
+      "timestamp": "2025-06-24T14:44:49.739345"
+    },
+    {
+      "test_name": "department_categories年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.741325"
+    },
+    {
+      "test_name": "department_study年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.743625"
+    },
+    {
+      "test_name": "Flask 2019年ルート",
+      "passed": true,
+      "details": "ステータスコード: 200",
+      "timestamp": "2025-06-24T14:44:49.758270"
+    },
+    {
+      "test_name": "カテゴリページ2019年ボタン",
+      "passed": false,
+      "details": "2019年度ボタン表示確認",
+      "timestamp": "2025-06-24T14:44:49.762486"
+    },
+    {
+      "test_name": "データロード2019年問題",
+      "passed": true,
+      "details": "2019年問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.763660"
+    },
+    {
+      "test_name": "部門別2019年分布",
+      "passed": true,
+      "details": "部門別問題数: {'道路': 29, '河川、砂防及び海岸・海洋': 29, '土質及び基礎': 30, '鋼構造及びコンクリート': 31, 'トンネル': 29, '施工計画、施工設備及び積算': 30, '建設環境': 30, '上水道及び工業用水道': 30, '農業土木': 30, '森林土木': 29, '都市計画及び地方計画': 29, '造園': 30}",
+      "timestamp": "2025-06-24T14:44:49.763750"
+    },
+    {
+      "test_name": "static/js/main.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.769369"
+    },
+    {
+      "test_name": "static/js/exam.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.776059"
+    },
+    {
+      "test_name": "static/js/categories.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.789952"
+    },
+    {
+      "test_name": "4-2_2019.csv存在確認",
+      "passed": true,
+      "details": "ファイルパス: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2019.csv",
+      "timestamp": "2025-06-24T14:44:49.807680"
+    },
+    {
+      "test_name": "2019年問題数確認",
+      "passed": true,
+      "details": "問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.807756"
+    },
+    {
+      "test_name": "2019年度データ整合性",
+      "passed": true,
+      "details": "全問題の年度が2019: True",
+      "timestamp": "2025-06-24T14:44:49.807810"
+    },
+    {
+      "test_name": "カテゴリ分布確認",
+      "passed": true,
+      "details": "カテゴリ種類: {'森林土木', '建設環境', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '施工計画、施工設備及び積算', '鋼構造及びコンクリート', '農業土木', '造園', '土質及び基礎', '上水道及び工業用水道', '道路', 'トンネル'}",
+      "timestamp": "2025-06-24T14:44:49.807867"
+    },
+    {
+      "test_name": "utils.py CSVプリロードリスト",
+      "passed": true,
+      "details": "CSVファイルリストに4-2_2019.csv含まれる",
+      "timestamp": "2025-06-24T14:44:49.809688"
+    },
+    {
+      "test_name": "load_rccm年度範囲",
+      "passed": true,
+      "details": "range(2008, 2020)で2019年を含む",
+      "timestamp": "2025-06-24T14:44:49.811397"
+    },
+    {
+      "test_name": "department_categories年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.815488"
+    },
+    {
+      "test_name": "department_study年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.820640"
+    },
+    {
+      "test_name": "Flask 2019年ルート",
+      "passed": true,
+      "details": "ステータスコード: 200",
+      "timestamp": "2025-06-24T14:44:49.841635"
+    },
+    {
+      "test_name": "カテゴリページ2019年ボタン",
+      "passed": false,
+      "details": "2019年度ボタン表示確認",
+      "timestamp": "2025-06-24T14:44:49.843660"
+    },
+    {
+      "test_name": "データロード2019年問題",
+      "passed": true,
+      "details": "2019年問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.844632"
+    },
+    {
+      "test_name": "部門別2019年分布",
+      "passed": true,
+      "details": "部門別問題数: {'道路': 29, '河川、砂防及び海岸・海洋': 29, '土質及び基礎': 30, '鋼構造及びコンクリート': 31, 'トンネル': 29, '施工計画、施工設備及び積算': 30, '建設環境': 30, '上水道及び工業用水道': 30, '農業土木': 30, '森林土木': 29, '都市計画及び地方計画': 29, '造園': 30}",
+      "timestamp": "2025-06-24T14:44:49.844721"
+    },
+    {
+      "test_name": "static/js/main.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.849595"
+    },
+    {
+      "test_name": "static/js/exam.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.853791"
+    },
+    {
+      "test_name": "static/js/categories.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.857403"
+    },
+    {
+      "test_name": "4-2_2019.csv存在確認",
+      "passed": true,
+      "details": "ファイルパス: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2019.csv",
+      "timestamp": "2025-06-24T14:44:49.860025"
+    },
+    {
+      "test_name": "2019年問題数確認",
+      "passed": true,
+      "details": "問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.860065"
+    },
+    {
+      "test_name": "2019年度データ整合性",
+      "passed": true,
+      "details": "全問題の年度が2019: True",
+      "timestamp": "2025-06-24T14:44:49.860101"
+    },
+    {
+      "test_name": "カテゴリ分布確認",
+      "passed": true,
+      "details": "カテゴリ種類: {'森林土木', '建設環境', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '施工計画、施工設備及び積算', '鋼構造及びコンクリート', '農業土木', '造園', '土質及び基礎', '上水道及び工業用水道', '道路', 'トンネル'}",
+      "timestamp": "2025-06-24T14:44:49.860141"
+    },
+    {
+      "test_name": "utils.py CSVプリロードリスト",
+      "passed": true,
+      "details": "CSVファイルリストに4-2_2019.csv含まれる",
+      "timestamp": "2025-06-24T14:44:49.862659"
+    },
+    {
+      "test_name": "load_rccm年度範囲",
+      "passed": true,
+      "details": "range(2008, 2020)で2019年を含む",
+      "timestamp": "2025-06-24T14:44:49.864294"
+    },
+    {
+      "test_name": "department_categories年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.866531"
+    },
+    {
+      "test_name": "department_study年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.868953"
+    },
+    {
+      "test_name": "Flask 2019年ルート",
+      "passed": true,
+      "details": "ステータスコード: 200",
+      "timestamp": "2025-06-24T14:44:49.876652"
+    },
+    {
+      "test_name": "カテゴリページ2019年ボタン",
+      "passed": false,
+      "details": "2019年度ボタン表示確認",
+      "timestamp": "2025-06-24T14:44:49.878127"
+    },
+    {
+      "test_name": "データロード2019年問題",
+      "passed": true,
+      "details": "2019年問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.879222"
+    },
+    {
+      "test_name": "部門別2019年分布",
+      "passed": true,
+      "details": "部門別問題数: {'道路': 29, '河川、砂防及び海岸・海洋': 29, '土質及び基礎': 30, '鋼構造及びコンクリート': 31, 'トンネル': 29, '施工計画、施工設備及び積算': 30, '建設環境': 30, '上水道及び工業用水道': 30, '農業土木': 30, '森林土木': 29, '都市計画及び地方計画': 29, '造園': 30}",
+      "timestamp": "2025-06-24T14:44:49.879325"
+    },
+    {
+      "test_name": "static/js/main.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.883502"
+    },
+    {
+      "test_name": "static/js/exam.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.887284"
+    },
+    {
+      "test_name": "static/js/categories.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.890841"
+    },
+    {
+      "test_name": "4-2_2019.csv存在確認",
+      "passed": true,
+      "details": "ファイルパス: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2019.csv",
+      "timestamp": "2025-06-24T14:44:49.894339"
+    },
+    {
+      "test_name": "2019年問題数確認",
+      "passed": true,
+      "details": "問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.894403"
+    },
+    {
+      "test_name": "2019年度データ整合性",
+      "passed": true,
+      "details": "全問題の年度が2019: True",
+      "timestamp": "2025-06-24T14:44:49.894437"
+    },
+    {
+      "test_name": "カテゴリ分布確認",
+      "passed": true,
+      "details": "カテゴリ種類: {'森林土木', '建設環境', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '施工計画、施工設備及び積算', '鋼構造及びコンクリート', '農業土木', '造園', '土質及び基礎', '上水道及び工業用水道', '道路', 'トンネル'}",
+      "timestamp": "2025-06-24T14:44:49.894471"
+    },
+    {
+      "test_name": "utils.py CSVプリロードリスト",
+      "passed": true,
+      "details": "CSVファイルリストに4-2_2019.csv含まれる",
+      "timestamp": "2025-06-24T14:44:49.896030"
+    },
+    {
+      "test_name": "load_rccm年度範囲",
+      "passed": true,
+      "details": "range(2008, 2020)で2019年を含む",
+      "timestamp": "2025-06-24T14:44:49.897567"
+    },
+    {
+      "test_name": "department_categories年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.899489"
+    },
+    {
+      "test_name": "department_study年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.902072"
+    },
+    {
+      "test_name": "Flask 2019年ルート",
+      "passed": true,
+      "details": "ステータスコード: 200",
+      "timestamp": "2025-06-24T14:44:49.911223"
+    },
+    {
+      "test_name": "カテゴリページ2019年ボタン",
+      "passed": false,
+      "details": "2019年度ボタン表示確認",
+      "timestamp": "2025-06-24T14:44:49.912494"
+    },
+    {
+      "test_name": "データロード2019年問題",
+      "passed": true,
+      "details": "2019年問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.913216"
+    },
+    {
+      "test_name": "部門別2019年分布",
+      "passed": true,
+      "details": "部門別問題数: {'道路': 29, '河川、砂防及び海岸・海洋': 29, '土質及び基礎': 30, '鋼構造及びコンクリート': 31, 'トンネル': 29, '施工計画、施工設備及び積算': 30, '建設環境': 30, '上水道及び工業用水道': 30, '農業土木': 30, '森林土木': 29, '都市計画及び地方計画': 29, '造園': 30}",
+      "timestamp": "2025-06-24T14:44:49.913266"
+    },
+    {
+      "test_name": "static/js/main.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.917320"
+    },
+    {
+      "test_name": "static/js/exam.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.921871"
+    },
+    {
+      "test_name": "static/js/categories.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.927000"
+    },
+    {
+      "test_name": "4-2_2019.csv存在確認",
+      "passed": true,
+      "details": "ファイルパス: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2019.csv",
+      "timestamp": "2025-06-24T14:44:49.929699"
+    },
+    {
+      "test_name": "2019年問題数確認",
+      "passed": true,
+      "details": "問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.929756"
+    },
+    {
+      "test_name": "2019年度データ整合性",
+      "passed": true,
+      "details": "全問題の年度が2019: True",
+      "timestamp": "2025-06-24T14:44:49.929816"
+    },
+    {
+      "test_name": "カテゴリ分布確認",
+      "passed": true,
+      "details": "カテゴリ種類: {'森林土木', '建設環境', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '施工計画、施工設備及び積算', '鋼構造及びコンクリート', '農業土木', '造園', '土質及び基礎', '上水道及び工業用水道', '道路', 'トンネル'}",
+      "timestamp": "2025-06-24T14:44:49.929898"
+    },
+    {
+      "test_name": "utils.py CSVプリロードリスト",
+      "passed": true,
+      "details": "CSVファイルリストに4-2_2019.csv含まれる",
+      "timestamp": "2025-06-24T14:44:49.931608"
+    },
+    {
+      "test_name": "load_rccm年度範囲",
+      "passed": true,
+      "details": "range(2008, 2020)で2019年を含む",
+      "timestamp": "2025-06-24T14:44:49.936277"
+    },
+    {
+      "test_name": "department_categories年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.938568"
+    },
+    {
+      "test_name": "department_study年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.940447"
+    },
+    {
+      "test_name": "Flask 2019年ルート",
+      "passed": true,
+      "details": "ステータスコード: 200",
+      "timestamp": "2025-06-24T14:44:49.951608"
+    },
+    {
+      "test_name": "カテゴリページ2019年ボタン",
+      "passed": false,
+      "details": "2019年度ボタン表示確認",
+      "timestamp": "2025-06-24T14:44:49.953807"
+    },
+    {
+      "test_name": "データロード2019年問題",
+      "passed": true,
+      "details": "2019年問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.954957"
+    },
+    {
+      "test_name": "部門別2019年分布",
+      "passed": true,
+      "details": "部門別問題数: {'道路': 29, '河川、砂防及び海岸・海洋': 29, '土質及び基礎': 30, '鋼構造及びコンクリート': 31, 'トンネル': 29, '施工計画、施工設備及び積算': 30, '建設環境': 30, '上水道及び工業用水道': 30, '農業土木': 30, '森林土木': 29, '都市計画及び地方計画': 29, '造園': 30}",
+      "timestamp": "2025-06-24T14:44:49.955069"
+    },
+    {
+      "test_name": "static/js/main.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.963966"
+    },
+    {
+      "test_name": "static/js/exam.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.968399"
+    },
+    {
+      "test_name": "static/js/categories.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:49.972317"
+    },
+    {
+      "test_name": "4-2_2019.csv存在確認",
+      "passed": true,
+      "details": "ファイルパス: /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2019.csv",
+      "timestamp": "2025-06-24T14:44:49.976979"
+    },
+    {
+      "test_name": "2019年問題数確認",
+      "passed": true,
+      "details": "問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.977040"
+    },
+    {
+      "test_name": "2019年度データ整合性",
+      "passed": true,
+      "details": "全問題の年度が2019: True",
+      "timestamp": "2025-06-24T14:44:49.977076"
+    },
+    {
+      "test_name": "カテゴリ分布確認",
+      "passed": true,
+      "details": "カテゴリ種類: {'森林土木', '建設環境', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '施工計画、施工設備及び積算', '鋼構造及びコンクリート', '農業土木', '造園', '土質及び基礎', '上水道及び工業用水道', '道路', 'トンネル'}",
+      "timestamp": "2025-06-24T14:44:49.977110"
+    },
+    {
+      "test_name": "utils.py CSVプリロードリスト",
+      "passed": true,
+      "details": "CSVファイルリストに4-2_2019.csv含まれる",
+      "timestamp": "2025-06-24T14:44:49.978753"
+    },
+    {
+      "test_name": "load_rccm年度範囲",
+      "passed": true,
+      "details": "range(2008, 2020)で2019年を含む",
+      "timestamp": "2025-06-24T14:44:49.980325"
+    },
+    {
+      "test_name": "department_categories年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.982646"
+    },
+    {
+      "test_name": "department_study年度UI",
+      "passed": true,
+      "details": "年度選択UIに2019年表示",
+      "timestamp": "2025-06-24T14:44:49.984768"
+    },
+    {
+      "test_name": "Flask 2019年ルート",
+      "passed": true,
+      "details": "ステータスコード: 200",
+      "timestamp": "2025-06-24T14:44:49.994716"
+    },
+    {
+      "test_name": "カテゴリページ2019年ボタン",
+      "passed": false,
+      "details": "2019年度ボタン表示確認",
+      "timestamp": "2025-06-24T14:44:49.996010"
+    },
+    {
+      "test_name": "データロード2019年問題",
+      "passed": true,
+      "details": "2019年問題数: 356",
+      "timestamp": "2025-06-24T14:44:49.996968"
+    },
+    {
+      "test_name": "部門別2019年分布",
+      "passed": true,
+      "details": "部門別問題数: {'道路': 29, '河川、砂防及び海岸・海洋': 29, '土質及び基礎': 30, '鋼構造及びコンクリート': 31, 'トンネル': 29, '施工計画、施工設備及び積算': 30, '建設環境': 30, '上水道及び工業用水道': 30, '農業土木': 30, '森林土木': 29, '都市計画及び地方計画': 29, '造園': 30}",
+      "timestamp": "2025-06-24T14:44:49.997059"
+    },
+    {
+      "test_name": "static/js/main.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:50.002154"
+    },
+    {
+      "test_name": "static/js/exam.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:50.007388"
+    },
+    {
+      "test_name": "static/js/categories.js確認",
+      "passed": true,
+      "details": "問題なし",
+      "timestamp": "2025-06-24T14:44:50.015371"
+    }
+  ]
+}
