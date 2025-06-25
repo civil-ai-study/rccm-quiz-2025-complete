@@ -88,7 +88,7 @@
             <!-- 確実な次問題ボタン表示（複数のフォールバック仕組み） -->
             {% set question_num = current_question_number if current_question_number is defined and current_question_number is not none else 1 %}
             {% set total_num = total_questions if total_questions is defined and total_questions is not none else 10 %}
-            {% set is_final = is_last_question if is_last_question is defined and is_last_question is not none else (question_num >= 10 and question_num >= total_num) %}
+            {% set is_final = is_last_question if is_last_question is defined and is_last_question is not none else (question_num >= total_num) %}
             
             {% if not is_final %}
                 <!-- 次の問題へボタン（確実に表示される） - 視認性強化 -->

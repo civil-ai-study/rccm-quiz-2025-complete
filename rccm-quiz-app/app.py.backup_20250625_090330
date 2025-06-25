@@ -1562,66 +1562,62 @@ def exam():
                             session.modified = True
                             exam_question_ids = stored_review_ids
                             current_no = current_index
-                            # 🔥 CRITICAL: 復習セッション再構築を無効化（無限ループ防止）
-                            # logger.info(f"復習セッション再構築成功: {len(stored_review_ids)}問, 現在位置{current_index}")
+                            logger.info(f"復習セッション再構築成功: {len(stored_review_ids)}問, 現在位置{current_index}")
                         else:
-                            # 🔥 CRITICAL: 復習セッション再構築を無効化（無限ループ防止）
-                            # # 🔥 CRITICAL: 復習問題IDが見つからない場合の安定復習セッション再生成（ウルトラシンク修正）
-                            # 🔥 CRITICAL: 復習セッション再構築を無効化（無限ループ防止）
-                            # logger.warning(f"復習問題ID {qid} がセッション内に見つからないため、安定復習セッション再生成実行")
+                            # 🔥 CRITICAL: 復習問題IDが見つからない場合の安定復習セッション再生成（ウルトラシンク修正）
+                            logger.warning(f"復習問題ID {qid} がセッション内に見つからないため、安定復習セッション再生成実行")
                             
-                            # # 現在のSRSデータとブックマークから復習セッションを再生成
-                            # srs_data = session.get('advanced_srs', {})
-                            # bookmarks = session.get('bookmarks', [])
+                            # 現在のSRSデータとブックマークから復習セッションを再生成
+                            srs_data = session.get('advanced_srs', {})
+                            bookmarks = session.get('bookmarks', [])
                             
-                            # # 復習対象問題IDを統合（安定版）
-                            # all_review_ids = set()
+                            # 復習対象問題IDを統合（安定版）
+                            all_review_ids = set()
                             
-                            # # SRSデータから復習問題を取得
-                            # for review_qid, srs_info in srs_data.items():
-                                # if review_qid and str(review_qid).strip() and isinstance(srs_info, dict):
-                                    # all_review_ids.add(str(review_qid))
+                            # SRSデータから復習問題を取得
+                            for review_qid, srs_info in srs_data.items():
+                                if review_qid and str(review_qid).strip() and isinstance(srs_info, dict):
+                                    all_review_ids.add(str(review_qid))
                             
-                            # # ブックマークから復習問題を取得
-                            # for review_qid in bookmarks:
-                                # if review_qid and str(review_qid).strip():
-                                    # all_review_ids.add(str(review_qid))
+                            # ブックマークから復習問題を取得
+                            for review_qid in bookmarks:
+                                if review_qid and str(review_qid).strip():
+                                    all_review_ids.add(str(review_qid))
                             
-                            # # 現在の問題IDを最優先で含める
-                            # all_review_ids.add(str(qid))
+                            # 現在の問題IDを最優先で含める
+                            all_review_ids.add(str(qid))
                             
-                            # # 安定した順序でソート（数値IDに変換）
-                            # review_question_ids = []
-                            # for review_id in sorted(all_review_ids):
-                                # try:
-                                    # num_id = int(review_id)
-                                    # # 問題データが存在するかチェック
-                                    # if any(int(q.get('id', 0)) == num_id for q in all_questions):
-                                        # review_question_ids.append(num_id)
-                                # except (ValueError, TypeError):
-                                    # logger.warning(f"無効な復習問題ID: {review_id}")
-                                    # continue
+                            # 安定した順序でソート（数値IDに変換）
+                            review_question_ids = []
+                            for review_id in sorted(all_review_ids):
+                                try:
+                                    num_id = int(review_id)
+                                    # 問題データが存在するかチェック
+                                    if any(int(q.get('id', 0)) == num_id for q in all_questions):
+                                        review_question_ids.append(num_id)
+                                except (ValueError, TypeError):
+                                    logger.warning(f"無効な復習問題ID: {review_id}")
+                                    continue
                             
-                            # if review_question_ids:
-                                # # 現在の問題の位置を正確に特定
-                                # try:
-                                    # current_index = review_question_ids.index(qid)
-                                # except ValueError:
-                                    # current_index = 0  # 見つからない場合は最初から
+                            if review_question_ids:
+                                # 現在の問題の位置を正確に特定
+                                try:
+                                    current_index = review_question_ids.index(qid)
+                                except ValueError:
+                                    current_index = 0  # 見つからない場合は最初から
                                 
-                                # # セッション状態を確実に更新
-                                # session['exam_question_ids'] = review_question_ids
-                                # session['exam_current'] = current_index
-                                # session['selected_question_type'] = 'review'
-                                # session['exam_category'] = f'復習問題（再構築{len(review_question_ids)}問）'
-                                # session['review_session_restored'] = True  # 復習セッション復旧フラグ
-                                # session.modified = True
+                                # セッション状態を確実に更新
+                                session['exam_question_ids'] = review_question_ids
+                                session['exam_current'] = current_index
+                                session['selected_question_type'] = 'review'
+                                session['exam_category'] = f'復習問題（再構築{len(review_question_ids)}問）'
+                                session['review_session_restored'] = True  # 復習セッション復旧フラグ
+                                session.modified = True
                                 
-                                # exam_question_ids = review_question_ids
-                                # current_no = current_index
+                                exam_question_ids = review_question_ids
+                                current_no = current_index
                                 
-                                # 🔥 CRITICAL: 復習セッション再構築を無効化（無限ループ防止）
-                                # logger.info(f"安定復習セッション再生成成功: {len(review_question_ids)}問, 現在位置{current_index}, 問題ID{qid}")
+                                logger.info(f"安定復習セッション再生成成功: {len(review_question_ids)}問, 現在位置{current_index}, 問題ID{qid}")
                             else:
                                 # 最低限の復習セッションを作成
                                 logger.warning(f"復習問題データ不足のため、現在問題のみの最小復習セッション作成")
@@ -1911,11 +1907,6 @@ def exam():
             # セッション保存の確認
             saved_current = session.get('exam_current', 'NOT_FOUND')
             logger.info(f"セッション保存確認: exam_current = {saved_current} (safe_next_no = {safe_next_no})")
-            # 🔥 CRITICAL: exam_currentの更新を保証
-            if session.get('exam_current') != safe_next_no:
-                logger.error(f'exam_current更新エラー: {session.get("exam_current")} != {safe_next_no}')
-                session['exam_current'] = safe_next_no
-                session.modified = True
             logger.info(f"回答処理完了: 問題{qid}, 正答{is_correct}, レベル{srs_info.get('level', 0)}, ストリーク{current_streak}日")
 
             # フィードバック画面に渡すデータを準備
