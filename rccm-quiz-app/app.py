@@ -1622,19 +1622,19 @@ def exam():
                                 
                                 # 🔥 CRITICAL: 復習セッション再構築を無効化（無限ループ防止）
                                 # logger.info(f"安定復習セッション再生成成功: {len(review_question_ids)}問, 現在位置{current_index}, 問題ID{qid}")
-                            else:
-                                # 最低限の復習セッションを作成
-                                logger.warning(f"復習問題データ不足のため、現在問題のみの最小復習セッション作成")
-                                minimal_review = [qid]
-                                session['exam_question_ids'] = minimal_review
-                                session['exam_current'] = 0
-                                session['selected_question_type'] = 'review'
-                                session['exam_category'] = '復習問題（最小セッション）'
-                                session['review_session_minimal'] = True
-                                session.modified = True
+                            # else:
+                                # # 最低限の復習セッションを作成
+                                # logger.warning(f"復習問題データ不足のため、現在問題のみの最小復習セッション作成")
+                                # minimal_review = [qid]
+                                # session['exam_question_ids'] = minimal_review
+                                # session['exam_current'] = 0
+                                # session['selected_question_type'] = 'review'
+                                # session['exam_category'] = '復習問題（最小セッション）'
+                                # session['review_session_minimal'] = True
+                                # session.modified = True
                                 
-                                exam_question_ids = minimal_review
-                                current_no = 0
+                                # exam_question_ids = minimal_review
+                                # current_no = 0
                     
                     elif actual_question_type == 'basic' or question_type == 'basic':
                         # 基礎科目(4-1)のセッション再構築
