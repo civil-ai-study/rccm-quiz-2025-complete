@@ -2087,8 +2087,8 @@ def exam():
             logger.info(f"回答処理完了: 問題{qid}, 正答{is_correct}, レベル{srs_info.get('level', 0)}, ストリーク{current_streak}日")
 
             # フィードバック画面に渡すデータを準備
-            # 安全なデフォルト値を保証
-            safe_total_questions = max(1, len(exam_question_ids)) if exam_question_ids else 10
+            # 🔥 CRITICAL FIX: 10問制限を強制適用（進捗表示バグ防止）
+            safe_total_questions = min(10, max(1, len(exam_question_ids))) if exam_question_ids else 10
             # 問題番号は1ベースだが、total_questions を超えないよう制限
             safe_current_number = min(max(1, current_no + 1), safe_total_questions)
 
