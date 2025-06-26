@@ -3,7 +3,7 @@ from utils import load_questions_improved, DataLoadError, get_sample_data_improv
 from config import Config, ExamConfig, SRSConfig, DataConfig, RCCMConfig
 import uuid
 import time
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory, make_response
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory, make_response, flash
 import os
 import random
 from datetime import datetime, timedelta
@@ -975,10 +975,17 @@ def get_due_questions(user_session, all_questions):
     return due_questions
 
 
+def get_user_session_size(user_session):
+    """ユーザー設定の問題数を取得（デフォルト10問）"""
+    quiz_settings = user_session.get('quiz_settings', {})
+    return quiz_settings.get('questions_per_session', 10)
+
+
 def get_mixed_questions(user_session, all_questions, requested_category='全体', session_size=None, department='', question_type='', year=None):
     """新問題と復習問題をミックスした出題（RCCM部門対応版）"""
-    # 🔥 CRITICAL: 絶対に10問固定（ユーザー要求による）
-    session_size = 10
+    # ユーザー設定の問題数を取得（デフォルト10問）
+    if session_size is None:
+        session_size = get_user_session_size(user_session)
 
     due_questions = get_due_questions(user_session, all_questions)
 
@@ -1163,9 +1170,9 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
                 f"新規{len(selected_questions) - len([q for q in selected_questions if any(due['question'] == q for due in due_questions)])}問, "
                 f"フィルタ:[{', '.join(filter_info) if filter_info else '全体'}]")
 
-    # 🚨 ULTRA CRITICAL FIX: 絶対に10問固定（河川砂防バグ根本解決）
-    selected_questions = selected_questions[:10]
-    logger.info(f"🔥 ULTRA SYNC: 最終問題数確定 {len(selected_questions)}問（10問強制切断）")
+    # 🚨 ULTRA CRITICAL FIX: ユーザー設定問題数で制限（河川砂防バグ根本解決）
+    selected_questions = selected_questions[:session_size]
+    logger.info(f"🔥 ULTRA SYNC: 最終問題数確定 {len(selected_questions)}問（{session_size}問設定に従って切断）")
     return selected_questions
 
 
@@ -1737,14 +1744,15 @@ def exam():
                                            if q.get('question_type') == 'basic']
 
                         if basic_questions:
-                            # 🔥 CRITICAL FIX: 10問制限を適用してセッション再構築
-                            # get_mixed_questionsを使用して適切な10問セッションを作成
-                            mock_session = {'history': session.get('history', []), 'srs_data': session.get('srs_data', {})}
+                            # 🔥 CRITICAL FIX: ユーザー設定問題数制限を適用してセッション再構築
+                            # get_mixed_questionsを使用して適切な問題セッションを作成
+                            user_session_size = get_user_session_size(session)
+                            mock_session = {'history': session.get('history', []), 'srs_data': session.get('srs_data', {}), 'quiz_settings': session.get('quiz_settings', {})}
                             selected_questions = get_mixed_questions(
                                 user_session=mock_session,
                                 all_questions=all_questions,
                                 requested_category='全体',
-                                session_size=10,  # 明示的に10問指定
+                                session_size=user_session_size,  # ユーザー設定問題数指定
                                 department='',
                                 question_type='basic',
                                 year=None
@@ -1808,7 +1816,7 @@ def exam():
                                 user_session=mock_session,
                                 all_questions=all_questions,
                                 requested_category=actual_category,
-                                session_size=10,  # 明示的に10問指定
+                                session_size=get_user_session_size(session),  # ユーザー設定問題数指定
                                 department=department,
                                 question_type='specialist',
                                 year=None
@@ -1843,7 +1851,7 @@ def exam():
                                 user_session=mock_session,
                                 all_questions=all_questions,
                                 requested_category='全体',
-                                session_size=10,  # 明示的に10問指定
+                                session_size=get_user_session_size(session),  # ユーザー設定問題数指定
                                 department='',
                                 question_type='basic',
                                 year=None
@@ -1873,7 +1881,7 @@ def exam():
                                 user_session=mock_session,
                                 all_questions=all_questions,
                                 requested_category=actual_category,
-                                session_size=10,  # 明示的に10問指定
+                                session_size=get_user_session_size(session),  # ユーザー設定問題数指定
                                 department=department,
                                 question_type='specialist',
                                 year=None
@@ -1904,7 +1912,7 @@ def exam():
                                 user_session=mock_session,
                                 all_questions=all_questions,
                                 requested_category='全体',
-                                session_size=10,  # 明示的に10問指定
+                                session_size=get_user_session_size(session),  # ユーザー設定問題数指定
                                 department='',
                                 question_type=actual_question_type or 'basic',
                                 year=None
@@ -1979,15 +1987,16 @@ def exam():
                 # 🔥 再構築後の最終安全チェック
                 if not exam_question_ids:
                     logger.error("ウルトラシンク再構築後もexam_question_idsが空です")
-                    # 緊急10問セッション作成
+                    # 緊急セッション作成（ユーザー設定問題数）
+                    user_session_size = get_user_session_size(session)
                     emergency_questions = get_mixed_questions(session, 'basic', None)
-                    if emergency_questions and len(emergency_questions) >= 10:
-                        exam_question_ids = [q['id'] for q in emergency_questions[:10]]
+                    if emergency_questions and len(emergency_questions) >= user_session_size:
+                        exam_question_ids = [q['id'] for q in emergency_questions[:user_session_size]]
                         session['exam_question_ids'] = exam_question_ids
                         session.modified = True
-                        logger.info("最終安全チェック: 10問セッション作成成功")
+                        logger.info(f"最終安全チェック: {user_session_size}問セッション作成成功")
                     else:
-                        logger.error("緊急10問セッション作成も失敗")
+                        logger.error(f"緊急{user_session_size}問セッション作成も失敗")
                         return render_template('error.html', error="セッション作成に失敗しました。")
                     current_no = 0
                     session['exam_question_ids'] = exam_question_ids
@@ -3488,7 +3497,40 @@ def force_reset():
 @app.route('/help')
 def help_page():
     """ヘルプページ"""
-    return render_template('help.html', total_questions=ExamConfig.QUESTIONS_PER_SESSION)
+    current_questions = session.get('quiz_settings', {}).get('questions_per_session', 10)
+    return render_template('help.html', total_questions=current_questions)
+
+
+@app.route('/settings', methods=['GET', 'POST'])
+def settings_page():
+    """設定画面 - 問題数設定"""
+    if request.method == 'POST':
+        # POST: 設定保存
+        questions_per_session = int(request.form.get('questions_per_session', 10))
+
+        # 有効な値かチェック
+        if questions_per_session not in [10, 20, 30]:
+            questions_per_session = 10
+
+        # セッションに保存
+        if 'quiz_settings' not in session:
+            session['quiz_settings'] = {}
+
+        session['quiz_settings']['questions_per_session'] = questions_per_session
+        session.modified = True
+
+        logger.info(f"問題数設定変更: {questions_per_session}問")
+
+        flash(f'問題数を{questions_per_session}問に設定しました', 'success')
+        return redirect(url_for('settings_page'))
+
+    # GET: 設定画面表示
+    current_settings = session.get('quiz_settings', {})
+    current_questions = current_settings.get('questions_per_session', 10)
+
+    return render_template('settings.html',
+                           current_questions=current_questions,
+                           available_options=[10, 20, 30])
 
 
 @app.route('/debug')
