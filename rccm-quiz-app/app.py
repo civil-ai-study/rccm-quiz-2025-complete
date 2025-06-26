@@ -848,7 +848,6 @@ def create_robust_review_session(user_session, all_questions, review_type='mixed
         review_question_ids = set()
 
         # SRSデータから復習必要問題を取得
-        srs_data = user_session.get('advanced_srs', {})
         due_questions = get_due_questions(user_session, all_questions)
         for due_item in due_questions:
             qid = due_item['question'].get('id')
@@ -1012,11 +1011,9 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
     available_questions = all_questions
 
     # AI学習分析による弱点重視出題
-    weak_categories = []
     if user_session.get('history'):
         from ai_analyzer import ai_analyzer
-        weak_analysis = ai_analyzer.analyze_weak_areas(user_session, department)
-        weak_categories = weak_analysis.get('weak_categories', [])
+        ai_analyzer.analyze_weak_areas(user_session, department)
 
     # 問題種別でフィルタリング（最優先・厳格）
     if question_type:
@@ -1169,7 +1166,6 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
     # 🚨 ULTRA CRITICAL FIX: 絶対に10問固定（河川砂防バグ根本解決）
     selected_questions = selected_questions[:10]
     logger.info(f"🔥 ULTRA SYNC: 最終問題数確定 {len(selected_questions)}問（10問強制切断）")
-    
     return selected_questions
 
 
@@ -1389,7 +1385,6 @@ def exam():
                     # 🔥 CRITICAL: 専門科目開始時など、最初のPOSTではexam_idsが空の場合がある
                     # この場合はGETリクエストの処理に移行する
                     logger.info("exam_question_ids が空 - 新規セッション開始として処理")
-                    is_get_request = True  # GETリクエストとして処理
 
             except (ValueError, TypeError) as e:
                 # 修復不可能な場合のみリセット
@@ -1397,7 +1392,6 @@ def exam():
                 # 🔥 CRITICAL: 専門科目開始時は新規セッションとして処理
                 if 'exam_question_ids が空' in str(e):
                     logger.info("専門科目の新規開始と判断 - GETリクエストとして処理")
-                    is_get_request = True
                 else:
                     session.pop('exam_question_ids', None)
                     session.pop('exam_current', None)
@@ -1540,7 +1534,7 @@ def exam():
 
             # 従来のSRSデータも更新（既存機能との互換性）
             try:
-                old_srs_info = update_advanced_srs_data(qid, is_correct, session)
+                update_advanced_srs_data(qid, is_correct, session)
             except BaseException:
                 # 既存SRS関数がない場合はスキップ
                 pass
@@ -1755,7 +1749,6 @@ def exam():
                                 question_type='basic',
                                 year=None
                             )
-                            
                             question_ids = [int(q.get('id', 0)) for q in selected_questions]
                             current_index = question_ids.index(qid) if qid in question_ids else 0
 
@@ -1820,7 +1813,7 @@ def exam():
                                 question_type='specialist',
                                 year=None
                             )
-                            
+
                             question_ids = [int(q.get('id', 0)) for q in selected_questions]
                             current_index = question_ids.index(qid) if qid in question_ids else 0
 
@@ -1855,7 +1848,7 @@ def exam():
                                 question_type='basic',
                                 year=None
                             )
-                            
+
                             if selected_questions:
                                 question_ids = [int(q.get('id', 0)) for q in selected_questions]
                                 current_index = question_ids.index(qid) if qid in question_ids else 0
@@ -1885,7 +1878,7 @@ def exam():
                                 question_type='specialist',
                                 year=None
                             )
-                            
+
                             if selected_questions:
                                 question_ids = [int(q.get('id', 0)) for q in selected_questions]
                                 current_index = question_ids.index(qid) if qid in question_ids else 0
@@ -1916,7 +1909,7 @@ def exam():
                                 question_type=actual_question_type or 'basic',
                                 year=None
                             )
-                            
+
                             if selected_questions:
                                 question_ids = [int(q.get('id', 0)) for q in selected_questions]
                                 current_index = question_ids.index(qid) if qid in question_ids else 0
@@ -1985,14 +1978,14 @@ def exam():
 
                 # 🔥 再構築後の最終安全チェック
                 if not exam_question_ids:
-                    logger.error(f"ウルトラシンク再構築後もexam_question_idsが空です")
+                    logger.error("ウルトラシンク再構築後もexam_question_idsが空です")
                     # 緊急10問セッション作成
                     emergency_questions = get_mixed_questions(session, 'basic', None)
                     if emergency_questions and len(emergency_questions) >= 10:
                         exam_question_ids = [q['id'] for q in emergency_questions[:10]]
                         session['exam_question_ids'] = exam_question_ids
                         session.modified = True
-                        logger.info(f"最終安全チェック: 10問セッション作成成功")
+                        logger.info("最終安全チェック: 10問セッション作成成功")
                     else:
                         logger.error("緊急10問セッション作成も失敗")
                         return render_template('error.html', error="セッション作成に失敗しました。")
@@ -2043,14 +2036,14 @@ def exam():
             next_question_index = safe_next_no if not is_last_question else None
 
             # 詳細デバッグログ（セッション状態の完全な記録）
-            logger.info(f"=== 回答処理デバッグ情報 ===")
+            logger.info("=== 回答処理デバッグ情報 ===")
             logger.info(f"問題ID: {qid}, 回答: {answer}, 正否: {is_correct}")
             logger.info(f"セッション状態: current_no={current_no}, next_no={next_no}")
             logger.info(f"安全値: safe_current_no={safe_current_no}, safe_next_no={safe_next_no}")
             logger.info(f"問題リスト: 長さ={total_questions_count}, IDs={exam_question_ids[:3]}..." if total_questions_count > 3 else f"問題リスト: IDs={exam_question_ids}")
             logger.info(f"最終判定: is_last={is_last_question}, next_index={next_question_index}")
             logger.info(f"セッションキー: {list(session.keys())}")
-            logger.info(f"=========================")
+            logger.info("=========================")
 
             # 🔥 CRITICAL: 復習セッション保護付きセッション更新（ウルトラシンク修正）
             # 復習モードの場合は特別な保護処理
@@ -2117,7 +2110,10 @@ def exam():
 
             # フィードバック画面の重要な変数をログ出力
             logger.info(
-                f"フィードバック変数: is_last_question={feedback_data['is_last_question']}, next_question_index={feedback_data['next_question_index']}, current_question_number={feedback_data['current_question_number']}, total_questions={feedback_data['total_questions']}")
+                f"フィードバック変数: is_last_question={feedback_data['is_last_question']}, "
+                f"next_question_index={feedback_data['next_question_index']}, "
+                f"current_question_number={feedback_data['current_question_number']}, "
+                f"total_questions={feedback_data['total_questions']}")
 
             return render_template('exam_feedback.html', **feedback_data)
 
@@ -2349,7 +2345,10 @@ def exam():
         department_match = requested_department == session_department
         year_match = requested_year == session_year  # 🚨 年度マッチング判定追加
 
-        logger.info(f"リセット判定: is_next={is_next_request}, exam_ids={bool(exam_question_ids)}, category_match={category_match}, question_type_match={question_type_match}, department_match={department_match}, year_match={year_match}, current_no={current_no}, len={len(exam_question_ids)}")
+        logger.info(f"リセット判定: is_next={is_next_request}, exam_ids={bool(exam_question_ids)}, "
+                    f"category_match={category_match}, question_type_match={question_type_match}, "
+                    f"department_match={department_match}, year_match={year_match}, "
+                    f"current_no={current_no}, len={len(exam_question_ids)}")
 
         # 🔥 CRITICAL: 強化されたリセット判定（ユーザー要求による）
         # ホームから戻ってきた場合は必ずリセット
@@ -3976,7 +3975,10 @@ def review_questions():
                         final_question_type = session.get('selected_question_type', '')
 
                         logger.info(
-                            f"セッション設定確認 (試行{verification_attempts + 1}): exam_question_ids={len(final_ids) if final_ids else 0}問, exam_current={final_current}, exam_category='{final_category}', question_type='{final_question_type}'")
+                            f"セッション設定確認 (試行{verification_attempts + 1}): "
+                            f"exam_question_ids={len(final_ids) if final_ids else 0}問, "
+                            f"exam_current={final_current}, exam_category='{final_category}', "
+                            f"question_type='{final_question_type}'")
 
                         # 検証条件
                         if (final_ids and len(final_ids) > 0 and
@@ -4830,7 +4832,7 @@ def finish_exam():
         if not exam_session:
             return jsonify({'success': False, 'error': '試験セッションが無効です'})
 
-        result = exam_simulator.finish_exam(exam_session)
+        exam_simulator.finish_exam(exam_session)
         session['exam_session'] = exam_session
         session.modified = True
 
@@ -5199,12 +5201,6 @@ def page_not_found(e):
     return render_template('error.html', error="ページが見つかりません"), 404
 
 
-@app.errorhandler(500)
-def internal_error(e):
-    logger.error(f"500エラー: {e}")
-    return render_template('error.html', error="サーバーエラーが発生しました"), 500
-
-
 @app.errorhandler(403)
 def forbidden(e):
     logger.warning(f"403エラー: {request.url}")
@@ -5319,7 +5315,7 @@ def advanced_analytics_view():
         if history and advanced_analytics:
             try:
                 # 時系列分析
-                time_series = advanced_analytics.analyze_time_series(history)
+                advanced_analytics.analyze_time_series(history)
                 analytics['time_series_analysis'] = {
                     'trend': '上昇傾向',
                     'peak_performance': 85,
@@ -5327,7 +5323,7 @@ def advanced_analytics_view():
                 }
 
                 # 難易度分析
-                difficulty_dist = advanced_analytics.analyze_difficulty_distribution(srs_data)
+                advanced_analytics.analyze_difficulty_distribution(srs_data)
                 analytics['difficulty_distribution'] = {
                     'best_level': '中級',
                     'needs_improvement': '上級'

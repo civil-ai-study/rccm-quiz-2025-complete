@@ -1,0 +1,192 @@
+{
+  "test_time": "2025-06-26T14:29:41.560155",
+  "duration": "0:00:15.128119",
+  "total_patterns": 20,
+  "total_actions": 86,
+  "total_success": 86,
+  "overall_success_rate": 100.0,
+  "total_errors": 0,
+  "pattern_results": [
+    {
+      "pattern_name": "通常フロー",
+      "description": "基礎問題を10問最後まで解答する",
+      "total_actions": 22,
+      "success_count": 22,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "途中終了",
+      "description": "5問目でホームに戻る",
+      "total_actions": 2,
+      "success_count": 2,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "部門切り替え",
+      "description": "基礎→専門→基礎と切り替える",
+      "total_actions": 3,
+      "success_count": 3,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "復習フロー",
+      "description": "間違えて復習リストに追加→復習実行",
+      "total_actions": 5,
+      "success_count": 5,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "複数タブ",
+      "description": "同時に複数のセッションを開く",
+      "total_actions": 4,
+      "success_count": 4,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "高速操作",
+      "description": "非常に速く問題を解く",
+      "total_actions": 1,
+      "success_count": 1,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "バック操作",
+      "description": "ブラウザバックを使う",
+      "total_actions": 1,
+      "success_count": 1,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "長考",
+      "description": "1問に5分以上かける",
+      "total_actions": 1,
+      "success_count": 1,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "無効入力",
+      "description": "不正なパラメータを送信",
+      "total_actions": 3,
+      "success_count": 3,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "リロード",
+      "description": "問題解答中にページリロード",
+      "total_actions": 1,
+      "success_count": 1,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "全部門2019",
+      "description": "すべての部門で2019年問題を確認",
+      "total_actions": 3,
+      "success_count": 3,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "交互学習",
+      "description": "基礎→専門→基礎→専門",
+      "total_actions": 4,
+      "success_count": 4,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "全画面巡回",
+      "description": "すべての主要画面を訪問",
+      "total_actions": 9,
+      "success_count": 9,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "空復習リスト",
+      "description": "復習リストが空の状態で復習開始",
+      "total_actions": 1,
+      "success_count": 1,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "タイムアウト",
+      "description": "セッション切れをシミュレート",
+      "total_actions": 1,
+      "success_count": 1,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "特殊文字",
+      "description": "URLに特殊文字を含める",
+      "total_actions": 4,
+      "success_count": 4,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "同時リクエスト",
+      "description": "複数のリクエストを同時に送信",
+      "total_actions": 3,
+      "success_count": 3,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "深い階層",
+      "description": "部門→タイプ→カテゴリ→年度",
+      "total_actions": 4,
+      "success_count": 4,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "ランダム操作",
+      "description": "ランダムな順序で操作",
+      "total_actions": 10,
+      "success_count": 10,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    },
+    {
+      "pattern_name": "ストレス",
+      "description": "大量の問題を連続で解く",
+      "total_actions": 4,
+      "success_count": 4,
+      "error_count": 0,
+      "errors": [],
+      "success_rate": 100.0
+    }
+  ],
+  "critical_errors": []
+}
