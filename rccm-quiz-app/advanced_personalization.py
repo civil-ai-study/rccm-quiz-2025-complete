@@ -141,7 +141,31 @@ class AdvancedPersonalizationEngine:
             
         except Exception as e:
             logger.error(f"ML推薦エラー: {e}")
-            return {'error': str(e)}
+            return self._get_default_content_recommendations(user_id)
+    
+    def get_adaptive_ui(self, user_id: str) -> Dict[str, Any]:
+        """アダプティブUI設定を取得"""
+        try:
+            return self.customize_ui(user_id)
+        except Exception as e:
+            logger.error(f"UI適応エラー: {e}")
+            return {'theme': 'default', 'layout': 'standard'}
+    
+    def _customize_visual_elements(self, user_profile: Dict) -> Dict[str, Any]:
+        """視覚要素カスタマイゼーション"""
+        return {
+            'font_family': 'system',
+            'color_scheme': 'default',
+            'icon_style': 'minimal'
+        }
+    
+    def _customize_interactions(self, user_profile: Dict) -> Dict[str, Any]:
+        """インタラクションカスタマイゼーション"""
+        return {
+            'interaction_mode': 'standard',
+            'feedback_type': 'immediate',
+            'navigation_style': 'breadcrumb'
+        }
     
     def customize_ui(self, user_id: str) -> Dict[str, Any]:
         """UI個人化設定"""
@@ -604,6 +628,27 @@ class AdvancedPersonalizationEngine:
         recommendations.extend(next_level_content)
         
         return recommendations[:10]  # 上位10件
+    
+    def _optimize_layout(self, user_profile: Dict) -> Dict[str, Any]:
+        """レイアウト最適化"""
+        return {
+            'layout_type': 'standard',
+            'sidebar_position': 'left',
+            'content_width': 'auto'
+        }
+    
+    def _get_default_content_recommendations(self, user_id: str) -> List[Dict[str, Any]]:
+        """デフォルトコンテンツ推薦を取得"""
+        return [
+            {
+                'type': 'basic_practice',
+                'title': '基礎問題練習',
+                'description': '基本的な問題から始めましょう',
+                'priority': 'high',
+                'estimated_time': 30,
+                'difficulty': 'beginner'
+            }
+        ]
     
     def _generate_learning_path(self, user_profile: Dict, user_data: Dict) -> Dict[str, Any]:
         """学習経路生成"""

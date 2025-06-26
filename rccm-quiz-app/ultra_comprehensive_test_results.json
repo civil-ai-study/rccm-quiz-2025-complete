@@ -1,0 +1,422 @@
+{
+  "test_time": "2025-06-25 18:30:28",
+  "tests": [
+    {
+      "category": "エンドポイント",
+      "name": "ホームページ",
+      "status": "PASSED",
+      "details": "/ - 200 OK",
+      "timestamp": 1750843828.27024
+    },
+    {
+      "category": "エンドポイント",
+      "name": "試験ページ",
+      "status": "PASSED",
+      "details": "/exam - 200 OK",
+      "timestamp": 1750843828.2998383
+    },
+    {
+      "category": "エンドポイント",
+      "name": "結果ページ",
+      "status": "PASSED",
+      "details": "/result - 200 OK",
+      "timestamp": 1750843828.3243587
+    },
+    {
+      "category": "エンドポイント",
+      "name": "復習リスト",
+      "status": "PASSED",
+      "details": "/review - 200 OK",
+      "timestamp": 1750843828.3318071
+    },
+    {
+      "category": "エンドポイント",
+      "name": "統計ページ",
+      "status": "PASSED",
+      "details": "/statistics - 200 OK",
+      "timestamp": 1750843828.3382466
+    },
+    {
+      "category": "エンドポイント",
+      "name": "カテゴリ一覧",
+      "status": "PASSED",
+      "details": "/categories - 200 OK",
+      "timestamp": 1750843828.3491187
+    },
+    {
+      "category": "エンドポイント",
+      "name": "SRS統計",
+      "status": "PASSED",
+      "details": "/srs_stats - 200 OK",
+      "timestamp": 1750843828.3554115
+    },
+    {
+      "category": "エンドポイント",
+      "name": "部門別学習（土質）",
+      "status": "PASSED",
+      "details": "/department_study/土質及び基礎 - 200 OK",
+      "timestamp": 1750843828.3674371
+    },
+    {
+      "category": "エンドポイント",
+      "name": "試験シミュレータ",
+      "status": "PASSED",
+      "details": "/exam_simulator - 200 OK",
+      "timestamp": 1750843828.3768058
+    },
+    {
+      "category": "エンドポイント",
+      "name": "試験分析",
+      "status": "FAILED",
+      "details": "/exam_analysis - 404 Not Found",
+      "timestamp": 1750843828.3844132
+    },
+    {
+      "category": "エンドポイント",
+      "name": "個別学習",
+      "status": "FAILED",
+      "details": "/personalized_learning - 404 Not Found",
+      "timestamp": 1750843828.3939416
+    },
+    {
+      "category": "エンドポイント",
+      "name": "AIダッシュボード",
+      "status": "PASSED",
+      "details": "/ai_dashboard - 200 OK",
+      "timestamp": 1750843828.4009345
+    },
+    {
+      "category": "エンドポイント",
+      "name": "高度分析",
+      "status": "PASSED",
+      "details": "/advanced_analytics - 200 OK",
+      "timestamp": 1750843828.409991
+    },
+    {
+      "category": "エンドポイント",
+      "name": "学習最適化",
+      "status": "PASSED",
+      "details": "/learning_optimization - 200 OK",
+      "timestamp": 1750843828.431089
+    },
+    {
+      "category": "エンドポイント",
+      "name": "ソーシャル学習",
+      "status": "PASSED",
+      "details": "/social_learning - 200 OK",
+      "timestamp": 1750843828.5527208
+    },
+    {
+      "category": "エンドポイント",
+      "name": "ゲーミフィケーション",
+      "status": "FAILED",
+      "details": "/gamification - 404 Not Found",
+      "timestamp": 1750843828.5613685
+    },
+    {
+      "category": "エンドポイント",
+      "name": "管理者ダッシュボード",
+      "status": "WARNING",
+      "details": "/admin - 403",
+      "timestamp": 1750843828.5668395
+    },
+    {
+      "category": "エンドポイント",
+      "name": "API統合",
+      "status": "PASSED",
+      "details": "/api_integration - 200 OK",
+      "timestamp": 1750843828.5787928
+    },
+    {
+      "category": "エンドポイント",
+      "name": "ヘルスチェック",
+      "status": "PASSED",
+      "details": "/health - 200 OK",
+      "timestamp": 1750843828.5838504
+    },
+    {
+      "category": "エンドポイント",
+      "name": "ヘルスチェック2",
+      "status": "PASSED",
+      "details": "/health_check - 200 OK",
+      "timestamp": 1750843828.589491
+    },
+    {
+      "category": "エンドポイント",
+      "name": "進捗API",
+      "status": "WARNING",
+      "details": "/api/users/test_user/progress - 401",
+      "timestamp": 1750843828.594691
+    },
+    {
+      "category": "復習機能",
+      "name": "履歴作成",
+      "status": "PASSED",
+      "details": "問題解答完了",
+      "timestamp": 1750843828.639294
+    },
+    {
+      "category": "復習機能",
+      "name": "復習リスト表示",
+      "status": "PASSED",
+      "details": "",
+      "timestamp": 1750843828.647505
+    },
+    {
+      "category": "復習機能",
+      "name": "ブックマーク機能",
+      "status": "PASSED",
+      "details": "",
+      "timestamp": 1750843828.6475298
+    },
+    {
+      "category": "部門別テスト",
+      "name": "土質及び基礎",
+      "status": "PASSED",
+      "details": "10問完了",
+      "timestamp": 1750843829.0109813
+    },
+    {
+      "category": "部門別テスト",
+      "name": "鋼構造及びコンクリート",
+      "status": "PASSED",
+      "details": "10問完了",
+      "timestamp": 1750843829.4141896
+    },
+    {
+      "category": "部門別テスト",
+      "name": "都市計画及び地方計画",
+      "status": "PASSED",
+      "details": "10問完了",
+      "timestamp": 1750843829.8459394
+    },
+    {
+      "category": "部門別テスト",
+      "name": "河川、砂防及び海岸・海洋",
+      "status": "PASSED",
+      "details": "10問完了",
+      "timestamp": 1750843830.2537913
+    },
+    {
+      "category": "部門別テスト",
+      "name": "上水道及び工業用水道",
+      "status": "PASSED",
+      "details": "10問完了",
+      "timestamp": 1750843830.750343
+    },
+    {
+      "category": "部門別テスト",
+      "name": "道路",
+      "status": "PASSED",
+      "details": "10問完了",
+      "timestamp": 1750843831.3058643
+    },
+    {
+      "category": "部門別テスト",
+      "name": "トンネル",
+      "status": "PASSED",
+      "details": "10問完了",
+      "timestamp": 1750843831.9227471
+    },
+    {
+      "category": "部門別テスト",
+      "name": "施工計画、施工設備及び積算",
+      "status": "PASSED",
+      "details": "10問完了",
+      "timestamp": 1750843832.465774
+    },
+    {
+      "category": "部門別テスト",
+      "name": "建設環境",
+      "status": "PASSED",
+      "details": "10問完了",
+      "timestamp": 1750843833.0771484
+    },
+    {
+      "category": "部門別テスト",
+      "name": "造園",
+      "status": "PASSED",
+      "details": "10問完了",
+      "timestamp": 1750843833.9623358
+    },
+    {
+      "category": "部門別テスト",
+      "name": "森林土木",
+      "status": "PASSED",
+      "details": "10問完了",
+      "timestamp": 1750843834.6778834
+    },
+    {
+      "category": "部門別テスト",
+      "name": "農業土木",
+      "status": "PASSED",
+      "details": "10問完了",
+      "timestamp": 1750843835.4010258
+    },
+    {
+      "category": "UI要素",
+      "name": "ナビゲーションバー",
+      "status": "PASSED",
+      "details": "",
+      "timestamp": 1750843835.420667
+    },
+    {
+      "category": "UI要素",
+      "name": "ロゴ/タイトル",
+      "status": "PASSED",
+      "details": "",
+      "timestamp": 1750843835.4207056
+    },
+    {
+      "category": "UI要素",
+      "name": "学習開始ボタン",
+      "status": "PASSED",
+      "details": "",
+      "timestamp": 1750843835.4208016
+    },
+    {
+      "category": "UI要素",
+      "name": "部門選択",
+      "status": "PASSED",
+      "details": "",
+      "timestamp": 1750843835.4208353
+    },
+    {
+      "category": "UI要素",
+      "name": "年度選択",
+      "status": "WARNING",
+      "details": "要素が見つかりません",
+      "timestamp": 1750843835.4209232
+    },
+    {
+      "category": "UI要素",
+      "name": "モバイル対応",
+      "status": "PASSED",
+      "details": "",
+      "timestamp": 1750843835.4209518
+    },
+    {
+      "category": "UI要素",
+      "name": "フッター",
+      "status": "PASSED",
+      "details": "",
+      "timestamp": 1750843835.4209971
+    },
+    {
+      "category": "データ整合性",
+      "name": "問題数API",
+      "status": "FAILED",
+      "details": "HTTP 404",
+      "timestamp": 1750843835.4444308
+    },
+    {
+      "category": "エラーハンドリング",
+      "name": "存在しない問題ID",
+      "status": "PASSED",
+      "details": "適切に処理されました",
+      "timestamp": 1750843835.471133
+    },
+    {
+      "category": "エラーハンドリング",
+      "name": "不正なカテゴリ",
+      "status": "PASSED",
+      "details": "適切に処理されました",
+      "timestamp": 1750843835.4959862
+    },
+    {
+      "category": "エラーハンドリング",
+      "name": "存在しない部門",
+      "status": "PASSED",
+      "details": "適切に処理されました",
+      "timestamp": 1750843835.524142
+    },
+    {
+      "category": "エラーハンドリング",
+      "name": "不正なパラメータ",
+      "status": "PASSED",
+      "details": "適切に処理されました",
+      "timestamp": 1750843835.5424387
+    },
+    {
+      "category": "パフォーマンス",
+      "name": "ホームページ",
+      "status": "PASSED",
+      "details": "0.02秒",
+      "timestamp": 1750843835.5642207
+    },
+    {
+      "category": "パフォーマンス",
+      "name": "試験ページ",
+      "status": "PASSED",
+      "details": "0.04秒",
+      "timestamp": 1750843835.60438
+    },
+    {
+      "category": "パフォーマンス",
+      "name": "カテゴリ一覧",
+      "status": "PASSED",
+      "details": "0.03秒",
+      "timestamp": 1750843835.630482
+    },
+    {
+      "category": "パフォーマンス",
+      "name": "統計ページ",
+      "status": "PASSED",
+      "details": "0.02秒",
+      "timestamp": 1750843835.6506627
+    }
+  ],
+  "errors": [
+    {
+      "category": "エンドポイント",
+      "name": "試験分析",
+      "status": "FAILED",
+      "details": "/exam_analysis - 404 Not Found",
+      "timestamp": 1750843828.3844132
+    },
+    {
+      "category": "エンドポイント",
+      "name": "個別学習",
+      "status": "FAILED",
+      "details": "/personalized_learning - 404 Not Found",
+      "timestamp": 1750843828.3939416
+    },
+    {
+      "category": "エンドポイント",
+      "name": "ゲーミフィケーション",
+      "status": "FAILED",
+      "details": "/gamification - 404 Not Found",
+      "timestamp": 1750843828.5613685
+    },
+    {
+      "category": "データ整合性",
+      "name": "問題数API",
+      "status": "FAILED",
+      "details": "HTTP 404",
+      "timestamp": 1750843835.4444308
+    }
+  ],
+  "warnings": [
+    {
+      "category": "エンドポイント",
+      "name": "管理者ダッシュボード",
+      "status": "WARNING",
+      "details": "/admin - 403",
+      "timestamp": 1750843828.5668395
+    },
+    {
+      "category": "エンドポイント",
+      "name": "進捗API",
+      "status": "WARNING",
+      "details": "/api/users/test_user/progress - 401",
+      "timestamp": 1750843828.594691
+    },
+    {
+      "category": "UI要素",
+      "name": "年度選択",
+      "status": "WARNING",
+      "details": "要素が見つかりません",
+      "timestamp": 1750843835.4209232
+    }
+  ]
+}

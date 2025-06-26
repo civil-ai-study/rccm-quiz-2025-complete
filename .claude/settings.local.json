@@ -70,7 +70,18 @@
       "Bash(wslpath:*)",
       "WebFetch(domain:api.github.com)",
       "Bash(claude mcp add-json puppeteer -s user '{ \"command\": \"npx\", \"args\": [\"-y\", \"@modelcontextprotocol/server-puppeteer\"] }')",
-      "Bash(playwright install:*)"
+      "Bash(playwright install:*)",
+      "Bash(cd /mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app)",
+      "Bash(/mcp install filesystem)",
+      "Bash(claude mcp add:*)",
+      "Bash(claude mcp:*)",
+      "Bash(npm install:*)",
+      "Bash(exit)",
+      "Bash(touch:*)",
+      "Bash(if [ -f \"quality_check.sh\" ])",
+      "Bash(then echo \"✅ quality_check.sh exists\")",
+      "Bash(else echo \"❌ quality_check.sh not found\")",
+      "Bash(fi)"
     ],
     "deny": []
   }

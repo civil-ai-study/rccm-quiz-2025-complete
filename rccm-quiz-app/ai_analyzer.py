@@ -26,7 +26,7 @@ class AILearningAnalyzer:
     def analyze_weakness_patterns(self, history: List[Dict]) -> Dict[str, Any]:
         """弱点パターン分析（AIダッシュボード用）"""
         if not history:
-            return {'patterns': [], 'confidence': 0.0}
+            return {'patterns': [], 'confidence': 0.0, 'total_analyzed': 0}
         
         # カテゴリ別正答率分析
         category_accuracy = defaultdict(list)

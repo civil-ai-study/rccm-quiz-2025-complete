@@ -1,0 +1,4011 @@
+{
+  "test_duration": "0:00:09.921465",
+  "total_actions": 566,
+  "success_actions": 554,
+  "success_rate": 97.87985865724382,
+  "personas": [
+    {
+      "name": "田中 建設太郎",
+      "profile": "RCCM資格保有15年の経験豊富な技術者",
+      "total_actions": 142,
+      "success_actions": 139,
+      "test_results": [
+        {
+          "persona": "田中 建設太郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:13.134341"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?question_type=basic, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:13.151439"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.151470"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.176350"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:13.176401"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.179698"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.188674"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:13.188717"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.192692"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.199628"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:13.199691"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.203368"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.210627"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:13.210668"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.214618"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.223571"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:13.223612"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.227792"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.235697"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:13.235735"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.238582"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.245307"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:13.245348"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.249577"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.256697"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:13.256738"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.260290"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.268804"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:13.268846"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.272386"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.281527"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:13.281571"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:13.294520"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "URL: /, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:15.809734"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "部門選択画面アクセス",
+          "result": "成功",
+          "details": "URL: /departments, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:15.839664"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "学習統計画面アクセス",
+          "result": "成功",
+          "details": "URL: /statistics, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:15.856446"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "復習リスト画面アクセス",
+          "result": "成功",
+          "details": "URL: /review, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:15.887527"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "ヘルプ画面アクセス",
+          "result": "成功",
+          "details": "URL: /help, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:15.903965"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "道路部門詳細画面",
+          "result": "成功",
+          "details": "URL: /departments/road, ステータス: 302",
+          "timestamp": "2025-06-25T20:58:15.907918"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "道路専門科目カテゴリ画面",
+          "result": "成功",
+          "details": "URL: /departments/road/types/specialist/categories, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:15.932067"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:18.017973"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=road&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:18.028807"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.028846"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.040281"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:18.040356"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.047290"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.058562"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:18.058606"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.064997"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.075535"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:18.075578"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.082681"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.092531"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:18.092613"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.100481"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.111192"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:18.111257"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.116493"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.125915"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:18.126005"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.131225"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.141688"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:18.141761"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.149298"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.159012"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:18.159063"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.165923"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.176942"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:18.176993"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.182917"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.196098"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:18.196158"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:18.200746"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "道路部門2019年",
+          "result": "完走成功",
+          "details": "10問完了・結果表示確認",
+          "timestamp": "2025-06-25T20:58:18.200771"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:18.212822"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=tunnel&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:18.265909"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.265957"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.279032"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:18.279074"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.286877"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.300291"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:18.300356"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.307067"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.319428"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:18.319524"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.328106"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.341385"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:18.341458"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.361401"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.373551"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:18.373618"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.381340"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.392337"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:18.392384"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.398126"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.409631"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:18.409679"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.417332"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.429540"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:18.429591"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.435558"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.446630"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:18.446686"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.451937"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.464499"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:18.464539"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:18.469808"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "トンネル部門2019年",
+          "result": "完走成功",
+          "details": "10問完了・結果表示確認",
+          "timestamp": "2025-06-25T20:58:18.469844"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:18.475331"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=civil_planning&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:18.488849"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.488879"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.501042"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:18.501114"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.507502"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.518054"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:18.518097"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.525424"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.535864"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:18.535936"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.541930"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.552981"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:18.553023"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.558813"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.570788"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:18.570829"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.577250"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.587645"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:18.587691"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.594189"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.606650"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:18.606695"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.613720"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.625970"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:18.626066"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.634105"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.648623"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:18.648670"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:18.656188"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:18.668251"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:18.668373"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:18.673527"
+        },
+        {
+          "persona": "田中 建設太郎",
+          "action": "河川、砂防及び海岸・海洋部門2019年",
+          "result": "完走成功",
+          "details": "10問完了・結果表示確認",
+          "timestamp": "2025-06-25T20:58:18.673542"
+        }
+      ]
+    },
+    {
+      "name": "佐藤 土木花子",
+      "profile": "RCCM資格保有12年の経験豊富な技術者",
+      "total_actions": 142,
+      "success_actions": 139,
+      "test_results": [
+        {
+          "persona": "佐藤 土木花子",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:13.798370"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?question_type=basic, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:13.807771"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.807795"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.821328"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:13.821368"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.826541"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.835780"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:13.835822"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.839359"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.846914"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:13.846954"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.850344"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.862464"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:13.862506"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.866718"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.875194"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:13.875232"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.878798"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.886716"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:13.886759"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.890689"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.898077"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:13.898117"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.901522"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.909456"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:13.909496"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.913116"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.921100"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:13.921147"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:13.925216"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:13.933579"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:13.933623"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:13.936541"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "URL: /, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:16.436531"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "部門選択画面アクセス",
+          "result": "成功",
+          "details": "URL: /departments, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:16.443237"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "学習統計画面アクセス",
+          "result": "成功",
+          "details": "URL: /statistics, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:16.445286"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "復習リスト画面アクセス",
+          "result": "成功",
+          "details": "URL: /review, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:16.449704"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "ヘルプ画面アクセス",
+          "result": "成功",
+          "details": "URL: /help, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:16.451721"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "河川、砂防及び海岸・海洋部門詳細画面",
+          "result": "成功",
+          "details": "URL: /departments/civil_planning, ステータス: 302",
+          "timestamp": "2025-06-25T20:58:16.455863"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "河川、砂防及び海岸・海洋専門科目カテゴリ画面",
+          "result": "成功",
+          "details": "URL: /departments/civil_planning/types/specialist/categories, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:16.459457"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:19.179448"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=civil_planning&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:19.193342"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.193370"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.204105"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:19.204149"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.210132"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.224181"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:19.224257"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.238109"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.257419"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:19.257464"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.265367"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.277377"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:19.277421"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.286321"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.301753"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:19.301802"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.309752"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.322127"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:19.322175"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.329771"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.345502"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:19.345571"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.352647"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.364657"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:19.364704"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.371176"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.382843"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:19.382889"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.389860"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.400933"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:19.400993"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:19.406151"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "河川、砂防及び海岸・海洋部門2019年",
+          "result": "完走成功",
+          "details": "10問完了・結果表示確認",
+          "timestamp": "2025-06-25T20:58:19.406166"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:19.409983"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=soil_foundation&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:19.420003"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.420030"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.432343"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:19.432388"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.441699"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.453144"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:19.453200"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.460615"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.473853"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:19.473904"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.481922"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.496068"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:19.496150"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.504988"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.520358"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:19.520433"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.529441"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.546553"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:19.546601"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.556169"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.578373"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:19.578486"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.591763"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.608665"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:19.608713"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.617098"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.630767"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:19.630875"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.638396"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.654683"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:19.654736"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:19.661469"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "土質及び基礎部門2019年",
+          "result": "完走成功",
+          "details": "10問完了・結果表示確認",
+          "timestamp": "2025-06-25T20:58:19.661489"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:19.666282"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=road&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:19.679006"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.679039"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.692335"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:19.692383"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.700560"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.712151"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:19.712200"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.718653"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.730724"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:19.730785"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.738594"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.749506"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:19.749577"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.757565"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.771021"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:19.771062"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.778708"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.790840"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:19.790889"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.797861"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.813753"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:19.813832"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.823730"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.839248"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:19.839290"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.848124"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.860850"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:19.860906"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:19.867944"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:19.882729"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:19.882781"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:19.888292"
+        },
+        {
+          "persona": "佐藤 土木花子",
+          "action": "道路部門2019年",
+          "result": "完走成功",
+          "details": "10問完了・結果表示確認",
+          "timestamp": "2025-06-25T20:58:19.888306"
+        }
+      ]
+    },
+    {
+      "name": "鈴木 構造一郎",
+      "profile": "RCCM資格保有10年の経験豊富な技術者",
+      "total_actions": 142,
+      "success_actions": 139,
+      "test_results": [
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:14.443386"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?question_type=basic, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:14.459884"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:14.459928"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:14.482799"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:14.482913"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:14.490990"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:14.507352"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:14.507397"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:14.512684"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:14.523700"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:14.523741"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:14.528355"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:14.538026"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:14.538068"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:14.542618"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:14.556386"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:14.556425"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:14.562443"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:14.571883"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:14.571924"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:14.577594"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:14.585616"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:14.585653"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:14.590185"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:14.602858"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:14.602899"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:14.607232"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:14.615424"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:14.615470"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:14.619365"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:14.628675"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:14.628717"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:14.631607"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "URL: /, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:16.964585"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "部門選択画面アクセス",
+          "result": "成功",
+          "details": "URL: /departments, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:16.973558"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "学習統計画面アクセス",
+          "result": "成功",
+          "details": "URL: /statistics, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:16.976615"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "復習リスト画面アクセス",
+          "result": "成功",
+          "details": "URL: /review, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:16.981697"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "ヘルプ画面アクセス",
+          "result": "成功",
+          "details": "URL: /help, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:16.984056"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "鋼構造及びコンクリート部門詳細画面",
+          "result": "成功",
+          "details": "URL: /departments/steel_concrete, ステータス: 302",
+          "timestamp": "2025-06-25T20:58:16.988095"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "鋼構造及びコンクリート専門科目カテゴリ画面",
+          "result": "成功",
+          "details": "URL: /departments/steel_concrete/types/specialist/categories, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:16.992531"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:20.399845"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=steel_concrete&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:20.418657"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.418701"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.437806"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:20.437849"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.446268"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.459378"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:20.459424"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.467484"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.479855"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:20.479910"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.489075"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.499805"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:20.499847"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.507759"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.520161"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:20.520224"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.527981"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.546260"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:20.546303"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.556434"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.574273"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:20.574323"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.582961"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.597117"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:20.597173"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.605123"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.618762"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:20.618808"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.626141"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.640724"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:20.640791"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:20.648024"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "鋼構造及びコンクリート部門2019年",
+          "result": "完走成功",
+          "details": "10問完了・結果表示確認",
+          "timestamp": "2025-06-25T20:58:20.648040"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:20.653062"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=construction_planning&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:20.666820"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.666863"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.685470"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:20.685527"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.694843"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.706974"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:20.707044"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.715737"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.728965"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:20.729014"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.744439"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.760737"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:20.760824"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.770561"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.788586"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:20.788664"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.797424"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.812479"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:20.812549"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.822663"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.836119"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:20.836168"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.845677"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.862047"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:20.862110"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.872569"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.887198"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:20.887245"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.898638"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.915257"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:20.915332"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:20.924853"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "施工計画、施工設備及び積算部門2019年",
+          "result": "完走成功",
+          "details": "10問完了・結果表示確認",
+          "timestamp": "2025-06-25T20:58:20.924889"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:20.931289"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=road&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:20.947499"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.947552"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:20.966558"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:20.966617"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:20.982095"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.000086"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:21.000144"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.012636"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.029895"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:21.029948"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.044214"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.061970"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:21.062050"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.074105"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.087942"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:21.087985"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.096633"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.108111"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:21.108174"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.117606"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.130201"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:21.130244"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.138607"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.152549"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:21.152594"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.161582"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.174739"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:21.174811"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.182961"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.197111"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:21.197153"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:21.206067"
+        },
+        {
+          "persona": "鈴木 構造一郎",
+          "action": "道路部門2019年",
+          "result": "完走成功",
+          "details": "10問完了・結果表示確認",
+          "timestamp": "2025-06-25T20:58:21.206089"
+        }
+      ]
+    },
+    {
+      "name": "山田 新人",
+      "profile": "土木業界3年目未満の初心者技術者",
+      "total_actions": 140,
+      "success_actions": 137,
+      "test_results": [
+        {
+          "persona": "山田 新人",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:15.136624"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?question_type=basic, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:15.150311"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:15.150353"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:15.163449"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:15.163492"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:15.169218"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:15.178272"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:15.178315"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:15.183771"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:15.193844"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:15.193886"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:15.199670"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:15.208556"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:15.208620"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:15.214372"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:15.224816"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:15.224872"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:15.230782"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:15.242550"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:15.242613"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:15.248380"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:15.257740"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:15.257783"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:15.262495"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:15.272071"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:15.272143"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:15.277818"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:15.286491"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:15.286532"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:15.291748"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:15.301425"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:15.301465"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:15.305209"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "URL: /, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:17.497223"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "部門選択画面アクセス",
+          "result": "成功",
+          "details": "URL: /departments, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:17.502931"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "学習統計画面アクセス",
+          "result": "成功",
+          "details": "URL: /statistics, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:17.504800"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "復習リスト画面アクセス",
+          "result": "成功",
+          "details": "URL: /review, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:17.509279"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "ヘルプ画面アクセス",
+          "result": "成功",
+          "details": "URL: /help, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:17.513414"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:21.716070"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=civil_planning&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:21.732719"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.732749"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.748937"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:21.748987"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.758309"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.776593"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:21.776641"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.786377"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.802692"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:21.802758"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.812508"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.828281"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:21.828407"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.838152"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.855902"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:21.855952"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.864459"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.877784"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:21.877823"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.887413"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.901725"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:21.901794"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.910229"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.924198"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:21.924249"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.933293"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.948726"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:21.948805"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:21.961940"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:21.983810"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:21.983859"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:21.991550"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "河川、砂防及び海岸・海洋部門2019年",
+          "result": "完走成功",
+          "details": "10問完了・結果表示確認",
+          "timestamp": "2025-06-25T20:58:21.991569"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:21.998828"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=urban_planning&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:22.013638"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.013684"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.030018"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:22.030068"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.040083"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.053415"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:22.053457"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.063410"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.077363"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:22.077408"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.088494"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: d, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.102549"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:22.102594"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.113388"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.130973"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:22.131014"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.142330"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.155544"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:22.155586"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.165144"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.179712"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:22.179760"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.189493"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.207225"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:22.207271"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.217793"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.232857"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:22.232906"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.241875"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.259104"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:22.259179"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:22.266481"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "都市計画及び地方計画部門2019年",
+          "result": "完走成功",
+          "details": "10問完了・結果表示確認",
+          "timestamp": "2025-06-25T20:58:22.266509"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "ホーム画面アクセス",
+          "result": "成功",
+          "details": "ステータス: 200",
+          "timestamp": "2025-06-25T20:58:22.274288"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題選択",
+          "result": "成功",
+          "details": "URL: /exam?department=steel_concrete&question_type=specialist&year=2019, ステータス: 200",
+          "timestamp": "2025-06-25T20:58:22.290399"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.290461"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題1解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.303825"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題1→2",
+          "timestamp": "2025-06-25T20:58:22.303885"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.313501"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題2解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.326521"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題2→3",
+          "timestamp": "2025-06-25T20:58:22.326563"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.335270"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題3解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.351170"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題3→4",
+          "timestamp": "2025-06-25T20:58:22.351232"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.362535"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題4解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.377451"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題4→5",
+          "timestamp": "2025-06-25T20:58:22.377499"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.387572"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題5解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.401232"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題5→6",
+          "timestamp": "2025-06-25T20:58:22.401313"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.410000"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題6解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.424074"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題6→7",
+          "timestamp": "2025-06-25T20:58:22.424117"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.434226"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題7解答送信",
+          "result": "成功",
+          "details": "選択: c, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.447389"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題7→8",
+          "timestamp": "2025-06-25T20:58:22.447432"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.456424"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題8解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.469869"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題8→9",
+          "timestamp": "2025-06-25T20:58:22.469919"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.481000"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題9解答送信",
+          "result": "成功",
+          "details": "選択: b, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.497636"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "次の問題ボタン確認",
+          "result": "成功",
+          "details": "問題9→10",
+          "timestamp": "2025-06-25T20:58:22.497686"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10表示",
+          "result": "成功",
+          "details": "問題文を確認",
+          "timestamp": "2025-06-25T20:58:22.506681"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "問題10解答送信",
+          "result": "成功",
+          "details": "選択: a, フィードバック画面表示",
+          "timestamp": "2025-06-25T20:58:22.523211"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果ボタン確認",
+          "result": "成功",
+          "details": "10問目完了",
+          "timestamp": "2025-06-25T20:58:22.523259"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "結果画面表示",
+          "result": "成功",
+          "details": "スコア表示: True, サマリー: True",
+          "timestamp": "2025-06-25T20:58:22.532032"
+        },
+        {
+          "persona": "山田 新人",
+          "action": "鋼構造及びコンクリート部門2019年",
+          "result": "完走成功",
+          "details": "10問完了・結果表示確認",
+          "timestamp": "2025-06-25T20:58:22.532048"
+        }
+      ]
+    }
+  ],
+  "errors": {
+    "link_errors": [],
+    "button_errors": [],
+    "navigation_errors": [],
+    "display_errors": []
+  },
+  "completion_rate": 200.0,
+  "result_screen_success": 16,
+  "year_2019_success": 0
+}

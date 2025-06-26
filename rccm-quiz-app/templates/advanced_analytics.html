@@ -164,7 +164,12 @@
                                 <ul class="list-group">
                                     {% for item in analytics.recommendation_engine.recommendations[:5] %}
                                     <li class="list-group-item">
-                                        <i class="fas fa-arrow-right text-danger"></i> {{ item.title if item.title else item }}
+                                        <i class="fas fa-arrow-right text-danger"></i> 
+                                        {% if item is mapping %}
+                                            {{ item.title }} <small class="text-muted">({{ item.category }})</small>
+                                        {% else %}
+                                            {{ item }}
+                                        {% endif %}
                                     </li>
                                     {% endfor %}
                                 </ul>
@@ -173,7 +178,13 @@
                                 <h6>推奨学習順序</h6>
                                 <ol class="list-group list-group-numbered">
                                     {% for step in analytics.recommendation_engine.recommendations[:5] %}
-                                    <li class="list-group-item">{{ step }}</li>
+                                    <li class="list-group-item">
+                                        {% if step is mapping %}
+                                            {{ step.title }}
+                                        {% else %}
+                                            {{ step }}
+                                        {% endif %}
+                                    </li>
                                     {% endfor %}
                                 </ol>
                             </div>

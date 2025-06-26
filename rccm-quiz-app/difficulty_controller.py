@@ -19,14 +19,14 @@ class DynamicDifficultyController:
     """動的難易度制御エンジン"""
     
     def __init__(self):
-        # 難易度レベル定義
+        # 難易度レベル定義（日本語難易度値対応）
         self.difficulty_levels = {
             'beginner': {
                 'name': '初級',
                 'target_accuracy': 0.75,
                 'time_multiplier': 1.3,
                 'question_types': ['basic'],
-                'difficulties': ['基本', 'basic'],
+                'difficulties': ['基本', 'basic', '標準'],  # 日本語対応
                 'learning_boost': 1.2
             },
             'intermediate': {
@@ -34,7 +34,7 @@ class DynamicDifficultyController:
                 'target_accuracy': 0.65,
                 'time_multiplier': 1.0,
                 'question_types': ['basic', 'specialist'],
-                'difficulties': ['基本', 'basic', '標準', 'standard'],
+                'difficulties': ['基本', 'basic', '標準', 'standard'],  # 日本語対応
                 'learning_boost': 1.0
             },
             'advanced': {
@@ -42,7 +42,7 @@ class DynamicDifficultyController:
                 'target_accuracy': 0.55,
                 'time_multiplier': 0.8,
                 'question_types': ['basic', 'specialist'],
-                'difficulties': ['標準', 'standard', '応用', 'advanced'],
+                'difficulties': ['標準', 'standard', '応用', 'advanced'],  # 日本語対応
                 'learning_boost': 0.8
             },
             'expert': {
@@ -50,7 +50,7 @@ class DynamicDifficultyController:
                 'target_accuracy': 0.45,
                 'time_multiplier': 0.7,
                 'question_types': ['specialist'],
-                'difficulties': ['応用', 'advanced', '上級', 'expert'],
+                'difficulties': ['応用', 'advanced', '上級', 'expert', '標準'],  # 日本語対応＋フォールバック
                 'learning_boost': 0.6
             }
         }
@@ -124,26 +124,47 @@ class DynamicDifficultyController:
     
     def adjust_question_difficulty(self, questions: List[Dict], learner_assessment: Dict, 
                                  target_count: int) -> List[Dict]:
-        """学習者レベルに基づく問題難易度調整"""
+        """学習者レベルに基づく問題難易度調整（日本語データ対応）"""
         
         level = learner_assessment['overall_level']
         level_config = self.difficulty_levels[level]
         
-        # 難易度でフィルタリング
-        suitable_questions = [
+        logger.debug(f"難易度調整開始: レベル={level}, 対象問題数={len(questions)}, 要求数={target_count}")
+        
+        # 問題タイプでフィルタリング（まずここで基本的な絞り込み）
+        type_filtered = [
             q for q in questions 
-            if (q.get('question_type') in level_config['question_types'] and
-                q.get('difficulty', '標準') in level_config['difficulties'])
+            if q.get('question_type') in level_config['question_types']
         ]
+        
+        logger.debug(f"問題タイプフィルタ後: {len(type_filtered)}問 (許可タイプ: {level_config['question_types']})")
+        
+        # 難易度でフィルタリング（日本語対応）
+        suitable_questions = [
+            q for q in type_filtered 
+            if q.get('difficulty', '標準') in level_config['difficulties']
+        ]
+        
+        logger.debug(f"難易度フィルタ後: {len(suitable_questions)}問 (許可難易度: {level_config['difficulties']})")
+        
+        # フィルタ結果が少なすぎる場合の安全措置
+        if len(suitable_questions) == 0:
+            logger.warning(f"⚠️ 難易度フィルタで全問題が除外されました。問題タイプフィルタ結果を使用します。")
+            suitable_questions = type_filtered
         
         if len(suitable_questions) < target_count:
             # 不足分は隣接レベルから補完
-            suitable_questions.extend(
-                self._get_adjacent_level_questions(questions, level, target_count - len(suitable_questions))
+            adjacent_questions = self._get_adjacent_level_questions(
+                questions, level, target_count - len(suitable_questions)
             )
+            suitable_questions.extend(adjacent_questions)
+            logger.debug(f"隣接レベル補完後: {len(suitable_questions)}問")
         
         # 学習促進のための微調整
         adjusted_questions = self._apply_learning_boost(suitable_questions, level_config, target_count)
+        
+        final_count = min(len(adjusted_questions), target_count)
+        logger.info(f"難易度調整完了: {len(questions)}問 → {final_count}問 (レベル: {level})")
         
         return adjusted_questions[:target_count]
     

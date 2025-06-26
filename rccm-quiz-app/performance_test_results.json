@@ -1,0 +1,116 @@
+{
+  "timestamp": "2025-06-25T23:03:13.889773",
+  "threshold_seconds": 3.0,
+  "results": [
+    {
+      "url": "http://localhost:5003/",
+      "description": "ホームページ",
+      "avg_time": 0.03432936668395996,
+      "max_time": 0.1203467845916748,
+      "min_time": 0.01076364517211914,
+      "samples": 5,
+      "passed": true
+    },
+    {
+      "url": "http://localhost:5003/exam?question_type=basic",
+      "description": "4-1基礎科目",
+      "avg_time": 0.05987668037414551,
+      "max_time": 0.12316751480102539,
+      "min_time": 0.030466794967651367,
+      "samples": 5,
+      "passed": true
+    },
+    {
+      "url": "http://localhost:5003/departments",
+      "description": "4-2専門科目部門選択",
+      "avg_time": 0.012082290649414063,
+      "max_time": 0.013912200927734375,
+      "min_time": 0.009084939956665039,
+      "samples": 5,
+      "passed": true
+    },
+    {
+      "url": "http://localhost:5003/exam?question_type=specialist&department=road",
+      "description": "4-2道路部門",
+      "avg_time": 0.08210573196411133,
+      "max_time": 0.20732474327087402,
+      "min_time": 0.0439450740814209,
+      "samples": 5,
+      "passed": true
+    },
+    {
+      "url": "http://localhost:5003/statistics",
+      "description": "解答結果分析",
+      "avg_time": 0.029120492935180663,
+      "max_time": 0.0698850154876709,
+      "min_time": 0.013414144515991211,
+      "samples": 5,
+      "passed": true
+    },
+    {
+      "url": "http://localhost:5003/review",
+      "description": "復習リスト",
+      "avg_time": 0.007195425033569336,
+      "max_time": 0.008052825927734375,
+      "min_time": 0.00543665885925293,
+      "samples": 5,
+      "passed": true
+    },
+    {
+      "url": "http://localhost:5003/help",
+      "description": "ヘルプページ",
+      "avg_time": 0.00849742889404297,
+      "max_time": 0.0213925838470459,
+      "min_time": 0.004889011383056641,
+      "samples": 5,
+      "passed": true
+    },
+    {
+      "url": "http://localhost:5003/api/progress",
+      "description": "プログレスAPI",
+      "avg_time": 0.010817527770996094,
+      "max_time": 0.015100955963134766,
+      "min_time": 0.007628679275512695,
+      "samples": 3,
+      "passed": true
+    },
+    {
+      "url": "http://localhost:5003/api/stats",
+      "description": "統計API",
+      "avg_time": 0.00914780298868815,
+      "max_time": 0.010205507278442383,
+      "min_time": 0.00850367546081543,
+      "samples": 3,
+      "passed": true
+    },
+    {
+      "url": "http://localhost:5003/api/categories",
+      "description": "カテゴリAPI",
+      "avg_time": 0.00807801882425944,
+      "max_time": 0.008868694305419922,
+      "min_time": 0.007139921188354492,
+      "samples": 3,
+      "passed": true
+    },
+    {
+      "url": "Form Submission",
+      "description": "フォーム送信",
+      "avg_time": 0.01726539929707845,
+      "max_time": 0.017975568771362305,
+      "min_time": 0.016751527786254883,
+      "samples": 3,
+      "passed": true
+    },
+    {
+      "url": "Concurrent Access",
+      "description": "同時アクセス (5接続)",
+      "avg_time": 0.04578852653503418,
+      "max_time": 0.04757571220397949,
+      "min_time": 0.04201960563659668,
+      "samples": 5,
+      "passed": true,
+      "total_time": 0.051830291748046875
+    }
+  ],
+  "overall_status": "PASS"
+}
