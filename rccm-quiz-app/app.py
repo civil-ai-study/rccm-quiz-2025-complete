@@ -106,7 +106,7 @@ _cache_timestamp = None
 
 def get_session_lock(user_id):
     """ユーザー固有のセッションロックを取得（改修版）"""
-    global session_locks, lock_cleanup_lock, lock_last_used
+    # Global variables managed by threading module
 
     with lock_cleanup_lock:
         if user_id not in session_locks:
@@ -119,7 +119,7 @@ def get_session_lock(user_id):
 
 def cleanup_old_locks():
     """古いロックをクリーンアップ（メモリリーク防止・改修版）"""
-    global session_locks, lock_cleanup_lock, lock_last_used
+    # Global variables managed by threading module
 
     try:
         with lock_cleanup_lock:
@@ -1739,7 +1739,20 @@ def exam():
                                            if q.get('question_type') == 'basic']
 
                         if basic_questions:
-                            question_ids = [int(q.get('id', 0)) for q in basic_questions]
+                            # 🔥 CRITICAL FIX: 10問制限を適用してセッション再構築
+                            # get_mixed_questionsを使用して適切な10問セッションを作成
+                            mock_session = {'history': session.get('history', []), 'srs_data': session.get('srs_data', {})}
+                            selected_questions = get_mixed_questions(
+                                user_session=mock_session,
+                                all_questions=all_questions,
+                                requested_category='全体',
+                                session_size=10,  # 明示的に10問指定
+                                department='',
+                                question_type='basic',
+                                year=None
+                            )
+                            
+                            question_ids = [int(q.get('id', 0)) for q in selected_questions]
                             current_index = question_ids.index(qid) if qid in question_ids else 0
 
                             session['exam_question_ids'] = question_ids
@@ -1751,7 +1764,7 @@ def exam():
                             exam_question_ids = question_ids
                             current_no = current_index
 
-                            logger.info(f"基礎科目セッション再構築成功: {len(question_ids)}問, 現在位置{current_index}")
+                            logger.info(f"基礎科目セッション再構築成功（10問制限適用）: {len(question_ids)}問, 現在位置{current_index}")
                         else:
                             raise ValueError("基礎科目データが見つかりません")
 
@@ -1791,7 +1804,20 @@ def exam():
                                                     if q.get('category') == actual_category]
 
                         if specialist_questions:
-                            question_ids = [int(q.get('id', 0)) for q in specialist_questions]
+                            # 🔥 CRITICAL FIX: 10問制限を適用してセッション再構築
+                            # get_mixed_questionsを使用して適切な10問セッションを作成
+                            mock_session = {'history': session.get('history', []), 'srs_data': session.get('srs_data', {})}
+                            selected_questions = get_mixed_questions(
+                                user_session=mock_session,
+                                all_questions=all_questions,
+                                requested_category=actual_category,
+                                session_size=10,  # 明示的に10問指定
+                                department=department,
+                                question_type='specialist',
+                                year=None
+                            )
+                            
+                            question_ids = [int(q.get('id', 0)) for q in selected_questions]
                             current_index = question_ids.index(qid) if qid in question_ids else 0
 
                             session['exam_question_ids'] = question_ids
@@ -1804,7 +1830,7 @@ def exam():
                             exam_question_ids = question_ids
                             current_no = current_index
 
-                            logger.info(f"専門科目セッション再構築成功: カテゴリ={actual_category}, {len(question_ids)}問, 現在位置{current_index}")
+                            logger.info(f"専門科目セッション再構築成功（10問制限適用）: カテゴリ={actual_category}, {len(question_ids)}問, 現在位置{current_index}")
                         else:
                             raise ValueError(f"専門科目データが見つかりません: カテゴリ={actual_category}, 部門={department}")
 
@@ -1814,10 +1840,20 @@ def exam():
 
                         # 実際の問題種別で再分類
                         if actual_question_type == 'basic':
-                            # 基礎科目として処理
-                            basic_questions = [q for q in all_questions if q.get('question_type') == 'basic']
-                            if basic_questions:
-                                question_ids = [int(q.get('id', 0)) for q in basic_questions]
+                            # 基礎科目として処理（10問制限適用）
+                            mock_session = {'history': session.get('history', []), 'srs_data': session.get('srs_data', {})}
+                            selected_questions = get_mixed_questions(
+                                user_session=mock_session,
+                                all_questions=all_questions,
+                                requested_category='全体',
+                                session_size=10,  # 明示的に10問指定
+                                department='',
+                                question_type='basic',
+                                year=None
+                            )
+                            
+                            if selected_questions:
+                                question_ids = [int(q.get('id', 0)) for q in selected_questions]
                                 current_index = question_ids.index(qid) if qid in question_ids else 0
 
                                 session['exam_question_ids'] = question_ids
@@ -1829,17 +1865,25 @@ def exam():
                                 exam_question_ids = question_ids
                                 current_no = current_index
 
-                                logger.info(f"フォールバック基礎科目再構築成功: {len(question_ids)}問, 現在位置{current_index}")
+                                logger.info(f"フォールバック基礎科目再構築成功（10問制限適用）: {len(question_ids)}問, 現在位置{current_index}")
                             else:
                                 raise ValueError("フォールバック基礎科目データが見つかりません")
 
                         elif actual_question_type == 'specialist':
-                            # 専門科目として処理（カテゴリベース）
-                            specialist_questions = [q for q in all_questions
-                                                    if q.get('question_type') == 'specialist'
-                                                    and q.get('category') == actual_category]
-                            if specialist_questions:
-                                question_ids = [int(q.get('id', 0)) for q in specialist_questions]
+                            # 専門科目として処理（カテゴリベース、10問制限適用）
+                            mock_session = {'history': session.get('history', []), 'srs_data': session.get('srs_data', {})}
+                            selected_questions = get_mixed_questions(
+                                user_session=mock_session,
+                                all_questions=all_questions,
+                                requested_category=actual_category,
+                                session_size=10,  # 明示的に10問指定
+                                department=department,
+                                question_type='specialist',
+                                year=None
+                            )
+                            
+                            if selected_questions:
+                                question_ids = [int(q.get('id', 0)) for q in selected_questions]
                                 current_index = question_ids.index(qid) if qid in question_ids else 0
 
                                 session['exam_question_ids'] = question_ids
@@ -1851,32 +1895,41 @@ def exam():
                                 exam_question_ids = question_ids
                                 current_no = current_index
 
-                                logger.info(f"フォールバック専門科目再構築成功: カテゴリ={actual_category}, {len(question_ids)}問, 現在位置{current_index}")
+                                logger.info(f"フォールバック専門科目再構築成功（10問制限適用）: カテゴリ={actual_category}, {len(question_ids)}問, 現在位置{current_index}")
                             else:
                                 raise ValueError(f"フォールバック専門科目データが見つかりません: カテゴリ={actual_category}")
 
                         else:
-                            # 🔥 最終フォールバック: 全問題から同種別を抽出
-                            logger.warning(f"最終フォールバック: 問題種別不明 {actual_question_type}")
-                            similar_questions = [q for q in all_questions
-                                                 if q.get('question_type') == actual_question_type]
-                            if not similar_questions:
-                                # 本当に見つからない場合は全問題
-                                similar_questions = all_questions
+                            # 🔥 最終フォールバック: 10問制限を適用した混合セッション作成
+                            logger.warning(f"最終フォールバック: 問題種別不明 {actual_question_type} - 10問制限適用")
+                            mock_session = {'history': session.get('history', []), 'srs_data': session.get('srs_data', {})}
+                            selected_questions = get_mixed_questions(
+                                user_session=mock_session,
+                                all_questions=all_questions,
+                                requested_category='全体',
+                                session_size=10,  # 明示的に10問指定
+                                department='',
+                                question_type=actual_question_type or 'basic',
+                                year=None
+                            )
+                            
+                            if selected_questions:
+                                question_ids = [int(q.get('id', 0)) for q in selected_questions]
+                                current_index = question_ids.index(qid) if qid in question_ids else 0
 
-                            question_ids = [int(q.get('id', 0)) for q in similar_questions]
-                            current_index = question_ids.index(qid) if qid in question_ids else 0
+                                session['exam_question_ids'] = question_ids
+                                session['exam_current'] = current_index
+                                session['selected_question_type'] = actual_question_type or 'mixed'
+                                session['exam_category'] = actual_category or '混合'
+                                session.modified = True
 
-                            session['exam_question_ids'] = question_ids
-                            session['exam_current'] = current_index
-                            session['selected_question_type'] = actual_question_type or 'mixed'
-                            session['exam_category'] = actual_category or '混合'
-                            session.modified = True
+                                exam_question_ids = question_ids
+                                current_no = current_index
 
-                            exam_question_ids = question_ids
-                            current_no = current_index
-
-                            logger.info(f"最終フォールバック再構築成功: 種別={actual_question_type}, {len(question_ids)}問, 現在位置{current_index}")
+                                logger.info(f"最終フォールバック再構築成功（10問制限適用）: 種別={actual_question_type}, {len(question_ids)}問, 現在位置{current_index}")
+                            else:
+                                # 本当に失敗した場合はエラーにする
+                                raise ValueError(f"最終フォールバックでも問題選択に失敗: 種別={actual_question_type}")
 
                 except Exception as rebuild_error:
                     logger.error(f"ウルトラシンクセッション再構築失敗: {rebuild_error}")
@@ -4027,7 +4080,7 @@ def create_review_test_data():
 
         logger.info(f"復習テストデータ作成: SRS={len(srs_data)}問, ブックマーク={len(bookmarks)}問")
 
-        return f"""
+        return """
         <h2>🔥 復習テストデータ作成完了！</h2>
         <p>SRSデータ: {len(srs_data)}問</p>
         <p>ブックマーク: {len(bookmarks)}問</p>
@@ -5080,7 +5133,7 @@ def health_check():
 
         # AI機能の健康チェック
         try:
-            global ai_analyzer, advanced_analytics
+            # Global variables managed elsewhere
             if ai_analyzer is None or advanced_analytics is None:
                 health_status['checks']['ai_modules'] = 'not_initialized'
             else:
