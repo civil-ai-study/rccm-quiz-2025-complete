@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-06-26T13:52:52.542771",
+  "total_questions": 202,
+  "verified_questions": 200,
+  "quality_issues": [
+    {
+      "question_id": 78,
+      "question_number": 78,
+      "issues": [
+        "選択肢Cが無効"
+      ],
+      "question_preview": "土の分類で粒子が２番目に大きいものをa～dのなかから選びなさい。"
+    },
+    {
+      "question_id": 162,
+      "question_number": 162,
+      "issues": [
+        "選択肢Aが無効",
+        "選択肢Bが無効",
+        "選択肢Cが無効",
+        "選択肢Dが無効"
+      ],
+      "question_preview": "150/(2X-1)が自然数となるような整数Xの値はいくつあるか正しいものをa～dのなかから選びなさい。"
+    }
+  ],
+  "summary": {
+    "total_verified": 200,
+    "total_issues": 2,
+    "verification_rate": 99.00990099009901,
+    "issue_rate": 0.9900990099009901
+  }
+}

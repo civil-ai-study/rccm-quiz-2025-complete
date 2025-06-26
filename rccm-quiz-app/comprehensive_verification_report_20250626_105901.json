@@ -1,0 +1,137 @@
+{
+  "basic": {
+    "department_name": "基礎科目（4-1）",
+    "total_tests": 10,
+    "successful_tests": 10,
+    "failed_tests": 0,
+    "question_counts": [
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10
+    ],
+    "unique_counts": [
+      10
+    ],
+    "min_count": 10,
+    "max_count": 10,
+    "avg_count": 10.0,
+    "is_consistent": true,
+    "expected_count": 10,
+    "errors": []
+  },
+  "road": {
+    "department_name": "道路部門",
+    "total_tests": 10,
+    "successful_tests": 10,
+    "failed_tests": 0,
+    "question_counts": [
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10
+    ],
+    "unique_counts": [
+      10
+    ],
+    "min_count": 10,
+    "max_count": 10,
+    "avg_count": 10.0,
+    "is_consistent": true,
+    "expected_count": 10,
+    "errors": []
+  },
+  "civil_planning": {
+    "department_name": "河川・砂防・海岸海洋部門",
+    "total_tests": 10,
+    "successful_tests": 10,
+    "failed_tests": 0,
+    "question_counts": [
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10
+    ],
+    "unique_counts": [
+      10
+    ],
+    "min_count": 10,
+    "max_count": 10,
+    "avg_count": 10.0,
+    "is_consistent": true,
+    "expected_count": 10,
+    "errors": []
+  },
+  "steel_concrete": {
+    "department_name": "鋼構造・コンクリート部門",
+    "total_tests": 10,
+    "successful_tests": 10,
+    "failed_tests": 0,
+    "question_counts": [
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10
+    ],
+    "unique_counts": [
+      10
+    ],
+    "min_count": 10,
+    "max_count": 10,
+    "avg_count": 10.0,
+    "is_consistent": true,
+    "expected_count": 10,
+    "errors": []
+  },
+  "soil_foundation": {
+    "department_name": "土質・基礎部門",
+    "total_tests": 10,
+    "successful_tests": 10,
+    "failed_tests": 0,
+    "question_counts": [
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10
+    ],
+    "unique_counts": [
+      10
+    ],
+    "min_count": 10,
+    "max_count": 10,
+    "avg_count": 10.0,
+    "is_consistent": true,
+    "expected_count": 10,
+    "errors": []
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-06-26T13:56:47.290547",
+  "total_questions": 202,
+  "verified_questions": 202,
+  "quality_issues": [],
+  "summary": {
+    "total_verified": 202,
+    "total_issues": 0,
+    "verification_rate": 100.0,
+    "issue_rate": 0.0
+  }
+}

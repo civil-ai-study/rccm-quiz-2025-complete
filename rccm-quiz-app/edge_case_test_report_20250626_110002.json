@@ -1,0 +1,93 @@
+[
+  {
+    "test_type": "year_variation",
+    "department": "road",
+    "year": "2019",
+    "question_count": 10,
+    "expected": 10,
+    "success": true
+  },
+  {
+    "test_type": "year_variation",
+    "department": "road",
+    "year": "2018",
+    "question_count": 10,
+    "expected": 10,
+    "success": true
+  },
+  {
+    "test_type": "year_variation",
+    "department": "road",
+    "year": "2017",
+    "question_count": 10,
+    "expected": 10,
+    "success": true
+  },
+  {
+    "test_type": "year_variation",
+    "department": "road",
+    "year": "2016",
+    "question_count": 10,
+    "expected": 10,
+    "success": true
+  },
+  {
+    "test_type": "invalid_parameters",
+    "case_name": "存在しない部門",
+    "question_count": 0,
+    "expected": 10,
+    "success": false,
+    "params": {
+      "category": "全体",
+      "question_type": "specialist",
+      "department": "non_existent_department",
+      "year": "2019"
+    }
+  },
+  {
+    "test_type": "invalid_parameters",
+    "case_name": "存在しない年度",
+    "question_count": 0,
+    "expected": 10,
+    "success": false,
+    "params": {
+      "category": "全体",
+      "question_type": "specialist",
+      "department": "road",
+      "year": "1999"
+    }
+  },
+  {
+    "test_type": "invalid_parameters",
+    "case_name": "無効な問題種別",
+    "question_count": 0,
+    "expected": 10,
+    "success": false,
+    "params": {
+      "category": "全体",
+      "question_type": "invalid_type",
+      "department": "road",
+      "year": "2019"
+    }
+  },
+  {
+    "test_type": "concurrent_sessions",
+    "total_sessions": 5,
+    "successful_sessions": 5,
+    "results": [
+      10,
+      10,
+      10,
+      10,
+      10
+    ],
+    "success": true
+  },
+  {
+    "test_type": "rapid_recreation",
+    "total_attempts": 20,
+    "successful_attempts": 20,
+    "success_rate": 1.0,
+    "success": true
+  }
+]

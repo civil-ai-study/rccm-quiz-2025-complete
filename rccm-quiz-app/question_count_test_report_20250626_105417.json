@@ -1,0 +1,132 @@
+[
+  {
+    "department_id": "basic",
+    "department_name": "基礎科目（4-1）",
+    "question_type": "basic",
+    "year": null,
+    "success": false,
+    "exam_question_ids_count": 0,
+    "error": "HTTPエラー: 404",
+    "session_data": null
+  },
+  {
+    "department_id": "road",
+    "department_name": "道路部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": false,
+    "exam_question_ids_count": 0,
+    "error": "HTTPエラー: 404",
+    "session_data": null
+  },
+  {
+    "department_id": "tunnel",
+    "department_name": "トンネル部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": false,
+    "exam_question_ids_count": 0,
+    "error": "HTTPエラー: 404",
+    "session_data": null
+  },
+  {
+    "department_id": "civil_planning",
+    "department_name": "河川・砂防・海岸海洋部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": false,
+    "exam_question_ids_count": 0,
+    "error": "HTTPエラー: 404",
+    "session_data": null
+  },
+  {
+    "department_id": "urban_planning",
+    "department_name": "都市計画・地方計画部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": false,
+    "exam_question_ids_count": 0,
+    "error": "HTTPエラー: 404",
+    "session_data": null
+  },
+  {
+    "department_id": "landscape",
+    "department_name": "造園部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": false,
+    "exam_question_ids_count": 0,
+    "error": "HTTPエラー: 404",
+    "session_data": null
+  },
+  {
+    "department_id": "construction_env",
+    "department_name": "建設環境部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": false,
+    "exam_question_ids_count": 0,
+    "error": "HTTPエラー: 404",
+    "session_data": null
+  },
+  {
+    "department_id": "steel_concrete",
+    "department_name": "鋼構造・コンクリート部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": false,
+    "exam_question_ids_count": 0,
+    "error": "HTTPエラー: 404",
+    "session_data": null
+  },
+  {
+    "department_id": "soil_foundation",
+    "department_name": "土質・基礎部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": false,
+    "exam_question_ids_count": 0,
+    "error": "HTTPエラー: 404",
+    "session_data": null
+  },
+  {
+    "department_id": "construction_planning",
+    "department_name": "施工計画・施工設備・積算部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": false,
+    "exam_question_ids_count": 0,
+    "error": "HTTPエラー: 404",
+    "session_data": null
+  },
+  {
+    "department_id": "water_supply",
+    "department_name": "上水道・工業用水道部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": false,
+    "exam_question_ids_count": 0,
+    "error": "HTTPエラー: 404",
+    "session_data": null
+  },
+  {
+    "department_id": "forestry",
+    "department_name": "森林土木部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": false,
+    "exam_question_ids_count": 0,
+    "error": "HTTPエラー: 404",
+    "session_data": null
+  },
+  {
+    "department_id": "agriculture",
+    "department_name": "農業土木部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": false,
+    "exam_question_ids_count": 0,
+    "error": "HTTPエラー: 404",
+    "session_data": null
+  }
+]

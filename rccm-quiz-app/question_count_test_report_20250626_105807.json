@@ -1,0 +1,366 @@
+[
+  {
+    "department_id": "basic",
+    "department_name": "基礎科目（4-1）",
+    "question_type": "basic",
+    "year": null,
+    "success": true,
+    "exam_question_ids_count": 10,
+    "error": null,
+    "session_data": {
+      "exam_category": "基礎科目",
+      "exam_current": 0,
+      "exam_question_ids": [
+        187,
+        199,
+        38,
+        198,
+        30,
+        202,
+        171,
+        4,
+        196,
+        81
+      ],
+      "selected_department": null,
+      "selected_question_type": "basic",
+      "selected_year": null
+    }
+  },
+  {
+    "department_id": "road",
+    "department_name": "道路部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": true,
+    "exam_question_ids_count": 10,
+    "error": null,
+    "session_data": {
+      "exam_category": "全体",
+      "exam_current": 0,
+      "exam_question_ids": [
+        4698,
+        4688,
+        4705,
+        4695,
+        4704,
+        4702,
+        4691,
+        4694,
+        4699,
+        4690
+      ],
+      "selected_department": "road",
+      "selected_question_type": "specialist",
+      "selected_year": "2019"
+    }
+  },
+  {
+    "department_id": "tunnel",
+    "department_name": "トンネル部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": true,
+    "exam_question_ids_count": 10,
+    "error": null,
+    "session_data": {
+      "exam_category": "全体",
+      "exam_current": 0,
+      "exam_question_ids": [
+        4827,
+        4820,
+        4808,
+        4807,
+        4819,
+        4803,
+        4825,
+        4822,
+        4809,
+        4806
+      ],
+      "selected_department": "tunnel",
+      "selected_question_type": "specialist",
+      "selected_year": "2019"
+    }
+  },
+  {
+    "department_id": "civil_planning",
+    "department_name": "河川・砂防・海岸海洋部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": true,
+    "exam_question_ids_count": 10,
+    "error": null,
+    "session_data": {
+      "exam_category": "全体",
+      "exam_current": 0,
+      "exam_question_ids": [
+        4718,
+        4719,
+        4721,
+        4714,
+        4715,
+        4736,
+        4733,
+        4734,
+        4717,
+        4726
+      ],
+      "selected_department": "civil_planning",
+      "selected_question_type": "specialist",
+      "selected_year": "2019"
+    }
+  },
+  {
+    "department_id": "urban_planning",
+    "department_name": "都市計画・地方計画部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": true,
+    "exam_question_ids_count": 10,
+    "error": null,
+    "session_data": {
+      "exam_category": "全体",
+      "exam_current": 0,
+      "exam_question_ids": [
+        4979,
+        4987,
+        4981,
+        4982,
+        5001,
+        5005,
+        5004,
+        4993,
+        4989,
+        5000
+      ],
+      "selected_department": "urban_planning",
+      "selected_question_type": "specialist",
+      "selected_year": "2019"
+    }
+  },
+  {
+    "department_id": "landscape",
+    "department_name": "造園部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": true,
+    "exam_question_ids_count": 10,
+    "error": null,
+    "session_data": {
+      "exam_category": "全体",
+      "exam_current": 0,
+      "exam_question_ids": [
+        5032,
+        5030,
+        5009,
+        5008,
+        5028,
+        5033,
+        5035,
+        5036,
+        5013,
+        5034
+      ],
+      "selected_department": "landscape",
+      "selected_question_type": "specialist",
+      "selected_year": "2019"
+    }
+  },
+  {
+    "department_id": "construction_env",
+    "department_name": "建設環境部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": true,
+    "exam_question_ids_count": 10,
+    "error": null,
+    "session_data": {
+      "exam_category": "全体",
+      "exam_current": 0,
+      "exam_question_ids": [
+        4881,
+        4876,
+        4863,
+        4868,
+        4884,
+        4870,
+        4883,
+        4871,
+        4867,
+        4875
+      ],
+      "selected_department": "construction_env",
+      "selected_question_type": "specialist",
+      "selected_year": "2019"
+    }
+  },
+  {
+    "department_id": "steel_concrete",
+    "department_name": "鋼構造・コンクリート部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": true,
+    "exam_question_ids_count": 10,
+    "error": null,
+    "session_data": {
+      "exam_category": "全体",
+      "exam_current": 0,
+      "exam_question_ids": [
+        4789,
+        4780,
+        4771,
+        4785,
+        4797,
+        4798,
+        4794,
+        4800,
+        4788,
+        4776
+      ],
+      "selected_department": "steel_concrete",
+      "selected_question_type": "specialist",
+      "selected_year": "2019"
+    }
+  },
+  {
+    "department_id": "soil_foundation",
+    "department_name": "土質・基礎部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": true,
+    "exam_question_ids_count": 10,
+    "error": null,
+    "session_data": {
+      "exam_category": "全体",
+      "exam_current": 0,
+      "exam_question_ids": [
+        4744,
+        4769,
+        4767,
+        4741,
+        4745,
+        4766,
+        4765,
+        4756,
+        4749,
+        4742
+      ],
+      "selected_department": "soil_foundation",
+      "selected_question_type": "specialist",
+      "selected_year": "2019"
+    }
+  },
+  {
+    "department_id": "construction_planning",
+    "department_name": "施工計画・施工設備・積算部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": true,
+    "exam_question_ids_count": 10,
+    "error": null,
+    "session_data": {
+      "exam_category": "全体",
+      "exam_current": 0,
+      "exam_question_ids": [
+        4835,
+        4837,
+        4852,
+        4858,
+        4845,
+        4840,
+        4839,
+        4843,
+        4830,
+        4855
+      ],
+      "selected_department": "construction_planning",
+      "selected_question_type": "specialist",
+      "selected_year": "2019"
+    }
+  },
+  {
+    "department_id": "water_supply",
+    "department_name": "上水道・工業用水道部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": true,
+    "exam_question_ids_count": 10,
+    "error": null,
+    "session_data": {
+      "exam_category": "全体",
+      "exam_current": 0,
+      "exam_question_ids": [
+        4909,
+        4913,
+        4901,
+        4891,
+        4898,
+        4893,
+        4897,
+        4916,
+        4900,
+        4907
+      ],
+      "selected_department": "water_supply",
+      "selected_question_type": "specialist",
+      "selected_year": "2019"
+    }
+  },
+  {
+    "department_id": "forestry",
+    "department_name": "森林土木部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": true,
+    "exam_question_ids_count": 10,
+    "error": null,
+    "session_data": {
+      "exam_category": "全体",
+      "exam_current": 0,
+      "exam_question_ids": [
+        4965,
+        4961,
+        4967,
+        4978,
+        4951,
+        4969,
+        4974,
+        4977,
+        4950,
+        4968
+      ],
+      "selected_department": "forestry",
+      "selected_question_type": "specialist",
+      "selected_year": "2019"
+    }
+  },
+  {
+    "department_id": "agriculture",
+    "department_name": "農業土木部門",
+    "question_type": "specialist",
+    "year": "2019",
+    "success": true,
+    "exam_question_ids_count": 10,
+    "error": null,
+    "session_data": {
+      "exam_category": "全体",
+      "exam_current": 0,
+      "exam_question_ids": [
+        4924,
+        4920,
+        4946,
+        4931,
+        4936,
+        4929,
+        4923,
+        4926,
+        4940,
+        4948
+      ],
+      "selected_department": "agriculture",
+      "selected_question_type": "specialist",
+      "selected_year": "2019"
+    }
+  }
+]

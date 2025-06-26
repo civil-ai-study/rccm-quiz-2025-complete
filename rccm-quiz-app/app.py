@@ -1166,6 +1166,10 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
                 f"新規{len(selected_questions) - len([q for q in selected_questions if any(due['question'] == q for due in due_questions)])}問, "
                 f"フィルタ:[{', '.join(filter_info) if filter_info else '全体'}]")
 
+    # 🚨 ULTRA CRITICAL FIX: 絶対に10問固定（河川砂防バグ根本解決）
+    selected_questions = selected_questions[:10]
+    logger.info(f"🔥 ULTRA SYNC: 最終問題数確定 {len(selected_questions)}問（10問強制切断）")
+    
     return selected_questions
 
 
@@ -4109,6 +4113,23 @@ def clear_session_debug():
         return "セッションクリア完了"
     except Exception as e:
         return f"エラー: {e}", 500
+
+
+@app.route('/debug/session')
+def debug_session():
+    """デバッグ用セッション情報取得"""
+    try:
+        session_info = {
+            'exam_question_ids': session.get('exam_question_ids', []),
+            'exam_current': session.get('exam_current'),
+            'exam_category': session.get('exam_category'),
+            'selected_question_type': session.get('selected_question_type'),
+            'selected_department': session.get('selected_department'),
+            'selected_year': session.get('selected_year')
+        }
+        return jsonify(session_info)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 @app.route('/achievements')
