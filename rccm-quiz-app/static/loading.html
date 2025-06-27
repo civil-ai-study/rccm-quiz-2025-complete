@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCCM試験問題集 - 読み込み中</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+        
+        .loader-container {
+            text-align: center;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .logo {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        h1 {
+            font-size: 2em;
+            margin: 20px 0;
+            font-weight: 300;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        .status {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-top: 20px;
+        }
+        
+        .tip {
+            font-size: 0.9em;
+            opacity: 0.7;
+            margin-top: 40px;
+            max-width: 400px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .progress-bar {
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: white;
+            width: 0%;
+            animation: progress 15s ease-out;
+        }
+        
+        @keyframes progress {
+            0% { width: 0%; }
+            30% { width: 60%; }
+            90% { width: 90%; }
+            100% { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="logo">📚</div>
+        <h1>RCCM試験問題集2025</h1>
+        <div class="loader"></div>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <div class="status" id="status">システムを起動しています...</div>
+        <div class="tip">
+            💡 ヒント: 初回アクセス時は起動に10-15秒かかることがあります
+        </div>
+    </div>
+    
+    <script>
+        // 状態メッセージの更新
+        const messages = [
+            "システムを起動しています...",
+            "データベースに接続しています...",
+            "問題データを準備しています...",
+            "もうすぐ完了します..."
+        ];
+        
+        let messageIndex = 0;
+        setInterval(() => {
+            messageIndex = (messageIndex + 1) % messages.length;
+            document.getElementById('status').textContent = messages[messageIndex];
+        }, 3000);
+        
+        // 実際のアプリをチェック
+        let checkCount = 0;
+        const maxChecks = 30; // 最大30回（15秒）
+        
+        function checkApp() {
+            checkCount++;
+            
+            fetch('/health')
+                .then(response => {
+                    if (response.ok) {
+                        // アプリが起動したらリダイレクト
+                        setTimeout(() => {
+                            window.location.href = '/';
+                        }, 500);
+                    } else {
+                        scheduleNextCheck();
+                    }
+                })
+                .catch(() => {
+                    scheduleNextCheck();
+                });
+        }
+        
+        function scheduleNextCheck() {
+            if (checkCount < maxChecks) {
+                setTimeout(checkApp, 500);
+            } else {
+                // タイムアウト時はリロード
+                document.getElementById('status').textContent = 
+                    "接続に時間がかかっています。ページを再読み込みしてください。";
+            }
+        }
+        
+        // 初回チェックを1秒後に開始
+        setTimeout(checkApp, 1000);
+    </script>
+</body>
+</html>

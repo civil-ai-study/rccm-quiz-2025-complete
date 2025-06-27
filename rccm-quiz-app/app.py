@@ -97,9 +97,71 @@ session_data_manager = None
 enterprise_user_manager = None
 enterprise_data_manager = None
 
+# 🔥 CRITICAL FIX: 部門名マッピング（重複排除・グローバル定数化）
+DEPARTMENT_TO_CATEGORY_MAPPING = {
+    'road': '道路',
+    'tunnel': 'トンネル',
+    'civil_planning': '河川、砂防及び海岸・海洋',
+    'urban_planning': '都市計画及び地方計画',
+    'landscape': '造園',
+    'construction_env': '建設環境',
+    'steel_concrete': '鋼構造及びコンクリート',
+    'soil_foundation': '土質及び基礎',
+    'construction_planning': '施工計画、施工設備及び積算',
+    'water_supply': '上水道及び工業用水道',
+    'forestry': '森林土木',
+    'agriculture': '農業土木'
+}
+
 # 問題データのキャッシュ
 _questions_cache = None
 _cache_timestamp = None
+
+# ウルトラ高速起動用: モジュール遅延読み込みフラグ
+_modules_lazy_loaded = False
+_modules_lock = threading.Lock()
+
+def ensure_modules_loaded():
+    """必要なモジュールを遅延読み込み（ウルトラシンク最適化）"""
+    global _modules_lazy_loaded, gamification_manager, ai_analyzer, adaptive_engine
+    global exam_simulator, advanced_analytics, mobile_manager, learning_optimizer
+    global admin_dashboard, social_learning_manager, api_manager, advanced_personalization
+    
+    if not _modules_lazy_loaded:
+        with _modules_lock:
+            if not _modules_lazy_loaded:  # Double-check
+                logger.info("🔄 モジュール遅延読み込み開始...")
+                start_time = time.time()
+                
+                # 必要なモジュールをインポート
+                from gamification import gamification_manager as gam_mgr
+                from ai_analyzer import ai_analyzer as ai_ana
+                from adaptive_learning import adaptive_engine as adp_eng
+                from exam_simulator import exam_simulator as exam_sim
+                from advanced_analytics import advanced_analytics as adv_ana
+                from mobile_features import mobile_manager as mob_mgr
+                from learning_optimizer import learning_optimizer as lrn_opt
+                from admin_dashboard import admin_dashboard as adm_dash
+                from social_learning import social_learning_manager as soc_mgr
+                from api_integration import api_manager as api_mgr
+                from advanced_personalization import advanced_personalization as adv_per
+                
+                # グローバル変数に代入
+                gamification_manager = gam_mgr
+                ai_analyzer = ai_ana
+                adaptive_engine = adp_eng
+                exam_simulator = exam_sim
+                advanced_analytics = adv_ana
+                mobile_manager = mob_mgr
+                learning_optimizer = lrn_opt
+                admin_dashboard = adm_dash
+                social_learning_manager = soc_mgr
+                api_manager = api_mgr
+                advanced_personalization = adv_per
+                
+                _modules_lazy_loaded = True
+                elapsed = time.time() - start_time
+                logger.info(f"✅ モジュール遅延読み込み完了: {elapsed:.2f}秒")
 
 # 🔥 CRITICAL: セッション安全性確保のための排他制御関数
 
@@ -1049,26 +1111,9 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
             # 英語IDが渡された場合は日本語カテゴリに変換
             target_category = department  # デフォルトは渡された値をそのまま使用
 
-            # 英語部門キーを日本語カテゴリに変換するマッピング
-            # ✅ CSVファイル統一化により簡素化されたマッピング
-            department_to_category_mapping = {
-                'road': '道路',
-                'tunnel': 'トンネル',
-                'civil_planning': '河川、砂防及び海岸・海洋',
-                'urban_planning': '都市計画及び地方計画',
-                'landscape': '造園',
-                'construction_env': '建設環境',
-                'steel_concrete': '鋼構造及びコンクリート',
-                'soil_foundation': '土質及び基礎',
-                'construction_planning': '施工計画、施工設備及び積算',
-                'water_supply': '上水道及び工業用水道',
-                'forestry': '森林土木',
-                'agriculture': '農業土木'
-            }
-
-            # 渡されたdepartmentが英語IDの場合のみ変換
-            if department in department_to_category_mapping:
-                target_category = department_to_category_mapping[department]
+            # 渡されたdepartmentが英語IDの場合のみ変換（グローバル定数使用）
+            if department in DEPARTMENT_TO_CATEGORY_MAPPING:
+                target_category = DEPARTMENT_TO_CATEGORY_MAPPING[department]
                 logger.info(f"部門フィルタリング: 英語ID {department} → 日本語カテゴリ {target_category}")
             else:
                 # 日本語部門名の場合はそのまま使用
@@ -1181,6 +1226,11 @@ def before_request():
     """リクエスト前の処理（企業環境最適化版）"""
     session.permanent = True
 
+    # 🔥 CRITICAL FIX: メモリリーク防止のための定期的なロッククリーンアップ
+    import random
+    if random.randint(1, 100) <= 5:  # 5%の確率で実行（負荷分散）
+        cleanup_old_locks()
+
     # セッションタイムアウトチェック
     if 'last_activity' in session:
         last_activity = datetime.fromisoformat(session['last_activity'])
@@ -1242,6 +1292,12 @@ def after_request_data_save(response):
         session.modified = True
 
     return response
+
+
+@app.route('/health')
+def health():
+    """ヘルスチェック（高速）"""
+    return jsonify({'status': 'healthy', 'timestamp': datetime.now().isoformat()})
 
 
 @app.route('/')
@@ -1599,6 +1655,10 @@ def exam():
                 session['category_stats'][cat]['correct'] += 1
             session.modified = True  # カテゴリ統計変更も保存
 
+            # モジュールの遅延読み込み（必要時のみ）
+            if os.environ.get('RCCM_LAZY_LOAD', 'true').lower() == 'true':
+                ensure_modules_loaded()
+            
             # ゲーミフィケーション更新
             current_streak, streak_badges = gamification_manager.update_streak(session)
             session_performance = {
@@ -1780,21 +1840,7 @@ def exam():
 
                         # 部門フィルタリング（実際のカテゴリも考慮）
                         if department:
-                            department_to_category_mapping = {
-                                'road': '道路',
-                                'tunnel': 'トンネル',
-                                'civil_planning': '河川、砂防及び海岸・海洋',
-                                'urban_planning': '都市計画及び地方計画',
-                                'landscape': '造園',
-                                'construction_env': '建設環境',
-                                'steel_concrete': '鋼構造及びコンクリート',
-                                'soil_foundation': '土質及び基礎',
-                                'construction_planning': '施工計画、施工設備及び積算',
-                                'water_supply': '上水道及び工業用水道',
-                                'forestry': '森林土木',
-                                'agriculture': '農業土木'
-                            }
-                            target_category = department_to_category_mapping.get(department, department)
+                            target_category = DEPARTMENT_TO_CATEGORY_MAPPING.get(department, department)
 
                             # 🔥 カテゴリマッチング（鋼構造部門の特別処理含む）
                             if department == 'steel_concrete':
@@ -2238,10 +2284,30 @@ def exam():
         # カテゴリ処理後の最終値
         logger.info(f"カテゴリ処理後: requested_department={requested_department}, requested_question_type={requested_question_type}")
 
+        # 🔥 ULTRA SYNC修正: 部門指定時のデフォルト専門科目設定
+        if requested_department and not requested_question_type:
+            requested_question_type = 'specialist'
+            logger.info(f"ULTRA SYNC: 部門指定により専門科目に自動設定 - {requested_department}")
+
         # 年度パラメータの取得とサニタイズ
         requested_year = sanitize_input(request.args.get('year'))
         if requested_year:
             logger.info(f"年度指定: {requested_year}年度の問題を取得")
+
+        # 🔥 ULTRA SYNC: URLパラメータcount処理（CLAUDE.MD準拠修正）
+        requested_count = request.args.get('count')
+        if requested_count:
+            try:
+                count_value = int(requested_count)
+                if count_value in [10, 20, 30]:
+                    # クイズ設定を一時的に更新（副作用なし）
+                    if 'quiz_settings' not in session:
+                        session['quiz_settings'] = {}
+                    session['quiz_settings']['questions_per_session'] = count_value
+                    session.modified = True
+                    logger.info(f"ULTRA SYNC: URLパラメータcount={count_value}をセッションに適用")
+            except (ValueError, TypeError):
+                logger.warning(f"無効なcountパラメータ: {requested_count}")
 
         # ユーザー設定に基づく問題数を取得
         session_size = get_user_session_size(session)
@@ -2277,14 +2343,18 @@ def exam():
         exam_question_ids = session.get('exam_question_ids', [])
         # URLパラメータから現在の問題番号を取得（競合回避）
         url_current = request.args.get('current')
-        if is_next_request and url_current:
-            try:
-                current_no = int(url_current)
-                # セッションも同期
-                session['exam_current'] = current_no
-                session.modified = True
-            except ValueError:
-                current_no = session.get('exam_current', 0)
+        if is_next_request:
+            # 🔥 ULTRA FIX: 次問題リクエスト時はセッションのexam_currentを直接使用
+            current_no = session.get('exam_current', 0)
+            logger.info(f"🔥 ULTRA FIX: 次問題リクエスト - セッションのcurrent_no={current_no}を使用")
+            
+            # URLパラメータは参考程度で、セッション値を優先
+            if url_current:
+                try:
+                    url_current_no = int(url_current)
+                    logger.info(f"参考URL current={url_current_no}, セッション使用={current_no}")
+                except ValueError:
+                    pass
         else:
             current_no = session.get('exam_current', 0)
         session_category = session.get('exam_category', '全体')
@@ -2344,45 +2414,50 @@ def exam():
                 logger.error(f"無効な問題IDが指定されました: {specific_qid}")
                 return render_template('error.html', error="無効な問題IDが指定されました。")
 
-        # セッション初期化判定 (qid指定がない場合)
-        # 次の問題への遷移要求の場合はリセットしない
-        session_question_type = session.get('selected_question_type')
-        session_department = session.get('selected_department')
-        session_year = session.get('selected_year')  # 🚨 年度マッチング追加
+        # 🔥 ULTRA SYNC: セッション継続問題完全解決（副作用なし）
+        # 次の問題への遷移要求の場合は、セッション情報を保持し続行
+        if is_next_request:
+            logger.info(f"🔥 ULTRA SYNC: 次問題リクエスト検出 - セッション保持モード")
+            # 次問題リクエストの場合は一切のリセット処理をスキップ
+            need_reset = False
+            logger.info(f"🔥 ULTRA SYNC: 次問題リクエストのためneed_reset=False強制設定")
+        else:
+            # 通常のリクエストの場合のみリセット判定を実行
+            session_question_type = session.get('selected_question_type')
+            session_department = session.get('selected_department')
+            session_year = session.get('selected_year')
 
-        category_match = requested_category == session_category
-        question_type_match = requested_question_type == session_question_type
-        department_match = requested_department == session_department
-        year_match = requested_year == session_year  # 🚨 年度マッチング判定追加
+            category_match = requested_category == session_category
+            question_type_match = requested_question_type == session_question_type
+            department_match = requested_department == session_department
+            year_match = requested_year == session_year
 
-        logger.info(f"リセット判定: is_next={is_next_request}, exam_ids={bool(exam_question_ids)}, "
-                    f"category_match={category_match}, question_type_match={question_type_match}, "
-                    f"department_match={department_match}, year_match={year_match}, "
-                    f"current_no={current_no}, len={len(exam_question_ids)}")
+            logger.info(f"リセット判定: is_next={is_next_request}, exam_ids={bool(exam_question_ids)}, "
+                        f"category_match={category_match}, question_type_match={question_type_match}, "
+                        f"department_match={department_match}, year_match={year_match}, "
+                        f"current_no={current_no}, len={len(exam_question_ids)}")
 
-        # 🔥 CRITICAL: 強化されたリセット判定（ユーザー要求による）
-        # ホームから戻ってきた場合は必ずリセット
-        referrer_is_home = request.referrer and request.referrer.endswith('/')
+            # ホームから戻ってきた場合は必ずリセット
+            referrer_is_home = request.referrer and request.referrer.endswith('/')
 
-        # 🔥 CRITICAL: 復習モードの詳細判定（ウルトラシンク修正）
-        is_review_mode = (
-            (requested_question_type == 'review' and exam_question_ids) or
-            (session.get('selected_question_type') == 'review' and exam_question_ids) or
-            (session.get('exam_category', '').startswith('復習') and exam_question_ids)
-        )
+            # 復習モードの詳細判定
+            is_review_mode = (
+                (requested_question_type == 'review' and exam_question_ids) or
+                (session.get('selected_question_type') == 'review' and exam_question_ids) or
+                (session.get('exam_category', '').startswith('復習') and exam_question_ids)
+            )
 
-        # 🔥 CRITICAL: 復習モード保護強化 - 復習セッション中は不適切なリセットを防止
-        # 🚨 年度変更時のリセット判定を追加（ウルトラシンク修正）
-        need_reset = (not is_next_request and not is_review_mode and (
-            not exam_question_ids or                    # 問題IDがない
-            request.args.get('reset') == '1' or        # 明示的リセット要求
-            (referrer_is_home and not is_review_mode) or  # ホームから来た場合（復習除く）
-            (not question_type_match and not is_review_mode) or  # 問題種別変更（復習除く）
-            (not department_match and not is_review_mode) or    # 部門変更（復習除く）
-            (not year_match and not is_review_mode) or          # 🚨 年度変更（復習除く）
-            len(exam_question_ids) == 0))              # 空の問題リスト
+            # 通常のリセット判定（次問題リクエスト以外）
+            need_reset = (not is_review_mode and (
+                not exam_question_ids or                    # 問題IDがない
+                request.args.get('reset') == '1' or        # 明示的リセット要求
+                (referrer_is_home and not is_review_mode) or  # ホームから来た場合（復習除く）
+                (not question_type_match and not is_review_mode) or  # 問題種別変更（復習除く）
+                (not department_match and not is_review_mode) or    # 部門変更（復習除く）
+                (not year_match and not is_review_mode) or          # 年度変更（復習除く）
+                len(exam_question_ids) == 0))              # 空の問題リスト
 
-        logger.info(f"need_reset = {need_reset}")
+        logger.info(f"🔥 ULTRA SYNC: need_reset = {need_reset} (is_next_request={is_next_request})")
 
         if need_reset:
             # 🔥 CRITICAL: セッション情報完全クリア（ユーザー要求による）
@@ -2450,6 +2525,11 @@ def exam():
             logger.info(f"新しい問題セッション開始: {len(question_ids)}問, フィルタ: {', '.join(filter_desc) if filter_desc else '全体'}")
 
         # 🔥 CRITICAL: 復習セッション保護付き範囲チェック（ウルトラシンク修正）
+        # 🔥 ULTRA FIX: セッション継続のため範囲チェックを厳密化
+        if not exam_question_ids:
+            logger.error("exam_question_idsが空です - 緊急セッション再構築が必要")
+            return render_template('error.html', error="セッションデータが破損しました。ホームから再開してください。")
+        
         if current_no >= len(exam_question_ids):
             # 復習モードの場合は結果画面ではなく復習完了処理へ
             if is_review_mode or session.get('selected_question_type') == 'review':
@@ -2909,22 +2989,8 @@ def department_study(department):
         }
 
         # 4-2専門問題（選択部門のみ）の統計
-        # 部門キーを日本語カテゴリに変換
-        department_to_category_mapping = {
-            'road': '道路',
-            'tunnel': 'トンネル',
-            'civil_planning': '河川、砂防及び海岸・海洋',
-            'urban_planning': '都市計画及び地方計画',
-            'landscape': '造園',
-            'construction_env': '建設環境',
-            'steel_concrete': '鋼構造及びコンクリート',
-            'soil_foundation': '土質及び基礎',
-            'construction_planning': '施工計画、施工設備及び積算',
-            'water_supply': '上水道及び工業用水道',
-            'forestry': '森林土木',
-            'agriculture': '農業土木'
-        }
-        target_category = department_to_category_mapping.get(department_key, department_key)
+        # 部門キーを日本語カテゴリに変換（グローバル定数使用）
+        target_category = DEPARTMENT_TO_CATEGORY_MAPPING.get(department_key, department_key)
 
         specialist_questions = [q for q in questions
                                 if q.get('question_type') == 'specialist' and q.get('category') == target_category]
@@ -6389,10 +6455,38 @@ def api_enterprise_cache_clear():
 
 # 初期化（企業環境最適化 - 重複読み込み解決版）
 try:
-    # 環境変数で読み込み方式を選択（デフォルト: 高速化モード）
-    fast_mode = os.environ.get('RCCM_FAST_MODE', 'true').lower() == 'true'
+    # 環境変数で読み込み方式を選択（デフォルト: 遅延読み込みモード）
+    lazy_load = os.environ.get('RCCM_LAZY_LOAD', 'true').lower() == 'true'
+    fast_mode = os.environ.get('RCCM_FAST_MODE', 'false').lower() == 'true' and not lazy_load
 
-    if fast_mode:
+    if lazy_load:
+        # 🚀 ウルトラ高速起動モード: データ読み込みを完全に遅延
+        logger.info("🚀 ウルトラ高速起動モード: 遅延読み込み有効")
+        # モジュールインポートのみ（データ読み込みなし）
+        from data_manager import DataManager, SessionDataManager, EnterpriseUserManager
+        from utils import enterprise_data_manager as edm
+        
+        data_manager = DataManager()
+        session_data_manager = SessionDataManager(data_manager)
+        enterprise_user_manager = EnterpriseUserManager(data_manager)
+        enterprise_data_manager = edm
+        
+        # 機能モジュールも遅延インポート
+        gamification_manager = None
+        ai_analyzer = None
+        adaptive_engine = None
+        exam_simulator = None
+        advanced_analytics = None
+        mobile_manager = None
+        learning_optimizer = None
+        admin_dashboard = None
+        social_learning_manager = None
+        api_manager = None
+        advanced_personalization = None
+        
+        logger.info("✅ ウルトラ高速起動完了 - データは必要時に読み込まれます")
+        
+    elif fast_mode:
         # 高速化モード: 遅延インポートでデータ管理初期化
         logger.info("🚀 高速化モード: 企業環境用データ読み込み開始")
 

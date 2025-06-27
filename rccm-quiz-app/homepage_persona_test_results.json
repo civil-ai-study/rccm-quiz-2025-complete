@@ -1,0 +1,43 @@
+{
+  "test_type": "homepage_persona_test",
+  "timestamp": "2025-06-27T10:18:08.733697",
+  "success_rate": 100.0,
+  "results": [
+    {
+      "persona": "初心者エンジニア",
+      "status_code": 200,
+      "success": true,
+      "elements_found": [
+        "設定画面",
+        "10問",
+        "AI学習分析"
+      ],
+      "elements_missing": [],
+      "timestamp": "2025-06-27T10:18:08.704391"
+    },
+    {
+      "persona": "経験豊富なエンジニア",
+      "status_code": 200,
+      "success": true,
+      "elements_found": [
+        "30問",
+        "専門科目",
+        "復習リスト"
+      ],
+      "elements_missing": [],
+      "timestamp": "2025-06-27T10:18:08.724045"
+    },
+    {
+      "persona": "管理者",
+      "status_code": 200,
+      "success": true,
+      "elements_found": [
+        "学習記録",
+        "統計",
+        "設定"
+      ],
+      "elements_missing": [],
+      "timestamp": "2025-06-27T10:18:08.729031"
+    }
+  ]
+}

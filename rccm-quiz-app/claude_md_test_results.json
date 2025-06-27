@@ -1,0 +1,126 @@
+{
+  "test_type": "claude_md_comprehensive",
+  "timestamp": "2025-06-27T10:19:21.263114",
+  "summary": {
+    "total_tests": 19,
+    "passed_tests": 19,
+    "failed_tests": 0,
+    "success_rate": 100.0
+  },
+  "results": [
+    {
+      "test": "Python構文チェック",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.122191"
+    },
+    {
+      "test": "HTML構文チェック",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.126876"
+    },
+    {
+      "test": "連続アクセステスト",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.179393"
+    },
+    {
+      "test": "セッション状態テスト",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.184294"
+    },
+    {
+      "test": "設定変更テスト",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.187194"
+    },
+    {
+      "test": "宣伝文句削除",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.190811"
+    },
+    {
+      "test": "設定案内追加",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.190839"
+    },
+    {
+      "test": "設定リンク追加",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.190842"
+    },
+    {
+      "test": "AI機能下部移動",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.190849"
+    },
+    {
+      "test": "必須要素確認",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.190863"
+    },
+    {
+      "test": "未認証ユーザーアクセス",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.193329"
+    },
+    {
+      "test": "認証ユーザーアクセス",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.195587"
+    },
+    {
+      "test": "設定画面遷移",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.218901"
+    },
+    {
+      "test": "設定変更ワークフロー",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.221113"
+    },
+    {
+      "test": "XSS対策",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.223900"
+    },
+    {
+      "test": "SQLインジェクション対策",
+      "success": true,
+      "details": "ファイルベースDB - 該当なし",
+      "timestamp": "2025-06-27T10:19:21.223913"
+    },
+    {
+      "test": "セッション管理",
+      "success": true,
+      "details": "",
+      "timestamp": "2025-06-27T10:19:21.227616"
+    },
+    {
+      "test": "レスポンス時間",
+      "success": true,
+      "details": "0.00秒",
+      "timestamp": "2025-06-27T10:19:21.230038"
+    },
+    {
+      "test": "同時アクセス処理",
+      "success": true,
+      "details": "10リクエスト: 0.03秒",
+      "timestamp": "2025-06-27T10:19:21.263037"
+    }
+  ]
+}
