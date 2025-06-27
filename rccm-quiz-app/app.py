@@ -1126,9 +1126,9 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
     random.shuffle(new_questions)
     selected_questions.extend(new_questions[:remaining_count])
 
-    # 🔥 CRITICAL: 10問保証のためのフォールバック機能（ウルトラシンク修正）
-    if len(selected_questions) < 10:
-        shortage = 10 - len(selected_questions)
+    # ユーザー設定問題数保証のためのフォールバック機能
+    if len(selected_questions) < session_size:
+        shortage = session_size - len(selected_questions)
         logger.warning(f"問題数不足を検出: {len(selected_questions)}問 (不足: {shortage}問) - フォールバック実行")
 
         # フォールバック1: フィルタを緩和して問題を追加
@@ -1146,8 +1146,8 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         logger.info(f"フォールバック完了: {len(additional_questions)}問追加, 合計{len(selected_questions)}問")
 
         # フォールバック2: それでも不足の場合は全問題から選択
-        if len(selected_questions) < 10:
-            final_shortage = 10 - len(selected_questions)
+        if len(selected_questions) < session_size:
+            final_shortage = session_size - len(selected_questions)
             selected_ids = [int(q.get('id', 0)) for q in selected_questions]
             final_fallback = [q for q in all_questions if int(q.get('id', 0)) not in selected_ids]
             random.shuffle(final_fallback)
@@ -2036,10 +2036,11 @@ def exam():
             # 次の問題のインデックスが問題リストの範囲を超えている場合は最終問題
             is_last_question = (safe_next_no >= total_questions_count)
 
-            # 🔥 CRITICAL: 10問保証 - 10問未満では絶対に最終問題にしない
-            if total_questions_count >= 10 and safe_next_no < 10:
+            # ユーザー設定問題数保証 - 設定数未満では絶対に最終問題にしない
+            session_size = get_user_session_size(session)
+            if total_questions_count >= session_size and safe_next_no < session_size:
                 is_last_question = False
-                logger.info(f"🔥 10問保証: {safe_next_no}/10問目のため、最終問題フラグを強制的にFalseに設定")
+                logger.info(f"問題数保証: {safe_next_no}/{session_size}問目のため、最終問題フラグを強制的にFalseに設定")
 
             # 次の問題のインデックスを安全に設定
             next_question_index = safe_next_no if not is_last_question else None
@@ -2093,8 +2094,8 @@ def exam():
             logger.info(f"回答処理完了: 問題{qid}, 正答{is_correct}, レベル{srs_info.get('level', 0)}, ストリーク{current_streak}日")
 
             # フィードバック画面に渡すデータを準備
-            # 🔥 CRITICAL FIX: 10問制限を強制適用（進捗表示バグ防止）
-            safe_total_questions = min(10, max(1, len(exam_question_ids))) if exam_question_ids else 10
+            # ユーザー設定の問題数を使用（進捗表示修正）
+            safe_total_questions = get_user_session_size(session)
             # 問題番号は1ベースだが、total_questions を超えないよう制限
             safe_current_number = min(max(1, current_no + 1), safe_total_questions)
 
@@ -2242,8 +2243,8 @@ def exam():
         if requested_year:
             logger.info(f"年度指定: {requested_year}年度の問題を取得")
 
-        # 🔥 CRITICAL: 絶対に10問固定（ユーザー要求による）
-        session_size = 10
+        # ユーザー設定に基づく問題数を取得
+        session_size = get_user_session_size(session)
         specific_qid = sanitize_input(request.args.get('qid'))
 
         # 🔥 CRITICAL: 復習機能の特別処理（ウルトラシンク修正）
@@ -2476,7 +2477,7 @@ def exam():
 
         # 表示用の数値を検証して設定
         display_current = max(1, current_no + 1)  # 最小値1を保証
-        display_total = max(1, len(exam_question_ids))  # 最小値1を保証
+        display_total = max(1, session_size)  # ユーザー設定問題数を使用
 
         # デバッグログ: 表示数値の確認
         logger.info(f"問題表示: {display_current}/{display_total} (内部: current_no={current_no}, total_ids={len(exam_question_ids)})")
@@ -4295,8 +4296,8 @@ def adaptive_questions():
     """アダプティブ問題練習モード（部門別対応版）"""
     try:
         learning_mode = request.args.get('mode', 'balanced')
-        # 🔥 CRITICAL: 絶対に10問固定（ユーザー要求による）
-        session_size = 10
+        # ユーザー設定に基づく問題数を取得
+        session_size = get_user_session_size(session)
         department = request.args.get('department', session.get('selected_department', ''))
 
         all_questions = load_questions()
@@ -4347,8 +4348,8 @@ def integrated_learning():
     try:
         # パラメータ取得
         learning_mode = request.args.get('mode', 'basic_to_specialist')
-        # 🔥 CRITICAL: 絶対に10問固定（ユーザー要求による）
-        session_size = 10
+        # ユーザー設定に基づく問題数を取得
+        session_size = get_user_session_size(session)
         department = request.args.get('department', session.get('selected_department', ''))
 
         # 連携学習モードの検証
@@ -6525,7 +6526,7 @@ def handle_exception(e):
 
 if __name__ == '__main__':
     # 🔥 本番環境のポート設定: Renderではポート10000を使用
-    port = int(os.environ.get('PORT', 5003))
+    port = int(os.environ.get('PORT', 5005))
     host = '0.0.0.0' if os.environ.get('FLASK_ENV') == 'production' else '0.0.0.0'
     debug_mode = os.environ.get('FLASK_ENV') != 'production'
 
