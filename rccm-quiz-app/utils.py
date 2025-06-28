@@ -15,15 +15,31 @@ from typing import List, Dict, Optional, Any, Callable, Tuple
 from collections import OrderedDict
 from concurrent.futures import ThreadPoolExecutor
 
-# ログ設定
+# 🔥 ULTRA SYNC LOG FIX: ログファイル肥大化防止（ローテーション機能追加）
+import logging.handlers
+
+# ログ設定（ローテーション機能付き）
+log_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+# ローテーティングファイルハンドラ: 最大10MB、5ファイルまで保持
+rotating_handler = logging.handlers.RotatingFileHandler(
+    'rccm_app.log',
+    maxBytes=10*1024*1024,  # 10MB
+    backupCount=5,  # 最大5個のバックアップファイル
+    encoding='utf-8'
+)
+rotating_handler.setFormatter(log_formatter)
+
+# コンソールハンドラ
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(log_formatter)
+
+# ルートロガー設定
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('rccm_app.log'),
-        logging.StreamHandler()
-    ]
+    handlers=[rotating_handler, console_handler]
 )
+
 logger = logging.getLogger(__name__)
 
 # === キャッシュシステム ===
@@ -519,6 +535,7 @@ def map_category_to_department(category: str) -> str:
         # 施工計画（年度による表記の違いに対応）
         '施工計画': 'construction_planning',
         '施工計画施工設備積算': 'construction_planning',
+        '施工計画、施工設備及び積算': 'construction_planning',
         
         # 上水道
         '上水道及び工業用水道': 'water_supply',
@@ -560,7 +577,8 @@ def resolve_id_conflicts(questions: List[Dict]) -> List[Dict]:
     
     duplicated_ids = [id_val for id_val, count in original_id_counts.items() if count > 1]
     if duplicated_ids:
-        logger.warning(f"重複ID検出: {len(duplicated_ids)}個のIDが重複 (例: {duplicated_ids[:10]})")
+        # 🔥 ULTRA SYNC FIX: 重複ID検出は正常な処理工程（警告レベル下げ）
+        logger.info(f"ID重複解決処理開始: {len(duplicated_ids)}個のIDを重複解決中 (例: {duplicated_ids[:10]})")
     
     used_ids = set()
     resolved_questions = []

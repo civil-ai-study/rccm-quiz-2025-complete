@@ -165,7 +165,6 @@ URL: ${window.location.href}
             if (retryCount < 2 && performance.navigation.type !== 1) { // リロードでない場合のみ
                 retryCount++;
                 setTimeout(() => {
-                    console.log(`自動リトライ試行 ${retryCount}/2`);
                     location.reload();
                 }, 3000);
             }

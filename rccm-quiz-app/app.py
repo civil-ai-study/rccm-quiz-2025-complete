@@ -24,9 +24,17 @@ def require_admin_auth(f):
         admin_flag = session.get('is_admin', False)
         admin_key = request.headers.get('X-Admin-Key')
 
-        # 管理者キーまたはセッションフラグのチェック
+        # 🔥 ULTRA SYNC SECURITY FIX: 管理者キーまたはセッションフラグのチェック
         from flask import current_app
-        if not admin_flag and admin_key != current_app.config.get('ADMIN_SECRET_KEY', os.environ.get('ADMIN_SECRET_KEY', 'change-this-in-production')):
+        admin_secret = current_app.config.get('ADMIN_SECRET_KEY') or os.environ.get('ADMIN_SECRET_KEY')
+        
+        # 🔥 ULTRA SYNC SECURITY FIX: デフォルト値による安全な運用
+        if not admin_secret:
+            # 管理者機能無効化モードで継続運用（セキュアデフォルト）
+            logger.warning("⚠️ ADMIN_SECRET_KEY未設定 - 管理者機能は無効化されています")
+            return jsonify({'error': '管理者機能は現在無効です', 'hint': '管理者機能を使用するにはADMIN_SECRET_KEYの設定が必要です'}), 503
+            
+        if not admin_flag and admin_key != admin_secret:
             return jsonify({'error': '管理者認証が必要です', 'auth_hint': 'X-Admin-Keyヘッダーまたは管理者セッションが必要'}), 403
 
         return f(*args, **kwargs)
@@ -39,9 +47,17 @@ def require_api_key(f):
     def decorated_function(*args, **kwargs):
         api_key = request.headers.get('X-API-Key')
 
-        # 基本的なAPIキーチェック（実際の環境ではより強固な認証を実装）
+        # 🔥 ULTRA SYNC SECURITY FIX: 基本的なAPIキーチェック（実際の環境ではより強固な認証を実装）
         from flask import current_app
-        valid_keys = current_app.config.get('VALID_API_KEYS', os.environ.get('VALID_API_KEYS', 'demo-key-change-in-production').split(','))
+        valid_keys_config = current_app.config.get('VALID_API_KEYS') or os.environ.get('VALID_API_KEYS')
+        
+        # 🔥 ULTRA SYNC SECURITY FIX: API機能無効化による安全運用
+        if not valid_keys_config:
+            # API機能無効化モードで継続運用（セキュアデフォルト）
+            logger.warning("⚠️ VALID_API_KEYS未設定 - API機能は無効化されています")
+            return jsonify({'error': 'API機能は現在無効です', 'hint': 'API機能を使用するにはVALID_API_KEYSの設定が必要です'}), 503
+            
+        valid_keys = valid_keys_config.split(',')
 
         if not api_key or api_key not in valid_keys:
             return jsonify({'error': 'API認証が必要です', 'auth_hint': 'X-API-Keyヘッダーが必要'}), 401
@@ -64,21 +80,36 @@ social_learning_manager = None
 api_manager = None
 advanced_personalization = None
 
-# ログ設定
+# 🔥 ULTRA SYNC LOG FIX: ログファイル肥大化防止（ローテーション機能追加）
+import logging.handlers
+
+# ログ設定（ローテーション機能付き）
+log_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+# ローテーティングファイルハンドラ: 最大10MB、5ファイルまで保持
+rotating_handler = logging.handlers.RotatingFileHandler(
+    'rccm_app.log',
+    maxBytes=10*1024*1024,  # 10MB
+    backupCount=5,  # 最大5個のバックアップファイル
+    encoding='utf-8'
+)
+rotating_handler.setFormatter(log_formatter)
+
+# コンソールハンドラ
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(log_formatter)
+
+# ルートロガー設定
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('rccm_app.log'),
-        logging.StreamHandler()
-    ]
+    handlers=[rotating_handler, console_handler]
 )
 
 # 🔥 CRITICAL: セッション競合状態解決のためのロック管理（改修版）
 session_locks = {}
 lock_cleanup_lock = threading.Lock()
 lock_last_used = {}  # ロック最終使用時刻を追跡
-LOCK_TIMEOUT = 3600  # 1時間でロックタイムアウト
+LOCK_TIMEOUT = 3600  # 1時間でロックタイムアウト（基本設定と統一）
 logger = logging.getLogger(__name__)
 
 # Flask アプリケーション初期化
@@ -110,8 +141,12 @@ DEPARTMENT_TO_CATEGORY_MAPPING = {
     'construction_planning': '施工計画、施工設備及び積算',
     'water_supply': '上水道及び工業用水道',
     'forestry': '森林土木',
-    'agriculture': '農業土木'
+    'agriculture': '農業土木',
+    'common': '共通'  # 4-1.csv（基礎科目）対応
 }
+
+# カテゴリ名から部門IDへの逆マッピング（日本語→英語）
+CATEGORY_TO_DEPARTMENT_MAPPING = {v: k for k, v in DEPARTMENT_TO_CATEGORY_MAPPING.items()}
 
 # 問題データのキャッシュ
 _questions_cache = None
@@ -120,6 +155,104 @@ _cache_timestamp = None
 # ウルトラ高速起動用: モジュール遅延読み込みフラグ
 _modules_lazy_loaded = False
 _modules_lock = threading.Lock()
+
+# 🔥 ULTRA SYNC FIX: アプリ起動時のデータ事前読み込みフラグ
+_startup_data_loaded = False
+_startup_data_lock = threading.Lock()
+
+# 🔥 ULTRA SYNC FIX: セッションデータ肥大化防止
+def cleanup_session_data(session):
+    """セッションデータの自動クリーンアップ（肥大化防止）"""
+    try:
+        # 不要なキーのリスト
+        cleanup_keys = []
+        
+        # 古い履歴データのクリーンアップ（最新100件のみ保持）
+        history = session.get('history', [])
+        if isinstance(history, list) and len(history) > 100:
+            session['history'] = history[-100:]  # 最新100件のみ
+            logger.debug(f"履歴データクリーンアップ: {len(history)} → 100件")
+        
+        # 一時的なキーのクリーンアップ
+        temp_keys = [
+            'temp_data', 'debug_info', 'test_data', 'cache_data',
+            'last_error', 'temp_results', 'debug_session'
+        ]
+        for key in temp_keys:
+            if key in session:
+                cleanup_keys.append(key)
+        
+        # 古いセッション状態のクリーンアップ
+        session_keys = list(session.keys())
+        for key in session_keys:
+            # 30日以上古いタイムスタンプ付きキーを削除
+            if 'timestamp' in key and isinstance(session.get(key), str):
+                try:
+                    from datetime import datetime, timedelta
+                    timestamp_str = session[key]
+                    timestamp = datetime.fromisoformat(timestamp_str.replace('Z', '+00:00'))
+                    if datetime.now() - timestamp > timedelta(days=30):
+                        cleanup_keys.append(key)
+                except:
+                    pass
+        
+        # クリーンアップ実行
+        for key in cleanup_keys:
+            if key in session:
+                del session[key]
+        
+        if cleanup_keys:
+            session.modified = True
+            logger.debug(f"セッションクリーンアップ完了: {len(cleanup_keys)}キー削除")
+        
+        return len(cleanup_keys)
+        
+    except Exception as e:
+        logger.warning(f"セッションクリーンアップエラー: {e}")
+        return 0
+
+def preload_startup_data():
+    """アプリ起動時のデータ事前読み込み（URL起動遅延問題の解決）"""
+    global _startup_data_loaded, _questions_cache, _cache_timestamp
+    
+    if _startup_data_loaded:
+        return
+        
+    with _startup_data_lock:
+        if _startup_data_loaded:
+            return
+            
+        try:
+            logger.info("⚡ 事前データ読み込み開始（起動高速化）")
+            
+            # RCCM統合データ読み込み（一度だけ実行）
+            data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
+            questions = load_rccm_data_files(data_dir)
+            
+            if questions:
+                # データ整合性チェック
+                validated_questions = validate_question_data_integrity(questions)
+                _questions_cache = validated_questions
+                _cache_timestamp = time.time()
+                _startup_data_loaded = True
+                logger.info(f"✅ 事前データ読み込み完了: {len(validated_questions)}問（キャッシュ済み）")
+            else:
+                # フォールバック: レガシーデータ読み込み
+                questions = load_questions_improved(DataConfig.QUESTIONS_CSV)
+                for q in questions:
+                    if 'department' not in q:
+                        q['department'] = 'road'
+                    if 'question_type' not in q:
+                        q['question_type'] = 'basic'
+                
+                _questions_cache = questions
+                _cache_timestamp = time.time()
+                _startup_data_loaded = True
+                logger.info(f"✅ フォールバック読み込み完了: {len(questions)}問（レガシー）")
+                
+        except Exception as e:
+            logger.error(f"❌ 事前データ読み込みエラー: {e}")
+            _startup_data_loaded = False
 
 def ensure_modules_loaded():
     """必要なモジュールを遅延読み込み（ウルトラシンク最適化）"""
@@ -167,22 +300,29 @@ def ensure_modules_loaded():
 
 
 def get_session_lock(user_id):
-    """ユーザー固有のセッションロックを取得（改修版）"""
-    # Global variables managed by threading module
+    """🔥 ULTRA SYNC FIX: ユーザー固有のセッションロックを取得（競合状態解決・メモリリーク対策強化版）"""
+    if not user_id:
+        user_id = 'default_user'
+
+    # より積極的なクリーンアップ実行（メモリリーク防止強化）
+    if len(session_locks) > 50:  # 閾値を下げて頻繁にクリーンアップ
+        cleanup_old_locks()
 
     with lock_cleanup_lock:
+        # ダブルチェック方式で競合状態を回避
         if user_id not in session_locks:
-            session_locks[user_id] = threading.RLock()
+            # 新しいロック作成前に再度チェック
+            if user_id not in session_locks:
+                session_locks[user_id] = threading.RLock()
+                logger.info(f"🔒 新規セッションロック作成: {user_id}")
 
-        # 最終使用時刻を更新
+        # 最終使用時刻を更新（原子的操作）
         lock_last_used[user_id] = time.time()
         return session_locks[user_id]
 
 
 def cleanup_old_locks():
-    """古いロックをクリーンアップ（メモリリーク防止・改修版）"""
-    # Global variables managed by threading module
-
+    """🔥 ULTRA SYNC FIX: 古いロックをクリーンアップ（メモリリーク防止・改修版強化）"""
     try:
         with lock_cleanup_lock:
             current_time = time.time()
@@ -194,13 +334,16 @@ def cleanup_old_locks():
                 if current_time - last_used > LOCK_TIMEOUT:
                     expired_locks.append(user_id)
 
-            # 期限切れロックを削除
+            # 期限切れロックを削除（原子的操作）
+            cleaned_count = 0
             for user_id in expired_locks:
-                session_locks.pop(user_id, None)
-                lock_last_used.pop(user_id, None)
-
-            if expired_locks:
-                logger.info(f"期限切れセッションロック {len(expired_locks)}個 をクリーンアップしました")
+                if user_id in session_locks:
+                    session_locks.pop(user_id, None)
+                    lock_last_used.pop(user_id, None)
+                    cleaned_count += 1
+            
+            if cleaned_count > 0:
+                logger.info(f"🧹 期限切れセッションロッククリーンアップ: {cleaned_count}件削除")
 
     except Exception as e:
         logger.error(f"ロッククリーンアップエラー: {e}")
@@ -339,12 +482,18 @@ def after_request(response):
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['X-XSS-Protection'] = '1; mode=block'
 
-    # 🔥 CRITICAL FIX: セキュアなCORS設定（企業環境セキュリティ強化）
-    # 特定ドメインのみ許可（本番環境では適切なドメインを設定）
-    allowed_origins = ['http://localhost:5003', 'http://127.0.0.1:5003', 'http://172.18.44.152:5003']
+    # 🔥 ULTRA SYNC SECURITY FIX: セキュアなCORS設定（企業環境セキュリティ強化）
+    # 環境変数ベースのCORS設定（本番環境では適切なドメインを設定）
+    allowed_origins_config = os.environ.get('ALLOWED_ORIGINS', 'http://localhost:5003,http://127.0.0.1:5003')
+    allowed_origins = [origin.strip() for origin in allowed_origins_config.split(',') if origin.strip()]
+    
     origin = request.headers.get('Origin')
     if origin in allowed_origins:
         response.headers['Access-Control-Allow-Origin'] = origin
+    else:
+        # 許可されていないOriginの場合はログに記録
+        if origin:
+            logger.warning(f"🚨 未許可のOriginからのアクセス: {origin}")
     response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'  # 必要最小限のメソッド
     response.headers['Access-Control-Allow-Headers'] = 'Content-Type'  # 必要最小限のヘッダー
     response.headers['Access-Control-Allow-Credentials'] = 'true'  # 認証情報送信許可
@@ -370,40 +519,46 @@ def sanitize_input(input_string, allow_underscores=False):
     # 危険なHTMLタグのみ除去（日本語文字は保持）
     sanitized = re.sub(r'<[^>]*>', '', sanitized)
 
-    # ユーザー名の場合のみ日本語文字を保護（特殊処理）
-    # 🔥 CRITICAL FIX: 日本語ユーザー名のエラー対策
-    if any(ord(char) > 127 for char in sanitized):  # 日本語文字が含まれている場合
-        # 日本語を含む場合は最小限のサニタイズのみ実行
-        dangerous_chars_minimal = {
-            "<": "&lt;",
-            ">": "&gt;",
-            "&": "&amp;",
-            "'": "&#39;",
-            '"': "&quot;"
-        }
-        for char, escape in dangerous_chars_minimal.items():
-            sanitized = sanitized.replace(char, escape)
-    else:
-        # 英数字のみの場合は通常のサニタイズを実行
-        dangerous_chars = {
-            "'": "&#39;",      # シングルクォート
-            '"': "&#34;",      # ダブルクォート
-            ";": "&#59;",      # セミコロン
-            "--": "&#45;&#45;",  # SQLコメント
-            "/*": "&#47;&#42;",  # SQLコメント開始
-            "*/": "&#42;&#47;",  # SQLコメント終了
-            "\\": "&#92;",     # バックスラッシュ
-            "=": "&#61;",      # 等号（WHERE句攻撃対策）
-            "%": "&#37;",      # パーセント（LIKE句攻撃対策）
-        }
+    # 🔥 ULTRA SYNC SECURITY FIX: 包括的なXSS対策（日本語対応）
+    # すべての危険文字を適切にエスケープ
+    dangerous_chars = {
+        "<": "&lt;",
+        ">": "&gt;",
+        "&": "&amp;",
+        "'": "&#39;",
+        '"': "&quot;",
+        "\n": "&#10;",
+        "\r": "&#13;",
+        "\t": "&#9;"
+    }
+    
+    # 日本語文字も含めて一律エスケープ処理
+    for char, escaped in dangerous_chars.items():
+        sanitized = sanitized.replace(char, escaped)
+    
+    # Unicode制御文字の除去
+    import unicodedata
+    sanitized = ''.join(char for char in sanitized if unicodedata.category(char) != 'Cc')
+    
+    # SQLインジェクション対策の追加文字
+    sql_dangerous_chars = {
+        ";": "&#59;",      # セミコロン
+        "--": "&#45;&#45;",  # SQLコメント
+        "/*": "&#47;&#42;",  # SQLコメント開始
+        "*/": "&#42;&#47;",  # SQLコメント終了
+        "\\": "&#92;",     # バックスラッシュ
+        "=": "&#61;",      # 等号（WHERE句攻撃対策）
+        "%": "&#37;",      # パーセント（LIKE句攻撃対策）
+    }
 
-        # 🔥 CRITICAL FIX: civil_planning等の部門ID対応
-        # アンダースコアの変換はallow_underscores=Falseの場合のみ実行
-        if not allow_underscores:
-            dangerous_chars["_"] = "&#95;"  # アンダースコア（LIKE句攻撃対策）
-
-        for char, escape in dangerous_chars.items():
-            sanitized = sanitized.replace(char, escape)
+    # SQLインジェクション対策の適用
+    for char, escaped in sql_dangerous_chars.items():
+        sanitized = sanitized.replace(char, escaped)
+    
+    # 🔥 ULTRA SYNC FIX: civil_planning等の部門ID対応
+    # アンダースコアの変換はallow_underscores=Falseの場合のみ実行
+    if not allow_underscores:
+        sanitized = sanitized.replace("_", "&#95;")  # アンダースコア（LIKE句攻撃対策）
 
     return sanitized
 
@@ -804,8 +959,14 @@ def load_questions():
     """
     RCCM統合問題データの読み込み（4-1基礎・4-2専門対応）
     キャッシュ機能と詳細エラーハンドリング
+    🔥 ULTRA SYNC FIX: 起動高速化対応
     """
     global _questions_cache, _cache_timestamp
+
+    # 🔥 ULTRA SYNC FIX: 事前読み込み済みデータがあればそれを使用（URL起動遅延解決）
+    if _startup_data_loaded and _questions_cache is not None:
+        logger.debug(f"事前読み込み済みデータ使用: {len(_questions_cache)}問（⚡高速）")
+        return _questions_cache
 
     current_time = datetime.now()
 
@@ -944,6 +1105,9 @@ def create_robust_review_session(user_session, all_questions, review_type='mixed
             if any(int(q.get('id', 0)) == qid for q in all_questions):
                 valid_review_ids.append(qid)
 
+        # ユーザー設定の問題数を取得
+        user_session_size = get_user_session_size(user_session)
+        
         # 最低限の復習問題数を保証
         if len(valid_review_ids) < 3:
             # ランダムに問題を追加
@@ -952,12 +1116,12 @@ def create_robust_review_session(user_session, all_questions, review_type='mixed
                 qid = int(q.get('id', 0))
                 if qid not in valid_review_ids:
                     valid_review_ids.append(qid)
-                if len(valid_review_ids) >= 10:  # 最大4-10問
+                if len(valid_review_ids) >= user_session_size:  # ユーザー設定に従う
                     break
 
         # 問題数を適切に調整
-        if len(valid_review_ids) > 10:
-            valid_review_ids = valid_review_ids[:10]  # 最大10問に制限
+        if len(valid_review_ids) > user_session_size:
+            valid_review_ids = valid_review_ids[:user_session_size]  # ユーザー設定に制限
 
         valid_review_ids.sort()  # 一貫性のためにソート
 
@@ -1121,6 +1285,11 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
 
             # 日本語カテゴリでマッチング（category フィールドを使用）
             # ✅ CSVファイル統一化により簡素化されたマッチング
+            
+            # デバッグ：利用可能な全カテゴリをログ出力
+            all_categories = list(set(q.get('category', 'なし') for q in available_questions))
+            logger.info(f"専門科目フィルタ前のカテゴリ一覧: {all_categories}")
+            
             dept_match_questions = [q for q in available_questions
                                     if q.get('category') == target_category]
             if dept_match_questions:
@@ -1128,6 +1297,10 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
                 logger.info(f"専門科目部門マッチング成功: カテゴリ「{target_category}」で {len(available_questions)}問")
             else:
                 logger.warning(f"専門科目部門マッチング失敗: カテゴリ「{target_category}」に該当する問題が見つかりません")
+                # デバッグ：カテゴリの部分一致を確認
+                partial_matches = [q for q in available_questions if target_category in q.get('category', '')]
+                if partial_matches:
+                    logger.warning(f"部分一致する問題は {len(partial_matches)}問 見つかりました")
 
     # 部門でフィルタリング（基礎科目の場合はスキップ、専門科目で既に適用済みの場合もスキップ）
     elif department and question_type != 'basic' and question_type != 'specialist':
@@ -1156,13 +1329,19 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
 
         logger.info(f"カテゴリフィルタ適用: {requested_category}, {pre_category_count} → {len(available_questions)}問")
 
-    # 年度でフィルタリング（専門科目のみ対象）
-    if year:
+    # 🚨 年度でフィルタリング（ウルトラシンク年度混在防止修正）
+    if year and question_type == 'specialist':
         pre_year_count = len(available_questions)
-        available_questions = [q for q in available_questions
-                               if str(q.get('year', '')) == str(year)
-                               and q.get('question_type') == 'specialist']
-        logger.info(f"年度フィルタ適用: {year}年度, {pre_year_count} → {len(available_questions)}問")
+        # 年度フィルタリング: 指定年度のみの問題を選択
+        available_questions = [q for q in available_questions 
+                               if str(q.get('year', '')) == str(year)]
+        logger.info(f"🚨 年度フィルタ適用（ウルトラシンク修正）: {year}年度, {pre_year_count} → {len(available_questions)}問")
+        
+        # 年度フィルタ後に問題がない場合の警告
+        if len(available_questions) == 0:
+            logger.warning(f"❌ 年度フィルタ後に問題が0件になりました: 年度={year}, 部門={department}")
+            # フォールバック: 年度フィルタを緩和せず、エラーとして処理
+            return []
 
     # 既に選択済みの問題を除外
     selected_ids = [int(q.get('id', 0)) for q in selected_questions]
@@ -1170,6 +1349,24 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
 
     random.shuffle(new_questions)
     selected_questions.extend(new_questions[:remaining_count])
+    
+    # デバッグ：選択された問題のカテゴリと年度を確認
+    if question_type == 'specialist' and department:
+        selected_categories = list(set(q.get('category', 'なし') for q in selected_questions))
+        logger.info(f"最終選択問題のカテゴリ分布: {selected_categories}")
+        if len(selected_categories) > 1:
+            logger.warning(f"警告：複数のカテゴリが混在しています！ {selected_categories}")
+    
+    # 🚨 年度混在チェック（ウルトラシンク年度混在防止検証）
+    if year and question_type == 'specialist':
+        selected_years = list(set(str(q.get('year', '不明')) for q in selected_questions))
+        logger.info(f"🚨 最終選択問題の年度分布: {selected_years}")
+        if len(selected_years) > 1 or (len(selected_years) == 1 and selected_years[0] != str(year)):
+            logger.error(f"❌ 重大エラー：年度混在を検出！指定年度: {year}, 実際の年度: {selected_years}")
+            # 年度混在問題の詳細ログ
+            for q in selected_questions:
+                if str(q.get('year', '')) != str(year):
+                    logger.error(f"   問題ID {q.get('id')}: 期待年度={year}, 実際年度={q.get('year')}")
 
     # ユーザー設定問題数保証のためのフォールバック機能
     if len(selected_questions) < session_size:
@@ -1183,6 +1380,19 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         # 問題種別は維持しつつ、他のフィルタを緩和
         if question_type:
             fallback_questions = [q for q in fallback_questions if q.get('question_type') == question_type]
+            
+        # 専門科目の場合は部門も維持（重要）
+        if question_type == 'specialist' and department:
+            target_category = department
+            if department in DEPARTMENT_TO_CATEGORY_MAPPING:
+                target_category = DEPARTMENT_TO_CATEGORY_MAPPING[department]
+            fallback_questions = [q for q in fallback_questions if q.get('category') == target_category]
+            logger.info(f"フォールバック: 部門「{target_category}」を維持 - {len(fallback_questions)}問")
+            
+        # 🚨 年度フィルタリングもフォールバックで維持（ウルトラシンク年度混在防止）
+        if year and question_type == 'specialist':
+            fallback_questions = [q for q in fallback_questions if str(q.get('year', '')) == str(year)]
+            logger.info(f"🚨 フォールバック年度フィルタ維持: {year}年度 - {len(fallback_questions)}問")
 
         random.shuffle(fallback_questions)
         additional_questions = fallback_questions[:shortage]
@@ -1230,6 +1440,10 @@ def before_request():
     import random
     if random.randint(1, 100) <= 5:  # 5%の確率で実行（負荷分散）
         cleanup_old_locks()
+    
+    # 🔥 ULTRA SYNC FIX: セッションデータ肥大化防止
+    if random.randint(1, 100) <= 10:  # 10%の確率でセッションクリーンアップ
+        cleanup_session_data(session)
 
     # セッションタイムアウトチェック
     if 'last_activity' in session:
@@ -1487,28 +1701,56 @@ def exam():
             logger.info(f"data_loaded: {session.get('data_loaded', 'MISSING')}")
             logger.info("==========================================")
 
-            # 入力値のサニタイズと検証
-            answer = sanitize_input(request.form.get('answer'))
-            qid = sanitize_input(request.form.get('qid'))
-            elapsed = sanitize_input(request.form.get('elapsed', '0'))
+            # 🔥 ULTRA SYNC VALIDATION FIX: 入力値のサニタイズと検証強化
+            raw_answer = request.form.get('answer')
+            raw_qid = request.form.get('qid')
+            raw_elapsed = request.form.get('elapsed', '0')
+            
+            # 必須パラメータの存在チェック
+            if not raw_answer or not raw_qid:
+                logger.warning(f"🚨 必須パラメータ不足: answer={raw_answer}, qid={raw_qid}")
+                return render_template('error.html',
+                                       error="必須パラメータが不足しています。",
+                                       error_type="missing_parameters")
+            
+            # 文字列長制限チェック
+            if len(str(raw_answer)) > 10 or len(str(raw_qid)) > 20 or len(str(raw_elapsed)) > 20:
+                logger.warning(f"🚨 パラメータ長制限違反: answer={len(str(raw_answer))}, qid={len(str(raw_qid))}, elapsed={len(str(raw_elapsed))}")
+                return render_template('error.html',
+                                       error="パラメータが長すぎます。",
+                                       error_type="parameter_too_long")
+            
+            answer = sanitize_input(raw_answer)
+            qid = sanitize_input(raw_qid)
+            elapsed = sanitize_input(raw_elapsed)
 
-            # 回答値の検証
+            # 回答値の厳密な検証
             if answer not in ['A', 'B', 'C', 'D']:
+                logger.warning(f"🚨 無効な回答値: {answer} (元: {raw_answer})")
                 return render_template('error.html',
                                        error="無効な回答が選択されました。",
                                        error_type="invalid_input")
 
-            # 問題IDの検証
+            # 問題IDの検証強化
             try:
                 qid = int(qid)
-            except (ValueError, TypeError):
+                if qid <= 0 or qid > 100000:  # 合理的な範囲チェック
+                    raise ValueError(f"問題ID範囲外: {qid}")
+            except (ValueError, TypeError) as e:
+                logger.warning(f"🚨 問題ID変換エラー: {qid} - {e}")
                 return render_template('error.html',
                                        error="無効な問題IDです。",
                                        error_type="invalid_question")
-
-            if not answer or not qid:
-                logger.warning("不完全な回答データ")
-                return render_template('error.html', error="回答データが不完全です。")
+            
+            # 経過時間の検証
+            try:
+                elapsed_int = int(elapsed)
+                if elapsed_int < 0 or elapsed_int > 3600:  # 0秒〜1時間の範囲
+                    logger.warning(f"🚨 経過時間異常値: {elapsed_int}秒")
+                    elapsed_int = 0  # 異常値の場合は0にリセット
+            except (ValueError, TypeError):
+                logger.warning(f"🚨 経過時間変換エラー: {elapsed}")
+                elapsed_int = 0
 
             # 🔥 CRITICAL FIX: POSTリクエストでセッションが存在しない場合の処理
             if 'exam_question_ids' not in session:
@@ -1598,7 +1840,7 @@ def exam():
             # 従来のSRSデータも更新（既存機能との互換性）
             try:
                 update_advanced_srs_data(qid, is_correct, session)
-            except BaseException:
+            except (NameError, AttributeError, TypeError, ImportError):
                 # 既存SRS関数がない場合はスキップ
                 pass
 
@@ -2058,13 +2300,36 @@ def exam():
                     current_no = i
                     break
             else:
-                # 問題IDが見つからない場合の最終フォールバック
-                logger.warning(f"問題ID {qid} がexam_question_ids内に見つかりません。先頭に設定します。")
-                current_no = 0
-                if qid not in exam_question_ids:
-                    exam_question_ids.insert(0, qid)
+                # 問題IDが見つからない場合: セッション競合状態を検出
+                logger.warning(f"セッション競合検出: 問題ID {qid} がexam_question_ids内に見つかりません。マルチタブ使用による可能性があります。")
+                
+                # 🔥 ULTRA SYNC FIX: セッション競合の安全な対応（無限ループ防止）
+                user_session_size = get_user_session_size(session)
+                current_session_length = len(exam_question_ids) if exam_question_ids else 0
+                
+                if current_session_length > 0:
+                    # 既存のセッションがある場合: セッション上限を尊重
+                    if current_session_length < user_session_size:
+                        # セッション上限に達していない場合のみ追加
+                        current_no = current_session_length
+                        exam_question_ids.append(qid)
+                        session['exam_question_ids'] = exam_question_ids
+                        session.modified = True
+                        logger.info(f"🔥 安全追加: 問題ID {qid} を位置{current_no}に追加（{current_session_length+1}/{user_session_size}問）")
+                    else:
+                        # セッション上限に達している場合: 置換で対応
+                        current_no = current_session_length - 1  # 最後の問題として処理
+                        exam_question_ids[current_no] = qid
+                        session['exam_question_ids'] = exam_question_ids
+                        session.modified = True
+                        logger.info(f"🔥 安全置換: 問題ID {qid} で最終問題を置換（{current_session_length}/{user_session_size}問維持）")
+                else:
+                    # セッションが空の場合: 新規セッションとして初期化
+                    current_no = 0
+                    exam_question_ids = [qid]
                     session['exam_question_ids'] = exam_question_ids
                     session.modified = True
+                    logger.info(f"🔥 新規セッション: 問題ID {qid} から開始（1/{user_session_size}問）")
 
             # 次の問題へ進む準備（仮計算）
             next_no = current_no + 1
@@ -2139,6 +2404,33 @@ def exam():
                 session.modified = True
             logger.info(f"回答処理完了: 問題{qid}, 正答{is_correct}, レベル{srs_info.get('level', 0)}, ストリーク{current_streak}日")
 
+            # 🔥 ULTRA SYNC IMPROVEMENT 5: 学習記録 - パフォーマンス比較計算
+            performance_comparison = None
+            if qid and elapsed_int > 0:
+                # 履歴から同じ問題の前回情報を取得
+                history = session.get('history', [])
+                previous_attempts = [h for h in history if h.get('question_id') == qid and h.get('elapsed_time')]
+                
+                if len(previous_attempts) >= 2:  # 前回のデータがある場合
+                    last_attempt = previous_attempts[-2]  # 一つ前の記録
+                    last_time = float(last_attempt.get('elapsed_time', elapsed_int))
+                    current_time = elapsed_int
+                    
+                    # 正解率の改善チェック
+                    correct_count = sum(1 for h in previous_attempts if h.get('is_correct'))
+                    accuracy = (correct_count / len(previous_attempts)) * 100 if previous_attempts else 0
+                    
+                    performance_comparison = {
+                        'current_time': round(current_time, 1),
+                        'last_time': round(last_time, 1),
+                        'time_diff': round(abs(current_time - last_time), 1),
+                        'is_faster': current_time < last_time,
+                        'correct_streak': sum(1 for h in previous_attempts[-3:] if h.get('is_correct')),
+                        'is_repeat_correct': is_correct and all(h.get('is_correct') for h in previous_attempts[-2:]),
+                        'is_improving': is_correct and accuracy > 50,
+                        'accuracy_improvement': round(accuracy, 1) if accuracy > 0 else 0
+                    }
+            
             # フィードバック画面に渡すデータを準備
             # ユーザー設定の問題数を使用（進捗表示修正）
             safe_total_questions = get_user_session_size(session)
@@ -2161,7 +2453,8 @@ def exam():
                 'new_badges': new_badges,
                 'current_streak': current_streak,
                 'badge_info': [gamification_manager.get_badge_info(badge) for badge in new_badges],
-                'difficulty_adjustment': difficulty_adjustment
+                'difficulty_adjustment': difficulty_adjustment,
+                'performance_comparison': performance_comparison  # 🔥 IMPROVEMENT 5: 学習記録
             }
 
             # フィードバック画面の重要な変数をログ出力
@@ -2208,11 +2501,11 @@ def exam():
                     elif '%' in str(raw_category) or any(ord(c) > 127 for c in str(raw_category)):
                         try:
                             raw_category = urllib.parse.unquote(raw_category, encoding='utf-8')
-                        except BaseException:
+                        except (UnicodeDecodeError, ValueError):
                             # UTF-8でダメな場合はShift_JISも試す
                             try:
                                 raw_category = urllib.parse.unquote(raw_category, encoding='shift_jis')
-                            except BaseException:
+                            except (UnicodeDecodeError, ValueError):
                                 raw_category = '全体'  # フォールバック
                     logger.info(f"カテゴリデコード結果: {raw_category}")
 
@@ -2220,20 +2513,20 @@ def exam():
                     if '%' in str(raw_department) or any(ord(c) > 127 for c in str(raw_department)):
                         try:
                             raw_department = urllib.parse.unquote(raw_department, encoding='utf-8')
-                        except BaseException:
+                        except (UnicodeDecodeError, ValueError):
                             try:
                                 raw_department = urllib.parse.unquote(raw_department, encoding='shift_jis')
-                            except BaseException:
+                            except (UnicodeDecodeError, ValueError):
                                 pass
 
                 if raw_question_type:
                     if '%' in str(raw_question_type) or any(ord(c) > 127 for c in str(raw_question_type)):
                         try:
                             raw_question_type = urllib.parse.unquote(raw_question_type, encoding='utf-8')
-                        except BaseException:
+                        except (UnicodeDecodeError, ValueError):
                             try:
                                 raw_question_type = urllib.parse.unquote(raw_question_type, encoding='shift_jis')
-                            except BaseException:
+                            except (UnicodeDecodeError, ValueError):
                                 pass
             except Exception as e:
                 logger.warning(f"URLデコードエラー: {e}")
@@ -2650,12 +2943,16 @@ def result():
             if h.get('is_correct'):
                 basic_specialty_scores[score_type]['correct'] += 1
 
+        # 🔥 ULTRA SYNC IMPROVEMENT 4: 復習完了感 - 復習セッション判定
+        is_review_session = session.get('selected_question_type') == 'review'
+        
         return render_template(
             'result.html',
             correct_count=correct_count,
             total_questions=total_questions,
             elapsed_time=elapsed_time,
-            basic_specialty_scores=basic_specialty_scores
+            basic_specialty_scores=basic_specialty_scores,
+            is_review_session=is_review_session  # 🔥 IMPROVEMENT 4
         )
 
     except Exception as e:
@@ -3105,9 +3402,18 @@ def categories():
 def review_list():
     """復習リスト表示（高度なSRSシステム対応版）"""
     try:
-        # 新しいSRSシステムからデータを取得
+        # 新しいSRSシステムからデータを取得（防御的プログラミング）
         srs_data = session.get('advanced_srs', {})
-        bookmarks = session.get('bookmarks', [])  # 互換性維持
+        if not isinstance(srs_data, dict):
+            logger.error(f"🚨 CRITICAL: advanced_srs is not a dict: {type(srs_data)}, value: {repr(srs_data)}")
+            srs_data = {}
+            session['advanced_srs'] = {}
+        
+        bookmarks = session.get('bookmarks', [])
+        if not isinstance(bookmarks, list):
+            logger.error(f"🚨 CRITICAL: bookmarks is not a list: {type(bookmarks)}, value: {repr(bookmarks)}")
+            bookmarks = []
+            session['bookmarks'] = []  # 互換性維持
 
         # すべての復習対象問題を統合
         all_review_ids = set()
@@ -3132,11 +3438,30 @@ def review_list():
         # 復習問題の詳細情報を作成（SRSデータ統合）
         review_questions = []
         departments = set()
+        
+        # 🔥 ULTRA SYNC IMPROVEMENT 3: 部門別復習 - 部門統計計算
+        department_stats = {}
 
+        # 🔥 ULTRA SYNC IMPROVEMENT 1: 明確な進捗表示 - 今日復習すべき問題数計算
+        due_today_count = 0
+        for qid in all_review_ids:
+            srs_info = srs_data.get(qid, {})
+            next_review = srs_info.get('next_review', '')
+            if next_review:
+                try:
+                    from datetime import datetime
+                    review_date = datetime.fromisoformat(next_review.replace('Z', '+00:00'))
+                    if review_date <= datetime.now():
+                        due_today_count += 1
+                except:
+                    due_today_count += 1  # パースエラーの場合は復習対象としてカウント
+            else:
+                due_today_count += 1  # next_reviewが未設定の場合も復習対象
+        
         # SRS統計計算
         srs_stats = {
             'total_questions': len(all_review_ids),
-            'due_now': 0,
+            'due_now': due_today_count,
             'mastered': 0,
             'in_progress': 0,
             'high_priority': 0
@@ -3152,6 +3477,17 @@ def review_list():
                 # SRSデータを取得
                 srs_info = srs_data.get(qid, {})
 
+                # 🔥 ULTRA SYNC IMPROVEMENT 2: 学習効率の可視化 - 次回復習日計算
+                next_review_str = srs_info.get('next_review', '')
+                days_until_review = 0
+                if next_review_str:
+                    try:
+                        from datetime import datetime
+                        next_review_date = datetime.fromisoformat(next_review_str.replace('Z', '+00:00'))
+                        days_until_review = (next_review_date.date() - now.date()).days
+                    except:
+                        days_until_review = 0  # パースエラーの場合は今すぐ復習
+                        
                 # 基本情報
                 question_data = {
                     'id': qid,
@@ -3168,7 +3504,8 @@ def review_list():
                     'mastered': srs_info.get('mastered', False),
                     'first_attempt': srs_info.get('first_attempt', ''),
                     'last_attempt': srs_info.get('last_attempt', ''),
-                    'next_review': srs_info.get('next_review', ''),
+                    'next_review': next_review_str,
+                    'days_until_review': days_until_review,  # 🔥 IMPROVEMENT 2
                     'interval_days': srs_info.get('interval_days', 1)
                 }
 
@@ -3193,9 +3530,18 @@ def review_list():
                     if question_data['wrong_count'] >= 2:
                         srs_stats['high_priority'] += 1
 
-                # 部門情報
-                if question_data['department']:
-                    departments.add(question_data['department'])
+                # 部門情報と統計更新
+                dept_name = question_data.get('category', question_data.get('department', ''))
+                if dept_name:
+                    departments.add(dept_name)
+                    
+                    # 🔥 IMPROVEMENT 3: 部門別統計更新
+                    if dept_name not in department_stats:
+                        department_stats[dept_name] = {'weak_count': 0, 'total_count': 0}
+                    
+                    department_stats[dept_name]['total_count'] += 1
+                    if not question_data['mastered'] and question_data['wrong_count'] > 0:
+                        department_stats[dept_name]['weak_count'] += 1
 
                 # 優先度計算（表示順序用）
                 if question_data['mastered']:
@@ -3231,6 +3577,8 @@ def review_list():
                                mastered_questions=mastered_questions,
                                total_count=len(active_questions),
                                mastered_count=len(mastered_questions),
+                               due_today_count=due_today_count,  # 🔥 IMPROVEMENT 1: 今日復習すべき問題数
+                               department_stats=department_stats,  # 🔥 IMPROVEMENT 3: 部門別統計
                                departments=RCCMConfig.DEPARTMENTS,
                                srs_stats=srs_stats,
                                show_srs_details=True)
@@ -3244,12 +3592,15 @@ def review_list():
 def api_review_count():
     """復習問題数を取得（ウルトラシンク追加・ホーム画面表示用）"""
     try:
-        srs_data = session.get('srs_data', {})
+        # 🔥 ULTRA SYNC FIX: 正しいセッションキーを使用
+        srs_data = session.get('advanced_srs', {})
+        bookmarks = session.get('bookmarks', [])
 
         # 復習対象問題の数をカウント
         review_count = 0
         current_time = datetime.now()
 
+        # SRSデータからカウント
         for question_id, data in srs_data.items():
             if isinstance(data, dict):
                 # 次回復習日をチェック
@@ -3259,12 +3610,18 @@ def api_review_count():
                         review_date = datetime.fromisoformat(next_review.replace('Z', '+00:00'))
                         if review_date <= current_time:
                             review_count += 1
-                    except BaseException:
+                    except (ValueError, TypeError, AttributeError):
                         # 日付パースエラーの場合は復習対象に含める
                         review_count += 1
                 else:
                     # next_reviewが設定されていない場合も復習対象
                     review_count += 1
+                    
+        # ブックマークからもカウント（重複除去）
+        bookmark_ids = set(str(bid) for bid in bookmarks if bid)
+        srs_ids = set(str(sid) for sid in srs_data.keys() if sid)
+        additional_bookmarks = bookmark_ids - srs_ids
+        review_count += len(additional_bookmarks)
 
         logger.info(f"復習問題数API呼び出し: {review_count}問")
         return jsonify({'count': review_count, 'success': True})
@@ -3795,13 +4152,17 @@ def review_questions():
                         logger.warning(f"SRS情報が無効な型: 問題ID {qid}, 型: {type(srs_info)}")
                         continue
 
-                    # 必須フィールドの存在チェック
-                    required_fields = ['total_attempts', 'wrong_count', 'correct_count']
-                    if all(field in srs_info for field in required_fields):
-                        # 数値の妥当性チェック
-                        total_attempts = int(srs_info.get('total_attempts', 0))
+                    # 必須フィールドの存在チェック（柔軟性向上）
+                    essential_fields = ['wrong_count', 'correct_count']
+                    if all(field in srs_info for field in essential_fields):
+                        # 数値の妥当性チェックとデフォルト値補完
                         wrong_count = int(srs_info.get('wrong_count', 0))
-                        if total_attempts > 0 and wrong_count >= 0:
+                        correct_count = int(srs_info.get('correct_count', 0))
+                        total_attempts = int(srs_info.get('total_attempts', wrong_count + correct_count))
+                        
+                        if wrong_count >= 0 and correct_count >= 0:
+                            # 不足フィールドを補完
+                            srs_info['total_attempts'] = total_attempts
                             valid_srs_data[qid] = srs_info
                     else:
                         logger.warning(f"SRS情報に必須フィールドが不足: 問題ID {qid}, フィールド: {srs_info.keys()}")
@@ -3977,7 +4338,7 @@ def review_questions():
             # 🔥 ULTRA CRITICAL: セッション問題数の動的決定（最低保証とユーザー要求バランス）
             available_questions = len(review_questions_with_score)
             min_session_size = min(3, available_questions)  # 最低3問、または利用可能問題数
-            target_session_size = 10  # 理想は10問
+            target_session_size = get_user_session_size(session)  # ユーザー設定を尊重（10/20/30問）
             session_size = min(target_session_size, available_questions)  # 利用可能問題数に制限
 
             if session_size < min_session_size:
@@ -4059,9 +4420,16 @@ def review_questions():
                     session['department'] = ''  # 復習では部門指定なし
                     session['selected_department'] = ''  # セッション再構築用（復習では部門なし）
                     session.modified = True
+                    
+                    # 🔥 ULTRA SYNC FIX: セッション書き込み確認
+                    logger.info(f"復習セッション設定完了: selected_question_type={session.get('selected_question_type')}, 問題数={len(question_ids)}")
 
                     # セッション即座保存強制
-                    session.permanent = False
+                    session.permanent = True
+                    
+                    # 🔥 CRITICAL FIX: セッション書き込み即座実行
+                    import time
+                    time.sleep(0.1)  # セッション書き込み待機
 
                     logger.info(f"復習セッション設定完了: {len(question_ids)}問, モード: {category_name}")
                     logger.info(f"復習詳細: 弱点スコア順優先, 全部門対象, 問題ID={question_ids[:5] if question_ids else []}")
@@ -4184,9 +4552,9 @@ def create_review_test_data():
                 'mastered': False
             }
 
-            # 一部をブックマークにも追加
+            # 🔥 ULTRA SYNC FIX: 一部をブックマークにも追加（文字列形式で統一）
             if i < 5:
-                bookmarks.append(q_id)
+                bookmarks.append(str(q_id))  # 文字列として追加で統一
 
         # セッションに保存
         session['advanced_srs'] = srs_data
@@ -5360,28 +5728,28 @@ def ai_dashboard():
             try:
                 learning_style_result = ai_analyzer.determine_learning_style(history)
                 analysis['learning_style'] = learning_style_result.get('style', '分析中...')
-            except BaseException:
+            except (AttributeError, TypeError, KeyError, ImportError):
                 analysis['learning_style'] = '視覚学習型'
 
             # パフォーマンス予測
             try:
                 performance_prediction = ai_analyzer.predict_performance(srs_data)
                 analysis['performance_prediction'] = performance_prediction
-            except BaseException:
+            except (AttributeError, TypeError, KeyError, ImportError):
                 analysis['performance_prediction'] = {'score': 72}
 
             # 弱点パターン分析
             try:
                 weakness_patterns = ai_analyzer.analyze_weakness_patterns(history)
                 analysis['weakness_patterns'] = weakness_patterns.get('patterns', [])
-            except BaseException:
+            except (AttributeError, TypeError, KeyError, ImportError):
                 analysis['weakness_patterns'] = []
 
             # 学習推奨事項
             try:
                 recommendations = ai_analyzer.generate_recommendations(history, srs_data)
                 analysis['study_recommendations'] = recommendations
-            except BaseException:
+            except (AttributeError, TypeError, KeyError, ImportError):
                 analysis['study_recommendations'] = []
         else:
             # デフォルトデータ
@@ -6631,10 +6999,17 @@ if __name__ == '__main__':
         os.environ.get('PORT')
     )
 
+    # 🔥 ULTRA SYNC FIX: アプリ起動時のデータ事前読み込み（URL起動遅延問題の解決）
+    logger.info("⚡ データ事前読み込み実行（起動高速化）")
+    try:
+        preload_startup_data()
+        logger.info("✅ 事前読み込み完了 - 初回アクセス時の遅延が解消されます")
+    except Exception as e:
+        logger.warning(f"⚠️ 事前読み込みエラー（継続可能）: {e}")
+
     # 起動ログ最適化（Render向け高速起動）
     if is_production:
         logger.info("🌐 RCCM試験問題集2025 - Production Ready")
-        # Renderでの事前データ読み込みをスキップ（起動時間短縮）
         logger.info("📡 Fast startup mode enabled")
     else:
         # 開発環境の場合のWSL2 IPアドレス表示

@@ -1,0 +1,85 @@
+{
+  "test_timestamp": "2025-06-27T20:59:45.081139",
+  "test_type": "departments_page_flow",
+  "summary": {
+    "total_departments": 12,
+    "ok_count": 0,
+    "mixed_count": 0,
+    "no_selection_count": 12,
+    "error_count": 0
+  },
+  "results": [
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "status": "NO_SELECTION",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "status": "NO_SELECTION",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "status": "NO_SELECTION",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "urban_planning",
+      "expected_category": "都市計画及び地方計画",
+      "status": "NO_SELECTION",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "landscape",
+      "expected_category": "造園",
+      "status": "NO_SELECTION",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_env",
+      "expected_category": "建設環境",
+      "status": "NO_SELECTION",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "steel_concrete",
+      "expected_category": "鋼構造及びコンクリート",
+      "status": "NO_SELECTION",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "soil_foundation",
+      "expected_category": "土質及び基礎",
+      "status": "NO_SELECTION",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_planning",
+      "expected_category": "施工計画、施工設備及び積算",
+      "status": "NO_SELECTION",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "water_supply",
+      "expected_category": "上水道及び工業用水道",
+      "status": "NO_SELECTION",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "forestry",
+      "expected_category": "森林土木",
+      "status": "NO_SELECTION",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "status": "NO_SELECTION",
+      "error": "問題データが選択されていない"
+    }
+  ]
+}

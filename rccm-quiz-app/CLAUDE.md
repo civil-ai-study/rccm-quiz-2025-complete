@@ -20,6 +20,9 @@ pip install -r requirements.txt
 
 # Test with Flask test client (for debugging)
 python3 -c "from app import app; with app.test_client() as client: print(client.get('/').status_code)"
+
+# Ultra Sync Year Filtering Verification Test
+python ultra_sync_year_verification.py
 ```
 
 ### Data Management
@@ -97,6 +100,13 @@ This is a Flask-based RCCM (登録建設機械施工技術者) exam preparation 
 **Question Navigation Problem**: 
 - Root cause: `is_last_question = (current_no + 1) >= len(quiz_question_ids)` calculation in app.py:379
 - This determines when to show "次の問題へ" vs "結果を見る" buttons
+
+**Year Filtering System (Ultra Sync Implementation)**:
+- Critical feature: `get_mixed_questions()` function includes ultra-sync year filtering
+- Prevents year mixing: Only questions from selected year are displayed
+- Implementation: Lines 1172-1184 in app.py with year parameter validation
+- Test verification: `ultra_sync_year_verification.py` confirms 100% year separation
+- Key log markers: `🚨 年度フィルタ適用（ウルトラシンク修正）` and `🚨 最終選択問題の年度分布`
 
 **Session State Synchronization**:
 - Sessions use 0-based indexing internally but 1-based display
@@ -304,6 +314,10 @@ python test_gamification.py
 python persona_comprehensive_test.py
 python persona_diversity_test.py
 python ultra_sync_user_behavior_test.py
+
+# 年度フィルタリングテスト（ウルトラシンク対応）
+python ultra_sync_year_verification.py
+python ultra_sync_year_filtering_test.py
 
 # E2Eテスト（全ペルソナ）
 python -c "

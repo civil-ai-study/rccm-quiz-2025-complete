@@ -1,0 +1,87 @@
+{
+  "test_timestamp": "2025-06-27T21:40:43.107240",
+  "test_type": "ultra_sync_year_verification",
+  "summary": {
+    "total_tests": 5,
+    "ok_count": 5,
+    "failed_count": 0,
+    "error_count": 0
+  },
+  "results": [
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "test_year": "2019",
+      "year_result": "OK",
+      "category_result": "OK",
+      "selected_count": 10,
+      "years_found": [
+        "2019"
+      ],
+      "categories_found": [
+        "道路"
+      ],
+      "status": "OK"
+    },
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "test_year": "2018",
+      "year_result": "OK",
+      "category_result": "OK",
+      "selected_count": 10,
+      "years_found": [
+        "2018"
+      ],
+      "categories_found": [
+        "道路"
+      ],
+      "status": "OK"
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "test_year": "2019",
+      "year_result": "OK",
+      "category_result": "OK",
+      "selected_count": 10,
+      "years_found": [
+        "2019"
+      ],
+      "categories_found": [
+        "トンネル"
+      ],
+      "status": "OK"
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "test_year": "2017",
+      "year_result": "OK",
+      "category_result": "OK",
+      "selected_count": 10,
+      "years_found": [
+        "2017"
+      ],
+      "categories_found": [
+        "河川、砂防及び海岸・海洋"
+      ],
+      "status": "OK"
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "test_year": "2016",
+      "year_result": "OK",
+      "category_result": "OK",
+      "selected_count": 10,
+      "years_found": [
+        "2016"
+      ],
+      "categories_found": [
+        "農業土木"
+      ],
+      "status": "OK"
+    }
+  ]
+}

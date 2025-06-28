@@ -356,7 +356,6 @@ let startTime = Date.now();
 
 // グローバル関数：選択肢クリック処理
 function selectOption(option, event) {
-    console.log(`🔍 selectOption called: option=${option}, event=`, event);
     
     // 既存の選択を解除
     document.querySelectorAll('.option-item').forEach(item => {
@@ -365,7 +364,6 @@ function selectOption(option, event) {
     
     // 新しい選択を設定
     const selectedItem = event ? event.currentTarget : document.querySelector(`#option${option}`).closest('.option-item');
-    console.log(`🔍 selectedItem:`, selectedItem);
     
     if (selectedItem) {
         selectedItem.classList.add('selected');
@@ -373,17 +371,14 @@ function selectOption(option, event) {
     
     // ラジオボタンをチェック
     const radioButton = document.getElementById('option' + option);
-    console.log(`🔍 radioButton:`, radioButton);
     if (radioButton) {
         radioButton.checked = true;
     }
     
     // 送信ボタンを有効化
     const submitBtn = document.getElementById('submitBtn');
-    console.log(`🔍 submitBtn:`, submitBtn);
     if (submitBtn) {
         submitBtn.disabled = false;
-        console.log(`✅ submitBtn enabled!`);
     } else {
         console.error(`❌ submitBtn not found!`);
     }
@@ -420,7 +415,6 @@ function updateTimer() {
 
 // DOMContentLoaded内での初期化
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('📱 DOM読み込み完了');
     
     // フォーム送信処理
     const questionForm = document.getElementById('questionForm');
@@ -450,7 +444,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 1秒ごとにタイマー更新
     setInterval(updateTimer, 1000);
     
-    console.log('✅ 初期化完了');
 });
 
 // フォーム送信前の検証
@@ -478,7 +471,5 @@ function validateQuizForm() {
 <!-- 追加のJavaScript（既存の実装と統合） -->
 <script>
 // 既存のスクリプトとの互換性を維持
-console.log('🚀 RCCM問題集アプリ - 改善版');
-console.log('📚 30年の実務経験を活かした学習支援システム');
 </script>
 {% endblock %}

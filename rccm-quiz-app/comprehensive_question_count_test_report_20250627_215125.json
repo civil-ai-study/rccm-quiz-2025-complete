@@ -1,0 +1,337 @@
+{
+  "test_timestamp": "2025-06-27T21:51:25.089951",
+  "test_type": "comprehensive_question_count_test",
+  "summary": {
+    "total_tests": 36,
+    "success_count": 36,
+    "partial_count": 0,
+    "failed_count": 0,
+    "success_rate": 100.0
+  },
+  "results": [
+    {
+      "department": "road",
+      "category": "道路",
+      "question_count": 10,
+      "status": "SUCCESS",
+      "completed_questions": 10,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "road",
+      "category": "道路",
+      "question_count": 20,
+      "status": "SUCCESS",
+      "completed_questions": 20,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "road",
+      "category": "道路",
+      "question_count": 30,
+      "status": "SUCCESS",
+      "completed_questions": 30,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "tunnel",
+      "category": "トンネル",
+      "question_count": 10,
+      "status": "SUCCESS",
+      "completed_questions": 10,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "tunnel",
+      "category": "トンネル",
+      "question_count": 20,
+      "status": "SUCCESS",
+      "completed_questions": 20,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "tunnel",
+      "category": "トンネル",
+      "question_count": 30,
+      "status": "SUCCESS",
+      "completed_questions": 30,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "civil_planning",
+      "category": "河川、砂防及び海岸・海洋",
+      "question_count": 10,
+      "status": "SUCCESS",
+      "completed_questions": 10,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "civil_planning",
+      "category": "河川、砂防及び海岸・海洋",
+      "question_count": 20,
+      "status": "SUCCESS",
+      "completed_questions": 20,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "civil_planning",
+      "category": "河川、砂防及び海岸・海洋",
+      "question_count": 30,
+      "status": "SUCCESS",
+      "completed_questions": 30,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "urban_planning",
+      "category": "都市計画及び地方計画",
+      "question_count": 10,
+      "status": "SUCCESS",
+      "completed_questions": 10,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "urban_planning",
+      "category": "都市計画及び地方計画",
+      "question_count": 20,
+      "status": "SUCCESS",
+      "completed_questions": 20,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "urban_planning",
+      "category": "都市計画及び地方計画",
+      "question_count": 30,
+      "status": "SUCCESS",
+      "completed_questions": 30,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "landscape",
+      "category": "造園",
+      "question_count": 10,
+      "status": "SUCCESS",
+      "completed_questions": 10,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "landscape",
+      "category": "造園",
+      "question_count": 20,
+      "status": "SUCCESS",
+      "completed_questions": 20,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "landscape",
+      "category": "造園",
+      "question_count": 30,
+      "status": "SUCCESS",
+      "completed_questions": 30,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "construction_env",
+      "category": "建設環境",
+      "question_count": 10,
+      "status": "SUCCESS",
+      "completed_questions": 10,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "construction_env",
+      "category": "建設環境",
+      "question_count": 20,
+      "status": "SUCCESS",
+      "completed_questions": 20,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "construction_env",
+      "category": "建設環境",
+      "question_count": 30,
+      "status": "SUCCESS",
+      "completed_questions": 30,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "steel_concrete",
+      "category": "鋼構造及びコンクリート",
+      "question_count": 10,
+      "status": "SUCCESS",
+      "completed_questions": 10,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "steel_concrete",
+      "category": "鋼構造及びコンクリート",
+      "question_count": 20,
+      "status": "SUCCESS",
+      "completed_questions": 20,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "steel_concrete",
+      "category": "鋼構造及びコンクリート",
+      "question_count": 30,
+      "status": "SUCCESS",
+      "completed_questions": 30,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "soil_foundation",
+      "category": "土質及び基礎",
+      "question_count": 10,
+      "status": "SUCCESS",
+      "completed_questions": 10,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "soil_foundation",
+      "category": "土質及び基礎",
+      "question_count": 20,
+      "status": "SUCCESS",
+      "completed_questions": 20,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "soil_foundation",
+      "category": "土質及び基礎",
+      "question_count": 30,
+      "status": "SUCCESS",
+      "completed_questions": 30,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "construction_planning",
+      "category": "施工計画、施工設備及び積算",
+      "question_count": 10,
+      "status": "SUCCESS",
+      "completed_questions": 10,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "construction_planning",
+      "category": "施工計画、施工設備及び積算",
+      "question_count": 20,
+      "status": "SUCCESS",
+      "completed_questions": 20,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "construction_planning",
+      "category": "施工計画、施工設備及び積算",
+      "question_count": 30,
+      "status": "SUCCESS",
+      "completed_questions": 30,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "water_supply",
+      "category": "上水道及び工業用水道",
+      "question_count": 10,
+      "status": "SUCCESS",
+      "completed_questions": 10,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "water_supply",
+      "category": "上水道及び工業用水道",
+      "question_count": 20,
+      "status": "SUCCESS",
+      "completed_questions": 20,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "water_supply",
+      "category": "上水道及び工業用水道",
+      "question_count": 30,
+      "status": "SUCCESS",
+      "completed_questions": 30,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "forestry",
+      "category": "森林土木",
+      "question_count": 10,
+      "status": "SUCCESS",
+      "completed_questions": 10,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "forestry",
+      "category": "森林土木",
+      "question_count": 20,
+      "status": "SUCCESS",
+      "completed_questions": 20,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "forestry",
+      "category": "森林土木",
+      "question_count": 30,
+      "status": "SUCCESS",
+      "completed_questions": 30,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "agriculture",
+      "category": "農業土木",
+      "question_count": 10,
+      "status": "SUCCESS",
+      "completed_questions": 10,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "agriculture",
+      "category": "農業土木",
+      "question_count": 20,
+      "status": "SUCCESS",
+      "completed_questions": 20,
+      "failed_questions": [],
+      "success_rate": 100.0
+    },
+    {
+      "department": "agriculture",
+      "category": "農業土木",
+      "question_count": 30,
+      "status": "SUCCESS",
+      "completed_questions": 30,
+      "failed_questions": [],
+      "success_rate": 100.0
+    }
+  ]
+}

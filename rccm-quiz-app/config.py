@@ -223,7 +223,7 @@ class EnterpriseConfig(Config):
     
     # マルチユーザー設定
     MAX_CONCURRENT_USERS = int(os.environ.get('MAX_CONCURRENT_USERS', 100))
-    USER_SESSION_TIMEOUT = 3600  # 1時間のアイドルタイムアウト
+    USER_SESSION_TIMEOUT = 28800  # 8時間のアイドルタイムアウト（セッションライフタイムと統一）
 
 class ServerConfig:
     """サーバー配置用設定"""

@@ -1,0 +1,92 @@
+{
+  "test_timestamp": "2025-06-28T09:14:31.710410",
+  "test_type": "ultra_sync_complete_run_test",
+  "total_tests": 36,
+  "passed_tests": 15,
+  "success_rate": 41.66666666666667,
+  "detailed_results": {
+    "road": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "river": {
+      "10": false,
+      "20": false,
+      "30": false
+    },
+    "port": {
+      "10": false,
+      "20": false,
+      "30": false
+    },
+    "electric": {
+      "10": false,
+      "20": false,
+      "30": false
+    },
+    "forest": {
+      "10": false,
+      "20": false,
+      "30": false
+    },
+    "agriculture": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "railway": {
+      "10": false,
+      "20": false,
+      "30": false
+    },
+    "urban_planning": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "water_supply": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "sewerage": {
+      "10": false,
+      "20": false,
+      "30": false
+    },
+    "civil_planning": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "construction_environment": {
+      "10": false,
+      "20": false,
+      "30": false
+    }
+  },
+  "failed_cases": [
+    "河川・砂防及び海岸(river) - 10問",
+    "河川・砂防及び海岸(river) - 20問",
+    "河川・砂防及び海岸(river) - 30問",
+    "港湾及び空港(port) - 10問",
+    "港湾及び空港(port) - 20問",
+    "港湾及び空港(port) - 30問",
+    "電力土木(electric) - 10問",
+    "電力土木(electric) - 20問",
+    "電力土木(electric) - 30問",
+    "森林土木(forest) - 10問",
+    "森林土木(forest) - 20問",
+    "森林土木(forest) - 30問",
+    "鉄道(railway) - 10問",
+    "鉄道(railway) - 20問",
+    "鉄道(railway) - 30問",
+    "下水道(sewerage) - 10問",
+    "下水道(sewerage) - 20問",
+    "下水道(sewerage) - 30問",
+    "建設環境(construction_environment) - 10問",
+    "建設環境(construction_environment) - 20問",
+    "建設環境(construction_environment) - 30問"
+  ]
+}

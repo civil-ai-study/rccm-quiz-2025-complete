@@ -485,7 +485,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => {
-            console.log('ゲーミフィケーション状態の取得に失敗:', error);
         });
 });
 
@@ -507,7 +506,6 @@ function clearCache() {
                 })
             );
         }).then(function() {
-            console.log('キャッシュクリア完了');
             // ページリロード
             window.location.reload(true);
         });
@@ -528,8 +526,6 @@ if ('performance' in window) {
     });
 }
 
-console.log('🚀 RCCM学習アプリ - UI/UX改善版');
-console.log('📚 アクセシビリティ強化・初心者ガイダンス完備');
 
 // 初心者ガイダンス表示制御
 function showBeginnerGuideIfNeeded() {
@@ -575,7 +571,6 @@ function updateReviewCount() {
             }
         })
         .catch(error => {
-            console.log('復習数の取得に失敗:', error);
         });
 }
 

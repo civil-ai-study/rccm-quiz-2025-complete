@@ -14,6 +14,47 @@
         </div>
     </div>
     
+    <!-- 🔥 ULTRA SYNC IMPROVEMENT 5: 学習記録 -->
+    {% if performance_comparison %}
+    <div class="alert alert-info border-0 mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                {% if performance_comparison.is_faster %}
+                <h5 class="mb-1">
+                    <i class="fas fa-rocket text-primary me-2"></i>🚀 素晴らしい成長！
+                </h5>
+                <p class="mb-0">
+                    この問題は<strong>前回より{{ performance_comparison.time_diff }}秒速く</strong>解けています。
+                    着実に力がついています！
+                </p>
+                {% elif performance_comparison.is_repeat_correct %}
+                <h5 class="mb-1">
+                    <i class="fas fa-check-double text-success me-2"></i>✨ 安定した理解！
+                </h5>
+                <p class="mb-0">
+                    この問題を<strong>連続{{ performance_comparison.correct_streak }}回正解</strong>しています。
+                    しっかりとマスターできています！
+                </p>
+                {% elif performance_comparison.is_improving %}
+                <h5 class="mb-1">
+                    <i class="fas fa-chart-line text-warning me-2"></i>📈 着実な成長！
+                </h5>
+                <p class="mb-0">
+                    間違いから学んで、正解率が<strong>{{ performance_comparison.accuracy_improvement }}%向上</strong>しました。
+                    継続が力になります！
+                </p>
+                {% endif %}
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="small text-muted">
+                    <div>前回: {{ performance_comparison.last_time }}秒</div>
+                    <div>今回: {{ performance_comparison.current_time }}秒</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
     <!-- 正解・不正解表示（センタリング） - エラーメッセージと区別するため改善 -->
     <div class="text-center mb-4">
         {% if is_correct %}
@@ -76,13 +117,6 @@
 
     <!-- メインナビゲーション -->
     <div class="mt-4 text-center">
-        <!-- デバッグ情報（本番では非表示） -->
-        {% if false %}
-        <div class="debug-info alert alert-info" style="font-size: 0.8rem; margin-bottom: 1rem;">
-            <strong>DEBUG:</strong> is_last_question={{ is_last_question }}, next_question_index={{ next_question_index }}, 
-            current_question_number={{ current_question_number }}, total_questions={{ total_questions }}
-        </div>
-        {% endif %}
         
         <div class="main-navigation-section" style="min-height: 80px; display: flex; align-items: center; justify-content: center;">
             <!-- 確実な次問題ボタン表示（複数のフォールバック仕組み） -->
@@ -118,17 +152,6 @@
         </div>
         {% endif %}
         
-        <!-- 動的難易度調整通知 - 削除（ユーザー要求による） -->
-        {% if false %}
-        <div class="mt-3">
-            <div class="alert alert-info alert-sm">
-                <i class="fas fa-cogs me-2"></i>
-                <strong>難易度が自動調整されました:</strong> 
-                {{ difficulty_adjustment.old_level }} → <strong>{{ difficulty_adjustment.new_level }}</strong>
-                <small class="d-block text-muted">学習パフォーマンスに基づく最適化です</small>
-            </div>
-        </div>
-        {% endif %}
         
         <!-- サブアクション -->
         <div class="mt-4 sub-actions">
@@ -154,21 +177,6 @@
             </div>
         </div>
         
-        <!-- デバッグ情報（トラブルシューティング用） -->
-        <div class="mt-4 debug-info" style="font-size: 0.8rem; color: #6c757d; border-top: 1px solid #dee2e6; padding-top: 15px;">
-            <details>
-                <summary style="cursor: pointer;">🔍 技術情報（問題発生時に確認）</summary>
-                <div class="mt-2">
-                    <small>
-                        問題番号: {{ question_num }}/{{ total_num }}<br>
-                        最終問題: {{ is_final }}<br>
-                        次問題インデックス: {{ next_question_index if next_question_index is defined else 'undefined' }}<br>
-                        正解状態: {{ is_correct }}<br>
-                        問題ID: {{ question.id }}
-                    </small>
-                </div>
-            </details>
-        </div>
     </div>
 </div>
 <style>

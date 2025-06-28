@@ -30,6 +30,33 @@
     </div>
     {% else %}
     
+    <!-- 🔥 ULTRA SYNC IMPROVEMENT 1: 明確な進捗表示 -->
+    <div class="alert alert-primary border-0 mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h4 class="mb-2">
+                    <i class="fas fa-calendar-check me-2"></i>🎯 今日復習すべき問題: 
+                    <span class="badge bg-danger fs-5 ms-2">{{ due_today_count or 0 }}問</span>
+                </h4>
+                <p class="mb-0 text-muted">
+                    <i class="fas fa-brain me-1"></i>科学的な間隔反復システムが最適タイミングで選択した問題です
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                {% if due_today_count and due_today_count > 0 %}
+                <a href="/exam/review" class="btn btn-success btn-lg w-100">
+                    <i class="fas fa-play me-2"></i>復習開始
+                </a>
+                {% else %}
+                <div class="text-success">
+                    <i class="fas fa-check-circle" style="font-size: 2rem;"></i>
+                    <div>今日の復習完了！</div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
     <!-- SRS統計情報 -->
     {% if show_srs_details and srs_stats %}
     <div class="row mb-4">
@@ -80,16 +107,42 @@
     </div>
     {% endif %}
 
-    <!-- 復習開始 -->
+    <!-- 🔥 ULTRA SYNC IMPROVEMENT 3: 部門別復習 -->
     <div class="card mb-4">
-        <div class="card-header bg-success text-white">
-            <h5 class="mb-0"><i class="fas fa-bookmark me-2"></i>復習開始</h5>
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0"><i class="fas fa-chart-pie me-2"></i>🎯 部門別弱点分析</h5>
         </div>
-        <div class="card-body text-center">
-            <p class="mb-3">間違えた問題を復習して完全にマスターしましょう</p>
-            <a href="/exam/review" class="btn btn-success btn-lg px-5">
-                <i class="fas fa-play me-2"></i>復習開始
-            </a>
+        <div class="card-body">
+            {% if department_stats %}
+            <div class="row">
+                {% for dept, stats in department_stats.items() %}
+                <div class="col-md-4 mb-3">
+                    <div class="card border-warning">
+                        <div class="card-body text-center p-2">
+                            <h6 class="card-title text-primary">{{ dept }}</h6>
+                            <div class="mb-2">
+                                <span class="badge bg-danger fs-6">{{ stats.weak_count }}問</span>
+                                <small class="text-muted d-block">弱点問題</small>
+                            </div>
+                            {% if stats.weak_count > 0 %}
+                            <a href="/exam/review?department={{ dept }}" class="btn btn-warning btn-sm">
+                                <i class="fas fa-target me-1"></i>集中復習
+                            </a>
+                            {% else %}
+                            <span class="text-success small">✅ マスター済み</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <div class="text-center mt-3">
+                <a href="/exam/review" class="btn btn-success btn-lg px-5">
+                    <i class="fas fa-play me-2"></i>全部門統合復習
+                </a>
+            </div>
         </div>
     </div>
 
@@ -125,6 +178,25 @@
                         </div>
                         {% if show_srs_details %}
                         <div class="srs-stats">
+                            <!-- 🔥 ULTRA SYNC IMPROVEMENT 2: 学習効率の可視化 -->
+                            {% if question.next_review %}
+                            <div class="alert alert-info py-1 px-2 mb-2">
+                                <small>
+                                    <i class="fas fa-clock me-1 text-primary"></i>
+                                    <strong>次回復習予定:</strong> 
+                                    {% set days_until = question.days_until_review %}
+                                    {% if days_until <= 0 %}
+                                        <span class="badge bg-danger">🔥 今すぐ復習</span>
+                                    {% elif days_until == 1 %}
+                                        <span class="badge bg-warning text-dark">📅 明日復習予定</span>
+                                    {% elif days_until <= 3 %}
+                                        <span class="badge bg-info">📅 {{ days_until }}日後に復習予定</span>
+                                    {% else %}
+                                        <span class="badge bg-success">✅ {{ days_until }}日後に再出題予定</span>
+                                    {% endif %}
+                                </small>
+                            </div>
+                            {% endif %}
                             <small class="text-muted d-block">
                                 <strong>学習状況:</strong> 
                                 {% if question.total_attempts > 0 %}
@@ -208,7 +280,6 @@
 
 <script>
 // シンプルな復習リスト機能
-console.log('✅ 復習リスト - シンプル版');
 </script>
 
 <style>

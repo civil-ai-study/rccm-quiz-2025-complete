@@ -1,0 +1,70 @@
+{
+  "test_timestamp": "2025-06-28T09:23:10.735113",
+  "test_type": "ultra_sync_complete_run_test",
+  "total_tests": 36,
+  "passed_tests": 36,
+  "success_rate": 100.0,
+  "detailed_results": {
+    "road": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "tunnel": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "civil_planning": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "urban_planning": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "landscape": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "construction_env": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "steel_concrete": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "soil_foundation": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "construction_planning": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "water_supply": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "forestry": {
+      "10": true,
+      "20": true,
+      "30": true
+    },
+    "agriculture": {
+      "10": true,
+      "20": true,
+      "30": true
+    }
+  },
+  "failed_cases": []
+}

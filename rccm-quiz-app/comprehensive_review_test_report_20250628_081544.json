@@ -1,0 +1,16 @@
+{
+  "test_timestamp": "2025-06-28T08:15:44.012408",
+  "test_type": "comprehensive_review_test",
+  "summary": {
+    "total_tests": 5,
+    "success_count": 5,
+    "success_rate": 100.0
+  },
+  "test_results": {
+    "復習リスト追加メカニズム": true,
+    "復習セッション実行": true,
+    "復習カウントAPI": true,
+    "復習ページアクセス": true,
+    "復習問題数設定": true
+  }
+}

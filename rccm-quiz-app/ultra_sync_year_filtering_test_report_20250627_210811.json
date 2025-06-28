@@ -1,0 +1,1095 @@
+{
+  "test_timestamp": "2025-06-27T21:08:11.590455",
+  "test_type": "ultra_sync_year_filtering",
+  "summary": {
+    "total_tests": 144,
+    "ok_count": 0,
+    "mixed_count": 0,
+    "no_data_count": 0,
+    "error_count": 0
+  },
+  "department_stats": {
+    "road": {
+      "ok": 0,
+      "mixed": 0,
+      "no_data": 12,
+      "error": 0
+    },
+    "tunnel": {
+      "ok": 0,
+      "mixed": 0,
+      "no_data": 12,
+      "error": 0
+    },
+    "civil_planning": {
+      "ok": 0,
+      "mixed": 0,
+      "no_data": 12,
+      "error": 0
+    },
+    "urban_planning": {
+      "ok": 0,
+      "mixed": 0,
+      "no_data": 12,
+      "error": 0
+    },
+    "landscape": {
+      "ok": 0,
+      "mixed": 0,
+      "no_data": 12,
+      "error": 0
+    },
+    "construction_env": {
+      "ok": 0,
+      "mixed": 0,
+      "no_data": 12,
+      "error": 0
+    },
+    "steel_concrete": {
+      "ok": 0,
+      "mixed": 0,
+      "no_data": 12,
+      "error": 0
+    },
+    "soil_foundation": {
+      "ok": 0,
+      "mixed": 0,
+      "no_data": 12,
+      "error": 0
+    },
+    "construction_planning": {
+      "ok": 0,
+      "mixed": 0,
+      "no_data": 12,
+      "error": 0
+    },
+    "water_supply": {
+      "ok": 0,
+      "mixed": 0,
+      "no_data": 12,
+      "error": 0
+    },
+    "forestry": {
+      "ok": 0,
+      "mixed": 0,
+      "no_data": 12,
+      "error": 0
+    },
+    "agriculture": {
+      "ok": 0,
+      "mixed": 0,
+      "no_data": 12,
+      "error": 0
+    }
+  },
+  "results": [
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "test_year": "2019",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "test_year": "2018",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "test_year": "2017",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "test_year": "2016",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "test_year": "2015",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "test_year": "2014",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "test_year": "2013",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "test_year": "2012",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "test_year": "2011",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "test_year": "2010",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "test_year": "2009",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "test_year": "2008",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "test_year": "2019",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "test_year": "2018",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "test_year": "2017",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "test_year": "2016",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "test_year": "2015",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "test_year": "2014",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "test_year": "2013",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "test_year": "2012",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "test_year": "2011",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "test_year": "2010",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "test_year": "2009",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "test_year": "2008",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "test_year": "2019",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "test_year": "2018",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "test_year": "2017",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "test_year": "2016",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "test_year": "2015",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "test_year": "2014",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "test_year": "2013",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "test_year": "2012",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "test_year": "2011",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "test_year": "2010",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "test_year": "2009",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "test_year": "2008",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "urban_planning",
+      "expected_category": "都市計画及び地方計画",
+      "test_year": "2019",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "urban_planning",
+      "expected_category": "都市計画及び地方計画",
+      "test_year": "2018",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "urban_planning",
+      "expected_category": "都市計画及び地方計画",
+      "test_year": "2017",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "urban_planning",
+      "expected_category": "都市計画及び地方計画",
+      "test_year": "2016",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "urban_planning",
+      "expected_category": "都市計画及び地方計画",
+      "test_year": "2015",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "urban_planning",
+      "expected_category": "都市計画及び地方計画",
+      "test_year": "2014",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "urban_planning",
+      "expected_category": "都市計画及び地方計画",
+      "test_year": "2013",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "urban_planning",
+      "expected_category": "都市計画及び地方計画",
+      "test_year": "2012",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "urban_planning",
+      "expected_category": "都市計画及び地方計画",
+      "test_year": "2011",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "urban_planning",
+      "expected_category": "都市計画及び地方計画",
+      "test_year": "2010",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "urban_planning",
+      "expected_category": "都市計画及び地方計画",
+      "test_year": "2009",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "urban_planning",
+      "expected_category": "都市計画及び地方計画",
+      "test_year": "2008",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "landscape",
+      "expected_category": "造園",
+      "test_year": "2019",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "landscape",
+      "expected_category": "造園",
+      "test_year": "2018",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "landscape",
+      "expected_category": "造園",
+      "test_year": "2017",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "landscape",
+      "expected_category": "造園",
+      "test_year": "2016",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "landscape",
+      "expected_category": "造園",
+      "test_year": "2015",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "landscape",
+      "expected_category": "造園",
+      "test_year": "2014",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "landscape",
+      "expected_category": "造園",
+      "test_year": "2013",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "landscape",
+      "expected_category": "造園",
+      "test_year": "2012",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "landscape",
+      "expected_category": "造園",
+      "test_year": "2011",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "landscape",
+      "expected_category": "造園",
+      "test_year": "2010",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "landscape",
+      "expected_category": "造園",
+      "test_year": "2009",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "landscape",
+      "expected_category": "造園",
+      "test_year": "2008",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_env",
+      "expected_category": "建設環境",
+      "test_year": "2019",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_env",
+      "expected_category": "建設環境",
+      "test_year": "2018",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_env",
+      "expected_category": "建設環境",
+      "test_year": "2017",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_env",
+      "expected_category": "建設環境",
+      "test_year": "2016",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_env",
+      "expected_category": "建設環境",
+      "test_year": "2015",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_env",
+      "expected_category": "建設環境",
+      "test_year": "2014",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_env",
+      "expected_category": "建設環境",
+      "test_year": "2013",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_env",
+      "expected_category": "建設環境",
+      "test_year": "2012",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_env",
+      "expected_category": "建設環境",
+      "test_year": "2011",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_env",
+      "expected_category": "建設環境",
+      "test_year": "2010",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_env",
+      "expected_category": "建設環境",
+      "test_year": "2009",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_env",
+      "expected_category": "建設環境",
+      "test_year": "2008",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "steel_concrete",
+      "expected_category": "鋼構造及びコンクリート",
+      "test_year": "2019",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "steel_concrete",
+      "expected_category": "鋼構造及びコンクリート",
+      "test_year": "2018",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "steel_concrete",
+      "expected_category": "鋼構造及びコンクリート",
+      "test_year": "2017",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "steel_concrete",
+      "expected_category": "鋼構造及びコンクリート",
+      "test_year": "2016",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "steel_concrete",
+      "expected_category": "鋼構造及びコンクリート",
+      "test_year": "2015",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "steel_concrete",
+      "expected_category": "鋼構造及びコンクリート",
+      "test_year": "2014",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "steel_concrete",
+      "expected_category": "鋼構造及びコンクリート",
+      "test_year": "2013",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "steel_concrete",
+      "expected_category": "鋼構造及びコンクリート",
+      "test_year": "2012",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "steel_concrete",
+      "expected_category": "鋼構造及びコンクリート",
+      "test_year": "2011",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "steel_concrete",
+      "expected_category": "鋼構造及びコンクリート",
+      "test_year": "2010",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "steel_concrete",
+      "expected_category": "鋼構造及びコンクリート",
+      "test_year": "2009",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "steel_concrete",
+      "expected_category": "鋼構造及びコンクリート",
+      "test_year": "2008",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "soil_foundation",
+      "expected_category": "土質及び基礎",
+      "test_year": "2019",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "soil_foundation",
+      "expected_category": "土質及び基礎",
+      "test_year": "2018",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "soil_foundation",
+      "expected_category": "土質及び基礎",
+      "test_year": "2017",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "soil_foundation",
+      "expected_category": "土質及び基礎",
+      "test_year": "2016",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "soil_foundation",
+      "expected_category": "土質及び基礎",
+      "test_year": "2015",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "soil_foundation",
+      "expected_category": "土質及び基礎",
+      "test_year": "2014",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "soil_foundation",
+      "expected_category": "土質及び基礎",
+      "test_year": "2013",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "soil_foundation",
+      "expected_category": "土質及び基礎",
+      "test_year": "2012",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "soil_foundation",
+      "expected_category": "土質及び基礎",
+      "test_year": "2011",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "soil_foundation",
+      "expected_category": "土質及び基礎",
+      "test_year": "2010",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "soil_foundation",
+      "expected_category": "土質及び基礎",
+      "test_year": "2009",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "soil_foundation",
+      "expected_category": "土質及び基礎",
+      "test_year": "2008",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_planning",
+      "expected_category": "施工計画、施工設備及び積算",
+      "test_year": "2019",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_planning",
+      "expected_category": "施工計画、施工設備及び積算",
+      "test_year": "2018",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_planning",
+      "expected_category": "施工計画、施工設備及び積算",
+      "test_year": "2017",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_planning",
+      "expected_category": "施工計画、施工設備及び積算",
+      "test_year": "2016",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_planning",
+      "expected_category": "施工計画、施工設備及び積算",
+      "test_year": "2015",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_planning",
+      "expected_category": "施工計画、施工設備及び積算",
+      "test_year": "2014",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_planning",
+      "expected_category": "施工計画、施工設備及び積算",
+      "test_year": "2013",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_planning",
+      "expected_category": "施工計画、施工設備及び積算",
+      "test_year": "2012",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_planning",
+      "expected_category": "施工計画、施工設備及び積算",
+      "test_year": "2011",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_planning",
+      "expected_category": "施工計画、施工設備及び積算",
+      "test_year": "2010",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_planning",
+      "expected_category": "施工計画、施工設備及び積算",
+      "test_year": "2009",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "construction_planning",
+      "expected_category": "施工計画、施工設備及び積算",
+      "test_year": "2008",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "water_supply",
+      "expected_category": "上水道及び工業用水道",
+      "test_year": "2019",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "water_supply",
+      "expected_category": "上水道及び工業用水道",
+      "test_year": "2018",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "water_supply",
+      "expected_category": "上水道及び工業用水道",
+      "test_year": "2017",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "water_supply",
+      "expected_category": "上水道及び工業用水道",
+      "test_year": "2016",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "water_supply",
+      "expected_category": "上水道及び工業用水道",
+      "test_year": "2015",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "water_supply",
+      "expected_category": "上水道及び工業用水道",
+      "test_year": "2014",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "water_supply",
+      "expected_category": "上水道及び工業用水道",
+      "test_year": "2013",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "water_supply",
+      "expected_category": "上水道及び工業用水道",
+      "test_year": "2012",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "water_supply",
+      "expected_category": "上水道及び工業用水道",
+      "test_year": "2011",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "water_supply",
+      "expected_category": "上水道及び工業用水道",
+      "test_year": "2010",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "water_supply",
+      "expected_category": "上水道及び工業用水道",
+      "test_year": "2009",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "water_supply",
+      "expected_category": "上水道及び工業用水道",
+      "test_year": "2008",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "forestry",
+      "expected_category": "森林土木",
+      "test_year": "2019",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "forestry",
+      "expected_category": "森林土木",
+      "test_year": "2018",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "forestry",
+      "expected_category": "森林土木",
+      "test_year": "2017",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "forestry",
+      "expected_category": "森林土木",
+      "test_year": "2016",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "forestry",
+      "expected_category": "森林土木",
+      "test_year": "2015",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "forestry",
+      "expected_category": "森林土木",
+      "test_year": "2014",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "forestry",
+      "expected_category": "森林土木",
+      "test_year": "2013",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "forestry",
+      "expected_category": "森林土木",
+      "test_year": "2012",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "forestry",
+      "expected_category": "森林土木",
+      "test_year": "2011",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "forestry",
+      "expected_category": "森林土木",
+      "test_year": "2010",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "forestry",
+      "expected_category": "森林土木",
+      "test_year": "2009",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "forestry",
+      "expected_category": "森林土木",
+      "test_year": "2008",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "test_year": "2019",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "test_year": "2018",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "test_year": "2017",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "test_year": "2016",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "test_year": "2015",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "test_year": "2014",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "test_year": "2013",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "test_year": "2012",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "test_year": "2011",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "test_year": "2010",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "test_year": "2009",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "test_year": "2008",
+      "status": "NO_QUESTIONS",
+      "error": "問題データが選択されていない"
+    }
+  ]
+}

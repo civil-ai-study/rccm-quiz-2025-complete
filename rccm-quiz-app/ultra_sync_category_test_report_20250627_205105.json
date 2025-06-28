@@ -1,0 +1,287 @@
+{
+  "test_timestamp": "2025-06-27T20:51:05.525547",
+  "summary": {
+    "total_departments": 12,
+    "ok_count": 12,
+    "mixed_count": 0,
+    "error_count": 0
+  },
+  "results": [
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "status": "OK",
+      "selected_count": 10,
+      "categories_found": [
+        "道路"
+      ],
+      "category_counts": {
+        "道路": 10
+      },
+      "mixed_issues_count": 0,
+      "mixed_issues": [],
+      "years_found": [
+        2016,
+        2017,
+        2018,
+        2008,
+        2009,
+        2011,
+        2013,
+        2014
+      ]
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "status": "OK",
+      "selected_count": 10,
+      "categories_found": [
+        "トンネル"
+      ],
+      "category_counts": {
+        "トンネル": 10
+      },
+      "mixed_issues_count": 0,
+      "mixed_issues": [],
+      "years_found": [
+        2016,
+        2018,
+        2019,
+        2008,
+        2011,
+        2014,
+        2015
+      ]
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "status": "OK",
+      "selected_count": 10,
+      "categories_found": [
+        "河川、砂防及び海岸・海洋"
+      ],
+      "category_counts": {
+        "河川、砂防及び海岸・海洋": 10
+      },
+      "mixed_issues_count": 0,
+      "mixed_issues": [],
+      "years_found": [
+        2017,
+        2018,
+        2009,
+        2013,
+        2014,
+        2015
+      ]
+    },
+    {
+      "department_id": "urban_planning",
+      "expected_category": "都市計画及び地方計画",
+      "status": "OK",
+      "selected_count": 10,
+      "categories_found": [
+        "都市計画及び地方計画"
+      ],
+      "category_counts": {
+        "都市計画及び地方計画": 10
+      },
+      "mixed_issues_count": 0,
+      "mixed_issues": [],
+      "years_found": [
+        2016,
+        2017,
+        2019,
+        2010,
+        2011,
+        2012,
+        2013
+      ]
+    },
+    {
+      "department_id": "landscape",
+      "expected_category": "造園",
+      "status": "OK",
+      "selected_count": 10,
+      "categories_found": [
+        "造園"
+      ],
+      "category_counts": {
+        "造園": 10
+      },
+      "mixed_issues_count": 0,
+      "mixed_issues": [],
+      "years_found": [
+        2016,
+        2017,
+        2018,
+        2010,
+        2012,
+        2013,
+        2014,
+        2015
+      ]
+    },
+    {
+      "department_id": "construction_env",
+      "expected_category": "建設環境",
+      "status": "OK",
+      "selected_count": 10,
+      "categories_found": [
+        "建設環境"
+      ],
+      "category_counts": {
+        "建設環境": 10
+      },
+      "mixed_issues_count": 0,
+      "mixed_issues": [],
+      "years_found": [
+        2016,
+        2018,
+        2008,
+        2009,
+        2010,
+        2015
+      ]
+    },
+    {
+      "department_id": "steel_concrete",
+      "expected_category": "鋼構造及びコンクリート",
+      "status": "OK",
+      "selected_count": 10,
+      "categories_found": [
+        "鋼構造及びコンクリート"
+      ],
+      "category_counts": {
+        "鋼構造及びコンクリート": 10
+      },
+      "mixed_issues_count": 0,
+      "mixed_issues": [],
+      "years_found": [
+        2016,
+        2017,
+        2009,
+        2011,
+        2014,
+        2015
+      ]
+    },
+    {
+      "department_id": "soil_foundation",
+      "expected_category": "土質及び基礎",
+      "status": "OK",
+      "selected_count": 10,
+      "categories_found": [
+        "土質及び基礎"
+      ],
+      "category_counts": {
+        "土質及び基礎": 10
+      },
+      "mixed_issues_count": 0,
+      "mixed_issues": [],
+      "years_found": [
+        2017,
+        2018,
+        2019,
+        2008,
+        2009,
+        2010
+      ]
+    },
+    {
+      "department_id": "construction_planning",
+      "expected_category": "施工計画、施工設備及び積算",
+      "status": "OK",
+      "selected_count": 10,
+      "categories_found": [
+        "施工計画、施工設備及び積算"
+      ],
+      "category_counts": {
+        "施工計画、施工設備及び積算": 10
+      },
+      "mixed_issues_count": 0,
+      "mixed_issues": [],
+      "years_found": [
+        2017,
+        2018,
+        2019,
+        2008,
+        2011,
+        2012,
+        2013,
+        2014
+      ]
+    },
+    {
+      "department_id": "water_supply",
+      "expected_category": "上水道及び工業用水道",
+      "status": "OK",
+      "selected_count": 10,
+      "categories_found": [
+        "上水道及び工業用水道"
+      ],
+      "category_counts": {
+        "上水道及び工業用水道": 10
+      },
+      "mixed_issues_count": 0,
+      "mixed_issues": [],
+      "years_found": [
+        2018,
+        2019,
+        2008,
+        2009,
+        2010,
+        2011
+      ]
+    },
+    {
+      "department_id": "forestry",
+      "expected_category": "森林土木",
+      "status": "OK",
+      "selected_count": 10,
+      "categories_found": [
+        "森林土木"
+      ],
+      "category_counts": {
+        "森林土木": 10
+      },
+      "mixed_issues_count": 0,
+      "mixed_issues": [],
+      "years_found": [
+        2016,
+        2017,
+        2018,
+        2010,
+        2011,
+        2013,
+        2014,
+        2015
+      ]
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "status": "OK",
+      "selected_count": 10,
+      "categories_found": [
+        "農業土木"
+      ],
+      "category_counts": {
+        "農業土木": 10
+      },
+      "mixed_issues_count": 0,
+      "mixed_issues": [],
+      "years_found": [
+        2016,
+        2017,
+        2019,
+        2008,
+        2011,
+        2012,
+        2014,
+        2015
+      ]
+    }
+  ]
+}

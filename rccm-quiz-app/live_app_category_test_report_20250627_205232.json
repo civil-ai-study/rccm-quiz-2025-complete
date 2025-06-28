@@ -1,0 +1,84 @@
+{
+  "test_timestamp": "2025-06-27T20:52:32.268460",
+  "test_type": "live_application",
+  "summary": {
+    "total_departments": 12,
+    "ok_count": 0,
+    "mixed_count": 0,
+    "error_count": 12
+  },
+  "results": [
+    {
+      "department_id": "road",
+      "expected_category": "道路",
+      "status": "ROUTE_ERROR",
+      "error": "HTTP 404"
+    },
+    {
+      "department_id": "tunnel",
+      "expected_category": "トンネル",
+      "status": "ROUTE_ERROR",
+      "error": "HTTP 404"
+    },
+    {
+      "department_id": "civil_planning",
+      "expected_category": "河川、砂防及び海岸・海洋",
+      "status": "ROUTE_ERROR",
+      "error": "HTTP 404"
+    },
+    {
+      "department_id": "urban_planning",
+      "expected_category": "都市計画及び地方計画",
+      "status": "ROUTE_ERROR",
+      "error": "HTTP 404"
+    },
+    {
+      "department_id": "landscape",
+      "expected_category": "造園",
+      "status": "ROUTE_ERROR",
+      "error": "HTTP 404"
+    },
+    {
+      "department_id": "construction_env",
+      "expected_category": "建設環境",
+      "status": "ROUTE_ERROR",
+      "error": "HTTP 404"
+    },
+    {
+      "department_id": "steel_concrete",
+      "expected_category": "鋼構造及びコンクリート",
+      "status": "ROUTE_ERROR",
+      "error": "HTTP 404"
+    },
+    {
+      "department_id": "soil_foundation",
+      "expected_category": "土質及び基礎",
+      "status": "ROUTE_ERROR",
+      "error": "HTTP 404"
+    },
+    {
+      "department_id": "construction_planning",
+      "expected_category": "施工計画、施工設備及び積算",
+      "status": "ROUTE_ERROR",
+      "error": "HTTP 404"
+    },
+    {
+      "department_id": "water_supply",
+      "expected_category": "上水道及び工業用水道",
+      "status": "ROUTE_ERROR",
+      "error": "HTTP 404"
+    },
+    {
+      "department_id": "forestry",
+      "expected_category": "森林土木",
+      "status": "ROUTE_ERROR",
+      "error": "HTTP 404"
+    },
+    {
+      "department_id": "agriculture",
+      "expected_category": "農業土木",
+      "status": "ROUTE_ERROR",
+      "error": "HTTP 404"
+    }
+  ]
+}
