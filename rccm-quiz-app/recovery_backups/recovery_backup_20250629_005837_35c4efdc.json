@@ -1,0 +1,24 @@
+{
+  "backup_id": "recovery_backup_20250629_005837_35c4efdc",
+  "timestamp": "2025-06-29T00:58:37.278506",
+  "session_data": {
+    "_permanent": true,
+    "user_id": "perf_test_tunnel_2018_2",
+    "last_activity": "2025-06-28T15:58:37.273983+00:00",
+    "total_requests": 1,
+    "backup_history": [
+      {
+        "backup_id": "session_backup_20250629_005837_4309d7dd",
+        "timestamp": "2025-06-29T00:58:37.269415",
+        "auto_save": true,
+        "expired": false
+      }
+    ],
+    "last_auto_save": "2025-06-29T00:58:37.269395",
+    "session_id": "0ec79d1171a3a97c30bf887b307cb26b",
+    "data_loaded": true,
+    "exam_question_ids": []
+  },
+  "backup_type": "corruption_recovery",
+  "session_size_bytes": 434
+}

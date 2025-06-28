@@ -1,0 +1,380 @@
+{% extends "base.html" %}
+{% block title %}復習リスト | RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- ヘッダー -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="mb-2"><i class="fas fa-bookmark text-warning me-2"></i>復習リスト</h1>
+            <p class="text-muted">間違えた問題を繰り返し学習して完全にマスターしましょう</p>
+        </div>
+        <div class="col-md-4 text-end">
+            <a href="/" class="btn btn-outline-secondary me-2">
+                <i class="fas fa-home me-1"></i>ホーム
+            </a>
+        </div>
+    </div>
+    
+    {% if message %}
+    <!-- 復習リストが空の場合 -->
+    <div class="alert alert-info text-center">
+        <div class="mb-3">
+            <i class="fas fa-check-circle text-success" style="font-size: 3rem;"></i>
+        </div>
+        <h4 class="alert-heading">素晴らしい！復習リストが空です</h4>
+        <p class="mb-3">{{ message }}</p>
+        <a href="/exam" class="btn btn-primary btn-lg">
+            <i class="fas fa-play me-2"></i>新しい問題に挑戦
+        </a>
+    </div>
+    {% else %}
+    
+    <!-- 🔥 ULTRA SYNC IMPROVEMENT 1: 明確な進捗表示 -->
+    <div class="alert alert-primary border-0 mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h4 class="mb-2">
+                    <i class="fas fa-calendar-check me-2"></i>🎯 今日復習すべき問題: 
+                    <span class="badge bg-danger fs-5 ms-2">{{ due_today_count or 0 }}問</span>
+                </h4>
+                <p class="mb-0 text-muted">
+                    <i class="fas fa-brain me-1"></i>科学的な間隔反復システムが最適タイミングで選択した問題です
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                {% if due_today_count and due_today_count > 0 %}
+                <a href="/exam/review" class="btn btn-success btn-lg w-100">
+                    <i class="fas fa-play me-2"></i>復習開始
+                </a>
+                {% else %}
+                <div class="text-success">
+                    <i class="fas fa-check-circle" style="font-size: 2rem;"></i>
+                    <div>今日の復習完了！</div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- SRS統計情報 -->
+    {% if show_srs_details and srs_stats %}
+    <div class="row mb-4">
+        <div class="col-md-3 mb-2">
+            <div class="card bg-warning text-dark text-center">
+                <div class="card-body p-2">
+                    <h4 class="mb-0">{{ srs_stats.total_questions or 0 }}</h4>
+                    <small>総復習問題</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-2">
+            <div class="card bg-danger text-white text-center">
+                <div class="card-body p-2">
+                    <h4 class="mb-0">{{ srs_stats.due_now or 0 }}</h4>
+                    <small>要復習問題</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-2">
+            <div class="card bg-info text-white text-center">
+                <div class="card-body p-2">
+                    <h4 class="mb-0">{{ srs_stats.in_progress or 0 }}</h4>
+                    <small>学習中</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-2">
+            <div class="card bg-success text-white text-center">
+                <div class="card-body p-2">
+                    <h4 class="mb-0">{{ srs_stats.mastered or 0 }}</h4>
+                    <small>🏆 マスター済み</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <!-- 従来の統計表示 -->
+    <div class="row mb-4">
+        <div class="col-md-6 mx-auto">
+            <div class="card bg-warning text-dark">
+                <div class="card-body text-center">
+                    <h3 class="mb-0">{{ total_count or 0 }}</h3>
+                    <small>復習対象問題</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 🔥 ULTRA SYNC IMPROVEMENT 3: 部門別復習 -->
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0"><i class="fas fa-chart-pie me-2"></i>🎯 部門別弱点分析</h5>
+        </div>
+        <div class="card-body">
+            {% if department_stats %}
+            <div class="row">
+                {% for dept, stats in department_stats.items() %}
+                <div class="col-md-4 mb-3">
+                    <div class="card border-warning">
+                        <div class="card-body text-center p-2">
+                            <h6 class="card-title text-primary">{{ dept }}</h6>
+                            <div class="mb-2">
+                                <span class="badge bg-danger fs-6">{{ stats.weak_count }}問</span>
+                                <small class="text-muted d-block">弱点問題</small>
+                            </div>
+                            {% if stats.weak_count > 0 %}
+                            <a href="/exam/review?department={{ dept }}" class="btn btn-warning btn-sm">
+                                <i class="fas fa-target me-1"></i>集中復習
+                            </a>
+                            {% else %}
+                            <span class="text-success small">✅ マスター済み</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <div class="text-center mt-3">
+                <a href="/exam/review" class="btn btn-success btn-lg px-5">
+                    <i class="fas fa-play me-2"></i>全部門統合復習
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 復習問題リスト -->
+    <div class="card">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0"><i class="fas fa-bookmark me-2"></i>復習が必要な問題（{{ total_count }}問）</h5>
+            <small class="text-muted">間違えた問題を復習して完全マスターを目指しましょう</small>
+        </div>
+        <div class="card-body">
+            {% for question in questions %}
+            <div class="review-question-item mb-3 p-3 border rounded shadow-sm {% if question.priority > 50 %}border-danger{% elif question.wrong_count >= 2 %}border-warning{% endif %}">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="flex-grow-1 me-3">
+                        <div class="question-preview mb-2">
+                            <span class="badge bg-secondary me-2">問{{ loop.index }}</span>
+                            {% if question.wrong_count >= 3 %}
+                            <span class="badge bg-danger me-2">⚠️ 要注意</span>
+                            {% elif question.wrong_count >= 2 %}
+                            <span class="badge bg-warning text-dark me-2">🔄 重要</span>
+                            {% endif %}
+                            <span class="fw-bold">{{ question.question[:80] }}{% if question.question|length > 80 %}...{% endif %}</span>
+                        </div>
+                        <div class="question-meta mb-2">
+                            {% if question.year %}
+                            <span class="badge bg-info text-white me-2">📅 {{ question.year }}年度</span>
+                            {% endif %}
+                            {% if question.question_type == 'specialist' %}
+                            <span class="badge bg-success me-2">4-2 専門科目</span>
+                            {% elif question.question_type == 'basic' %}
+                            <span class="badge bg-primary me-2">4-1 基礎科目</span>
+                            {% endif %}
+                        </div>
+                        {% if show_srs_details %}
+                        <div class="srs-stats">
+                            <!-- 🔥 ULTRA SYNC IMPROVEMENT 2: 学習効率の可視化 -->
+                            {% if question.next_review %}
+                            <div class="alert alert-info py-1 px-2 mb-2">
+                                <small>
+                                    <i class="fas fa-clock me-1 text-primary"></i>
+                                    <strong>次回復習予定:</strong> 
+                                    {% set days_until = question.days_until_review %}
+                                    {% if days_until <= 0 %}
+                                        <span class="badge bg-danger">🔥 今すぐ復習</span>
+                                    {% elif days_until == 1 %}
+                                        <span class="badge bg-warning text-dark">📅 明日復習予定</span>
+                                    {% elif days_until <= 3 %}
+                                        <span class="badge bg-info">📅 {{ days_until }}日後に復習予定</span>
+                                    {% else %}
+                                        <span class="badge bg-success">✅ {{ days_until }}日後に再出題予定</span>
+                                    {% endif %}
+                                </small>
+                            </div>
+                            {% endif %}
+                            <small class="text-muted d-block">
+                                <strong>学習状況:</strong> 
+                                {% if question.total_attempts > 0 %}
+                                正解{{ question.correct_count }}/{{ question.total_attempts }}回
+                                {% if question.wrong_count > 0 %}
+                                (間違い{{ question.wrong_count }}回)
+                                {% endif %}
+                                {% else %}
+                                未学習
+                                {% endif %}
+                                {% if question.difficulty_level %}
+                                | 難易度:
+                                {% for i in range(1, 11) %}
+                                    {% if i <= question.difficulty_level %}🔴{% else %}⚪{% endif %}
+                                {% endfor %}
+                                {% endif %}
+                            </small>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="review-action">
+                        <a href="/exam?qid={{ question.id }}" class="btn btn-warning btn-sm fw-bold">
+                            <i class="fas fa-redo me-1"></i>再挑戦
+                        </a>
+                        {% if show_srs_details and question.correct_count >= 4 %}
+                        <div class="mt-1">
+                            <small class="text-success">
+                                <i class="fas fa-star"></i> あと1回正解でマスター！
+                            </small>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+            <!-- マスター済み問題の表示（折りたたみ式） -->
+            {% if mastered_questions and mastered_questions|length > 0 %}
+            <div class="mt-4">
+                <div class="card border-success">
+                    <div class="card-header bg-success text-white">
+                        <h6 class="mb-0">
+                            <button class="btn btn-link text-white p-0" type="button" data-bs-toggle="collapse" data-bs-target="#masteredQuestions">
+                                🏆 マスター済み問題 ({{ mastered_questions|length }}問) 
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </h6>
+                    </div>
+                    <div class="collapse" id="masteredQuestions">
+                        <div class="card-body">
+                            <p class="text-success mb-3">
+                                <i class="fas fa-trophy me-2"></i>
+                                おめでとうございます！これらの問題は5回連続正解してマスターレベルに到達しました。
+                            </p>
+                            {% for question in mastered_questions %}
+                            <div class="mastered-question-item mb-2 p-2 bg-light border rounded">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="flex-grow-1">
+                                        <span class="badge bg-success me-2">🏆</span>
+                                        <span class="fw-bold">{{ question.question[:60] }}{% if question.question|length > 60 %}...{% endif %}</span>
+                                        {% if question.year %}
+                                        <span class="badge bg-secondary ms-2">{{ question.year }}年度</span>
+                                        {% endif %}
+                                    </div>
+                                    <small class="text-success">
+                                        <i class="fas fa-check-circle"></i> {{ question.correct_count }}回正解
+                                    </small>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+
+<script>
+// シンプルな復習リスト機能
+</script>
+
+<style>
+.review-question-item {
+    background: linear-gradient(135deg, #fff8e1, #fffbf0);
+    border: 2px solid #ffcc02 !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease;
+}
+
+.review-question-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 204, 2, 0.2) !important;
+    border-color: #f57c00 !important;
+}
+
+.question-preview {
+    font-size: 1rem;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.question-meta {
+    margin-top: 8px;
+}
+
+.question-meta .badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.65rem;
+}
+
+.review-action .btn {
+    min-width: 90px;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.review-action .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+
+.card-header.bg-warning {
+    border-bottom: 3px solid #f57c00;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .review-question-item {
+        padding: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .d-flex.justify-content-between {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .review-action {
+        text-align: center;
+    }
+    
+    .review-action .btn {
+        width: 100%;
+        min-width: auto;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .question-preview {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .question-meta .badge {
+        font-size: 0.8rem;
+        margin-bottom: 0.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .review-question-item {
+        padding: 0.75rem !important;
+    }
+    
+    .question-preview {
+        font-size: 1rem;
+    }
+    
+    .review-action .btn {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.95rem;
+    }
+}
+</style>
+{% endblock %}

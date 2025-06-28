@@ -281,6 +281,8 @@ This is a Flask-based RCCM (登録建設機械施工技術者) exam preparation 
 - YOU MUST: 修正前後の比較レポート生成
 - YOU MUST: 各機能変更後のリグレッションテスト実行
 - YOU MUST: セキュリティ脆弱性スキャンの実施
+- YOU MUST: ⚠️ 手動テストのみ実行 - スクリプトテスト絶対禁止
+- YOU MUST: 🚫 12部門手動テストでスクリプト作成を一切行わない
 
 ### IMPORTANT（重要事項）
 - IMPORTANT: 各修正後の自動リグレッションテスト

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}リーダーボード | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-trophy me-2"></i>リーダーボード ({{ period }})</h5>
+                </div>
+                <div class="card-body">
+                    {% if leaderboard and leaderboard.rankings %}
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>順位</th>
+                                    <th>ユーザー</th>
+                                    <th>正答率</th>
+                                    <th>解答数</th>
+                                    <th>学習日数</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in leaderboard.rankings %}
+                                <tr {% if user.is_current_user %}class="table-primary"{% endif %}>
+                                    <td>
+                                        {% if loop.index <= 3 %}
+                                            <i class="fas fa-medal text-warning"></i>
+                                        {% endif %}
+                                        {{ loop.index }}
+                                    </td>
+                                    <td>
+                                        {{ user.display_name }}
+                                        {% if user.is_current_user %}
+                                            <small class="badge bg-primary">あなた</small>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="progress" style="width: 100px;">
+                                            <div class="progress-bar" role="progressbar" 
+                                                 style="width: {{ user.accuracy }}%"
+                                                 aria-valuenow="{{ user.accuracy }}" 
+                                                 aria-valuemin="0" aria-valuemax="100">
+                                                {{ user.accuracy }}%
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{ user.total_questions }}</td>
+                                    <td>{{ user.study_days }}日</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    {% if leaderboard.current_user_rank %}
+                    <div class="mt-3">
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            あなたの現在の順位: {{ leaderboard.total_users }}人中 {{ leaderboard.current_user_rank }}位
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    {% else %}
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        リーダーボードデータがありません。
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

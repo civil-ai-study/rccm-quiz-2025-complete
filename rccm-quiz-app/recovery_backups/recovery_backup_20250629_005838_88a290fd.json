@@ -1,0 +1,24 @@
+{
+  "backup_id": "recovery_backup_20250629_005838_88a290fd",
+  "timestamp": "2025-06-29T00:58:38.086484",
+  "session_data": {
+    "_permanent": true,
+    "user_id": "edge_test_airport_2019_rare_combination_2",
+    "last_activity": "2025-06-28T15:58:38.073769+00:00",
+    "total_requests": 1,
+    "backup_history": [
+      {
+        "backup_id": "session_backup_20250629_005838_98906cbc",
+        "timestamp": "2025-06-29T00:58:38.063732",
+        "auto_save": true,
+        "expired": false
+      }
+    ],
+    "last_auto_save": "2025-06-29T00:58:38.063701",
+    "session_id": "0b69f5a5831e02a7b8475274c25f0edb",
+    "data_loaded": true,
+    "exam_question_ids": []
+  },
+  "backup_type": "corruption_recovery",
+  "session_size_bytes": 452
+}

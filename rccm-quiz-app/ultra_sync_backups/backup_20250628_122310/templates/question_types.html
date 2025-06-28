@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block title %}問題種別選択 - {{ department.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <!-- ブレッドクラム -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('index') }}">ホーム</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url_for('departments') }}">部門選択</a></li>
+                    <li class="breadcrumb-item active">{{ department.name }}</li>
+                </ol>
+            </nav>
+
+            <!-- ヘッダー部分 -->
+            <div class="card border-primary mb-4">
+                <div class="card-header" style="background-color: {{ department.color }}; color: white;">
+                    <h3 class="mb-0">
+                        <span>{{ department.icon }}</span>
+                        {{ department.full_name }}
+                    </h3>
+                    <p class="mb-0 small">{{ department.description }}</p>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>4-1必須科目</strong>は土木工学基礎知識、<strong>4-2選択科目</strong>は各部門の専門技術を学習します。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 問題種別選択 -->
+    <div class="row">
+        {% for type_id, type_info in question_types.items() %}
+        {% set progress = type_progress.get(type_id, {}) %}
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100 question-type-card" data-type="{{ type_id }}">
+                <div class="card-header" style="background-color: {{ type_info.color }}; color: white;">
+                    <h4 class="mb-0">
+                        <span class="type-icon">{{ type_info.icon }}</span>
+                        {{ type_info.name }}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">{{ type_info.full_name }}</h6>
+                    <p class="card-text">{{ type_info.description }}</p>
+                    
+                    <!-- 学習進捗表示 -->
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <strong class="text-primary">学習進捗</strong>
+                            <span class="badge badge-secondary">
+                                {{ progress.correct_count }}/{{ progress.total_answered }}問正解
+                            </span>
+                        </div>
+                        {% if progress.total_answered > 0 %}
+                        <div class="progress mt-2">
+                            <div class="progress-bar" style="width: {{ progress.accuracy }}%; background-color: {{ type_info.color }}"></div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-1">
+                            <small class="text-muted">正答率: {{ "%.1f"|format(progress.accuracy) }}%</small>
+                            <small class="text-muted">{{ progress.total_answered }}問学習済み</small>
+                        </div>
+                        {% else %}
+                        <div class="progress mt-2">
+                            <div class="progress-bar bg-light" style="width: 100%"></div>
+                        </div>
+                        <small class="text-muted">まだ学習していません</small>
+                        {% endif %}
+                    </div>
+
+                    <!-- 学習レベル表示 -->
+                    <div class="mb-3">
+                        {% if progress.total_answered == 0 %}
+                        <span class="badge badge-light">未学習</span>
+                        {% elif progress.accuracy >= 80 %}
+                        <span class="badge badge-success">上級</span>
+                        {% elif progress.accuracy >= 60 %}
+                        <span class="badge badge-warning">中級</span>
+                        {% else %}
+                        <span class="badge badge-danger">初級</span>
+                        {% endif %}
+
+                        {% if progress.total_answered >= 50 %}
+                        <span class="badge badge-info">経験豊富</span>
+                        {% elif progress.total_answered >= 20 %}
+                        <span class="badge badge-secondary">学習中</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('exam', department=department.id, question_type=type_id, category='all') }}" 
+                       class="btn btn-primary btn-block">
+                        <i class="fas fa-play"></i> {{ type_info.name }}を学習開始
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- ナビゲーション -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <a href="{{ url_for('departments') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> 部門選択に戻る
+                </a>
+                <div>
+                    <a href="{{ url_for('statistics') }}" class="btn btn-outline-info">
+                        <i class="fas fa-chart-bar"></i> 学習統計
+                    </a>
+                    <a href="{{ url_for('ai_analysis') }}" class="btn btn-outline-success">
+                        <i class="fas fa-brain"></i> AI分析
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.question-type-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.question-type-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.type-icon {
+    font-size: 1.3em;
+    margin-right: 10px;
+}
+
+.progress {
+    height: 8px;
+}
+
+.badge {
+    font-size: 0.8em;
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .question-type-card {
+        margin-bottom: 1rem;
+    }
+    
+    .card-header h4 {
+        font-size: 1.2rem;
+    }
+    
+    .btn-block + .mt-2 .btn {
+        width: 100%;
+    }
+}
+</style>
+
+<script>
+// カードクリックでページ遷移
+document.querySelectorAll('.question-type-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+        if (!e.target.closest('a')) {
+            const typeId = this.dataset.type;
+            const departmentId = '{{ department.id }}';
+            window.location.href = `/exam?department=${departmentId}&question_type=${typeId}&category=all`;
+        }
+    });
+});
+</script>
+{% endblock %}

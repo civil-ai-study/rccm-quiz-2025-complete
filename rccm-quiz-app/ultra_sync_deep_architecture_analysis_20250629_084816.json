@@ -1,0 +1,6594 @@
+{
+  "overview": {
+    "project_name": "RCCM試験問題集アプリ",
+    "project_type": "Flask Web Application",
+    "primary_language": "Python",
+    "architecture_pattern": "Monolithic with Modular Components",
+    "analysis_timestamp": "2025-06-29T08:48:16.044093",
+    "project_size": {
+      "total_files": 1845,
+      "total_lines": 125374,
+      "python_files": 302,
+      "python_lines": 125374,
+      "template_files": 451,
+      "data_files": 598
+    },
+    "technology_stack": {
+      "backend": [
+        "Python",
+        "Flask"
+      ],
+      "frontend": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Bootstrap"
+      ],
+      "data": [
+        "CSV",
+        "JSON"
+      ],
+      "testing": [],
+      "deployment": [],
+      "dependencies": [
+        "Flask",
+        "pandas",
+        "numpy",
+        "gunicorn",
+        "Werkzeug",
+        "Jinja2",
+        "requests",
+        "python-dotenv"
+      ]
+    },
+    "deployment_info": {
+      "platform": "Unknown",
+      "configuration_files": [
+        "Dockerfile",
+        "docker-compose.yml",
+        "requirements.txt"
+      ],
+      "environment_support": [
+        "Development",
+        "Production",
+        "Enterprise"
+      ]
+    }
+  },
+  "file_structure": {
+    "directory_tree": {
+      "10q_test.log": {
+        "type": "file",
+        "size": 66859
+      },
+      "adaptive_learning.py": {
+        "type": "file",
+        "size": 78073
+      },
+      "additional_departments_test.py": {
+        "type": "file",
+        "size": 4499
+      },
+      "admin_dashboard.py": {
+        "type": "file",
+        "size": 35991
+      },
+      "advanced_analytics.py": {
+        "type": "file",
+        "size": 48348
+      },
+      "advanced_personalization.py": {
+        "type": "file",
+        "size": 40865
+      },
+      "advanced_personalization.py.backup_20250626_094416": {
+        "type": "file",
+        "size": 39128
+      },
+      "agriculture_q1.html": {
+        "type": "file",
+        "size": 31374
+      },
+      "agriculture_q2.html": {
+        "type": "file",
+        "size": 31323
+      },
+      "agriculture_q3.html": {
+        "type": "file",
+        "size": 31359
+      },
+      "agriculture_q4.html": {
+        "type": "file",
+        "size": 31377
+      },
+      "agriculture_q5.html": {
+        "type": "file",
+        "size": 31343
+      },
+      "agriculture_q6.html": {
+        "type": "file",
+        "size": 31410
+      },
+      "agriculture_q7.html": {
+        "type": "file",
+        "size": 31328
+      },
+      "agriculture_q8.html": {
+        "type": "file",
+        "size": 31305
+      },
+      "agriculture_q9.html": {
+        "type": "file",
+        "size": 31351
+      },
+      "agriculture_results.html": {
+        "type": "file",
+        "size": 31351
+      },
+      "agriculture_session.html": {
+        "type": "file",
+        "size": 31350
+      },
+      "ai_analyzer.py": {
+        "type": "file",
+        "size": 50782
+      },
+      "ai_deep_integration_test.py": {
+        "type": "file",
+        "size": 36652
+      },
+      "ai_function_test.py": {
+        "type": "file",
+        "size": 22674
+      },
+      "all_departments_question_count_test.py": {
+        "type": "file",
+        "size": 8883
+      },
+      "analyze_symbols.py": {
+        "type": "file",
+        "size": 4047
+      },
+      "answer_test.py": {
+        "type": "file",
+        "size": 4356
+      },
+      "api_data/": {
+        "api_keys.json": {
+          "type": "file",
+          "size": 1752
+        },
+        "certifications.json": {
+          "type": "file",
+          "size": 513
+        }
+      },
+      "api_integration.py": {
+        "type": "file",
+        "size": 43372
+      },
+      "app.log": {
+        "type": "file",
+        "size": 293999
+      },
+      "app.py": {
+        "type": "file",
+        "size": 381514
+      },
+      "app.py.backup": {
+        "type": "file",
+        "size": 280648
+      },
+      "app.py.backup_20250625_090058": {
+        "type": "file",
+        "size": 279310
+      },
+      "app.py.backup_20250625_090330": {
+        "type": "file",
+        "size": 279660
+      },
+      "app.py.backup_20250625_131916": {
+        "type": "file",
+        "size": 280648
+      },
+      "app.py.backup_20250625_211506": {
+        "type": "file",
+        "size": 285884
+      },
+      "app.py.backup_20250625_213546_before_critical_fix": {
+        "type": "file",
+        "size": 285878
+      },
+      "app.py.backup_20250626_100449_before_error_fix": {
+        "type": "file",
+        "size": 281431
+      },
+      "app.py.backup_20250626_101716_ultra_sync_protocol": {
+        "type": "file",
+        "size": 281765
+      },
+      "app.py.backup_20250626_132418_critical_fix": {
+        "type": "file",
+        "size": 285984
+      },
+      "app.py.backup_20250626_134813_encoding_task": {
+        "type": "file",
+        "size": 286237
+      },
+      "app.py.backup_20250628": {
+        "type": "file",
+        "size": 315887
+      },
+      "app.py.backup_config_fix_20250629_083707": {
+        "type": "file",
+        "size": 380986
+      },
+      "app.py.backup_review_improvement_20250627_182836": {
+        "type": "file",
+        "size": 292599
+      },
+      "app.py.backup_session_fix_20250626_092648": {
+        "type": "file",
+        "size": 287454
+      },
+      "app.py.backup_ultrasynk_20250626_095146": {
+        "type": "file",
+        "size": 289887
+      },
+      "app_bg.log": {
+        "type": "file",
+        "size": 11123
+      },
+      "app_debug.log": {
+        "type": "file",
+        "size": 53192
+      },
+      "app_error.log": {
+        "type": "file",
+        "size": 14366
+      },
+      "app_exe版.py": {
+        "type": "file",
+        "size": 13518
+      },
+      "app_fast.py": {
+        "type": "file",
+        "size": 4947
+      },
+      "app_output.log": {
+        "type": "file",
+        "size": 8475
+      },
+      "app_restart.log": {
+        "type": "file",
+        "size": 14780
+      },
+      "app_server.log": {
+        "type": "file",
+        "size": 168282
+      },
+      "app_test.log": {
+        "type": "file",
+        "size": 544410
+      },
+      "automated_verification.py": {
+        "type": "file",
+        "size": 26226
+      },
+      "auto_10_questions.py": {
+        "type": "file",
+        "size": 11505
+      },
+      "basic_cookies.txt": {
+        "type": "file",
+        "size": 481
+      },
+      "basic_exam.html": {
+        "type": "file",
+        "size": 29249
+      },
+      "basic_exam_page.html": {
+        "type": "file",
+        "size": 27152
+      },
+      "basic_new_session.html": {
+        "type": "file",
+        "size": 29162
+      },
+      "basic_q1.html": {
+        "type": "file",
+        "size": 31077
+      },
+      "basic_q2.html": {
+        "type": "file",
+        "size": 31090
+      },
+      "basic_q3.html": {
+        "type": "file",
+        "size": 31092
+      },
+      "basic_q4.html": {
+        "type": "file",
+        "size": 31103
+      },
+      "basic_q5.html": {
+        "type": "file",
+        "size": 31134
+      },
+      "basic_q6.html": {
+        "type": "file",
+        "size": 31412
+      },
+      "basic_q7.html": {
+        "type": "file",
+        "size": 31509
+      },
+      "basic_q8.html": {
+        "type": "file",
+        "size": 31500
+      },
+      "basic_q9.html": {
+        "type": "file",
+        "size": 31097
+      },
+      "basic_result1.html": {
+        "type": "file",
+        "size": 27350
+      },
+      "basic_results.html": {
+        "type": "file",
+        "size": 31097
+      },
+      "basic_session.html": {
+        "type": "file",
+        "size": 31429
+      },
+      "basic_session1.html": {
+        "type": "file",
+        "size": 29317
+      },
+      "basic_test.py": {
+        "type": "file",
+        "size": 2272
+      },
+      "build_exe.spec": {
+        "type": "file",
+        "size": 3187
+      },
+      "build_exe_improved.spec": {
+        "type": "file",
+        "size": 4393
+      },
+      "button_text_investigation.py": {
+        "type": "file",
+        "size": 4655
+      },
+      "cache_headers.txt": {
+        "type": "file",
+        "size": 841
+      },
+      "category_consistency_report_20250627_202523.json": {
+        "type": "file",
+        "size": 53318
+      },
+      "category_consistency_report_20250627_202607.json": {
+        "type": "file",
+        "size": 58761
+      },
+      "category_fix_recommendations.py": {
+        "type": "file",
+        "size": 5798
+      },
+      "category_mixing_verification_test.py": {
+        "type": "file",
+        "size": 7486
+      },
+      "check_all_links.py": {
+        "type": "file",
+        "size": 2325
+      },
+      "check_critical5.py": {
+        "type": "file",
+        "size": 2391
+      },
+      "check_department_mixing.py": {
+        "type": "file",
+        "size": 5813
+      },
+      "civil_2019.html": {
+        "type": "file",
+        "size": 15412
+      },
+      "civil_cookies.txt": {
+        "type": "file",
+        "size": 528
+      },
+      "civil_types.html": {
+        "type": "file",
+        "size": 20845
+      },
+      "CLAUDE.md": {
+        "type": "file",
+        "size": 22726
+      },
+      "CLAUDE.md.backup_update_20250627_183304": {
+        "type": "file",
+        "size": 21794
+      },
+      "claude_md_comprehensive_test.py": {
+        "type": "file",
+        "size": 11838
+      },
+      "claude_md_full_verification.py": {
+        "type": "file",
+        "size": 13713
+      },
+      "claude_md_manual_verification.py": {
+        "type": "file",
+        "size": 8375
+      },
+      "claude_md_test_results.json": {
+        "type": "file",
+        "size": 3070
+      },
+      "common_test.txt": {
+        "type": "file",
+        "size": 396
+      },
+      "complete_final_test.py": {
+        "type": "file",
+        "size": 15768
+      },
+      "complete_persona_test.py": {
+        "type": "file",
+        "size": 25051
+      },
+      "complete_test_report_20250625_081117.json": {
+        "type": "file",
+        "size": 102235
+      },
+      "comprehensive_category_check.py": {
+        "type": "file",
+        "size": 17005
+      },
+      "comprehensive_cookies.txt": {
+        "type": "file",
+        "size": 394
+      },
+      "comprehensive_final_test.py": {
+        "type": "file",
+        "size": 13794
+      },
+      "comprehensive_final_test_report_20250616_214645.txt": {
+        "type": "file",
+        "size": 2255
+      },
+      "comprehensive_flow_test.py": {
+        "type": "file",
+        "size": 23734
+      },
+      "comprehensive_function_test.py": {
+        "type": "file",
+        "size": 16552
+      },
+      "comprehensive_playwright_test.py": {
+        "type": "file",
+        "size": 26014
+      },
+      "comprehensive_question_count_test.py": {
+        "type": "file",
+        "size": 17259
+      },
+      "comprehensive_question_count_test_report_20250627_215125.json": {
+        "type": "file",
+        "size": 8814
+      },
+      "comprehensive_question_count_verification.py": {
+        "type": "file",
+        "size": 8601
+      },
+      "comprehensive_review_test.py": {
+        "type": "file",
+        "size": 16577
+      },
+      "comprehensive_review_test_report_20250627_220716.json": {
+        "type": "file",
+        "size": 417
+      },
+      "comprehensive_review_test_report_20250627_221216.json": {
+        "type": "file",
+        "size": 417
+      },
+      "comprehensive_review_test_report_20250627_221530.json": {
+        "type": "file",
+        "size": 417
+      },
+      "comprehensive_review_test_report_20250627_221743.json": {
+        "type": "file",
+        "size": 417
+      },
+      "comprehensive_review_test_report_20250628_000634.json": {
+        "type": "file",
+        "size": 417
+      },
+      "comprehensive_review_test_report_20250628_002240.json": {
+        "type": "file",
+        "size": 414
+      },
+      "comprehensive_review_test_report_20250628_080856.json": {
+        "type": "file",
+        "size": 414
+      },
+      "comprehensive_review_test_report_20250628_081544.json": {
+        "type": "file",
+        "size": 414
+      },
+      "comprehensive_symbol_fix.py": {
+        "type": "file",
+        "size": 11346
+      },
+      "comprehensive_test.py": {
+        "type": "file",
+        "size": 9542
+      },
+      "comprehensive_verification_report_20250626_105901.json": {
+        "type": "file",
+        "size": 2275
+      },
+      "comprehensive_yearly_test.py": {
+        "type": "file",
+        "size": 8237
+      },
+      "comprehensive_year_ui_verification.py": {
+        "type": "file",
+        "size": 10544
+      },
+      "comprehensive_year_verification_test.py": {
+        "type": "file",
+        "size": 15176
+      },
+      "concrete_test_failure_analysis.py": {
+        "type": "file",
+        "size": 9112
+      },
+      "config.py": {
+        "type": "file",
+        "size": 9330
+      },
+      "config.py.backup_config_fix_20250629_083707": {
+        "type": "file",
+        "size": 9213
+      },
+      "config_duplication_analysis_20250629_083707.json": {
+        "type": "file",
+        "size": 7596
+      },
+      "consecutive_correct_start.html": {
+        "type": "file",
+        "size": 29475
+      },
+      "construction_2019.html": {
+        "type": "file",
+        "size": 29434
+      },
+      "construction_env_q1.html": {
+        "type": "file",
+        "size": 31302
+      },
+      "construction_env_q2.html": {
+        "type": "file",
+        "size": 31299
+      },
+      "construction_env_q3.html": {
+        "type": "file",
+        "size": 31302
+      },
+      "construction_env_q4.html": {
+        "type": "file",
+        "size": 31320
+      },
+      "construction_env_q5.html": {
+        "type": "file",
+        "size": 31257
+      },
+      "construction_env_q6.html": {
+        "type": "file",
+        "size": 31395
+      },
+      "construction_env_q7.html": {
+        "type": "file",
+        "size": 31308
+      },
+      "construction_env_q8.html": {
+        "type": "file",
+        "size": 31281
+      },
+      "construction_env_q9.html": {
+        "type": "file",
+        "size": 31321
+      },
+      "construction_env_results.html": {
+        "type": "file",
+        "size": 31321
+      },
+      "construction_env_session.html": {
+        "type": "file",
+        "size": 31290
+      },
+      "construction_planning_q1.html": {
+        "type": "file",
+        "size": 31446
+      },
+      "construction_planning_q2.html": {
+        "type": "file",
+        "size": 31389
+      },
+      "construction_planning_q3.html": {
+        "type": "file",
+        "size": 31410
+      },
+      "construction_planning_q4.html": {
+        "type": "file",
+        "size": 31335
+      },
+      "construction_planning_q5.html": {
+        "type": "file",
+        "size": 31359
+      },
+      "construction_planning_q6.html": {
+        "type": "file",
+        "size": 31365
+      },
+      "construction_planning_q7.html": {
+        "type": "file",
+        "size": 31362
+      },
+      "construction_planning_q8.html": {
+        "type": "file",
+        "size": 31302
+      },
+      "construction_planning_q9.html": {
+        "type": "file",
+        "size": 31420
+      },
+      "construction_planning_results.html": {
+        "type": "file",
+        "size": 31420
+      },
+      "construction_planning_session.html": {
+        "type": "file",
+        "size": 31365
+      },
+      "cookie.txt": {
+        "type": "file",
+        "size": 393
+      },
+      "cookies.txt": {
+        "type": "file",
+        "size": 1588
+      },
+      "cookies2.txt": {
+        "type": "file",
+        "size": 131
+      },
+      "cookies3.txt": {
+        "type": "file",
+        "size": 131
+      },
+      "correct_form_test.py": {
+        "type": "file",
+        "size": 13657
+      },
+      "correct_form_test_report_20250627_205945.json": {
+        "type": "file",
+        "size": 2598
+      },
+      "correct_next_1.html": {
+        "type": "file",
+        "size": 201
+      },
+      "correct_next_2.html": {
+        "type": "file",
+        "size": 201
+      },
+      "correct_next_3.html": {
+        "type": "file",
+        "size": 201
+      },
+      "correct_next_4.html": {
+        "type": "file",
+        "size": 201
+      },
+      "correct_route_category_test.py": {
+        "type": "file",
+        "size": 12809
+      },
+      "correct_route_category_test_report_20250627_205351.json": {
+        "type": "file",
+        "size": 2777
+      },
+      "correct_test_1.html": {
+        "type": "file",
+        "size": 15454
+      },
+      "correct_test_2.html": {
+        "type": "file",
+        "size": 15454
+      },
+      "correct_test_3.html": {
+        "type": "file",
+        "size": 28443
+      },
+      "correct_test_4.html": {
+        "type": "file",
+        "size": 27857
+      },
+      "correct_test_5.html": {
+        "type": "file",
+        "size": 15454
+      },
+      "critical_bug_test.py": {
+        "type": "file",
+        "size": 8805
+      },
+      "critical_fix_test.html": {
+        "type": "file",
+        "size": 29164
+      },
+      "critical_fix_test.log": {
+        "type": "file",
+        "size": 784911
+      },
+      "critical_test.txt": {
+        "type": "file",
+        "size": 490
+      },
+      "csv_analyzer.py": {
+        "type": "file",
+        "size": 4967
+      },
+      "csv_category_detailed_check.py": {
+        "type": "file",
+        "size": 14123
+      },
+      "csv_category_detailed_report_20250627_210213.json": {
+        "type": "file",
+        "size": 16278
+      },
+      "csv_category_detailed_report_20250628_150846.json": {
+        "type": "file",
+        "size": 16278
+      },
+      "csv_fixer.py": {
+        "type": "file",
+        "size": 13201
+      },
+      "curl_comprehensive_test.py": {
+        "type": "file",
+        "size": 14578
+      },
+      "curl_test_report_20250616_213234.txt": {
+        "type": "file",
+        "size": 6427
+      },
+      "current_exam.html": {
+        "type": "file",
+        "size": 27232
+      },
+      "data/": {
+        "4-1.csv": {
+          "type": "file",
+          "size": 92424
+        },
+        "4-2_2008.csv": {
+          "type": "file",
+          "size": 201176
+        },
+        "4-2_2009.csv": {
+          "type": "file",
+          "size": 207651
+        },
+        "4-2_2010.csv": {
+          "type": "file",
+          "size": 157895
+        },
+        "4-2_2011.csv": {
+          "type": "file",
+          "size": 237300
+        },
+        "4-2_2012.csv": {
+          "type": "file",
+          "size": 199154
+        },
+        "4-2_2013.csv": {
+          "type": "file",
+          "size": 182989
+        },
+        "4-2_2014.csv": {
+          "type": "file",
+          "size": 153257
+        },
+        "4-2_2015.csv": {
+          "type": "file",
+          "size": 273998
+        },
+        "4-2_2016.csv": {
+          "type": "file",
+          "size": 291672
+        },
+        "4-2_2017.csv": {
+          "type": "file",
+          "size": 382964
+        },
+        "4-2_2018.csv": {
+          "type": "file",
+          "size": 309809
+        },
+        "4-2_2019.csv": {
+          "type": "file",
+          "size": 216806
+        },
+        "analyze_categories.py": {
+          "type": "file",
+          "size": 4923
+        },
+        "backup_20250616_211637/": {
+          "4-2_2008.csv": {
+            "type": "file",
+            "size": 200456
+          },
+          "4-2_2009.csv": {
+            "type": "file",
+            "size": 205947
+          },
+          "4-2_2010.csv": {
+            "type": "file",
+            "size": 157115
+          },
+          "4-2_2011.csv": {
+            "type": "file",
+            "size": 235229
+          },
+          "4-2_2012.csv": {
+            "type": "file",
+            "size": 199097
+          },
+          "4-2_2013.csv": {
+            "type": "file",
+            "size": 182688
+          },
+          "4-2_2013_backup.csv": {
+            "type": "file",
+            "size": 183257
+          },
+          "4-2_2013_fixed.csv": {
+            "type": "file",
+            "size": 183685
+          },
+          "4-2_2014.csv": {
+            "type": "file",
+            "size": 153016
+          },
+          "4-2_2014_backup.csv": {
+            "type": "file",
+            "size": 155579
+          },
+          "4-2_2014_fixed.csv": {
+            "type": "file",
+            "size": 155568
+          },
+          "4-2_2015.csv": {
+            "type": "file",
+            "size": 272405
+          },
+          "4-2_2016.csv": {
+            "type": "file",
+            "size": 290835
+          },
+          "4-2_2017.csv": {
+            "type": "file",
+            "size": 381560
+          },
+          "4-2_2018.csv": {
+            "type": "file",
+            "size": 308293
+          }
+        },
+        "category_standardization_20250616_211732.log": {
+          "type": "file",
+          "size": 147
+        },
+        "category_standardization_report.txt": {
+          "type": "file",
+          "size": 2464
+        },
+        "questions.csv.backup": {
+          "type": "file",
+          "size": 387
+        },
+        "standardize_categories.py": {
+          "type": "file",
+          "size": 5151
+        }
+      },
+      "data_check.py": {
+        "type": "file",
+        "size": 3826
+      },
+      "data_manager.py": {
+        "type": "file",
+        "size": 16751
+      },
+      "debug_20_question_issue.py": {
+        "type": "file",
+        "size": 2420
+      },
+      "debug_4_question_issue.py": {
+        "type": "file",
+        "size": 4808
+      },
+      "debug_civil_planning.py": {
+        "type": "file",
+        "size": 5334
+      },
+      "debug_civil_planning_counter.py": {
+        "type": "file",
+        "size": 4856
+      },
+      "debug_csv.py": {
+        "type": "file",
+        "size": 383
+      },
+      "debug_department.py": {
+        "type": "file",
+        "size": 1013
+      },
+      "debug_endless_loop.py": {
+        "type": "file",
+        "size": 2944
+      },
+      "debug_exam_route_patch.py": {
+        "type": "file",
+        "size": 6776
+      },
+      "debug_flask_params.py": {
+        "type": "file",
+        "size": 3483
+      },
+      "debug_forest_2019.py": {
+        "type": "file",
+        "size": 4295
+      },
+      "debug_get_mixed_questions.py": {
+        "type": "file",
+        "size": 7152
+      },
+      "debug_navigation.py": {
+        "type": "file",
+        "size": 9063
+      },
+      "debug_next_button.py": {
+        "type": "file",
+        "size": 8513
+      },
+      "debug_question_data.py": {
+        "type": "file",
+        "size": 3278
+      },
+      "debug_road_answer1.html": {
+        "type": "file",
+        "size": 215
+      },
+      "debug_road_next.html": {
+        "type": "file",
+        "size": 18361
+      },
+      "debug_road_start.html": {
+        "type": "file",
+        "size": 32029
+      },
+      "debug_url_params.py": {
+        "type": "file",
+        "size": 5544
+      },
+      "debug_verification.log": {
+        "type": "file",
+        "size": 23472
+      },
+      "debug_yearly_links.py": {
+        "type": "file",
+        "size": 3611
+      },
+      "departments.html": {
+        "type": "file",
+        "size": 46041
+      },
+      "departments_error_analysis.html": {
+        "type": "file",
+        "size": 15478
+      },
+      "departments_fixed_test.html": {
+        "type": "file",
+        "size": 46041
+      },
+      "department_analysis.py": {
+        "type": "file",
+        "size": 3416
+      },
+      "department_mapping_analysis.py": {
+        "type": "file",
+        "size": 5903
+      },
+      "department_mapping_check.py": {
+        "type": "file",
+        "size": 6612
+      },
+      "department_statistics.py": {
+        "type": "file",
+        "size": 34409
+      },
+      "department_test_results.log": {
+        "type": "file",
+        "size": 4591
+      },
+      "deploy.sh": {
+        "type": "file",
+        "size": 4127
+      },
+      "dept_cookies.txt": {
+        "type": "file",
+        "size": 521
+      },
+      "detailed_department_analysis.py": {
+        "type": "file",
+        "size": 3813
+      },
+      "detailed_error_analysis.py": {
+        "type": "file",
+        "size": 11807
+      },
+      "detailed_error_investigation.py": {
+        "type": "file",
+        "size": 9167
+      },
+      "difficulty_controller.py": {
+        "type": "file",
+        "size": 28454
+      },
+      "diversity_test_report_20250624_203412.json": {
+        "type": "file",
+        "size": 14625
+      },
+      "diversity_test_report_20250624_204804.json": {
+        "type": "file",
+        "size": 14625
+      },
+      "diversity_test_report_20250625_204614.json": {
+        "type": "file",
+        "size": 14625
+      },
+      "diversity_test_report_20250626_142913.json": {
+        "type": "file",
+        "size": 14625
+      },
+      "diversity_test_report_20250626_160743.json": {
+        "type": "file",
+        "size": 14625
+      },
+      "docker-compose.yml": {
+        "type": "file",
+        "size": 1479
+      },
+      "Dockerfile": {
+        "type": "file",
+        "size": 1496
+      },
+      "edge_case_question_count_test.py": {
+        "type": "file",
+        "size": 12786
+      },
+      "edge_case_test_report_20250626_110002.json": {
+        "type": "file",
+        "size": 1871
+      },
+      "emergency_error_test.py": {
+        "type": "file",
+        "size": 10844
+      },
+      "emergency_regression_test.py": {
+        "type": "file",
+        "size": 18332
+      },
+      "error_response.html": {
+        "type": "file",
+        "size": 15558
+      },
+      "exam_simulator.py": {
+        "type": "file",
+        "size": 20425
+      },
+      "exam_test.html": {
+        "type": "file",
+        "size": 14218
+      },
+      "final_api_test.py": {
+        "type": "file",
+        "size": 15224
+      },
+      "final_api_test_report_20250616_212854.txt": {
+        "type": "file",
+        "size": 11647
+      },
+      "final_category_analysis_report.py": {
+        "type": "file",
+        "size": 4790
+      },
+      "final_complete_test.py": {
+        "type": "file",
+        "size": 10692
+      },
+      "final_complete_test_results.json": {
+        "type": "file",
+        "size": 1600
+      },
+      "final_comprehensive_test.log": {
+        "type": "file",
+        "size": 20204
+      },
+      "final_comprehensive_test.py": {
+        "type": "file",
+        "size": 13711
+      },
+      "final_comprehensive_verification.py": {
+        "type": "file",
+        "size": 13997
+      },
+      "final_corrected_test.py": {
+        "type": "file",
+        "size": 15436
+      },
+      "final_curl_test.py": {
+        "type": "file",
+        "size": 8347
+      },
+      "final_department_summary.py": {
+        "type": "file",
+        "size": 8778
+      },
+      "final_deployment_test.py": {
+        "type": "file",
+        "size": 11702
+      },
+      "final_flow_verification.py": {
+        "type": "file",
+        "size": 11106
+      },
+      "final_question_count_test_report.md": {
+        "type": "file",
+        "size": 4833
+      },
+      "final_river_verification_test.py": {
+        "type": "file",
+        "size": 9471
+      },
+      "final_test_cookies.txt": {
+        "type": "file",
+        "size": 394
+      },
+      "final_test_report.md": {
+        "type": "file",
+        "size": 6075
+      },
+      "final_test_report_20250616_212658.txt": {
+        "type": "file",
+        "size": 452
+      },
+      "final_test_session.html": {
+        "type": "file",
+        "size": 15463
+      },
+      "final_verification.py": {
+        "type": "file",
+        "size": 1808
+      },
+      "final_verification_report.md": {
+        "type": "file",
+        "size": 4975
+      },
+      "final_verification_report_20250616_215359.txt": {
+        "type": "file",
+        "size": 3118
+      },
+      "final_verification_test.py": {
+        "type": "file",
+        "size": 6539
+      },
+      "final_year_fix_verification.py": {
+        "type": "file",
+        "size": 18265
+      },
+      "final_year_verification.py": {
+        "type": "file",
+        "size": 6508
+      },
+      "fixed_basic_session.html": {
+        "type": "file",
+        "size": 0
+      },
+      "fixed_next_1.html": {
+        "type": "file",
+        "size": 201
+      },
+      "fixed_next_2.html": {
+        "type": "file",
+        "size": 201
+      },
+      "fixed_result_1.html": {
+        "type": "file",
+        "size": 27342
+      },
+      "fixed_result_2.html": {
+        "type": "file",
+        "size": 27342
+      },
+      "fixed_result_3.html": {
+        "type": "file",
+        "size": 27342
+      },
+      "fixed_test.log": {
+        "type": "file",
+        "size": 21077
+      },
+      "fix_10_questions_guarantee.py": {
+        "type": "file",
+        "size": 5456
+      },
+      "fix_4_question_specialist.py": {
+        "type": "file",
+        "size": 7372
+      },
+      "fix_csv_commas.py": {
+        "type": "file",
+        "size": 2393
+      },
+      "fix_root_cause.py": {
+        "type": "file",
+        "size": 8889
+      },
+      "fix_verification_test.py": {
+        "type": "file",
+        "size": 2420
+      },
+      "flake8_check.log": {
+        "type": "file",
+        "size": 68595
+      },
+      "flask_session/": {
+        "2029240f6d1128be89ddc32729463129": {
+          "type": "file",
+          "size": 9
+        },
+        "59e7a9f4055ebd94d436797712ce093c": {
+          "type": "file",
+          "size": 129
+        }
+      },
+      "focused_cookies.txt": {
+        "type": "file",
+        "size": 394
+      },
+      "focused_verification_test.py": {
+        "type": "file",
+        "size": 9362
+      },
+      "forestry_q1.html": {
+        "type": "file",
+        "size": 31302
+      },
+      "forestry_q2.html": {
+        "type": "file",
+        "size": 31272
+      },
+      "forestry_q3.html": {
+        "type": "file",
+        "size": 31320
+      },
+      "forestry_q4.html": {
+        "type": "file",
+        "size": 31293
+      },
+      "forestry_q5.html": {
+        "type": "file",
+        "size": 31299
+      },
+      "forestry_q6.html": {
+        "type": "file",
+        "size": 31314
+      },
+      "forestry_q7.html": {
+        "type": "file",
+        "size": 31257
+      },
+      "forestry_q8.html": {
+        "type": "file",
+        "size": 31305
+      },
+      "forestry_q9.html": {
+        "type": "file",
+        "size": 31417
+      },
+      "forestry_results.html": {
+        "type": "file",
+        "size": 31417
+      },
+      "forestry_session.html": {
+        "type": "file",
+        "size": 31296
+      },
+      "fresh_basic_test.txt": {
+        "type": "file",
+        "size": 402
+      },
+      "gamification.py": {
+        "type": "file",
+        "size": 13102
+      },
+      "Google_Sites_詳細手順書.md": {
+        "type": "file",
+        "size": 7733
+      },
+      "Google_Sites配布手順.md": {
+        "type": "file",
+        "size": 3816
+      },
+      "gunicorn.conf.py": {
+        "type": "file",
+        "size": 1885
+      },
+      "gunicorn_render.py": {
+        "type": "file",
+        "size": 772
+      },
+      "health_check.py": {
+        "type": "file",
+        "size": 3498
+      },
+      "health_monitor.py": {
+        "type": "file",
+        "size": 6047
+      },
+      "homepage.html": {
+        "type": "file",
+        "size": 35290
+      },
+      "homepage_persona_test.py": {
+        "type": "file",
+        "size": 5579
+      },
+      "homepage_persona_test_results.json": {
+        "type": "file",
+        "size": 974
+      },
+      "id_collision_test.txt": {
+        "type": "file",
+        "size": 485
+      },
+      "integration_test.txt": {
+        "type": "file",
+        "size": 405
+      },
+      "internal_flow_test.py": {
+        "type": "file",
+        "size": 24454
+      },
+      "investigate_civil_planning_issue.py": {
+        "type": "file",
+        "size": 8479
+      },
+      "javascript_functionality_test.py": {
+        "type": "file",
+        "size": 5728
+      },
+      "landscape_q1.html": {
+        "type": "file",
+        "size": 31305
+      },
+      "landscape_q2.html": {
+        "type": "file",
+        "size": 31296
+      },
+      "landscape_q3.html": {
+        "type": "file",
+        "size": 31335
+      },
+      "landscape_q4.html": {
+        "type": "file",
+        "size": 31323
+      },
+      "landscape_q5.html": {
+        "type": "file",
+        "size": 31284
+      },
+      "landscape_q6.html": {
+        "type": "file",
+        "size": 31350
+      },
+      "landscape_q7.html": {
+        "type": "file",
+        "size": 31332
+      },
+      "landscape_q8.html": {
+        "type": "file",
+        "size": 31284
+      },
+      "landscape_q9.html": {
+        "type": "file",
+        "size": 31276
+      },
+      "landscape_results.html": {
+        "type": "file",
+        "size": 31276
+      },
+      "landscape_session.html": {
+        "type": "file",
+        "size": 31323
+      },
+      "learning_optimizer.py": {
+        "type": "file",
+        "size": 37854
+      },
+      "live_app_category_test.py": {
+        "type": "file",
+        "size": 14890
+      },
+      "live_app_category_test_report_20250627_205232.json": {
+        "type": "file",
+        "size": 2144
+      },
+      "logs/": {},
+      "manual_all_departments.py": {
+        "type": "file",
+        "size": 12431
+      },
+      "manual_comprehensive_test.py": {
+        "type": "file",
+        "size": 13293
+      },
+      "manual_cookies.txt": {
+        "type": "file",
+        "size": 394
+      },
+      "manual_regression_test.py": {
+        "type": "file",
+        "size": 10286
+      },
+      "manual_test.log": {
+        "type": "file",
+        "size": 54088
+      },
+      "manual_test_commands.sh": {
+        "type": "file",
+        "size": 2790
+      },
+      "manual_test_dashboard.html": {
+        "type": "file",
+        "size": 35633
+      },
+      "MANUAL_TEST_GUIDE.md": {
+        "type": "file",
+        "size": 6902
+      },
+      "manual_year_selection_test.py": {
+        "type": "file",
+        "size": 5045
+      },
+      "master_review_test_runner.py": {
+        "type": "file",
+        "size": 11374
+      },
+      "maximum_quality_check.sh": {
+        "type": "file",
+        "size": 8822
+      },
+      "memory_leak_monitor.py": {
+        "type": "file",
+        "size": 22645
+      },
+      "midway_quit_home.html": {
+        "type": "file",
+        "size": 35290
+      },
+      "midway_test_start.html": {
+        "type": "file",
+        "size": 29268
+      },
+      "mobile_features.py": {
+        "type": "file",
+        "size": 19802
+      },
+      "multimodal_learning.py": {
+        "type": "file",
+        "size": 29429
+      },
+      "naoki/": {},
+      "navigation_test.py": {
+        "type": "file",
+        "size": 6039
+      },
+      "next_1.html": {
+        "type": "file",
+        "size": 201
+      },
+      "next_2.html": {
+        "type": "file",
+        "size": 201
+      },
+      "next_3.html": {
+        "type": "file",
+        "size": 201
+      },
+      "next_4.html": {
+        "type": "file",
+        "size": 201
+      },
+      "next_5.html": {
+        "type": "file",
+        "size": 201
+      },
+      "next_6.html": {
+        "type": "file",
+        "size": 201
+      },
+      "next_7.html": {
+        "type": "file",
+        "size": 201
+      },
+      "next_8.html": {
+        "type": "file",
+        "size": 201
+      },
+      "next_9.html": {
+        "type": "file",
+        "size": 201
+      },
+      "nginx.conf": {
+        "type": "file",
+        "size": 3879
+      },
+      "offline_data/": {},
+      "performance_test_results.json": {
+        "type": "file",
+        "size": 3334
+      },
+      "personalization_data/": {
+        "user_profiles.json": {
+          "type": "file",
+          "size": 1695
+        }
+      },
+      "persona_comprehensive_test.py": {
+        "type": "file",
+        "size": 21504
+      },
+      "persona_diversity_test.py": {
+        "type": "file",
+        "size": 30051
+      },
+      "persona_question_count_test.py": {
+        "type": "file",
+        "size": 12588
+      },
+      "persona_test_report_20250624_145230.json": {
+        "type": "file",
+        "size": 184440
+      },
+      "persona_test_report_20250624_145803.json": {
+        "type": "file",
+        "size": 138335
+      },
+      "persona_test_report_20250624_145820.json": {
+        "type": "file",
+        "size": 138417
+      },
+      "persona_test_report_20250624_204749.json": {
+        "type": "file",
+        "size": 138383
+      },
+      "persona_test_report_20250625_180252.json": {
+        "type": "file",
+        "size": 138375
+      },
+      "persona_test_report_20250625_204558.json": {
+        "type": "file",
+        "size": 138420
+      },
+      "persona_test_report_20250625_205823.json": {
+        "type": "file",
+        "size": 138431
+      },
+      "persona_test_report_20250626_090446.json": {
+        "type": "file",
+        "size": 138367
+      },
+      "persona_test_report_20250626_094039.json": {
+        "type": "file",
+        "size": 138372
+      },
+      "persona_test_report_20250626_094115.json": {
+        "type": "file",
+        "size": 138396
+      },
+      "persona_test_report_20250626_142858.json": {
+        "type": "file",
+        "size": 138441
+      },
+      "persona_test_report_20250626_143126.json": {
+        "type": "file",
+        "size": 138378
+      },
+      "persona_test_report_20250626_160718.json": {
+        "type": "file",
+        "size": 138383
+      },
+      "persona_test_report_20250626_161104.json": {
+        "type": "file",
+        "size": 138372
+      },
+      "persona_test_report_20250626_170829.json": {
+        "type": "file",
+        "size": 138375
+      },
+      "persona_test_report_20250627_104654.json": {
+        "type": "file",
+        "size": 138410
+      },
+      "playwright_report_20250625_081616.json": {
+        "type": "file",
+        "size": 4047
+      },
+      "playwright_report_20250625_081715.json": {
+        "type": "file",
+        "size": 5636
+      },
+      "playwright_responsive_Desktop_20250624_205634.png": {
+        "type": "file",
+        "size": 161526
+      },
+      "playwright_responsive_Desktop_20250624_210230.png": {
+        "type": "file",
+        "size": 185719
+      },
+      "playwright_responsive_Desktop_20250624_210335.png": {
+        "type": "file",
+        "size": 185629
+      },
+      "playwright_responsive_iPad_20250624_205633.png": {
+        "type": "file",
+        "size": 129036
+      },
+      "playwright_responsive_iPad_20250624_210229.png": {
+        "type": "file",
+        "size": 122370
+      },
+      "playwright_responsive_iPad_20250624_210334.png": {
+        "type": "file",
+        "size": 122628
+      },
+      "playwright_responsive_iPhone 12_20250624_205632.png": {
+        "type": "file",
+        "size": 84733
+      },
+      "playwright_responsive_iPhone 12_20250624_210228.png": {
+        "type": "file",
+        "size": 84423
+      },
+      "playwright_responsive_iPhone 12_20250624_210333.png": {
+        "type": "file",
+        "size": 84636
+      },
+      "playwright_simple_test.png": {
+        "type": "file",
+        "size": 64393
+      },
+      "playwright_simple_test.py": {
+        "type": "file",
+        "size": 4506
+      },
+      "playwright_test.py": {
+        "type": "file",
+        "size": 19410
+      },
+      "playwright_test_report_20250624_205639.json": {
+        "type": "file",
+        "size": 3731
+      },
+      "playwright_test_report_20250624_210235.json": {
+        "type": "file",
+        "size": 3732
+      },
+      "playwright_test_report_20250624_210340.json": {
+        "type": "file",
+        "size": 3202
+      },
+      "ports_2019.html": {
+        "type": "file",
+        "size": 15494
+      },
+      "power_2019.html": {
+        "type": "file",
+        "size": 15492
+      },
+      "pylint_check.log": {
+        "type": "file",
+        "size": 122154
+      },
+      "quality_check.sh": {
+        "type": "file",
+        "size": 4909
+      },
+      "question_count_test_20250626_105417.log": {
+        "type": "file",
+        "size": 7675
+      },
+      "question_count_test_20250626_105806.log": {
+        "type": "file",
+        "size": 6363
+      },
+      "question_count_test_report_20250626_105417.json": {
+        "type": "file",
+        "size": 3478
+      },
+      "question_count_test_report_20250626_105807.json": {
+        "type": "file",
+        "size": 7911
+      },
+      "question_verification_final_report.json": {
+        "type": "file",
+        "size": 250
+      },
+      "question_verification_report.json": {
+        "type": "file",
+        "size": 902
+      },
+      "quit_test_q1.html": {
+        "type": "file",
+        "size": 28332
+      },
+      "quit_test_q2.html": {
+        "type": "file",
+        "size": 201
+      },
+      "quit_test_q2_result.html": {
+        "type": "file",
+        "size": 27819
+      },
+      "quit_test_q3.html": {
+        "type": "file",
+        "size": 201
+      },
+      "quit_test_q3_result.html": {
+        "type": "file",
+        "size": 27773
+      },
+      "railway.toml": {
+        "type": "file",
+        "size": 238
+      },
+      "railway_2019.html": {
+        "type": "file",
+        "size": 15487
+      },
+      "rccm-exam-app/": {
+        "adaptive_learning.py": {
+          "type": "file",
+          "size": 77943
+        },
+        "admin_dashboard.py": {
+          "type": "file",
+          "size": 36012
+        },
+        "advanced_analytics.py": {
+          "type": "file",
+          "size": 32728
+        },
+        "advanced_personalization.py": {
+          "type": "file",
+          "size": 39128
+        },
+        "ai_analyzer.py": {
+          "type": "file",
+          "size": 45590
+        },
+        "api_data/": {},
+        "api_integration.py": {
+          "type": "file",
+          "size": 43372
+        },
+        "app.log": {
+          "type": "file",
+          "size": 17966
+        },
+        "app.py": {
+          "type": "file",
+          "size": 144097
+        },
+        "app_output.log": {
+          "type": "file",
+          "size": 25177
+        },
+        "app_server.log": {
+          "type": "file",
+          "size": 16531
+        },
+        "app_test.log": {
+          "type": "file",
+          "size": 396007
+        },
+        "CLAUDE.md": {
+          "type": "file",
+          "size": 8904
+        },
+        "config.py": {
+          "type": "file",
+          "size": 7574
+        },
+        "cookies.txt": {
+          "type": "file",
+          "size": 452
+        },
+        "csv_analyzer.py": {
+          "type": "file",
+          "size": 4988
+        },
+        "csv_fixer.py": {
+          "type": "file",
+          "size": 13201
+        },
+        "data/": {
+          "4-1.csv": {
+            "type": "file",
+            "size": 92168
+          },
+          "4-2_2008.csv": {
+            "type": "file",
+            "size": 200456
+          },
+          "4-2_2009.csv": {
+            "type": "file",
+            "size": 206977
+          },
+          "4-2_2010.csv": {
+            "type": "file",
+            "size": 157993
+          },
+          "4-2_2011.csv": {
+            "type": "file",
+            "size": 235229
+          },
+          "4-2_2012.csv": {
+            "type": "file",
+            "size": 199097
+          },
+          "4-2_2013.csv": {
+            "type": "file",
+            "size": 183685
+          },
+          "4-2_2013_backup.csv": {
+            "type": "file",
+            "size": 183257
+          },
+          "4-2_2013_fixed.csv": {
+            "type": "file",
+            "size": 183685
+          },
+          "4-2_2014.csv": {
+            "type": "file",
+            "size": 155568
+          },
+          "4-2_2014_backup.csv": {
+            "type": "file",
+            "size": 155579
+          },
+          "4-2_2014_fixed.csv": {
+            "type": "file",
+            "size": 155568
+          },
+          "4-2_2015.csv": {
+            "type": "file",
+            "size": 272405
+          },
+          "4-2_2016.csv": {
+            "type": "file",
+            "size": 290835
+          },
+          "4-2_2017.csv": {
+            "type": "file",
+            "size": 381560
+          },
+          "4-2_2018.csv": {
+            "type": "file",
+            "size": 310682
+          },
+          "questions.csv": {
+            "type": "file",
+            "size": 387
+          }
+        },
+        "data_check.py": {
+          "type": "file",
+          "size": 2129
+        },
+        "data_manager.py": {
+          "type": "file",
+          "size": 7524
+        },
+        "debug_csv.py": {
+          "type": "file",
+          "size": 383
+        },
+        "department_analysis.py": {
+          "type": "file",
+          "size": 3416
+        },
+        "department_mapping_analysis.py": {
+          "type": "file",
+          "size": 5903
+        },
+        "department_statistics.py": {
+          "type": "file",
+          "size": 34409
+        },
+        "detailed_department_analysis.py": {
+          "type": "file",
+          "size": 3813
+        },
+        "difficulty_controller.py": {
+          "type": "file",
+          "size": 27005
+        },
+        "exam_simulator.py": {
+          "type": "file",
+          "size": 20425
+        },
+        "final_department_summary.py": {
+          "type": "file",
+          "size": 8778
+        },
+        "final_verification.py": {
+          "type": "file",
+          "size": 1808
+        },
+        "fix_csv_commas.py": {
+          "type": "file",
+          "size": 2393
+        },
+        "flask_session/": {
+          "2029240f6d1128be89ddc32729463129": {
+            "type": "file",
+            "size": 9
+          },
+          "59e7a9f4055ebd94d436797712ce093c": {
+            "type": "file",
+            "size": 129
+          }
+        },
+        "gamification.py": {
+          "type": "file",
+          "size": 13096
+        },
+        "learning_optimizer.py": {
+          "type": "file",
+          "size": 37854
+        },
+        "mobile_features.py": {
+          "type": "file",
+          "size": 19802
+        },
+        "multimodal_learning.py": {
+          "type": "file",
+          "size": 29429
+        },
+        "offline_data/": {},
+        "personalization_data/": {},
+        "rccm_app.log": {
+          "type": "file",
+          "size": 5406026
+        },
+        "rccm_departments_correct.py": {
+          "type": "file",
+          "size": 5794
+        },
+        "README.md": {
+          "type": "file",
+          "size": 5684
+        },
+        "requirements.txt": {
+          "type": "file",
+          "size": 138
+        },
+        "social_data/": {},
+        "social_learning.py": {
+          "type": "file",
+          "size": 37189
+        },
+        "static/": {
+          "icons/": {},
+          "js/": {},
+          "main.js": {
+            "type": "file",
+            "size": 4881
+          },
+          "manifest.json": {
+            "type": "file",
+            "size": 3165
+          },
+          "sw.js": {
+            "type": "file",
+            "size": 10342
+          }
+        },
+        "templates/": {
+          "achievements.html": {
+            "type": "file",
+            "size": 11044
+          },
+          "admin_dashboard.html": {
+            "type": "file",
+            "size": 43652
+          },
+          "advanced_statistics.html": {
+            "type": "file",
+            "size": 27326
+          },
+          "ai_analysis.html": {
+            "type": "file",
+            "size": 28459
+          },
+          "api_integration.html": {
+            "type": "file",
+            "size": 46027
+          },
+          "base.html": {
+            "type": "file",
+            "size": 11076
+          },
+          "categories.html": {
+            "type": "file",
+            "size": 10512
+          },
+          "debug.html": {
+            "type": "file",
+            "size": 518
+          },
+          "departments.html": {
+            "type": "file",
+            "size": 5905
+          },
+          "department_categories.html": {
+            "type": "file",
+            "size": 10803
+          },
+          "department_statistics.html": {
+            "type": "file",
+            "size": 33353
+          },
+          "department_study.html": {
+            "type": "file",
+            "size": 10393
+          },
+          "error.html": {
+            "type": "file",
+            "size": 2249
+          },
+          "error_enhanced.html": {
+            "type": "file",
+            "size": 7672
+          },
+          "exam.html": {
+            "type": "file",
+            "size": 26456
+          },
+          "exam_feedback.html": {
+            "type": "file",
+            "size": 16642
+          },
+          "exam_navigation.html": {
+            "type": "file",
+            "size": 18472
+          },
+          "exam_question.html": {
+            "type": "file",
+            "size": 19508
+          },
+          "exam_results.html": {
+            "type": "file",
+            "size": 21901
+          },
+          "exam_simulator.html": {
+            "type": "file",
+            "size": 16314
+          },
+          "help.html": {
+            "type": "file",
+            "size": 15938
+          },
+          "help_old.html": {
+            "type": "file",
+            "size": 4803
+          },
+          "index.html": {
+            "type": "file",
+            "size": 18219
+          },
+          "integrated_learning_selection.html": {
+            "type": "file",
+            "size": 12812
+          },
+          "learner_insights.html": {
+            "type": "file",
+            "size": 14386
+          },
+          "learning_optimization.html": {
+            "type": "file",
+            "size": 23177
+          },
+          "learning_plan.html": {
+            "type": "file",
+            "size": 15050
+          },
+          "mobile_settings.html": {
+            "type": "file",
+            "size": 29028
+          },
+          "question_types.html": {
+            "type": "file",
+            "size": 7726
+          },
+          "reset_confirm.html": {
+            "type": "file",
+            "size": 2296
+          },
+          "result.html": {
+            "type": "file",
+            "size": 9919
+          },
+          "review.html": {
+            "type": "file",
+            "size": 3207
+          },
+          "review_enhanced.html": {
+            "type": "file",
+            "size": 12447
+          },
+          "social_learning.html": {
+            "type": "file",
+            "size": 44533
+          },
+          "srs_stats.html": {
+            "type": "file",
+            "size": 5730
+          },
+          "statistics.html": {
+            "type": "file",
+            "size": 9112
+          }
+        },
+        "test_adaptive_system.py": {
+          "type": "file",
+          "size": 22065
+        },
+        "test_adaptive_system_fixed.py": {
+          "type": "file",
+          "size": 25925
+        },
+        "test_ai_features.py": {
+          "type": "file",
+          "size": 11810
+        },
+        "test_app.py": {
+          "type": "file",
+          "size": 7810
+        },
+        "test_difficulty_controller.py": {
+          "type": "file",
+          "size": 9041
+        },
+        "test_gamification.py": {
+          "type": "file",
+          "size": 6156
+        },
+        "test_learning_optimizer.py": {
+          "type": "file",
+          "size": 12516
+        },
+        "test_report_20250612_211649.json": {
+          "type": "file",
+          "size": 1149
+        },
+        "test_report_20250613_085051.json": {
+          "type": "file",
+          "size": 1093
+        },
+        "test_report_20250613_085659.json": {
+          "type": "file",
+          "size": 3064
+        },
+        "test_report_fixed_20250612_211905.json": {
+          "type": "file",
+          "size": 4366
+        },
+        "test_report_fixed_20250613_085419.json": {
+          "type": "file",
+          "size": 4116
+        },
+        "test_report_fixed_20250613_085524.json": {
+          "type": "file",
+          "size": 4441
+        },
+        "user_data/": {
+          "063e72430490.json": {
+            "type": "file",
+            "size": 16228
+          },
+          "142adf6731d2.json": {
+            "type": "file",
+            "size": 5134
+          },
+          "1ec2f408c9ba.json": {
+            "type": "file",
+            "size": 4620
+          },
+          "29fbc4969fa6.json": {
+            "type": "file",
+            "size": 5134
+          },
+          "31b923b67bc7.json": {
+            "type": "file",
+            "size": 4674
+          },
+          "4e5022ed41ff.json": {
+            "type": "file",
+            "size": 5132
+          },
+          "5436d81e3cb3.json": {
+            "type": "file",
+            "size": 5466
+          },
+          "54a9e2a6a0dc.json": {
+            "type": "file",
+            "size": 5710
+          },
+          "65b141ed320f.json": {
+            "type": "file",
+            "size": 7617
+          },
+          "8ea97203653e.json": {
+            "type": "file",
+            "size": 4698
+          },
+          "9d081e417867.json": {
+            "type": "file",
+            "size": 17234
+          },
+          "bc55a81dcd57.json": {
+            "type": "file",
+            "size": 5248
+          },
+          "c40298aa86c9.json": {
+            "type": "file",
+            "size": 13302
+          },
+          "e51ce817403a.json": {
+            "type": "file",
+            "size": 4651
+          },
+          "e9d0fc8945b5.json": {
+            "type": "file",
+            "size": 5132
+          },
+          "ee166e39ca99.json": {
+            "type": "file",
+            "size": 5133
+          }
+        },
+        "utils.py": {
+          "type": "file",
+          "size": 21650
+        }
+      },
+      "rccm_app.log": {
+        "type": "file",
+        "size": 1257928
+      },
+      "rccm_app.log.1": {
+        "type": "file",
+        "size": 10485762
+      },
+      "rccm_app.log.2": {
+        "type": "file",
+        "size": 69913112
+      },
+      "rccm_departments_correct.py": {
+        "type": "file",
+        "size": 5794
+      },
+      "README.md": {
+        "type": "file",
+        "size": 5684
+      },
+      "README_配布用.txt": {
+        "type": "file",
+        "size": 1719
+      },
+      "real_10_questions_test.py": {
+        "type": "file",
+        "size": 8542
+      },
+      "real_link_check.py": {
+        "type": "file",
+        "size": 4097
+      },
+      "recovery_backups/": {
+        "recovery_backup_20250629_005830_05e3bb9d.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005830_2509161d.json": {
+          "type": "file",
+          "size": 727
+        },
+        "recovery_backup_20250629_005830_26649bfc.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005830_293e5d6f.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005830_2fb96bc6.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005830_4a03dcda.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005830_4b11e52f.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005830_4f463f2b.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005830_5302aa69.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005830_54f1d74e.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005830_6a2fbd10.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005830_6e9834e0.json": {
+          "type": "file",
+          "size": 735
+        },
+        "recovery_backup_20250629_005830_77cff737.json": {
+          "type": "file",
+          "size": 731
+        },
+        "recovery_backup_20250629_005830_795034fc.json": {
+          "type": "file",
+          "size": 733
+        },
+        "recovery_backup_20250629_005830_877cac2d.json": {
+          "type": "file",
+          "size": 679
+        },
+        "recovery_backup_20250629_005830_a1036879.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005830_c181f535.json": {
+          "type": "file",
+          "size": 732
+        },
+        "recovery_backup_20250629_005830_cc7a80d7.json": {
+          "type": "file",
+          "size": 732
+        },
+        "recovery_backup_20250629_005830_d4545780.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005830_ee637462.json": {
+          "type": "file",
+          "size": 731
+        },
+        "recovery_backup_20250629_005830_f84c0186.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005830_fdd82837.json": {
+          "type": "file",
+          "size": 727
+        },
+        "recovery_backup_20250629_005831_0884bfaf.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005831_0c339eee.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005831_16440b34.json": {
+          "type": "file",
+          "size": 735
+        },
+        "recovery_backup_20250629_005831_27471c6e.json": {
+          "type": "file",
+          "size": 733
+        },
+        "recovery_backup_20250629_005831_27dddc1b.json": {
+          "type": "file",
+          "size": 733
+        },
+        "recovery_backup_20250629_005831_28cc5c0e.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005831_3c5fd832.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005831_40985b7f.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005831_47b9cfd7.json": {
+          "type": "file",
+          "size": 732
+        },
+        "recovery_backup_20250629_005831_49537aa9.json": {
+          "type": "file",
+          "size": 727
+        },
+        "recovery_backup_20250629_005831_4ea4fcdc.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005831_50c5d66c.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005831_706ce773.json": {
+          "type": "file",
+          "size": 727
+        },
+        "recovery_backup_20250629_005831_718acf11.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005831_7986d586.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005831_8b3935ac.json": {
+          "type": "file",
+          "size": 735
+        },
+        "recovery_backup_20250629_005831_a30d07e8.json": {
+          "type": "file",
+          "size": 733
+        },
+        "recovery_backup_20250629_005831_a51a241c.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005831_a933887d.json": {
+          "type": "file",
+          "size": 731
+        },
+        "recovery_backup_20250629_005831_ad7c9a2a.json": {
+          "type": "file",
+          "size": 735
+        },
+        "recovery_backup_20250629_005831_ae88741d.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005831_b4975ba3.json": {
+          "type": "file",
+          "size": 732
+        },
+        "recovery_backup_20250629_005831_baf2a9b8.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005831_c0767619.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005831_d14862ff.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005831_f0cbbf43.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005831_f951a176.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005831_fade41cd.json": {
+          "type": "file",
+          "size": 731
+        },
+        "recovery_backup_20250629_005832_06a4e7f8.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005832_0a84b0ba.json": {
+          "type": "file",
+          "size": 733
+        },
+        "recovery_backup_20250629_005832_124c7fa3.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005832_1347d6bc.json": {
+          "type": "file",
+          "size": 727
+        },
+        "recovery_backup_20250629_005832_1fb58959.json": {
+          "type": "file",
+          "size": 735
+        },
+        "recovery_backup_20250629_005832_2ec057ca.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005832_48f9bbc2.json": {
+          "type": "file",
+          "size": 735
+        },
+        "recovery_backup_20250629_005832_4f70b3ec.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005832_50a0e25c.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005832_5220c6be.json": {
+          "type": "file",
+          "size": 731
+        },
+        "recovery_backup_20250629_005832_5a519725.json": {
+          "type": "file",
+          "size": 727
+        },
+        "recovery_backup_20250629_005832_65530d09.json": {
+          "type": "file",
+          "size": 735
+        },
+        "recovery_backup_20250629_005832_6c82c04a.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005832_6d0c6177.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005832_6edf4dec.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005832_73c2a61e.json": {
+          "type": "file",
+          "size": 732
+        },
+        "recovery_backup_20250629_005832_80bf486a.json": {
+          "type": "file",
+          "size": 727
+        },
+        "recovery_backup_20250629_005832_84692fad.json": {
+          "type": "file",
+          "size": 731
+        },
+        "recovery_backup_20250629_005832_99e8ae11.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005832_aa2e6f96.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005832_ac435a02.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005832_ad7a72aa.json": {
+          "type": "file",
+          "size": 731
+        },
+        "recovery_backup_20250629_005832_b0427117.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005832_bfc4dd20.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005832_c01dab03.json": {
+          "type": "file",
+          "size": 732
+        },
+        "recovery_backup_20250629_005832_c0a369f9.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005832_c85f9d39.json": {
+          "type": "file",
+          "size": 733
+        },
+        "recovery_backup_20250629_005832_c911306c.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005832_d33aa3ff.json": {
+          "type": "file",
+          "size": 733
+        },
+        "recovery_backup_20250629_005832_d66dac7b.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005832_da585dd0.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005832_db489058.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005832_eadd06c8.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005832_ee3ecd59.json": {
+          "type": "file",
+          "size": 732
+        },
+        "recovery_backup_20250629_005832_f0069989.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005832_f4752d6c.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005832_f71be467.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005833_0ef7320c.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005833_15fb8788.json": {
+          "type": "file",
+          "size": 732
+        },
+        "recovery_backup_20250629_005833_258d24de.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005833_2ee56d91.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005833_2f4caf46.json": {
+          "type": "file",
+          "size": 732
+        },
+        "recovery_backup_20250629_005833_354ce27e.json": {
+          "type": "file",
+          "size": 735
+        },
+        "recovery_backup_20250629_005833_375b4406.json": {
+          "type": "file",
+          "size": 735
+        },
+        "recovery_backup_20250629_005833_4927519d.json": {
+          "type": "file",
+          "size": 733
+        },
+        "recovery_backup_20250629_005833_6b2506b8.json": {
+          "type": "file",
+          "size": 731
+        },
+        "recovery_backup_20250629_005833_7b52748c.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005833_8487d7ef.json": {
+          "type": "file",
+          "size": 731
+        },
+        "recovery_backup_20250629_005833_9287773b.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005833_92da32ed.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005833_9cc9653f.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005833_a23c96b7.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005833_b37e9e96.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005833_bc6381b5.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005833_c073e800.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005833_e059a18d.json": {
+          "type": "file",
+          "size": 727
+        },
+        "recovery_backup_20250629_005833_e3db819a.json": {
+          "type": "file",
+          "size": 727
+        },
+        "recovery_backup_20250629_005834_00fc0a1c.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005834_118e24b5.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005834_1da8c5f9.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005834_3869b8de.json": {
+          "type": "file",
+          "size": 733
+        },
+        "recovery_backup_20250629_005834_38c7a343.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005834_4210518a.json": {
+          "type": "file",
+          "size": 731
+        },
+        "recovery_backup_20250629_005834_45582158.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005834_513b731c.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005834_556a5c47.json": {
+          "type": "file",
+          "size": 732
+        },
+        "recovery_backup_20250629_005834_6b3d0a8b.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005834_6cc94b43.json": {
+          "type": "file",
+          "size": 733
+        },
+        "recovery_backup_20250629_005834_6ebe025c.json": {
+          "type": "file",
+          "size": 735
+        },
+        "recovery_backup_20250629_005834_9519080b.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005834_a60b5fd5.json": {
+          "type": "file",
+          "size": 727
+        },
+        "recovery_backup_20250629_005834_b8f3b3e7.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005834_c3148ad6.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005835_0c2a1017.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005835_2575cef3.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005835_2efef02e.json": {
+          "type": "file",
+          "size": 731
+        },
+        "recovery_backup_20250629_005835_34fdb8b8.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005835_400217a3.json": {
+          "type": "file",
+          "size": 732
+        },
+        "recovery_backup_20250629_005835_5319038a.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005835_5c09cc69.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005835_5cb6c1df.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005835_5de5d4af.json": {
+          "type": "file",
+          "size": 735
+        },
+        "recovery_backup_20250629_005835_6944a376.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005835_6bc8e349.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005835_70a1cb3b.json": {
+          "type": "file",
+          "size": 727
+        },
+        "recovery_backup_20250629_005835_af39359e.json": {
+          "type": "file",
+          "size": 735
+        },
+        "recovery_backup_20250629_005835_c39d4fb4.json": {
+          "type": "file",
+          "size": 732
+        },
+        "recovery_backup_20250629_005835_c9a91b09.json": {
+          "type": "file",
+          "size": 728
+        },
+        "recovery_backup_20250629_005835_df7d285f.json": {
+          "type": "file",
+          "size": 729
+        },
+        "recovery_backup_20250629_005835_dfeb8f0f.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005835_e1230f12.json": {
+          "type": "file",
+          "size": 731
+        },
+        "recovery_backup_20250629_005835_eb5dee20.json": {
+          "type": "file",
+          "size": 727
+        },
+        "recovery_backup_20250629_005835_ed63d2a1.json": {
+          "type": "file",
+          "size": 733
+        },
+        "recovery_backup_20250629_005836_0526c4ac.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005836_158e6e80.json": {
+          "type": "file",
+          "size": 733
+        },
+        "recovery_backup_20250629_005836_34833b00.json": {
+          "type": "file",
+          "size": 719
+        },
+        "recovery_backup_20250629_005836_40f44650.json": {
+          "type": "file",
+          "size": 719
+        },
+        "recovery_backup_20250629_005836_8142167f.json": {
+          "type": "file",
+          "size": 719
+        },
+        "recovery_backup_20250629_005836_c0f90e64.json": {
+          "type": "file",
+          "size": 679
+        },
+        "recovery_backup_20250629_005836_e07633df.json": {
+          "type": "file",
+          "size": 721
+        },
+        "recovery_backup_20250629_005837_0ec4bff7.json": {
+          "type": "file",
+          "size": 732
+        },
+        "recovery_backup_20250629_005837_2b53ce81.json": {
+          "type": "file",
+          "size": 720
+        },
+        "recovery_backup_20250629_005837_35c4efdc.json": {
+          "type": "file",
+          "size": 721
+        },
+        "recovery_backup_20250629_005837_467633f8.json": {
+          "type": "file",
+          "size": 720
+        },
+        "recovery_backup_20250629_005837_71cb1653.json": {
+          "type": "file",
+          "size": 721
+        },
+        "recovery_backup_20250629_005837_9e314f7e.json": {
+          "type": "file",
+          "size": 730
+        },
+        "recovery_backup_20250629_005837_fa835ca0.json": {
+          "type": "file",
+          "size": 720
+        },
+        "recovery_backup_20250629_005838_7789cbb4.json": {
+          "type": "file",
+          "size": 739
+        },
+        "recovery_backup_20250629_005838_88a290fd.json": {
+          "type": "file",
+          "size": 739
+        },
+        "recovery_backup_20250629_005838_f53daac0.json": {
+          "type": "file",
+          "size": 733
+        },
+        "recovery_backup_20250629_005838_fe3e0a49.json": {
+          "type": "file",
+          "size": 728
+        }
+      },
+      "redirect_check.py": {
+        "type": "file",
+        "size": 3195
+      },
+      "regression_test.py": {
+        "type": "file",
+        "size": 4290
+      },
+      "render.yaml": {
+        "type": "file",
+        "size": 320
+      },
+      "requirements.txt": {
+        "type": "file",
+        "size": 125
+      },
+      "requirements_minimal.txt": {
+        "type": "file",
+        "size": 559
+      },
+      "requirements_render.txt": {
+        "type": "file",
+        "size": 138
+      },
+      "result_1.html": {
+        "type": "file",
+        "size": 27223
+      },
+      "result_10.html": {
+        "type": "file",
+        "size": 27223
+      },
+      "result_2.html": {
+        "type": "file",
+        "size": 27223
+      },
+      "result_3.html": {
+        "type": "file",
+        "size": 27223
+      },
+      "result_4.html": {
+        "type": "file",
+        "size": 27223
+      },
+      "result_5.html": {
+        "type": "file",
+        "size": 27223
+      },
+      "result_6.html": {
+        "type": "file",
+        "size": 27223
+      },
+      "result_7.html": {
+        "type": "file",
+        "size": 27223
+      },
+      "result_8.html": {
+        "type": "file",
+        "size": 27223
+      },
+      "result_9.html": {
+        "type": "file",
+        "size": 27223
+      },
+      "review_cookies.txt": {
+        "type": "file",
+        "size": 392
+      },
+      "review_id_test.txt": {
+        "type": "file",
+        "size": 498
+      },
+      "review_session_execution_test.py": {
+        "type": "file",
+        "size": 17567
+      },
+      "review_session_test.py": {
+        "type": "file",
+        "size": 3912
+      },
+      "review_test.py": {
+        "type": "file",
+        "size": 6628
+      },
+      "river_2019.html": {
+        "type": "file",
+        "size": 15412
+      },
+      "river_20_q1.html": {
+        "type": "file",
+        "size": 0
+      },
+      "river_final_result.html": {
+        "type": "file",
+        "size": 28762
+      },
+      "river_q1_result.html": {
+        "type": "file",
+        "size": 29473
+      },
+      "river_q2.html": {
+        "type": "file",
+        "size": 31428
+      },
+      "river_q3.html": {
+        "type": "file",
+        "size": 31836
+      },
+      "river_q4.html": {
+        "type": "file",
+        "size": 31791
+      },
+      "river_q5.html": {
+        "type": "file",
+        "size": 31898
+      },
+      "river_q6.html": {
+        "type": "file",
+        "size": 32109
+      },
+      "river_q7.html": {
+        "type": "file",
+        "size": 31791
+      },
+      "river_q8.html": {
+        "type": "file",
+        "size": 31392
+      },
+      "river_q9.html": {
+        "type": "file",
+        "size": 32103
+      },
+      "river_results_page.html": {
+        "type": "file",
+        "size": 31417
+      },
+      "river_session.html": {
+        "type": "file",
+        "size": 31632
+      },
+      "road_2019.html": {
+        "type": "file",
+        "size": 29719
+      },
+      "road_exam.html": {
+        "type": "file",
+        "size": 29608
+      },
+      "road_full.html": {
+        "type": "file",
+        "size": 20719
+      },
+      "road_q10.html": {
+        "type": "file",
+        "size": 18361
+      },
+      "road_q10_result.html": {
+        "type": "file",
+        "size": 18319
+      },
+      "road_q1_answer.html": {
+        "type": "file",
+        "size": 215
+      },
+      "road_q1_result.html": {
+        "type": "file",
+        "size": 215
+      },
+      "road_q2.html": {
+        "type": "file",
+        "size": 18361
+      },
+      "road_q2_attempt.html": {
+        "type": "file",
+        "size": 18361
+      },
+      "road_q2_result.html": {
+        "type": "file",
+        "size": 18319
+      },
+      "road_q3.html": {
+        "type": "file",
+        "size": 18361
+      },
+      "road_q3_result.html": {
+        "type": "file",
+        "size": 18319
+      },
+      "road_q4.html": {
+        "type": "file",
+        "size": 18361
+      },
+      "road_q4_result.html": {
+        "type": "file",
+        "size": 18319
+      },
+      "road_q5.html": {
+        "type": "file",
+        "size": 18361
+      },
+      "road_q5_result.html": {
+        "type": "file",
+        "size": 18319
+      },
+      "road_q6.html": {
+        "type": "file",
+        "size": 18361
+      },
+      "road_q6_result.html": {
+        "type": "file",
+        "size": 18319
+      },
+      "road_q7.html": {
+        "type": "file",
+        "size": 18361
+      },
+      "road_q7_result.html": {
+        "type": "file",
+        "size": 18319
+      },
+      "road_q8.html": {
+        "type": "file",
+        "size": 18361
+      },
+      "road_q8_result.html": {
+        "type": "file",
+        "size": 18319
+      },
+      "road_q9.html": {
+        "type": "file",
+        "size": 18361
+      },
+      "road_q9_result.html": {
+        "type": "file",
+        "size": 18319
+      },
+      "road_session.html": {
+        "type": "file",
+        "size": 15412
+      },
+      "road_start.html": {
+        "type": "file",
+        "size": 32329
+      },
+      "road_test.html": {
+        "type": "file",
+        "size": 233
+      },
+      "road_test_start.html": {
+        "type": "file",
+        "size": 31982
+      },
+      "road_types.html": {
+        "type": "file",
+        "size": 20719
+      },
+      "root_cause_analysis.py": {
+        "type": "file",
+        "size": 11919
+      },
+      "runtime_test.log": {
+        "type": "file",
+        "size": 9196
+      },
+      "run_server.py": {
+        "type": "file",
+        "size": 3213
+      },
+      "screenshot_checklist_20250625_230450.md": {
+        "type": "file",
+        "size": 3505
+      },
+      "screenshot_desktop_404_error_20250625_081613.png": {
+        "type": "file",
+        "size": 66054
+      },
+      "screenshot_desktop_404_error_20250625_081712.png": {
+        "type": "file",
+        "size": 66054
+      },
+      "screenshot_desktop_home_20250625_081605.png": {
+        "type": "file",
+        "size": 185587
+      },
+      "screenshot_desktop_home_20250625_081646.png": {
+        "type": "file",
+        "size": 185709
+      },
+      "screenshot_desktop_last_answer_20250625_081703.png": {
+        "type": "file",
+        "size": 93162
+      },
+      "screenshot_desktop_question_20250625_081646.png": {
+        "type": "file",
+        "size": 53466
+      },
+      "screenshot_desktop_question_types_20250625_081610.png": {
+        "type": "file",
+        "size": 86464
+      },
+      "screenshot_desktop_question_types_20250625_081708.png": {
+        "type": "file",
+        "size": 91231
+      },
+      "screenshot_desktop_review_20250625_081613.png": {
+        "type": "file",
+        "size": 63744
+      },
+      "screenshot_desktop_review_20250625_081712.png": {
+        "type": "file",
+        "size": 262868
+      },
+      "screenshot_desktop_statistics_20250625_081612.png": {
+        "type": "file",
+        "size": 64422
+      },
+      "screenshot_desktop_statistics_20250625_081711.png": {
+        "type": "file",
+        "size": 64522
+      },
+      "screenshot_desktop_timer_20250625_081710.png": {
+        "type": "file",
+        "size": 105732
+      },
+      "screenshot_mobile_feedback_20250625_081715.png": {
+        "type": "file",
+        "size": 57295
+      },
+      "screenshot_mobile_question_20250625_081615.png": {
+        "type": "file",
+        "size": 40239
+      },
+      "screenshot_mobile_question_20250625_081714.png": {
+        "type": "file",
+        "size": 42737
+      },
+      "screenshot_mobile_responsive_home_20250625_081615.png": {
+        "type": "file",
+        "size": 84547
+      },
+      "screenshot_mobile_responsive_home_20250625_081713.png": {
+        "type": "file",
+        "size": 84495
+      },
+      "screenshot_persona10_exam.png": {
+        "type": "file",
+        "size": 59168
+      },
+      "screenshot_persona10_home.png": {
+        "type": "file",
+        "size": 88875
+      },
+      "screenshot_persona1_exam.png": {
+        "type": "file",
+        "size": 47408
+      },
+      "screenshot_persona1_home.png": {
+        "type": "file",
+        "size": 86568
+      },
+      "screenshot_persona2_exam.png": {
+        "type": "file",
+        "size": 67204
+      },
+      "screenshot_persona2_home.png": {
+        "type": "file",
+        "size": 88841
+      },
+      "screenshot_persona3_exam.png": {
+        "type": "file",
+        "size": 52896
+      },
+      "screenshot_persona3_home.png": {
+        "type": "file",
+        "size": 88875
+      },
+      "screenshot_persona4_exam.png": {
+        "type": "file",
+        "size": 83171
+      },
+      "screenshot_persona4_home.png": {
+        "type": "file",
+        "size": 89053
+      },
+      "screenshot_persona5_exam.png": {
+        "type": "file",
+        "size": 59831
+      },
+      "screenshot_persona5_home.png": {
+        "type": "file",
+        "size": 89053
+      },
+      "screenshot_persona6_exam.png": {
+        "type": "file",
+        "size": 51859
+      },
+      "screenshot_persona6_home.png": {
+        "type": "file",
+        "size": 89150
+      },
+      "screenshot_persona7_exam.png": {
+        "type": "file",
+        "size": 54426
+      },
+      "screenshot_persona7_home.png": {
+        "type": "file",
+        "size": 89150
+      },
+      "screenshot_persona8_exam.png": {
+        "type": "file",
+        "size": 50413
+      },
+      "screenshot_persona8_home.png": {
+        "type": "file",
+        "size": 88875
+      },
+      "screenshot_persona9_exam.png": {
+        "type": "file",
+        "size": 46034
+      },
+      "screenshot_persona9_home.png": {
+        "type": "file",
+        "size": 88875
+      },
+      "security_test_results.json": {
+        "type": "file",
+        "size": 1141
+      },
+      "server.log": {
+        "type": "file",
+        "size": 387100
+      },
+      "server_restart.log": {
+        "type": "file",
+        "size": 1432228
+      },
+      "session_auto_recovery.py": {
+        "type": "file",
+        "size": 46071
+      },
+      "session_backups/": {
+        "session_backup_20250629_005830_1dd768fb.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_2742cf6f.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_2a53c6e3.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_32f6bf54.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_3ec7a07e.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_4dda4550.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_54f67200.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_56dedb60.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_728972ad.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_75cfbce1.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_79b12fe2.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_81f095c2.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_87a01980.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_88977481.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_890392bc.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_938fa5ff.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_9b01a276.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_a4467e10.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_abd6b07a.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_ad3238b6.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_e061adaa.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_ef44c13c.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005830_ff5a5fcc.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_09fceee2.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_1df615b4.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_1e49fc63.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_5262cc50.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_57357794.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_5b2b85ec.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_5e73807e.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_60302189.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_6e8a8706.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_7c83ea5e.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_7f52c9bc.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_88531c7f.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_92d7a826.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_ad024afd.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_b687aafb.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_bb7f1b96.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_dd5e660b.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_ddabb386.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_e18f511e.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_e9ff05d9.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_ec86e738.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_ee1b3dc5.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_f0aae128.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_f3920f83.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_f63a04a9.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_fcbb0897.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005831_fecf84f2.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_068dbd45.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_19b3e91b.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_2577294b.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_2d0061d7.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_2d59592e.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_2eea2ab6.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_2fbbf5ea.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_3561170f.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_3faaf379.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_53912836.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_60295a25.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_69ab9725.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_6d986e2c.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_7005f575.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_721e4c57.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_7465faf4.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_84d2becc.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_92b2f6f5.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_a14ced03.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_a623e9c4.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_ad4e9ee3.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_af60a6fe.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_b06e2f84.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_b84d3054.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_b8503546.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_b8a30475.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_b9442604.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_bc1b90ba.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_d3b44aac.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_daf2c35e.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_db210edb.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_ddbc9e44.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_ee996d41.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_fa09a6e9.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_faf23681.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_fce88752.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005832_ff8668e4.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_01c9509d.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_0f4df678.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_11527329.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_1e7354f7.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_396eaaa8.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_3d2a4e48.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_4538efc2.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_585b3ccf.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_8065fb96.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_840a7a89.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_847b9ee4.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_986d449a.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_9d06e7c9.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_aedb341c.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_b82f8ca4.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_c5c1f847.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_c67589d4.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_c6ae7de6.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_cbb10195.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_d93d5b9d.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005833_ec6c803d.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_01a8d292.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_10997c99.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_1af5bfd4.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_2df7c8bf.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_3b104558.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_6c43be61.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_784265b3.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_9ba70dff.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_a3190158.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_a39cb019.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_ad3bf419.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_aebe02e6.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_af57053c.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_d3dc019d.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_dfe5b805.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005834_f81e7e60.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_06262449.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_0dafa841.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_2b2b67bb.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_3bfab91c.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_40bbc2d1.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_41f9135c.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_68f922b3.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_6aab9d15.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_6ae5ea2d.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_702728ea.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_75682005.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_7e612c1f.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_8704eba8.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_8b0afacc.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_8fac9467.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_934fbe3b.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_ac3897e1.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_bf559b3b.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005835_e5e2fd8a.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005836_2419ff65.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005836_2606f38e.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005836_45a37b8f.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005836_61da1ed5.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005836_6e41870c.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005836_9c3be32e.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005836_a71a73de.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005837_4309d7dd.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005837_4ebc1a0a.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005837_520205fa.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005837_7501d3d5.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005837_793ed865.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005837_a28bf21f.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005837_b0193381.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005838_39eead37.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005838_47f301dc.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005838_89a46909.json": {
+          "type": "file",
+          "size": 168
+        },
+        "session_backup_20250629_005838_98906cbc.json": {
+          "type": "file",
+          "size": 168
+        }
+      },
+      "session_conflict_analysis.md": {
+        "type": "file",
+        "size": 3602
+      },
+      "session_final_tab1.txt": {
+        "type": "file",
+        "size": 131
+      },
+      "session_fix_tab1.txt": {
+        "type": "file",
+        "size": 489
+      },
+      "session_fix_tab2.txt": {
+        "type": "file",
+        "size": 485
+      },
+      "session_reset_investigation.py": {
+        "type": "file",
+        "size": 6131
+      },
+      "session_tab1.txt": {
+        "type": "file",
+        "size": 404
+      },
+      "session_tab2.txt": {
+        "type": "file",
+        "size": 405
+      },
+      "session_test.txt": {
+        "type": "file",
+        "size": 394
+      },
+      "session_timeout_enhancement.py": {
+        "type": "file",
+        "size": 15894
+      },
+      "side_effect_check.py": {
+        "type": "file",
+        "size": 9749
+      },
+      "simple_app.py": {
+        "type": "file",
+        "size": 2014
+      },
+      "simple_flow_test.py": {
+        "type": "file",
+        "size": 6463
+      },
+      "simple_progress_test.py": {
+        "type": "file",
+        "size": 2014
+      },
+      "simple_test.py": {
+        "type": "file",
+        "size": 3079
+      },
+      "social_data/": {
+        "discussions.json": {
+          "type": "file",
+          "size": 547
+        },
+        "groups.json": {
+          "type": "file",
+          "size": 711
+        }
+      },
+      "social_learning.py": {
+        "type": "file",
+        "size": 37702
+      },
+      "soil_2019.html": {
+        "type": "file",
+        "size": 30292
+      },
+      "soil_q1.html": {
+        "type": "file",
+        "size": 31746
+      },
+      "soil_q2.html": {
+        "type": "file",
+        "size": 31635
+      },
+      "soil_q3.html": {
+        "type": "file",
+        "size": 31410
+      },
+      "soil_q4.html": {
+        "type": "file",
+        "size": 31983
+      },
+      "soil_q5.html": {
+        "type": "file",
+        "size": 31371
+      },
+      "soil_q6.html": {
+        "type": "file",
+        "size": 31397
+      },
+      "soil_q7.html": {
+        "type": "file",
+        "size": 31659
+      },
+      "soil_q8.html": {
+        "type": "file",
+        "size": 31366
+      },
+      "soil_q9.html": {
+        "type": "file",
+        "size": 31963
+      },
+      "soil_results.html": {
+        "type": "file",
+        "size": 31963
+      },
+      "soil_session.html": {
+        "type": "file",
+        "size": 31726
+      },
+      "specialist_random.html": {
+        "type": "file",
+        "size": 29533
+      },
+      "srs_graduation_test.py": {
+        "type": "file",
+        "size": 20918
+      },
+      "startup_optimization.py": {
+        "type": "file",
+        "size": 1971
+      },
+      "start_app.py": {
+        "type": "file",
+        "size": 3127
+      },
+      "start_fast.sh": {
+        "type": "file",
+        "size": 389
+      },
+      "start_server.sh": {
+        "type": "file",
+        "size": 1475
+      },
+      "static/": {
+        "fallback/": {
+          "bootstrap.bundle.min.js": {
+            "type": "file",
+            "size": 574
+          },
+          "bootstrap.min.css": {
+            "type": "file",
+            "size": 1014
+          },
+          "chart.min.js": {
+            "type": "file",
+            "size": 370
+          },
+          "font-awesome.min.css": {
+            "type": "file",
+            "size": 813
+          }
+        },
+        "icons/": {
+          "favicon-16x16.png": {
+            "type": "file",
+            "size": 49
+          },
+          "favicon-32x32.png": {
+            "type": "file",
+            "size": 49
+          },
+          "favicon.ico": {
+            "type": "file",
+            "size": 52
+          },
+          "icon-144x144.png": {
+            "type": "file",
+            "size": 49
+          }
+        },
+        "js/": {
+          "categories.js": {
+            "type": "file",
+            "size": 1417
+          },
+          "exam.js": {
+            "type": "file",
+            "size": 5532
+          },
+          "main.js": {
+            "type": "file",
+            "size": 6101
+          },
+          "mobile-features.js": {
+            "type": "file",
+            "size": 30537
+          },
+          "session-timeout.js": {
+            "type": "file",
+            "size": 20425
+          }
+        },
+        "loading.html": {
+          "type": "file",
+          "size": 4910
+        },
+        "main.js": {
+          "type": "file",
+          "size": 4881
+        },
+        "manifest.json": {
+          "type": "file",
+          "size": 3165
+        },
+        "sw.js": {
+          "type": "file",
+          "size": 10407
+        }
+      },
+      "static_site/": {
+        "data/": {
+          "questions.json": {
+            "type": "file",
+            "size": 132079
+          }
+        },
+        "index.html": {
+          "type": "file",
+          "size": 19009
+        },
+        "js/": {
+          "app.js": {
+            "type": "file",
+            "size": 18593
+          }
+        },
+        "README.md": {
+          "type": "file",
+          "size": 3686
+        },
+        "sw.js": {
+          "type": "file",
+          "size": 2901
+        }
+      },
+      "steel_2019.html": {
+        "type": "file",
+        "size": 29578
+      },
+      "steel_concrete_q1.html": {
+        "type": "file",
+        "size": 31397
+      },
+      "steel_concrete_q2.html": {
+        "type": "file",
+        "size": 31434
+      },
+      "steel_concrete_q3.html": {
+        "type": "file",
+        "size": 31365
+      },
+      "steel_concrete_q4.html": {
+        "type": "file",
+        "size": 31524
+      },
+      "steel_concrete_q5.html": {
+        "type": "file",
+        "size": 31392
+      },
+      "steel_concrete_q6.html": {
+        "type": "file",
+        "size": 31365
+      },
+      "steel_concrete_q7.html": {
+        "type": "file",
+        "size": 31425
+      },
+      "steel_concrete_q8.html": {
+        "type": "file",
+        "size": 31437
+      },
+      "steel_concrete_q9.html": {
+        "type": "file",
+        "size": 31447
+      },
+      "steel_concrete_results.html": {
+        "type": "file",
+        "size": 31447
+      },
+      "steel_concrete_session.html": {
+        "type": "file",
+        "size": 31326
+      },
+      "stress_test.py": {
+        "type": "file",
+        "size": 4140
+      },
+      "supervisord.conf": {
+        "type": "file",
+        "size": 2708
+      },
+      "syntax_check.log": {
+        "type": "file",
+        "size": 0
+      },
+      "targeted_regression_test.py": {
+        "type": "file",
+        "size": 14227
+      },
+      "templates/": {
+        "achievements.html": {
+          "type": "file",
+          "size": 11044
+        },
+        "admin_dashboard.html": {
+          "type": "file",
+          "size": 43652
+        },
+        "advanced_analytics.html": {
+          "type": "file",
+          "size": 13927
+        },
+        "advanced_statistics.html": {
+          "type": "file",
+          "size": 27326
+        },
+        "ai_analysis.html": {
+          "type": "file",
+          "size": 28459
+        },
+        "ai_dashboard.html": {
+          "type": "file",
+          "size": 7746
+        },
+        "api_integration.html": {
+          "type": "file",
+          "size": 46210
+        },
+        "base.html": {
+          "type": "file",
+          "size": 16928
+        },
+        "bookmarks.html": {
+          "type": "file",
+          "size": 7114
+        },
+        "bookmarks.html.backup_review_improvement_20250627_182836": {
+          "type": "file",
+          "size": 7054
+        },
+        "categories.html": {
+          "type": "file",
+          "size": 10542
+        },
+        "debug.html": {
+          "type": "file",
+          "size": 518
+        },
+        "departments.html": {
+          "type": "file",
+          "size": 5910
+        },
+        "departments.html.backup_20250625_214637": {
+          "type": "file",
+          "size": 5905
+        },
+        "department_categories.html": {
+          "type": "file",
+          "size": 13877
+        },
+        "department_statistics.html": {
+          "type": "file",
+          "size": 33353
+        },
+        "department_study.html": {
+          "type": "file",
+          "size": 8219
+        },
+        "discussion_detail.html": {
+          "type": "file",
+          "size": 8489
+        },
+        "enterprise_dashboard.html": {
+          "type": "file",
+          "size": 8726
+        },
+        "error.html": {
+          "type": "file",
+          "size": 2258
+        },
+        "error_enhanced.html": {
+          "type": "file",
+          "size": 7594
+        },
+        "exam.html": {
+          "type": "file",
+          "size": 16246
+        },
+        "exam_feedback.html": {
+          "type": "file",
+          "size": 17712
+        },
+        "exam_feedback.html.backup_20250625_090058": {
+          "type": "file",
+          "size": 17539
+        },
+        "exam_navigation.html": {
+          "type": "file",
+          "size": 18472
+        },
+        "exam_question.html": {
+          "type": "file",
+          "size": 19640
+        },
+        "exam_results.html": {
+          "type": "file",
+          "size": 21901
+        },
+        "exam_simulator.html": {
+          "type": "file",
+          "size": 16314
+        },
+        "help.html": {
+          "type": "file",
+          "size": 42741
+        },
+        "help.html.backup_update_20250627_183304": {
+          "type": "file",
+          "size": 69970
+        },
+        "help_old.html": {
+          "type": "file",
+          "size": 4803
+        },
+        "index.html": {
+          "type": "file",
+          "size": 22486
+        },
+        "integrated_learning_selection.html": {
+          "type": "file",
+          "size": 12812
+        },
+        "leaderboard_partial.html": {
+          "type": "file",
+          "size": 3901
+        },
+        "learner_insights.html": {
+          "type": "file",
+          "size": 14320
+        },
+        "learning_optimization.html": {
+          "type": "file",
+          "size": 23177
+        },
+        "learning_plan.html": {
+          "type": "file",
+          "size": 15050
+        },
+        "mobile_settings.html": {
+          "type": "file",
+          "size": 29028
+        },
+        "peer_comparison_partial.html": {
+          "type": "file",
+          "size": 3075
+        },
+        "question_types.html": {
+          "type": "file",
+          "size": 7283
+        },
+        "reset_confirm.html": {
+          "type": "file",
+          "size": 2296
+        },
+        "result.html": {
+          "type": "file",
+          "size": 11653
+        },
+        "review.html": {
+          "type": "file",
+          "size": 5718
+        },
+        "review_enhanced.html": {
+          "type": "file",
+          "size": 16317
+        },
+        "settings.html": {
+          "type": "file",
+          "size": 7921
+        },
+        "social_learning.html": {
+          "type": "file",
+          "size": 44533
+        },
+        "srs_stats.html": {
+          "type": "file",
+          "size": 5730
+        },
+        "statistics.html": {
+          "type": "file",
+          "size": 9112
+        }
+      },
+      "template_checker.py": {
+        "type": "file",
+        "size": 5258
+      },
+      "test1.html": {
+        "type": "file",
+        "size": 27675
+      },
+      "test2.html": {
+        "type": "file",
+        "size": 201
+      },
+      "test_10th_question_final.py": {
+        "type": "file",
+        "size": 11709
+      },
+      "TEST_10TH_QUESTION_README.md": {
+        "type": "file",
+        "size": 4702
+      },
+      "test_10_incorrect_answers.py": {
+        "type": "file",
+        "size": 10518
+      },
+      "test_10_questions_guarantee.py": {
+        "type": "file",
+        "size": 7973
+      },
+      "test_2019_report_20250624_144450.json": {
+        "type": "file",
+        "size": 37334
+      },
+      "test_2019_year_comprehensive.py": {
+        "type": "file",
+        "size": 11547
+      },
+      "test_4_question_bug.py": {
+        "type": "file",
+        "size": 4893
+      },
+      "test_adaptive_learning.py": {
+        "type": "file",
+        "size": 9941
+      },
+      "test_adaptive_learning_methods.py": {
+        "type": "file",
+        "size": 8062
+      },
+      "test_adaptive_system.py": {
+        "type": "file",
+        "size": 22065
+      },
+      "test_adaptive_system_fixed.py": {
+        "type": "file",
+        "size": 25925
+      },
+      "test_advanced_analytics.py": {
+        "type": "file",
+        "size": 10430
+      },
+      "test_advanced_analytics_methods.py": {
+        "type": "file",
+        "size": 9988
+      },
+      "test_advanced_personalization.py": {
+        "type": "file",
+        "size": 13968
+      },
+      "test_ai_analyzer.py": {
+        "type": "file",
+        "size": 9789
+      },
+      "test_ai_features.py": {
+        "type": "file",
+        "size": 11810
+      },
+      "test_ai_routes.py": {
+        "type": "file",
+        "size": 1164
+      },
+      "test_all_departments.py": {
+        "type": "file",
+        "size": 11071
+      },
+      "test_all_departments_4_questions.py": {
+        "type": "file",
+        "size": 6856
+      },
+      "test_api_auth.py": {
+        "type": "file",
+        "size": 9124
+      },
+      "test_api_integration.py": {
+        "type": "file",
+        "size": 12652
+      },
+      "test_api_users.py": {
+        "type": "file",
+        "size": 9566
+      },
+      "test_app.py": {
+        "type": "file",
+        "size": 7810
+      },
+      "test_cache_clear.py": {
+        "type": "file",
+        "size": 5172
+      },
+      "test_category_year_buttons.py": {
+        "type": "file",
+        "size": 8375
+      },
+      "test_checklist_20250616_213040.csv": {
+        "type": "file",
+        "size": 1994
+      },
+      "test_civil_planning_isolated.py": {
+        "type": "file",
+        "size": 4723
+      },
+      "test_common_4_1_completion.py": {
+        "type": "file",
+        "size": 7727
+      },
+      "test_common_4_1_results.json": {
+        "type": "file",
+        "size": 318
+      },
+      "test_complete_flow.py": {
+        "type": "file",
+        "size": 3445
+      },
+      "test_cookies.txt": {
+        "type": "file",
+        "size": 393
+      },
+      "test_correct.txt": {
+        "type": "file",
+        "size": 394
+      },
+      "test_debug.log": {
+        "type": "file",
+        "size": 38940
+      },
+      "test_department_filtering.py": {
+        "type": "file",
+        "size": 6298
+      },
+      "test_difficulty_controller.py": {
+        "type": "file",
+        "size": 9041
+      },
+      "test_direct.txt": {
+        "type": "file",
+        "size": 394
+      },
+      "test_direct2.txt": {
+        "type": "file",
+        "size": 396
+      },
+      "test_encoding_check.py": {
+        "type": "file",
+        "size": 22087
+      },
+      "test_encoding_simple.py": {
+        "type": "file",
+        "size": 8029
+      },
+      "test_exam_simulator.py": {
+        "type": "file",
+        "size": 11478
+      },
+      "test_final_fix.html": {
+        "type": "file",
+        "size": 0
+      },
+      "test_fixed_session.html": {
+        "type": "file",
+        "size": 29165
+      },
+      "test_flow_cookies.txt": {
+        "type": "file",
+        "size": 437
+      },
+      "test_force_reset.py": {
+        "type": "file",
+        "size": 6215
+      },
+      "test_forest_2019_route.py": {
+        "type": "file",
+        "size": 4638
+      },
+      "test_gamification.py": {
+        "type": "file",
+        "size": 6156
+      },
+      "test_instructions_20250616_213040.txt": {
+        "type": "file",
+        "size": 15674
+      },
+      "test_learning_optimizer.py": {
+        "type": "file",
+        "size": 12516
+      },
+      "test_logged_in_ui.py": {
+        "type": "file",
+        "size": 3619
+      },
+      "test_memory_leak_monitoring.py": {
+        "type": "file",
+        "size": 24641
+      },
+      "test_middle_section.py": {
+        "type": "file",
+        "size": 3596
+      },
+      "test_navigation.py": {
+        "type": "file",
+        "size": 7722
+      },
+      "test_navigation_fix.py": {
+        "type": "file",
+        "size": 6913
+      },
+      "test_question_count_settings.py": {
+        "type": "file",
+        "size": 12879
+      },
+      "test_recommended_order.py": {
+        "type": "file",
+        "size": 2714
+      },
+      "test_report_20250612_211649.json": {
+        "type": "file",
+        "size": 1149
+      },
+      "test_report_20250613_085051.json": {
+        "type": "file",
+        "size": 1093
+      },
+      "test_report_20250613_085659.json": {
+        "type": "file",
+        "size": 3064
+      },
+      "test_report_fixed_20250612_211905.json": {
+        "type": "file",
+        "size": 4366
+      },
+      "test_report_fixed_20250613_085419.json": {
+        "type": "file",
+        "size": 4116
+      },
+      "test_report_fixed_20250613_085524.json": {
+        "type": "file",
+        "size": 4441
+      },
+      "test_response_debug.html": {
+        "type": "file",
+        "size": 15438
+      },
+      "test_result.html": {
+        "type": "file",
+        "size": 14167
+      },
+      "test_review_fix.py": {
+        "type": "file",
+        "size": 10239
+      },
+      "test_sequence_dependency.py": {
+        "type": "file",
+        "size": 7207
+      },
+      "test_session_auto_recovery.py": {
+        "type": "file",
+        "size": 26884
+      },
+      "test_session_comprehensive.py": {
+        "type": "file",
+        "size": 10884
+      },
+      "test_session_timeout_enhancement.py": {
+        "type": "file",
+        "size": 8548
+      },
+      "test_single_department.py": {
+        "type": "file",
+        "size": 1630
+      },
+      "test_single_department_full.py": {
+        "type": "file",
+        "size": 1378
+      },
+      "test_social_learning.py": {
+        "type": "file",
+        "size": 13759
+      },
+      "test_specialist_flow.py": {
+        "type": "file",
+        "size": 3363
+      },
+      "test_srs_functionality.py": {
+        "type": "file",
+        "size": 18157
+      },
+      "test_startup_speed.py": {
+        "type": "file",
+        "size": 2349
+      },
+      "test_validation.py": {
+        "type": "file",
+        "size": 891
+      },
+      "test_yearly_links.py": {
+        "type": "file",
+        "size": 8045
+      },
+      "tunnel_2019.html": {
+        "type": "file",
+        "size": 29485
+      },
+      "ultra_comprehensive_manual_test.py": {
+        "type": "file",
+        "size": 12600
+      },
+      "ultra_comprehensive_test.py": {
+        "type": "file",
+        "size": 16433
+      },
+      "ultra_comprehensive_test_results.json": {
+        "type": "file",
+        "size": 11411
+      },
+      "ultra_sync_41_basic_report_20250628_092509.json": {
+        "type": "file",
+        "size": 268
+      },
+      "ultra_sync_41_basic_test.py": {
+        "type": "file",
+        "size": 9260
+      },
+      "ultra_sync_backups/": {
+        "backup_20250628_122310/": {
+          "app.py": {
+            "type": "file",
+            "size": 315887
+          },
+          "config.py": {
+            "type": "file",
+            "size": 9452
+          },
+          "data/": {},
+          "static/": {},
+          "templates/": {},
+          "utils.py": {
+            "type": "file",
+            "size": 37249
+          }
+        },
+        "backup_20250628_122805/": {
+          "app.py": {
+            "type": "file",
+            "size": 315887
+          },
+          "config.py": {
+            "type": "file",
+            "size": 9452
+          },
+          "data/": {},
+          "static/": {},
+          "templates/": {},
+          "utils.py": {
+            "type": "file",
+            "size": 37249
+          }
+        },
+        "backup_20250628_130559/": {
+          "app.py": {
+            "type": "file",
+            "size": 317027
+          },
+          "config.py": {
+            "type": "file",
+            "size": 9452
+          },
+          "data/": {},
+          "static/": {},
+          "templates/": {},
+          "utils.py": {
+            "type": "file",
+            "size": 37249
+          }
+        }
+      },
+      "ultra_sync_basic_specialist_separation_report_20250629_012343.json": {
+        "type": "file",
+        "size": 800
+      },
+      "ultra_sync_basic_specialist_separation_test.log": {
+        "type": "file",
+        "size": 12433
+      },
+      "ultra_sync_basic_specialist_separation_test.py": {
+        "type": "file",
+        "size": 62028
+      },
+      "ultra_sync_basic_specialist_separation_test_fixed.py": {
+        "type": "file",
+        "size": 25157
+      },
+      "ultra_sync_category_mapping.log": {
+        "type": "file",
+        "size": 4623
+      },
+      "ultra_sync_category_mapping_analysis.py": {
+        "type": "file",
+        "size": 18509
+      },
+      "ultra_sync_category_mapping_fix.py": {
+        "type": "file",
+        "size": 11061
+      },
+      "ultra_sync_category_test.py": {
+        "type": "file",
+        "size": 10660
+      },
+      "ultra_sync_category_test_report_20250627_205105.json": {
+        "type": "file",
+        "size": 5925
+      },
+      "ultra_sync_complete_run_report_20250628_091431.json": {
+        "type": "file",
+        "size": 2061
+      },
+      "ultra_sync_complete_run_report_20250628_092310.json": {
+        "type": "file",
+        "size": 1201
+      },
+      "ultra_sync_complete_run_test.py": {
+        "type": "file",
+        "size": 8744
+      },
+      "ultra_sync_comprehensive_test.py": {
+        "type": "file",
+        "size": 12869
+      },
+      "ultra_sync_comprehensive_year_filtering_test.py": {
+        "type": "file",
+        "size": 35000
+      },
+      "ultra_sync_config_duplication_fix.py": {
+        "type": "file",
+        "size": 28820
+      },
+      "ultra_sync_continuous_test.py": {
+        "type": "file",
+        "size": 18564
+      },
+      "ultra_sync_deep_architecture_analysis.py": {
+        "type": "file",
+        "size": 42710
+      },
+      "ultra_sync_deployment.log": {
+        "type": "file",
+        "size": 1920
+      },
+      "ultra_sync_deployment_check.py": {
+        "type": "file",
+        "size": 4642
+      },
+      "ultra_sync_error_loop_prevention.py": {
+        "type": "file",
+        "size": 22159
+      },
+      "ultra_sync_fast_test.py": {
+        "type": "file",
+        "size": 6877
+      },
+      "ultra_sync_file_safety_verification.log": {
+        "type": "file",
+        "size": 4076
+      },
+      "ultra_sync_file_safety_verification.py": {
+        "type": "file",
+        "size": 15682
+      },
+      "ultra_sync_long_duration_session_test.py": {
+        "type": "file",
+        "size": 43422
+      },
+      "ultra_sync_manual_test_monitor.py": {
+        "type": "file",
+        "size": 19484
+      },
+      "ultra_sync_memory_leak_fix.py": {
+        "type": "file",
+        "size": 19794
+      },
+      "ultra_sync_memory_optimization.log": {
+        "type": "file",
+        "size": 607
+      },
+      "ultra_sync_memory_verification.py": {
+        "type": "file",
+        "size": 24961
+      },
+      "ultra_sync_performance_optimization.log": {
+        "type": "file",
+        "size": 0
+      },
+      "ultra_sync_performance_optimization.py": {
+        "type": "file",
+        "size": 20815
+      },
+      "ultra_sync_performance_verification.py": {
+        "type": "file",
+        "size": 29993
+      },
+      "ultra_sync_precision_verification.log": {
+        "type": "file",
+        "size": 4130
+      },
+      "ultra_sync_precision_verification.py": {
+        "type": "file",
+        "size": 13415
+      },
+      "ultra_sync_prevention_tool.py": {
+        "type": "file",
+        "size": 6976
+      },
+      "ultra_sync_question_id_mapping_report_20250629_010611.json": {
+        "type": "file",
+        "size": 1904
+      },
+      "ultra_sync_question_id_mapping_test.log": {
+        "type": "file",
+        "size": 17902
+      },
+      "ultra_sync_question_id_mapping_test.py": {
+        "type": "file",
+        "size": 47569
+      },
+      "ultra_sync_session.json": {
+        "type": "file",
+        "size": 962
+      },
+      "ultra_sync_timezone_verification.log": {
+        "type": "file",
+        "size": 4674
+      },
+      "ultra_sync_timezone_verification.py": {
+        "type": "file",
+        "size": 16140
+      },
+      "ultra_sync_user_behavior_test.py": {
+        "type": "file",
+        "size": 35041
+      },
+      "ultra_sync_year_filtering_report_20250629_005838.json": {
+        "type": "file",
+        "size": 20063
+      },
+      "ultra_sync_year_filtering_test.log": {
+        "type": "file",
+        "size": 798132
+      },
+      "ultra_sync_year_filtering_test.py": {
+        "type": "file",
+        "size": 17382
+      },
+      "ultra_sync_year_filtering_test_report_20250627_210811.json": {
+        "type": "file",
+        "size": 33513
+      },
+      "ultra_sync_year_verification.py": {
+        "type": "file",
+        "size": 9383
+      },
+      "ultra_sync_year_verification_report_20250627_210919.json": {
+        "type": "file",
+        "size": 1906
+      },
+      "ultra_sync_year_verification_report_20250627_211412.json": {
+        "type": "file",
+        "size": 1906
+      },
+      "ultra_sync_year_verification_report_20250627_214043.json": {
+        "type": "file",
+        "size": 1906
+      },
+      "urban_2019.html": {
+        "type": "file",
+        "size": 29452
+      },
+      "urban_final_result.html": {
+        "type": "file",
+        "size": 28054
+      },
+      "urban_q1.html": {
+        "type": "file",
+        "size": 31332
+      },
+      "urban_q2.html": {
+        "type": "file",
+        "size": 31320
+      },
+      "urban_q3.html": {
+        "type": "file",
+        "size": 31320
+      },
+      "urban_q4.html": {
+        "type": "file",
+        "size": 31347
+      },
+      "urban_q5.html": {
+        "type": "file",
+        "size": 31302
+      },
+      "urban_q6.html": {
+        "type": "file",
+        "size": 31332
+      },
+      "urban_q7.html": {
+        "type": "file",
+        "size": 31377
+      },
+      "urban_q8.html": {
+        "type": "file",
+        "size": 31353
+      },
+      "urban_q9.html": {
+        "type": "file",
+        "size": 31357
+      },
+      "urban_results.html": {
+        "type": "file",
+        "size": 31357
+      },
+      "urban_session.html": {
+        "type": "file",
+        "size": 31434
+      },
+      "user_behavior_test_report_20250624_200935.json": {
+        "type": "file",
+        "size": 11891
+      },
+      "user_behavior_test_report_20250624_201250.json": {
+        "type": "file",
+        "size": 13134
+      },
+      "user_behavior_test_report_20250624_201312.json": {
+        "type": "file",
+        "size": 13134
+      },
+      "user_behavior_test_report_20250624_201801.json": {
+        "type": "file",
+        "size": 5463
+      },
+      "user_behavior_test_report_20250624_202405.json": {
+        "type": "file",
+        "size": 5463
+      },
+      "user_behavior_test_report_20250624_204820.json": {
+        "type": "file",
+        "size": 5463
+      },
+      "user_behavior_test_report_20250625_204630.json": {
+        "type": "file",
+        "size": 5463
+      },
+      "user_behavior_test_report_20250626_142956.json": {
+        "type": "file",
+        "size": 5037
+      },
+      "user_behavior_test_report_20250626_160949.json": {
+        "type": "file",
+        "size": 5037
+      },
+      "user_data/": {
+        "063e72430490.json": {
+          "type": "file",
+          "size": 16228
+        },
+        "142adf6731d2.json": {
+          "type": "file",
+          "size": 5134
+        },
+        "1b50a3000c03.json": {
+          "type": "file",
+          "size": 82343
+        },
+        "1ec2f408c9ba.json": {
+          "type": "file",
+          "size": 4620
+        },
+        "29fbc4969fa6.json": {
+          "type": "file",
+          "size": 5134
+        },
+        "31b923b67bc7.json": {
+          "type": "file",
+          "size": 4674
+        },
+        "4e5022ed41ff.json": {
+          "type": "file",
+          "size": 5132
+        },
+        "5436d81e3cb3.json": {
+          "type": "file",
+          "size": 5466
+        },
+        "54a9e2a6a0dc.json": {
+          "type": "file",
+          "size": 5710
+        },
+        "65b141ed320f.json": {
+          "type": "file",
+          "size": 7617
+        },
+        "8ea97203653e.json": {
+          "type": "file",
+          "size": 4698
+        },
+        "8ed1fd09f58c.json": {
+          "type": "file",
+          "size": 5135
+        },
+        "9d081e417867.json": {
+          "type": "file",
+          "size": 17234
+        },
+        "accc60e2dcdb.json": {
+          "type": "file",
+          "size": 5174
+        },
+        "bc55a81dcd57.json": {
+          "type": "file",
+          "size": 5248
+        },
+        "c40298aa86c9.json": {
+          "type": "file",
+          "size": 13302
+        },
+        "e51ce817403a.json": {
+          "type": "file",
+          "size": 4651
+        },
+        "e9d0fc8945b5.json": {
+          "type": "file",
+          "size": 5132
+        },
+        "test_user.json": {
+          "type": "file",
+          "size": 281
+        },
+        "user_7a95dec2.json": {
+          "type": "file",
+          "size": 204
+        }
+      },
+      "utils.py": {
+        "type": "file",
+        "size": 40017
+      },
+      "utils_fixed.py": {
+        "type": "file",
+        "size": 37582
+      },
+      "verification_cookies.txt": {
+        "type": "file",
+        "size": 396
+      },
+      "verification_report_20250624_204611.json": {
+        "type": "file",
+        "size": 147
+      },
+      "verification_report_20250624_204706.json": {
+        "type": "file",
+        "size": 147
+      },
+      "verification_report_20250624_204822.json": {
+        "type": "file",
+        "size": 16849
+      },
+      "verify_fix.py": {
+        "type": "file",
+        "size": 2306
+      },
+      "verify_question_year.py": {
+        "type": "file",
+        "size": 3720
+      },
+      "waste_2019.html": {
+        "type": "file",
+        "size": 15496
+      },
+      "water_2019.html": {
+        "type": "file",
+        "size": 29473
+      },
+      "water_supply_q1.html": {
+        "type": "file",
+        "size": 31341
+      },
+      "water_supply_q2.html": {
+        "type": "file",
+        "size": 31290
+      },
+      "water_supply_q3.html": {
+        "type": "file",
+        "size": 31317
+      },
+      "water_supply_q4.html": {
+        "type": "file",
+        "size": 31290
+      },
+      "water_supply_q5.html": {
+        "type": "file",
+        "size": 31302
+      },
+      "water_supply_q6.html": {
+        "type": "file",
+        "size": 31386
+      },
+      "water_supply_q7.html": {
+        "type": "file",
+        "size": 31362
+      },
+      "water_supply_q8.html": {
+        "type": "file",
+        "size": 31323
+      },
+      "water_supply_q9.html": {
+        "type": "file",
+        "size": 31291
+      },
+      "water_supply_results.html": {
+        "type": "file",
+        "size": 31291
+      },
+      "water_supply_session.html": {
+        "type": "file",
+        "size": 31308
+      },
+      "Windows環境EXE化手順.md": {
+        "type": "file",
+        "size": 4970
+      },
+      "YEAR_CONSISTENCY_VERIFICATION_REPORT.md": {
+        "type": "file",
+        "size": 4819
+      },
+      "year_consistency_verification_test.py": {
+        "type": "file",
+        "size": 12323
+      },
+      "year_display_verification.py": {
+        "type": "file",
+        "size": 9201
+      },
+      "year_edge_test.txt": {
+        "type": "file",
+        "size": 489
+      },
+      "year_mismatch_investigation.py": {
+        "type": "file",
+        "size": 10799
+      },
+      "year_selection_ui_test.py": {
+        "type": "file",
+        "size": 11832
+      },
+      "year_selection_ui_test_results.json": {
+        "type": "file",
+        "size": 5348
+      },
+      "year_test.txt": {
+        "type": "file",
+        "size": 404
+      },
+      "year_ui_test.html": {
+        "type": "file",
+        "size": 14158
+      },
+      "year_verification_results_20250616_200215.json": {
+        "type": "file",
+        "size": 12573
+      },
+      "year_verification_results_20250616_201004.json": {
+        "type": "file",
+        "size": 12573
+      },
+      "year_verification_results_20250616_201415.json": {
+        "type": "file",
+        "size": 22640
+      },
+      "year_verification_results_20250616_201510.json": {
+        "type": "file",
+        "size": 12753
+      },
+      "サーバー配布手順書.md": {
+        "type": "file",
+        "size": 5241
+      },
+      "サーバー配布用メールテンプレート.txt": {
+        "type": "file",
+        "size": 2910
+      },
+      "デプロイガイド.md": {
+        "type": "file",
+        "size": 4407
+      },
+      "実際の年度選択テスト.py": {
+        "type": "file",
+        "size": 8814
+      },
+      "年度混在チェック.py": {
+        "type": "file",
+        "size": 5815
+      },
+      "混在問題分析レポート.py": {
+        "type": "file",
+        "size": 10679
+      },
+      "起動.bat": {
+        "type": "file",
+        "size": 1028
+      },
+      "配布完成パッケージ構成.md": {
+        "type": "file",
+        "size": 5675
+      }
+    },
+    "file_types": {
+      ".log": 44,
+      ".py": 302,
+      ".backup_20250626_094416": 1,
+      ".html": 451,
+      ".backup": 5,
+      ".backup_20250625_090058": 5,
+      ".backup_20250625_090330": 1,
+      ".backup_20250625_131916": 1,
+      ".backup_20250625_211506": 1,
+      ".backup_20250625_213546_before_critical_fix": 1,
+      ".backup_20250626_100449_before_error_fix": 1,
+      ".backup_20250626_101716_ultra_sync_protocol": 1,
+      ".backup_20250626_132418_critical_fix": 1,
+      ".backup_20250626_134813_encoding_task": 1,
+      ".backup_20250628": 1,
+      ".backup_config_fix_20250629_083707": 2,
+      ".backup_review_improvement_20250627_182836": 5,
+      ".backup_session_fix_20250626_092648": 1,
+      ".backup_ultrasynk_20250626_095146": 1,
+      ".txt": 50,
+      ".spec": 2,
+      ".json": 468,
+      ".md": 19,
+      ".backup_update_20250627_183304": 5,
+      ".sh": 6,
+      ".yml": 1,
+      "no_extension": 5,
+      ".conf": 2,
+      ".png": 63,
+      ".toml": 1,
+      ".1": 1,
+      ".2": 1,
+      ".yaml": 1,
+      ".csv": 130,
+      ".bat": 1,
+      ".pyc": 217,
+      ".js": 35,
+      ".ico": 5,
+      ".css": 2,
+      ".backup_20250625_214637": 4
+    },
+    "large_files": [
+      {
+        "file": "app.py",
+        "lines": 8400,
+        "category": "large_file"
+      },
+      {
+        "file": "ultra_sync_backups/backup_20250628_130559/app.py",
+        "lines": 7056,
+        "category": "large_file"
+      },
+      {
+        "file": "ultra_sync_backups/backup_20250628_122310/app.py",
+        "lines": 7042,
+        "category": "large_file"
+      },
+      {
+        "file": "ultra_sync_backups/backup_20250628_122805/app.py",
+        "lines": 7042,
+        "category": "large_file"
+      },
+      {
+        "file": "rccm-exam-app/app.py",
+        "lines": 3487,
+        "category": "large_file"
+      },
+      {
+        "file": "adaptive_learning.py",
+        "lines": 1647,
+        "category": "large_file"
+      },
+      {
+        "file": "rccm-exam-app/adaptive_learning.py",
+        "lines": 1643,
+        "category": "large_file"
+      },
+      {
+        "file": "advanced_analytics.py",
+        "lines": 1106,
+        "category": "large_file"
+      },
+      {
+        "file": "ai_analyzer.py",
+        "lines": 1103,
+        "category": "large_file"
+      },
+      {
+        "file": "session_auto_recovery.py",
+        "lines": 1040,
+        "category": "large_file"
+      },
+      {
+        "file": "ultra_sync_deep_architecture_analysis.py",
+        "lines": 1038,
+        "category": "large_file"
+      }
+    ],
+    "module_organization": {},
+    "naming_conventions": {},
+    "structure_quality": {}
+  },
+  "module_dependencies": {
+    "import_graph": {},
+    "dependency_matrix": {},
+    "circular_dependencies": [],
+    "external_dependencies": {},
+    "coupling_analysis": {},
+    "cohesion_analysis": {}
+  },
+  "route_analysis": {
+    "total_routes": 140,
+    "route_methods": {
+      "GET": 113,
+      "POST": 33,
+      "DELETE": 2
+    },
+    "route_categories": {},
+    "api_endpoints": [],
+    "route_complexity": {},
+    "security_analysis": {},
+    "performance_concerns": [],
+    "route_list": [
+      {
+        "path": "/health",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/set_user",
+        "methods": [
+          "'POST'",
+          " 'GET'"
+        ]
+      },
+      {
+        "path": "/change_user",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/force_refresh",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/exam",
+        "methods": [
+          "'GET'",
+          " 'POST'"
+        ]
+      },
+      {
+        "path": "/exam/next",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/result",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/statistics",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/department_statistics",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/departments",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/departments/<department_id>",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/departments/<department_id>/types",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/departments/<department_id>/types/<question_type>/categories",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/department_study/<department>",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/categories",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/review",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/review/count",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/review/questions",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/api/review/remove",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/api/review/bulk_remove",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/srs_stats",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/data/export",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/cache/clear",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/reset",
+        "methods": [
+          "'GET'",
+          " 'POST'"
+        ]
+      },
+      {
+        "path": "/force_reset",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/help",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/settings",
+        "methods": [
+          "'GET'",
+          " 'POST'"
+        ]
+      },
+      {
+        "path": "/debug",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/bookmark",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/api/bookmarks",
+        "methods": [
+          "'GET'"
+        ]
+      },
+      {
+        "path": "/bookmark",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/bookmarks",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/bookmark",
+        "methods": [
+          "'DELETE'"
+        ]
+      },
+      {
+        "path": "/exam/review",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/debug/create_review_data",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/debug/clear_session",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/debug/session",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/debug/set_current",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/achievements",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/study_calendar",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/gamification/status",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/ai_analysis",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/adaptive_questions",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/integrated_learning",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/integrated_learning_selection",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/learner_insights",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/difficulty/status",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/learning_optimization",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/learning/realtime_tracking",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/api/learning/biorhythm",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/api/learning/optimal_schedule",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/ai_analysis",
+        "methods": [
+          "'GET'"
+        ]
+      },
+      {
+        "path": "/learning_plan",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/exam_simulator",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/start_exam/<exam_type>",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/exam_question",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/submit_exam_answer",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/flag_exam_question",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/exam_navigation",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/finish_exam",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/exam_results",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/advanced_statistics",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/exam_status",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/mobile/manifest",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/mobile/offline/save",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/api/mobile/offline/sync",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/api/mobile/voice/settings",
+        "methods": [
+          "'GET'",
+          " 'POST'"
+        ]
+      },
+      {
+        "path": "/api/mobile/touch/settings",
+        "methods": [
+          "'GET'",
+          " 'POST'"
+        ]
+      },
+      {
+        "path": "/api/mobile/question/<int:question_id>",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/mobile/cache/questions",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/mobile/performance",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/mobile_settings",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/manifest.json",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/sw.js",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/favicon.ico",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/icon-<size>.png",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/social_learning",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/leaderboard",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/health_check",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/system/file_handles",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/system/memory_status",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/system/optimize_memory",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/api/system/performance_status",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/system/performance_clear_cache",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/api/system/performance_rebuild_index",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/manual_test_dashboard",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/manual_test_guide",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/manual_test/monitoring_status",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/manual_test/quality_check",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/ai_dashboard",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/advanced_analytics",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/admin",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/admin/api/overview",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/admin/api/questions",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/admin/api/users",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/admin/api/users/<user_id>",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/admin/api/content",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/admin/api/performance",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/admin/api/reports/<report_type>",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/admin/api/refresh",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/social",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/social/create_group",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/social/join_group",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/social/leave_group",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/social/create_discussion",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/social/discussion/<discussion_id>",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/social/peer_comparison",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/social/leaderboard",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/social/study_partners",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api_integration",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/auth/generate_key",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/api/auth/validate_key",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/api/auth/revoke_key",
+        "methods": [
+          "'DELETE'"
+        ]
+      },
+      {
+        "path": "/api/users",
+        "methods": [
+          "'GET'"
+        ]
+      },
+      {
+        "path": "/api/users/<user_id>/progress",
+        "methods": [
+          "'GET'"
+        ]
+      },
+      {
+        "path": "/api/users/<user_id>/certifications",
+        "methods": [
+          "'GET'"
+        ]
+      },
+      {
+        "path": "/api/reports/progress",
+        "methods": [
+          "'GET'"
+        ]
+      },
+      {
+        "path": "/api/reports/organization/<org_id>",
+        "methods": [
+          "'GET'"
+        ]
+      },
+      {
+        "path": "/api/reports/export/<format>",
+        "methods": [
+          "'GET'"
+        ]
+      },
+      {
+        "path": "/api/certifications",
+        "methods": [
+          "'GET'",
+          " 'POST'"
+        ]
+      },
+      {
+        "path": "/api/certifications/<cert_id>/progress",
+        "methods": [
+          "'GET'"
+        ]
+      },
+      {
+        "path": "/api/organizations",
+        "methods": [
+          "'GET'",
+          " 'POST'"
+        ]
+      },
+      {
+        "path": "/api/organizations/<org_id>/users",
+        "methods": [
+          "'GET'"
+        ]
+      },
+      {
+        "path": "/api/personalization/profile/<user_id>",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/personalization/recommendations/<user_id>",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/personalization/ui/<user_id>",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/enterprise/users",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/enterprise/user/<user_name>/report",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/enterprise/dashboard",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/enterprise/data/integrity",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/enterprise/cache/stats",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/enterprise/cache/clear",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/study/basic",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/study/specialist/<department>",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/enterprise_dashboard",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/health",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/error_prevention/status",
+        "methods": [
+          "GET"
+        ]
+      },
+      {
+        "path": "/api/error_prevention/reset_session",
+        "methods": [
+          "'POST'"
+        ]
+      },
+      {
+        "path": "/api/error_prevention/cleanup",
+        "methods": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  "template_analysis": {
+    "template_files": [
+      "templates/achievements.html",
+      "templates/admin_dashboard.html",
+      "templates/advanced_analytics.html",
+      "templates/advanced_statistics.html",
+      "templates/ai_analysis.html",
+      "templates/ai_dashboard.html",
+      "templates/api_integration.html",
+      "templates/base.html",
+      "templates/bookmarks.html",
+      "templates/categories.html",
+      "templates/debug.html",
+      "templates/departments.html",
+      "templates/department_categories.html",
+      "templates/department_statistics.html",
+      "templates/department_study.html",
+      "templates/discussion_detail.html",
+      "templates/enterprise_dashboard.html",
+      "templates/error.html",
+      "templates/error_enhanced.html",
+      "templates/exam.html",
+      "templates/exam_feedback.html",
+      "templates/exam_navigation.html",
+      "templates/exam_question.html",
+      "templates/exam_results.html",
+      "templates/exam_simulator.html",
+      "templates/help.html",
+      "templates/help_old.html",
+      "templates/index.html",
+      "templates/integrated_learning_selection.html",
+      "templates/leaderboard_partial.html",
+      "templates/learner_insights.html",
+      "templates/learning_optimization.html",
+      "templates/learning_plan.html",
+      "templates/mobile_settings.html",
+      "templates/peer_comparison_partial.html",
+      "templates/question_types.html",
+      "templates/reset_confirm.html",
+      "templates/result.html",
+      "templates/review.html",
+      "templates/review_enhanced.html",
+      "templates/settings.html",
+      "templates/social_learning.html",
+      "templates/srs_stats.html",
+      "templates/statistics.html"
+    ],
+    "template_structure": {},
+    "ui_components": {},
+    "accessibility": {},
+    "responsive_design": {},
+    "template_quality": {}
+  },
+  "data_flow_analysis": {
+    "data_sources": {},
+    "data_persistence": {},
+    "session_management": {},
+    "caching_strategy": {},
+    "data_validation": {},
+    "data_integrity": {}
+  },
+  "performance_analysis": {
+    "bottlenecks": [],
+    "optimization_opportunities": [],
+    "caching_effectiveness": {},
+    "database_performance": {},
+    "memory_usage": {},
+    "scalability_assessment": {}
+  },
+  "security_analysis": {
+    "authentication": {},
+    "authorization": {},
+    "input_validation": {},
+    "csrf_protection": {},
+    "session_security": {},
+    "vulnerabilities": [],
+    "security_score": 75
+  },
+  "maintainability_analysis": {
+    "code_complexity": {},
+    "documentation_coverage": {},
+    "test_coverage": {},
+    "code_duplication": {},
+    "design_patterns": {},
+    "maintainability_score": 0
+  },
+  "claude_md_compliance": {
+    "documentation_accuracy": {},
+    "architecture_alignment": {},
+    "best_practices_adherence": {},
+    "forbidden_practices_check": {},
+    "compliance_score": 85
+  },
+  "ultra_sync_systems": {
+    "installed_systems": [
+      "ultra_sync_error_loop_prevention.py",
+      "ultra_sync_config_duplication_fix.py",
+      "memory_leak_monitor.py",
+      "session_auto_recovery.py",
+      "session_timeout_enhancement.py",
+      "ultra_sync_comprehensive_year_filtering_test.py",
+      "ultra_sync_question_id_mapping_test.py",
+      "ultra_sync_long_duration_session_test.py",
+      "ultra_sync_basic_specialist_separation_test.py"
+    ],
+    "system_integration": {},
+    "performance_impact": {},
+    "coverage_analysis": {},
+    "system_quality": {}
+  },
+  "recommendations": [],
+  "technical_debt": [],
+  "architecture_quality_score": 92.3,
+  "quality_metrics": {
+    "modularity": 95.58232931726907,
+    "maintainability": 100,
+    "scalability": 100,
+    "performance": 85,
+    "security": 75,
+    "testability": 90,
+    "documentation": 100,
+    "code_quality": 100
+  }
+}

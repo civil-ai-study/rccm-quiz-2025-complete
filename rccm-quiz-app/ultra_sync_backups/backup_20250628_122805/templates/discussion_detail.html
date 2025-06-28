@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% block title %}ディスカッション | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">ホーム</a></li>
+                    <li class="breadcrumb-item"><a href="/social_learning">ソーシャル学習</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">ディスカッション</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            {% if discussion %}
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-1">{{ discussion.title }}</h5>
+                            <small class="text-muted">
+                                作成者: {{ discussion.author }} | 
+                                作成日: {{ discussion.created_at }} | 
+                                回答数: {{ discussion.replies|length if discussion.replies else 0 }}
+                            </small>
+                        </div>
+                        <div>
+                            {% if discussion.category %}
+                            <span class="badge bg-primary">{{ discussion.category }}</span>
+                            {% endif %}
+                            {% if discussion.difficulty %}
+                            <span class="badge bg-warning">{{ discussion.difficulty }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <p class="card-text">{{ discussion.content }}</p>
+                        
+                        {% if discussion.related_question %}
+                        <div class="alert alert-light border-start border-primary border-4">
+                            <h6><i class="fas fa-question-circle me-2"></i>関連問題</h6>
+                            <p class="mb-2">{{ discussion.related_question.question }}</p>
+                            <small class="text-muted">問題ID: {{ discussion.related_question.id }}</small>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- 返信一覧 -->
+                    {% if discussion.replies %}
+                    <div class="replies-section">
+                        <h6><i class="fas fa-comments me-2"></i>回答・ディスカッション ({{ discussion.replies|length }}件)</h6>
+                        <hr>
+                        {% for reply in discussion.replies %}
+                        <div class="reply-item mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body py-3">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div class="reply-author">
+                                            <strong>{{ reply.author }}</strong>
+                                            <small class="text-muted ms-2">{{ reply.created_at }}</small>
+                                        </div>
+                                        {% if reply.is_helpful %}
+                                        <span class="badge bg-success">役立つ回答</span>
+                                        {% endif %}
+                                    </div>
+                                    <p class="reply-content mb-2">{{ reply.content }}</p>
+                                    
+                                    <div class="reply-actions">
+                                        <button class="btn btn-sm btn-outline-primary me-2" onclick="likeReply('{{ reply.id }}')">
+                                            <i class="fas fa-thumbs-up me-1"></i>
+                                            いいね ({{ reply.likes or 0 }})
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary" onclick="replyToReply('{{ reply.id }}')">
+                                            <i class="fas fa-reply me-1"></i>返信
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <!-- 返信フォーム -->
+                    <div class="reply-form mt-4">
+                        <h6><i class="fas fa-edit me-2"></i>返信を投稿</h6>
+                        <form id="replyForm" onsubmit="submitReply(event)">
+                            <div class="mb-3">
+                                <textarea class="form-control" id="replyContent" rows="4" 
+                                         placeholder="ディスカッションに参加して知識を共有しましょう..." required></textarea>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="anonymousReply">
+                                    <label class="form-check-label" for="anonymousReply">
+                                        匿名で投稿
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane me-1"></i>投稿する
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                ディスカッションが見つかりません。
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+function likeReply(replyId) {
+    fetch(`/api/social/reply/${replyId}/like`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // いいね数を更新
+            location.reload();
+        } else {
+            alert('エラーが発生しました: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('いいねの処理中にエラーが発生しました。');
+    });
+}
+
+function replyToReply(replyId) {
+    const replyContent = document.getElementById('replyContent');
+    replyContent.focus();
+    replyContent.value = `@${replyId} `;
+}
+
+function submitReply(event) {
+    event.preventDefault();
+    
+    const content = document.getElementById('replyContent').value;
+    const anonymous = document.getElementById('anonymousReply').checked;
+    
+    if (!content.trim()) {
+        alert('返信内容を入力してください。');
+        return;
+    }
+    
+    fetch(`/api/social/discussion/{{ discussion.id }}/reply`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            content: content,
+            anonymous: anonymous
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        } else {
+            alert('エラーが発生しました: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('返信の投稿中にエラーが発生しました。');
+    });
+}
+</script>
+{% endblock %}

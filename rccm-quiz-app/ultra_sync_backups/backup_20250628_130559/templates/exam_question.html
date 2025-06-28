@@ -1,0 +1,550 @@
+{% extends "base.html" %}
+
+{% block title %}{{ exam_info.exam_name }} - 問題{{ exam_info.current_question_number }}/{{ exam_info.total_questions }} - RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container-fluid exam-container">
+    <!-- 試験ヘッダー -->
+    <div class="exam-header sticky-top bg-white border-bottom shadow-sm">
+        <div class="row align-items-center py-3">
+            <!-- 試験情報 -->
+            <div class="col-md-3">
+                <h5 class="mb-0">
+                    <i class="fas fa-graduation-cap text-primary"></i> 
+                    {{ exam_info.exam_name }}
+                </h5>
+                <small class="text-muted">{{ exam_info.exam_type|upper }} モード</small>
+            </div>
+            
+            <!-- 進捗情報 -->
+            <div class="col-md-6">
+                <div class="d-flex justify-content-center align-items-center">
+                    <span class="me-3">
+                        <strong>問題 {{ exam_info.current_question_number }}</strong> / {{ exam_info.total_questions }}
+                    </span>
+                    <div class="progress flex-grow-1 me-3" style="height: 8px; max-width: 300px;">
+                        <div class="progress-bar bg-success" 
+                             style="width: {{ (exam_info.current_question_number / exam_info.total_questions * 100)|round(1) }}%"></div>
+                    </div>
+                    <small class="text-muted">{{ ((exam_info.current_question_number / exam_info.total_questions * 100)|round(1)) }}%</small>
+                </div>
+            </div>
+            
+            <!-- 時間情報 -->
+            <div class="col-md-3 text-end">
+                <div id="timer" class="exam-timer">
+                    <i class="fas fa-clock text-warning"></i>
+                    <span id="time-remaining">{{ exam_info.time_remaining }}</span>分
+                </div>
+                <small class="text-muted d-block">残り時間</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- 時間警告モーダル -->
+    {% if time_warning %}
+    <div class="modal fade" id="timeWarningModal" tabindex="-1" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content border-warning">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title">
+                        <i class="fas fa-exclamation-triangle"></i> 時間警告
+                    </h5>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="alert alert-warning mb-3">
+                        <h6><strong>{{ time_warning }}</strong></h6>
+                        <p class="mb-0">時間配分にご注意ください。</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal">
+                        <i class="fas fa-check"></i> 了解
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 問題エリア -->
+    <div class="row mt-4">
+        <div class="col-lg-8 mx-auto">
+            <div class="card exam-question-card shadow">
+                <div class="card-header bg-primary text-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">
+                            <i class="fas fa-question-circle"></i> 
+                            問題 {{ exam_info.current_question_number }}
+                            {% if question.category %}
+                                <span class="badge bg-light text-dark ms-2">{{ question.category }}</span>
+                            {% endif %}
+                            {% if question.difficulty %}
+                                <span class="badge bg-secondary ms-1">{{ question.difficulty }}</span>
+                            {% endif %}
+                        </h6>
+                        <div class="exam-controls">
+                            <button type="button" id="flagBtn" class="btn btn-sm btn-outline-light me-2"
+                                    onclick="toggleFlag({{ exam_info.current_question_number - 1 }})">
+                                <i class="fas fa-flag" id="flagIcon"></i>
+                                <span id="flagText">フラグ</span>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-light" 
+                                    onclick="showNavigation()">
+                                <i class="fas fa-list"></i> 一覧
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <!-- 問題文 -->
+                    <div class="question-text mb-4">
+                        <p class="lead">{{ question.question }}</p>
+                    </div>
+                    
+                    <!-- 回答フォーム -->
+                    <form id="examAnswerForm" onsubmit="submitExamAnswer(event)">
+                        <input type="hidden" name="question_index" value="{{ exam_info.current_question_number - 1 }}">
+                        <input type="hidden" name="elapsed" value="0" id="elapsedTime">
+                        
+                        <div class="answer-options">
+                            {% for option_key in ['a', 'b', 'c', 'd'] %}
+                                {% set option_text = question['option_' + option_key] %}
+                                {% if option_text %}
+                                <div class="form-check answer-option mb-3">
+                                    <input class="form-check-input" type="radio" 
+                                           name="answer" value="{{ option_key.upper() }}" 
+                                           id="option{{ option_key.upper() }}"
+                                           onclick="enableSubmit()">
+                                    <label class="form-check-label" for="option{{ option_key.upper() }}">
+                                        <span class="option-letter">{{ option_key.upper() }}</span>
+                                        <span class="option-text">{{ option_text }}</span>
+                                    </label>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        
+                        <!-- 回答ボタン -->
+                        <div class="text-center mt-4">
+                            <button type="submit" id="submitBtn" class="btn btn-primary btn-lg" disabled>
+                                <i class="fas fa-check"></i> 回答を提出
+                                {% if exam_info.current_question_number == exam_info.total_questions %}
+                                    して試験を終了
+                                {% endif %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ナビゲーション -->
+    <div class="row mt-4">
+        <div class="col-lg-8 mx-auto">
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-outline-secondary" 
+                        onclick="showNavigation()">
+                    <i class="fas fa-th"></i> 問題一覧
+                </button>
+                
+                <div class="question-nav-info text-muted">
+                    <small>
+                        回答済み: {{ exam_info.answered_questions|length }}/{{ exam_info.total_questions }}
+                        {% if exam_info.flagged_questions %}
+                            | フラグ: {{ exam_info.flagged_questions|length }}
+                        {% endif %}
+                    </small>
+                </div>
+                
+                {% if exam_info.current_question_number == exam_info.total_questions %}
+                <button type="button" class="btn btn-warning" onclick="finishExam()">
+                    <i class="fas fa-flag-checkered"></i> 試験終了
+                </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 試験終了確認モーダル -->
+<div class="modal fade" id="finishExamModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title">
+                    <i class="fas fa-flag-checkered"></i> 試験終了確認
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>注意：</strong>試験を終了すると、回答の変更はできません。
+                </div>
+                
+                <div class="exam-summary">
+                    <h6>回答状況</h6>
+                    <ul>
+                        <li>回答済み問題: <strong><span id="answeredCount">{{ exam_info.answered_questions|length }}</span>/{{ exam_info.total_questions }}</strong></li>
+                        <li>未回答問題: <strong><span id="unansweredCount">{{ exam_info.total_questions - exam_info.answered_questions|length }}</span></strong></li>
+                        {% if exam_info.flagged_questions %}
+                        <li>フラグ設定: <strong>{{ exam_info.flagged_questions|length }}問</strong></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                
+                <p><strong>本当に試験を終了しますか？</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i> キャンセル
+                </button>
+                <button type="button" class="btn btn-warning" onclick="confirmFinishExam()">
+                    <i class="fas fa-flag-checkered"></i> 試験を終了する
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let questionStartTime = Date.now();
+let examTimeRemaining = {{ exam_info.time_remaining }};
+let currentQuestionIndex = {{ exam_info.current_question_number - 1 }};
+let isFlagged = {{ (exam_info.current_question_number - 1) in exam_info.flagged_questions }};
+
+// ページ読み込み時の初期化
+document.addEventListener('DOMContentLoaded', function() {
+    // フラグ状態の初期化
+    updateFlagButton();
+    
+    // 時間警告モーダルの表示
+    {% if time_warning %}
+    const timeWarningModal = new bootstrap.Modal(document.getElementById('timeWarningModal'));
+    timeWarningModal.show();
+    {% endif %}
+    
+    // タイマー開始
+    startTimer();
+    
+    // ブラウザの戻るボタンを無効化
+    preventBrowserBack();
+});
+
+function enableSubmit() {
+    document.getElementById('submitBtn').disabled = false;
+}
+
+function submitExamAnswer(event) {
+    event.preventDefault();
+    
+    const formData = new FormData(event.target);
+    const selectedAnswer = formData.get('answer');
+    
+    if (!selectedAnswer) {
+        alert('回答を選択してください。');
+        return;
+    }
+    
+    // 経過時間を計算
+    const elapsed = (Date.now() - questionStartTime) / 1000;
+    formData.set('elapsed', elapsed.toString());
+    
+    // 提出ボタンを無効化
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 提出中...';
+    
+    // サーバーに送信
+    fetch('/submit_exam_answer', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            if (data.exam_finished) {
+                window.location.href = data.redirect;
+            } else {
+                // 次の問題に進む
+                window.location.reload();
+            }
+        } else {
+            alert('エラー: ' + data.error);
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> 回答を提出';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('サーバーとの通信に失敗しました。インターネット接続を確認してください。');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> 回答を提出';
+    });
+}
+
+function toggleFlag(questionIndex) {
+    const action = isFlagged ? 'unflag' : 'flag';
+    
+    fetch('/flag_exam_question', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `question_index=${questionIndex}&action=${action}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            isFlagged = !isFlagged;
+            updateFlagButton();
+        }
+    })
+    .catch(error => {
+        console.error('Flag error:', error);
+    });
+}
+
+function updateFlagButton() {
+    const flagIcon = document.getElementById('flagIcon');
+    const flagText = document.getElementById('flagText');
+    const flagBtn = document.getElementById('flagBtn');
+    
+    if (isFlagged) {
+        flagIcon.className = 'fas fa-flag text-warning';
+        flagText.textContent = 'フラグ解除';
+        flagBtn.classList.add('active');
+    } else {
+        flagIcon.className = 'far fa-flag';
+        flagText.textContent = 'フラグ';
+        flagBtn.classList.remove('active');
+    }
+}
+
+function showNavigation() {
+    window.open('/exam_navigation', '_blank', 'width=800,height=600');
+}
+
+function finishExam() {
+    const modal = new bootstrap.Modal(document.getElementById('finishExamModal'));
+    modal.show();
+}
+
+function confirmFinishExam() {
+    fetch('/finish_exam', {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = data.redirect;
+        } else {
+            alert('エラー: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Finish exam error:', error);
+        alert('サーバーとの通信に失敗しました。インターネット接続を確認してください。');
+    });
+}
+
+function startTimer() {
+    function updateTimer() {
+        const hours = Math.floor(examTimeRemaining / 60);
+        const minutes = examTimeRemaining % 60;
+        const timeString = hours > 0 ? 
+            `${hours}:${minutes.toString().padStart(2, '0')}` : 
+            minutes.toString();
+        
+        document.getElementById('time-remaining').textContent = timeString;
+        
+        // 時間切れチェック
+        if (examTimeRemaining <= 0) {
+            // 自動提出
+            alert('制限時間に達しました。試験を自動提出します。');
+            confirmFinishExam();
+            return;
+        }
+        
+        // 時間警告
+        if (examTimeRemaining === 10) {
+            alert('残り時間10分です！');
+        } else if (examTimeRemaining === 30) {
+            alert('残り時間30分です。');
+        }
+        
+        examTimeRemaining--;
+    }
+    
+    // 1分ごとに更新
+    setInterval(updateTimer, 60000);
+}
+
+function preventBrowserBack() {
+    history.pushState(null, null, location.href);
+    window.addEventListener('popstate', function(event) {
+        if (confirm('試験中です。本当にページを離れますか？回答データが失われる可能性があります。')) {
+            return;
+        } else {
+            history.pushState(null, null, location.href);
+        }
+    });
+}
+
+// ページを離れる前の警告
+window.addEventListener('beforeunload', function(e) {
+    e.preventDefault();
+    e.returnValue = '試験中です。ページを離れると回答データが失われる可能性があります。';
+});
+</script>
+
+<style>
+.exam-container {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.exam-header {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.exam-timer {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.exam-question-card {
+    border: none;
+    border-radius: 15px;
+}
+
+.question-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.answer-option {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px !important;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.answer-option:hover {
+    background: #e3f2fd;
+    border-color: #2196f3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.answer-option.checked {
+    background: #e8f5e8;
+    border-color: #4caf50;
+}
+
+.form-check-input:checked ~ .form-check-label .answer-option {
+    background: #e8f5e8;
+    border-color: #4caf50;
+}
+
+.option-letter {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: #dee2e6;
+    color: #495057;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+
+.form-check-input:checked ~ .form-check-label .option-letter {
+    background: #4caf50;
+    color: white;
+}
+
+.option-text {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.exam-controls .btn {
+    border-radius: 20px;
+}
+
+.question-nav-info {
+    display: flex;
+    align-items: center;
+}
+
+.modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    border-radius: 15px 15px 0 0;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .exam-header .col-md-3,
+    .exam-header .col-md-6 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    .exam-timer {
+        font-size: 1rem;
+    }
+    
+    .answer-option {
+        padding: 12px;
+    }
+    
+    .option-letter {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        margin-right: 10px;
+    }
+    
+    .question-text {
+        font-size: 1rem;
+    }
+}
+
+/* アニメーション */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.exam-timer {
+    animation: pulse 2s infinite;
+}
+
+.answer-option.form-check:hover {
+    animation: none;
+}
+
+/* フラグボタンの状態 */
+.btn.active {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+    color: #000 !important;
+}
+</style>
+{% endblock %}

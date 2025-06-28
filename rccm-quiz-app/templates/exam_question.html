@@ -280,7 +280,7 @@ function submitExamAnswer(event) {
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('通信エラーが発生しました。');
+        alert('サーバーとの通信に失敗しました。インターネット接続を確認してください。');
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="fas fa-check"></i> 回答を提出';
     });
@@ -347,7 +347,7 @@ function confirmFinishExam() {
     })
     .catch(error => {
         console.error('Finish exam error:', error);
-        alert('通信エラーが発生しました。');
+        alert('サーバーとの通信に失敗しました。インターネット接続を確認してください。');
     });
 }
 

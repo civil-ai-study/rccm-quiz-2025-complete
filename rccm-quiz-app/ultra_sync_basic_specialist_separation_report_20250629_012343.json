@@ -1,0 +1,28 @@
+{
+  "test_timestamp": "2025-06-29T01:23:43.964974",
+  "test_type": "ultra_sync_basic_specialist_separation",
+  "summary": {
+    "total_tests": 4,
+    "successful_tests": 2,
+    "warning_tests": 0,
+    "failed_tests": 2,
+    "success_rate": 0.5,
+    "separation_violations": 0,
+    "critical_violations": 0,
+    "grade": "VERY_GOOD"
+  },
+  "data_statistics": {
+    "basic_questions": 202,
+    "specialist_questions": 4037,
+    "total_questions": 4239,
+    "basic_files": 1,
+    "specialist_files": 12
+  },
+  "separation_violations": [],
+  "test_results": [
+    "✅ System baseline established",
+    "❌ File separation test failed: 'int' object has no attribute 'startswith'",
+    "❌ ID separation test failed: expected string or bytes-like object",
+    "✅ Question type separation intact"
+  ]
+}

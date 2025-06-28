@@ -13,6 +13,9 @@ import functools
 from datetime import datetime, timedelta
 from typing import List, Dict, Optional, Any, Callable, Tuple
 from collections import OrderedDict
+# 🔥 ULTRA SYNC FILE SAFETY: ファイル処理安全性強化インポート
+from contextlib import contextmanager
+import resource
 from concurrent.futures import ThreadPoolExecutor
 
 # 🔥 ULTRA SYNC LOG FIX: ログファイル肥大化防止（ローテーション機能追加）
@@ -226,6 +229,74 @@ def is_file_modified(filepath: str, cached_hash: str) -> bool:
     """ファイルが変更されているかチェック"""
     current_hash = get_file_hash(filepath)
     return current_hash != cached_hash
+
+# 🔥 ULTRA SYNC FILE SAFETY: ファイル処理安全性監視クラス
+class FileHandleMonitor:
+    """ファイルハンドル使用状況監視・制限クラス"""
+    
+    def __init__(self, max_concurrent_files=50):
+        self._active_files = set()
+        self._lock = threading.Lock()
+        self._max_concurrent = max_concurrent_files
+        
+    def acquire_handle(self, filepath):
+        """ファイルハンドル取得（制限チェック付き）"""
+        with self._lock:
+            if len(self._active_files) >= self._max_concurrent:
+                raise ResourceWarning(f"同時ファイル制限超過: {len(self._active_files)}/{self._max_concurrent}")
+            self._active_files.add(filepath)
+            
+    def release_handle(self, filepath):
+        """ファイルハンドル解放"""
+        with self._lock:
+            self._active_files.discard(filepath)
+            
+    def get_active_count(self):
+        """アクティブファイル数取得"""
+        with self._lock:
+            return len(self._active_files)
+            
+    def get_active_files(self):
+        """アクティブファイル一覧取得"""
+        with self._lock:
+            return list(self._active_files)
+
+# グローバルファイルハンドル監視インスタンス
+_file_monitor = FileHandleMonitor()
+
+@contextmanager
+def monitored_file_open(filepath, mode='r', encoding='utf-8', **kwargs):
+    """監視付きファイルオープン（ウルトラシンク安全性保証）"""
+    file_handle = None
+    try:
+        # ハンドル取得制限チェック
+        _file_monitor.acquire_handle(filepath)
+        
+        # ファイルオープン
+        file_handle = open(filepath, mode, encoding=encoding, **kwargs)
+        yield file_handle
+        
+    except Exception as e:
+        logger.error(f"監視付きファイル操作エラー: {filepath} - {e}")
+        raise
+    finally:
+        # 確実にリソース解放
+        if file_handle and not file_handle.closed:
+            try:
+                file_handle.close()
+            except Exception as close_error:
+                logger.warning(f"ファイルクローズエラー: {filepath} - {close_error}")
+        
+        # 監視から除去
+        _file_monitor.release_handle(filepath)
+
+def get_file_monitor_stats():
+    """ファイル監視統計取得"""
+    return {
+        'active_count': _file_monitor.get_active_count(),
+        'active_files': _file_monitor.get_active_files(),
+        'max_concurrent': _file_monitor._max_concurrent
+    }
 
 class DataLoadError(Exception):
     """データ読み込み専用エラー"""

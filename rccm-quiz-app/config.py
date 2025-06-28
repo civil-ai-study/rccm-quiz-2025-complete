@@ -7,12 +7,16 @@ import os
 
 class Config:
     """基本設定"""
-    SECRET_KEY = os.environ.get('SECRET_KEY') or os.urandom(32).hex()
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'rccm-quiz-app-development-key-2025'
     SESSION_COOKIE_NAME = 'rccm_session'
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SECURE = os.environ.get('FLASK_ENV') == 'production'
     SESSION_COOKIE_SAMESITE = 'Lax'
     PERMANENT_SESSION_LIFETIME = 3600
+    # 🛡️ Ultra Sync Session Settings (統合済み)
+    SESSION_PERMANENT = True
+    SESSION_USE_SIGNER = True
+
 
 class ExamConfig:
     """問題・学習設定"""

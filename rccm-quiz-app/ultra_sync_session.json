@@ -1,0 +1,45 @@
+{
+  "timestamp": "2025-06-28T13:06:01.331563",
+  "backup_path": "ultra_sync_backups/backup_20250628_130559",
+  "original_files": {
+    "app.py": {
+      "size": 317027,
+      "mtime": 1751083481.7177837,
+      "exists": true
+    },
+    "utils.py": {
+      "size": 37249,
+      "mtime": 1751069438.038869,
+      "exists": true
+    },
+    "config.py": {
+      "size": 9452,
+      "mtime": 1751071122.474197,
+      "exists": true
+    },
+    "templates/": {
+      "size": 4096,
+      "mtime": 1751016784.2595508,
+      "exists": true
+    },
+    "static/": {
+      "size": 4096,
+      "mtime": 1750986425.3628807,
+      "exists": true
+    },
+    "data/": {
+      "size": 4096,
+      "mtime": 1750862966.8224137,
+      "exists": true
+    }
+  },
+  "rollback_commands": [
+    "rm -rf app.py",
+    "rm -rf utils.py",
+    "rm -rf config.py",
+    "rm -rf templates/",
+    "rm -rf static/",
+    "rm -rf data/",
+    "cp -r ultra_sync_backups/backup_20250628_130559/* ."
+  ]
+}

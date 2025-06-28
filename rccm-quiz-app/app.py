@@ -6,12 +6,158 @@ import time
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory, make_response, flash
 import os
 import random
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from collections import defaultdict
 import logging
 from typing import Dict, List
 import re
 from functools import wraps
+# 🔥 ULTRA SYNC PRECISION FIX: 高精度数値計算のためのDecimalインポート
+from decimal import Decimal, ROUND_HALF_UP
+# 🔥 ULTRA SYNC TIMEZONE FIX: UTC統一時刻処理のためのタイムゾーンインポート
+import pytz
+
+# 🔥 ULTRA SYNC MEMORY FIX: メモリリーク防止とセッション最適化
+import gc
+import psutil
+# 🔥 ULTRA SYNC FIX: 未使用import削除
+
+# Memory optimizer の遅延初期化（loggerの後に実行）
+_memory_optimizer = None
+# 🔥 ULTRA SYNC FIX: memory_optimization_decorator はimport時に設定される
+
+# 🔥 ULTRA SYNC TIMEZONE FIX: UTC統一時刻処理ヘルパー関数
+def get_utc_now():
+    """UTC時刻を取得（タイムゾーン統一処理）"""
+    return datetime.now(timezone.utc)
+
+def parse_iso_with_timezone(iso_string):
+    """ISO文字列をUTC時刻として解析（フォールバック処理付き）"""
+    try:
+        if iso_string.endswith('Z'):
+            # UTC表記の場合
+            return datetime.fromisoformat(iso_string.replace('Z', '+00:00'))
+        elif '+' in iso_string[-6:] or '-' in iso_string[-6:]:
+            # タイムゾーン情報付きの場合
+            return datetime.fromisoformat(iso_string)
+        else:
+            # タイムゾーン情報なしの場合はUTCとして扱う
+            naive_dt = datetime.fromisoformat(iso_string)
+            return naive_dt.replace(tzinfo=timezone.utc)
+    except (ValueError, AttributeError) as e:
+        logger.warning(f"ISO時刻解析エラー: {iso_string} - {e}")
+        return get_utc_now()  # フォールバック
+
+def format_utc_to_iso(dt=None):
+    """UTC時刻をISO文字列として出力（統一フォーマット）"""
+    if dt is None:
+        dt = get_utc_now()
+    return dt.isoformat()
+
+def get_user_local_time(utc_dt, user_timezone='Asia/Tokyo'):
+    """UTC時刻をユーザーのローカル時刻に変換"""
+    try:
+        user_tz = pytz.timezone(user_timezone)
+        return utc_dt.astimezone(user_tz)
+    except Exception as e:
+        logger.warning(f"タイムゾーン変換エラー: {e}")
+        return utc_dt  # フォールバック
+
+# 🔥 ULTRA SYNC FILE SAFETY: ファイルハンドル安全処理ヘルパー関数
+def safe_file_operation(file_path, operation='read', encoding='utf-8', mode='r', **kwargs):
+    """
+    ファイル操作の安全性を保証するヘルパー関数
+    
+    Args:
+        file_path: ファイルパス
+        operation: 操作種別 ('read', 'write', 'append')
+        encoding: エンコーディング
+        mode: ファイルモード
+        **kwargs: その他のopen()パラメータ
+        
+    Returns:
+        ファイルハンドル（context managerとして使用）
+    """
+    import os
+    import threading
+    from contextlib import contextmanager
+    
+    # スレッドセーフなファイル操作カウンター
+    if not hasattr(safe_file_operation, '_active_handles'):
+        safe_file_operation._active_handles = 0
+        safe_file_operation._lock = threading.Lock()
+    
+    @contextmanager
+    def _safe_file_handle():
+        file_handle = None
+        try:
+            # アクティブハンドル数をカウント
+            with safe_file_operation._lock:
+                safe_file_operation._active_handles += 1
+                current_handles = safe_file_operation._active_handles
+            
+            # ファイル存在確認（読み取り時）
+            if operation == 'read' and not os.path.exists(file_path):
+                raise FileNotFoundError(f"ファイルが見つかりません: {file_path}")
+            
+            # ディレクトリ作成（書き込み時）
+            if operation in ['write', 'append']:
+                dir_path = os.path.dirname(file_path)
+                if dir_path and not os.path.exists(dir_path):
+                    os.makedirs(dir_path, exist_ok=True)
+            
+            # ファイルハンドル取得
+            file_handle = open(file_path, mode, encoding=encoding, **kwargs)
+            
+            # デバッグログ（高負荷時のみ）
+            if current_handles > 10:
+                logger.warning(f"⚠️ 大量ファイルハンドル: {current_handles}個のファイルが同時オープン中")
+            
+            yield file_handle
+            
+        except Exception as e:
+            logger.error(f"ファイル操作エラー: {file_path} - {e}")
+            raise
+        finally:
+            # 確実にファイルハンドルをクローズ
+            if file_handle and not file_handle.closed:
+                try:
+                    file_handle.close()
+                except Exception as close_error:
+                    logger.warning(f"ファイルクローズエラー: {file_path} - {close_error}")
+            
+            # アクティブハンドル数をデクリメント
+            with safe_file_operation._lock:
+                safe_file_operation._active_handles = max(0, safe_file_operation._active_handles - 1)
+    
+    return _safe_file_handle()
+
+def get_active_file_handles():
+    """現在のアクティブファイルハンドル数を取得"""
+    if hasattr(safe_file_operation, '_active_handles'):
+        return safe_file_operation._active_handles
+    return 0
+
+def safe_json_load(file_path, default_value=None):
+    """JSONファイルの安全な読み込み"""
+    try:
+        with safe_file_operation(file_path, 'read') as f:
+            import json
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError, Exception) as e:
+        logger.warning(f"JSON読み込み失敗: {file_path} - {e}")
+        return default_value if default_value is not None else {}
+
+def safe_json_save(file_path, data):
+    """JSONファイルの安全な保存"""
+    try:
+        with safe_file_operation(file_path, 'write') as f:
+            import json
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        return True
+    except Exception as e:
+        logger.error(f"JSON保存失敗: {file_path} - {e}")
+        return False
 
 # セキュリティ認証デコレーター
 
@@ -105,12 +251,112 @@ logging.basicConfig(
     handlers=[rotating_handler, console_handler]
 )
 
-# 🔥 CRITICAL: セッション競合状態解決のためのロック管理（改修版）
-session_locks = {}
-lock_cleanup_lock = threading.Lock()
-lock_last_used = {}  # ロック最終使用時刻を追跡
-LOCK_TIMEOUT = 3600  # 1時間でロックタイムアウト（基本設定と統一）
+# 🔥 ULTRA SYNC MEMORY FIX: メモリ効率的なセッションロック管理
+if _memory_optimizer:
+    # メモリ最適化版のセッションロックプール使用
+    def get_session_lock(user_id):
+        return _memory_optimizer.session_lock_pool.get_lock(user_id)
+    
+    def cleanup_session_locks():
+        return _memory_optimizer.session_lock_pool.cleanup_unused_locks()
+else:
+    # フォールバック版（従来のロック管理）
+    session_locks = {}
+    lock_cleanup_lock = threading.Lock()
+    lock_last_used = {}  # ロック最終使用時刻を追跡
+    LOCK_TIMEOUT = 3600  # 1時間でロックタイムアウト（基本設定と統一）
+    
+    def get_session_lock(user_id):
+        with lock_cleanup_lock:
+            if user_id not in session_locks:
+                session_locks[user_id] = threading.RLock()
+            lock_last_used[user_id] = time.time()
+            return session_locks[user_id]
+    
+    def cleanup_session_locks():
+        cleanup_count = 0
+        current_time = time.time()
+        with lock_cleanup_lock:
+            to_remove = []
+            for user_id, last_used in lock_last_used.items():
+                if current_time - last_used > LOCK_TIMEOUT:
+                    to_remove.append(user_id)
+            
+            for user_id in to_remove:
+                if user_id in session_locks:
+                    del session_locks[user_id]
+                del lock_last_used[user_id]
+                cleanup_count += 1
+        return cleanup_count
 logger = logging.getLogger(__name__)
+
+# 🔍 ULTRA SYNC MEMORY FIX: Memory Optimizer 遅延初期化（logger初期化後）
+try:
+    from ultra_sync_memory_leak_fix import UltraSyncMemoryOptimizer, memory_optimization_decorator as _memory_optimization_decorator
+    _memory_optimizer = UltraSyncMemoryOptimizer()
+    memory_optimization_decorator = _memory_optimization_decorator
+    logger.info("🔍 Ultra Sync Memory Optimizer 初期化完了")
+except ImportError as e:
+    logger.warning(f"⚠️ Ultra Sync Memory Optimizer が見つかりません - 基本機能のみ動作: {e}")
+    _memory_optimizer = None
+    # 🔧 CRITICAL FIX: memory_optimization_decorator のフォールバック定義
+    def memory_optimization_decorator(func):
+        """Memory optimization decorator fallback (no-op when optimizer unavailable)"""
+        return func
+
+# 🔍 ULTRA SYNC MEMORY LEAK MONITOR: 包括的メモリリーク監視システム初期化
+_memory_leak_monitor = None
+try:
+    from memory_leak_monitor import MemoryLeakMonitor, init_memory_monitoring, memory_monitoring_decorator, global_memory_monitor
+    _memory_leak_monitor = init_memory_monitoring(app=None, auto_start=True)  # app は後で設定
+    logger.info("🔍 Memory Leak Monitor 初期化完了")
+except ImportError as e:
+    logger.warning(f"⚠️ Memory Leak Monitor が見つかりません: {e}")
+    _memory_leak_monitor = None
+    
+    # フォールバックデコレータ定義
+    def memory_monitoring_decorator(monitor=None):
+        def decorator(func):
+            return func
+        return decorator
+
+# 🔧 ULTRA SYNC SESSION AUTO RECOVERY: セッション自動復旧システム初期化
+_session_auto_recovery = None
+try:
+    from session_auto_recovery import SessionAutoRecoverySystem, init_session_auto_recovery, session_auto_recovery_decorator, global_auto_recovery_system
+    _session_auto_recovery = init_session_auto_recovery(app=None)  # app は後で設定
+    logger.info("🔧 Session Auto Recovery System 初期化完了")
+except ImportError as e:
+    logger.warning(f"⚠️ Session Auto Recovery System が見つかりません: {e}")
+    _session_auto_recovery = None
+    
+    # フォールバックデコレータ定義
+    def session_auto_recovery_decorator(recovery_system=None):
+        def decorator(func):
+            return func
+        return decorator
+
+# 📊 ULTRA SYNC PERFORMANCE FIX: Performance Optimizer 遅延初期化（logger初期化後）
+_performance_optimizer = None
+try:
+    from ultra_sync_performance_optimization import UltraSyncPerformanceOptimizer, performance_timing_decorator as _performance_timing_decorator
+    _performance_optimizer = UltraSyncPerformanceOptimizer()
+    performance_timing_decorator = _performance_timing_decorator
+    logger.info("📊 Ultra Sync Performance Optimizer 初期化完了")
+except ImportError as e:
+    logger.warning(f"⚠️ Ultra Sync Performance Optimizer が見つかりません - 基本機能のみ動作: {e}")
+    _performance_optimizer = None
+    # デコレーターはデフォルトのままで使用
+
+# 🛡️ ULTRA SYNC ERROR LOOP PREVENTION: エラーページ無限ループ防止システム初期化
+_error_loop_prevention = None
+try:
+    from ultra_sync_error_loop_prevention import UltraSyncErrorLoopPrevention, get_error_loop_prevention, register_flask_error_handlers
+    _error_loop_prevention = get_error_loop_prevention()
+    logger.info("🛡️ Ultra Sync Error Loop Prevention System 初期化完了")
+except ImportError as e:
+    logger.warning(f"⚠️ Ultra Sync Error Loop Prevention System が見つかりません: {e}")
+    _error_loop_prevention = None
 
 # Flask アプリケーション初期化
 app = Flask(__name__)
@@ -118,9 +364,63 @@ app = Flask(__name__)
 # 設定適用（改善版）
 app.config.from_object(Config)
 
-# セッション設定を明示的に追加
-app.config['SESSION_PERMANENT'] = False
-app.config['SESSION_USE_SIGNER'] = True
+# 🛡️ ULTRA SYNC CONFIG LOADING ORDER:
+# 1. Config class settings loaded above (config.py)
+# 2. Additional dynamic settings applied below
+# 3. Debug settings applied conditionally
+# 注意: config.py の設定が優先され、ここでの設定は上書きまたは追加のみ
+
+# 🔥 ULTRA SYNC SESSION ENHANCEMENT: セッションタイムアウト強化システム初期化
+from session_timeout_enhancement import init_session_timeout
+session_timeout_manager = init_session_timeout(app)
+
+# 🔥 ULTRA SYNC CRITICAL FIX: セッション継続性完全修復
+# config.pyの設定に統一 - 重複設定削除でセッション継続性確保
+# 🛡️ REMOVED (now in config.py): app.config['SESSION_PERMANENT'] = True  # セッション永続化を有効
+# 🛡️ REMOVED (now in config.py): app.config['SESSION_USE_SIGNER'] = True
+# セッションクッキー設定はconfig.pyに一元化（重複削除）
+
+# 🔥 ULTRA SYNC DEBUG: セッション状態詳細ログ
+# 🛡️ ULTRA SYNC DEBUG: セッション状態詳細ログ（条件付き）
+if os.environ.get('FLASK_ENV') == 'development' or os.environ.get('DEBUG_SESSION'):
+    app.config['SESSION_DEBUG'] = True
+
+# 🔍 ULTRA SYNC MEMORY LEAK MONITOR: メモリリーク監視システム統合
+if _memory_leak_monitor:
+    try:
+        from memory_leak_monitor import register_memory_monitoring_routes
+        register_memory_monitoring_routes(app)
+        logger.info("🔍 Memory Leak Monitoring routes registered successfully")
+    except Exception as e:
+        logger.error(f"❌ Failed to register memory monitoring routes: {e}")
+
+# 🔧 ULTRA SYNC SESSION AUTO RECOVERY: セッション自動復旧システム統合
+if _session_auto_recovery:
+    try:
+        from session_auto_recovery import register_auto_recovery_routes
+        register_auto_recovery_routes(app)
+        logger.info("🔧 Session Auto Recovery routes registered successfully")
+    except Exception as e:
+        logger.error(f"❌ Failed to register session auto recovery routes: {e}")
+
+# 🛡️ ULTRA SYNC ERROR LOOP PREVENTION: 統合エラーハンドラー登録
+if _error_loop_prevention:
+    try:
+        register_flask_error_handlers(app)
+        logger.info("🛡️ Ultra Sync unified error handlers registered successfully")
+    except Exception as e:
+        logger.error(f"❌ Failed to register unified error handlers: {e}")
+else:
+    # フォールバック: 基本エラーハンドラー
+    @app.errorhandler(404)
+    def basic_404_handler(e):
+        logger.warning(f"404エラー (フォールバック): {request.url}")
+        return "ページが見つかりません", 404
+    
+    @app.errorhandler(500) 
+    def basic_500_handler(e):
+        logger.error(f"500エラー (フォールバック): {str(e)}")
+        return "内部サーバーエラーが発生しました", 500
 
 # 企業環境最適化: 遅延初期化で重複読み込み防止
 data_manager = None
@@ -128,25 +428,59 @@ session_data_manager = None
 enterprise_user_manager = None
 enterprise_data_manager = None
 
-# 🔥 CRITICAL FIX: 部門名マッピング（重複排除・グローバル定数化）
+# 🚀 ULTRA SYNC ROOT FIX: 一意部門マッピング（重複排除・根本修正）
+# 重大な設計欠陥修正：同一カテゴリへの重複マッピングを完全排除
 DEPARTMENT_TO_CATEGORY_MAPPING = {
+    # 4-2専門科目：12部門すべて対応（一意マッピング）
     'road': '道路',
-    'tunnel': 'トンネル',
-    'civil_planning': '河川、砂防及び海岸・海洋',
-    'urban_planning': '都市計画及び地方計画',
+    'tunnel': 'トンネル', 
+    'river': '河川、砂防及び海岸・海洋',
+    'urban': '都市計画及び地方計画',
     'landscape': '造園',
     'construction_env': '建設環境',
     'steel_concrete': '鋼構造及びコンクリート',
-    'soil_foundation': '土質及び基礎',
+    'soil': '土質及び基礎',
     'construction_planning': '施工計画、施工設備及び積算',
     'water_supply': '上水道及び工業用水道',
     'forestry': '森林土木',
     'agriculture': '農業土木',
-    'common': '共通'  # 4-1.csv（基礎科目）対応
+    # 4-1基礎科目
+    'basic': '共通'
 }
 
-# カテゴリ名から部門IDへの逆マッピング（日本語→英語）
+# 🚀 ULTRA SYNC: 旧名称互換マッピング（別管理）
+LEGACY_DEPARTMENT_ALIASES = {
+    'civil_planning': 'river',      # 旧名称→新名称
+    'urban_planning': 'urban',      # 旧名称→新名称  
+    'soil_foundation': 'soil',      # 旧名称→新名称
+    'common': 'basic'               # 旧名称→新名称
+}
+
+# 🚀 ULTRA SYNC: 正規化された一意逆マッピング
 CATEGORY_TO_DEPARTMENT_MAPPING = {v: k for k, v in DEPARTMENT_TO_CATEGORY_MAPPING.items()}
+
+def normalize_department_name(department_name):
+    """🚀 ULTRA SYNC: 部門名正規化（旧名称互換性保持）"""
+    if not department_name:
+        return None
+    
+    # 既に正規化済みの場合
+    if department_name in DEPARTMENT_TO_CATEGORY_MAPPING:
+        return department_name
+    
+    # 旧名称の場合は新名称に変換
+    if department_name in LEGACY_DEPARTMENT_ALIASES:
+        return LEGACY_DEPARTMENT_ALIASES[department_name]
+    
+    # 不明な部門名
+    return None
+
+def get_department_category(department_name):
+    """🚀 ULTRA SYNC: 安全な部門→カテゴリ変換"""
+    normalized = normalize_department_name(department_name)
+    if normalized:
+        return DEPARTMENT_TO_CATEGORY_MAPPING.get(normalized)
+    return None
 
 # 問題データのキャッシュ
 _questions_cache = None
@@ -167,11 +501,18 @@ def cleanup_session_data(session):
         # 不要なキーのリスト
         cleanup_keys = []
         
-        # 古い履歴データのクリーンアップ（最新100件のみ保持）
-        history = session.get('history', [])
-        if isinstance(history, list) and len(history) > 100:
-            session['history'] = history[-100:]  # 最新100件のみ
-            logger.debug(f"履歴データクリーンアップ: {len(history)} → 100件")
+        # 🔍 ULTRA SYNC MEMORY FIX: 積極的セッション最適化
+        if _memory_optimizer:
+            # ウルトラシンクメモリ最適化実行
+            cleanup_count = _memory_optimizer.aggressive_session_cleanup(session)
+            if cleanup_count > 0:
+                logger.info(f"🔍 ウルトラシンク最適化: {cleanup_count}項目クリーンアップ")
+        else:
+            # フォールバック: 従来の履歴データクリーンアップ
+            history = session.get('history', [])
+            if isinstance(history, list) and len(history) > 100:
+                session['history'] = history[-100:]  # 最新100件のみ
+                logger.debug(f"履歴データクリーンアップ: {len(history)} → 100件")
         
         # 一時的なキーのクリーンアップ
         temp_keys = [
@@ -185,16 +526,16 @@ def cleanup_session_data(session):
         # 古いセッション状態のクリーンアップ
         session_keys = list(session.keys())
         for key in session_keys:
-            # 30日以上古いタイムスタンプ付きキーを削除
+            # 🔥 ULTRA SYNC TIMEZONE FIX: 30日以上古いタイムスタンプ付きキーをUTC基準で削除
             if 'timestamp' in key and isinstance(session.get(key), str):
                 try:
-                    from datetime import datetime, timedelta
                     timestamp_str = session[key]
-                    timestamp = datetime.fromisoformat(timestamp_str.replace('Z', '+00:00'))
-                    if datetime.now() - timestamp > timedelta(days=30):
+                    timestamp = parse_iso_with_timezone(timestamp_str)
+                    if get_utc_now() - timestamp > timedelta(days=30):
                         cleanup_keys.append(key)
-                except:
-                    pass
+                except (ValueError, TypeError, AttributeError) as e:
+                    # 🔥 ULTRA SYNC FIX: サイレントエラー改善 - 不正な日付データをログ記録
+                    logger.warning(f"セッションクリーンアップ: 不正な日付データをスキップ - {key}: {e}")
         
         # クリーンアップ実行
         for key in cleanup_keys:
@@ -234,6 +575,16 @@ def preload_startup_data():
                 validated_questions = validate_question_data_integrity(questions)
                 _questions_cache = validated_questions
                 _cache_timestamp = time.time()
+                
+                # 📊 ULTRA SYNC PERFORMANCE FIX: 高性能インデックス構築
+                if _performance_optimizer:
+                    try:
+                        logger.info("📊 高性能インデックス構築開始...")
+                        _performance_optimizer.build_high_performance_indexes(validated_questions)
+                        logger.info("✅ 高性能インデックス構築完了 - O(1)検索が利用可能")
+                    except Exception as pe:
+                        logger.warning(f"⚠️ 高性能インデックス構築エラー（継続可能）: {pe}")
+                
                 _startup_data_loaded = True
                 logger.info(f"✅ 事前データ読み込み完了: {len(validated_questions)}問（キャッシュ済み）")
             else:
@@ -247,6 +598,16 @@ def preload_startup_data():
                 
                 _questions_cache = questions
                 _cache_timestamp = time.time()
+                
+                # 📊 ULTRA SYNC PERFORMANCE FIX: 高性能インデックス構築（フォールバック）
+                if _performance_optimizer:
+                    try:
+                        logger.info("📊 高性能インデックス構築開始（フォールバック）...")
+                        _performance_optimizer.build_high_performance_indexes(questions)
+                        logger.info("✅ 高性能インデックス構築完了（フォールバック）")
+                    except Exception as pe:
+                        logger.warning(f"⚠️ 高性能インデックス構築エラー（継続可能）: {pe}")
+                
                 _startup_data_loaded = True
                 logger.info(f"✅ フォールバック読み込み完了: {len(questions)}問（レガシー）")
                 
@@ -296,29 +657,7 @@ def ensure_modules_loaded():
                 elapsed = time.time() - start_time
                 logger.info(f"✅ モジュール遅延読み込み完了: {elapsed:.2f}秒")
 
-# 🔥 CRITICAL: セッション安全性確保のための排他制御関数
-
-
-def get_session_lock(user_id):
-    """🔥 ULTRA SYNC FIX: ユーザー固有のセッションロックを取得（競合状態解決・メモリリーク対策強化版）"""
-    if not user_id:
-        user_id = 'default_user'
-
-    # より積極的なクリーンアップ実行（メモリリーク防止強化）
-    if len(session_locks) > 50:  # 閾値を下げて頻繁にクリーンアップ
-        cleanup_old_locks()
-
-    with lock_cleanup_lock:
-        # ダブルチェック方式で競合状態を回避
-        if user_id not in session_locks:
-            # 新しいロック作成前に再度チェック
-            if user_id not in session_locks:
-                session_locks[user_id] = threading.RLock()
-                logger.info(f"🔒 新規セッションロック作成: {user_id}")
-
-        # 最終使用時刻を更新（原子的操作）
-        lock_last_used[user_id] = time.time()
-        return session_locks[user_id]
+# 🔥 ULTRA SYNC FIX: 重複関数削除済み - get_session_lock関数は271行目で定義済み
 
 
 def cleanup_old_locks():
@@ -352,6 +691,60 @@ def cleanup_old_locks():
 def generate_unique_session_id():
     """一意なセッションIDを生成"""
     return f"{uuid.uuid4().hex[:8]}_{int(time.time())}"
+
+
+def log_session_state(action, session_data=None):
+    """セッション状態の詳細ログ出力"""
+    try:
+        if session_data is None:
+            session_data = session
+        
+        exam_ids = session_data.get('exam_question_ids', [])
+        current = session_data.get('exam_current', 0)
+        category = session_data.get('exam_category', 'unknown')
+        
+        logger.info(f"📊 セッション状態 ({action}): "
+                   f"問題数={len(exam_ids) if isinstance(exam_ids, list) else 'invalid'}, "
+                   f"現在位置={current}, カテゴリ={category}")
+        
+        if isinstance(exam_ids, list) and len(exam_ids) == 0:
+            logger.warning("⚠️ exam_question_ids が空です - セッション初期化が必要")
+            
+    except Exception as e:
+        logger.error(f"セッション状態ログエラー: {e}")
+
+
+def safe_file_operation(operation, file_path, content=None, mode='r'):
+    """安全なファイル操作（エラーハンドリング付き）"""
+    try:
+        if operation == 'write':
+            with open(file_path, mode, encoding='utf-8') as f:
+                if content:
+                    f.write(content)
+            logger.info(f"✅ ファイル書き込み成功: {file_path}")
+            return True
+        elif operation == 'read':
+            with open(file_path, mode, encoding='utf-8') as f:
+                content = f.read()
+            logger.debug(f"✅ ファイル読み込み成功: {file_path}")
+            return content
+        elif operation == 'exists':
+            import os
+            exists = os.path.exists(file_path)
+            logger.debug(f"📂 ファイル存在チェック: {file_path} = {exists}")
+            return exists
+    except FileNotFoundError:
+        logger.error(f"❌ ファイルが見つかりません: {file_path}")
+        return False
+    except PermissionError:
+        logger.error(f"❌ ファイルアクセス権限がありません: {file_path}")
+        return False
+    except OSError as e:
+        logger.error(f"❌ ファイル操作エラー: {file_path} - {e}")
+        return False
+    except Exception as e:
+        logger.error(f"❌ 予期しないファイル操作エラー: {file_path} - {e}")
+        return False
 
 
 def resolve_department_alias(department):
@@ -579,8 +972,6 @@ def calculate_next_review_date(correct_count, wrong_count, last_interval=1):
     Returns:
         次回復習日時と間隔（日数）
     """
-    from datetime import datetime, timedelta
-
     # 基本間隔設定（エビングハウスの忘却曲線ベース）
     base_intervals = [1, 3, 7, 14, 30, 90, 180, 365]  # 日数
 
@@ -594,8 +985,8 @@ def calculate_next_review_date(correct_count, wrong_count, last_interval=1):
     base_interval = base_intervals[mastery_level]
     adjusted_interval = max(1, int(base_interval * difficulty_factor))
 
-    # 次回復習日を計算
-    next_review = datetime.now() + timedelta(days=adjusted_interval)
+    # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準の次回復習日計算
+    next_review = get_utc_now() + timedelta(days=adjusted_interval)
 
     return next_review, adjusted_interval
 
@@ -627,11 +1018,12 @@ def update_advanced_srs_data(question_id, is_correct, session):
             'correct_count': 0,
             'wrong_count': 0,
             'total_attempts': 0,
-            'first_attempt': datetime.now().isoformat(),
-            'last_attempt': datetime.now().isoformat(),
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のタイムスタンプ記録
+            'first_attempt': format_utc_to_iso(),
+            'last_attempt': format_utc_to_iso(),
             'mastered': False,
             'difficulty_level': 5,  # 1-10 (1=易しい, 10=難しい)
-            'next_review': datetime.now().isoformat(),
+            'next_review': format_utc_to_iso(),
             'interval_days': 1
         }
 
@@ -671,7 +1063,8 @@ def update_advanced_srs_data(question_id, is_correct, session):
             question_data['wrong_count'],
             question_data['interval_days']
         )
-        question_data['next_review'] = next_review.isoformat()
+        # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準の次回復習日記録
+        question_data['next_review'] = format_utc_to_iso(next_review)
         question_data['interval_days'] = interval
 
     session['advanced_srs'] = srs_data
@@ -695,13 +1088,12 @@ def get_due_review_questions(session, max_count=50):
     Returns:
         復習が必要な問題IDのリスト（優先度順）
     """
-    from datetime import datetime
-
     if 'advanced_srs' not in session:
         return []
 
     srs_data = session['advanced_srs']
-    now = datetime.now()
+    # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準の現在時刻取得
+    now = get_utc_now()
     due_questions = []
 
     for qid, data in srs_data.items():
@@ -717,7 +1109,8 @@ def get_due_review_questions(session, max_count=50):
                 due_questions.append((qid, 100, data))
                 continue
 
-            next_review = datetime.fromisoformat(next_review_str)
+            # 🔥 ULTRA SYNC TIMEZONE FIX: タイムゾーン対応の日時解析
+            next_review = parse_iso_with_timezone(next_review_str)
             if next_review <= now:
                 # 優先度を安全に計算（エラー処理付き）
                 try:
@@ -726,9 +1119,11 @@ def get_due_review_questions(session, max_count=50):
                     total_attempts = data.get('total_attempts', 1)
                     difficulty_level = data.get('difficulty_level', 5)
 
-                    wrong_ratio = wrong_count / max(1, total_attempts)
-                    priority = (wrong_ratio * 100) + days_overdue + float(difficulty_level)
-                    priority = max(1, min(999, priority))  # 1-999の範囲に制限
+                    # 🔥 ULTRA SYNC PRECISION FIX: 浮動小数点精度保証・デシマル計算
+                    wrong_ratio = Decimal(str(wrong_count)) / Decimal(str(max(1, total_attempts)))
+                    # 精度保証: 小数点以下2桁で計算
+                    priority_decimal = (wrong_ratio * Decimal('100')) + Decimal(str(days_overdue)) + Decimal(str(difficulty_level))
+                    priority = float(max(Decimal('1'), min(Decimal('999'), priority_decimal.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))))
 
                     due_questions.append((qid, priority, data))
                 except (TypeError, ValueError, AttributeError) as calc_error:
@@ -778,12 +1173,12 @@ def get_adaptive_review_list(session):
 
         # 🔥 CRITICAL FIX: 安全な数値計算（型エラー防止・精度保持）
         try:
-            # 安全な除算（ゼロ除算防止）
-            wrong_ratio = wrong_count / max(1, total_attempts)
-            # 重み = 間違い率 × 難易度レベル × 係数（精度保持）
-            weight_float = wrong_ratio * float(difficulty) * 2.0
-            # 最低1、最大20に制限して安全にint変換
-            weight = max(1, min(20, round(weight_float)))
+            # 🔥 ULTRA SYNC PRECISION FIX: 重み計算の精度保証（高精度計算のみ使用）
+            wrong_ratio_decimal = Decimal(str(wrong_count)) / Decimal(str(max(1, total_attempts)))
+            # 重み = 間違い率 × 難易度レベル × 係数（高精度計算）
+            weight_decimal = wrong_ratio_decimal * Decimal(str(difficulty)) * Decimal('2.0')
+            # 最低1、最大20に制限して精度保証でint変換
+            weight = int(max(1, min(20, weight_decimal.quantize(Decimal('1'), rounding=ROUND_HALF_UP))))
         except (TypeError, ValueError, ZeroDivisionError) as e:
             logger.warning(f"重み計算エラー（問題ID: {qid}）: {e}, デフォルト値1を使用")
             weight = 1
@@ -830,18 +1225,19 @@ def cleanup_mastered_questions(session):
 
 
 def validate_exam_parameters(**kwargs):
-    """問題パラメータの検証"""
-    valid_departments = list(RCCMConfig.DEPARTMENTS.keys())
-    # 日本語部門名のリストも作成
-    valid_department_names = [dept['name'] for dept in RCCMConfig.DEPARTMENTS.values()]
+    """🚀 ULTRA SYNC ROOT FIX: 正規化部門名による検証"""
+    # 🚀 ULTRA SYNC: 正規化された部門名のみ許可（重複排除済み）
+    valid_departments = list(DEPARTMENT_TO_CATEGORY_MAPPING.keys())
+    valid_legacy_departments = list(LEGACY_DEPARTMENT_ALIASES.keys())
     valid_question_types = ['basic', 'specialist', 'review']
     valid_years = list(range(2008, 2020))
 
     errors = []
 
-    # 部門検証（英語IDまたは日本語名の両方を許可）
+    # 🚀 ULTRA SYNC: 部門検証（正規化処理）
     if 'department' in kwargs and kwargs['department']:
-        if kwargs['department'] not in valid_departments and kwargs['department'] not in valid_department_names:
+        normalized_dept = normalize_department_name(kwargs['department'])
+        if not normalized_dept:
             errors.append(f"無効な部門: {kwargs['department']}")
 
     # 問題種別検証
@@ -1179,12 +1575,14 @@ def get_due_questions(user_session, all_questions):
         return []
 
     srs_data = user_session['srs_data']
-    today = datetime.now().date()
+    # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準の今日日付取得
+    today = get_utc_now().date()
     due_questions = []
 
     for question_id, data in srs_data.items():
         try:
-            next_review = datetime.fromisoformat(data['next_review']).date()
+            # 🔥 ULTRA SYNC TIMEZONE FIX: タイムゾーン対応の復習日解析
+            next_review = parse_iso_with_timezone(data['next_review']).date()
             if next_review <= today:
                 question = next((q for q in all_questions if str(q.get('id', 0)) == question_id), None)
                 if question:
@@ -1207,11 +1605,51 @@ def get_user_session_size(user_session):
     return quiz_settings.get('questions_per_session', 10)
 
 
+@performance_timing_decorator
 def get_mixed_questions(user_session, all_questions, requested_category='全体', session_size=None, department='', question_type='', year=None):
-    """新問題と復習問題をミックスした出題（RCCM部門対応版）"""
+    """新問題と復習問題をミックスした出題（RCCM部門対応版・📊 高性能最適化版）"""
     # ユーザー設定の問題数を取得（デフォルト10問）
     if session_size is None:
         session_size = get_user_session_size(user_session)
+    
+    # 📊 ULTRA SYNC PERFORMANCE FIX: 高性能オプティマイザーによる高速問題選択
+    if _performance_optimizer and _performance_optimizer.data_loaded:
+        try:
+            # 専門科目で部門・年度・問題種別が指定されている場合は高速処理を使用
+            if question_type == 'specialist' and department and year:
+                logger.info(f"📊 高性能問題選択開始: {department}/{year}年度/{question_type}")
+                
+                # 🚀 ULTRA SYNC: 正規化部門名による安全なカテゴリ変換
+                normalized_dept = normalize_department_name(department)
+                target_category = get_department_category(normalized_dept) if normalized_dept else None
+                
+                if not target_category:
+                    logger.error(f"❌ 無効な部門名: {department}")
+                    target_category = '全体'
+                
+                # 除外IDリスト作成
+                exclude_ids = []
+                if hasattr(user_session, 'get'):
+                    history = user_session.get('history', [])
+                    exclude_ids = [item.get('question_id') for item in history if item.get('question_id')]
+                
+                # 高速最適化問題選択
+                optimized_questions = _performance_optimizer.get_mixed_questions_optimized(
+                    department=target_category,
+                    question_type=question_type,
+                    year=int(year) if year else None,
+                    count=session_size,
+                    exclude_ids=exclude_ids
+                )
+                
+                if optimized_questions and len(optimized_questions) >= min(session_size, 3):
+                    logger.info(f"✅ 高性能問題選択成功: {len(optimized_questions)}問選択")
+                    return optimized_questions
+                else:
+                    logger.info("📊 高性能問題選択：問題数不足、フォールバック実行")
+            
+        except Exception as pe:
+            logger.warning(f"⚠️ 高性能問題選択エラー（フォールバック実行）: {pe}")
 
     due_questions = get_due_questions(user_session, all_questions)
 
@@ -1226,9 +1664,13 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
             break
 
         question = due_item['question']
-        # 部門・問題種別の条件チェック
-        if department and question.get('department') != department:
-            continue
+        # 🚀 ULTRA SYNC: 正規化部門名による条件チェック
+        if department:
+            normalized_dept = normalize_department_name(department)
+            question_category = question.get('category', '')
+            expected_category = get_department_category(normalized_dept) if normalized_dept else None
+            if expected_category and question_category != expected_category:
+                continue
         if question_type and question.get('question_type') != question_type:
             continue
         # 🚨 年度フィルタリング追加（ウルトラシンク修正）
@@ -1269,38 +1711,30 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
             available_questions = [q for q in available_questions if q.get('question_type') == question_type]
             logger.info(f"問題種別フィルタ適用: {question_type}, 結果: {len(available_questions)}問")
 
-        # 専門科目で部門指定がある場合のみ部門フィルタ適用
+        # 🚀 ULTRA SYNC: 専門科目で部門指定がある場合の正規化フィルタ適用
         if question_type == 'specialist' and department:
-            # 日本語部門名が渡された場合はそのまま使用（URLエンコードされた日本語）
-            # 英語IDが渡された場合は日本語カテゴリに変換
-            target_category = department  # デフォルトは渡された値をそのまま使用
-
-            # 渡されたdepartmentが英語IDの場合のみ変換（グローバル定数使用）
-            if department in DEPARTMENT_TO_CATEGORY_MAPPING:
-                target_category = DEPARTMENT_TO_CATEGORY_MAPPING[department]
-                logger.info(f"部門フィルタリング: 英語ID {department} → 日本語カテゴリ {target_category}")
-            else:
-                # 日本語部門名の場合はそのまま使用
-                logger.info(f"部門フィルタリング: 日本語部門名 {department} をそのまま使用")
-
-            # 日本語カテゴリでマッチング（category フィールドを使用）
-            # ✅ CSVファイル統一化により簡素化されたマッチング
+            # 🚀 ULTRA SYNC: 正規化部門名による安全な変換
+            normalized_dept = normalize_department_name(department)
+            target_category = get_department_category(normalized_dept) if normalized_dept else None
             
-            # デバッグ：利用可能な全カテゴリをログ出力
-            all_categories = list(set(q.get('category', 'なし') for q in available_questions))
-            logger.info(f"専門科目フィルタ前のカテゴリ一覧: {all_categories}")
-            
-            dept_match_questions = [q for q in available_questions
-                                    if q.get('category') == target_category]
-            if dept_match_questions:
-                available_questions = dept_match_questions
-                logger.info(f"専門科目部門マッチング成功: カテゴリ「{target_category}」で {len(available_questions)}問")
+            if not target_category:
+                logger.error(f"❌ 無効な部門名: {department}")
+                available_questions = []  # 無効な部門の場合は空にする
             else:
-                logger.warning(f"専門科目部門マッチング失敗: カテゴリ「{target_category}」に該当する問題が見つかりません")
-                # デバッグ：カテゴリの部分一致を確認
-                partial_matches = [q for q in available_questions if target_category in q.get('category', '')]
-                if partial_matches:
-                    logger.warning(f"部分一致する問題は {len(partial_matches)}問 見つかりました")
+                logger.info(f"🚀 ULTRA SYNC部門フィルタリング: {department} → {normalized_dept} → {target_category}")
+                
+                # デバッグ：利用可能な全カテゴリをログ出力
+                all_categories = list(set(q.get('category', 'なし') for q in available_questions))
+                logger.info(f"専門科目フィルタ前のカテゴリ一覧: {all_categories}")
+                
+                dept_match_questions = [q for q in available_questions
+                                        if q.get('category') == target_category]
+                if dept_match_questions:
+                    available_questions = dept_match_questions
+                    logger.info(f"✅ 専門科目部門マッチング成功: カテゴリ「{target_category}」で {len(available_questions)}問")
+                else:
+                    logger.error(f"❌ 専門科目部門マッチング失敗: カテゴリ「{target_category}」に該当する問題が見つかりません")
+                    available_questions = []
 
     # 部門でフィルタリング（基礎科目の場合はスキップ、専門科目で既に適用済みの場合もスキップ）
     elif department and question_type != 'basic' and question_type != 'specialist':
@@ -1367,6 +1801,58 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
             for q in selected_questions:
                 if str(q.get('year', '')) != str(year):
                     logger.error(f"   問題ID {q.get('id')}: 期待年度={year}, 実際年度={q.get('year')}")
+    
+    # 🧪 ULTRA SYNC MANUAL TEST SUPPORT: 手動テスト支援ログ（副作用ゼロ）
+    if question_type == 'specialist' and department and year:
+        # 手動テスト者向けの詳細品質確認ログ
+        logger.info("=" * 60)
+        logger.info(f"🧪 MANUAL TEST QUALITY CHECK - {department}/{year}年度")
+        logger.info("=" * 60)
+        logger.info(f"📋 テスト条件: 部門={department}, 年度={year}, 問題種別={question_type}")
+        logger.info(f"📊 選択問題数: {len(selected_questions)}問 (目標: {session_size}問)")
+        
+        # 年度統一性確認
+        if selected_questions:
+            actual_years = [str(q.get('year', '不明')) for q in selected_questions]
+            unique_years = list(set(actual_years))
+            if len(unique_years) == 1 and unique_years[0] == str(year):
+                logger.info(f"✅ 年度統一性: 完全 - 全{len(selected_questions)}問が{year}年度")
+            else:
+                logger.error(f"❌ 年度統一性: 失敗 - 混在年度: {unique_years}")
+        
+        # 部門統一性確認
+        if selected_questions:
+            target_category = department
+            if department in DEPARTMENT_TO_CATEGORY_MAPPING:
+                target_category = DEPARTMENT_TO_CATEGORY_MAPPING[department]
+            
+            actual_categories = [q.get('category', '不明') for q in selected_questions]
+            unique_categories = list(set(actual_categories))
+            if len(unique_categories) == 1 and unique_categories[0] == target_category:
+                logger.info(f"✅ 部門統一性: 完全 - 全{len(selected_questions)}問が「{target_category}」")
+            else:
+                logger.error(f"❌ 部門統一性: 失敗 - 混在カテゴリ: {unique_categories}")
+        
+        # 問題ID重複チェック
+        if selected_questions:
+            question_ids = [str(q.get('id', '')) for q in selected_questions]
+            unique_ids = list(set(question_ids))
+            if len(question_ids) == len(unique_ids):
+                logger.info(f"✅ 問題ID重複: なし - {len(unique_ids)}問すべて一意")
+            else:
+                duplicated_count = len(question_ids) - len(unique_ids)
+                logger.error(f"❌ 問題ID重複: 検出 - {duplicated_count}個の重複")
+        
+        # パフォーマンス最適化効果確認
+        if _performance_optimizer and _performance_optimizer.data_loaded:
+            perf_stats = _performance_optimizer.get_performance_stats()
+            avg_response = perf_stats.get('average_response_time', 0)
+            cache_hit_rate = perf_stats.get('cache_hit_rate', 0)
+            logger.info(f"⚡ パフォーマンス: レスポンス{avg_response:.1f}ms, キャッシュ{cache_hit_rate:.1f}%")
+        
+        logger.info("=" * 60)
+        logger.info("🧪 手動テスト支援ログ完了 - ブラウザで動作確認してください")
+        logger.info("=" * 60)
 
     # ユーザー設定問題数保証のためのフォールバック機能
     if len(selected_questions) < session_size:
@@ -1445,29 +1931,55 @@ def before_request():
     if random.randint(1, 100) <= 10:  # 10%の確率でセッションクリーンアップ
         cleanup_session_data(session)
 
-    # セッションタイムアウトチェック
+    # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のセッションタイムアウトチェック（根本修正）
     if 'last_activity' in session:
-        last_activity = datetime.fromisoformat(session['last_activity'])
-        if datetime.now() - last_activity > timedelta(hours=8):  # 8時間でタイムアウト
-            session.clear()
-            logger.info("セッションタイムアウトによりクリア")
+        last_activity = parse_iso_with_timezone(session['last_activity'])
+        if get_utc_now() - last_activity > timedelta(hours=8):  # 8時間でタイムアウト
+            # 🔥 CRITICAL FIX: session.clear()を削除 - セッション維持のため
+            # 必要最小限のクリーンアップのみ実行
+            session.pop('exam_question_ids', None)
+            session.pop('exam_current', None)
+            session.pop('history', None)
+            session.modified = True
+            logger.info("セッションタイムアウト: 試験データのみクリア（セッション保持）")
 
-    # 最終アクティビティ時間を更新
-    session['last_activity'] = datetime.now().isoformat()
+    # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準の最終アクティビティ時間更新
+    session['last_activity'] = format_utc_to_iso()
 
     # セッションIDの取得（簡素化）
     if 'session_id' not in session:
         session['session_id'] = os.urandom(16).hex()
 
-    # データロード済みフラグの確認（競合回避）
-    if 'data_loaded' not in session:
-        # 軽量化: 基本的なセッション初期化のみ
+    # 🔥 ULTRA SYNC CRITICAL FIX: セッション継続性確保のための根本修正
+    # data_loadedフラグの永続化確認（Flask sessionの永続化問題対応）
+    session_id = session.get('session_id', 'unknown')
+    existing_exam_ids = session.get('exam_question_ids', [])
+    data_was_loaded = session.get('data_loaded', False)
+    
+    logger.info(f"🔍 セッション状態チェック: session_id={session_id}, data_loaded={data_was_loaded}, exam_ids_count={len(existing_exam_ids)}")
+    
+    # セッション初期化判定の厳格化
+    if not data_was_loaded or len(existing_exam_ids) == 0:
+        # 🔥 CRITICAL: 毎回初期化されている問題の根本対策
         session['data_loaded'] = True
-        session['exam_question_ids'] = []
-        safe_session_update('exam_current', 0)
-        safe_session_update('history', [])
-        safe_session_update('bookmarks', [])
-        safe_session_update('srs_data', {})
+        session.permanent = True  # 明示的なセッション永続化
+        
+        if 'exam_question_ids' not in session or len(session.get('exam_question_ids', [])) == 0:
+            session['exam_question_ids'] = []
+            logger.warning(f"🚨 セッション初期化実行: session_id={session_id} - 継続性確保のため新規初期化")
+        else:
+            logger.info(f"✅ セッション継続: exam_question_ids を保持 ({len(session.get('exam_question_ids', []))}問)")
+    else:
+        logger.info(f"✅ セッション継続確認: data_loaded={data_was_loaded}, exam_ids={len(existing_exam_ids)}問")
+        
+        if 'exam_current' not in session:
+            safe_session_update('exam_current', 0)
+        if 'history' not in session:
+            safe_session_update('history', [])
+        if 'bookmarks' not in session:
+            safe_session_update('bookmarks', [])
+        if 'srs_data' not in session:
+            safe_session_update('srs_data', {})
 
     # セッション整合性チェック
     _validate_session_integrity()
@@ -1511,10 +2023,12 @@ def after_request_data_save(response):
 @app.route('/health')
 def health():
     """ヘルスチェック（高速）"""
-    return jsonify({'status': 'healthy', 'timestamp': datetime.now().isoformat()})
+    # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のヘルスチェックタイムスタンプ
+    return jsonify({'status': 'healthy', 'timestamp': format_utc_to_iso()})
 
 
 @app.route('/')
+@session_auto_recovery_decorator(_session_auto_recovery)
 def index():
     """ホーム画面（ユーザー識別対応）"""
     try:
@@ -1589,9 +2103,9 @@ def set_user():
         session['session_id'] = unique_session_id   # セッション識別用
         session['login_time'] = datetime.now().isoformat()
 
-        logger.info(f"🔒 セッション安全性確保: {user_name} (セッションID: {unique_session_id}, ユーザーID: {session_aware_user_id})")
+        logger.info(f"🔒 セッション安全性確保: {user_name} (セッションID: {unique_session_id[:8]}...)")
 
-        logger.info(f"ユーザー設定完了: {user_name} (ID: {session['user_id']})")
+        logger.info(f"ユーザー設定完了: {user_name}")
         return redirect(url_for('index'))
 
     except Exception as e:
@@ -1629,6 +2143,8 @@ def force_refresh():
 
 
 @app.route('/exam', methods=['GET', 'POST'])
+@session_auto_recovery_decorator(_session_auto_recovery)
+@memory_monitoring_decorator(_memory_leak_monitor)
 def exam():
     """SRS対応の問題関数（統合版）"""
     try:
@@ -1660,8 +2176,16 @@ def exam():
 
                 if not exam_ids:
                     # 🔥 CRITICAL: 専門科目開始時など、最初のPOSTではexam_idsが空の場合がある
-                    # この場合はGETリクエストの処理に移行する
+                    # この場合は新規セッションとして初期化する
                     logger.info("exam_question_ids が空 - 新規セッション開始として処理")
+                    log_session_state("初期化前")
+                    # セッションをクリーンな状態に初期化
+                    session.pop('exam_question_ids', None)
+                    session.pop('exam_current', None) 
+                    session.pop('exam_category', None)
+                    session.modified = True
+                    log_session_state("初期化後")
+                    logger.info("✅ セッション初期化完了 - 新規セッション状態に設定")
 
             except (ValueError, TypeError) as e:
                 # 修復不可能な場合のみリセット
@@ -1691,13 +2215,14 @@ def exam():
         if request.method == 'POST':
             # デバッグ: POST処理時のセッション状態を完全ログ出力
             logger.info("=== POST処理開始 - セッション状態デバッグ ===")
-            logger.info(f"セッションキー: {list(session.keys())}")
-            logger.info(f"exam_question_ids: {session.get('exam_question_ids', 'MISSING')}")
+            # 🔥 ULTRA SYNC セキュリティ FIX: 機密情報を含まない安全なログ出力
+            logger.info(f"セッションキー数: {len(session.keys())}")
+            logger.info(f"exam_question_ids数: {len(session.get('exam_question_ids', []))}")
             logger.info(f"exam_current: {session.get('exam_current', 'MISSING')}")
             logger.info(f"exam_category: {session.get('exam_category', 'MISSING')}")
             logger.info(f"selected_question_type: {session.get('selected_question_type', 'MISSING')}")
             logger.info(f"selected_department: {session.get('selected_department', 'MISSING')}")
-            logger.info(f"session_id: {session.get('session_id', 'MISSING')}")
+            logger.info(f"session_id存在: {'Yes' if session.get('session_id') else 'No'}")
             logger.info(f"data_loaded: {session.get('data_loaded', 'MISSING')}")
             logger.info("==========================================")
 
@@ -1832,7 +2357,9 @@ def exam():
                 else:
                     logger.info(f"❌ 不正解: 問題ID {qid} は既に復習リストに存在")
 
-            logger.info(f"復習リスト処理後: bookmarks={session.get('bookmarks', [])}")
+            # 🔥 ULTRA SYNC セキュリティ FIX: 復習リスト件数のみログ出力
+            bookmarks = session.get('bookmarks', [])
+            logger.info(f"復習リスト処理後: bookmark数={len(bookmarks) if isinstance(bookmarks, list) else 'dict形式'}")
 
             # マスター済み問題の一括クリーンアップ
             cleanup_mastered_questions(session)
@@ -1856,22 +2383,30 @@ def exam():
                 'is_correct': is_correct,
                 'user_answer': answer,
                 'correct_answer': question.get('correct_answer', ''),
-                'date': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準の履歴タイムスタンプ
+                'date': get_user_local_time(get_utc_now(), 'Asia/Tokyo').strftime('%Y-%m-%d %H:%M:%S'),
                 'elapsed': float(elapsed),
                 'srs_level': srs_info.get('difficulty_level', 5),
                 'is_review': srs_info['total_attempts'] > 1,
                 'difficulty': question.get('difficulty', '標準')
             }
 
-            # セッション履歴の保存（競合回避）
-            # 一時的に履歴をローカル変数に保存
+            # 🔥 ULTRA SYNC FIX: セッション履歴の無制限蓄積対策（上限設定）
             current_history = session.get('history', [])
             current_history.append(history_item)
+            
+            # 履歴上限設定: 1000問に制限（メモリリーク防止）
+            MAX_HISTORY_SIZE = 1000
+            if len(current_history) > MAX_HISTORY_SIZE:
+                # 古い履歴を削除（FIFO方式）
+                current_history = current_history[-MAX_HISTORY_SIZE:]
+                logger.info(f"履歴上限到達: {MAX_HISTORY_SIZE}問に制限（古い履歴を削除）")
 
             # 一括でセッションを更新
             session_updates = {
                 'history': current_history,
-                'last_history_update': datetime.now().isoformat()
+                # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準の履歴更新タイムスタンプ
+                'last_history_update': format_utc_to_iso()
             }
 
             for key, value in session_updates.items():
@@ -2418,7 +2953,12 @@ def exam():
                     
                     # 正解率の改善チェック
                     correct_count = sum(1 for h in previous_attempts if h.get('is_correct'))
-                    accuracy = (correct_count / len(previous_attempts)) * 100 if previous_attempts else 0
+                    # 🔥 ULTRA SYNC PRECISION FIX: パフォーマンス正答率計算の精度保証
+                    if previous_attempts:
+                        accuracy_decimal = (Decimal(str(correct_count)) / Decimal(str(len(previous_attempts)))) * Decimal('100')
+                        accuracy = float(accuracy_decimal.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
+                    else:
+                        accuracy = 0
                     
                     performance_comparison = {
                         'current_time': round(current_time, 1),
@@ -2480,12 +3020,20 @@ def exam():
             raw_department = request.args.get('department', session.get('selected_department', ''))
             raw_question_type = request.args.get('question_type', session.get('selected_question_type', ''))
 
-            # カテゴリパラメータの正規化（英語→日本語）
+            # 🔥 ULTRA SYNC FIX: カテゴリパラメータの正規化（英語→日本語）拡張版
             category_mapping = {
                 'all': '全体',
-                'overall': '全体',
+                'overall': '全体', 
                 'general': '全体',
-                '全体': '全体'  # 既に日本語の場合はそのまま
+                'category': '全体',  # 🔥 新規追加
+                'type': '全体',      # 🔥 新規追加
+                'class': '全体',     # 🔥 新規追加
+                'section': '全体',   # 🔥 新規追加
+                'field': '全体',     # 🔥 新規追加
+                'undefined': '全体', # 🔥 新規追加
+                'unknown': '全体',   # 🔥 新規追加
+                'null': '全体',      # 🔥 新規追加
+                '全体': '全体'       # 既に日本語の場合はそのまま
             }
 
             # URLデコード（日本語対応・強化版）
@@ -2497,16 +3045,22 @@ def exam():
                     if raw_category in category_mapping:
                         raw_category = category_mapping[raw_category]
                         logger.info(f"カテゴリ英語→日本語変換: {request.args.get('category')} → {raw_category}")
-                    # URLエンコードされている場合のみデコード
+                    # 🔥 ULTRA SYNC FIX: URLエンコードされている場合のみデコード（強化版）
                     elif '%' in str(raw_category) or any(ord(c) > 127 for c in str(raw_category)):
                         try:
+                            # UTF-8エンコーディング優先でデコード
                             raw_category = urllib.parse.unquote(raw_category, encoding='utf-8')
-                        except (UnicodeDecodeError, ValueError):
+                            logger.info(f"✅ UTF-8デコード成功: {raw_category}")
+                        except (UnicodeDecodeError, ValueError) as utf8_error:
+                            logger.warning(f"⚠️ UTF-8デコード失敗: {utf8_error}")
                             # UTF-8でダメな場合はShift_JISも試す
                             try:
                                 raw_category = urllib.parse.unquote(raw_category, encoding='shift_jis')
-                            except (UnicodeDecodeError, ValueError):
-                                raw_category = '全体'  # フォールバック
+                                logger.info(f"✅ Shift_JISデコード成功: {raw_category}")
+                            except (UnicodeDecodeError, ValueError) as sjis_error:
+                                logger.warning(f"⚠️ Shift_JISデコード失敗: {sjis_error}")
+                                raw_category = '全体'  # 🔥 安全なフォールバック
+                                logger.info(f"🔄 フォールバック適用: {raw_category}")
                     logger.info(f"カテゴリデコード結果: {raw_category}")
 
                 if raw_department:
@@ -2516,8 +3070,9 @@ def exam():
                         except (UnicodeDecodeError, ValueError):
                             try:
                                 raw_department = urllib.parse.unquote(raw_department, encoding='shift_jis')
-                            except (UnicodeDecodeError, ValueError):
-                                pass
+                            except (UnicodeDecodeError, ValueError) as e:
+                                # 🔥 ULTRA SYNC FIX: デコード失敗時の詳細ログ記録
+                                logger.warning(f"部門名URLデコード失敗: {raw_department} - {e}")
 
                 if raw_question_type:
                     if '%' in str(raw_question_type) or any(ord(c) > 127 for c in str(raw_question_type)):
@@ -2526,8 +3081,9 @@ def exam():
                         except (UnicodeDecodeError, ValueError):
                             try:
                                 raw_question_type = urllib.parse.unquote(raw_question_type, encoding='shift_jis')
-                            except (UnicodeDecodeError, ValueError):
-                                pass
+                            except (UnicodeDecodeError, ValueError) as e:
+                                # 🔥 ULTRA SYNC FIX: デコード失敗時の詳細ログ記録
+                                logger.warning(f"問題種別URLデコード失敗: {raw_question_type} - {e}")
             except Exception as e:
                 logger.warning(f"URLデコードエラー: {e}")
 
@@ -2581,6 +3137,15 @@ def exam():
         if requested_department and not requested_question_type:
             requested_question_type = 'specialist'
             logger.info(f"ULTRA SYNC: 部門指定により専門科目に自動設定 - {requested_department}")
+            
+        # 🔥 CRITICAL FIX: 部門指定時のカテゴリ自動設定（ウルトラシンク）
+        if requested_department and requested_category == '全体':
+            # 部門IDからカテゴリ日本語名を取得
+            if requested_department in DEPARTMENT_TO_CATEGORY_MAPPING:
+                requested_category = DEPARTMENT_TO_CATEGORY_MAPPING[requested_department]
+                logger.info(f"🚨 ULTRA SYNC: 部門指定によりカテゴリ自動設定 {requested_department} → {requested_category}")
+            else:
+                logger.warning(f"⚠️ 未知の部門ID: {requested_department}")
 
         # 年度パラメータの取得とサニタイズ
         requested_year = sanitize_input(request.args.get('year'))
@@ -2646,15 +3211,16 @@ def exam():
                 try:
                     url_current_no = int(url_current)
                     logger.info(f"参考URL current={url_current_no}, セッション使用={current_no}")
-                except ValueError:
-                    pass
+                except ValueError as e:
+                    # 🔥 ULTRA SYNC FIX: URL currentパラメータの不正値をログ記録
+                    logger.warning(f"不正なURL currentパラメータ: {url_current} - {e}")
         else:
             current_no = session.get('exam_current', 0)
         session_category = session.get('exam_category', '全体')
 
-        # デバッグログ
-        logger.info(f"GET処理: current_no={current_no}, exam_question_ids={exam_question_ids[:5] if exam_question_ids else []}, is_next={is_next_request}, total_ids={len(exam_question_ids)}")
-        logger.info(f"セッション詳細: session keys={list(session.keys())}, exam_current={session.get('exam_current', 'MISSING')}")
+        # 🔥 ULTRA SYNC セキュリティ FIX: 安全なGET処理ログ出力
+        logger.info(f"GET処理: current_no={current_no}, exam_question_ids数={len(exam_question_ids)}, is_next={is_next_request}")
+        logger.info(f"セッション詳細: session keys数={len(session.keys())}, exam_current={session.get('exam_current', 'MISSING')}")
         logger.info(f"問題種別情報: requested_question_type={requested_question_type}, session_question_type={session.get('selected_question_type')}, department={requested_department}")
         logger.info(f"カテゴリ情報: requested_category={requested_category}, session_category={session_category}")
 
@@ -2710,10 +3276,10 @@ def exam():
         # 🔥 ULTRA SYNC: セッション継続問題完全解決（副作用なし）
         # 次の問題への遷移要求の場合は、セッション情報を保持し続行
         if is_next_request:
-            logger.info(f"🔥 ULTRA SYNC: 次問題リクエスト検出 - セッション保持モード")
+            logger.info("🔥 ULTRA SYNC: 次問題リクエスト検出 - セッション保持モード")
             # 次問題リクエストの場合は一切のリセット処理をスキップ
             need_reset = False
-            logger.info(f"🔥 ULTRA SYNC: 次問題リクエストのためneed_reset=False強制設定")
+            logger.info("🔥 ULTRA SYNC: 次問題リクエストのためneed_reset=False強制設定")
         else:
             # 通常のリクエストの場合のみリセット判定を実行
             session_question_type = session.get('selected_question_type')
@@ -2891,10 +3457,10 @@ def result():
     try:
         history = session.get('history', [])
 
-        # デバッグ用：セッション内容を詳細出力
+        # 🔥 ULTRA SYNC セキュリティ FIX: 安全な結果画面ログ出力
         logger.info(f"結果画面: 履歴件数={len(history)}")
-        logger.info(f"セッションキー={list(session.keys())}")
-        logger.info(f"セッション内容(最初の5件): {dict(list(session.items())[:5])}")
+        logger.info(f"セッションキー数={len(session.keys())}")
+        logger.info(f"アクティブセッション確認: {'Active' if session.get('user_id') else 'Inactive'}")
 
         exam_question_ids = session.get('exam_question_ids', [])
         session_size = len(exam_question_ids) if exam_question_ids else ExamConfig.QUESTIONS_PER_SESSION
@@ -2961,6 +3527,8 @@ def result():
 
 
 @app.route('/statistics')
+@session_auto_recovery_decorator(_session_auto_recovery)
+@memory_monitoring_decorator(_memory_leak_monitor)
 def statistics():
     """統計画面"""
     try:
@@ -2977,8 +3545,16 @@ def statistics():
             total = len(history)
             correct = sum(1 for h in history if h['is_correct'])
             total_time = sum(h.get('elapsed', 0) for h in history)
-            overall_stats['total_accuracy'] = correct / total * 100 if total > 0 else 0.0
-            overall_stats['average_time_per_question'] = round(total_time / total, 1) if total > 0 else None
+            # 🔥 ULTRA SYNC PRECISION FIX: 統計計算の精度保証
+            if total > 0:
+                accuracy_decimal = (Decimal(str(correct)) / Decimal(str(total))) * Decimal('100')
+                overall_stats['total_accuracy'] = float(accuracy_decimal.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
+                
+                time_per_question_decimal = Decimal(str(total_time)) / Decimal(str(total))
+                overall_stats['average_time_per_question'] = float(time_per_question_decimal.quantize(Decimal('0.1'), rounding=ROUND_HALF_UP))
+            else:
+                overall_stats['total_accuracy'] = 0.0
+                overall_stats['average_time_per_question'] = None
 
         # 共通・専門別詳細
         basic_specialty_details = {
@@ -3004,7 +3580,12 @@ def statistics():
         for score_type in ['basic', 'specialty']:
             total = basic_specialty_details[score_type]['total_answered']
             correct = basic_specialty_details[score_type]['correct_count']
-            basic_specialty_details[score_type]['accuracy'] = (correct / total * 100) if total > 0 else 0.0
+            # 🔥 ULTRA SYNC PRECISION FIX: 共通・専門別正答率計算の精度保証
+            if total > 0:
+                accuracy_decimal = (Decimal(str(correct)) / Decimal(str(total))) * Decimal('100')
+                basic_specialty_details[score_type]['accuracy'] = float(accuracy_decimal.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
+            else:
+                basic_specialty_details[score_type]['accuracy'] = 0.0
 
         # 最近の履歴
         exam_history = history[-30:] if history else []
@@ -3732,7 +4313,8 @@ def srs_statistics():
             'error_data': 0
         }
 
-        today = datetime.now().date()
+        # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準の今日日付取得
+        today = get_utc_now().date()
         processed_data = {}
 
         # SRSデータの安全な処理
@@ -4273,9 +4855,12 @@ def review_questions():
                                     logger.debug(f"日付解析エラー（問題ID: {qid}）: {date_error}")
                                     overdue_bonus = 5  # デフォルト値
 
-                            # 弱点スコア計算（オーバーフロー防止）
-                            error_rate = min(1.0, wrong_count / total_attempts)
-                            weakness_score = min(1000, (error_rate * 100) + difficulty_level + overdue_bonus)
+                            # 🔥 ULTRA SYNC PRECISION FIX: 弱点スコア計算の精度保証（オーバーフロー防止）
+                            error_rate_decimal = Decimal(str(wrong_count)) / Decimal(str(total_attempts))
+                            # 🔥 ULTRA SYNC FIX: 未使用変数削除済み
+                            
+                            weakness_decimal = (error_rate_decimal * Decimal('100')) + Decimal(str(difficulty_level)) + Decimal(str(overdue_bonus))
+                            weakness_score = float(min(Decimal('1000'), weakness_decimal.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)))
 
                             review_questions_with_score.append({
                                 'question': question,
@@ -4611,6 +5196,47 @@ def debug_session():
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/debug/set_current', methods=['POST'])
+def debug_set_current():
+    """デバッグ用: exam_currentを直接設定（10問目テスト用）"""
+    try:
+        data = request.get_json()
+        if not data or 'exam_current' not in data:
+            return jsonify({'error': 'exam_current パラメータが必要です'}), 400
+        
+        new_current = data['exam_current']
+        if not isinstance(new_current, int) or new_current < 0:
+            return jsonify({'error': 'exam_current は0以上の整数である必要があります'}), 400
+        
+        # 現在のセッション状態を確認
+        exam_question_ids = session.get('exam_question_ids', [])
+        if not exam_question_ids:
+            return jsonify({'error': 'アクティブなセッションがありません。先に問題セッションを開始してください。'}), 400
+        
+        # 範囲チェック
+        if new_current >= len(exam_question_ids):
+            return jsonify({'error': f'exam_current は0から{len(exam_question_ids)-1}の範囲で指定してください'}), 400
+        
+        # セッション更新
+        old_current = session.get('exam_current', 0)
+        session['exam_current'] = new_current
+        session.modified = True
+        
+        logger.info(f"DEBUG: exam_current更新 {old_current} → {new_current}")
+        
+        return jsonify({
+            'success': True,
+            'old_current': old_current,
+            'new_current': new_current,
+            'total_questions': len(exam_question_ids),
+            'message': f'exam_current を {new_current} に設定しました（{new_current+1}問目）'
+        })
+        
+    except Exception as e:
+        logger.error(f"DEBUG: set_current エラー: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/achievements')
 def achievements():
     """達成バッジ・ゲーミフィケーション画面"""
@@ -4922,7 +5548,8 @@ def api_difficulty_status():
             'recommended_difficulty': learner_assessment['recommended_difficulty'],
             'department_factor': learner_assessment.get('department_factor', 1.0),
             'next_adjustment_threshold': learner_assessment.get('next_adjustment_threshold', 20),
-            'timestamp': datetime.now().isoformat()
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のAPIタイムスタンプ
+            'timestamp': format_utc_to_iso()
         })
 
     except Exception as e:
@@ -4974,7 +5601,8 @@ def api_realtime_learning_tracking():
         return jsonify({
             'success': True,
             'tracking_data': tracking_result,
-            'timestamp': datetime.now().isoformat()
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のAPIタイムスタンプ
+            'timestamp': format_utc_to_iso()
         })
 
     except Exception as e:
@@ -5038,7 +5666,8 @@ def api_optimal_schedule():
         return jsonify({
             'success': True,
             'recommendation': recommendation,
-            'generated_at': datetime.now().isoformat()
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基渖のレポート生成タイムスタンプ
+            'generated_at': format_utc_to_iso()
         })
 
     except Exception as e:
@@ -5059,7 +5688,8 @@ def api_ai_analysis():
             'analysis': analysis_result,
             'recommended_mode': recommended_mode,
             'department_filter': department_filter,
-            'timestamp': datetime.now().isoformat()
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のAPIタイムスタンプ
+            'timestamp': format_utc_to_iso()
         })
 
     except Exception as e:
@@ -5145,6 +5775,8 @@ def exam_simulator_page():
 
 
 @app.route('/start_exam/<exam_type>')
+@session_auto_recovery_decorator(_session_auto_recovery)
+@memory_monitoring_decorator(_memory_leak_monitor)
 def start_exam(exam_type):
     """試験開始"""
     try:
@@ -5211,6 +5843,7 @@ def exam_question():
 
 
 @app.route('/submit_exam_answer', methods=['POST'])
+@session_auto_recovery_decorator(_session_auto_recovery)
 def submit_exam_answer():
     """試験回答提出"""
     try:
@@ -5605,7 +6238,8 @@ def health_check():
         # アプリケーション健康状態チェック
         health_status = {
             'status': 'healthy',
-            'timestamp': datetime.now().isoformat(),
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のAPIタイムスタンプ
+            'timestamp': format_utc_to_iso(),
             'version': '2025 Enterprise Edition',
             'database': 'file-based',
             'checks': {
@@ -5664,48 +6298,720 @@ def health_check():
         return jsonify({
             'status': 'error',
             'message': str(e),
-            'timestamp': datetime.now().isoformat()
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のAPIタイムスタンプ
+            'timestamp': format_utc_to_iso()
         }), 500
 
 
-@app.errorhandler(404)
-def page_not_found(e):
-    logger.warning(f"404エラー: {request.url}")
-    # 静的ファイル（アイコン、sw.js等）の404エラーは警告レベルを下げる
-    if any(path in request.url for path in ['/static/icons/', '/sw.js', '/favicon.ico', '/icon-']):
-        logger.debug(f"静的ファイル404: {request.url}")
-        return '', 404  # 空のレスポンスを返す
-    return render_template('error.html', error="ページが見つかりません"), 404
-
-
-@app.errorhandler(403)
-def forbidden(e):
-    logger.warning(f"403エラー: {request.url}")
-    return render_template('error.html', error="アクセスが拒否されました"), 403
-
-
-@app.errorhandler(400)
-def bad_request(e):
-    logger.warning(f"400エラー: {request.url}")
-    return render_template('error.html', error="不正なリクエストです"), 400
-
-
-@app.errorhandler(405)
-def method_not_allowed(e):
-    """405 Method Not Allowed エラーハンドラー（CLAUDE.md準拠）"""
-    logger.warning(f"405エラー: {request.method} {request.url}")
-
-    # APIエンドポイントの場合はJSON形式で返す
-    if request.path.startswith('/api/'):
+@app.route('/api/system/file_handles')
+def api_file_handle_status():
+    """🔒 ファイルハンドル状況監視API（ウルトラシンク安全性監視）"""
+    try:
+        # アクティブファイルハンドル数取得
+        active_handles = get_active_file_handles()
+        
+        # システム制限値取得
+        import resource
+        try:
+            soft_limit, hard_limit = resource.getrlimit(resource.RLIMIT_NOFILE)
+        except:
+            soft_limit, hard_limit = 'unknown', 'unknown'
+        
+        # 使用率計算
+        if isinstance(soft_limit, int) and soft_limit > 0:
+            usage_percentage = (active_handles / soft_limit) * 100
+            status = 'healthy' if usage_percentage < 50 else 'warning' if usage_percentage < 80 else 'critical'
+        else:
+            usage_percentage = 0
+            status = 'healthy' if active_handles < 100 else 'warning'
+        
+        # ファイルハンドル統計
+        file_stats = {
+            'active_handles': active_handles,
+            'system_limits': {
+                'soft_limit': soft_limit,
+                'hard_limit': hard_limit
+            },
+            'usage_percentage': round(usage_percentage, 2),
+            'status': status,
+            'recommendations': []
+        }
+        
+        # 推奨事項
+        if active_handles > 50:
+            file_stats['recommendations'].append('大量のファイルハンドルが使用中です')
+        if usage_percentage > 70:
+            file_stats['recommendations'].append('システム制限に近づいています')
+        if status == 'healthy':
+            file_stats['recommendations'].append('ファイルハンドル使用量は正常範囲内です')
+        
+        return jsonify({
+            'success': True,
+            'file_handle_status': file_stats,
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のAPIタイムスタンプ
+            'timestamp': format_utc_to_iso()
+        })
+        
+    except Exception as e:
+        logger.error(f"ファイルハンドル状況API エラー: {e}")
         return jsonify({
             'success': False,
-            'error': 'Method Not Allowed',
-            'message': f'{request.method} メソッドは許可されていません',
-            'allowed_methods': e.valid_methods if hasattr(e, 'valid_methods') else None
-        }), 405
+            'error': str(e),
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のAPIタイムスタンプ
+            'timestamp': format_utc_to_iso()
+        }), 500
 
-    # 通常のページの場合はHTMLで返す
-    return render_template('error.html', error="許可されていないメソッドです"), 405
+
+@app.route('/api/system/memory_status')
+def api_memory_status():
+    """🔍 メモリ最適化状況監視API（ウルトラシンクメモリ監視）"""
+    try:
+        if _memory_optimizer:
+            # ウルトラシンク最適化統計取得
+            stats = _memory_optimizer.get_optimization_stats()
+            
+            # メモリ健康状態チェック
+            is_healthy = _memory_optimizer.memory_health_check()
+            
+            memory_status = {
+                'success': True,
+                'status': 'healthy' if is_healthy else 'warning',
+                'optimizer_enabled': True,
+                'stats': stats,
+                'recommendations': []
+            }
+            
+            # メモリ使用量に基づく推奨事項
+            current_memory = stats.get('current_memory_mb', 0)
+            if current_memory > 300:
+                memory_status['recommendations'].append({
+                    'type': 'memory_usage',
+                    'message': f'高メモリ使用量: {current_memory:.1f}MB - セッション最適化推奨',
+                    'action': 'セッションクリーンアップの頻度を上げてください'
+                })
+            
+            # キャッシュ統計
+            cache_stats = stats.get('cache_stats', {})
+            if cache_stats.get('estimated_memory_mb', 0) > 50:
+                memory_status['recommendations'].append({
+                    'type': 'cache_size',
+                    'message': 'キャッシュサイズが大きくなっています',
+                    'action': 'キャッシュクリーンアップを実行してください'
+                })
+            
+        else:
+            # フォールバック: 基本的なメモリ情報
+            try:
+                process = psutil.Process()
+                memory_mb = process.memory_info().rss / 1024 / 1024
+                memory_percent = psutil.virtual_memory().percent
+                
+                memory_status = {
+                    'success': True,
+                    'status': 'basic' if memory_mb < 500 else 'warning',
+                    'optimizer_enabled': False,
+                    'stats': {
+                        'current_memory_mb': round(memory_mb, 2),
+                        'system_memory_percent': round(memory_percent, 1),
+                        'message': 'Ultra Sync Memory Optimizer が利用できません'
+                    },
+                    'recommendations': [
+                        {
+                            'type': 'optimizer_missing',
+                            'message': 'Memory Optimizer が見つかりません',
+                            'action': 'ultra_sync_memory_leak_fix.py を確認してください'
+                        }
+                    ]
+                }
+                
+                if memory_mb > 500:
+                    memory_status['recommendations'].append({
+                        'type': 'high_memory',
+                        'message': f'高メモリ使用量: {memory_mb:.1f}MB',
+                        'action': 'アプリケーション再起動を検討してください'
+                    })
+                    
+            except Exception as e:
+                memory_status = {
+                    'success': False,
+                    'status': 'error',
+                    'optimizer_enabled': False,
+                    'error': str(e),
+                    'message': 'メモリ情報取得に失敗しました'
+                }
+        
+        # 🔍 ENHANCED: Memory Leak Monitor 統合データ追加
+        if _memory_leak_monitor:
+            try:
+                leak_monitor_status = _memory_leak_monitor.get_memory_status()
+                memory_status['memory_leak_monitor'] = {
+                    'enabled': True,
+                    'monitoring_active': leak_monitor_status.get('monitoring_active', False),
+                    'total_leaks_detected': leak_monitor_status.get('total_leaks_detected', 0),
+                    'monitoring_duration_hours': leak_monitor_status.get('monitoring_duration_hours', 0),
+                    'recent_leaks_count': len(leak_monitor_status.get('recent_leaks', [])),
+                    'recent_memory_trend': leak_monitor_status.get('recent_memory_data', [])[-3:] if leak_monitor_status.get('recent_memory_data') else []
+                }
+                
+                # リーク検出に基づく推奨事項追加
+                recent_leaks = leak_monitor_status.get('recent_leaks', [])
+                if recent_leaks:
+                    critical_leaks = [l for l in recent_leaks if l.get('severity') == 'critical']
+                    high_leaks = [l for l in recent_leaks if l.get('severity') == 'high']
+                    
+                    if critical_leaks:
+                        memory_status['recommendations'].append({
+                            'type': 'critical_memory_leak',
+                            'message': f'{len(critical_leaks)}個の重大なメモリリークが検出されました',
+                            'action': '即座にアプリケーションの再起動を検討してください'
+                        })
+                    elif high_leaks:
+                        memory_status['recommendations'].append({
+                            'type': 'high_memory_leak',
+                            'message': f'{len(high_leaks)}個の高レベルメモリリークが検出されました',
+                            'action': 'メモリ最適化を実行してください'
+                        })
+                        
+            except Exception as e:
+                logger.warning(f"Memory Leak Monitor データ取得エラー: {e}")
+                memory_status['memory_leak_monitor'] = {
+                    'enabled': False,
+                    'error': str(e)
+                }
+        else:
+            memory_status['memory_leak_monitor'] = {
+                'enabled': False,
+                'message': 'Memory Leak Monitor が利用できません'
+            }
+        
+        # 共通レスポンス項目追加
+        memory_status.update({
+            'timestamp': format_utc_to_iso(),
+            'memory_optimization_info': {
+                'session_limits': 'MAX_HISTORY=100, MAX_SRS=500',
+                'cache_management': 'LRU + TTL',
+                'lock_pooling': 'Enabled' if _memory_optimizer else 'Disabled',
+                'leak_monitoring': 'Enabled' if _memory_leak_monitor else 'Disabled'
+            }
+        })
+        
+        return jsonify(memory_status)
+        
+    except Exception as e:
+        logger.error(f"メモリ状況API エラー: {e}")
+        return jsonify({
+            'success': False,
+            'status': 'error',
+            'error': str(e),
+            'timestamp': format_utc_to_iso()
+        }), 500
+
+
+@app.route('/api/system/optimize_memory', methods=['POST'])
+@memory_optimization_decorator
+def api_optimize_memory():
+    """🔍 手動メモリ最適化実行API（ウルトラシンクメモリ最適化）"""
+    try:
+        if not _memory_optimizer:
+            return jsonify({
+                'success': False,
+                'error': 'Memory Optimizer が利用できません',
+                'timestamp': format_utc_to_iso()
+            }), 503
+        
+        # 手動最適化実行
+        cleanup_stats_before = _memory_optimizer.cleanup_stats.copy()
+        
+        # セッション最適化
+        if 'session' in globals() and session:
+            session_cleanup = _memory_optimizer.aggressive_session_cleanup(session)
+        else:
+            session_cleanup = 0
+        
+        # 緊急メモリクリーンアップ実行
+        _memory_optimizer.emergency_memory_cleanup()
+        
+        # 統計取得
+        cleanup_stats_after = _memory_optimizer.cleanup_stats.copy()
+        optimization_stats = _memory_optimizer.get_optimization_stats()
+        
+        # 最適化結果計算
+        memory_saved = cleanup_stats_after['memory_saved_mb'] - cleanup_stats_before['memory_saved_mb']
+        cache_evictions = cleanup_stats_after['cache_evictions'] - cleanup_stats_before['cache_evictions']
+        
+        result = {
+            'success': True,
+            'message': 'メモリ最適化が完了しました',
+            'optimization_results': {
+                'session_items_cleaned': session_cleanup,
+                'memory_saved_mb': round(memory_saved, 2),
+                'cache_evictions': cache_evictions,
+                'gc_collected': gc.collect()
+            },
+            'current_stats': optimization_stats,
+            'timestamp': format_utc_to_iso()
+        }
+        
+        logger.info(f"🔍 手動メモリ最適化完了: {session_cleanup}項目, {memory_saved:.2f}MB削減")
+        
+        return jsonify(result)
+        
+    except Exception as e:
+        logger.error(f"手動メモリ最適化API エラー: {e}")
+        return jsonify({
+            'success': False,
+            'error': str(e),
+            'timestamp': format_utc_to_iso()
+        }), 500
+
+
+# === 📊 Ultra Sync Performance Optimization API ===
+
+@app.route('/api/system/performance_status')
+@performance_timing_decorator
+def api_performance_status():
+    """📊 パフォーマンス最適化状況監視API（ウルトラシンクパフォーマンス監視）"""
+    try:
+        if _performance_optimizer:
+            # ウルトラシンクパフォーマンス統計取得
+            stats = _performance_optimizer.get_performance_stats()
+            
+            performance_status = {
+                'success': True,
+                'status': 'optimized' if stats.get('data_loaded') else 'not_optimized',
+                'optimizer_enabled': True,
+                'stats': stats,
+                'recommendations': []
+            }
+            
+            # パフォーマンスに基づく推奨事項
+            avg_response_time = stats.get('average_response_time', 0)
+            if avg_response_time > 500:  # 500ms以上
+                performance_status['recommendations'].append({
+                    'type': 'response_time',
+                    'message': f'レスポンス時間が遅延: {avg_response_time}ms',
+                    'action': 'キャッシュクリーンアップまたはインデックス再構築推奨'
+                })
+            
+            # キャッシュヒット率チェック
+            cache_hit_rate = stats.get('cache_hit_rate', 0)
+            if cache_hit_rate < 70:  # 70%未満
+                performance_status['recommendations'].append({
+                    'type': 'cache_efficiency',
+                    'message': f'キャッシュヒット率が低下: {cache_hit_rate}%',
+                    'action': 'キャッシュサイズ調整またはデータアクセスパターン最適化'
+                })
+            
+            # インデックス状況チェック
+            questions_indexed = stats.get('questions_indexed', 0)
+            if questions_indexed == 0:
+                performance_status['recommendations'].append({
+                    'type': 'indexing',
+                    'message': 'インデックスが構築されていません',
+                    'action': 'データ再読み込みまたはインデックス手動構築'
+                })
+            
+        else:
+            # フォールバック: 基本的なパフォーマンス情報
+            performance_status = {
+                'success': True,
+                'status': 'basic',
+                'optimizer_enabled': False,
+                'stats': {
+                    'data_loaded': False,
+                    'data_load_time': None,
+                    'questions_indexed': 0,
+                    'cache_hit_rate': 0,
+                    'average_response_time': 0,
+                    'performance_stats': {},
+                    'cache_info': {}
+                },
+                'recommendations': [{
+                    'type': 'optimization',
+                    'message': 'Performance Optimizer が無効です',
+                    'action': 'ultra_sync_performance_optimization.py の確認'
+                }]
+            }
+        
+        # 共通レスポンス項目追加
+        performance_status.update({
+            'timestamp': format_utc_to_iso(),
+            'performance_optimization_info': {
+                'index_types': 'ID, Category, Department, Year, Type',
+                'cache_strategy': 'LRU with TTL',
+                'search_complexity': 'O(1) for indexed searches'
+            }
+        })
+        
+        return jsonify(performance_status)
+        
+    except Exception as e:
+        logger.error(f"パフォーマンス状況API エラー: {e}")
+        return jsonify({
+            'success': False,
+            'status': 'error',
+            'error': str(e),
+            'timestamp': format_utc_to_iso()
+        }), 500
+
+
+@app.route('/api/system/performance_clear_cache', methods=['POST'])
+@performance_timing_decorator
+def api_performance_clear_cache():
+    """📊 パフォーマンスキャッシュクリア実行API（ウルトラシンクパフォーマンス最適化）"""
+    try:
+        if not _performance_optimizer:
+            return jsonify({
+                'success': False,
+                'error': 'Performance Optimizer が利用できません',
+                'timestamp': format_utc_to_iso()
+            }), 503
+        
+        # キャッシュクリア実行
+        cleared_counts = _performance_optimizer.clear_performance_cache()
+        
+        result = {
+            'success': True,
+            'message': 'パフォーマンスキャッシュがクリアされました',
+            'cleared_items': cleared_counts,
+            'timestamp': format_utc_to_iso()
+        }
+        
+        logger.info(f"📊 パフォーマンスキャッシュクリア完了: {cleared_counts}")
+        
+        return jsonify(result)
+        
+    except Exception as e:
+        logger.error(f"パフォーマンスキャッシュクリアAPI エラー: {e}")
+        return jsonify({
+            'success': False,
+            'error': str(e),
+            'timestamp': format_utc_to_iso()
+        }), 500
+
+
+@app.route('/api/system/performance_rebuild_index', methods=['POST'])
+@performance_timing_decorator
+def api_performance_rebuild_index():
+    """📊 パフォーマンスインデックス再構築API（ウルトラシンクパフォーマンス最適化）"""
+    try:
+        if not _performance_optimizer:
+            return jsonify({
+                'success': False,
+                'error': 'Performance Optimizer が利用できません',
+                'timestamp': format_utc_to_iso()
+            }), 503
+        
+        # 現在のキャッシュされた問題データを取得
+        try:
+            # 🔥 ULTRA SYNC FIX: 未定義関数修正 - 適切なデータ読み込み関数を使用
+            current_questions = load_questions_improved('data/questions.csv')
+            if not current_questions:
+                # バックアップとしてRCCMデータファイルからも読み込み試行
+                data_dir = os.path.dirname('data/questions.csv') or 'data'
+                rccm_data = load_rccm_data_files(data_dir)
+                # load_rccm_data_files は List[Dict] を返すため直接使用
+                current_questions = rccm_data if isinstance(rccm_data, list) else []
+        except Exception as e:
+            logger.error(f"問題データ読み込みエラー: {e}")
+            current_questions = []
+        
+        if not current_questions:
+            return jsonify({
+                'success': False,
+                'error': '問題データが見つかりません',
+                'timestamp': format_utc_to_iso()
+            }), 404
+        
+        # インデックス再構築実行
+        _performance_optimizer.build_high_performance_indexes(current_questions)
+        
+        # 新しい統計取得
+        new_stats = _performance_optimizer.get_performance_stats()
+        
+        result = {
+            'success': True,
+            'message': 'パフォーマンスインデックスが再構築されました',
+            'rebuild_results': {
+                'questions_indexed': new_stats.get('questions_indexed', 0),
+                'categories_indexed': new_stats.get('categories_indexed', 0),
+                'departments_indexed': new_stats.get('departments_indexed', 0),
+                'years_indexed': new_stats.get('years_indexed', 0),
+                'types_indexed': new_stats.get('types_indexed', 0),
+                'build_time': new_stats.get('data_load_time', 0)
+            },
+            'timestamp': format_utc_to_iso()
+        }
+        
+        logger.info(f"📊 パフォーマンスインデックス再構築完了: {new_stats.get('questions_indexed', 0)}問")
+        
+        return jsonify(result)
+        
+    except Exception as e:
+        logger.error(f"パフォーマンスインデックス再構築API エラー: {e}")
+        return jsonify({
+            'success': False,
+            'error': str(e),
+            'timestamp': format_utc_to_iso()
+        }), 500
+
+
+# === 🧪 Ultra Sync Manual Test Support Routes ===
+
+@app.route('/manual_test_dashboard')
+def manual_test_dashboard():
+    """🧪 手動テストダッシュボード（CLAUDE.md準拠・スクリプトテスト絶対禁止）"""
+    try:
+        # ウルトラシンク方針: 副作用ゼロでダッシュボード表示
+        dashboard_path = os.path.join(os.path.dirname(__file__), 'manual_test_dashboard.html')
+        
+        if os.path.exists(dashboard_path):
+            with open(dashboard_path, 'r', encoding='utf-8') as f:
+                dashboard_content = f.read()
+            
+            logger.info("🧪 手動テストダッシュボード表示 - スクリプトテスト絶対禁止")
+            return dashboard_content, 200, {'Content-Type': 'text/html; charset=utf-8'}
+        else:
+            logger.error("❌ 手動テストダッシュボードファイルが見つかりません")
+            return render_template('error.html', 
+                                   error="手動テストダッシュボードが利用できません"), 404
+                                   
+    except Exception as e:
+        logger.error(f"手動テストダッシュボードエラー: {e}")
+        return render_template('error.html', 
+                               error="手動テストダッシュボードの読み込み中にエラーが発生しました"), 500
+
+
+@app.route('/manual_test_guide')
+def manual_test_guide():
+    """🧪 手動テストガイド表示（CLAUDE.md準拠）"""
+    try:
+        guide_path = os.path.join(os.path.dirname(__file__), 'MANUAL_TEST_GUIDE.md')
+        
+        if os.path.exists(guide_path):
+            with open(guide_path, 'r', encoding='utf-8') as f:
+                guide_content = f.read()
+            
+            # Markdownをプレーンテキストとして表示
+            return f"""
+            <html>
+            <head>
+                <title>🧪 RCCM 手動テストガイド</title>
+                <meta charset="UTF-8">
+                <style>
+                    body {{ font-family: monospace; padding: 20px; background: #f5f5f5; }}
+                    pre {{ background: white; padding: 20px; border-radius: 8px; overflow-x: auto; }}
+                </style>
+            </head>
+            <body>
+                <h1>🧪 RCCM 手動テストガイド</h1>
+                <pre>{guide_content}</pre>
+            </body>
+            </html>
+            """, 200, {'Content-Type': 'text/html; charset=utf-8'}
+        else:
+            return render_template('error.html', 
+                                   error="手動テストガイドが見つかりません"), 404
+                                   
+    except Exception as e:
+        logger.error(f"手動テストガイド表示エラー: {e}")
+        return render_template('error.html', 
+                               error="手動テストガイドの読み込み中にエラーが発生しました"), 500
+
+
+@app.route('/api/manual_test/monitoring_status')
+def api_manual_test_monitoring_status():
+    """🧪 手動テスト監視状況API（CLAUDE.md準拠・副作用ゼロ）"""
+    try:
+        # ウルトラシンク方針: 副作用ゼロでログファイル統計のみ取得
+        log_file_path = os.path.join(os.path.dirname(__file__), 'rccm_app.log')
+        
+        # 基本統計
+        status = {
+            'success': True,
+            'monitoring_available': True,
+            'log_file_exists': os.path.exists(log_file_path),
+            'timestamp': format_utc_to_iso()
+        }
+        
+        if status['log_file_exists']:
+            try:
+                # ログファイル基本情報（副作用なし）
+                file_stats = os.stat(log_file_path)
+                status['log_file_info'] = {
+                    'size_bytes': file_stats.st_size,
+                    'size_mb': round(file_stats.st_size / (1024 * 1024), 2),
+                    'last_modified': datetime.fromtimestamp(file_stats.st_mtime).isoformat()
+                }
+                
+                # 最近のログエントリ統計（読み取り専用）
+                with open(log_file_path, 'r', encoding='utf-8') as f:
+                    lines = f.readlines()
+                    
+                recent_lines = lines[-50:] if len(lines) > 50 else lines
+                
+                # パターン検索（副作用なし）
+                manual_test_count = sum(1 for line in recent_lines if '🧪 MANUAL TEST QUALITY CHECK' in line)
+                error_count = sum(1 for line in recent_lines if any(marker in line for marker in ['ERROR', '❌', 'CRITICAL']))
+                success_count = sum(1 for line in recent_lines if '✅' in line)
+                warning_count = sum(1 for line in recent_lines if any(marker in line for marker in ['WARNING', '⚠️']))
+                
+                status['recent_activity'] = {
+                    'manual_tests_detected': manual_test_count,
+                    'error_messages': error_count,
+                    'success_messages': success_count,
+                    'warning_messages': warning_count,
+                    'total_recent_lines': len(recent_lines)
+                }
+                
+                # 推奨事項
+                recommendations = []
+                if manual_test_count == 0:
+                    recommendations.append("手動テストが検出されていません - テストダッシュボードから開始してください")
+                elif error_count > 0:
+                    recommendations.append(f"エラーが {error_count}件 検出されています - ログを確認してください")
+                elif manual_test_count > 0 and error_count == 0:
+                    recommendations.append("手動テストが正常に実行されています")
+                    
+                status['recommendations'] = recommendations
+                
+            except Exception as e:
+                logger.warning(f"ログファイル解析エラー: {e}")
+                status['log_analysis_error'] = str(e)
+        else:
+            status['recommendations'] = ["ログファイルが見つかりません - アプリケーションを起動してください"]
+            
+        # 手動テスト支援情報
+        status['manual_test_support'] = {
+            'dashboard_url': '/manual_test_dashboard',
+            'guide_url': '/manual_test_guide',
+            'script_testing_prohibited': True,
+            'claude_md_compliant': True
+        }
+        
+        return jsonify(status)
+        
+    except Exception as e:
+        logger.error(f"手動テスト監視状況API エラー: {e}")
+        return jsonify({
+            'success': False,
+            'error': str(e),
+            'timestamp': format_utc_to_iso()
+        }), 500
+
+
+@app.route('/api/manual_test/quality_check')
+def api_manual_test_quality_check():
+    """🧪 手動テスト品質チェックAPI（CLAUDE.md準拠・副作用ゼロ）"""
+    try:
+        log_file_path = os.path.join(os.path.dirname(__file__), 'rccm_app.log')
+        
+        quality_status = {
+            'success': True,
+            'timestamp': format_utc_to_iso(),
+            'quality_checks': {
+                'year_consistency': {'passed': 0, 'failed': 0},
+                'department_consistency': {'passed': 0, 'failed': 0},
+                'question_duplicates': {'passed': 0, 'failed': 0},
+                'performance_checks': {'good': 0, 'warnings': 0}
+            },
+            'overall_quality_score': 0,
+            'critical_issues': [],
+            'recommendations': []
+        }
+        
+        if os.path.exists(log_file_path):
+            try:
+                # ログファイルから品質チェック結果を抽出（副作用なし）
+                with open(log_file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    
+                # 年度統一性チェック
+                year_success = content.count('✅ 年度統一性: 完全')
+                year_failed = content.count('❌ 年度統一性: 失敗')
+                quality_status['quality_checks']['year_consistency'] = {
+                    'passed': year_success,
+                    'failed': year_failed
+                }
+                
+                # 部門統一性チェック
+                dept_success = content.count('✅ 部門統一性: 完全')
+                dept_failed = content.count('❌ 部門統一性: 失敗')
+                quality_status['quality_checks']['department_consistency'] = {
+                    'passed': dept_success,
+                    'failed': dept_failed
+                }
+                
+                # 問題ID重複チェック
+                dup_success = content.count('✅ 問題ID重複: なし')
+                dup_failed = content.count('❌ 問題ID重複: 検出')
+                quality_status['quality_checks']['question_duplicates'] = {
+                    'passed': dup_success,
+                    'failed': dup_failed
+                }
+                
+                # パフォーマンスチェック
+                perf_good = content.count('⚡ パフォーマンス: レスポンス')
+                perf_warnings = content.count('⚠️ パフォーマンス警告') + content.count('⚠️ レスポンス時間警告')
+                quality_status['quality_checks']['performance_checks'] = {
+                    'good': perf_good,
+                    'warnings': perf_warnings
+                }
+                
+                # 全体品質スコア計算
+                total_checks = year_success + year_failed + dept_success + dept_failed + dup_success + dup_failed
+                total_passed = year_success + dept_success + dup_success
+                
+                if total_checks > 0:
+                    quality_score = (total_passed / total_checks) * 100
+                    # パフォーマンス警告でスコア減点
+                    quality_score = max(0, quality_score - (perf_warnings * 5))
+                    quality_status['overall_quality_score'] = round(quality_score, 1)
+                    
+                # 重要問題検出
+                critical_issues = []
+                if year_failed > 0:
+                    critical_issues.append(f"年度混在エラー: {year_failed}件")
+                if dept_failed > 0:
+                    critical_issues.append(f"部門混在エラー: {dept_failed}件")
+                if dup_failed > 0:
+                    critical_issues.append(f"問題ID重複: {dup_failed}件")
+                    
+                quality_status['critical_issues'] = critical_issues
+                
+                # 推奨事項
+                recommendations = []
+                if quality_status['overall_quality_score'] >= 90:
+                    recommendations.append("品質状況は非常に良好です")
+                elif quality_status['overall_quality_score'] >= 70:
+                    recommendations.append("品質状況は良好ですが、一部改善の余地があります")
+                elif critical_issues:
+                    recommendations.append("重要な品質問題が検出されています - 修正が必要です")
+                else:
+                    recommendations.append("手動テストを開始して品質チェックを実行してください")
+                    
+                if perf_warnings > 0:
+                    recommendations.append(f"パフォーマンス警告 {perf_warnings}件 - レスポンス時間を確認してください")
+                    
+                quality_status['recommendations'] = recommendations
+                
+            except Exception as e:
+                logger.warning(f"品質チェック解析エラー: {e}")
+                quality_status['analysis_error'] = str(e)
+                
+        return jsonify(quality_status)
+        
+    except Exception as e:
+        logger.error(f"手動テスト品質チェックAPI エラー: {e}")
+        return jsonify({
+            'success': False,
+            'error': str(e),
+            'timestamp': format_utc_to_iso()
+        }), 500
+
+
+# 🛡️ ULTRA SYNC ERROR HANDLER CONSOLIDATION: 
+# 重複エラーハンドラーは統合版に置き換え（ultra_sync_error_loop_prevention.py）
 
 # === AI学習アナリティクス ===
 
@@ -6371,7 +7677,8 @@ def api_users_list():
         return jsonify({
             'users': users_list,
             'total_count': len(users_list),
-            'timestamp': datetime.now().isoformat()
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のAPIタイムスタンプ
+            'timestamp': format_utc_to_iso()
         })
 
     except Exception as e:
@@ -6659,7 +7966,8 @@ def api_personalization_profile(user_id):
         return jsonify({
             'user_id': user_id,
             'profile': profile,
-            'timestamp': datetime.now().isoformat()
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のAPIタイムスタンプ
+            'timestamp': format_utc_to_iso()
         })
 
     except Exception as e:
@@ -6678,7 +7986,8 @@ def api_personalization_recommendations(user_id):
             'user_id': user_id,
             'recommendations': recommendations,
             'context': context,
-            'timestamp': datetime.now().isoformat()
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のAPIタイムスタンプ
+            'timestamp': format_utc_to_iso()
         })
 
     except Exception as e:
@@ -6695,7 +8004,8 @@ def api_personalization_ui(user_id):
         return jsonify({
             'user_id': user_id,
             'ui_customizations': ui_customizations,
-            'timestamp': datetime.now().isoformat()
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のAPIタイムスタンプ
+            'timestamp': format_utc_to_iso()
         })
 
     except Exception as e:
@@ -6716,7 +8026,8 @@ def api_enterprise_users():
             'success': True,
             'users': users,
             'total_users': len(users),
-            'generated_at': datetime.now().isoformat()
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基渖のレポート生成タイムスタンプ
+            'generated_at': format_utc_to_iso()
         })
 
     except Exception as e:
@@ -6768,7 +8079,8 @@ def api_enterprise_data_integrity():
             integrity_report = enterprise_data_manager.get_file_integrity_check()
         else:
             integrity_report = {
-                'timestamp': datetime.now().isoformat(),
+                # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のAPIタイムスタンプ
+            'timestamp': format_utc_to_iso(),
                 'status': 'unavailable',
                 'message': 'Enterprise data manager not available'
             }
@@ -6794,7 +8106,8 @@ def api_enterprise_cache_stats():
         return jsonify({
             'success': True,
             'cache_stats': cache_stats,
-            'timestamp': datetime.now().isoformat()
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のAPIタイムスタンプ
+            'timestamp': format_utc_to_iso()
         })
 
     except Exception as e:
@@ -6813,7 +8126,8 @@ def api_enterprise_cache_clear():
         return jsonify({
             'success': True,
             'message': 'キャッシュをクリアしました',
-            'timestamp': datetime.now().isoformat()
+            # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のAPIタイムスタンプ
+            'timestamp': format_utc_to_iso()
         })
 
     except Exception as e:
@@ -6956,34 +8270,91 @@ def health_status():
         'timestamp': datetime.now().isoformat()
     })
 
-# グローバルエラーハンドラー
+# 🛡️ ULTRA SYNC UNIFIED ERROR HANDLERS: 統合エラーハンドラーシステム
+# すべてのエラーハンドラーは ultra_sync_error_loop_prevention.py により統合管理
+# 無限ループ防止・エラー追跡・セッション保護機能を提供
 
+# 🛡️ Ultra Sync Error Loop Prevention API Endpoints
 
-@app.errorhandler(404)
-def not_found_error(error):
-    """404エラーハンドラー"""
-    logger.warning(f"404エラー: {request.url}")
-    return render_template('error.html',
-                           error_message="ページが見つかりません",
-                           error_type="not_found"), 404
+@app.route('/api/error_prevention/status')
+def api_error_prevention_status():
+    """エラー防止システム状態取得API"""
+    try:
+        if _error_loop_prevention:
+            stats = _error_loop_prevention.get_statistics()
+            return jsonify({
+                'success': True,
+                'system_active': True,
+                'statistics': stats,
+                'timestamp': format_utc_to_iso()
+            })
+        else:
+            return jsonify({
+                'success': True,
+                'system_active': False,
+                'message': 'Error loop prevention system not available',
+                'timestamp': format_utc_to_iso()
+            })
+    except Exception as e:
+        logger.error(f"Error prevention status API error: {e}")
+        return jsonify({
+            'success': False,
+            'error': str(e),
+            'timestamp': format_utc_to_iso()
+        }), 500
 
+@app.route('/api/error_prevention/reset_session', methods=['POST'])
+def api_error_prevention_reset_session():
+    """セッションエラーカウントリセットAPI"""
+    try:
+        session_id = session.get('session_id', 'anonymous')
+        
+        if _error_loop_prevention:
+            reset_success = _error_loop_prevention.reset_session_errors(session_id)
+            return jsonify({
+                'success': True,
+                'reset_performed': reset_success,
+                'session_id': session_id[:8] + '...',
+                'timestamp': format_utc_to_iso()
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': 'Error loop prevention system not available',
+                'timestamp': format_utc_to_iso()
+            }), 503
+    except Exception as e:
+        logger.error(f"Error prevention reset API error: {e}")
+        return jsonify({
+            'success': False,
+            'error': str(e),
+            'timestamp': format_utc_to_iso()
+        }), 500
 
-@app.errorhandler(500)
-def internal_error(error):
-    """500エラーハンドラー"""
-    logger.error(f"500エラー: {str(error)}")
-    return render_template('error.html',
-                           error_message="内部サーバーエラーが発生しました",
-                           error_type="server_error"), 500
-
-
-@app.errorhandler(Exception)
-def handle_exception(e):
-    """未処理例外ハンドラー"""
-    logger.error(f"未処理例外: {str(e)}", exc_info=True)
-    return render_template('error.html',
-                           error_message="予期しないエラーが発生しました",
-                           error_type="unexpected_error"), 500
+@app.route('/api/error_prevention/cleanup')
+def api_error_prevention_cleanup():
+    """古いセッションデータクリーンアップAPI"""
+    try:
+        if _error_loop_prevention:
+            cleaned_count = _error_loop_prevention.cleanup_old_sessions()
+            return jsonify({
+                'success': True,
+                'cleaned_sessions': cleaned_count,
+                'timestamp': format_utc_to_iso()
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': 'Error loop prevention system not available',
+                'timestamp': format_utc_to_iso()
+            }), 503
+    except Exception as e:
+        logger.error(f"Error prevention cleanup API error: {e}")
+        return jsonify({
+            'success': False,
+            'error': str(e),
+            'timestamp': format_utc_to_iso()
+        }), 500
 
 
 if __name__ == '__main__':

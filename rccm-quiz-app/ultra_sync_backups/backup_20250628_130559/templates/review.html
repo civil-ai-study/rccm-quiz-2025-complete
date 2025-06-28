@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block title %}復習リスト | RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4"><i class="fas fa-bookmark text-warning"></i> 復習リスト</h1>
+    
+    {% if message %}
+    <div class="alert alert-info">
+        <h4 class="alert-heading">復習リストが空です</h4>
+        <p>{{ message }}</p>
+        <hr>
+        <a href="/exam" class="btn btn-primary">問題を始める</a>
+    </div>
+    {% else %}
+    <!-- 復習システム説明カード -->
+    <div class="card mb-4 border-info">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0"><i class="fas fa-brain me-2"></i>🎯 科学的復習システム（SRS）</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- 🔥 ULTRA SYNC IMPROVEMENT 1: 明確な進捗表示 -->
+                    <div class="alert alert-info border-0 p-2 mb-2">
+                        <h6 class="mb-1"><i class="fas fa-calendar-check me-2 text-primary"></i>今日復習すべき問題: <span class="badge bg-primary fs-6">{{ due_today_count or 0 }}問</span></h6>
+                        <small class="text-muted">科学的な間隔反復システムによる最適タイミング</small>
+                    </div>
+                    <p class="mb-2"><strong>登録済み復習問題: {{ total_count or 0 }}問</strong> <span class="text-muted">(全期間累計)</span></p>
+                    <div class="small text-muted">
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="fas fa-sort-amount-down text-warning me-2 mt-1"></i>
+                            <div>
+                                <strong>優先度ベース選択:</strong> ランダムではなく、弱点スコア（間違い率 + 難易度 + 期限超過）で最も復習が必要な問題を優先的に出題
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="fas fa-target text-danger me-2 mt-1"></i>
+                            <div>
+                                <strong>弱点集中攻略:</strong> 間違いが多い問題ほど高頻度で出題され、苦手分野を効率的に克服
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-trophy text-success me-2 mt-1"></i>
+                            <div>
+                                <strong>自動卒業システム:</strong> 5回連続正解で「マスター認定」→ 復習リストから自動除外
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <a href="/exam/review" class="btn btn-success btn-lg mb-2 w-100">
+                        <i class="fas fa-play me-2"></i>復習問題開始
+                    </a>
+                    <small class="text-muted d-block">
+                        <i class="fas fa-clock me-1"></i>最適タイミングで弱点を攻略
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for question in questions %}
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span class="badge bg-primary">問題 {{ question.id }}</span>
+                    <span class="badge bg-info">{{ question.category or '分野未設定' }}</span>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">{{ question.question[:100] }}{% if question.question|length > 100 %}...{% endif %}</h6>
+                    <div class="d-grid gap-2">
+                        <a href="/exam?qid={{ question.id }}" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-redo"></i> この問題を解く
+                        </a>
+                        <button class="btn btn-outline-danger btn-sm" onclick="removeFromReview('{{ question.id }}')">
+                            <i class="fas fa-trash"></i> 復習リストから除外
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-outline-secondary">
+            <i class="fas fa-home"></i> ホームに戻る
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function removeFromReview(questionId) {
+    if (!confirm('この問題を復習リストから除外しますか？')) {
+        return;
+    }
+    
+    fetch('/api/bookmark', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question_id: questionId }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('復習リストから除外しました');
+            location.reload(); // ページを再読み込み
+        } else {
+            alert('除外に失敗しました: ' + (data.error || '不明なエラー'));
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('除外処理中にエラーが発生しました。');
+    });
+}
+</script>
+{% endblock %} 

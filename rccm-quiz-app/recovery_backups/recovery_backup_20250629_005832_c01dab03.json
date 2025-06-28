@@ -1,0 +1,24 @@
+{
+  "backup_id": "recovery_backup_20250629_005832_c01dab03",
+  "timestamp": "2025-06-29T00:58:32.798186",
+  "session_data": {
+    "_permanent": true,
+    "user_id": "year_test_2014_railways_1751126312",
+    "last_activity": "2025-06-28T15:58:32.794614+00:00",
+    "total_requests": 1,
+    "backup_history": [
+      {
+        "backup_id": "session_backup_20250629_005832_b8503546",
+        "timestamp": "2025-06-29T00:58:32.789485",
+        "auto_save": true,
+        "expired": false
+      }
+    ],
+    "last_auto_save": "2025-06-29T00:58:32.789472",
+    "session_id": "cf594511d4f4384ebb5a7d612afe5f34",
+    "data_loaded": true,
+    "exam_question_ids": []
+  },
+  "backup_type": "corruption_recovery",
+  "session_size_bytes": 445
+}

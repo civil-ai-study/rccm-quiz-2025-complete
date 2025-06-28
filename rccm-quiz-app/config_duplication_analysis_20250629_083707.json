@@ -1,0 +1,255 @@
+{
+  "config_py_settings": {
+    "Config": {
+      "SECRET_KEY": {
+        "value": "os.environ.get('SECRET_KEY') or 'rccm-quiz-app-development-key-2025'",
+        "line": "SECRET_KEY = os.environ.get('SECRET_KEY') or 'rccm-quiz-app-development-key-2025'",
+        "source": "config.py"
+      },
+      "SESSION_COOKIE_NAME": {
+        "value": "'rccm_session'",
+        "line": "SESSION_COOKIE_NAME = 'rccm_session'",
+        "source": "config.py"
+      },
+      "SESSION_COOKIE_HTTPONLY": {
+        "value": "True",
+        "line": "SESSION_COOKIE_HTTPONLY = True",
+        "source": "config.py"
+      },
+      "SESSION_COOKIE_SECURE": {
+        "value": "os.environ.get('FLASK_ENV') == 'production'",
+        "line": "SESSION_COOKIE_SECURE = os.environ.get('FLASK_ENV') == 'production'",
+        "source": "config.py"
+      },
+      "SESSION_COOKIE_SAMESITE": {
+        "value": "'Lax'",
+        "line": "SESSION_COOKIE_SAMESITE = 'Lax'",
+        "source": "config.py"
+      },
+      "PERMANENT_SESSION_LIFETIME": {
+        "value": "3600",
+        "line": "PERMANENT_SESSION_LIFETIME = 3600",
+        "source": "config.py"
+      }
+    },
+    "DevelopmentConfig": {
+      "DEBUG": {
+        "value": "True",
+        "line": "DEBUG = True",
+        "source": "config.py"
+      },
+      "SESSION_COOKIE_SECURE": {
+        "value": "False",
+        "line": "SESSION_COOKIE_SECURE = False",
+        "source": "config.py"
+      },
+      "TESTING": {
+        "value": "True",
+        "line": "TESTING = True",
+        "source": "config.py"
+      }
+    },
+    "ProductionConfig": {
+      "DEBUG": {
+        "value": "False",
+        "line": "DEBUG = False",
+        "source": "config.py"
+      },
+      "SESSION_COOKIE_SECURE": {
+        "value": "True",
+        "line": "SESSION_COOKIE_SECURE = True",
+        "source": "config.py"
+      },
+      "TESTING": {
+        "value": "False",
+        "line": "TESTING = False",
+        "source": "config.py"
+      }
+    },
+    "EnterpriseConfig": {
+      "DEBUG": {
+        "value": "False",
+        "line": "DEBUG = False",
+        "source": "config.py"
+      },
+      "SESSION_COOKIE_SECURE": {
+        "value": "True",
+        "line": "SESSION_COOKIE_SECURE = True",
+        "source": "config.py"
+      },
+      "SESSION_COOKIE_HTTPONLY": {
+        "value": "True",
+        "line": "SESSION_COOKIE_HTTPONLY = True",
+        "source": "config.py"
+      },
+      "SESSION_COOKIE_SAMESITE": {
+        "value": "'Strict'",
+        "line": "SESSION_COOKIE_SAMESITE = 'Strict'",
+        "source": "config.py"
+      },
+      "PERMANENT_SESSION_LIFETIME": {
+        "value": "28800  # 8時間",
+        "line": "PERMANENT_SESSION_LIFETIME = 28800  # 8時間",
+        "source": "config.py"
+      },
+      "TESTING": {
+        "value": "False",
+        "line": "TESTING = False",
+        "source": "config.py"
+      },
+      "WTF_CSRF_ENABLED": {
+        "value": "True",
+        "line": "WTF_CSRF_ENABLED = True",
+        "source": "config.py"
+      },
+      "WTF_CSRF_TIME_LIMIT": {
+        "value": "None",
+        "line": "WTF_CSRF_TIME_LIMIT = None",
+        "source": "config.py"
+      },
+      "SEND_FILE_MAX_AGE_DEFAULT": {
+        "value": "0  # 静的ファイルキャッシュ無効",
+        "line": "SEND_FILE_MAX_AGE_DEFAULT = 0  # 静的ファイルキャッシュ無効",
+        "source": "config.py"
+      },
+      "TEMPLATES_AUTO_RELOAD": {
+        "value": "False",
+        "line": "TEMPLATES_AUTO_RELOAD = False",
+        "source": "config.py"
+      },
+      "LOG_LEVEL": {
+        "value": "'WARNING'",
+        "line": "LOG_LEVEL = 'WARNING'",
+        "source": "config.py"
+      },
+      "LOG_FILE": {
+        "value": "'/var/log/rccm_app.log'",
+        "line": "LOG_FILE = '/var/log/rccm_app.log'",
+        "source": "config.py"
+      },
+      "MAX_CONCURRENT_USERS": {
+        "value": "int(os.environ.get('MAX_CONCURRENT_USERS', 100))",
+        "line": "MAX_CONCURRENT_USERS = int(os.environ.get('MAX_CONCURRENT_USERS', 100))",
+        "source": "config.py"
+      },
+      "USER_SESSION_TIMEOUT": {
+        "value": "28800  # 8時間のアイドルタイムアウト（セッションライフタイムと統一）",
+        "line": "USER_SESSION_TIMEOUT = 28800  # 8時間のアイドルタイムアウト（セッションライフタイムと統一）",
+        "source": "config.py"
+      }
+    }
+  },
+  "app_py_settings": {
+    "SESSION_PERMANENT": {
+      "value": "True  # セッション永続化を有効",
+      "line": "app.config['SESSION_PERMANENT'] = True  # セッション永続化を有効",
+      "source": "app.py"
+    },
+    "SESSION_USE_SIGNER": {
+      "value": "True",
+      "line": "app.config['SESSION_USE_SIGNER'] = True",
+      "source": "app.py"
+    },
+    "SESSION_DEBUG": {
+      "value": "True",
+      "line": "app.config['SESSION_DEBUG'] = True",
+      "source": "app.py"
+    },
+    "_from_object": {
+      "value": [
+        "Config"
+      ],
+      "line": "app.config.from_object(Config)",
+      "source": "app.py"
+    }
+  },
+  "duplications": [],
+  "conflicts": [],
+  "missing_in_config": [
+    {
+      "key": "SESSION_PERMANENT",
+      "current_location": "app.py",
+      "app_info": {
+        "value": "True  # セッション永続化を有効",
+        "line": "app.config['SESSION_PERMANENT'] = True  # セッション永続化を有効",
+        "source": "app.py"
+      },
+      "preferred_config_class": "Config",
+      "should_move": false,
+      "category": "session"
+    },
+    {
+      "key": "SESSION_USE_SIGNER",
+      "current_location": "app.py",
+      "app_info": {
+        "value": "True",
+        "line": "app.config['SESSION_USE_SIGNER'] = True",
+        "source": "app.py"
+      },
+      "preferred_config_class": "Config",
+      "should_move": false,
+      "category": "session"
+    },
+    {
+      "key": "SESSION_DEBUG",
+      "current_location": "app.py",
+      "app_info": {
+        "value": "True",
+        "line": "app.config['SESSION_DEBUG'] = True",
+        "source": "app.py"
+      },
+      "preferred_config_class": "Config",
+      "should_move": false,
+      "category": "session"
+    }
+  ],
+  "recommendations": [
+    {
+      "type": "optimization",
+      "priority": "low",
+      "action": "Add SESSION_PERMANENT and SESSION_USE_SIGNER to Config class",
+      "reason": "These settings are currently only in app.py but should be in config.py for consistency"
+    }
+  ],
+  "fix_operations": [
+    {
+      "type": "add_to_config",
+      "target_file": "config.py",
+      "target_class": "Config",
+      "additions": [
+        "SESSION_PERMANENT = True",
+        "SESSION_USE_SIGNER = True"
+      ],
+      "reason": "Add missing session settings for consistency"
+    },
+    {
+      "type": "remove_from_app",
+      "target_file": "app.py",
+      "removals": [
+        "app.config['SESSION_PERMANENT'] = True",
+        "app.config['SESSION_USE_SIGNER'] = True"
+      ],
+      "reason": "Remove duplicated settings (now in config.py)"
+    },
+    {
+      "type": "reorganize_debug",
+      "target_file": "app.py",
+      "action": "Keep SESSION_DEBUG in app.py but add proper conditional logic",
+      "reason": "Debug settings should be separate from production config"
+    },
+    {
+      "type": "clarify_loading_order",
+      "target_file": "app.py",
+      "action": "Add comments explaining config loading sequence",
+      "reason": "Make configuration precedence clear"
+    }
+  ],
+  "summary": {
+    "total_config_settings": 4,
+    "total_app_settings": 4,
+    "duplications_count": 0,
+    "conflicts_count": 0,
+    "missing_count": 3,
+    "fix_operations_count": 4
+  }
+}

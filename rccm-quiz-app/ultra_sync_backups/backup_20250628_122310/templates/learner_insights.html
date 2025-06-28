@@ -1,0 +1,296 @@
+{% extends "base.html" %}
+
+{% block title %}学習者レベル・インサイト{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <!-- ヘッダー -->
+            <div class="card border-info mb-4">
+                <div class="card-header bg-info text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-user-graduate"></i> 学習者レベル・インサイト
+                    </h3>
+                    <p class="mb-0 small">動的難易度制御による詳細分析</p>
+                </div>
+                <div class="card-body">
+                    {% if department %}
+                    <div class="alert alert-info">
+                        <i class="fas fa-building"></i>
+                        <strong>分析対象部門:</strong> {{ departments.get(department, {}).get('name', department) }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if insights.get('error') %}
+    <div class="alert alert-danger">
+        <i class="fas fa-exclamation-triangle"></i>
+        <strong>エラー:</strong> {{ insights.error }}
+    </div>
+    {% else %}
+    
+    <!-- 学習者レベル概要 -->
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-chart-line"></i> 現在の学習者レベル</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="text-primary">{{ insights.level_name }}</h3>
+                            <p class="text-muted">学習者レベル: {{ insights.learner_level }}</p>
+                            
+                            <div class="progress mb-3">
+                                <div class="progress-bar bg-info" style="width: {{ (insights.confidence * 100)|round|int }}%"></div>
+                            </div>
+                            <small class="text-muted">評価信頼度: {{ (insights.confidence * 100)|round|int }}%</small>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>推奨難易度</h6>
+                            <span class="badge badge-secondary badge-lg">{{ insights.recommended_difficulty }}</span>
+                            
+                            {% if insights.department_factor != 1.0 %}
+                            <h6 class="mt-2">部門難易度調整</h6>
+                            <span class="badge badge-warning">{{ (insights.department_factor * 100)|round|int }}%</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <h6 class="mb-0"><i class="fas fa-clock"></i> 最近のパフォーマンス</h6>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <span>正答率:</span>
+                        <strong>{{ (insights.recent_performance.accuracy * 100)|round|int }}%</strong>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>平均時間:</span>
+                        <strong>{{ insights.recent_performance.avg_time|round|int }}秒</strong>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>トレンド:</span>
+                        <span class="badge 
+                            {% if insights.recent_performance.trend == 'improving' %}badge-success
+                            {% elif insights.recent_performance.trend == 'declining' %}badge-danger
+                            {% else %}badge-secondary{% endif %}">
+                            {% if insights.recent_performance.trend == 'improving' %}上昇中
+                            {% elif insights.recent_performance.trend == 'declining' %}下降中
+                            {% else %}安定{% endif %}
+                        </span>
+                    </div>
+                    <small class="text-muted">サンプル数: {{ insights.recent_performance.sample_size }}問</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 詳細評価 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-microscope"></i> 詳細評価</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for assessment_type, assessment_data in insights.assessments.items() %}
+                        <div class="col-md-3 mb-3">
+                            <div class="card border-light">
+                                <div class="card-header bg-light">
+                                    <h6 class="mb-0">
+                                        {% if assessment_type == 'accuracy' %}正答率評価
+                                        {% elif assessment_type == 'speed' %}速度評価
+                                        {% elif assessment_type == 'consistency' %}一貫性評価
+                                        {% elif assessment_type == 'progression' %}進歩評価
+                                        {% else %}{{ assessment_type }}{% endif %}
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <span class="badge 
+                                            {% if assessment_data.level == 'expert' %}badge-success
+                                            {% elif assessment_data.level == 'advanced' %}badge-info
+                                            {% elif assessment_data.level == 'intermediate' %}badge-warning
+                                            {% else %}badge-secondary{% endif %} badge-lg">
+                                            {% if assessment_data.level == 'expert' %}専門家
+                                            {% elif assessment_data.level == 'advanced' %}上級
+                                            {% elif assessment_data.level == 'intermediate' %}中級
+                                            {% else %}初級{% endif %}
+                                        </span>
+                                        <div class="progress mt-2">
+                                            <div class="progress-bar" style="width: {{ (assessment_data.score * 100)|round|int }}%"></div>
+                                        </div>
+                                        <small class="text-muted">スコア: {{ (assessment_data.score * 100)|round|int }}%</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 動的セッション設定 -->
+    {% if insights.dynamic_config %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-success">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fas fa-cogs"></i> 動的セッション設定</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6>目標正答率</h6>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-success" style="width: {{ (insights.dynamic_config.target_accuracy * 100)|round|int }}%"></div>
+                            </div>
+                            <small class="text-muted">{{ (insights.dynamic_config.target_accuracy * 100)|round|int }}%</small>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>時間制限調整</h6>
+                            <span class="badge badge-info badge-lg">{{ insights.dynamic_config.time_limit_multiplier }}×</span>
+                            <br><small class="text-muted">通常時間に対する係数</small>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>問題分布</h6>
+                            {% for type, ratio in insights.dynamic_config.question_distribution.items() %}
+                            <div class="d-flex justify-content-between">
+                                <span>{{ type }}:</span>
+                                <strong>{{ (ratio * 100)|round|int }}%</strong>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6>フィードバック強度</h6>
+                            <span class="badge badge-secondary">{{ insights.dynamic_config.feedback_intensity }}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>ヒント利用</h6>
+                            <span class="badge 
+                                {% if insights.dynamic_config.hint_availability %}badge-success
+                                {% else %}badge-secondary{% endif %}">
+                                {% if insights.dynamic_config.hint_availability %}利用可能
+                                {% else %}無効{% endif %}
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>復習頻度</h6>
+                            <span class="badge badge-info">{{ insights.dynamic_config.review_frequency }}問ごと</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 学習推奨事項 -->
+    {% if insights.study_recommendations %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0"><i class="fas fa-lightbulb"></i> 学習推奨事項</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        {% for recommendation in insights.study_recommendations %}
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-success"></i>
+                            {{ recommendation }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 次回調整予定 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i>
+                <strong>次回難易度調整まで:</strong> あと{{ insights.next_adjustment_threshold }}問の学習が必要です
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
+    <!-- ナビゲーション -->
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> ホームに戻る
+                </a>
+                <div>
+                    <a href="{{ url_for('ai_analysis') }}" class="btn btn-outline-warning">
+                        <i class="fas fa-chart-line"></i> AI弱点分析
+                    </a>
+                    <a href="{{ url_for('adaptive_quiz') }}" class="btn btn-outline-success">
+                        <i class="fas fa-brain"></i> AI適応学習開始
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// 部門選択変更時の処理
+function changeDepartment() {
+    const departmentSelect = document.getElementById('departmentFilter');
+    if (departmentSelect) {
+        const selectedDepartment = departmentSelect.value;
+        if (selectedDepartment) {
+            window.location.href = `/learner_insights?department=${selectedDepartment}`;
+        } else {
+            window.location.href = '/learner_insights';
+        }
+    }
+}
+
+// ページ読み込み時にリアルタイム更新を開始
+document.addEventListener('DOMContentLoaded', function() {
+    // 30秒ごとにデータ更新
+    setInterval(function() {
+        fetch('/api/difficulty/status')
+            .then(response => response.json())
+            .then(data => {
+                if (data.recent_performance) {
+                    // 最近のパフォーマンス更新
+                    const accuracyElement = document.querySelector('[data-metric="accuracy"]');
+                    if (accuracyElement) {
+                        accuracyElement.textContent = Math.round(data.recent_performance.accuracy * 100) + '%';
+                    }
+                }
+            })
+            .catch(error => {
+            });
+    }, 30000);
+});
+</script>
+{% endblock %}

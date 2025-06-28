@@ -1,0 +1,891 @@
+{
+  "test_timestamp": "2025-06-29T00:58:38.223779",
+  "test_type": "ultra_sync_comprehensive_year_filtering",
+  "year_range": "2008-2019",
+  "summary": {
+    "total_tests": 26,
+    "successful_tests": 18,
+    "warning_tests": 0,
+    "failed_tests": 1,
+    "info_tests": 7,
+    "success_rate": 0.6923076923076923,
+    "year_mixing_violations": 0,
+    "grade": "VERY_GOOD"
+  },
+  "year_mixing_violations": [],
+  "department_test_results": {
+    "2008": {
+      "road": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2008"
+        ],
+        "year_pure": true
+      },
+      "tunnel": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2008"
+        ],
+        "year_pure": true
+      },
+      "river": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2008"
+        ],
+        "year_pure": true
+      },
+      "urban": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2008"
+        ],
+        "year_pure": true
+      },
+      "port": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "airport": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "railways": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "dam": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "steel": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "agriculture": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2008"
+        ],
+        "year_pure": true
+      },
+      "forest": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "fisheries": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      }
+    },
+    "2009": {
+      "road": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2009"
+        ],
+        "year_pure": true
+      },
+      "tunnel": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2009"
+        ],
+        "year_pure": true
+      },
+      "river": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2009"
+        ],
+        "year_pure": true
+      },
+      "urban": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2009"
+        ],
+        "year_pure": true
+      },
+      "port": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "airport": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "railways": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "dam": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "steel": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "agriculture": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2009"
+        ],
+        "year_pure": true
+      },
+      "forest": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "fisheries": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      }
+    },
+    "2010": {
+      "road": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2010"
+        ],
+        "year_pure": true
+      },
+      "tunnel": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2010"
+        ],
+        "year_pure": true
+      },
+      "river": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2010"
+        ],
+        "year_pure": true
+      },
+      "urban": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2010"
+        ],
+        "year_pure": true
+      },
+      "port": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "airport": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "railways": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "dam": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "steel": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "agriculture": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2010"
+        ],
+        "year_pure": true
+      },
+      "forest": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "fisheries": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      }
+    },
+    "2011": {
+      "road": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2011"
+        ],
+        "year_pure": true
+      },
+      "tunnel": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2011"
+        ],
+        "year_pure": true
+      },
+      "river": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2011"
+        ],
+        "year_pure": true
+      },
+      "urban": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2011"
+        ],
+        "year_pure": true
+      },
+      "port": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "airport": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "railways": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "dam": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "steel": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "agriculture": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2011"
+        ],
+        "year_pure": true
+      },
+      "forest": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "fisheries": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      }
+    },
+    "2012": {
+      "road": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2012"
+        ],
+        "year_pure": true
+      },
+      "tunnel": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2012"
+        ],
+        "year_pure": true
+      },
+      "river": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2012"
+        ],
+        "year_pure": true
+      },
+      "urban": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2012"
+        ],
+        "year_pure": true
+      },
+      "port": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "airport": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "railways": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "dam": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "steel": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "agriculture": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2012"
+        ],
+        "year_pure": true
+      },
+      "forest": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "fisheries": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      }
+    },
+    "2013": {
+      "road": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2013"
+        ],
+        "year_pure": true
+      },
+      "tunnel": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2013"
+        ],
+        "year_pure": true
+      },
+      "river": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2013"
+        ],
+        "year_pure": true
+      },
+      "urban": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2013"
+        ],
+        "year_pure": true
+      },
+      "port": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "airport": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "railways": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "dam": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "steel": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "agriculture": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2013"
+        ],
+        "year_pure": true
+      },
+      "forest": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "fisheries": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      }
+    },
+    "2014": {
+      "road": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2014"
+        ],
+        "year_pure": true
+      },
+      "tunnel": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2014"
+        ],
+        "year_pure": true
+      },
+      "river": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2014"
+        ],
+        "year_pure": true
+      },
+      "urban": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2014"
+        ],
+        "year_pure": true
+      },
+      "port": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "airport": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "railways": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "dam": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "steel": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "agriculture": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2014"
+        ],
+        "year_pure": true
+      },
+      "forest": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "fisheries": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      }
+    },
+    "2015": {
+      "road": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2015"
+        ],
+        "year_pure": true
+      },
+      "tunnel": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2015"
+        ],
+        "year_pure": true
+      },
+      "river": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2015"
+        ],
+        "year_pure": true
+      },
+      "urban": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2015"
+        ],
+        "year_pure": true
+      },
+      "port": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "airport": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "railways": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "dam": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "steel": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "agriculture": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2015"
+        ],
+        "year_pure": true
+      },
+      "forest": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "fisheries": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      }
+    },
+    "2016": {
+      "road": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2016"
+        ],
+        "year_pure": true
+      },
+      "tunnel": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2016"
+        ],
+        "year_pure": true
+      },
+      "river": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2016"
+        ],
+        "year_pure": true
+      },
+      "urban": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2016"
+        ],
+        "year_pure": true
+      },
+      "port": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "airport": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "railways": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "dam": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "steel": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "agriculture": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2016"
+        ],
+        "year_pure": true
+      },
+      "forest": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "fisheries": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      }
+    },
+    "2017": {
+      "road": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2017"
+        ],
+        "year_pure": true
+      },
+      "tunnel": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2017"
+        ],
+        "year_pure": true
+      },
+      "river": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2017"
+        ],
+        "year_pure": true
+      },
+      "urban": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2017"
+        ],
+        "year_pure": true
+      },
+      "port": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "airport": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "railways": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "dam": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "steel": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "agriculture": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2017"
+        ],
+        "year_pure": true
+      },
+      "forest": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "fisheries": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      }
+    },
+    "2018": {
+      "road": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2018"
+        ],
+        "year_pure": true
+      },
+      "tunnel": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2018"
+        ],
+        "year_pure": true
+      },
+      "river": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2018"
+        ],
+        "year_pure": true
+      },
+      "urban": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2018"
+        ],
+        "year_pure": true
+      },
+      "port": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "airport": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "railways": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "dam": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "steel": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "agriculture": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2018"
+        ],
+        "year_pure": true
+      },
+      "forest": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "fisheries": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      }
+    },
+    "2019": {
+      "road": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2019"
+        ],
+        "year_pure": true
+      },
+      "tunnel": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2019"
+        ],
+        "year_pure": true
+      },
+      "river": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2019"
+        ],
+        "year_pure": true
+      },
+      "urban": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2019"
+        ],
+        "year_pure": true
+      },
+      "port": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "airport": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "railways": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "dam": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "steel": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "agriculture": {
+        "status": "success",
+        "question_count": 10,
+        "years_found": [
+          "2019"
+        ],
+        "year_pure": true
+      },
+      "forest": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      },
+      "fisheries": {
+        "status": "no_questions_selected",
+        "question_count": 0
+      }
+    }
+  },
+  "performance_metrics": {
+    "road-2019": 78.19008827209473,
+    "tunnel-2018": 75.75074831644694,
+    "river-2017": 55.24381001790365
+  },
+  "test_results": [
+    "✅ Department mapping loaded",
+    "✅ get_mixed_questions function accessible",
+    "✅ Complete year range available",
+    "✅ Year 2008 validation passed",
+    "✅ Year 2015 validation passed",
+    "✅ Year 2019 validation passed",
+    "📋 Invalid year 2007 handled",
+    "📋 Invalid year 2020 handled",
+    "📋 Invalid year 2025 handled",
+    "📋 Invalid year invalid handled",
+    "📋 Invalid year  handled",
+    "❌ Low success rate: 41.7%",
+    "✅ Perfect year separation maintained",
+    "✅ Error handling: invalid_department",
+    "✅ Error handling: invalid_year",
+    "✅ Error handling: empty_department",
+    "✅ Error handling: empty_year",
+    "✅ Error handling: non_numeric_year",
+    "✅ Good filtering performance",
+    "✅ Edge case passed: start_boundary",
+    "✅ Edge case passed: end_boundary",
+    "📋 Edge case no data: rare_combination",
+    "📋 Edge case no data: rare_combination_2",
+    "✅ Edge case passed: basic_type",
+    "✅ Edge case passed: specialist_type",
+    "✅ All log markers present"
+  ]
+}

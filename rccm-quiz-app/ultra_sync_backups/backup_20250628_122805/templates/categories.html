@@ -1,0 +1,316 @@
+{% extends 'base.html' %}
+{% block title %}部門別 | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <!-- モバイル対応ヘッダー -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-th-list text-primary"></i> 部門別問題選択</h2>
+        <div class="mobile-controls">
+            <button type="button" id="voiceBtn" class="btn btn-sm btn-outline-primary me-2" title="音声読み上げ (Space)">
+                <i class="fas fa-volume-up"></i>
+            </button>
+            <button type="button" id="mobileMenuBtn" class="btn btn-sm btn-outline-secondary" title="モバイルメニュー">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- モバイルカードビュー -->
+    <div class="d-md-none">
+        {% if category_details %}
+        {% for category, detail in category_details.items() %}
+        <div class="card category-card-mobile mb-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="category-name mb-0">{{ category }}</h5>
+                    <a href="/exam?category={{ category|urlencode }}" class="btn btn-primary btn-sm study-btn">
+                        <i class="fas fa-play"></i> 学習
+                    </a>
+                </div>
+                
+                <div class="category-stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">{{ detail.total_questions }}</div>
+                        <div class="stat-label">問題数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">{{ detail.total_answered }}</div>
+                        <div class="stat-label">解答済み</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">{{ detail.correct_count }}</div>
+                        <div class="stat-label">正答数</div>
+                    </div>
+                </div>
+                
+                <div class="progress-section mt-3">
+                    {% set accuracy = (detail.accuracy|default(0.0)) %}
+                    {% set progress = progresses[category] if progresses and progresses[category] is not none else 0.0 %}
+                    
+                    <div class="accuracy-display mb-2">
+                        <span class="accuracy-label">正答率:</span>
+                        <span class="accuracy-value {% if accuracy < 60 %}text-danger{% elif accuracy < 80 %}text-warning{% else %}text-success{% endif %}">
+                            {{ '%.1f' % accuracy }}%
+                        </span>
+                    </div>
+                    
+                    <div class="progress-display">
+                        <div class="progress-label">進捗率: {{ '%.1f' % progress }}%</div>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-info" role="progressbar" 
+                                 style="width: {{ progress }}%" aria-valuenow="{{ progress }}" 
+                                 aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i> 利用可能なカテゴリデータがありません。
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- デスクトップテーブルビュー -->
+    <div class="d-none d-md-block">
+        <div class="card categories-table-card">
+            <div class="card-body p-0">
+                {% if category_details %}
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped table-bordered mb-0" style="font-size:0.95em;">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 120px;">部門</th>
+                                    <th style="width: 100px;">選択</th>
+                                    <th style="width: 80px;">問題数</th>
+                                    <th style="width: 100px;">解答済み</th>
+                                    <th style="width: 80px;">正答数</th>
+                                    <th style="width: 80px;">正答率(%)</th>
+                                    <th style="width: 80px;">進捗(%)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for category, detail in category_details.items() %}
+                                <tr>
+                                    <td><a href="/exam?category={{ category|urlencode }}"><strong>{{ category }}</strong></a></td>
+                                    <td><a href="/exam?category={{ category|urlencode }}" class="btn btn-sm btn-primary">学習</a></td>
+                                    <td>{{ detail.total_questions }}</td>
+                                    <td>{{ detail.total_answered }}</td>
+                                    <td>{{ detail.correct_count }}</td>
+                                    {% set accuracy = (detail.accuracy|default(0.0)) %}
+                                    <td class="{% if accuracy < 60 %}table-danger{% elif accuracy < 80 %}table-warning{% else %}table-success{% endif %}">
+                                      {{ '%.1f' % accuracy }}
+                                    </td>
+                                    <td>{% if progresses and progresses[category] is not none %}{{ progresses[category] }}{% else %}0.0{% endif %}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="m-3">利用可能なカテゴリデータがありません。</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- グラフカード -->
+    <div class="card chart-card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0"><i class="fas fa-chart-bar"></i> 部門別正答率グラフ</h5>
+        </div>
+        <div class="card-body">
+            <div class="chart-container">
+                <canvas id="categoryBarChart" width="400" height="200"></canvas>
+            </div>
+            <p class="text-muted mt-2">
+                <i class="fas fa-info-circle"></i> グラフは部門ごとの正答率を示します。
+            </p>
+        </div>
+    </div>
+
+    <!-- ナビゲーション -->
+    <div class="navigation-section text-center">
+        <div class="row g-2">
+            <div class="col-md-6">
+                <a href="/" class="btn btn-secondary w-100 nav-btn">
+                    <i class="fas fa-home"></i> ホームに戻る
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="/exam" class="btn btn-primary w-100 nav-btn">
+                    <i class="fas fa-random"></i> ランダム出題
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* モバイル対応スタイル */
+.mobile-controls {
+    display: flex;
+    align-items: center;
+}
+
+.category-card-mobile {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.category-card-mobile:hover {
+    transform: translateY(-2px);
+}
+
+.category-name {
+    color: #495057;
+    font-weight: bold;
+}
+
+.study-btn {
+    transition: all 0.3s ease;
+}
+
+.study-btn:hover {
+    transform: scale(1.05);
+}
+
+.category-stats-grid {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 2px;
+}
+
+.progress-section {
+    background-color: #e3f2fd;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.accuracy-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accuracy-label {
+    font-weight: 500;
+    color: #495057;
+}
+
+.accuracy-value {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.progress-display {
+    margin-bottom: 10px;
+}
+
+.progress-label {
+    font-size: 0.9rem;
+    color: #495057;
+    margin-bottom: 5px;
+}
+
+.categories-table-card, .chart-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+}
+
+.navigation-section {
+    margin-top: 30px;
+}
+
+.nav-btn {
+    transition: all 0.3s ease;
+    padding: 12px;
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .mobile-controls button {
+        padding: 0.375rem 0.5rem;
+        font-size: 0.875rem;
+    }
+    
+    .category-stats-grid {
+        padding: 10px;
+    }
+    
+    .stat-value {
+        font-size: 1.2rem;
+    }
+    
+    .chart-container {
+        height: 250px;
+    }
+    
+    .nav-btn {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .category-stats-grid {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .stat-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .stat-item:last-child {
+        border-bottom: none;
+    }
+    
+    .stat-value {
+        font-size: 1rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script type="application/json" id="category-data">{{ category_details | tojson }}</script>
+<script src="{{ url_for('static', filename='js/categories.js') }}"></script>
+{% endblock %}

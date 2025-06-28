@@ -1,0 +1,24 @@
+{
+  "backup_id": "recovery_backup_20250629_005837_0ec4bff7",
+  "timestamp": "2025-06-29T00:58:37.918178",
+  "session_data": {
+    "_permanent": true,
+    "user_id": "edge_test_road_2008_start_boundary",
+    "last_activity": "2025-06-28T15:58:37.889941+00:00",
+    "total_requests": 1,
+    "backup_history": [
+      {
+        "backup_id": "session_backup_20250629_005837_793ed865",
+        "timestamp": "2025-06-29T00:58:37.880190",
+        "auto_save": true,
+        "expired": false
+      }
+    ],
+    "last_auto_save": "2025-06-29T00:58:37.880160",
+    "session_id": "ec440aa5f4a995340210179058ac593b",
+    "data_loaded": true,
+    "exam_question_ids": []
+  },
+  "backup_type": "corruption_recovery",
+  "session_size_bytes": 445
+}

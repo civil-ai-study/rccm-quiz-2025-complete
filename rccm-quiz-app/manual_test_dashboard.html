@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 RCCM 手動テストダッシュボード</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #d63031;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .department-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .department-card {
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            padding: 20px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .department-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .department-card.priority-high {
+            border-color: #e74c3c;
+            background: #fdf2f2;
+        }
+        
+        .department-card.priority-critical {
+            border-color: #c0392b;
+            background: #fadbd8;
+        }
+        
+        .department-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .department-icon {
+            font-size: 2em;
+            margin-right: 15px;
+        }
+        
+        .department-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .year-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .year-button {
+            padding: 8px 12px;
+            border: 2px solid #3498db;
+            border-radius: 6px;
+            background: white;
+            color: #3498db;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+        
+        .year-button:hover {
+            background: #3498db;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .year-button.critical {
+            border-color: #e74c3c;
+            color: #e74c3c;
+        }
+        
+        .year-button.critical:hover {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .instructions {
+            background: #e8f6fd;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2980b9;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        
+        .alert {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        .alert-danger {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        
+        .alert-warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+        
+        .alert-info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧪 RCCM 4-2専門問題 手動テストダッシュボード</h1>
+            <p>CLAUDE.md準拠 - スクリプトテスト絶対禁止</p>
+        </div>
+        
+        <div class="warning">
+            ⚠️ 重要: このダッシュボードは手動テスト支援用です。<br>
+            <strong>絶対にスクリプトやAPIを使用せず、ブラウザでの手動テストのみ実行してください。</strong>
+        </div>
+        
+        <div class="content">
+            <div class="instructions">
+                <h3>📋 手動テスト実行手順</h3>
+                <ol>
+                    <li><strong>ログイン:</strong> http://localhost:5000 でユーザー名 <code>manual_test_[部門]_[年度]</code> を入力</li>
+                    <li><strong>テスト実行:</strong> 下記の各年度ボタンを<strong>手動でクリック</strong>してテストページへアクセス</li>
+                    <li><strong>確認項目:</strong> エラーメッセージ、年度統一性、部門統一性、問題数、レスポンス時間を確認</li>
+                    <li><strong>結果記録:</strong> 各テストの成功/失敗を記録</li>
+                </ol>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">テスト対象部門</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">9</span>
+                    <span class="stat-label">年度 (2011-2019)</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">108</span>
+                    <span class="stat-label">総テストケース</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">スクリプト使用数</span>
+                </div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p style="text-align: center; color: #7f8c8d;">テスト進捗: <span id="progressText">0/108</span> 完了</p>
+            
+            <div class="alert alert-danger">
+                <strong>🆘 最優先テスト:</strong> 造園部門 2019年度 - 以前にエラーが発生していたため最重要
+            </div>
+            
+            <div class="department-grid">
+                <!-- 造園部門 - 最優先 -->
+                <div class="department-card priority-critical">
+                    <div class="department-header">
+                        <div class="department-icon">🌸</div>
+                        <div class="department-name">造園部門 🆘</div>
+                    </div>
+                    <div class="alert alert-danger" style="margin: 10px 0; padding: 8px; font-size: 0.8em;">
+                        ⚠️ 2019年でエラー発生歴 - 最重要テスト
+                    </div>
+                    <div class="year-grid">
+                        <a href="http://localhost:5000/exam?department=landscape&year=2019&question_type=specialist&count=10" class="year-button critical" target="_blank">2019年 🚨</a>
+                        <a href="http://localhost:5000/exam?department=landscape&year=2018&question_type=specialist&count=10" class="year-button" target="_blank">2018年</a>
+                        <a href="http://localhost:5000/exam?department=landscape&year=2017&question_type=specialist&count=10" class="year-button" target="_blank">2017年</a>
+                        <a href="http://localhost:5000/exam?department=landscape&year=2016&question_type=specialist&count=10" class="year-button" target="_blank">2016年</a>
+                        <a href="http://localhost:5000/exam?department=landscape&year=2015&question_type=specialist&count=10" class="year-button" target="_blank">2015年</a>
+                        <a href="http://localhost:5000/exam?department=landscape&year=2014&question_type=specialist&count=10" class="year-button" target="_blank">2014年</a>
+                        <a href="http://localhost:5000/exam?department=landscape&year=2013&question_type=specialist&count=10" class="year-button" target="_blank">2013年</a>
+                        <a href="http://localhost:5000/exam?department=landscape&year=2012&question_type=specialist&count=10" class="year-button" target="_blank">2012年</a>
+                        <a href="http://localhost:5000/exam?department=landscape&year=2011&question_type=specialist&count=10" class="year-button" target="_blank">2011年</a>
+                    </div>
+                </div>
+                
+                <!-- 道路部門 -->
+                <div class="department-card priority-high">
+                    <div class="department-header">
+                        <div class="department-icon">🛣️</div>
+                        <div class="department-name">道路部門</div>
+                    </div>
+                    <div class="alert alert-info" style="margin: 10px 0; padding: 8px; font-size: 0.8em;">
+                        ⚡ パフォーマンス最適化効果確認対象
+                    </div>
+                    <div class="year-grid">
+                        <a href="http://localhost:5000/exam?department=road&year=2019&question_type=specialist&count=10" class="year-button" target="_blank">2019年</a>
+                        <a href="http://localhost:5000/exam?department=road&year=2018&question_type=specialist&count=10" class="year-button" target="_blank">2018年</a>
+                        <a href="http://localhost:5000/exam?department=road&year=2017&question_type=specialist&count=10" class="year-button" target="_blank">2017年</a>
+                        <a href="http://localhost:5000/exam?department=road&year=2016&question_type=specialist&count=10" class="year-button" target="_blank">2016年</a>
+                        <a href="http://localhost:5000/exam?department=road&year=2015&question_type=specialist&count=10" class="year-button" target="_blank">2015年</a>
+                        <a href="http://localhost:5000/exam?department=road&year=2014&question_type=specialist&count=10" class="year-button" target="_blank">2014年</a>
+                        <a href="http://localhost:5000/exam?department=road&year=2013&question_type=specialist&count=10" class="year-button" target="_blank">2013年</a>
+                        <a href="http://localhost:5000/exam?department=road&year=2012&question_type=specialist&count=10" class="year-button" target="_blank">2012年</a>
+                        <a href="http://localhost:5000/exam?department=road&year=2011&question_type=specialist&count=10" class="year-button" target="_blank">2011年</a>
+                    </div>
+                </div>
+                
+                <!-- トンネル部門 -->
+                <div class="department-card">
+                    <div class="department-header">
+                        <div class="department-icon">🚇</div>
+                        <div class="department-name">トンネル部門</div>
+                    </div>
+                    <div class="year-grid">
+                        <a href="http://localhost:5000/exam?department=tunnel&year=2019&question_type=specialist&count=10" class="year-button" target="_blank">2019年</a>
+                        <a href="http://localhost:5000/exam?department=tunnel&year=2018&question_type=specialist&count=10" class="year-button" target="_blank">2018年</a>
+                        <a href="http://localhost:5000/exam?department=tunnel&year=2017&question_type=specialist&count=10" class="year-button" target="_blank">2017年</a>
+                        <a href="http://localhost:5000/exam?department=tunnel&year=2016&question_type=specialist&count=10" class="year-button" target="_blank">2016年</a>
+                        <a href="http://localhost:5000/exam?department=tunnel&year=2015&question_type=specialist&count=10" class="year-button" target="_blank">2015年</a>
+                        <a href="http://localhost:5000/exam?department=tunnel&year=2014&question_type=specialist&count=10" class="year-button" target="_blank">2014年</a>
+                        <a href="http://localhost:5000/exam?department=tunnel&year=2013&question_type=specialist&count=10" class="year-button" target="_blank">2013年</a>
+                        <a href="http://localhost:5000/exam?department=tunnel&year=2012&question_type=specialist&count=10" class="year-button" target="_blank">2012年</a>
+                        <a href="http://localhost:5000/exam?department=tunnel&year=2011&question_type=specialist&count=10" class="year-button" target="_blank">2011年</a>
+                    </div>
+                </div>
+                
+                <!-- 河川・砂防部門 -->
+                <div class="department-card priority-high">
+                    <div class="department-header">
+                        <div class="department-icon">🌊</div>
+                        <div class="department-name">河川・砂防部門</div>
+                    </div>
+                    <div class="alert alert-info" style="margin: 10px 0; padding: 8px; font-size: 0.8em;">
+                        🧹 カテゴリ統一修正効果確認対象
+                    </div>
+                    <div class="year-grid">
+                        <a href="http://localhost:5000/exam?department=civil_planning&year=2019&question_type=specialist&count=10" class="year-button" target="_blank">2019年</a>
+                        <a href="http://localhost:5000/exam?department=civil_planning&year=2018&question_type=specialist&count=10" class="year-button" target="_blank">2018年</a>
+                        <a href="http://localhost:5000/exam?department=civil_planning&year=2017&question_type=specialist&count=10" class="year-button" target="_blank">2017年</a>
+                        <a href="http://localhost:5000/exam?department=civil_planning&year=2016&question_type=specialist&count=10" class="year-button" target="_blank">2016年</a>
+                        <a href="http://localhost:5000/exam?department=civil_planning&year=2015&question_type=specialist&count=10" class="year-button" target="_blank">2015年</a>
+                        <a href="http://localhost:5000/exam?department=civil_planning&year=2014&question_type=specialist&count=10" class="year-button" target="_blank">2014年</a>
+                        <a href="http://localhost:5000/exam?department=civil_planning&year=2013&question_type=specialist&count=10" class="year-button" target="_blank">2013年</a>
+                        <a href="http://localhost:5000/exam?department=civil_planning&year=2012&question_type=specialist&count=10" class="year-button" target="_blank">2012年</a>
+                        <a href="http://localhost:5000/exam?department=civil_planning&year=2011&question_type=specialist&count=10" class="year-button" target="_blank">2011年</a>
+                    </div>
+                </div>
+                
+                <!-- 都市計画部門 -->
+                <div class="department-card">
+                    <div class="department-header">
+                        <div class="department-icon">🏙️</div>
+                        <div class="department-name">都市計画部門</div>
+                    </div>
+                    <div class="year-grid">
+                        <a href="http://localhost:5000/exam?department=urban_planning&year=2019&question_type=specialist&count=10" class="year-button" target="_blank">2019年</a>
+                        <a href="http://localhost:5000/exam?department=urban_planning&year=2018&question_type=specialist&count=10" class="year-button" target="_blank">2018年</a>
+                        <a href="http://localhost:5000/exam?department=urban_planning&year=2017&question_type=specialist&count=10" class="year-button" target="_blank">2017年</a>
+                        <a href="http://localhost:5000/exam?department=urban_planning&year=2016&question_type=specialist&count=10" class="year-button" target="_blank">2016年</a>
+                        <a href="http://localhost:5000/exam?department=urban_planning&year=2015&question_type=specialist&count=10" class="year-button" target="_blank">2015年</a>
+                        <a href="http://localhost:5000/exam?department=urban_planning&year=2014&question_type=specialist&count=10" class="year-button" target="_blank">2014年</a>
+                        <a href="http://localhost:5000/exam?department=urban_planning&year=2013&question_type=specialist&count=10" class="year-button" target="_blank">2013年</a>
+                        <a href="http://localhost:5000/exam?department=urban_planning&year=2012&question_type=specialist&count=10" class="year-button" target="_blank">2012年</a>
+                        <a href="http://localhost:5000/exam?department=urban_planning&year=2011&question_type=specialist&count=10" class="year-button" target="_blank">2011年</a>
+                    </div>
+                </div>
+                
+                <!-- 建設環境部門 -->
+                <div class="department-card">
+                    <div class="department-header">
+                        <div class="department-icon">🌱</div>
+                        <div class="department-name">建設環境部門</div>
+                    </div>
+                    <div class="year-grid">
+                        <a href="http://localhost:5000/exam?department=construction_env&year=2019&question_type=specialist&count=10" class="year-button" target="_blank">2019年</a>
+                        <a href="http://localhost:5000/exam?department=construction_env&year=2018&question_type=specialist&count=10" class="year-button" target="_blank">2018年</a>
+                        <a href="http://localhost:5000/exam?department=construction_env&year=2017&question_type=specialist&count=10" class="year-button" target="_blank">2017年</a>
+                        <a href="http://localhost:5000/exam?department=construction_env&year=2016&question_type=specialist&count=10" class="year-button" target="_blank">2016年</a>
+                        <a href="http://localhost:5000/exam?department=construction_env&year=2015&question_type=specialist&count=10" class="year-button" target="_blank">2015年</a>
+                        <a href="http://localhost:5000/exam?department=construction_env&year=2014&question_type=specialist&count=10" class="year-button" target="_blank">2014年</a>
+                        <a href="http://localhost:5000/exam?department=construction_env&year=2013&question_type=specialist&count=10" class="year-button" target="_blank">2013年</a>
+                        <a href="http://localhost:5000/exam?department=construction_env&year=2012&question_type=specialist&count=10" class="year-button" target="_blank">2012年</a>
+                        <a href="http://localhost:5000/exam?department=construction_env&year=2011&question_type=specialist&count=10" class="year-button" target="_blank">2011年</a>
+                    </div>
+                </div>
+                
+                <!-- 鋼構造・コンクリート部門 -->
+                <div class="department-card">
+                    <div class="department-header">
+                        <div class="department-icon">🏗️</div>
+                        <div class="department-name">鋼構造・コンクリート部門</div>
+                    </div>
+                    <div class="year-grid">
+                        <a href="http://localhost:5000/exam?department=steel_concrete&year=2019&question_type=specialist&count=10" class="year-button" target="_blank">2019年</a>
+                        <a href="http://localhost:5000/exam?department=steel_concrete&year=2018&question_type=specialist&count=10" class="year-button" target="_blank">2018年</a>
+                        <a href="http://localhost:5000/exam?department=steel_concrete&year=2017&question_type=specialist&count=10" class="year-button" target="_blank">2017年</a>
+                        <a href="http://localhost:5000/exam?department=steel_concrete&year=2016&question_type=specialist&count=10" class="year-button" target="_blank">2016年</a>
+                        <a href="http://localhost:5000/exam?department=steel_concrete&year=2015&question_type=specialist&count=10" class="year-button" target="_blank">2015年</a>
+                        <a href="http://localhost:5000/exam?department=steel_concrete&year=2014&question_type=specialist&count=10" class="year-button" target="_blank">2014年</a>
+                        <a href="http://localhost:5000/exam?department=steel_concrete&year=2013&question_type=specialist&count=10" class="year-button" target="_blank">2013年</a>
+                        <a href="http://localhost:5000/exam?department=steel_concrete&year=2012&question_type=specialist&count=10" class="year-button" target="_blank">2012年</a>
+                        <a href="http://localhost:5000/exam?department=steel_concrete&year=2011&question_type=specialist&count=10" class="year-button" target="_blank">2011年</a>
+                    </div>
+                </div>
+                
+                <!-- 土質・基礎部門 -->
+                <div class="department-card">
+                    <div class="department-header">
+                        <div class="department-icon">🪨</div>
+                        <div class="department-name">土質・基礎部門</div>
+                    </div>
+                    <div class="year-grid">
+                        <a href="http://localhost:5000/exam?department=soil_foundation&year=2019&question_type=specialist&count=10" class="year-button" target="_blank">2019年</a>
+                        <a href="http://localhost:5000/exam?department=soil_foundation&year=2018&question_type=specialist&count=10" class="year-button" target="_blank">2018年</a>
+                        <a href="http://localhost:5000/exam?department=soil_foundation&year=2017&question_type=specialist&count=10" class="year-button" target="_blank">2017年</a>
+                        <a href="http://localhost:5000/exam?department=soil_foundation&year=2016&question_type=specialist&count=10" class="year-button" target="_blank">2016年</a>
+                        <a href="http://localhost:5000/exam?department=soil_foundation&year=2015&question_type=specialist&count=10" class="year-button" target="_blank">2015年</a>
+                        <a href="http://localhost:5000/exam?department=soil_foundation&year=2014&question_type=specialist&count=10" class="year-button" target="_blank">2014年</a>
+                        <a href="http://localhost:5000/exam?department=soil_foundation&year=2013&question_type=specialist&count=10" class="year-button" target="_blank">2013年</a>
+                        <a href="http://localhost:5000/exam?department=soil_foundation&year=2012&question_type=specialist&count=10" class="year-button" target="_blank">2012年</a>
+                        <a href="http://localhost:5000/exam?department=soil_foundation&year=2011&question_type=specialist&count=10" class="year-button" target="_blank">2011年</a>
+                    </div>
+                </div>
+                
+                <!-- 施工計画部門 -->
+                <div class="department-card">
+                    <div class="department-header">
+                        <div class="department-icon">📋</div>
+                        <div class="department-name">施工計画部門</div>
+                    </div>
+                    <div class="year-grid">
+                        <a href="http://localhost:5000/exam?department=construction_planning&year=2019&question_type=specialist&count=10" class="year-button" target="_blank">2019年</a>
+                        <a href="http://localhost:5000/exam?department=construction_planning&year=2018&question_type=specialist&count=10" class="year-button" target="_blank">2018年</a>
+                        <a href="http://localhost:5000/exam?department=construction_planning&year=2017&question_type=specialist&count=10" class="year-button" target="_blank">2017年</a>
+                        <a href="http://localhost:5000/exam?department=construction_planning&year=2016&question_type=specialist&count=10" class="year-button" target="_blank">2016年</a>
+                        <a href="http://localhost:5000/exam?department=construction_planning&year=2015&question_type=specialist&count=10" class="year-button" target="_blank">2015年</a>
+                        <a href="http://localhost:5000/exam?department=construction_planning&year=2014&question_type=specialist&count=10" class="year-button" target="_blank">2014年</a>
+                        <a href="http://localhost:5000/exam?department=construction_planning&year=2013&question_type=specialist&count=10" class="year-button" target="_blank">2013年</a>
+                        <a href="http://localhost:5000/exam?department=construction_planning&year=2012&question_type=specialist&count=10" class="year-button" target="_blank">2012年</a>
+                        <a href="http://localhost:5000/exam?department=construction_planning&year=2011&question_type=specialist&count=10" class="year-button" target="_blank">2011年</a>
+                    </div>
+                </div>
+                
+                <!-- 上下水道部門 -->
+                <div class="department-card">
+                    <div class="department-header">
+                        <div class="department-icon">💧</div>
+                        <div class="department-name">上下水道部門</div>
+                    </div>
+                    <div class="year-grid">
+                        <a href="http://localhost:5000/exam?department=water_supply&year=2019&question_type=specialist&count=10" class="year-button" target="_blank">2019年</a>
+                        <a href="http://localhost:5000/exam?department=water_supply&year=2018&question_type=specialist&count=10" class="year-button" target="_blank">2018年</a>
+                        <a href="http://localhost:5000/exam?department=water_supply&year=2017&question_type=specialist&count=10" class="year-button" target="_blank">2017年</a>
+                        <a href="http://localhost:5000/exam?department=water_supply&year=2016&question_type=specialist&count=10" class="year-button" target="_blank">2016年</a>
+                        <a href="http://localhost:5000/exam?department=water_supply&year=2015&question_type=specialist&count=10" class="year-button" target="_blank">2015年</a>
+                        <a href="http://localhost:5000/exam?department=water_supply&year=2014&question_type=specialist&count=10" class="year-button" target="_blank">2014年</a>
+                        <a href="http://localhost:5000/exam?department=water_supply&year=2013&question_type=specialist&count=10" class="year-button" target="_blank">2013年</a>
+                        <a href="http://localhost:5000/exam?department=water_supply&year=2012&question_type=specialist&count=10" class="year-button" target="_blank">2012年</a>
+                        <a href="http://localhost:5000/exam?department=water_supply&year=2011&question_type=specialist&count=10" class="year-button" target="_blank">2011年</a>
+                    </div>
+                </div>
+                
+                <!-- 森林土木部門 -->
+                <div class="department-card">
+                    <div class="department-header">
+                        <div class="department-icon">🌲</div>
+                        <div class="department-name">森林土木部門</div>
+                    </div>
+                    <div class="year-grid">
+                        <a href="http://localhost:5000/exam?department=forestry&year=2019&question_type=specialist&count=10" class="year-button" target="_blank">2019年</a>
+                        <a href="http://localhost:5000/exam?department=forestry&year=2018&question_type=specialist&count=10" class="year-button" target="_blank">2018年</a>
+                        <a href="http://localhost:5000/exam?department=forestry&year=2017&question_type=specialist&count=10" class="year-button" target="_blank">2017年</a>
+                        <a href="http://localhost:5000/exam?department=forestry&year=2016&question_type=specialist&count=10" class="year-button" target="_blank">2016年</a>
+                        <a href="http://localhost:5000/exam?department=forestry&year=2015&question_type=specialist&count=10" class="year-button" target="_blank">2015年</a>
+                        <a href="http://localhost:5000/exam?department=forestry&year=2014&question_type=specialist&count=10" class="year-button" target="_blank">2014年</a>
+                        <a href="http://localhost:5000/exam?department=forestry&year=2013&question_type=specialist&count=10" class="year-button" target="_blank">2013年</a>
+                        <a href="http://localhost:5000/exam?department=forestry&year=2012&question_type=specialist&count=10" class="year-button" target="_blank">2012年</a>
+                        <a href="http://localhost:5000/exam?department=forestry&year=2011&question_type=specialist&count=10" class="year-button" target="_blank">2011年</a>
+                    </div>
+                </div>
+                
+                <!-- 農業土木部門 -->
+                <div class="department-card">
+                    <div class="department-header">
+                        <div class="department-icon">🌾</div>
+                        <div class="department-name">農業土木部門</div>
+                    </div>
+                    <div class="year-grid">
+                        <a href="http://localhost:5000/exam?department=agriculture&year=2019&question_type=specialist&count=10" class="year-button" target="_blank">2019年</a>
+                        <a href="http://localhost:5000/exam?department=agriculture&year=2018&question_type=specialist&count=10" class="year-button" target="_blank">2018年</a>
+                        <a href="http://localhost:5000/exam?department=agriculture&year=2017&question_type=specialist&count=10" class="year-button" target="_blank">2017年</a>
+                        <a href="http://localhost:5000/exam?department=agriculture&year=2016&question_type=specialist&count=10" class="year-button" target="_blank">2016年</a>
+                        <a href="http://localhost:5000/exam?department=agriculture&year=2015&question_type=specialist&count=10" class="year-button" target="_blank">2015年</a>
+                        <a href="http://localhost:5000/exam?department=agriculture&year=2014&question_type=specialist&count=10" class="year-button" target="_blank">2014年</a>
+                        <a href="http://localhost:5000/exam?department=agriculture&year=2013&question_type=specialist&count=10" class="year-button" target="_blank">2013年</a>
+                        <a href="http://localhost:5000/exam?department=agriculture&year=2012&question_type=specialist&count=10" class="year-button" target="_blank">2012年</a>
+                        <a href="http://localhost:5000/exam?department=agriculture&year=2011&question_type=specialist&count=10" class="year-button" target="_blank">2011年</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alert alert-warning">
+                <strong>📋 テスト実行時の注意点:</strong><br>
+                • 各リンクは新しいタブで開きます<br>
+                • ログファイル (rccm_app.log) で詳細な品質確認ログを確認してください<br>
+                • エラーが発生した場合は即座にテストを停止し、ログを確認してください<br>
+                • レスポンス時間が3秒を超える場合は要注意です
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>CLAUDE.md 準拠</strong> - スクリプトテスト絶対禁止 | ウルトラシンク手動テスト支援ダッシュボード</p>
+            <p>🧪 副作用ゼロ保証 | 手動テストによる品質確認専用</p>
+        </div>
+    </div>
+    
+    <script>
+        // 進捗表示機能（手動更新用）
+        let completedTests = 0;
+        const totalTests = 108;
+        
+        function updateProgress() {
+            const progressPercent = (completedTests / totalTests) * 100;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+            document.getElementById('progressText').textContent = completedTests + '/' + totalTests;
+        }
+        
+        // リンククリック時の進捗更新
+        document.querySelectorAll('.year-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // リンククリックをログに記録（副作用なし）
+                console.log('Manual test link clicked:', this.href);
+                
+                // 視覚的フィードバック
+                this.style.opacity = '0.6';
+                setTimeout(() => {
+                    this.style.opacity = '1';
+                }, 1000);
+            });
+        });
+        
+        // 初期進捗表示
+        updateProgress();
+        
+        // ページロード時の警告表示
+        window.addEventListener('load', function() {
+            console.log('🧪 RCCM Manual Test Dashboard Loaded');
+            console.log('⚠️ SCRIPT TEST ABSOLUTELY PROHIBITED');
+            console.log('📋 Please perform manual testing only');
+        });
+    </script>
+</body>
+</html>

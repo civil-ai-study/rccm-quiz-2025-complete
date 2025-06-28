@@ -1,0 +1,24 @@
+{
+  "backup_id": "recovery_backup_20250629_005831_ad7c9a2a",
+  "timestamp": "2025-06-29T00:58:31.916488",
+  "session_data": {
+    "_permanent": true,
+    "user_id": "year_test_2011_agriculture_1751126311",
+    "last_activity": "2025-06-28T15:58:31.912442+00:00",
+    "total_requests": 1,
+    "backup_history": [
+      {
+        "backup_id": "session_backup_20250629_005831_e18f511e",
+        "timestamp": "2025-06-29T00:58:31.908109",
+        "auto_save": true,
+        "expired": false
+      }
+    ],
+    "last_auto_save": "2025-06-29T00:58:31.908065",
+    "session_id": "d0b0aa4eb18fda77c28ba1053e642361",
+    "data_loaded": true,
+    "exam_question_ids": []
+  },
+  "backup_type": "corruption_recovery",
+  "session_size_bytes": 448
+}
