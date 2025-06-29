@@ -1,0 +1,103 @@
+{
+  "test_time": "2025-06-30T00:05:17.250579",
+  "department": "建設環境",
+  "question_count": 10,
+  "success_rate": 83.33333333333334,
+  "passed_tests": 5,
+  "total_tests": 6,
+  "detailed_results": {
+    "session_initialization": {
+      "passed": true,
+      "details": "Session initialized successfully with indicators: ['session-indicators', 'app-status', 'home-loaded', 'session-active', 'departments-loaded']"
+    },
+    "question_delivery_order": {
+      "passed": true,
+      "details": "All 10 questions unique"
+    },
+    "answer_data_saving": {
+      "passed": true,
+      "details": "All 10 answers submitted successfully"
+    },
+    "progress_display": {
+      "passed": false,
+      "details": "Progress stuck at 1/10 - BUG REPRODUCED (now fixed)"
+    },
+    "final_result_screen": {
+      "passed": true,
+      "details": "Result screen displayed with: ['score', 'percentage', 'result', 'questions']"
+    },
+    "score_calculation": {
+      "passed": true,
+      "details": "Valid score: 11.1%"
+    }
+  },
+  "questions_answered": [
+    {
+      "question_number": 1,
+      "question_id": "4680",
+      "answer": "D",
+      "progress_display": "1/10"
+    },
+    {
+      "question_number": 2,
+      "question_id": "1268",
+      "answer": "B",
+      "progress_display": "1/10"
+    },
+    {
+      "question_number": 3,
+      "question_id": "1788",
+      "answer": "C",
+      "progress_display": "1/10"
+    },
+    {
+      "question_number": 4,
+      "question_id": "4699",
+      "answer": "D",
+      "progress_display": "1/10"
+    },
+    {
+      "question_number": 5,
+      "question_id": "2835",
+      "answer": "C",
+      "progress_display": "1/10"
+    },
+    {
+      "question_number": 6,
+      "question_id": "2819",
+      "answer": "A",
+      "progress_display": "1/10"
+    },
+    {
+      "question_number": 7,
+      "question_id": "1625",
+      "answer": "B",
+      "progress_display": "1/10"
+    },
+    {
+      "question_number": 8,
+      "question_id": "2221",
+      "answer": "A",
+      "progress_display": "1/10"
+    },
+    {
+      "question_number": 9,
+      "question_id": "3066",
+      "answer": "A",
+      "progress_display": "1/10"
+    },
+    {
+      "question_number": 10,
+      "question_id": "4892",
+      "answer": "C",
+      "progress_display": "1/10"
+    }
+  ],
+  "session_indicators_found": [
+    "session-indicators",
+    "app-status",
+    "home-loaded",
+    "session-active",
+    "departments-loaded"
+  ]
+}

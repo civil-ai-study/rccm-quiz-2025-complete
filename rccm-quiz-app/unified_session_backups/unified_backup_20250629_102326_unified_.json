@@ -1,0 +1,87 @@
+{
+  "backup_id": "unified_backup_20250629_102326_unified_",
+  "session_id": "unified_1751192545474_6bbc8f84",
+  "timestamp": "2025-06-29T10:23:26.051422+00:00",
+  "backup_type": "unified",
+  "flags": {},
+  "session_data": {
+    "_permanent": true,
+    "backup_history": [
+      {
+        "backup_id": "unified_backup_20250629_102225_unified_",
+        "flags": {
+          "corrupted": true
+        },
+        "timestamp": "2025-06-29T10:22:25.475772+00:00",
+        "type": "unified"
+      }
+    ],
+    "bookmarks": [],
+    "category_stats": {},
+    "corruption_backup": "unified_backup_20250629_102225_unified_",
+    "corruption_repaired": true,
+    "exam_category": "共通",
+    "exam_current": 0,
+    "exam_question_ids": [
+      47,
+      125,
+      16,
+      181,
+      119,
+      46,
+      144,
+      75,
+      54,
+      55
+    ],
+    "history": [],
+    "initialization_timestamp": "2025-06-29T10:22:25.480739+00:00",
+    "last_activity": "2025-06-29T10:23:26.039636+00:00",
+    "last_auto_backup": "2025-06-29T10:22:25.475772+00:00",
+    "last_memory_optimization": {
+      "memory_usage_mb": 60.16,
+      "optimization_count": 1,
+      "timestamp": "2025-06-29T10:22:34.957247+00:00"
+    },
+    "last_request_timestamp": "2025-06-29T10:23:26.039636+00:00",
+    "learning_progress": {},
+    "quiz_settings": {},
+    "repair_timestamp": "2025-06-29T10:22:25.480002+00:00",
+    "request_history": [
+      "2025-06-29T19:23:15.692993",
+      "2025-06-29T19:23:26.039808"
+    ],
+    "selected_question_type": "basic",
+    "session_duration_seconds": 60,
+    "session_id": "unified_1751192545474_6bbc8f84",
+    "session_start": "2025-06-29T10:22:25.480706+00:00",
+    "srs_data": {},
+    "total_requests": 7,
+    "unified_initialized": true,
+    "user_settings": {}
+  },
+  "metadata": {
+    "manager_stats": {
+      "total_operations": 16,
+      "successful_operations": 15,
+      "failed_operations": 0,
+      "timeouts": 0,
+      "recoveries": 2,
+      "cleanups": 0,
+      "memory_optimizations": 1,
+      "lock_contentions": 0
+    },
+    "session_registry": {
+      "last_save": 1751192606.0513835,
+      "session_size": 1277,
+      "activity_count": 7,
+      "status": "active"
+    },
+    "memory_usage": {
+      "usage_mb": 60.68,
+      "threshold_mb": 500,
+      "should_cleanup": false,
+      "usage_percent": 12.1
+    }
+  }
+}

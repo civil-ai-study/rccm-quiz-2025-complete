@@ -2,7 +2,183 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## 🏗️ 統合開発環境設定（複数プログラム管理）
+
+### 開発者プロフィール
+- **経験**: 30年建設コンサルタント（東日本大震災復興事業総括責任者）
+- **現在の課題**: 複数プログラム（A,B,C + RCCM試験サイト）の効率的統合管理
+- **適用手法**: 建設現場の工程管理ノウハウをプログラム開発に応用
+
+### 統合管理対象プロジェクト
+1. **RCCM試験サイト**（メインプロジェクト - このリポジトリ）
+2. **プログラムA**: [他のプロジェクト詳細]
+3. **プログラムB**: [他のプロジェクト詳細]
+
+### 現状の問題解決戦略
+```
+【従来の非効率パターン】
+プログラム修正 → 手動確認 → エラー発見 → 修正 → また別エラー → 無限ループ
+
+【新システムでの効率化】
+問題検出 → 自動分析 → 統合影響チェック → 安全修正 → 自動テスト → 完了
+```
+
+## 🚫 絶対禁止事項（統合開発対応）
+
+### 統合管理での絶対禁止
+- **NEVER**: 一つのプロジェクト修正が他に副作用を与える状況を放置
+- **NEVER**: プロジェクト間の整合性チェックを怠る
+- **NEVER**: 場当たり的な修正で根本解決を先送り
+- **NEVER**: 複数プロジェクト間の影響分析を怠る
+- **NEVER**: 統合テスト未実施での修正適用
+- **NEVER**: 複数プロジェクト間での設定の無断変更
+- **NEVER**: 統合テスト環境での本番データ使用
+- **NEVER**: プロジェクト間API仕様の破壊的変更
+
+### 開発・テスト時の絶対禁止事項
+- **NEVER**: 本番環境に未テストコードをデプロイ
+- **NEVER**: エラーハンドリングなしでAPI呼び出し
+- **NEVER**: ユーザー入力の検証なしでデータベース操作
+- **NEVER**: セキュリティテスト未実施のまま公開
+- **NEVER**: テストエラーや型エラー解消のための条件緩和
+- **NEVER**: テストのスキップや不適切なモック化による回避
+- **NEVER**: 出力やレスポンスのハードコード
+- **NEVER**: エラーメッセージの無視や隠蔽
+- **NEVER**: 一時的な修正による問題の先送り
+
+### コード品質維持のための禁止事項
+- **NEVER**: 根本原因を解決せずに症状のみを隠す修正
+- **NEVER**: テストケースの削除や無効化による「修正」
+- **NEVER**: try-except文での例外の単純な無視
+- **NEVER**: 型チェックの回避やanyを使った逃げ
+- **NEVER**: セキュリティ要件の緩和や回避
+
+### データ整合性の禁止事項
+- **NEVER**: 不正データの受け入れによる問題回避
+- **NEVER**: バリデーション処理のスキップ
+- **NEVER**: エラー状態での正常値の返却
+- **NEVER**: 一貫性チェックの無効化
+- **NEVER**: 重要な警告メッセージの抑制
+- **NEVER**: 複数プロジェクト間でのデータ競合状態の放置
+
+## ✅ YOU MUST（統合管理の必須事項）
+
+### 統合管理必須事項
+- **YOU MUST**: 他プロジェクトへの影響を修正前に必ず分析
+- **YOU MUST**: 変更内容をLiving Documentationに自動反映
+- **YOU MUST**: 複数プロジェクト間の依存関係を常時監視
+- **YOU MUST**: エラー修正時はBefore/Afterスクリーンショット比較実行
+- **YOU MUST**: 他プロジェクトへの影響を事前分析
+- **YOU MUST**: Living Documentation自動更新
+
+### 品質保証必須事項
+- **YOU MUST**: 全ペルソナでのテスト実行
+- **YOU MUST**: エラー画面のスクリーンショット保存
+- **YOU MUST**: 修正前後の比較レポート生成
+- **YOU MUST**: 各機能変更後のリグレッションテスト実行
+- **YOU MUST**: セキュリティ脆弱性スキャンの実施
+
+## 🎯 完走テスト実行ルール（最重要）
+
+### YOU MUST: 完走テスト実行の絶対ルール
+- ⚠️ **10問/20問/30問の完全完走確認必須**
+- 🚫 **エラー隠蔽・軽視絶対禁止**
+- ✅ **全工程での進捗状況詳細報告必須**
+- 📊 **最終結果画面での数値確認完了まで実行**
+
+### YOU MUST: テスト透明性の確保
+- 🔍 **技術的制約を正直に報告**
+- ❌ **推測による成功報告禁止**
+- ✅ **確認済み事実のみ報告**
+- 📝 **エラー詳細の完全開示**
+
+### YOU MUST: ウルトラシンク品質保証
+- 🛡️ **副作用ゼロの確認**
+- 🔒 **既存機能への影響なし確認**
+- 📋 **CLAUDE.md準拠の徹底**
+- 🎯 **品質基準100%達成**
+
+## 🚨 完走テスト失敗時の対応
+
+### CRITICAL ERROR対応
+1. **即座にエラー詳細報告**
+2. **根本原因の特定**
+3. **修正方針の提示**
+4. **再テスト実行**
+
+### 報告形式
+```
+✅ 成功: 具体的確認内容
+❌ 失敗: 詳細なエラー内容
+🔍 調査中: 現在の状況
+```
+
+## 📋 部門別テスト必須項目
+
+### 12部門完走テスト（専門科目4-2）
+- **道路部門**: 10/20/30問完走確認
+- **河川・砂防部門**: 10/20/30問完走確認
+- **都市計画部門**: 10/20/30問完走確認
+- **造園部門**: 10/20/30問完走確認
+- **建設環境部門**: 10/20/30問完走確認
+- **鋼構造・コンクリート部門**: 10/20/30問完走確認
+- **土質・基礎部門**: 10/20/30問完走確認
+- **施工計画部門**: 10/20/30問完走確認
+- **上下水道部門**: 10/20/30問完走確認
+- **森林土木部門**: 10/20/30問完走確認
+- **農業土木部門**: 10/20/30問完走確認
+- **トンネル部門**: 10/20/30問完走確認
+
+### 基礎科目（4-1）完走テスト
+- **基礎科目**: 10/20/30問完走確認
+
+### 各部門での確認必須事項
+1. **セッション初期化成功**
+2. **問題配信順序正確性**
+3. **回答データ保存確認**
+4. **進捗表示正確性**
+5. **最終結果画面表示**
+6. **スコア計算正確性**
+
+## 🔍 エラーチェックルール（統合開発対応）
+
+### 10ペルソナ統合テスト（最重要）
+学習アプリの多様なユーザー体験をカバー：
+1. **初心者学習者**（全く知識がない状態）
+2. **中級者**（基礎知識あり、応用学習中）
+3. **上級者**（試験直前、弱点補強）
+4. **忙しい社会人**（隙間時間学習）
+5. **学生**（まとまった時間で集中学習）
+6. **高齢学習者**（操作に不慣れ）
+7. **視覚障害者**（読み上げ機能必須）
+8. **モバイル専用ユーザー**
+9. **回線速度が遅い環境ユーザー**
+10. **不正解続きで挫折寸前ユーザー**
+
+### IMPORTANT（重要事項）
+- **IMPORTANT**: 各修正後の自動リグレッションテスト
+- **IMPORTANT**: ブラウザ互換性チェック（Chrome, Firefox, Safari, Edge）
+- **IMPORTANT**: モバイル表示確認（iOS Safari, Android Chrome）
+- **IMPORTANT**: アクセシビリティチェック（WCAG 2.1 AA準拠）
+- **IMPORTANT**: パフォーマンステスト（3秒以内のページロード）
+- **IMPORTANT**: 複数プロジェクト同時実行時の競合チェック
+
 ## Commands
+
+### 統合開発・テスト（複数プロジェクト対応）
+```bash
+# 全プロジェクト状況把握
+/workspace status --all-projects
+
+# 統合影響分析
+/analyze impact "変更内容" --check-cross-dependencies
+
+# 安全な統合修正
+/fix apply --with-cross-project-testing --screenshot-compare
+
+# 10ペルソナ統合テスト（全プロジェクト）
+/test all-personas --cross-project --generate-report
+```
 
 ### Development and Testing
 ```bash
@@ -20,9 +196,6 @@ pip install -r requirements.txt
 
 # Test with Flask test client (for debugging)
 python3 -c "from app import app; with app.test_client() as client: print(client.get('/').status_code)"
-
-# Ultra Sync Year Filtering Verification Test
-python ultra_sync_year_verification.py
 ```
 
 ### Data Management
@@ -100,13 +273,6 @@ This is a Flask-based RCCM (登録建設機械施工技術者) exam preparation 
 **Question Navigation Problem**: 
 - Root cause: `is_last_question = (current_no + 1) >= len(quiz_question_ids)` calculation in app.py:379
 - This determines when to show "次の問題へ" vs "結果を見る" buttons
-
-**Year Filtering System (Ultra Sync Implementation)**:
-- Critical feature: `get_mixed_questions()` function includes ultra-sync year filtering
-- Prevents year mixing: Only questions from selected year are displayed
-- Implementation: Lines 1172-1184 in app.py with year parameter validation
-- Test verification: `ultra_sync_year_verification.py` confirms 100% year separation
-- Key log markers: `🚨 年度フィルタ適用（ウルトラシンク修正）` and `🚨 最終選択問題の年度分布`
 
 **Session State Synchronization**:
 - Sessions use 0-based indexing internally but 1-based display
@@ -242,56 +408,19 @@ This is a Flask-based RCCM (登録建設機械施工技術者) exam preparation 
 - Content quality and difficulty analysis
 - Export to multiple formats (JSON, PDF, Excel, CSV)
 
-## 🚫 絶対禁止事項
-
-**開発・テスト時の絶対禁止事項:**
-- テストエラーや型エラー解消のための条件緩和
-- テストのスキップや不適切なモック化による回避
-- 出力やレスポンスのハードコード
-- エラーメッセージの無視や隠蔽
-- 一時的な修正による問題の先送り
-
-**コード品質維持のための禁止事項:**
-- 根本原因を解決せずに症状のみを隠す修正
-- テストケースの削除や無効化による「修正」
-- try-except文での例外の単純な無視
-- 型チェックの回避やanyを使った逃げ
-- セキュリティ要件の緩和や回避
-
-**データ整合性の禁止事項:**
-- 不正データの受け入れによる問題回避
-- バリデーション処理のスキップ
-- エラー状態での正常値の返却
-- 一貫性チェックの無効化
-- 重要な警告メッセージの抑制
-
-これらの禁止事項に該当する修正を求められた場合は、適切な根本解決策を提案すること。
-
-## 🔍 エラーチェックルール
-
-### NEVER（絶対禁止）
-- NEVER: 本番環境に未テストコードをデプロイ
-- NEVER: エラーハンドリングなしでAPI呼び出し
-- NEVER: ユーザー入力の検証なしでデータベース操作
-- NEVER: セキュリティテスト未実施のまま公開
-
-### YOU MUST（必須事項）
-- YOU MUST: 全ペルソナでのテスト実行
-- YOU MUST: エラー画面のスクリーンショット保存
-- YOU MUST: 修正前後の比較レポート生成
-- YOU MUST: 各機能変更後のリグレッションテスト実行
-- YOU MUST: セキュリティ脆弱性スキャンの実施
-- YOU MUST: ⚠️ 手動テストのみ実行 - スクリプトテスト絶対禁止
-- YOU MUST: 🚫 12部門手動テストでスクリプト作成を一切行わない
-
-### IMPORTANT（重要事項）
-- IMPORTANT: 各修正後の自動リグレッションテスト
-- IMPORTANT: ブラウザ互換性チェック（Chrome, Firefox, Safari, Edge）
-- IMPORTANT: モバイル表示確認（iOS Safari, Android Chrome）
-- IMPORTANT: アクセシビリティチェック（WCAG 2.1 AA準拠）
-- IMPORTANT: パフォーマンステスト（3秒以内のページロード）
-
 ## 🤖 自動実行コマンド
+
+### 統合品質チェック
+```bash
+# 複数プロジェクト統合チェック
+/analyze workspace --check-all-dependencies
+
+# 統合影響範囲分析
+/impact-analysis "変更内容" --cross-project
+
+# Living Documentation更新
+/update-docs --auto-sync --cross-project
+```
 
 ### 品質チェック
 ```bash
@@ -316,10 +445,6 @@ python test_gamification.py
 python persona_comprehensive_test.py
 python persona_diversity_test.py
 python ultra_sync_user_behavior_test.py
-
-# 年度フィルタリングテスト（ウルトラシンク対応）
-python ultra_sync_year_verification.py
-python ultra_sync_year_filtering_test.py
 
 # E2Eテスト（全ペルソナ）
 python -c "
@@ -366,8 +491,12 @@ python performance_test.py
 
 ## 📋 チェックリスト
 
-### デプロイ前チェックリスト
-- [ ] 全ペルソナテスト合格（成功率95%以上）
+### 統合デプロイ前チェックリスト
+- [ ] **複数プロジェクト間の依存関係確認**
+- [ ] **統合影響範囲分析完了**
+- [ ] **Living Documentation更新完了**
+- [ ] **全ペルソナテスト合格（成功率95%以上）**
+- [ ] **10問/20問/30問完走テスト完了（全13部門）**
 - [ ] セキュリティテスト合格（SQLインジェクション、XSS、CSRF）
 - [ ] アクセシビリティテスト合格（スクリーンリーダー対応）
 - [ ] モバイル表示テスト合格
@@ -376,299 +505,24 @@ python performance_test.py
 - [ ] ログ出力確認
 - [ ] バックアップ作成
 
-### 修正後チェックリスト
+### 統合修正後チェックリスト
+- [ ] **他プロジェクトへの影響範囲確認**
+- [ ] **統合リグレッションテスト実行**
+- [ ] **Before/Afterスクリーンショット比較（全プロジェクト）**
+- [ ] **完走テスト再実行（該当部門）**
 - [ ] 影響範囲の特定
 - [ ] リグレッションテスト実行
 - [ ] 修正前後の比較スクリーンショット
 - [ ] パフォーマンス影響確認
 - [ ] ドキュメント更新
 
-# 🏆 MAXIMUM QUALITY STANDARDS - 最高品質基準
-
-## 🚨 ABSOLUTE CRITICAL QUALITY RULES - 絶対的品質規則
-
-### ❌ NEVER ALLOW - 絶対禁止事項（即座に作業停止）
-1. **NEVER**: 構文エラー（SyntaxError）のあるコードを提出
-2. **NEVER**: インデントエラー（IndentationError）のあるコードを提出  
-3. **NEVER**: インポートエラー（ImportError）のあるコードを提出
-4. **NEVER**: 実行時エラー（RuntimeError）のあるコードを提出
-5. **NEVER**: 型エラー（TypeError）のあるコードを提出
-6. **NEVER**: 名前エラー（NameError）のあるコードを提出
-7. **NEVER**: テストしていないコードを提出
-8. **NEVER**: 部分修正のみで全体チェックを怠る
-9. **NEVER**: エラーログを無視して作業を続行
-10. **NEVER**: 警告（Warning）を未解決のまま提出
-
-### ✅ YOU MUST - 必須実行項目（100%実行義務）
-1. **YOU MUST**: 修正前に必ず現在のコードの完全バックアップを作成
-2. **YOU MUST**: 修正後に必ず `python3 -m py_compile app.py` で構文チェック
-3. **YOU MUST**: 修正後に必ず `python3 -m flake8 app.py --max-line-length=200` で品質チェック
-4. **YOU MUST**: 修正後に必ず `python3 -m pylint app.py --disable=C0114,C0115,C0116` でコード分析
-5. **YOU MUST**: 修正後に必ず `python3 app.py` でローカル実行テスト（最低30秒間）
-6. **YOU MUST**: 修正後に必ず `bash quality_check.sh` で総合品質チェック
-7. **YOU MUST**: 修正後に必ず全エンドポイントのHTTPテスト実行
-8. **YOU MUST**: 修正後に必ず10問完了テストを実行
-9. **YOU MUST**: エラー修正時は影響範囲全体を再検証
-10. **YOU MUST**: 全チェック合格後のみコードを提出
-
-### MANDATORY CHECKS (必須チェック項目)
-
-#### 1. 構文チェック (Syntax Check)
-```bash
-python -m py_compile app.py
-# エラーが出た場合は絶対に修正完了まで作業継続
-```
-
-#### 2. インデントチェック (Indentation Check)  
-```python
-# Python構文として正しいインデントか確認
-# if/elif/else/try/except/for/while の対応関係
-# 4スペースまたは1タブの一貫性
-```
-
-#### 3. 実行テスト (Runtime Test)
-```bash
-python app.py
-# 最低限の起動確認
-# エラーログの完全確認
-```
-
-#### 4. 全体整合性チェック (Holistic Check)
-```python
-# 修正箇所が他の部分に影響していないか
-# 変数名・関数名の一貫性
-# import文の依存関係
-```
-
-## 🔧 CODE MODIFICATION PROTOCOL
-
-### Step 1: 問題分析
-- エラーログの完全解析
-- 影響範囲の特定
-- 根本原因の究明
-
-### Step 2: 修正実装
-- 最小限の変更で最大効果
-- 副作用のない修正
-- 可読性を維持した修正
-
-### Step 3: 検証プロセス
-```bash
-# 必須実行コマンド
-python -m py_compile app.py    # 構文チェック
-python app.py                  # 実行チェック
-curl http://localhost:5000     # 動作チェック
-```
-
-### Step 4: 品質確認
-- ✅ 構文エラー: ゼロ
-- ✅ インデントエラー: ゼロ  
-- ✅ 実行エラー: ゼロ
-- ✅ 機能テスト: 通過
-
-## 🎯 QUALITY STANDARDS
-
-### Acceptable Code Quality
-- 構文エラー率: 0%
-- インデントエラー率: 0%
-- 実行成功率: 100%
-- 機能テスト通過率: 100%
-
-### Zero Tolerance Items
-- SyntaxError
-- IndentationError  
-- ImportError
-- 未テストコード
-
-## 🚀 AUTOMATED QUALITY CHECKS
-
-### Complete Quality Check Script (quality_check.sh)
-```bash
-#!/bin/bash
-# quality_check.sh - 完全自動品質チェックスクリプト
-
-echo "🚀 Complete Quality Check Starting..."
-echo "=================================="
-
-# カラー定義
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
-
-# エラーカウンター
-ERROR_COUNT=0
-
-# 1. 構文チェック
-echo -e "${YELLOW}📋 Step 1: Syntax Check${NC}"
-python -m py_compile app.py
-if [ $? -eq 0 ]; then
-    echo -e "${GREEN}✅ Syntax Check: PASSED${NC}"
-else
-    echo -e "${RED}❌ Syntax Check: FAILED${NC}"
-    ((ERROR_COUNT++))
-fi
-
-# 2. インデントチェック
-echo -e "${YELLOW}📋 Step 2: Indentation Check${NC}"
-python -c "
-import ast
-try:
-    with open('app.py', 'r') as f:
-        ast.parse(f.read())
-    print('✅ Indentation Check: PASSED')
-except IndentationError as e:
-    print(f'❌ Indentation Error: {e}')
-    exit(1)
-except SyntaxError as e:
-    print(f'❌ Syntax Error: {e}')
-    exit(1)
-"
-if [ $? -eq 0 ]; then
-    echo -e "${GREEN}✅ Indentation Check: PASSED${NC}"
-else
-    echo -e "${RED}❌ Indentation Check: FAILED${NC}"
-    ((ERROR_COUNT++))
-fi
-
-# 3. インポートチェック
-echo -e "${YELLOW}📋 Step 3: Import Check${NC}"
-python -c "
-import sys
-sys.path.append('.')
-try:
-    import app
-    print('✅ Import Check: PASSED')
-except Exception as e:
-    print(f'❌ Import Error: {e}')
-    exit(1)
-"
-if [ $? -eq 0 ]; then
-    echo -e "${GREEN}✅ Import Check: PASSED${NC}"
-else
-    echo -e "${RED}❌ Import Check: FAILED${NC}"
-    ((ERROR_COUNT++))
-fi
-
-# 4. 実行テスト
-echo -e "${YELLOW}📋 Step 4: Runtime Test${NC}"
-timeout 10s python app.py &
-APP_PID=$!
-sleep 3
-
-# プロセス確認
-if kill -0 $APP_PID 2>/dev/null; then
-    echo -e "${GREEN}✅ Runtime Test: PASSED${NC}"
-    kill $APP_PID 2>/dev/null
-else
-    echo -e "${RED}❌ Runtime Test: FAILED${NC}"
-    ((ERROR_COUNT++))
-fi
-
-# 5. HTTP接続テスト
-echo -e "${YELLOW}📋 Step 5: HTTP Connection Test${NC}"
-timeout 15s python app.py &
-APP_PID=$!
-sleep 5
-
-# HTTP接続確認
-curl -s http://localhost:5000 > /dev/null
-if [ $? -eq 0 ]; then
-    echo -e "${GREEN}✅ HTTP Test: PASSED${NC}"
-else
-    echo -e "${RED}❌ HTTP Test: FAILED${NC}"
-    ((ERROR_COUNT++))
-fi
-kill $APP_PID 2>/dev/null
-
-# 6. ファイル構造チェック
-echo -e "${YELLOW}📋 Step 6: File Structure Check${NC}"
-REQUIRED_FILES=("app.py" "requirements.txt" "templates" "static")
-for file in "${REQUIRED_FILES[@]}"; do
-    if [ -e "$file" ]; then
-        echo -e "${GREEN}✅ $file: EXISTS${NC}"
-    else
-        echo -e "${RED}❌ $file: MISSING${NC}"
-        ((ERROR_COUNT++))
-    fi
-done
-
-# 最終結果
-echo "=================================="
-if [ $ERROR_COUNT -eq 0 ]; then
-    echo -e "${GREEN}🎉 ALL QUALITY CHECKS PASSED!${NC}"
-    echo -e "${GREEN}✅ Ready for deployment${NC}"
-    exit 0
-else
-    echo -e "${RED}💥 $ERROR_COUNT ERROR(S) FOUND!${NC}"
-    echo -e "${RED}❌ NOT ready for deployment${NC}"
-    echo -e "${YELLOW}🔧 Please fix errors before committing${NC}"
-    exit 1
-fi
-```
-
-### Quick Pre-Commit Check
-```bash
-# 簡易品質チェック
-#!/bin/bash
-echo "🔍 Quick Quality Check..."
-
-# 構文チェック
-python -m py_compile app.py
-if [ $? -ne 0 ]; then
-    echo "❌ Syntax Error Found"
-    exit 1
-fi
-
-# 実行チェック  
-timeout 10 python app.py &
-PID=$!
-sleep 5
-kill $PID 2>/dev/null
-if [ $? -ne 0 ]; then
-    echo "❌ Runtime Error Found"
-    exit 1
-fi
-
-echo "✅ Basic Quality Check Passed"
-```
-
-## 📋 DEPLOYMENT CHECKLIST
-
-### Before Every Commit
-- [ ] 構文チェック完了
-- [ ] ローカル実行テスト完了
-- [ ] 機能テスト完了
-- [ ] エラーログ確認完了
-
-### Before Every Deploy
-- [ ] 全自動テスト通過
-- [ ] 品質基準クリア
-- [ ] バックアップ準備完了
-- [ ] ロールバック計画準備完了
-
-## 🎪 ERROR HANDLING PROTOCOL
-
-### When Error Occurs
-1. **STOP**: 即座に作業停止
-2. **ANALYZE**: エラーの完全分析
-3. **FIX**: 根本原因の修正
-4. **VERIFY**: 3段階チェック実行
-5. **CONFIRM**: 品質基準クリア確認
-
-### Communication
-- エラー発生時は必ず詳細報告
-- 修正内容の明確な説明
-- テスト結果の完全報告
-
-## 💡 CONTINUOUS IMPROVEMENT
-
-### Learning from Mistakes
-- エラーパターンの記録
-- 予防策の策定
-- チェックリストの更新
-- 自動化の強化
+## 🎯 統合開発目標
+- **作業効率**: 90%向上（エラー連鎖削減）
+- **品質向上**: 自動チェックによる品質担保
+- **可視性**: 全プロジェクト状況の一元管理
+- **安定性**: 建設現場レベルの工程管理実現
+- **完走率**: 10問/20問/30問テスト 100%成功率達成
 
 ---
 
-**Remember**: 品質は最優先事項。速度より正確性。完璧なコードのみ提出許可。
+**このCLAUDE.mdの内容に従って、全ての作業を実行してください。特に「完走テスト実行ルール」は最優先で遵守すること。**

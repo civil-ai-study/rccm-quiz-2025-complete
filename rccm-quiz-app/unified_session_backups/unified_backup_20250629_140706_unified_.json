@@ -1,0 +1,223 @@
+{
+  "backup_id": "unified_backup_20250629_140706_unified_",
+  "session_id": "unified_1751205628739_338a219a",
+  "timestamp": "2025-06-29T14:07:06.144415+00:00",
+  "backup_type": "unified",
+  "flags": {},
+  "session_data": {
+    "_permanent": true,
+    "advanced_srs": {
+      "4302": {
+        "correct_count": 0,
+        "difficulty_level": 7.0,
+        "first_attempt": "2025-06-29T14:04:26.289900+00:00",
+        "interval_days": 1,
+        "last_attempt": "2025-06-29T23:04:26.294390",
+        "mastered": false,
+        "next_review": "2025-06-30T14:04:26.294408+00:00",
+        "total_attempts": 2,
+        "wrong_count": 2
+      },
+      "4314": {
+        "correct_count": 2,
+        "difficulty_level": 4.0,
+        "first_attempt": "2025-06-29T14:03:22.320209+00:00",
+        "interval_days": 7,
+        "last_attempt": "2025-06-29T23:03:22.325083",
+        "mastered": false,
+        "next_review": "2025-07-06T14:03:22.325119+00:00",
+        "total_attempts": 2,
+        "wrong_count": 0
+      },
+      "4556": {
+        "correct_count": 0,
+        "difficulty_level": 7.0,
+        "first_attempt": "2025-06-29T14:01:25.372305+00:00",
+        "interval_days": 1,
+        "last_attempt": "2025-06-29T23:01:25.379147",
+        "mastered": false,
+        "next_review": "2025-06-30T14:01:25.379173+00:00",
+        "total_attempts": 2,
+        "wrong_count": 2
+      },
+      "3492": {
+        "correct_count": 0,
+        "wrong_count": 2,
+        "total_attempts": 2,
+        "first_attempt": "2025-06-29T14:07:06.118160+00:00",
+        "last_attempt": "2025-06-29T23:07:06.122051",
+        "mastered": false,
+        "difficulty_level": 7.0,
+        "next_review": "2025-06-30T14:07:06.122075+00:00",
+        "interval_days": 1
+      }
+    },
+    "backup_history": [
+      {
+        "backup_id": "unified_backup_20250629_140028_unified_",
+        "flags": {
+          "corrupted": true
+        },
+        "timestamp": "2025-06-29T14:00:28.740840+00:00",
+        "type": "unified"
+      },
+      {
+        "backup_id": "unified_backup_20250629_140257_unified_",
+        "flags": {},
+        "timestamp": "2025-06-29T14:02:57.478578+00:00",
+        "type": "unified"
+      },
+      {
+        "backup_id": "unified_backup_20250629_140426_unified_",
+        "flags": {},
+        "timestamp": "2025-06-29T14:04:26.310073+00:00",
+        "type": "unified"
+      }
+    ],
+    "bookmarks": [
+      "4556",
+      "4302",
+      "3492"
+    ],
+    "category_stats": {
+      "造園": {
+        "correct": 1,
+        "total": 4
+      }
+    },
+    "corruption_backup": "unified_backup_20250629_140028_unified_",
+    "corruption_repaired": true,
+    "earned_badges": [
+      "first_mondai",
+      "night_owl",
+      "perfect_score"
+    ],
+    "exam_category": "landscape",
+    "exam_current": 4,
+    "exam_question_ids": [
+      4556,
+      4314,
+      4302,
+      3492,
+      3894,
+      1709,
+      2918,
+      1950,
+      2618,
+      2908
+    ],
+    "history": [
+      {
+        "category": "造園",
+        "correct_answer": "B",
+        "date": "2025-06-29 23:01:25",
+        "department": "landscape",
+        "difficulty": "標準",
+        "elapsed": 12.3,
+        "id": 4556,
+        "is_correct": false,
+        "is_review": true,
+        "question_type": "specialist",
+        "srs_level": 7.0,
+        "user_answer": "C"
+      },
+      {
+        "category": "造園",
+        "correct_answer": "D",
+        "date": "2025-06-29 23:03:22",
+        "department": "landscape",
+        "difficulty": "標準",
+        "elapsed": 8.7,
+        "id": 4314,
+        "is_correct": true,
+        "is_review": true,
+        "question_type": "specialist",
+        "srs_level": 4.0,
+        "user_answer": "D"
+      },
+      {
+        "category": "造園",
+        "correct_answer": "A",
+        "date": "2025-06-29 23:04:26",
+        "department": "landscape",
+        "difficulty": "標準",
+        "elapsed": 11.2,
+        "id": 4302,
+        "is_correct": false,
+        "is_review": true,
+        "question_type": "specialist",
+        "srs_level": 7.0,
+        "user_answer": "C"
+      },
+      {
+        "id": 3492,
+        "category": "造園",
+        "department": "landscape",
+        "question_type": "specialist",
+        "is_correct": false,
+        "user_answer": "B",
+        "correct_answer": "C",
+        "date": "2025-06-29 23:07:06",
+        "elapsed": 9.5,
+        "srs_level": 7.0,
+        "is_review": true,
+        "difficulty": "標準"
+      }
+    ],
+    "initialization_timestamp": "2025-06-29T14:00:28.745994+00:00",
+    "last_activity": "2025-06-29T14:07:06.028322+00:00",
+    "last_auto_backup": "2025-06-29T14:04:26.310073+00:00",
+    "last_backup_id": "unified_backup_20250629_140426_unified_",
+    "last_history_update": "2025-06-29T14:07:06.123144+00:00",
+    "last_request_timestamp": "2025-06-29T14:07:06.028322+00:00",
+    "last_study_date": "2025-06-29",
+    "last_update": "2025-06-29T23:07:06.134931",
+    "learning_progress": {},
+    "max_study_streak": 1,
+    "quiz_settings": {},
+    "repair_timestamp": "2025-06-29T14:00:28.745281+00:00",
+    "request_history": [
+      "2025-06-29T23:01:25.353216",
+      "2025-06-29T23:02:57.462686",
+      "2025-06-29T23:03:22.312197",
+      "2025-06-29T23:03:35.639331",
+      "2025-06-29T23:04:26.279175",
+      "2025-06-29T23:05:21.793910",
+      "2025-06-29T23:07:06.104048"
+    ],
+    "selected_department": "landscape",
+    "selected_question_type": "specialist",
+    "session_duration_seconds": 397,
+    "session_id": "unified_1751205628739_338a219a",
+    "session_start": "2025-06-29T14:00:28.745954+00:00",
+    "srs_data": {},
+    "study_streak": 1,
+    "total_requests": 10,
+    "unified_initialized": true,
+    "user_settings": {}
+  },
+  "metadata": {
+    "manager_stats": {
+      "total_operations": 202,
+      "successful_operations": 201,
+      "failed_operations": 0,
+      "timeouts": 0,
+      "recoveries": 21,
+      "cleanups": 8,
+      "memory_optimizations": 3,
+      "lock_contentions": 0
+    },
+    "session_registry": {
+      "last_save": 1751206026.1442773,
+      "session_size": 4181,
+      "activity_count": 10,
+      "status": "active"
+    },
+    "memory_usage": {
+      "usage_mb": 66.5,
+      "threshold_mb": 500,
+      "should_cleanup": false,
+      "usage_percent": 13.3
+    }
+  }
+}

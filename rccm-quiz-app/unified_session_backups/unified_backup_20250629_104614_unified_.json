@@ -1,0 +1,81 @@
+{
+  "backup_id": "unified_backup_20250629_104614_unified_",
+  "session_id": "unified_1751193911425_06411329",
+  "timestamp": "2025-06-29T10:46:14.370636+00:00",
+  "backup_type": "unified",
+  "flags": {},
+  "session_data": {
+    "_permanent": true,
+    "backup_history": [
+      {
+        "backup_id": "unified_backup_20250629_104511_unified_",
+        "flags": {
+          "corrupted": true
+        },
+        "timestamp": "2025-06-29T10:45:11.426363+00:00",
+        "type": "unified"
+      }
+    ],
+    "bookmarks": [],
+    "category_stats": {},
+    "corruption_backup": "unified_backup_20250629_104511_unified_",
+    "corruption_repaired": true,
+    "history": [],
+    "initialization_timestamp": "2025-06-29T10:45:11.432565+00:00",
+    "last_activity": "2025-06-29T10:46:14.341463+00:00",
+    "last_auto_backup": "2025-06-29T10:45:11.426363+00:00",
+    "last_request_timestamp": "2025-06-29T10:46:14.341463+00:00",
+    "learning_progress": {},
+    "quiz_settings": {
+      "questions_per_session": 10
+    },
+    "repair_timestamp": "2025-06-29T10:45:11.431840+00:00",
+    "session_duration_seconds": 62,
+    "session_id": "unified_1751193911425_06411329",
+    "session_start": "2025-06-29T10:45:11.432527+00:00",
+    "srs_data": {},
+    "total_requests": 4,
+    "unified_initialized": true,
+    "user_settings": {},
+    "exam_question_ids": [
+      1735,
+      2629,
+      3938,
+      2640,
+      3933,
+      4346,
+      2331,
+      3922,
+      3924,
+      1361
+    ],
+    "exam_current": 0,
+    "exam_category": "road",
+    "selected_department": "road",
+    "selected_question_type": "specialist"
+  },
+  "metadata": {
+    "manager_stats": {
+      "total_operations": 134,
+      "successful_operations": 133,
+      "failed_operations": 0,
+      "timeouts": 0,
+      "recoveries": 13,
+      "cleanups": 4,
+      "memory_optimizations": 2,
+      "lock_contentions": 0
+    },
+    "session_registry": {
+      "last_save": 1751193974.3706017,
+      "session_size": 1147,
+      "activity_count": 4,
+      "status": "active"
+    },
+    "memory_usage": {
+      "usage_mb": 66.48,
+      "threshold_mb": 500,
+      "should_cleanup": false,
+      "usage_percent": 13.3
+    }
+  }
+}

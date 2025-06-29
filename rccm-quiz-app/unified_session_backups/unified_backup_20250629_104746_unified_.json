@@ -1,0 +1,133 @@
+{
+  "backup_id": "unified_backup_20250629_104746_unified_",
+  "session_id": "unified_1751193911425_06411329",
+  "timestamp": "2025-06-29T10:47:46.882506+00:00",
+  "backup_type": "unified",
+  "flags": {},
+  "session_data": {
+    "_permanent": true,
+    "backup_history": [
+      {
+        "backup_id": "unified_backup_20250629_104511_unified_",
+        "flags": {
+          "corrupted": true
+        },
+        "timestamp": "2025-06-29T10:45:11.426363+00:00",
+        "type": "unified"
+      },
+      {
+        "backup_id": "unified_backup_20250629_104614_unified_",
+        "flags": {},
+        "timestamp": "2025-06-29T10:46:14.370636+00:00",
+        "type": "unified"
+      }
+    ],
+    "bookmarks": [],
+    "category_stats": {
+      "道路": {
+        "total": 1,
+        "correct": 1
+      }
+    },
+    "corruption_backup": "unified_backup_20250629_104511_unified_",
+    "corruption_repaired": true,
+    "exam_category": "road",
+    "exam_current": 1,
+    "exam_question_ids": [
+      1735,
+      2629,
+      3938,
+      2640,
+      3933,
+      4346,
+      2331,
+      3922,
+      3924,
+      1361
+    ],
+    "history": [
+      {
+        "id": 1735,
+        "category": "道路",
+        "department": "road",
+        "question_type": "specialist",
+        "is_correct": true,
+        "user_answer": "D",
+        "correct_answer": "D",
+        "date": "2025-06-29 19:47:46",
+        "elapsed": 10.0,
+        "srs_level": 4.0,
+        "is_review": true,
+        "difficulty": "標準"
+      }
+    ],
+    "initialization_timestamp": "2025-06-29T10:45:11.432565+00:00",
+    "last_activity": "2025-06-29T10:47:46.857734+00:00",
+    "last_auto_backup": "2025-06-29T10:46:14.370636+00:00",
+    "last_backup_id": "unified_backup_20250629_104614_unified_",
+    "last_request_timestamp": "2025-06-29T10:47:46.857734+00:00",
+    "learning_progress": {},
+    "quiz_settings": {
+      "questions_per_session": 10
+    },
+    "repair_timestamp": "2025-06-29T10:45:11.431840+00:00",
+    "selected_department": "road",
+    "selected_question_type": "specialist",
+    "session_duration_seconds": 155,
+    "session_id": "unified_1751193911425_06411329",
+    "session_start": "2025-06-29T10:45:11.432527+00:00",
+    "srs_data": {},
+    "total_requests": 5,
+    "unified_initialized": true,
+    "user_settings": {},
+    "request_history": [
+      "2025-06-29T19:47:46.858022"
+    ],
+    "advanced_srs": {
+      "1735": {
+        "correct_count": 2,
+        "wrong_count": 0,
+        "total_attempts": 2,
+        "first_attempt": "2025-06-29T10:47:46.866487+00:00",
+        "last_attempt": "2025-06-29T19:47:46.868824",
+        "mastered": false,
+        "difficulty_level": 4.0,
+        "next_review": "2025-07-06T10:47:46.868837+00:00",
+        "interval_days": 7
+      }
+    },
+    "last_history_update": "2025-06-29T10:47:46.869570+00:00",
+    "study_streak": 1,
+    "max_study_streak": 1,
+    "last_study_date": "2025-06-29",
+    "earned_badges": [
+      "first_mondai",
+      "perfect_score"
+    ],
+    "last_update": "2025-06-29T19:47:46.877440"
+  },
+  "metadata": {
+    "manager_stats": {
+      "total_operations": 138,
+      "successful_operations": 137,
+      "failed_operations": 0,
+      "timeouts": 0,
+      "recoveries": 13,
+      "cleanups": 4,
+      "memory_optimizations": 2,
+      "lock_contentions": 0
+    },
+    "session_registry": {
+      "last_save": 1751194066.8824546,
+      "session_size": 2214,
+      "activity_count": 5,
+      "status": "active"
+    },
+    "memory_usage": {
+      "usage_mb": 66.48,
+      "threshold_mb": 500,
+      "should_cleanup": false,
+      "usage_percent": 13.3
+    }
+  }
+}

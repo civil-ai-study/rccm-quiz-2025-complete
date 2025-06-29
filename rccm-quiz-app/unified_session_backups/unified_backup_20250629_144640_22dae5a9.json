@@ -1,0 +1,48 @@
+{
+  "backup_id": "unified_backup_20250629_144640_22dae5a9",
+  "session_id": "22dae5a9c2ada67a9160d7d1eaff20c6",
+  "timestamp": "2025-06-29T14:46:40.849947+00:00",
+  "backup_type": "unified",
+  "flags": {
+    "corrupted": true
+  },
+  "session_data": {
+    "_permanent": true,
+    "backup_history": [
+      {
+        "backup_id": "unified_backup_20250629_144640_22dae5a9",
+        "flags": {},
+        "timestamp": "2025-06-29T14:46:40.840144+00:00",
+        "type": "unified"
+      }
+    ],
+    "last_auto_backup": "2025-06-29T14:46:40.840144+00:00",
+    "last_backup_id": "unified_backup_20250629_144640_22dae5a9",
+    "session_id": "22dae5a9c2ada67a9160d7d1eaff20c6"
+  },
+  "metadata": {
+    "manager_stats": {
+      "total_operations": 3,
+      "successful_operations": 2,
+      "failed_operations": 0,
+      "timeouts": 0,
+      "recoveries": 2,
+      "cleanups": 0,
+      "memory_optimizations": 0,
+      "lock_contentions": 0
+    },
+    "session_registry": {
+      "last_save": 1751208400.8401318,
+      "session_size": 92,
+      "activity_count": 0,
+      "status": "active",
+      "last_update": 1751208400.8476753
+    },
+    "memory_usage": {
+      "usage_mb": 32.54,
+      "threshold_mb": 500,
+      "should_cleanup": false,
+      "usage_percent": 6.5
+    }
+  }
+}

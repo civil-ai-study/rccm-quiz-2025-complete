@@ -1,0 +1,32 @@
+{
+  "backup_id": "unified_backup_20250629_143246_unified_",
+  "session_id": "unified_1751207566059_2c6f32c7",
+  "timestamp": "2025-06-29T14:32:46.059978+00:00",
+  "backup_type": "unified",
+  "flags": {
+    "corrupted": true
+  },
+  "session_data": {
+    "_permanent": true,
+    "session_id": "unified_1751207566059_2c6f32c7"
+  },
+  "metadata": {
+    "manager_stats": {
+      "total_operations": 41,
+      "successful_operations": 40,
+      "failed_operations": 0,
+      "timeouts": 0,
+      "recoveries": 2,
+      "cleanups": 0,
+      "memory_optimizations": 1,
+      "lock_contentions": 0
+    },
+    "session_registry": {},
+    "memory_usage": {
+      "usage_mb": 60.62,
+      "threshold_mb": 500,
+      "should_cleanup": false,
+      "usage_percent": 12.1
+    }
+  }
+}

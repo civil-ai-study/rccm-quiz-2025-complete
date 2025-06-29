@@ -1,0 +1,145 @@
+{
+  "backup_id": "unified_backup_20250629_103948_unified_",
+  "session_id": "unified_1751193468697_cce1a1ba",
+  "timestamp": "2025-06-29T10:39:48.718546+00:00",
+  "backup_type": "unified",
+  "flags": {},
+  "session_data": {
+    "_permanent": true,
+    "advanced_srs": {
+      "154": {
+        "correct_count": 2,
+        "difficulty_level": 4.0,
+        "first_attempt": "2025-06-29T10:38:28.583175+00:00",
+        "interval_days": 7,
+        "last_attempt": "2025-06-29T19:38:28.586750",
+        "mastered": false,
+        "next_review": "2025-07-06T10:38:28.586759+00:00",
+        "total_attempts": 2,
+        "wrong_count": 0
+      }
+    },
+    "backup_history": [
+      {
+        "backup_id": "unified_backup_20250629_103748_unified_",
+        "flags": {
+          "corrupted": true
+        },
+        "timestamp": "2025-06-29T10:37:48.698657+00:00",
+        "type": "unified"
+      }
+    ],
+    "bookmarks": [],
+    "category_stats": {
+      "共通": {
+        "correct": 1,
+        "total": 1
+      }
+    },
+    "corruption_backup": "unified_backup_20250629_103748_unified_",
+    "corruption_repaired": true,
+    "earned_badges": [
+      "first_mondai",
+      "perfect_score"
+    ],
+    "exam_category": "全体",
+    "exam_current": 1,
+    "exam_question_ids": [
+      154,
+      184,
+      127,
+      197,
+      60,
+      109,
+      65,
+      48,
+      19,
+      81,
+      180,
+      73,
+      103,
+      179,
+      8,
+      161,
+      10,
+      132,
+      150,
+      69,
+      29,
+      58,
+      15,
+      122,
+      108,
+      4,
+      192,
+      185,
+      102,
+      45
+    ],
+    "history": [
+      {
+        "category": "共通",
+        "correct_answer": "A",
+        "date": "2025-06-29 19:38:28",
+        "department": "common",
+        "difficulty": "標準",
+        "elapsed": 20.0,
+        "id": 154,
+        "is_correct": true,
+        "is_review": true,
+        "question_type": "basic",
+        "srs_level": 4.0,
+        "user_answer": "A"
+      }
+    ],
+    "initialization_timestamp": "2025-06-29T10:37:48.704574+00:00",
+    "last_activity": "2025-06-29T10:39:48.717289+00:00",
+    "last_auto_backup": "2025-06-29T10:37:48.698657+00:00",
+    "last_history_update": "2025-06-29T10:38:28.587560+00:00",
+    "last_request_timestamp": "2025-06-29T10:39:48.717289+00:00",
+    "last_study_date": "2025-06-29",
+    "last_update": "2025-06-29T19:38:28.597701",
+    "learning_progress": {},
+    "max_study_streak": 1,
+    "quiz_settings": {
+      "questions_per_session": 30
+    },
+    "repair_timestamp": "2025-06-29T10:37:48.703779+00:00",
+    "request_history": [
+      "2025-06-29T19:38:28.572150"
+    ],
+    "selected_question_type": "basic",
+    "session_duration_seconds": 120,
+    "session_id": "unified_1751193468697_cce1a1ba",
+    "session_start": "2025-06-29T10:37:48.704540+00:00",
+    "srs_data": {},
+    "study_streak": 1,
+    "total_requests": 5,
+    "unified_initialized": true,
+    "user_settings": {}
+  },
+  "metadata": {
+    "manager_stats": {
+      "total_operations": 120,
+      "successful_operations": 119,
+      "failed_operations": 0,
+      "timeouts": 0,
+      "recoveries": 10,
+      "cleanups": 3,
+      "memory_optimizations": 2,
+      "lock_contentions": 0
+    },
+    "session_registry": {
+      "last_save": 1751193588.7185,
+      "session_size": 2045,
+      "activity_count": 5,
+      "status": "active"
+    },
+    "memory_usage": {
+      "usage_mb": 66.45,
+      "threshold_mb": 500,
+      "should_cleanup": false,
+      "usage_percent": 13.3
+    }
+  }
+}

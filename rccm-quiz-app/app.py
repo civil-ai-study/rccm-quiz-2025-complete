@@ -2853,7 +2853,15 @@ def exam():
             is_review_session = (session.get('selected_question_type') == 'review' or
                                  session.get('exam_category', '').startswith('復習'))
 
-            # 🔥 ULTRA SYNC FIX: 完了時は安全なセッション更新（next_questionが不正値にならない）
+            # 🔥 CRITICAL PROGRESS DISPLAY FIX: セッション状態の確実な保存と検証
+            # ステップ1: 回答前のセッション状態をログ出力
+            logger.info("=== PROGRESS FIX: POST処理でのセッション状態更新 ===")
+            logger.info(f"現在の問題インデックス: {current_no} (回答済み)")
+            logger.info(f"次の問題インデックス: {safe_next_no}")
+            logger.info(f"問題総数: {total_questions_count}")
+            logger.info(f"最終問題判定: {is_last_question}")
+            
+            # ステップ2: セッション更新内容を準備
             if is_last_question:
                 # 最終問題の場合、exam_currentは最後の有効インデックスに設定
                 final_exam_current = min(safe_current_no, total_questions_count - 1)
@@ -2865,14 +2873,16 @@ def exam():
                     'last_update': datetime.now().isoformat(),
                     'history': session.get('history', [])
                 }
+                logger.info(f"最終問題: exam_current = {final_exam_current} に設定")
             else:
-                # 通常の次問題への進行
+                # 通常の次問題への進行 - これが進捗表示の鍵
                 session_final_updates = {
                     'exam_current': safe_next_no,  # 次の問題インデックス
                     'exam_question_ids': exam_question_ids,
                     'last_update': datetime.now().isoformat(),
                     'history': session.get('history', [])
                 }
+                logger.info(f"次問題進行: exam_current = {safe_next_no} に設定")
 
             # 復習セッションの場合は追加保護
             if is_review_session:
@@ -2883,21 +2893,62 @@ def exam():
                 })
                 logger.info(f"復習セッション保護: 問題{qid}回答後, 次={safe_next_no}, 総数={total_questions_count}")
 
+            # ステップ3: セッション更新を実行
             for key, value in session_final_updates.items():
                 session[key] = value
             session.permanent = True
             session.modified = True
+            
+            # ステップ4: 進捗追跡のための専用フィールドを追加
+            session['progress_tracking'] = {
+                'answered_count': safe_current_no + 1,  # 回答済み問題数（1ベース）
+                'total_questions': session_size,        # セッション総問題数
+                'current_index': safe_next_no,          # 次の問題インデックス（0ベース）
+                'last_answered_qid': qid,               # 最後に回答した問題ID
+                'timestamp': datetime.now().isoformat()
+            }
+            session.modified = True
 
-            # セッション保存の確認
+            # ステップ5: セッション保存の検証
             saved_current = session.get('exam_current', 'NOT_FOUND')
             saved_question_ids = session.get('exam_question_ids', [])
-            logger.info(f"セッション保存確認: exam_current = {saved_current} (safe_next_no = {safe_next_no})")
-            logger.info(f"🔥 CRITICAL: exam_question_ids保存確認 = {len(saved_question_ids)}問 {saved_question_ids[:5] if saved_question_ids else '[]'}")
-            # 🔥 CRITICAL: exam_currentの更新を保証
-            if session.get('exam_current') != safe_next_no:
-                logger.error(f'exam_current更新エラー: {session.get("exam_current")} != {safe_next_no}')
-                session['exam_current'] = safe_next_no
+            saved_progress = session.get('progress_tracking', {})
+            
+            logger.info(f"セッション保存確認: exam_current = {saved_current}")
+            logger.info(f"進捗追跡確認: {saved_progress}")
+            logger.info(f"exam_question_ids保存確認 = {len(saved_question_ids)}問")
+            
+            # ステップ6: 保存失敗時の緊急修復
+            expected_exam_current = safe_next_no if not is_last_question else min(safe_current_no, total_questions_count - 1)
+            if session.get('exam_current') != expected_exam_current:
+                logger.error(f"🚨 CRITICAL: exam_current保存失敗を検出")
+                logger.error(f"期待値: {expected_exam_current}, 実際値: {session.get('exam_current')}")
+                
+                # 緊急修復処理
+                session['exam_current'] = expected_exam_current
+                session['progress_repair_count'] = session.get('progress_repair_count', 0) + 1
                 session.modified = True
+                logger.info(f"✅ 緊急修復完了: exam_current = {expected_exam_current}")
+            
+            logger.info("=== PROGRESS FIX: セッション状態更新完了 ===")
+            
+            # ステップ7: 次回のGET処理のための状態確認
+            logger.info(f"次回GET処理での期待値: display_current = {expected_exam_current + 1}, display_total = {session_size}")
+            
+            # 🔥 PROGRESS TRACKING FIX: セッション進捗の確実な保存
+            session['exam_progress_timestamp'] = datetime.now().isoformat()
+            session['last_answered_question_id'] = qid
+            session['total_questions_in_session'] = len(exam_question_ids)
+            session.modified = True
+            
+            # 🔥 CRITICAL: 最終的なセッション保存状態の確認
+            final_verification = {
+                'exam_current': session.get('exam_current'),
+                'exam_question_ids_length': len(session.get('exam_question_ids', [])),
+                'progress_tracking_present': bool(session.get('progress_tracking')),
+                'session_modified': True
+            }
+            logger.info(f"🔥 FINAL: POST処理完了時のセッション状態: {final_verification}")
             logger.info(f"回答処理完了: 問題{qid}, 正答{is_correct}, レベル{srs_info.get('level', 0)}, ストリーク{current_streak}日")
 
             # 🔥 ULTRA SYNC IMPROVEMENT 5: 学習記録 - パフォーマンス比較計算
@@ -3160,30 +3211,84 @@ def exam():
 
         # セッション管理
         exam_question_ids = session.get('exam_question_ids', [])
+        # 🔥 CRITICAL PROGRESS DISPLAY FIX: GET処理でのセッション状態検証と復旧
+        logger.info("=== PROGRESS FIX: GET処理でのセッション状態検証 ===")
+        
         # URLパラメータから現在の問題番号を取得（競合回避）
         url_current = request.args.get('current')
+        
+        # ステップ1: セッション状態の詳細検証
+        session_exam_current = session.get('exam_current', 0)
+        session_progress_tracking = session.get('progress_tracking', {})
+        session_repair_count = session.get('progress_repair_count', 0)
+        
+        logger.info(f"セッション状態詳細:")
+        logger.info(f"  exam_current: {session_exam_current}")
+        logger.info(f"  progress_tracking: {session_progress_tracking}")
+        logger.info(f"  repair_count: {session_repair_count}")
+        logger.info(f"  exam_question_ids長: {len(exam_question_ids)}")
+        
+        # ステップ2: 進捗追跡データがある場合は検証
+        if session_progress_tracking:
+            tracking_current = session_progress_tracking.get('current_index', 0)
+            tracking_answered = session_progress_tracking.get('answered_count', 0)
+            
+            logger.info(f"進捗追跡データ: current_index={tracking_current}, answered_count={tracking_answered}")
+            
+            # 進捗追跡とexam_currentの整合性チェック
+            if session_exam_current != tracking_current:
+                logger.warning(f"⚠️ セッション不整合検出: exam_current({session_exam_current}) != tracking_current({tracking_current})")
+                
+                # より信頼できるデータを選択
+                if tracking_current >= 0 and tracking_current < len(exam_question_ids):
+                    logger.info(f"✅ 進捗追跡データを優先: {tracking_current}")
+                    session['exam_current'] = tracking_current
+                    session.modified = True
+                    session_exam_current = tracking_current
+                else:
+                    logger.info(f"✅ exam_currentを優先: {session_exam_current}")
+        
+        # ステップ3: 次問題リクエスト時の特別処理
         if is_next_request:
-            # 🔥 ULTRA FIX: 次問題リクエスト時はセッションのexam_currentを直接使用
-            current_no = session.get('exam_current', 0)
-            logger.info(f"🔥 ULTRA FIX: 次問題リクエスト - セッションのcurrent_no={current_no}を使用")
+            current_no = session_exam_current
+            logger.info(f"🔥 次問題リクエスト: current_no={current_no} (exam_current直接使用)")
             
             # URLパラメータは参考程度で、セッション値を優先
             if url_current:
                 try:
                     url_current_no = int(url_current)
                     logger.info(f"参考URL current={url_current_no}, セッション使用={current_no}")
+                    
+                    # 大きな差異がある場合は警告
+                    if abs(url_current_no - current_no) > 1:
+                        logger.warning(f"⚠️ URL/セッション大幅差異: URL={url_current_no}, セッション={current_no}")
                 except ValueError as e:
-                    # 🔥 ULTRA SYNC FIX: URL currentパラメータの不正値をログ記録
                     logger.warning(f"不正なURL currentパラメータ: {url_current} - {e}")
         else:
-            current_no = session.get('exam_current', 0)
+            current_no = session_exam_current
+            logger.info(f"通常GET処理: current_no={current_no}")
+        
+        # ステップ4: セッション状態の最終検証と修復
+        if current_no < 0:
+            logger.warning(f"⚠️ 負の値検出: current_no={current_no} -> 0に修正")
+            current_no = 0
+            session['exam_current'] = 0
+            session.modified = True
+        
+        if exam_question_ids and current_no >= len(exam_question_ids):
+            logger.warning(f"⚠️ 範囲外検出: current_no={current_no} >= {len(exam_question_ids)} -> 最大値に修正")
+            current_no = len(exam_question_ids) - 1
+            session['exam_current'] = current_no
+            session.modified = True
+        
         session_category = session.get('exam_category', '全体')
 
-        # 🔥 ULTRA SYNC セキュリティ FIX: 安全なGET処理ログ出力
-        logger.info(f"GET処理: current_no={current_no}, exam_question_ids数={len(exam_question_ids)}, is_next={is_next_request}")
-        logger.info(f"セッション詳細: session keys数={len(session.keys())}, exam_current={session.get('exam_current', 'MISSING')}")
-        logger.info(f"問題種別情報: requested_question_type={requested_question_type}, session_question_type={session.get('selected_question_type')}, department={requested_department}")
-        logger.info(f"カテゴリ情報: requested_category={requested_category}, session_category={session_category}")
+        # ステップ5: 詳細ログ出力
+        logger.info(f"GET処理最終状態: current_no={current_no}, exam_question_ids数={len(exam_question_ids)}, is_next={is_next_request}")
+        logger.info(f"セッション詳細: exam_current={session.get('exam_current')}, keys数={len(session.keys())}")
+        logger.info(f"問題種別情報: requested={requested_question_type}, session={session.get('selected_question_type')}, department={requested_department}")
+        logger.info(f"カテゴリ情報: requested={requested_category}, session={session_category}")
+        logger.info("=== PROGRESS FIX: GET処理検証完了 ===")
 
         # ★修正: 特定の問題表示の場合も10問セッションを維持
         if specific_qid:
@@ -3220,12 +3325,17 @@ def exam():
                 srs_data = session.get('srs_data', {})
                 question_srs = srs_data.get(str(specific_qid), {})
 
+                # Calculate consistent display values
+                session_total = len(session['exam_question_ids'])
+                display_current = max(1, session['exam_current'] + 1)
+                display_total = max(1, session_total)
+                
                 return render_template(
                     'exam.html',
                     question=question,
-                    total_questions=len(session['exam_question_ids']),
-                    current_no=session['exam_current'] + 1,
-                    current_question_number=session['exam_current'] + 1,
+                    total_questions=display_total,
+                    current_no=display_current,
+                    current_question_number=display_current,
                     srs_info=question_srs,
                     is_review_question=question_srs.get('total_attempts', 0) > 0
                 )
@@ -3375,12 +3485,62 @@ def exam():
         srs_data = session.get('srs_data', {})
         question_srs = srs_data.get(str(current_question_id), {})
 
-        # 表示用の数値を検証して設定
-        display_current = max(1, current_no + 1)  # 最小値1を保証
-        display_total = max(1, session_size)  # ユーザー設定問題数を使用
-
-        # デバッグログ: 表示数値の確認
-        logger.info(f"問題表示: {display_current}/{display_total} (内部: current_no={current_no}, total_ids={len(exam_question_ids)})")
+        # 🔥 CRITICAL PROGRESS DISPLAY FIX: 表示用数値の計算とフォールバック
+        logger.info("=== PROGRESS FIX: 表示数値計算 ===")
+        
+        # ステップ1: 基本表示数値の計算
+        basic_display_current = max(1, current_no + 1)  # 最小値1を保証
+        basic_display_total = max(1, session_size)      # ユーザー設定問題数を使用
+        
+        # ステップ2: 進捗追跡データからのフォールバック計算
+        progress_tracking = session.get('progress_tracking', {})
+        if progress_tracking:
+            tracking_answered = progress_tracking.get('answered_count', 0)
+            tracking_total = progress_tracking.get('total_questions', session_size)
+            
+            # 進捗追跡データが信頼できる場合は使用
+            if tracking_answered > 0 and tracking_total > 0:
+                fallback_display_current = min(tracking_answered + 1, tracking_total)  # 次に表示する問題番号
+                fallback_display_total = tracking_total
+                
+                # より適切な表示値を選択
+                if tracking_answered <= len(exam_question_ids):
+                    display_current = fallback_display_current
+                    display_total = fallback_display_total
+                    logger.info(f"✅ 進捗追跡データ使用: {display_current}/{display_total}")
+                else:
+                    display_current = basic_display_current
+                    display_total = basic_display_total
+                    logger.info(f"✅ 基本計算使用: {display_current}/{display_total}")
+            else:
+                display_current = basic_display_current
+                display_total = basic_display_total
+                logger.info(f"✅ 基本計算使用（追跡無効）: {display_current}/{display_total}")
+        else:
+            display_current = basic_display_current
+            display_total = basic_display_total
+            logger.info(f"✅ 基本計算使用（追跡なし）: {display_current}/{display_total}")
+        
+        # ステップ3: 表示値の最終検証と修正
+        if display_current > display_total:
+            logger.warning(f"⚠️ 表示値超過: {display_current} > {display_total} -> 修正")
+            display_current = display_total
+        
+        if display_current <= 0:
+            logger.warning(f"⚠️ 表示値不正: {display_current} -> 1に修正")
+            display_current = 1
+        
+        # ステップ4: セッション状態の更新（表示値と実際値の同期）
+        expected_current_no = display_current - 1  # 0ベースに変換
+        if session.get('exam_current') != expected_current_no:
+            logger.info(f"📊 セッション同期: exam_current {session.get('exam_current')} -> {expected_current_no}")
+            session['exam_current'] = expected_current_no
+            session.modified = True
+        
+        # デバッグログ: 表示数値の詳細確認
+        logger.info(f"問題表示最終値: {display_current}/{display_total}")
+        logger.info(f"内部状態: current_no={current_no}, expected={expected_current_no}")
+        logger.info(f"exam_question_ids長: {len(exam_question_ids)}")
 
         # テンプレート変数をデバッグ用に記録
         template_vars = {
@@ -3391,7 +3551,8 @@ def exam():
             'srs_info': question_srs,
             'is_review_question': question_srs.get('total_attempts', 0) > 0
         }
-        logger.info(f"テンプレート変数: current_no={template_vars['current_no']} (type:{type(template_vars['current_no'])}), total_questions={template_vars['total_questions']}")
+        logger.info(f"テンプレート変数最終: current_no={template_vars['current_no']} (type:{type(template_vars['current_no'])}), total_questions={template_vars['total_questions']}")
+        logger.info("=== PROGRESS FIX: 表示数値計算完了 ===")
 
         return render_template('exam.html', **template_vars)
     except Exception as e:

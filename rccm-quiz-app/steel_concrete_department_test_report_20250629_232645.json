@@ -1,0 +1,95 @@
+{
+  "test_summary": {
+    "department": "鋼構造・コンクリート部門",
+    "department_id": "steel_concrete",
+    "test_year": 2019,
+    "execution_time": 6.62071681022644,
+    "timestamp": "2025-06-29T23:26:45.925684",
+    "total_questions_answered": 0,
+    "total_tests": 6,
+    "passed_tests": 0,
+    "failed_tests": 6,
+    "overall_success_rate": 0.0
+  },
+  "redis_migration_success_criteria": {
+    "total_criteria": 6,
+    "passed_criteria": 0,
+    "criteria_success_rate": 0.0,
+    "detailed_criteria": {
+      "session_initialization": {
+        "passed": false,
+        "name": "1. セッション初期化成功"
+      },
+      "question_delivery_order": {
+        "passed": false,
+        "name": "2. 問題配信順序正確性"
+      },
+      "answer_data_saving": {
+        "passed": false,
+        "name": "3. 回答データ保存確認"
+      },
+      "progress_display": {
+        "passed": false,
+        "name": "4. 進捗表示正確性"
+      },
+      "final_result_screen": {
+        "passed": false,
+        "name": "5. 最終結果画面表示"
+      },
+      "score_calculation": {
+        "passed": false,
+        "name": "6. スコア計算正確性"
+      }
+    }
+  },
+  "questions_answered": [],
+  "detailed_test_results": [
+    {
+      "timestamp": "2025-06-29T23:26:39.819499",
+      "test": "セッション初期化成功",
+      "status": "FAILED",
+      "details": "セッション初期化に失敗",
+      "error": "Request failed: cURL failed with return code 7"
+    },
+    {
+      "timestamp": "2025-06-29T23:26:40.837991",
+      "test": "問題配信順序正確性",
+      "status": "FAILED",
+      "details": "問題配信順序の確認に失敗",
+      "error": "Request failed: cURL failed with return code 7"
+    },
+    {
+      "timestamp": "2025-06-29T23:26:41.860252",
+      "test": "回答データ保存確認",
+      "status": "FAILED",
+      "details": "回答データ保存の確認に失敗",
+      "error": "Request failed: cURL failed with return code 7"
+    },
+    {
+      "timestamp": "2025-06-29T23:26:42.882287",
+      "test": "進捗表示正確性",
+      "status": "FAILED",
+      "details": "進捗表示の確認に失敗",
+      "error": "Request failed: cURL failed with return code 7"
+    },
+    {
+      "timestamp": "2025-06-29T23:26:43.900663",
+      "test": "最終結果画面表示",
+      "status": "FAILED",
+      "details": "最終結果画面の確認に失敗",
+      "error": "Request failed: cURL failed with return code 7"
+    },
+    {
+      "timestamp": "2025-06-29T23:26:44.924301",
+      "test": "スコア計算正確性",
+      "status": "FAILED",
+      "details": "スコア計算の確認に失敗",
+      "error": "Request failed: cURL failed with return code 7"
+    }
+  ],
+  "performance_metrics": {
+    "avg_time_per_question": 6.62071681022644,
+    "session_stability": "unstable",
+    "data_integrity": "compromised"
+  }
+}

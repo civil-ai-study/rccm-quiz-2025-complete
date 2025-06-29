@@ -1,0 +1,292 @@
+{
+  "timestamp": "2025-06-29T23:19:40.372909",
+  "department": "建設環境",
+  "duration": 5.909038,
+  "criteria_results": {
+    "session_init_success": true,
+    "question_order_correct": true,
+    "answer_saved": true,
+    "progress_correct": false,
+    "final_result_displayed": true,
+    "score_correct": true
+  },
+  "final_score": 11.1,
+  "correct_count": 10,
+  "total_questions": 10,
+  "questions": [
+    {
+      "question_number": 1,
+      "question_id": "q_1",
+      "answer": "C",
+      "is_correct": true,
+      "timestamp": "2025-06-29T23:19:40.493519"
+    },
+    {
+      "question_number": 2,
+      "question_id": "q_2",
+      "answer": "B",
+      "is_correct": true,
+      "timestamp": "2025-06-29T23:19:41.129488"
+    },
+    {
+      "question_number": 3,
+      "question_id": "q_3",
+      "answer": "C",
+      "is_correct": true,
+      "timestamp": "2025-06-29T23:19:41.761893"
+    },
+    {
+      "question_number": 4,
+      "question_id": "q_4",
+      "answer": "B",
+      "is_correct": true,
+      "timestamp": "2025-06-29T23:19:42.376119"
+    },
+    {
+      "question_number": 5,
+      "question_id": "q_5",
+      "answer": "B",
+      "is_correct": true,
+      "timestamp": "2025-06-29T23:19:43.026216"
+    },
+    {
+      "question_number": 6,
+      "question_id": "q_6",
+      "answer": "B",
+      "is_correct": true,
+      "timestamp": "2025-06-29T23:19:43.671090"
+    },
+    {
+      "question_number": 7,
+      "question_id": "q_7",
+      "answer": "B",
+      "is_correct": true,
+      "timestamp": "2025-06-29T23:19:44.286218"
+    },
+    {
+      "question_number": 8,
+      "question_id": "q_8",
+      "answer": "B",
+      "is_correct": true,
+      "timestamp": "2025-06-29T23:19:44.898628"
+    },
+    {
+      "question_number": 9,
+      "question_id": "q_9",
+      "answer": "C",
+      "is_correct": true,
+      "timestamp": "2025-06-29T23:19:45.533977"
+    },
+    {
+      "question_number": 10,
+      "question_id": "q_10",
+      "answer": "C",
+      "is_correct": true,
+      "timestamp": "2025-06-29T23:19:46.182910"
+    }
+  ],
+  "session_logs": [
+    {
+      "timestamp": "2025-06-29T23:19:40.376447",
+      "event": "cookie_load",
+      "status": "SUCCESS",
+      "details": {}
+    },
+    {
+      "timestamp": "2025-06-29T23:19:40.458800",
+      "event": "session_init",
+      "status": "SUCCESS",
+      "details": {}
+    },
+    {
+      "timestamp": "2025-06-29T23:19:40.471073",
+      "event": "dept_access",
+      "status": "SUCCESS",
+      "details": {}
+    },
+    {
+      "timestamp": "2025-06-29T23:19:40.493493",
+      "event": "exam_start",
+      "status": "SUCCESS",
+      "details": {}
+    },
+    {
+      "timestamp": "2025-06-29T23:19:40.577036",
+      "event": "answer_submit",
+      "status": "SUCCESS",
+      "details": {
+        "question": 1,
+        "answer": "C"
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:41.192811",
+      "event": "progress_mismatch",
+      "status": "FOUND",
+      "details": {
+        "expected": 2,
+        "actual": 1
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:41.214886",
+      "event": "answer_submit",
+      "status": "SUCCESS",
+      "details": {
+        "question": 2,
+        "answer": "B"
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:41.805478",
+      "event": "progress_mismatch",
+      "status": "FOUND",
+      "details": {
+        "expected": 3,
+        "actual": 1
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:41.828611",
+      "event": "answer_submit",
+      "status": "SUCCESS",
+      "details": {
+        "question": 3,
+        "answer": "C"
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:42.436084",
+      "event": "progress_mismatch",
+      "status": "FOUND",
+      "details": {
+        "expected": 4,
+        "actual": 1
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:42.460188",
+      "event": "answer_submit",
+      "status": "SUCCESS",
+      "details": {
+        "question": 4,
+        "answer": "B"
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:43.084319",
+      "event": "progress_mismatch",
+      "status": "FOUND",
+      "details": {
+        "expected": 5,
+        "actual": 1
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:43.119082",
+      "event": "answer_submit",
+      "status": "SUCCESS",
+      "details": {
+        "question": 5,
+        "answer": "B"
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:43.712216",
+      "event": "progress_mismatch",
+      "status": "FOUND",
+      "details": {
+        "expected": 6,
+        "actual": 1
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:43.731483",
+      "event": "answer_submit",
+      "status": "SUCCESS",
+      "details": {
+        "question": 6,
+        "answer": "B"
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:44.330266",
+      "event": "progress_mismatch",
+      "status": "FOUND",
+      "details": {
+        "expected": 7,
+        "actual": 1
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:44.350791",
+      "event": "answer_submit",
+      "status": "SUCCESS",
+      "details": {
+        "question": 7,
+        "answer": "B"
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:44.950584",
+      "event": "progress_mismatch",
+      "status": "FOUND",
+      "details": {
+        "expected": 8,
+        "actual": 1
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:44.973881",
+      "event": "answer_submit",
+      "status": "SUCCESS",
+      "details": {
+        "question": 8,
+        "answer": "B"
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:45.598141",
+      "event": "progress_mismatch",
+      "status": "FOUND",
+      "details": {
+        "expected": 9,
+        "actual": 1
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:45.634294",
+      "event": "answer_submit",
+      "status": "SUCCESS",
+      "details": {
+        "question": 9,
+        "answer": "C"
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:46.230906",
+      "event": "progress_mismatch",
+      "status": "FOUND",
+      "details": {
+        "expected": 10,
+        "actual": 1
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:46.252162",
+      "event": "answer_submit",
+      "status": "SUCCESS",
+      "details": {
+        "question": 10,
+        "answer": "C"
+      }
+    },
+    {
+      "timestamp": "2025-06-29T23:19:46.281138",
+      "event": "final_result",
+      "status": "SUCCESS",
+      "details": {}
+    }
+  ],
+  "all_criteria_met": false
+}

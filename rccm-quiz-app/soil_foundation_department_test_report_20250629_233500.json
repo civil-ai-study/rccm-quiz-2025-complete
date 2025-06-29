@@ -1,0 +1,154 @@
+{
+  "test_summary": {
+    "department": "土質・基礎部門",
+    "department_id": "soil_foundation",
+    "test_year": 2019,
+    "execution_time": 10.36001181602478,
+    "timestamp": "2025-06-29T23:35:00.129776",
+    "total_questions_answered": 10,
+    "total_tests": 6,
+    "passed_tests": 5,
+    "failed_tests": 1,
+    "overall_success_rate": 83.33333333333334
+  },
+  "redis_migration_success_criteria": {
+    "total_criteria": 6,
+    "passed_criteria": 5,
+    "criteria_success_rate": 83.33333333333334,
+    "detailed_criteria": {
+      "session_initialization": {
+        "passed": false,
+        "name": "1. セッション初期化成功"
+      },
+      "question_delivery_order": {
+        "passed": true,
+        "name": "2. 問題配信順序正確性"
+      },
+      "answer_data_saving": {
+        "passed": true,
+        "name": "3. 回答データ保存確認"
+      },
+      "progress_display": {
+        "passed": true,
+        "name": "4. 進捗表示正確性"
+      },
+      "final_result_screen": {
+        "passed": true,
+        "name": "5. 最終結果画面表示"
+      },
+      "score_calculation": {
+        "passed": true,
+        "name": "6. スコア計算正確性"
+      }
+    }
+  },
+  "questions_answered": [
+    {
+      "question_number": 1,
+      "answer": "c",
+      "timestamp": "2025-06-29T23:34:51.500586"
+    },
+    {
+      "question_number": 2,
+      "answer": "a",
+      "timestamp": "2025-06-29T23:34:51.866685"
+    },
+    {
+      "question_number": 3,
+      "answer": "b",
+      "timestamp": "2025-06-29T23:34:52.235471"
+    },
+    {
+      "question_number": 4,
+      "answer": "b",
+      "timestamp": "2025-06-29T23:34:52.614542"
+    },
+    {
+      "question_number": 5,
+      "answer": "d",
+      "timestamp": "2025-06-29T23:34:52.993018"
+    },
+    {
+      "question_number": 6,
+      "answer": "a",
+      "timestamp": "2025-06-29T23:34:54.326206"
+    },
+    {
+      "question_number": 7,
+      "answer": "b",
+      "timestamp": "2025-06-29T23:34:54.661452"
+    },
+    {
+      "question_number": 8,
+      "answer": "a",
+      "timestamp": "2025-06-29T23:34:54.999080"
+    },
+    {
+      "question_number": 9,
+      "answer": "d",
+      "timestamp": "2025-06-29T23:34:55.330000"
+    },
+    {
+      "question_number": 10,
+      "answer": "c",
+      "timestamp": "2025-06-29T23:34:55.663177"
+    }
+  ],
+  "detailed_test_results": [
+    {
+      "timestamp": "2025-06-29T23:34:50.412321",
+      "test": "セッション初期化成功",
+      "status": "FAILED",
+      "details": "セッション初期化に失敗",
+      "error": "セッション初期化の確認要素が不十分です (found: ['form'])"
+    },
+    {
+      "timestamp": "2025-06-29T23:34:53.293507",
+      "test": "問題配信順序正確性",
+      "status": "PASSED",
+      "details": "順序正確: [1, 2, 3, 4, 5]",
+      "error": null
+    },
+    {
+      "timestamp": "2025-06-29T23:34:55.963745",
+      "test": "回答データ保存確認",
+      "status": "PASSED",
+      "details": "全10問の回答を保存確認",
+      "error": null
+    },
+    {
+      "timestamp": "2025-06-29T23:34:57.015115",
+      "test": "進捗表示正確性",
+      "status": "PASSED",
+      "details": "進捗表示確認: 1/10",
+      "error": null
+    },
+    {
+      "timestamp": "2025-06-29T23:34:58.070808",
+      "test": "最終結果画面表示",
+      "status": "PASSED",
+      "details": "結果画面表示確認, 要素: 結果, %",
+      "error": null
+    },
+    {
+      "timestamp": "2025-06-29T23:34:59.128489",
+      "test": "スコア計算正確性",
+      "status": "PASSED",
+      "details": "スコア表示確認: 100.0",
+      "error": null
+    }
+  ],
+  "performance_metrics": {
+    "avg_time_per_question": 1.0360011816024781,
+    "session_stability": "unstable",
+    "data_integrity": "maintained"
+  },
+  "claude_md_compliance": {
+    "10_question_completion_confirmed": true,
+    "error_disclosure_complete": true,
+    "progress_reporting_detailed": true,
+    "final_result_verification": true,
+    "verified_facts_only": true,
+    "transparent_error_reporting": true
+  }
+}

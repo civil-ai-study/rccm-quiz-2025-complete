@@ -1,0 +1,127 @@
+{
+  "backup_id": "unified_backup_20250629_140257_unified_",
+  "session_id": "unified_1751205628739_338a219a",
+  "timestamp": "2025-06-29T14:02:57.478578+00:00",
+  "backup_type": "unified",
+  "flags": {},
+  "session_data": {
+    "_permanent": true,
+    "advanced_srs": {
+      "4556": {
+        "correct_count": 0,
+        "difficulty_level": 7.0,
+        "first_attempt": "2025-06-29T14:01:25.372305+00:00",
+        "interval_days": 1,
+        "last_attempt": "2025-06-29T23:01:25.379147",
+        "mastered": false,
+        "next_review": "2025-06-30T14:01:25.379173+00:00",
+        "total_attempts": 2,
+        "wrong_count": 2
+      }
+    },
+    "backup_history": [
+      {
+        "backup_id": "unified_backup_20250629_140028_unified_",
+        "flags": {
+          "corrupted": true
+        },
+        "timestamp": "2025-06-29T14:00:28.740840+00:00",
+        "type": "unified"
+      }
+    ],
+    "bookmarks": [
+      "4556"
+    ],
+    "category_stats": {
+      "造園": {
+        "correct": 0,
+        "total": 1
+      }
+    },
+    "corruption_backup": "unified_backup_20250629_140028_unified_",
+    "corruption_repaired": true,
+    "earned_badges": [
+      "first_mondai",
+      "night_owl"
+    ],
+    "exam_category": "landscape",
+    "exam_current": 1,
+    "exam_question_ids": [
+      4556,
+      4314,
+      4302,
+      3492,
+      3894,
+      1709,
+      2918,
+      1950,
+      2618,
+      2908
+    ],
+    "history": [
+      {
+        "category": "造園",
+        "correct_answer": "B",
+        "date": "2025-06-29 23:01:25",
+        "department": "landscape",
+        "difficulty": "標準",
+        "elapsed": 12.3,
+        "id": 4556,
+        "is_correct": false,
+        "is_review": true,
+        "question_type": "specialist",
+        "srs_level": 7.0,
+        "user_answer": "C"
+      }
+    ],
+    "initialization_timestamp": "2025-06-29T14:00:28.745994+00:00",
+    "last_activity": "2025-06-29T14:02:57.462379+00:00",
+    "last_auto_backup": "2025-06-29T14:00:28.740840+00:00",
+    "last_history_update": "2025-06-29T14:01:25.380265+00:00",
+    "last_request_timestamp": "2025-06-29T14:02:57.462379+00:00",
+    "last_study_date": "2025-06-29",
+    "last_update": "2025-06-29T23:01:25.395512",
+    "learning_progress": {},
+    "max_study_streak": 1,
+    "quiz_settings": {},
+    "repair_timestamp": "2025-06-29T14:00:28.745281+00:00",
+    "request_history": [
+      "2025-06-29T23:01:25.353216",
+      "2025-06-29T23:02:57.462686"
+    ],
+    "selected_department": "landscape",
+    "selected_question_type": "specialist",
+    "session_duration_seconds": 148,
+    "session_id": "unified_1751205628739_338a219a",
+    "session_start": "2025-06-29T14:00:28.745954+00:00",
+    "srs_data": {},
+    "study_streak": 1,
+    "total_requests": 5,
+    "unified_initialized": true,
+    "user_settings": {}
+  },
+  "metadata": {
+    "manager_stats": {
+      "total_operations": 192,
+      "successful_operations": 191,
+      "failed_operations": 0,
+      "timeouts": 0,
+      "recoveries": 21,
+      "cleanups": 7,
+      "memory_optimizations": 3,
+      "lock_contentions": 0
+    },
+    "session_registry": {
+      "last_save": 1751205777.478459,
+      "session_size": 2035,
+      "activity_count": 5,
+      "status": "active"
+    },
+    "memory_usage": {
+      "usage_mb": 66.5,
+      "threshold_mb": 500,
+      "should_cleanup": false,
+      "usage_percent": 13.3
+    }
+  }
+}

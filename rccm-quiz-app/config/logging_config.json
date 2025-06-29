@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "title": "RCCM Quiz App ログ設定",
+    "description": "環境別ログレベルと出力設定を定義",
+    "version": "1.0.0",
+    "last_updated": "2025-06-29",
+    "maintainer": "RCCM Quiz App Development Team"
+  },
+  "environments": {
+    "development": {
+      "log_level": "DEBUG",
+      "console_output": true,
+      "file_output": true,
+      "structured_logging": false,
+      "async_logging": false,
+      "performance_filtering": false,
+      "max_file_size_mb": 10,
+      "backup_count": 5
+    },
+    "testing": {
+      "log_level": "INFO",
+      "console_output": true,
+      "file_output": true,
+      "structured_logging": true,
+      "async_logging": false,
+      "performance_filtering": true,
+      "max_file_size_mb": 20,
+      "backup_count": 3
+    },
+    "staging": {
+      "log_level": "WARNING",
+      "console_output": false,
+      "file_output": true,
+      "structured_logging": true,
+      "async_logging": true,
+      "performance_filtering": true,
+      "max_file_size_mb": 50,
+      "backup_count": 7
+    },
+    "production": {
+      "log_level": "ERROR",
+      "console_output": false,
+      "file_output": true,
+      "structured_logging": true,
+      "async_logging": true,
+      "performance_filtering": true,
+      "max_file_size_mb": 100,
+      "backup_count": 10
+    }
+  },
+  "performance_settings": {
+    "sampling_rates": {
+      "debug_rate": 0.01,
+      "info_rate": 0.1,
+      "warning_rate": 0.5,
+      "error_rate": 1.0
+    },
+    "async_settings": {
+      "queue_size": 1000,
+      "batch_size": 100,
+      "flush_interval_seconds": 5
+    },
+    "compression": {
+      "enabled": true,
+      "older_than_days": 1,
+      "compression_level": 6
+    }
+  },
+  "cleanup_settings": {
+    "auto_cleanup": true,
+    "cleanup_older_than_days": 30,
+    "max_total_size_gb": 5,
+    "cleanup_schedule": "daily"
+  }
+}

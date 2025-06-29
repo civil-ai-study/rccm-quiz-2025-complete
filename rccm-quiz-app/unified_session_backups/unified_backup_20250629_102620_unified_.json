@@ -1,0 +1,179 @@
+{
+  "backup_id": "unified_backup_20250629_102620_unified_",
+  "session_id": "unified_1751192545474_6bbc8f84",
+  "timestamp": "2025-06-29T10:26:20.176452+00:00",
+  "backup_type": "unified",
+  "flags": {},
+  "session_data": {
+    "_permanent": true,
+    "advanced_srs": {
+      "169": {
+        "correct_count": 2,
+        "difficulty_level": 4.0,
+        "first_attempt": "2025-06-29T10:24:50.559595+00:00",
+        "interval_days": 7,
+        "last_attempt": "2025-06-29T19:24:50.562503",
+        "mastered": false,
+        "next_review": "2025-07-06T10:24:50.562518+00:00",
+        "total_attempts": 2,
+        "wrong_count": 0
+      },
+      "52": {
+        "correct_count": 0,
+        "difficulty_level": 7.0,
+        "first_attempt": "2025-06-29T10:23:53.985755+00:00",
+        "interval_days": 1,
+        "last_attempt": "2025-06-29T19:23:53.988819",
+        "mastered": false,
+        "next_review": "2025-06-30T10:23:53.988830+00:00",
+        "total_attempts": 2,
+        "wrong_count": 2
+      }
+    },
+    "backup_history": [
+      {
+        "backup_id": "unified_backup_20250629_102225_unified_",
+        "flags": {
+          "corrupted": true
+        },
+        "timestamp": "2025-06-29T10:22:25.475772+00:00",
+        "type": "unified"
+      },
+      {
+        "backup_id": "unified_backup_20250629_102326_unified_",
+        "flags": {},
+        "timestamp": "2025-06-29T10:23:26.051422+00:00",
+        "type": "unified"
+      },
+      {
+        "backup_id": "unified_backup_20250629_102427_unified_",
+        "flags": {},
+        "timestamp": "2025-06-29T10:24:27.767934+00:00",
+        "type": "unified"
+      }
+    ],
+    "bookmarks": [
+      "52"
+    ],
+    "category_stats": {
+      "共通": {
+        "correct": 1,
+        "total": 2
+      }
+    },
+    "corruption_backup": "unified_backup_20250629_102225_unified_",
+    "corruption_repaired": true,
+    "earned_badges": [
+      "first_mondai",
+      "perfect_score"
+    ],
+    "exam_category": "共通",
+    "exam_current": 2,
+    "exam_question_ids": [
+      52,
+      169,
+      45,
+      114,
+      71,
+      108,
+      106,
+      103,
+      147,
+      93
+    ],
+    "history": [
+      {
+        "category": "共通",
+        "correct_answer": "C",
+        "date": "2025-06-29 19:23:53",
+        "department": "common",
+        "difficulty": "標準",
+        "elapsed": 0.0,
+        "id": 52,
+        "is_correct": false,
+        "is_review": true,
+        "question_type": "basic",
+        "srs_level": 7.0,
+        "user_answer": "A"
+      },
+      {
+        "category": "共通",
+        "correct_answer": "B",
+        "date": "2025-06-29 19:24:50",
+        "department": "common",
+        "difficulty": "標準",
+        "elapsed": 0.0,
+        "id": 169,
+        "is_correct": true,
+        "is_review": true,
+        "question_type": "basic",
+        "srs_level": 4.0,
+        "user_answer": "B"
+      }
+    ],
+    "initialization_timestamp": "2025-06-29T10:22:25.480739+00:00",
+    "last_activity": "2025-06-29T10:26:20.159911+00:00",
+    "last_auto_backup": "2025-06-29T10:24:27.767934+00:00",
+    "last_backup_id": "unified_backup_20250629_102427_unified_",
+    "last_history_update": "2025-06-29T10:24:50.563067+00:00",
+    "last_memory_optimization": {
+      "memory_usage_mb": 60.68,
+      "optimization_count": 2,
+      "timestamp": "2025-06-29T10:23:53.976772+00:00"
+    },
+    "last_request_timestamp": "2025-06-29T10:26:20.159911+00:00",
+    "last_study_date": "2025-06-29",
+    "last_update": "2025-06-29T19:24:50.569730",
+    "learning_progress": {},
+    "max_study_streak": 1,
+    "quiz_settings": {},
+    "repair_timestamp": "2025-06-29T10:22:25.480002+00:00",
+    "request_history": [
+      "2025-06-29T19:23:53.976870",
+      "2025-06-29T19:24:27.743610",
+      "2025-06-29T19:24:28.825222",
+      "2025-06-29T19:24:29.865058",
+      "2025-06-29T19:24:30.903954",
+      "2025-06-29T19:24:31.975659",
+      "2025-06-29T19:24:33.019665",
+      "2025-06-29T19:24:34.060879",
+      "2025-06-29T19:24:35.096466",
+      "2025-06-29T19:24:36.129892",
+      "2025-06-29T19:24:50.552018",
+      "2025-06-29T19:26:20.160166"
+    ],
+    "selected_question_type": "basic",
+    "session_duration_seconds": 234,
+    "session_id": "unified_1751192545474_6bbc8f84",
+    "session_start": "2025-06-29T10:22:25.480706+00:00",
+    "srs_data": {},
+    "study_streak": 1,
+    "total_requests": 21,
+    "unified_initialized": true,
+    "user_settings": {}
+  },
+  "metadata": {
+    "manager_stats": {
+      "total_operations": 44,
+      "successful_operations": 43,
+      "failed_operations": 0,
+      "timeouts": 0,
+      "recoveries": 2,
+      "cleanups": 0,
+      "memory_optimizations": 2,
+      "lock_contentions": 0
+    },
+    "session_registry": {
+      "last_save": 1751192780.1763859,
+      "session_size": 3262,
+      "activity_count": 21,
+      "status": "active"
+    },
+    "memory_usage": {
+      "usage_mb": 64.12,
+      "threshold_mb": 500,
+      "should_cleanup": false,
+      "usage_percent": 12.8
+    }
+  }
+}

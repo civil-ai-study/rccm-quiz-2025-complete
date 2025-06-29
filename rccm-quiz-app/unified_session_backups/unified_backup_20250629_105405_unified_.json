@@ -1,0 +1,126 @@
+{
+  "backup_id": "unified_backup_20250629_105405_unified_",
+  "session_id": "unified_1751194267693_d765d6fa",
+  "timestamp": "2025-06-29T10:54:05.336657+00:00",
+  "backup_type": "unified",
+  "flags": {},
+  "session_data": {
+    "_permanent": true,
+    "advanced_srs": {
+      "3146": {
+        "correct_count": 2,
+        "difficulty_level": 4.0,
+        "first_attempt": "2025-06-29T10:51:47.296642+00:00",
+        "interval_days": 7,
+        "last_attempt": "2025-06-29T19:51:47.298794",
+        "mastered": false,
+        "next_review": "2025-07-06T10:51:47.298806+00:00",
+        "total_attempts": 2,
+        "wrong_count": 0
+      }
+    },
+    "backup_history": [
+      {
+        "backup_id": "unified_backup_20250629_105107_unified_",
+        "flags": {
+          "corrupted": true
+        },
+        "timestamp": "2025-06-29T10:51:07.693947+00:00",
+        "type": "unified"
+      }
+    ],
+    "bookmarks": [],
+    "category_stats": {
+      "都市計画及び地方計画": {
+        "correct": 1,
+        "total": 1
+      }
+    },
+    "corruption_backup": "unified_backup_20250629_105107_unified_",
+    "corruption_repaired": true,
+    "earned_badges": [
+      "first_mondai",
+      "perfect_score"
+    ],
+    "exam_category": "urban_planning",
+    "exam_current": 1,
+    "exam_question_ids": [
+      3146,
+      2617,
+      4887,
+      4690,
+      3368,
+      100,
+      2077,
+      3281,
+      26,
+      3891
+    ],
+    "history": [
+      {
+        "category": "都市計画及び地方計画",
+        "correct_answer": "C",
+        "date": "2025-06-29 19:51:47",
+        "department": "urban_planning",
+        "difficulty": "標準",
+        "elapsed": 15.0,
+        "id": 3146,
+        "is_correct": true,
+        "is_review": true,
+        "question_type": "specialist",
+        "srs_level": 4.0,
+        "user_answer": "C"
+      }
+    ],
+    "initialization_timestamp": "2025-06-29T10:51:07.698212+00:00",
+    "last_activity": "2025-06-29T10:54:05.335516+00:00",
+    "last_auto_backup": "2025-06-29T10:51:07.693947+00:00",
+    "last_history_update": "2025-06-29T10:51:47.299457+00:00",
+    "last_request_timestamp": "2025-06-29T10:54:05.335516+00:00",
+    "last_study_date": "2025-06-29",
+    "last_update": "2025-06-29T19:51:47.307633",
+    "learning_progress": {},
+    "max_study_streak": 1,
+    "quiz_settings": {
+      "questions_per_session": 10
+    },
+    "repair_timestamp": "2025-06-29T10:51:07.697609+00:00",
+    "request_history": [
+      "2025-06-29T19:51:47.288597"
+    ],
+    "selected_department": "urban_planning",
+    "selected_question_type": "specialist",
+    "session_duration_seconds": 177,
+    "session_id": "unified_1751194267693_d765d6fa",
+    "session_start": "2025-06-29T10:51:07.698180+00:00",
+    "srs_data": {},
+    "study_streak": 1,
+    "total_requests": 5,
+    "unified_initialized": true,
+    "user_settings": {}
+  },
+  "metadata": {
+    "manager_stats": {
+      "total_operations": 164,
+      "successful_operations": 163,
+      "failed_operations": 0,
+      "timeouts": 0,
+      "recoveries": 17,
+      "cleanups": 6,
+      "memory_optimizations": 3,
+      "lock_contentions": 0
+    },
+    "session_registry": {
+      "last_save": 1751194445.336615,
+      "session_size": 2057,
+      "activity_count": 5,
+      "status": "active"
+    },
+    "memory_usage": {
+      "usage_mb": 66.48,
+      "threshold_mb": 500,
+      "should_cleanup": false,
+      "usage_percent": 13.3
+    }
+  }
+}
