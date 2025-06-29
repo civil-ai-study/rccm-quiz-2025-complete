@@ -1,0 +1,853 @@
+{
+  "verification_metadata": {
+    "system_name": "Ultra Sync Multi-Year Verification",
+    "version": "1.0.0",
+    "execution_timestamp": "2025-06-29T05:37:19.539289+00:00",
+    "execution_time_seconds": 0.73,
+    "target_years": [
+      "2008",
+      "2009",
+      "2010",
+      "2011",
+      "2012",
+      "2013",
+      "2014",
+      "2015",
+      "2016",
+      "2017",
+      "2018",
+      "2019"
+    ],
+    "target_departments": [
+      "road",
+      "tunnel",
+      "civil_planning",
+      "urban_planning",
+      "landscape",
+      "construction_env",
+      "steel_concrete",
+      "soil_foundation",
+      "construction_planning",
+      "water_supply",
+      "forestry",
+      "agriculture"
+    ]
+  },
+  "summary_statistics": {
+    "total_files": 12,
+    "successful_loads": 12,
+    "failed_loads": 0,
+    "total_questions": 4057,
+    "year_filter_tests": 36,
+    "year_filter_successes": 0,
+    "department_tests": 12,
+    "department_successes": 0,
+    "session_tests": 1,
+    "session_successes": 3,
+    "performance_tests": 1,
+    "performance_successes": 1,
+    "errors": [
+      "❌ 年度フィルタテストHTTPエラー: 2008年度-road (status:405)",
+      "❌ 年度フィルタテストHTTPエラー: 2008年度-tunnel (status:405)",
+      "❌ 年度フィルタテストHTTPエラー: 2008年度-civil_planning (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2009年度-road (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2009年度-tunnel (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2009年度-civil_planning (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2010年度-road (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2010年度-tunnel (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2010年度-civil_planning (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2011年度-road (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2011年度-tunnel (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2011年度-civil_planning (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2012年度-road (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2012年度-tunnel (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2012年度-civil_planning (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2013年度-road (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2013年度-tunnel (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2013年度-civil_planning (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2014年度-road (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2014年度-tunnel (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2014年度-civil_planning (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2015年度-road (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2015年度-tunnel (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2015年度-civil_planning (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2016年度-road (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2016年度-tunnel (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2016年度-civil_planning (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2017年度-road (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2017年度-tunnel (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2017年度-civil_planning (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2018年度-road (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2018年度-tunnel (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2018年度-civil_planning (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2019年度-road (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2019年度-tunnel (status:500)",
+      "❌ 年度フィルタテストHTTPエラー: 2019年度-civil_planning (status:500)",
+      "❌ 部門テストHTTPエラー: road (status:405)",
+      "❌ 部門テストHTTPエラー: tunnel (status:405)",
+      "❌ 部門テストHTTPエラー: civil_planning (status:500)",
+      "❌ 部門テストHTTPエラー: urban_planning (status:500)",
+      "❌ 部門テストHTTPエラー: landscape (status:500)",
+      "❌ 部門テストHTTPエラー: construction_env (status:500)",
+      "❌ 部門テストHTTPエラー: steel_concrete (status:500)",
+      "❌ 部門テストHTTPエラー: soil_foundation (status:500)",
+      "❌ 部門テストHTTPエラー: construction_planning (status:500)",
+      "❌ 部門テストHTTPエラー: water_supply (status:500)",
+      "❌ 部門テストHTTPエラー: forestry (status:500)",
+      "❌ 部門テストHTTPエラー: agriculture (status:500)"
+    ],
+    "warnings": []
+  },
+  "detailed_analysis": {
+    "file_analysis": {
+      "2008": {
+        "file_path": "/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2008.csv",
+        "file_size_bytes": 201176,
+        "question_count": 360,
+        "load_successful": true,
+        "encoding_detected": "auto",
+        "data_integrity": "verified",
+        "years_in_data": [],
+        "categories_in_data": [
+          "河川、砂防及び海岸・海洋",
+          "造園",
+          "土質及び基礎",
+          "鋼構造及びコンクリート",
+          "森林土木",
+          "都市計画及び地方計画",
+          "道路",
+          "農業土木",
+          "上水道及び工業用水道",
+          "施工計画、施工設備及び積算",
+          "建設環境",
+          "トンネル"
+        ],
+        "year_consistency": false
+      },
+      "2009": {
+        "file_path": "/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2009.csv",
+        "file_size_bytes": 207651,
+        "question_count": 359,
+        "load_successful": true,
+        "encoding_detected": "auto",
+        "data_integrity": "verified",
+        "years_in_data": [],
+        "categories_in_data": [
+          "河川、砂防及び海岸・海洋",
+          "造園",
+          "土質及び基礎",
+          "鋼構造及びコンクリート",
+          "森林土木",
+          "都市計画及び地方計画",
+          "道路",
+          "農業土木",
+          "上水道及び工業用水道",
+          "施工計画、施工設備及び積算",
+          "建設環境",
+          "トンネル"
+        ],
+        "year_consistency": false
+      },
+      "2010": {
+        "file_path": "/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2010.csv",
+        "file_size_bytes": 157895,
+        "question_count": 239,
+        "load_successful": true,
+        "encoding_detected": "auto",
+        "data_integrity": "verified",
+        "years_in_data": [],
+        "categories_in_data": [
+          "河川、砂防及び海岸・海洋",
+          "造園",
+          "土質及び基礎",
+          "鋼構造及びコンクリート",
+          "森林土木",
+          "都市計画及び地方計画",
+          "道路",
+          "農業土木",
+          "上水道及び工業用水道",
+          "施工計画、施工設備及び積算",
+          "建設環境",
+          "トンネル"
+        ],
+        "year_consistency": false
+      },
+      "2011": {
+        "file_path": "/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2011.csv",
+        "file_size_bytes": 237300,
+        "question_count": 360,
+        "load_successful": true,
+        "encoding_detected": "auto",
+        "data_integrity": "verified",
+        "years_in_data": [],
+        "categories_in_data": [
+          "河川、砂防及び海岸・海洋",
+          "造園",
+          "土質及び基礎",
+          "鋼構造及びコンクリート",
+          "森林土木",
+          "都市計画及び地方計画",
+          "道路",
+          "農業土木",
+          "上水道及び工業用水道",
+          "施工計画、施工設備及び積算",
+          "建設環境",
+          "トンネル"
+        ],
+        "year_consistency": false
+      },
+      "2012": {
+        "file_path": "/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2012.csv",
+        "file_size_bytes": 199154,
+        "question_count": 307,
+        "load_successful": true,
+        "encoding_detected": "auto",
+        "data_integrity": "verified",
+        "years_in_data": [],
+        "categories_in_data": [
+          "河川、砂防及び海岸・海洋",
+          "造園",
+          "土質及び基礎",
+          "鋼構造及びコンクリート",
+          "森林土木",
+          "都市計画及び地方計画",
+          "道路",
+          "農業土木",
+          "上水道及び工業用水道",
+          "施工計画、施工設備及び積算",
+          "建設環境",
+          "トンネル"
+        ],
+        "year_consistency": false
+      },
+      "2013": {
+        "file_path": "/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2013.csv",
+        "file_size_bytes": 194057,
+        "question_count": 320,
+        "load_successful": true,
+        "encoding_detected": "auto",
+        "data_integrity": "verified",
+        "years_in_data": [],
+        "categories_in_data": [
+          "河川、砂防及び海岸・海洋",
+          "造園",
+          "鋼構造及びコンクリート",
+          "森林土木",
+          "都市計画及び地方計画",
+          "道路",
+          "農業土木",
+          "上水道及び工業用水道",
+          "施工計画、施工設備及び積算",
+          "建設環境",
+          "トンネル"
+        ],
+        "year_consistency": false
+      },
+      "2014": {
+        "file_path": "/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2014.csv",
+        "file_size_bytes": 153257,
+        "question_count": 240,
+        "load_successful": true,
+        "encoding_detected": "auto",
+        "data_integrity": "verified",
+        "years_in_data": [],
+        "categories_in_data": [
+          "河川、砂防及び海岸・海洋",
+          "造園",
+          "土質及び基礎",
+          "鋼構造及びコンクリート",
+          "森林土木",
+          "都市計画及び地方計画",
+          "道路",
+          "農業土木",
+          "上水道及び工業用水道",
+          "施工計画、施工設備及び積算",
+          "建設環境",
+          "トンネル"
+        ],
+        "year_consistency": false
+      },
+      "2015": {
+        "file_path": "/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2015.csv",
+        "file_size_bytes": 273998,
+        "question_count": 358,
+        "load_successful": true,
+        "encoding_detected": "auto",
+        "data_integrity": "verified",
+        "years_in_data": [],
+        "categories_in_data": [
+          "河川、砂防及び海岸・海洋",
+          "造園",
+          "土質及び基礎",
+          "鋼構造及びコンクリート",
+          "森林土木",
+          "都市計画及び地方計画",
+          "道路",
+          "農業土木",
+          "上水道及び工業用水道",
+          "施工計画、施工設備及び積算",
+          "建設環境",
+          "トンネル"
+        ],
+        "year_consistency": false
+      },
+      "2016": {
+        "file_path": "/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2016.csv",
+        "file_size_bytes": 291672,
+        "question_count": 361,
+        "load_successful": true,
+        "encoding_detected": "auto",
+        "data_integrity": "verified",
+        "years_in_data": [],
+        "categories_in_data": [
+          "河川、砂防及び海岸・海洋",
+          "造園",
+          "土質及び基礎",
+          "鋼構造及びコンクリート",
+          "森林土木",
+          "都市計画及び地方計画",
+          "道路",
+          "農業土木",
+          "上水道及び工業用水道",
+          "施工計画、施工設備及び積算",
+          "建設環境",
+          "トンネル"
+        ],
+        "year_consistency": false
+      },
+      "2017": {
+        "file_path": "/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2017.csv",
+        "file_size_bytes": 382964,
+        "question_count": 440,
+        "load_successful": true,
+        "encoding_detected": "auto",
+        "data_integrity": "verified",
+        "years_in_data": [],
+        "categories_in_data": [
+          "河川、砂防及び海岸・海洋",
+          "造園",
+          "土質及び基礎",
+          "鋼構造及びコンクリート",
+          "森林土木",
+          "都市計画及び地方計画",
+          "道路",
+          "農業土木",
+          "上水道及び工業用水道",
+          "施工計画、施工設備及び積算",
+          "建設環境",
+          "トンネル"
+        ],
+        "year_consistency": false
+      },
+      "2018": {
+        "file_path": "/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2018.csv",
+        "file_size_bytes": 309809,
+        "question_count": 357,
+        "load_successful": true,
+        "encoding_detected": "auto",
+        "data_integrity": "verified",
+        "years_in_data": [],
+        "categories_in_data": [
+          "河川、砂防及び海岸・海洋",
+          "造園",
+          "施工計画、施工設備及び積算",
+          "土質及び基礎",
+          "鋼構造及びコンクリート",
+          "都市計画及び地方計画",
+          "道路",
+          "農業土木",
+          "上水道及び工業用水道",
+          "森林土木",
+          "建設環境",
+          "トンネル"
+        ],
+        "year_consistency": false
+      },
+      "2019": {
+        "file_path": "/mnt/c/Users/z285/Desktop/rccm-quiz-app/rccm-quiz-app/data/4-2_2019.csv",
+        "file_size_bytes": 216806,
+        "question_count": 356,
+        "load_successful": true,
+        "encoding_detected": "auto",
+        "data_integrity": "verified",
+        "years_in_data": [],
+        "categories_in_data": [
+          "河川、砂防及び海岸・海洋",
+          "造園",
+          "土質及び基礎",
+          "鋼構造及びコンクリート",
+          "森林土木",
+          "都市計画及び地方計画",
+          "道路",
+          "農業土木",
+          "上水道及び工業用水道",
+          "施工計画、施工設備及び積算",
+          "建設環境",
+          "トンネル"
+        ],
+        "year_consistency": false
+      }
+    },
+    "year_filtering_results": {
+      "2008": [
+        {
+          "year": "2008",
+          "department": "road",
+          "response_status": 405,
+          "test_successful": false,
+          "error": "HTTP 405"
+        },
+        {
+          "year": "2008",
+          "department": "tunnel",
+          "response_status": 405,
+          "test_successful": false,
+          "error": "HTTP 405"
+        },
+        {
+          "year": "2008",
+          "department": "civil_planning",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        }
+      ],
+      "2009": [
+        {
+          "year": "2009",
+          "department": "road",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2009",
+          "department": "tunnel",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2009",
+          "department": "civil_planning",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        }
+      ],
+      "2010": [
+        {
+          "year": "2010",
+          "department": "road",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2010",
+          "department": "tunnel",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2010",
+          "department": "civil_planning",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        }
+      ],
+      "2011": [
+        {
+          "year": "2011",
+          "department": "road",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2011",
+          "department": "tunnel",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2011",
+          "department": "civil_planning",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        }
+      ],
+      "2012": [
+        {
+          "year": "2012",
+          "department": "road",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2012",
+          "department": "tunnel",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2012",
+          "department": "civil_planning",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        }
+      ],
+      "2013": [
+        {
+          "year": "2013",
+          "department": "road",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2013",
+          "department": "tunnel",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2013",
+          "department": "civil_planning",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        }
+      ],
+      "2014": [
+        {
+          "year": "2014",
+          "department": "road",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2014",
+          "department": "tunnel",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2014",
+          "department": "civil_planning",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        }
+      ],
+      "2015": [
+        {
+          "year": "2015",
+          "department": "road",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2015",
+          "department": "tunnel",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2015",
+          "department": "civil_planning",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        }
+      ],
+      "2016": [
+        {
+          "year": "2016",
+          "department": "road",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2016",
+          "department": "tunnel",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2016",
+          "department": "civil_planning",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        }
+      ],
+      "2017": [
+        {
+          "year": "2017",
+          "department": "road",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2017",
+          "department": "tunnel",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2017",
+          "department": "civil_planning",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        }
+      ],
+      "2018": [
+        {
+          "year": "2018",
+          "department": "road",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2018",
+          "department": "tunnel",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2018",
+          "department": "civil_planning",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        }
+      ],
+      "2019": [
+        {
+          "year": "2019",
+          "department": "road",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2019",
+          "department": "tunnel",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        },
+        {
+          "year": "2019",
+          "department": "civil_planning",
+          "response_status": 500,
+          "test_successful": false,
+          "error": "HTTP 500"
+        }
+      ]
+    },
+    "department_verification": {
+      "road": {
+        "department": "road",
+        "response_status": 405,
+        "test_successful": false,
+        "error": "HTTP 405"
+      },
+      "tunnel": {
+        "department": "tunnel",
+        "response_status": 405,
+        "test_successful": false,
+        "error": "HTTP 405"
+      },
+      "civil_planning": {
+        "department": "civil_planning",
+        "response_status": 500,
+        "test_successful": false,
+        "error": "HTTP 500"
+      },
+      "urban_planning": {
+        "department": "urban_planning",
+        "response_status": 500,
+        "test_successful": false,
+        "error": "HTTP 500"
+      },
+      "landscape": {
+        "department": "landscape",
+        "response_status": 500,
+        "test_successful": false,
+        "error": "HTTP 500"
+      },
+      "construction_env": {
+        "department": "construction_env",
+        "response_status": 500,
+        "test_successful": false,
+        "error": "HTTP 500"
+      },
+      "steel_concrete": {
+        "department": "steel_concrete",
+        "response_status": 500,
+        "test_successful": false,
+        "error": "HTTP 500"
+      },
+      "soil_foundation": {
+        "department": "soil_foundation",
+        "response_status": 500,
+        "test_successful": false,
+        "error": "HTTP 500"
+      },
+      "construction_planning": {
+        "department": "construction_planning",
+        "response_status": 500,
+        "test_successful": false,
+        "error": "HTTP 500"
+      },
+      "water_supply": {
+        "department": "water_supply",
+        "response_status": 500,
+        "test_successful": false,
+        "error": "HTTP 500"
+      },
+      "forestry": {
+        "department": "forestry",
+        "response_status": 500,
+        "test_successful": false,
+        "error": "HTTP 500"
+      },
+      "agriculture": {
+        "department": "agriculture",
+        "response_status": 500,
+        "test_successful": false,
+        "error": "HTTP 500"
+      }
+    },
+    "session_integration": {
+      "status_endpoint": {
+        "response_status": 200,
+        "session_data": {
+          "session_id": "unified_1751175439397_d1a0ef16",
+          "manager_type": "unified",
+          "timestamp": "2025-06-29T05:37:19.404782+00:00",
+          "status": "active",
+          "last_activity": "2025-06-29T05:37:19.404110+00:00",
+          "elapsed_seconds": 0,
+          "remaining_seconds": 28799,
+          "timeout_threshold": 28800,
+          "will_expire_at": "2025-06-29T13:37:19.404110+00:00",
+          "session_size_bytes": 943,
+          "session_size_mb": 0.001,
+          "max_size_mb": 5,
+          "manager_stats": {
+            "total_operations": 98,
+            "successful_operations": 97,
+            "failed_operations": 0,
+            "timeouts": 0,
+            "recoveries": 3,
+            "cleanups": 0,
+            "memory_optimizations": 2,
+            "lock_contentions": 0
+          },
+          "session_registry": {}
+        },
+        "test_successful": true
+      },
+      "stats_endpoint": {
+        "response_status": 200,
+        "session_stats": {
+          "stats": {
+            "total_operations": 100,
+            "successful_operations": 100,
+            "failed_operations": 0,
+            "timeouts": 0,
+            "recoveries": 3,
+            "cleanups": 0,
+            "memory_optimizations": 2,
+            "lock_contentions": 0
+          },
+          "session_count": 3,
+          "active_locks": 4,
+          "memory_usage": {
+            "usage_mb": 90.49,
+            "threshold_mb": 500,
+            "should_cleanup": false,
+            "usage_percent": 18.1
+          },
+          "uptime": 0.6431522369384766
+        },
+        "test_successful": true
+      },
+      "headers": {
+        "unified_session_header_present": true,
+        "header_content": "{\"session_id\": \"unified_1751175439397_d1a0ef16\", \"manager_type\": \"unified\", \"timestamp\": \"2025-06-29T05:37:19.450288+00:00\", \"status\": \"active\", \"last_activity\": \"2025-06-29T05:37:19.424545+00:00\", \"elapsed_seconds\": 0, \"remaining_seconds\": 28799, \"timeout_threshold\": 28800, \"will_expire_at\": \"2025-06-29T13:37:19.424545+00:00\", \"session_size_bytes\": 1029, \"session_size_mb\": 0.001, \"max_size_mb\": 5, \"manager_stats\": {\"total_operations\": 103, \"successful_operations\": 102, \"failed_operations\": 0, \"timeouts\": 0, \"recoveries\": 3, \"cleanups\": 0, \"memory_optimizations\": 3, \"lock_contentions\": 0}, \"session_registry\": {\"last_save\": 1751175439.45025, \"session_size\": 1051, \"activity_count\": 3, \"status\": \"active\", \"last_update\": 1751175439.4502869}}",
+        "test_successful": true
+      }
+    },
+    "performance_metrics": {
+      "load_test_duration_seconds": 0.08,
+      "memory_before_mb": 91.0,
+      "memory_after_mb": 91.0,
+      "memory_increase_mb": 0.0,
+      "performance_acceptable": true,
+      "test_successful": true
+    },
+    "quality_assessment": {
+      "total_score": 50.0,
+      "quality_grade": "C (Needs Improvement)",
+      "criteria_scores": {
+        "data_file_integrity": {
+          "target": 100.0,
+          "actual": 100.0,
+          "weight": 0.3
+        },
+        "year_filtering_accuracy": {
+          "target": 100.0,
+          "actual": 0.0,
+          "weight": 0.25
+        },
+        "department_functionality": {
+          "target": 100.0,
+          "actual": 0.0,
+          "weight": 0.25
+        },
+        "session_integration": {
+          "target": 100.0,
+          "actual": 300.0,
+          "weight": 0.1
+        },
+        "performance_standards": {
+          "target": 100.0,
+          "actual": 100.0,
+          "weight": 0.1
+        }
+      },
+      "error_count": 48,
+      "warning_count": 0,
+      "enterprise_ready": false,
+      "production_ready": false,
+      "assessment_timestamp": "2025-06-29T05:37:19.538689+00:00"
+    }
+  },
+  "recommendations": [
+    "🚨 検出されたエラーの根本原因調査と修正が必要",
+    "🎯 ウルトラシンク品質基準達成のため追加改善が必要"
+  ]
+}

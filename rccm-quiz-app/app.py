@@ -320,15 +320,14 @@ except ImportError as e:
             return func
         return decorator
 
-# 🔧 ULTRA SYNC SESSION AUTO RECOVERY: セッション自動復旧システム初期化
-_session_auto_recovery = None
+# 🔥 ULTRA SYNC UNIFIED SESSION MANAGER: 4システム統合版セッション管理
+_unified_session_manager = None
 try:
-    from session_auto_recovery import SessionAutoRecoverySystem, init_session_auto_recovery, session_auto_recovery_decorator, global_auto_recovery_system
-    _session_auto_recovery = init_session_auto_recovery(app=None)  # app は後で設定
-    logger.info("🔧 Session Auto Recovery System 初期化完了")
+    from ultra_sync_unified_session_manager import unified_session_manager, init_unified_session_manager
+    logger.info("🔥 Ultra Sync Unified Session Manager 初期化準備完了")
 except ImportError as e:
-    logger.warning(f"⚠️ Session Auto Recovery System が見つかりません: {e}")
-    _session_auto_recovery = None
+    logger.error(f"❌ Ultra Sync Unified Session Manager が見つかりません: {e}")
+    _unified_session_manager = None
     
     # フォールバックデコレータ定義
     def session_auto_recovery_decorator(recovery_system=None):
@@ -370,9 +369,21 @@ app.config.from_object(Config)
 # 3. Debug settings applied conditionally
 # 注意: config.py の設定が優先され、ここでの設定は上書きまたは追加のみ
 
-# 🔥 ULTRA SYNC SESSION ENHANCEMENT: セッションタイムアウト強化システム初期化
-from session_timeout_enhancement import init_session_timeout
-session_timeout_manager = init_session_timeout(app)
+# 🔥 ULTRA SYNC UNIFIED SESSION INITIALIZATION: 統合セッション管理システム初期化
+try:
+    _unified_session_manager = init_unified_session_manager(app)
+    session_timeout_manager = _unified_session_manager  # 後方互換性
+    logger.info("🔥 Ultra Sync Unified Session Manager 初期化完了")
+except Exception as e:
+    logger.error(f"❌ 統合セッション管理システム初期化失敗: {e}")
+    # フォールバック: 従来のsession_timeout_enhancement使用
+    try:
+        from session_timeout_enhancement import init_session_timeout
+        session_timeout_manager = init_session_timeout(app)
+        logger.warning("⚠️ フォールバック: 従来のセッションタイムアウト管理使用")
+    except Exception as fallback_error:
+        logger.error(f"❌ フォールバックも失敗: {fallback_error}")
+        session_timeout_manager = None
 
 # 🔥 ULTRA SYNC CRITICAL FIX: セッション継続性完全修復
 # config.pyの設定に統一 - 重複設定削除でセッション継続性確保
@@ -394,14 +405,15 @@ if _memory_leak_monitor:
     except Exception as e:
         logger.error(f"❌ Failed to register memory monitoring routes: {e}")
 
-# 🔧 ULTRA SYNC SESSION AUTO RECOVERY: セッション自動復旧システム統合
-if _session_auto_recovery:
-    try:
-        from session_auto_recovery import register_auto_recovery_routes
-        register_auto_recovery_routes(app)
-        logger.info("🔧 Session Auto Recovery routes registered successfully")
-    except Exception as e:
-        logger.error(f"❌ Failed to register session auto recovery routes: {e}")
+# 🔥 ULTRA SYNC UNIFIED SESSION MANAGER: 統合セッション管理システム routes 登録済み
+# 統合セッション管理システムが自動的に以下のエンドポイントを提供:
+# - /api/session/unified/status  (統合セッション状態確認)
+# - /api/session/unified/stats   (統合セッション統計情報)  
+# - /api/session/unified/optimize (強制セッション最適化)
+if _unified_session_manager:
+    logger.info("🔥 Unified Session Manager routes automatically registered")
+else:
+    logger.warning("⚠️ Unified Session Manager not available - using fallback session management")
 
 # 🛡️ ULTRA SYNC ERROR LOOP PREVENTION: 統合エラーハンドラー登録
 if _error_loop_prevention:
@@ -1741,27 +1753,34 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         available_questions = [q for q in available_questions if q.get('department') == department]
         logger.info(f"部門フィルタ適用: {department}, 結果: {len(available_questions)}問")
 
-    # カテゴリでフィルタリング（文字化け考慮）
+    # カテゴリでフィルタリング（ULTRA SYNC: 英語→日本語マッピング完全対応）
     if requested_category != '全体':
         pre_category_count = len(available_questions)
-        # 正確な文字列マッチング
-        available_questions = [q for q in available_questions if q.get('category') == requested_category]
+        
+        # 🚀 ULTRA SYNC FIX: 英語部門名→日本語カテゴリ名の完全マッピング
+        target_category = requested_category
+        if requested_category in DEPARTMENT_TO_CATEGORY_MAPPING:
+            target_category = DEPARTMENT_TO_CATEGORY_MAPPING[requested_category]
+            logger.info(f"🔧 ULTRA SYNC: 英語→日本語マッピング適用 {requested_category} → {target_category}")
+        
+        # 正確な文字列マッチング（日本語カテゴリ名で）
+        available_questions = [q for q in available_questions if q.get('category') == target_category]
 
         # 文字化けしている場合のフォールバック（部分マッチ）
-        if len(available_questions) == 0 and requested_category:
+        if len(available_questions) == 0 and target_category:
             # 文字化けを考慮した部分マッチ
-            logger.warning(f"正確なカテゴリマッチ失敗: {requested_category}, 部分マッチを試行")
+            logger.warning(f"正確なカテゴリマッチ失敗: {target_category}, 部分マッチを試行")
             for q in [q for q in all_questions if q.get('question_type') == question_type]:
                 category = q.get('category', '')
                 # 道路、トンネル等の主要カテゴリのマッチング
-                if ('道路' in category and ('道' in requested_category or 'road' in requested_category.lower())) or \
-                   ('トンネル' in category and ('トンネル' in requested_category or 'tunnel' in requested_category.lower())) or \
-                   ('河川' in category and ('河川' in requested_category or 'civil' in requested_category.lower())) or \
-                   ('土質' in category and ('土質' in requested_category or 'soil' in requested_category.lower())):
+                if ('道路' in category and ('道' in target_category or 'road' in target_category.lower())) or \
+                   ('トンネル' in category and ('トンネル' in target_category or 'tunnel' in target_category.lower())) or \
+                   ('河川' in category and ('河川' in target_category or 'civil' in target_category.lower())) or \
+                   ('土質' in category and ('土質' in target_category or 'soil' in target_category.lower())):
                     if q not in available_questions:
                         available_questions.append(q)
 
-        logger.info(f"カテゴリフィルタ適用: {requested_category}, {pre_category_count} → {len(available_questions)}問")
+        logger.info(f"カテゴリフィルタ適用: {requested_category} → {target_category}, {pre_category_count} → {len(available_questions)}問")
 
     # 🚨 年度でフィルタリング（ウルトラシンク年度混在防止修正）
     if year and question_type == 'specialist':
@@ -1917,107 +1936,28 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
     return selected_questions
 
 
-@app.before_request
-def before_request():
-    """リクエスト前の処理（企業環境最適化版）"""
-    session.permanent = True
-
-    # 🔥 CRITICAL FIX: メモリリーク防止のための定期的なロッククリーンアップ
-    import random
-    if random.randint(1, 100) <= 5:  # 5%の確率で実行（負荷分散）
-        cleanup_old_locks()
-    
-    # 🔥 ULTRA SYNC FIX: セッションデータ肥大化防止
-    if random.randint(1, 100) <= 10:  # 10%の確率でセッションクリーンアップ
-        cleanup_session_data(session)
-
-    # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のセッションタイムアウトチェック（根本修正）
-    if 'last_activity' in session:
-        last_activity = parse_iso_with_timezone(session['last_activity'])
-        if get_utc_now() - last_activity > timedelta(hours=8):  # 8時間でタイムアウト
-            # 🔥 CRITICAL FIX: session.clear()を削除 - セッション維持のため
-            # 必要最小限のクリーンアップのみ実行
-            session.pop('exam_question_ids', None)
-            session.pop('exam_current', None)
-            session.pop('history', None)
-            session.modified = True
-            logger.info("セッションタイムアウト: 試験データのみクリア（セッション保持）")
-
-    # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準の最終アクティビティ時間更新
-    session['last_activity'] = format_utc_to_iso()
-
-    # セッションIDの取得（簡素化）
-    if 'session_id' not in session:
-        session['session_id'] = os.urandom(16).hex()
-
-    # 🔥 ULTRA SYNC CRITICAL FIX: セッション継続性確保のための根本修正
-    # data_loadedフラグの永続化確認（Flask sessionの永続化問題対応）
-    session_id = session.get('session_id', 'unknown')
-    existing_exam_ids = session.get('exam_question_ids', [])
-    data_was_loaded = session.get('data_loaded', False)
-    
-    logger.info(f"🔍 セッション状態チェック: session_id={session_id}, data_loaded={data_was_loaded}, exam_ids_count={len(existing_exam_ids)}")
-    
-    # セッション初期化判定の厳格化
-    if not data_was_loaded or len(existing_exam_ids) == 0:
-        # 🔥 CRITICAL: 毎回初期化されている問題の根本対策
-        session['data_loaded'] = True
-        session.permanent = True  # 明示的なセッション永続化
-        
-        if 'exam_question_ids' not in session or len(session.get('exam_question_ids', [])) == 0:
-            session['exam_question_ids'] = []
-            logger.warning(f"🚨 セッション初期化実行: session_id={session_id} - 継続性確保のため新規初期化")
-        else:
-            logger.info(f"✅ セッション継続: exam_question_ids を保持 ({len(session.get('exam_question_ids', []))}問)")
-    else:
-        logger.info(f"✅ セッション継続確認: data_loaded={data_was_loaded}, exam_ids={len(existing_exam_ids)}問")
-        
-        if 'exam_current' not in session:
-            safe_session_update('exam_current', 0)
-        if 'history' not in session:
-            safe_session_update('history', [])
-        if 'bookmarks' not in session:
-            safe_session_update('bookmarks', [])
-        if 'srs_data' not in session:
-            safe_session_update('srs_data', {})
-
-    # セッション整合性チェック
-    _validate_session_integrity()
-
-    # 企業環境用データロードは必要時のみ実行
-    fast_mode = os.environ.get('RCCM_FAST_MODE', 'true').lower() == 'true'
-    if not fast_mode:
-        # 従来のデータロード（後方互換性）
-        try:
-            user_name = session.get('user_name')
-            if session_data_manager:
-                session_data_manager.load_session_data(session, session['session_id'], user_name)
-        except Exception as e:
-            logger.warning(f"セッションデータロード失敗（続行可能）: {e}")
+# 🔥 ULTRA SYNC: 統合セッション管理システムが自動的にbefore_requestを処理
+# unified_session_manager.unified_before_request() が自動実行される
+# 
+# 注意: この@app.before_requestは統合システムによって自動処理されるため
+#       重複を防ぐためコメントアウト済み
+#
+# @app.before_request  # 統合システムで自動処理
+# def before_request():
+#     """統合セッション管理システムで自動処理されます"""
+#     pass
 
 
-@app.after_request
-def after_request_data_save(response):
-    """リクエスト後の処理（企業環境最適化版）"""
-    # 高速化モードでは自動保存を軽量化
-    fast_mode = os.environ.get('RCCM_FAST_MODE', 'true').lower() == 'true'
-
-    if not fast_mode:
-        # 従来のデータ保存（後方互換性）
-        session_id = session.get('session_id')
-        if session_id and session.get('history'):
-            try:
-                user_name = session.get('user_name')
-                if session_data_manager:
-                    session_data_manager.auto_save_trigger(session, session_id, user_name)
-            except Exception as e:
-                logger.warning(f"セッション自動保存失敗（続行可能）: {e}")
-
-    # セッション修正フラグを明示的に設定
-    if hasattr(session, 'modified'):
-        session.modified = True
-
-    return response
+# 🔥 ULTRA SYNC: 統合セッション管理システムが自動的にafter_requestを処理
+# unified_session_manager.unified_after_request() が自動実行される
+# 
+# 注意: この@app.after_requestは統合システムによって自動処理されるため
+#       重複を防ぐためコメントアウト済み
+#
+# @app.after_request  # 統合システムで自動処理
+# def after_request_data_save(response):
+#     """統合セッション管理システムで自動処理されます"""
+#     return response
 
 
 @app.route('/health')
@@ -2028,7 +1968,7 @@ def health():
 
 
 @app.route('/')
-@session_auto_recovery_decorator(_session_auto_recovery)
+# 🔥 ULTRA SYNC: 統合セッション管理システムで自動処理
 def index():
     """ホーム画面（ユーザー識別対応）"""
     try:
@@ -2143,7 +2083,7 @@ def force_refresh():
 
 
 @app.route('/exam', methods=['GET', 'POST'])
-@session_auto_recovery_decorator(_session_auto_recovery)
+# 🔥 ULTRA SYNC: 統合セッション管理システムで自動処理
 @memory_monitoring_decorator(_memory_leak_monitor)
 def exam():
     """SRS対応の問題関数（統合版）"""
@@ -3548,7 +3488,7 @@ def result():
 
 
 @app.route('/statistics')
-@session_auto_recovery_decorator(_session_auto_recovery)
+# 🔥 ULTRA SYNC: 統合セッション管理システムで自動処理
 @memory_monitoring_decorator(_memory_leak_monitor)
 def statistics():
     """統計画面"""
@@ -5796,7 +5736,7 @@ def exam_simulator_page():
 
 
 @app.route('/start_exam/<exam_type>')
-@session_auto_recovery_decorator(_session_auto_recovery)
+# 🔥 ULTRA SYNC: 統合セッション管理システムで自動処理
 @memory_monitoring_decorator(_memory_leak_monitor)
 def start_exam(exam_type):
     """試験開始"""
@@ -5864,7 +5804,7 @@ def exam_question():
 
 
 @app.route('/submit_exam_answer', methods=['POST'])
-@session_auto_recovery_decorator(_session_auto_recovery)
+# 🔥 ULTRA SYNC: 統合セッション管理システムで自動処理
 def submit_exam_answer():
     """試験回答提出"""
     try:

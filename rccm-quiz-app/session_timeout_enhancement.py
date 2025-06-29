@@ -6,9 +6,35 @@ RCCM試験問題集アプリ - セッションタイムアウト強化システ�
 
 import json
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from flask import session, request, jsonify
 import logging
+import pytz
+
+# 🔥 WORLD STANDARD: UTC統一処理のためのユーティリティ関数
+def get_utc_now():
+    """UTC timezone-aware な現在時刻を取得（世界標準）"""
+    return datetime.now(timezone.utc)
+
+def parse_iso_to_utc(iso_string):
+    """ISO文字列をUTC timezone-awareなdatetimeに変換（世界標準）"""
+    try:
+        dt = datetime.fromisoformat(iso_string)
+        if dt.tzinfo is None:
+            # naive datetime の場合はUTCとして扱う
+            dt = dt.replace(tzinfo=timezone.utc)
+        else:
+            # timezone-aware の場合はUTCに変換
+            dt = dt.astimezone(timezone.utc)
+        return dt
+    except (ValueError, TypeError):
+        return get_utc_now()
+
+def datetime_to_utc_iso(dt):
+    """datetime を UTC ISO文字列に変換（世界標準）"""
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc).isoformat()
 
 logger = logging.getLogger(__name__)
 
@@ -134,20 +160,20 @@ class SessionTimeoutManager:
         return response
     
     def update_session_activity(self):
-        """セッション活動時間の更新"""
-        current_time = datetime.now()
-        session['last_activity'] = current_time.isoformat()
+        """セッション活動時間の更新（世界標準UTC統一）"""
+        current_time = get_utc_now()  # 🔥 WORLD STANDARD: UTC timezone-aware
+        session['last_activity'] = datetime_to_utc_iso(current_time)  # 🔥 WORLD STANDARD: UTC ISO
         session['total_requests'] = session.get('total_requests', 0) + 1
         
         # 定期的な自動保存
         last_auto_save = session.get('last_auto_save')
         if not last_auto_save or self._time_diff_seconds(last_auto_save, current_time) >= self.auto_save_interval:
             self.create_session_backup(auto_save=True)
-            session['last_auto_save'] = current_time.isoformat()
+            session['last_auto_save'] = datetime_to_utc_iso(current_time)  # 🔥 WORLD STANDARD: UTC ISO
     
     def get_session_status(self):
-        """セッション状態の取得"""
-        current_time = datetime.now()
+        """セッション状態の取得（世界標準UTC統一）"""
+        current_time = get_utc_now()  # 🔥 WORLD STANDARD: UTC timezone-aware
         last_activity = session.get('last_activity')
         
         if not last_activity:
@@ -158,7 +184,7 @@ class SessionTimeoutManager:
                 'expires_at': None
             }
         
-        last_activity_time = datetime.fromisoformat(last_activity)
+        last_activity_time = parse_iso_to_utc(last_activity)  # 🔥 WORLD STANDARD: UTC統一解析
         elapsed_time = (current_time - last_activity_time).total_seconds()
         remaining_time = max(0, self.session_lifetime - elapsed_time)
         
@@ -168,7 +194,7 @@ class SessionTimeoutManager:
             'status': 'active' if remaining_time > 0 else 'expired',
             'remaining_time': int(remaining_time),
             'warning': remaining_time <= self.warning_threshold and remaining_time > 0,
-            'expires_at': expires_at.isoformat(),
+            'expires_at': datetime_to_utc_iso(expires_at),  # 🔥 WORLD STANDARD: UTC ISO
             'last_activity': last_activity,
             'total_requests': session.get('total_requests', 0)
         }
@@ -179,9 +205,9 @@ class SessionTimeoutManager:
         return status['status'] == 'expired'
     
     def extend_session_lifetime(self):
-        """セッション有効期限の延長"""
-        current_time = datetime.now()
-        session['last_activity'] = current_time.isoformat()
+        """セッション有効期限の延長（世界標準UTC統一）"""
+        current_time = get_utc_now()  # 🔥 WORLD STANDARD: UTC timezone-aware
+        session['last_activity'] = datetime_to_utc_iso(current_time)  # 🔥 WORLD STANDARD: UTC ISO
         session['session_extended_count'] = session.get('session_extended_count', 0) + 1
         session.permanent = True
         
@@ -210,15 +236,15 @@ class SessionTimeoutManager:
         logger.warning(f"セッション期限切れ処理完了: バックアップID={backup_id}")
     
     def create_session_backup(self, auto_save=False, expired=False):
-        """セッションバックアップの作成"""
+        """セッションバックアップの作成（世界標準UTC統一）"""
         try:
-            current_time = datetime.now()
+            current_time = get_utc_now()  # 🔥 WORLD STANDARD: UTC timezone-aware
             backup_id = f"session_backup_{current_time.strftime('%Y%m%d_%H%M%S')}_{os.urandom(4).hex()}"
             
             # バックアップデータの準備
             backup_data = {
                 'backup_id': backup_id,
-                'timestamp': current_time.isoformat(),
+                'timestamp': datetime_to_utc_iso(current_time),  # 🔥 WORLD STANDARD: UTC ISO
                 'auto_save': auto_save,
                 'expired': expired,
                 'session_data': {}
@@ -248,7 +274,7 @@ class SessionTimeoutManager:
             backup_history = session.get('backup_history', [])
             backup_history.append({
                 'backup_id': backup_id,
-                'timestamp': current_time.isoformat(),
+                'timestamp': datetime_to_utc_iso(current_time),  # 🔥 WORLD STANDARD: UTC ISO
                 'auto_save': auto_save,
                 'expired': expired
             })
@@ -283,12 +309,12 @@ class SessionTimeoutManager:
             for key, value in session_data.items():
                 session[key] = value
             
-            # セッション状態をリフレッシュ
-            current_time = datetime.now()
-            session['last_activity'] = current_time.isoformat()
+            # セッション状態をリフレッシュ（世界標準UTC統一）
+            current_time = get_utc_now()  # 🔥 WORLD STANDARD: UTC timezone-aware
+            session['last_activity'] = datetime_to_utc_iso(current_time)  # 🔥 WORLD STANDARD: UTC ISO
             session['session_restored'] = True
             session['restored_from'] = backup_id
-            session['restored_at'] = current_time.isoformat()
+            session['restored_at'] = datetime_to_utc_iso(current_time)  # 🔥 WORLD STANDARD: UTC ISO
             session.permanent = True
             
             logger.info(f"セッション復元完了: {backup_id}")
@@ -337,7 +363,7 @@ class SessionTimeoutManager:
             if not os.path.exists(backup_dir):
                 return
             
-            cutoff_date = datetime.now() - timedelta(days=days)
+            cutoff_date = get_utc_now() - timedelta(days=days)  # 🔥 WORLD STANDARD: UTC timezone-aware
             deleted_count = 0
             
             for filename in os.listdir(backup_dir):
@@ -347,7 +373,7 @@ class SessionTimeoutManager:
                         with open(backup_file, 'r', encoding='utf-8') as f:
                             backup_data = json.load(f)
                         
-                        timestamp = datetime.fromisoformat(backup_data.get('timestamp'))
+                        timestamp = parse_iso_to_utc(backup_data.get('timestamp'))  # 🔥 WORLD STANDARD: UTC統一解析
                         if timestamp < cutoff_date:
                             os.remove(backup_file)
                             deleted_count += 1
@@ -360,9 +386,12 @@ class SessionTimeoutManager:
             logger.error(f"バックアップクリーンアップエラー: {e}")
     
     def _time_diff_seconds(self, time_str, current_time):
-        """時間差を秒で計算"""
+        """時間差を秒で計算（世界標準UTC統一）"""
         try:
-            past_time = datetime.fromisoformat(time_str)
+            past_time = parse_iso_to_utc(time_str)  # 🔥 WORLD STANDARD: UTC統一解析
+            # current_time は既に UTC timezone-aware であることを前提
+            if current_time.tzinfo is None:
+                current_time = current_time.replace(tzinfo=timezone.utc)
             return (current_time - past_time).total_seconds()
         except:
             return float('inf')

@@ -1,0 +1,114 @@
+{
+  "report_metadata": {
+    "generated_at": "2025-06-29T05:52:06.311736+00:00",
+    "system_profile": {
+      "cpu": {
+        "physical_cores": 4,
+        "logical_cores": 8,
+        "cpu_freq": {
+          "current": 2995.2099999999996,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "cpu_usage_percent": 1.0
+      },
+      "memory": {
+        "total": 8147460096,
+        "available": 6744068096,
+        "percent": 17.2,
+        "used": 1157767168,
+        "free": 6566531072,
+        "active": 153243648,
+        "inactive": 1082327040,
+        "buffers": 10764288,
+        "cached": 412397568,
+        "shared": 3485696,
+        "slab": 98516992,
+        "total_mb": 7770.0234375,
+        "available_mb": 6431.64453125
+      },
+      "disk": {
+        "total": 1081101176832,
+        "used": 7351984128,
+        "free": 1018756837376,
+        "percent": 0.7,
+        "total_gb": 1006.853931427002,
+        "free_gb": 948.7912406921387
+      },
+      "platform": {
+        "system": "posix",
+        "architecture": [
+          "Linux",
+          "hatakeyama",
+          "5.15.167.4-microsoft-standard-WSL2",
+          "#1 SMP Tue Nov 5 00:21:55 UTC 2024",
+          "x86_64"
+        ]
+      }
+    },
+    "configuration": {
+      "monitoring_interval": 30,
+      "history_window_size": 100,
+      "baseline_samples": 20,
+      "adaptive_threshold": true,
+      "threshold_adjustment_factor": 0.1,
+      "min_threshold_mb": 100,
+      "max_threshold_mb": 2000,
+      "optimization_interval": 300,
+      "false_positive_tolerance": 0.05,
+      "performance_mode": "balanced",
+      "enable_smart_alerts": true,
+      "alert_cooldown": 60,
+      "suppress_transient_spikes": true,
+      "auto_detect_environment": true,
+      "production_mode": false,
+      "concurrent_users_estimate": 1000
+    },
+    "monitoring_duration_minutes": 2.3444493611653647e-06
+  },
+  "current_status": {
+    "timestamp": 1751176326.311921,
+    "current_memory_mb": 16.15234375,
+    "current_percent": 17.2,
+    "thresholds": {
+      "memory_usage_mb": 1709.4051562500001,
+      "memory_percent": 75.0,
+      "growth_rate_mb_per_sec": 25.0
+    },
+    "alerts": [],
+    "recommendations": [],
+    "overall_status": "healthy"
+  },
+  "pattern_analysis": {
+    "insufficient_data": true
+  },
+  "threshold_optimization": {
+    "current_thresholds": {
+      "memory_usage_mb": 1709.4051562500001,
+      "memory_percent": 75.0,
+      "growth_rate_mb_per_sec": 25.0
+    },
+    "baseline_metrics": null,
+    "optimization_stats": {
+      "false_positives_prevented": 0,
+      "performance_improvements": 0,
+      "threshold_adjustments": 0,
+      "total_optimizations": 0
+    }
+  },
+  "system_information": {
+    "total_memory_mb": 7770.0234375,
+    "cpu_cores": 8,
+    "current_metrics": {
+      "rss_mb": 16.15234375,
+      "vms_mb": 20.8359375,
+      "system_percent": 17.2,
+      "available_mb": 6431.64453125
+    }
+  },
+  "recommendations": {
+    "immediate_actions": [],
+    "optimization_suggestions": [],
+    "monitoring_improvements": []
+  }
+}

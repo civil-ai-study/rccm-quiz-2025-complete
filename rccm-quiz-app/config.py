@@ -227,6 +227,71 @@ class EnterpriseConfig(Config):
     
     # マルチユーザー設定
     MAX_CONCURRENT_USERS = int(os.environ.get('MAX_CONCURRENT_USERS', 100))
+
+
+class RedisSessionConfig(Config):
+    """Redis + Flask-Session 次世代セッション管理設定"""
+    
+    # Redis Session設定
+    SESSION_TYPE = 'redis'
+    SESSION_PERMANENT = True
+    SESSION_USE_SIGNER = True
+    SESSION_KEY_PREFIX = 'rccm_session:'
+    
+    # Redis接続設定
+    REDIS_HOST = os.environ.get('REDIS_HOST', 'localhost')
+    REDIS_PORT = int(os.environ.get('REDIS_PORT', 6379))
+    REDIS_DB = int(os.environ.get('REDIS_DB', 0))
+    REDIS_PASSWORD = os.environ.get('REDIS_PASSWORD', None)
+    
+    # 高可用性設定
+    REDIS_SENTINEL_ENABLED = os.environ.get('REDIS_SENTINEL_ENABLED', 'False').lower() == 'true'
+    REDIS_CLUSTER_ENABLED = os.environ.get('REDIS_CLUSTER_ENABLED', 'False').lower() == 'true'
+    
+    # セッション最適化
+    SESSION_REDIS_SERIALIZATION_FORMAT = 'json'
+    SESSION_REDIS_RETRY_ON_FAILURE = 3
+    SESSION_REDIS_SOCKET_TIMEOUT = 3.0
+    
+    # セッション有効期限（デフォルト24時間）
+    PERMANENT_SESSION_LIFETIME = int(os.environ.get('SESSION_LIFETIME_HOURS', 24)) * 3600
+    
+    # セッション暗号化強化
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = 'Lax'
+    
+    # Redis接続プール設定
+    REDIS_MAX_CONNECTIONS = int(os.environ.get('REDIS_MAX_CONNECTIONS', 50))
+    REDIS_CONNECTION_TIMEOUT = int(os.environ.get('REDIS_CONNECTION_TIMEOUT', 5))
+    REDIS_SOCKET_TIMEOUT = int(os.environ.get('REDIS_SOCKET_TIMEOUT', 3))
+    REDIS_HEALTH_CHECK_INTERVAL = 30
+
+
+class ProductionRedisConfig(RedisSessionConfig):
+    """本番環境用Redis設定"""
+    DEBUG = False
+    TESTING = False
+    
+    # 本番環境セキュリティ強化
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_SAMESITE = 'Strict'
+    
+    # Redis SSL設定
+    REDIS_SSL = True
+    REDIS_SSL_CERT_REQS = 'required'
+    
+    # 高可用性設定有効化
+    REDIS_SENTINEL_ENABLED = True
+    REDIS_CLUSTER_ENABLED = os.environ.get('REDIS_CLUSTER_ENABLED', 'True').lower() == 'true'
+    
+    # セッション期限短縮（本番環境）
+    PERMANENT_SESSION_LIFETIME = 8 * 3600  # 8時間
+    
+    # 高性能設定
+    REDIS_MAX_CONNECTIONS = int(os.environ.get('REDIS_MAX_CONNECTIONS', 100))
+    REDIS_CONNECTION_TIMEOUT = 2
+    REDIS_SOCKET_TIMEOUT = 1
     USER_SESSION_TIMEOUT = 28800  # 8時間のアイドルタイムアウト（セッションライフタイムと統一）
 
 class ServerConfig:

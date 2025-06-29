@@ -6,3 +6,11 @@ Werkzeug==3.0.1
 Jinja2==3.1.2
 requests==2.32.4
 python-dotenv==1.1.0
+
+# 🔧 Redis Session Management - World Class Implementation
+redis==5.0.1
+Flask-Session==0.8.0
+hiredis==2.3.2
+
+# 📊 Memory Profiling & Monitoring - Ultra Sync Implementation
+psutil==5.9.6
