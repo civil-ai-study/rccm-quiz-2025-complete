@@ -126,11 +126,12 @@
             
             {% if not is_final %}
                 <!-- 次の問題へボタン（確実に表示される） - 視認性強化 -->
-                <!-- next_question_index は0ベースインデックス、フォールバックは current_question_number (1ベース) を0ベース化 -->
-                <a href="/exam?next=1&current={{ (next_question_index + 1) if next_question_index is defined and next_question_index is not none else (question_num + 1) }}" 
+                <!-- 🔥 PROGRESS FIX: URL生成を確実で安全な方式に変更 -->
+                {% set next_display_num = question_num + 1 %}
+                <a href="/exam?next=1&current={{ next_display_num }}" 
                    class="btn btn-primary btn-lg px-5 py-3 main-nav-btn"
                    style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; position: relative !important; z-index: 1000 !important; background-color: #0d6efd !important; border: 3px solid #0d6efd !important; box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3) !important;">
-                    <i class="fas fa-arrow-right me-2"></i>次の問題へ ({{ question_num + 1 }}/{{ total_num }})
+                    <i class="fas fa-arrow-right me-2"></i>次の問題へ ({{ next_display_num }}/{{ total_num }})
                 </a>
             {% else %}
                 <!-- 結果を見るボタン -->

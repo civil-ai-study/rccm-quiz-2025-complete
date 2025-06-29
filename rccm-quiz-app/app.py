@@ -363,6 +363,24 @@ app = Flask(__name__)
 # 設定適用（改善版）
 app.config.from_object(Config)
 
+# 🔥 ULTRA SYNC FIX: セッション設定の強制確認と修正
+logger.info(f"🔥 SESSION CONFIG: SECRET_KEY set: {bool(app.config.get('SECRET_KEY'))}")
+logger.info(f"🔥 SESSION CONFIG: SESSION_PERMANENT: {app.config.get('SESSION_PERMANENT')}")
+logger.info(f"🔥 SESSION CONFIG: SESSION_USE_SIGNER: {app.config.get('SESSION_USE_SIGNER')}")
+logger.info(f"🔥 SESSION CONFIG: SESSION_COOKIE_NAME: {app.config.get('SESSION_COOKIE_NAME')}")
+
+# 🔥 ULTRA SYNC FIX: セッション設定の強制適用（念のため）
+if not app.config.get('SECRET_KEY'):
+    app.config['SECRET_KEY'] = 'rccm-quiz-app-development-key-2025-emergency'
+    logger.warning("🔥 SESSION FIX: SECRET_KEY を緊急設定しました")
+
+# 🔥 ULTRA SYNC FIX: セッション関連設定の強制確認
+app.config['SESSION_PERMANENT'] = True
+app.config['SESSION_USE_SIGNER'] = True
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+logger.info("🔥 SESSION FIX: セッション設定を強制適用しました")
+
 # 🛡️ ULTRA SYNC CONFIG LOADING ORDER:
 # 1. Config class settings loaded above (config.py)
 # 2. Additional dynamic settings applied below
@@ -462,10 +480,17 @@ DEPARTMENT_TO_CATEGORY_MAPPING = {
 
 # 🚀 ULTRA SYNC: 旧名称互換マッピング（別管理）
 LEGACY_DEPARTMENT_ALIASES = {
-    'civil_planning': 'river',      # 旧名称→新名称
-    'urban_planning': 'urban',      # 旧名称→新名称  
-    'soil_foundation': 'soil',      # 旧名称→新名称
-    'common': 'basic'               # 旧名称→新名称
+    'civil_planning': 'river',            # 旧名称→新名称
+    'urban_planning': 'urban',            # 旧名称→新名称  
+    'soil_foundation': 'soil',            # 旧名称→新名称
+    'common': 'basic',                    # 旧名称→新名称
+    # 🔥 PROGRESS FIX: 不足していた部門エイリアス追加
+    'river_sabo': 'river',                # 河川・砂防
+    'construction_environment': 'construction_env',  # 建設環境
+    'construction_management': 'construction_planning',  # 施工計画
+    'water_supply_sewerage': 'water_supply',  # 上下水道
+    'forest_civil': 'forestry',           # 森林土木
+    'agricultural_civil': 'agriculture'   # 農業土木
 }
 
 # 🚀 ULTRA SYNC: 正規化された一意逆マッピング
@@ -2153,8 +2178,12 @@ def exam():
 
         # POST処理（回答送信）
         if request.method == 'POST':
-            # デバッグ: POST処理時のセッション状態を完全ログ出力
+            # 🔥 DEBUG: POSTリクエスト詳細ログ
             logger.info("=== POST処理開始 - セッション状態デバッグ ===")
+            logger.info(f"🔍 POST Request URL: {request.url}")
+            logger.info(f"🔍 POST Form Data: {dict(request.form)}")
+            logger.info(f"🔍 POST Content Type: {request.content_type}")
+            # デバッグ: POST処理時のセッション状態を完全ログ出力
             # 🔥 ULTRA SYNC セキュリティ FIX: 機密情報を含まない安全なログ出力
             logger.info(f"セッションキー数: {len(session.keys())}")
             logger.info(f"exam_question_ids数: {len(session.get('exam_question_ids', []))}")
@@ -2166,9 +2195,45 @@ def exam():
             logger.info(f"data_loaded: {session.get('data_loaded', 'MISSING')}")
             logger.info("==========================================")
 
-            # 🔥 ULTRA SYNC VALIDATION FIX: 入力値のサニタイズと検証強化
+            # 🔥 CRITICAL FIX: 新しいセッション開始のPOST処理（進捗表示バグ修正）
             raw_answer = request.form.get('answer')
             raw_qid = request.form.get('qid')
+            form_question_count = request.form.get('question_count')
+            
+            # 新しいセッション開始判定: answer/qidなし + question_countあり
+            if not raw_answer and not raw_qid and form_question_count:
+                try:
+                    question_count_int = int(form_question_count)
+                    if 'quiz_settings' not in session:
+                        session['quiz_settings'] = {}
+                    session['quiz_settings']['questions_per_session'] = question_count_int
+                    session.modified = True
+                    logger.info(f"🔥 QUIZ SETTINGS FIX: 新規セッション開始 - question_count={question_count_int}をセッションに保存")
+                    
+                    # 新しいセッション開始なので、GET処理にリダイレクト
+                    department = request.form.get('department', '')
+                    year = request.form.get('year', '')
+                    question_type = request.form.get('question_type', '')
+                    
+                    redirect_params = []
+                    if department:
+                        redirect_params.append(f"department={department}")
+                    if year:
+                        redirect_params.append(f"year={year}")
+                    if question_type:
+                        redirect_params.append(f"question_type={question_type}")
+                    
+                    redirect_url = "/exam"
+                    if redirect_params:
+                        redirect_url += "?" + "&".join(redirect_params)
+                    
+                    logger.info(f"🔄 新規セッション開始リダイレクト: {redirect_url}")
+                    return redirect(redirect_url)
+                    
+                except (ValueError, TypeError) as e:
+                    logger.warning(f"POST question_count変換エラー: {form_question_count} - {e}")
+
+            # 🔥 ULTRA SYNC VALIDATION FIX: 入力値のサニタイズと検証強化
             raw_elapsed = request.form.get('elapsed', '0')
             
             # 必須パラメータの存在チェック
@@ -2930,9 +2995,16 @@ def exam():
                 session.modified = True
                 logger.info(f"✅ 緊急修復完了: exam_current = {expected_exam_current}")
             
+            # ステップ7: 強制的なセッション保存の確保
+            session.permanent = True
+            session.modified = True
+            
+            # ステップ8: 最終的な検証（POST完了直前）
+            final_exam_current = session.get('exam_current')
+            logger.info(f"🔥 POST完了直前の最終確認: exam_current = {final_exam_current}")
             logger.info("=== PROGRESS FIX: セッション状態更新完了 ===")
             
-            # ステップ7: 次回のGET処理のための状態確認
+            # ステップ9: 次回のGET処理のための状態確認
             logger.info(f"次回GET処理での期待値: display_current = {expected_exam_current + 1}, display_total = {session_size}")
             
             # 🔥 PROGRESS TRACKING FIX: セッション進捗の確実な保存
@@ -2983,11 +3055,11 @@ def exam():
                         'accuracy_improvement': round(accuracy, 1) if accuracy > 0 else 0
                     }
             
-            # フィードバック画面に渡すデータを準備
+            # 🔥 PROGRESS FIX: フィードバック画面への進捗データ準備
             # ユーザー設定の問題数を使用（進捗表示修正）
             safe_total_questions = get_user_session_size(session)
-            # 問題番号は1ベースだが、total_questions を超えないよう制限
-            safe_current_number = min(max(1, current_no + 1), safe_total_questions)
+            # 回答済み問題番号（1ベース）- current_no は回答済み問題のインデックス（0ベース）
+            safe_current_number = max(1, current_no + 1)  # シンプルな0→1ベース変換
 
             feedback_data = {
                 'question': question,
@@ -3020,7 +3092,9 @@ def exam():
 
         # GET処理（問題表示）
         # 次の問題への遷移の場合は現在のセッション情報を使用
-        is_next_request = request.args.get('next') == '1'  # 次の問題へのリクエスト
+        # 🔥 PROGRESS FIX: next パラメータ検出の確実性向上
+        next_param = request.args.get('next', '')
+        is_next_request = (next_param == '1')  # シンプルで確実な判定
         if is_next_request:
             requested_category = session.get('exam_category', '全体')
             requested_department = session.get('selected_department', '')
@@ -3179,6 +3253,23 @@ def exam():
             except (ValueError, TypeError):
                 logger.warning(f"無効なcountパラメータ: {requested_count}")
 
+        # 🔥 CRITICAL FIX: POSTフォームのquestion_count処理追加（進捗表示バグ修正）
+        if request.method == 'POST' and not session.get('exam_question_ids'):
+            # 新しいセッション開始時のPOSTリクエストでquestion_countを処理
+            form_question_count = request.form.get('question_count')
+            if form_question_count:
+                try:
+                    question_count_int = int(form_question_count)
+                    if 'quiz_settings' not in session:
+                        session['quiz_settings'] = {}
+                    session['quiz_settings']['questions_per_session'] = question_count_int
+                    session.modified = True
+                    logger.info(f"🔥 QUIZ SETTINGS FIX: POST question_count={question_count_int}をセッションに保存")
+                except (ValueError, TypeError) as e:
+                    logger.warning(f"POST question_count変換エラー: {form_question_count} - {e}")
+            else:
+                logger.info(f"🔍 DEBUG: POST without question_count - form keys: {list(request.form.keys())}")
+
         # ユーザー設定に基づく問題数を取得
         session_size = get_user_session_size(session)
         specific_qid = sanitize_input(request.args.get('qid'))
@@ -3211,84 +3302,48 @@ def exam():
 
         # セッション管理
         exam_question_ids = session.get('exam_question_ids', [])
-        # 🔥 CRITICAL PROGRESS DISPLAY FIX: GET処理でのセッション状態検証と復旧
-        logger.info("=== PROGRESS FIX: GET処理でのセッション状態検証 ===")
+        # ✅ FIXED: Simplified session state handling with next request support
+        logger.info("=== SESSION STATE: Reading current position ===")
         
-        # URLパラメータから現在の問題番号を取得（競合回避）
-        url_current = request.args.get('current')
-        
-        # ステップ1: セッション状態の詳細検証
-        session_exam_current = session.get('exam_current', 0)
-        session_progress_tracking = session.get('progress_tracking', {})
-        session_repair_count = session.get('progress_repair_count', 0)
-        
-        logger.info(f"セッション状態詳細:")
-        logger.info(f"  exam_current: {session_exam_current}")
-        logger.info(f"  progress_tracking: {session_progress_tracking}")
-        logger.info(f"  repair_count: {session_repair_count}")
-        logger.info(f"  exam_question_ids長: {len(exam_question_ids)}")
-        
-        # ステップ2: 進捗追跡データがある場合は検証
-        if session_progress_tracking:
-            tracking_current = session_progress_tracking.get('current_index', 0)
-            tracking_answered = session_progress_tracking.get('answered_count', 0)
-            
-            logger.info(f"進捗追跡データ: current_index={tracking_current}, answered_count={tracking_answered}")
-            
-            # 進捗追跡とexam_currentの整合性チェック
-            if session_exam_current != tracking_current:
-                logger.warning(f"⚠️ セッション不整合検出: exam_current({session_exam_current}) != tracking_current({tracking_current})")
-                
-                # より信頼できるデータを選択
-                if tracking_current >= 0 and tracking_current < len(exam_question_ids):
-                    logger.info(f"✅ 進捗追跡データを優先: {tracking_current}")
-                    session['exam_current'] = tracking_current
-                    session.modified = True
-                    session_exam_current = tracking_current
-                else:
-                    logger.info(f"✅ exam_currentを優先: {session_exam_current}")
-        
-        # ステップ3: 次問題リクエスト時の特別処理
+        # 🔥 PROGRESS FIX: 次問題リクエスト処理の確実性向上
         if is_next_request:
-            current_no = session_exam_current
-            logger.info(f"🔥 次問題リクエスト: current_no={current_no} (exam_current直接使用)")
+            # URLから現在の問題番号を取得（1ベース）
+            url_current = request.args.get('current')
             
-            # URLパラメータは参考程度で、セッション値を優先
             if url_current:
                 try:
-                    url_current_no = int(url_current)
-                    logger.info(f"参考URL current={url_current_no}, セッション使用={current_no}")
-                    
-                    # 大きな差異がある場合は警告
-                    if abs(url_current_no - current_no) > 1:
-                        logger.warning(f"⚠️ URL/セッション大幅差異: URL={url_current_no}, セッション={current_no}")
-                except ValueError as e:
-                    logger.warning(f"不正なURL currentパラメータ: {url_current} - {e}")
+                    # URL値（1ベース）を0ベースインデックスに変換
+                    current_no = int(url_current) - 1
+                    # セッションを更新
+                    session['exam_current'] = current_no
+                    session.modified = True
+                    logger.info(f"🔥 PROGRESS FIX: URL current={url_current} -> current_no={current_no}")
+                except ValueError:
+                    # URLパラメータが無効な場合はセッション値を使用
+                    current_no = session.get('exam_current', 0)
+                    logger.warning(f"🔥 PROGRESS FIX: 無効なURL current={url_current}, セッション値使用={current_no}")
+            else:
+                # URLパラメータがない場合はセッション値を使用
+                current_no = session.get('exam_current', 0)
+                logger.info(f"🔥 PROGRESS FIX: URL currentなし, セッション値使用={current_no}")
         else:
-            current_no = session_exam_current
-            logger.info(f"通常GET処理: current_no={current_no}")
+            # 通常のGETリクエスト - セッション値を使用
+            current_no = session.get('exam_current', 0)
         
-        # ステップ4: セッション状態の最終検証と修復
+        # Basic bounds checking only
         if current_no < 0:
-            logger.warning(f"⚠️ 負の値検出: current_no={current_no} -> 0に修正")
             current_no = 0
             session['exam_current'] = 0
             session.modified = True
         
         if exam_question_ids and current_no >= len(exam_question_ids):
-            logger.warning(f"⚠️ 範囲外検出: current_no={current_no} >= {len(exam_question_ids)} -> 最大値に修正")
             current_no = len(exam_question_ids) - 1
             session['exam_current'] = current_no
             session.modified = True
         
         session_category = session.get('exam_category', '全体')
 
-        # ステップ5: 詳細ログ出力
-        logger.info(f"GET処理最終状態: current_no={current_no}, exam_question_ids数={len(exam_question_ids)}, is_next={is_next_request}")
-        logger.info(f"セッション詳細: exam_current={session.get('exam_current')}, keys数={len(session.keys())}")
-        logger.info(f"問題種別情報: requested={requested_question_type}, session={session.get('selected_question_type')}, department={requested_department}")
-        logger.info(f"カテゴリ情報: requested={requested_category}, session={session_category}")
-        logger.info("=== PROGRESS FIX: GET処理検証完了 ===")
+        logger.info(f"Session position: current_no={current_no}, question_ids={len(exam_question_ids)}, next={is_next_request}")
 
         # ★修正: 特定の問題表示の場合も10問セッションを維持
         if specific_qid:
@@ -3302,13 +3357,13 @@ def exam():
                 # 10問セッションを作成し、指定問題を含める
                 if 'exam_question_ids' not in session or not session['exam_question_ids']:
                     # 新しい10問セッションを作成
-                    mixed_questions = get_mixed_questions(session, question_type or 'basic', department)
+                    mixed_questions = get_mixed_questions(session, all_questions, '全体', session_size, department, question_type or 'basic', None)
                     if mixed_questions and len(mixed_questions) >= 10:
-                        session['exam_question_ids'] = [q['id'] for q in mixed_questions[:10]]
+                        session['exam_question_ids'] = [int(q.get('id', 0)) for q in mixed_questions[:10]]
                     else:
                         # 最低限でも10問確保
                         available_questions = all_questions[:10] if len(all_questions) >= 10 else all_questions
-                        session['exam_question_ids'] = [q['id'] for q in available_questions]
+                        session['exam_question_ids'] = [int(q.get('id', 0)) for q in available_questions]
 
                 # 指定された問題の位置を見つける
                 try:
@@ -3328,7 +3383,7 @@ def exam():
                 # Calculate consistent display values
                 session_total = len(session['exam_question_ids'])
                 display_current = max(1, session['exam_current'] + 1)
-                display_total = max(1, session_total)
+                display_total = get_user_session_size(session)  # 🔥 FIX: ユーザー設定問題数を使用
                 
                 return render_template(
                     'exam.html',
@@ -3377,8 +3432,9 @@ def exam():
                 (session.get('exam_category', '').startswith('復習') and exam_question_ids)
             )
 
+            # 🔥 CRITICAL PROGRESS FIX: 次問題リクエスト時はリセットを禁止
             # 通常のリセット判定（次問題リクエスト以外）
-            need_reset = (not is_review_mode and (
+            need_reset = (not is_review_mode and not is_next_request and (
                 not exam_question_ids or                    # 問題IDがない
                 request.args.get('reset') == '1' or        # 明示的リセット要求
                 (referrer_is_home and not is_review_mode) or  # ホームから来た場合（復習除く）
@@ -3386,6 +3442,11 @@ def exam():
                 (not department_match and not is_review_mode) or    # 部門変更（復習除く）
                 (not year_match and not is_review_mode) or          # 年度変更（復習除く）
                 len(exam_question_ids) == 0))              # 空の問題リスト
+                
+            # 🔥 PROGRESS FIX: next=1リクエスト時は強制的にリセットを無効化
+            if is_next_request:
+                need_reset = False
+                logger.info("🔥 PROGRESS FIX: next=1リクエストのためリセット強制無効化")
 
         logger.info(f"🔥 ULTRA SYNC: need_reset = {need_reset} (is_next_request={is_next_request})")
 
@@ -3458,7 +3519,39 @@ def exam():
         # 🔥 ULTRA FIX: セッション継続のため範囲チェックを厳密化
         if not exam_question_ids:
             logger.error("exam_question_idsが空です - 緊急セッション再構築が必要")
-            return render_template('error.html', error="セッションデータが破損しました。ホームから再開してください。")
+            
+            # 🔥 CRITICAL PROGRESS FIX: next=1 リクエストの場合は強制的にセッション復旧を試行
+            if is_next_request:
+                logger.info("🔥 PROGRESS FIX: next=1リクエストでセッション復旧を試行")
+                
+                # 履歴から最近の問題セッションを復元
+                history = session.get('history', [])
+                if history:
+                    # 最近の履歴から問題IDを取得
+                    recent_history = history[-10:]  # 最新10問
+                    recovered_question_ids = [h.get('id', h.get('question_id')) for h in recent_history if h.get('id') or h.get('question_id')]
+                    
+                    if recovered_question_ids:
+                        # セッションを復旧
+                        session['exam_question_ids'] = recovered_question_ids
+                        session['exam_current'] = len(recovered_question_ids) - 1  # 最後の問題位置
+                        session['exam_category'] = recent_history[-1].get('category', '全体')
+                        session['selected_question_type'] = recent_history[-1].get('question_type', 'basic')
+                        session['selected_department'] = recent_history[-1].get('department', '')
+                        session.modified = True
+                        
+                        exam_question_ids = recovered_question_ids
+                        current_no = len(recovered_question_ids) - 1
+                        
+                        logger.info(f"✅ セッション復旧成功: {len(recovered_question_ids)}問復元, current_no={current_no}")
+                    else:
+                        logger.warning("履歴から問題IDを復旧できませんでした")
+                        return render_template('error.html', error="セッションが失われました。ホームから再開してください。")
+                else:
+                    logger.warning("履歴が空のためセッション復旧不可")
+                    return render_template('error.html', error="セッションが失われました。ホームから再開してください。")
+            else:
+                return render_template('error.html', error="セッションデータが破損しました。ホームから再開してください。")
         
         if current_no >= len(exam_question_ids):
             # 復習モードの場合は結果画面ではなく復習完了処理へ
@@ -3485,62 +3578,14 @@ def exam():
         srs_data = session.get('srs_data', {})
         question_srs = srs_data.get(str(current_question_id), {})
 
-        # 🔥 CRITICAL PROGRESS DISPLAY FIX: 表示用数値の計算とフォールバック
-        logger.info("=== PROGRESS FIX: 表示数値計算 ===")
+        # 🔥 PROGRESS FIX: シンプルで確実な進捗表示計算
+        logger.info("=== PROGRESS DISPLAY: Simplified calculation ===")
         
-        # ステップ1: 基本表示数値の計算
-        basic_display_current = max(1, current_no + 1)  # 最小値1を保証
-        basic_display_total = max(1, session_size)      # ユーザー設定問題数を使用
+        # 進捗表示は常に統一ロジックで計算（current_no は0ベース）
+        display_current = max(1, current_no + 1)  # 0ベース→1ベース変換
+        display_total = get_user_session_size(session)  # 🔥 FIX: ユーザー設定問題数を使用
         
-        # ステップ2: 進捗追跡データからのフォールバック計算
-        progress_tracking = session.get('progress_tracking', {})
-        if progress_tracking:
-            tracking_answered = progress_tracking.get('answered_count', 0)
-            tracking_total = progress_tracking.get('total_questions', session_size)
-            
-            # 進捗追跡データが信頼できる場合は使用
-            if tracking_answered > 0 and tracking_total > 0:
-                fallback_display_current = min(tracking_answered + 1, tracking_total)  # 次に表示する問題番号
-                fallback_display_total = tracking_total
-                
-                # より適切な表示値を選択
-                if tracking_answered <= len(exam_question_ids):
-                    display_current = fallback_display_current
-                    display_total = fallback_display_total
-                    logger.info(f"✅ 進捗追跡データ使用: {display_current}/{display_total}")
-                else:
-                    display_current = basic_display_current
-                    display_total = basic_display_total
-                    logger.info(f"✅ 基本計算使用: {display_current}/{display_total}")
-            else:
-                display_current = basic_display_current
-                display_total = basic_display_total
-                logger.info(f"✅ 基本計算使用（追跡無効）: {display_current}/{display_total}")
-        else:
-            display_current = basic_display_current
-            display_total = basic_display_total
-            logger.info(f"✅ 基本計算使用（追跡なし）: {display_current}/{display_total}")
-        
-        # ステップ3: 表示値の最終検証と修正
-        if display_current > display_total:
-            logger.warning(f"⚠️ 表示値超過: {display_current} > {display_total} -> 修正")
-            display_current = display_total
-        
-        if display_current <= 0:
-            logger.warning(f"⚠️ 表示値不正: {display_current} -> 1に修正")
-            display_current = 1
-        
-        # ステップ4: セッション状態の更新（表示値と実際値の同期）
-        expected_current_no = display_current - 1  # 0ベースに変換
-        if session.get('exam_current') != expected_current_no:
-            logger.info(f"📊 セッション同期: exam_current {session.get('exam_current')} -> {expected_current_no}")
-            session['exam_current'] = expected_current_no
-            session.modified = True
-        
-        # デバッグログ: 表示数値の詳細確認
-        logger.info(f"問題表示最終値: {display_current}/{display_total}")
-        logger.info(f"内部状態: current_no={current_no}, expected={expected_current_no}")
-        logger.info(f"exam_question_ids長: {len(exam_question_ids)}")
+        logger.info(f"🔥 PROGRESS FIX: display={display_current}/{display_total} (current_no={current_no})")
 
         # テンプレート変数をデバッグ用に記録
         template_vars = {
@@ -5902,45 +5947,83 @@ def exam_simulator_page():
 def start_exam(exam_type):
     """試験開始"""
     try:
+        # 🔥 ULTRA SYNC FIX: 詳細エラーログ追加
+        logger.info(f"🔥 EXAM START: 試験開始処理開始 - exam_type: {exam_type}")
+        
         all_questions = load_questions()
+        logger.info(f"🔥 EXAM START: 問題データ読み込み完了 - {len(all_questions)}問")
+        
         if not all_questions:
+            logger.error(f"🔥 EXAM START: 問題データが空です")
             return render_template('error.html', error="問題データが存在しません。")
 
-        # 試験セッション生成
+        # 🔥 ULTRA SYNC FIX: 試験セッション生成に詳細ログ追加
+        logger.info(f"🔥 EXAM START: 試験セッション生成開始")
         exam_session = exam_simulator.generate_exam_session(all_questions, exam_type, session)
+        logger.info(f"🔥 EXAM START: 試験セッション生成完了 - ID: {exam_session.get('exam_id', 'UNKNOWN')}")
 
-        # セッションに保存
+        # 🔥 ULTRA SYNC FIX: セッション保存の確認強化
         session['exam_session'] = exam_session
         session.modified = True
+        
+        # 🔥 ULTRA SYNC FIX: セッション保存後の検証
+        saved_session = session.get('exam_session')
+        if saved_session and saved_session.get('status') == 'in_progress':
+            logger.info(f"🔥 EXAM START: セッション保存確認OK - current_question: {saved_session.get('current_question', 'UNKNOWN')}")
+        else:
+            logger.error(f"🔥 EXAM START: セッション保存失敗 - saved_session: {saved_session}")
 
-        logger.info(f"試験開始: {exam_type}, ID: {exam_session['exam_id']}")
+        logger.info(f"🔥 EXAM START: 試験開始完了 - {exam_type}, ID: {exam_session['exam_id']}")
 
         return redirect(url_for('exam_question'))
 
     except Exception as e:
-        logger.error(f"試験開始エラー: {e}")
-        return render_template('error.html', error="試験の開始中にエラーが発生しました。")
+        # 🔥 ULTRA SYNC FIX: 詳細例外情報の記録
+        import traceback
+        full_error = traceback.format_exc()
+        logger.error(f"🔥 EXAM START ERROR: 試験開始エラー詳細:\n{full_error}")
+        return render_template('error.html', error=f"試験の開始中にエラーが発生しました。詳細: {str(e)}")
 
 
 @app.route('/exam_question')
 def exam_question():
     """試験問題表示"""
     try:
+        # 🔥 ULTRA SYNC FIX: 詳細ログ追加
+        logger.info(f"🔥 EXAM QUESTION: 試験問題表示処理開始")
+        
         exam_session = session.get('exam_session')
-        if not exam_session or exam_session['status'] != 'in_progress':
+        logger.info(f"🔥 EXAM QUESTION: セッション取得 - exists: {exam_session is not None}")
+        
+        if not exam_session:
+            logger.error(f"🔥 EXAM QUESTION: セッションが存在しません - リダイレクト")
+            return redirect(url_for('exam_simulator_page'))
+            
+        session_status = exam_session.get('status', 'UNKNOWN')
+        logger.info(f"🔥 EXAM QUESTION: セッション状態 - status: {session_status}")
+        
+        if session_status != 'in_progress':
+            logger.error(f"🔥 EXAM QUESTION: セッション状態が不正 - status: {session_status} - リダイレクト")
             return redirect(url_for('exam_simulator_page'))
 
         current_q_index = exam_session['current_question']
         questions = exam_session['questions']
+        
+        logger.info(f"🔥 EXAM QUESTION: 問題情報 - current_index: {current_q_index}, total: {len(questions)}")
 
         if current_q_index >= len(questions):
+            logger.info(f"🔥 EXAM QUESTION: 試験終了 - current_index: {current_q_index} >= total: {len(questions)}")
             return redirect(url_for('exam_results'))
 
         current_question = questions[current_q_index]
 
+        # 🔥 ULTRA SYNC FIX: 進捗表示バグ修正のための詳細ログ
+        display_current = current_q_index + 1
+        logger.info(f"🔥 PROGRESS FIX: 進捗表示計算 - current_q_index: {current_q_index}, display_current: {display_current}")
+
         # 試験情報
         exam_info = {
-            'current_question_number': current_q_index + 1,
+            'current_question_number': display_current,  # 🔥 ULTRA SYNC FIX: 明示的に計算結果を使用
             'total_questions': len(questions),
             'time_remaining': exam_simulator.get_time_remaining(exam_session),
             'exam_type': exam_session['exam_type'],
@@ -5948,9 +6031,14 @@ def exam_question():
             'flagged_questions': exam_session['flagged_questions'],
             'answered_questions': list(exam_session['answers'].keys())
         }
+        
+        # 🔥 ULTRA SYNC FIX: exam_info の確認ログ
+        logger.info(f"🔥 PROGRESS FIX: exam_info作成完了 - current_question_number: {exam_info['current_question_number']}, total_questions: {exam_info['total_questions']}")
 
         # 時間警告チェック
         time_warning = exam_simulator.should_give_time_warning(exam_session)
+
+        logger.info(f"🔥 EXAM QUESTION: テンプレート描画開始 - 問題{display_current}/{len(questions)}")
 
         return render_template(
             'exam_question.html',
@@ -5960,8 +6048,11 @@ def exam_question():
         )
 
     except Exception as e:
-        logger.error(f"試験問題表示エラー: {e}")
-        return render_template('error.html', error="試験問題の表示中にエラーが発生しました。")
+        # 🔥 ULTRA SYNC FIX: 詳細例外情報の記録
+        import traceback
+        full_error = traceback.format_exc()
+        logger.error(f"🔥 EXAM QUESTION ERROR: 試験問題表示エラー詳細:\n{full_error}")
+        return render_template('error.html', error=f"試験問題の表示中にエラーが発生しました。詳細: {str(e)}")
 
 
 @app.route('/submit_exam_answer', methods=['POST'])
@@ -5969,16 +6060,32 @@ def exam_question():
 def submit_exam_answer():
     """試験回答提出"""
     try:
+        # 🔥 ULTRA SYNC FIX: 詳細ログ追加
+        logger.info(f"🔥 SUBMIT ANSWER: 回答提出処理開始")
+        
         exam_session = session.get('exam_session')
-        if not exam_session or exam_session['status'] != 'in_progress':
+        logger.info(f"🔥 SUBMIT ANSWER: セッション取得 - exists: {exam_session is not None}")
+        
+        if not exam_session:
+            logger.error(f"🔥 SUBMIT ANSWER: セッション不存在")
+            return jsonify({'success': False, 'error': '試験セッションが無効です'})
+            
+        session_status = exam_session.get('status', 'UNKNOWN')
+        logger.info(f"🔥 SUBMIT ANSWER: セッション状態 - status: {session_status}")
+        
+        if session_status != 'in_progress':
+            logger.error(f"🔥 SUBMIT ANSWER: セッション状態不正 - status: {session_status}")
             return jsonify({'success': False, 'error': '試験セッションが無効です'})
 
         answer = request.form.get('answer')
         elapsed = float(request.form.get('elapsed', 0))
         question_index = exam_session['current_question']
+        
+        logger.info(f"🔥 SUBMIT ANSWER: 回答情報 - answer: {answer}, question_index: {question_index}, elapsed: {elapsed}")
 
         # 自動提出チェック
         if exam_simulator.auto_submit_check(exam_session):
+            logger.info(f"🔥 SUBMIT ANSWER: 自動提出実行")
             result = exam_simulator.finish_exam(exam_session)
             session['exam_session'] = exam_session
             session.modified = True
@@ -5988,29 +6095,66 @@ def submit_exam_answer():
                 'redirect': url_for('exam_results')
             })
 
+        # 🔥 ULTRA SYNC FIX: 回答提出前の状態ログ
+        pre_current = exam_session.get('current_question', 'UNKNOWN')
+        logger.info(f"🔥 PROGRESS UPDATE: 回答提出前 - current_question: {pre_current}")
+
         # 回答提出
         result = exam_simulator.submit_exam_answer(exam_session, question_index, answer, elapsed)
+        
+        # 🔥 ULTRA SYNC FIX: 回答提出後の状態ログ
+        post_current = exam_session.get('current_question', 'UNKNOWN')
+        logger.info(f"🔥 PROGRESS UPDATE: 回答提出後 - current_question: {post_current}, result: {result}")
 
         # セッション更新
         session['exam_session'] = exam_session
         session.modified = True
+        
+        # 🔥 ULTRA SYNC FIX: セッション更新後の確認
+        saved_current = session.get('exam_session', {}).get('current_question', 'UNKNOWN')
+        logger.info(f"🔥 PROGRESS UPDATE: セッション保存後 - current_question: {saved_current}")
 
         if result.get('exam_completed'):
+            logger.info(f"🔥 SUBMIT ANSWER: 試験完了")
             return jsonify({
                 'success': True,
                 'exam_finished': True,
                 'redirect': url_for('exam_results')
             })
         else:
+            next_question = result.get('next_question', 0)
+            remaining = result.get('remaining_questions', 0)
+            logger.info(f"🔥 SUBMIT ANSWER: 次の問題へ - next_question: {next_question}, remaining: {remaining}")
             return jsonify({
                 'success': True,
-                'next_question': result.get('next_question', 0),
-                'remaining_questions': result.get('remaining_questions', 0)
+                'next_question': next_question,
+                'remaining_questions': remaining
             })
 
     except Exception as e:
         logger.error(f"試験回答提出エラー: {e}")
         return jsonify({'success': False, 'error': str(e)})
+
+
+# 🔥 ULTRA SYNC FIX: セッション初期化強制処理
+@app.before_request
+def ensure_session_initialized():
+    """セッション初期化の確実な実行"""
+    try:
+        # セッションが空の場合、最低限の初期化を行う
+        if not session:
+            session.permanent = True
+            session['_initialized'] = True
+            logger.debug("🔥 SESSION INIT: セッション初期化実行")
+        
+        # セッション状態のログ出力（デバッグ用）
+        if request.endpoint in ['start_exam', 'exam_question', 'submit_exam_answer']:
+            session_exists = bool(session.get('exam_session'))
+            logger.info(f"🔥 SESSION CHECK: endpoint={request.endpoint}, session_exists={session_exists}")
+            
+    except Exception as e:
+        logger.error(f"🔥 SESSION INIT ERROR: {e}")
+        # セッション初期化エラーでも処理を続行
 
 
 @app.route('/flag_exam_question', methods=['POST'])

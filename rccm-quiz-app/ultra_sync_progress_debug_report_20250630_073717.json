@@ -1,0 +1,113 @@
+{
+  "debug_session": {
+    "start_time": "2025-06-30T07:37:16.470668",
+    "end_time": "2025-06-30T07:37:17.082285",
+    "total_entries": 13
+  },
+  "logs": [
+    {
+      "timestamp": "2025-06-30T07:37:16.470668",
+      "action": "TEST_START",
+      "data": {
+        "target_questions": 5
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:37:16.494762",
+      "action": "HOME_ACCESS",
+      "data": {
+        "status": 200
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:37:16.507028",
+      "action": "EXAM_SIMULATOR_ACCESS",
+      "data": {
+        "status": 200
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:37:16.516302",
+      "action": "EXAM_START",
+      "data": {
+        "status": 200,
+        "exam_type": "quick"
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:37:16.516393",
+      "action": "QUESTION_1_START",
+      "data": {
+        "question_number": 1
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:37:16.531812",
+      "action": "QUESTION_STATE_HTML",
+      "data": {
+        "status": 200,
+        "patterns_found": {},
+        "html_snippet": "問題集</title>\n    \n    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->\n    <meta http-equiv=\"Cache-Control"
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:37:16.546109",
+      "action": "QUESTION_STATE_HTML",
+      "data": {
+        "status": 200,
+        "patterns_found": {},
+        "html_snippet": "問題集</title>\n    \n    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->\n    <meta http-equiv=\"Cache-Control"
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:37:16.546241",
+      "action": "PRE_SUBMIT_STATE",
+      "data": {}
+    },
+    {
+      "timestamp": "2025-06-30T07:37:16.567874",
+      "action": "ANSWER_SUBMIT",
+      "data": {
+        "status": 200,
+        "submit_data": {
+          "answer": "A",
+          "question_index": 0,
+          "elapsed": 30
+        },
+        "response": {
+          "error": "試験セッションが無効です",
+          "success": false
+        }
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:37:17.082089",
+      "action": "QUESTION_STATE_HTML",
+      "data": {
+        "status": 200,
+        "patterns_found": {},
+        "html_snippet": "問題集</title>\n    \n    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->\n    <meta http-equiv=\"Cache-Control"
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:37:17.082189",
+      "action": "POST_SUBMIT_STATE",
+      "data": {}
+    },
+    {
+      "timestamp": "2025-06-30T07:37:17.082245",
+      "action": "QUESTION_1_FAILED",
+      "data": {
+        "error": "試験セッションが無効です",
+        "success": false
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:37:17.082285",
+      "action": "TEST_COMPLETE",
+      "data": {
+        "total_logs": 12
+      }
+    }
+  ]
+}

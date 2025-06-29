@@ -1,0 +1,30 @@
+{
+  "department": "森林土木部門 (forestry)",
+  "target_questions": 10,
+  "start_time": "2025-06-30T07:24:39.932042",
+  "success_criteria": {
+    "1_session_initialization": false,
+    "2_question_order_accuracy": false,
+    "3_answer_data_saved": false,
+    "4_progress_display_accuracy": false,
+    "5_final_results_display": false,
+    "6_score_calculation_accuracy": false
+  },
+  "details": {
+    "questions_answered": 0,
+    "correct_answers": 0,
+    "incorrect_answers": 0,
+    "response_times": [],
+    "errors": [
+      "Session initialization error: Failed to select forestry department: 200"
+    ]
+  },
+  "end_time": "2025-06-30T07:24:40.015608",
+  "summary": {
+    "criteria_met": 0,
+    "total_criteria": 6,
+    "success_rate": 0.0,
+    "target_achieved": false,
+    "avg_response_time": 0
+  }
+}

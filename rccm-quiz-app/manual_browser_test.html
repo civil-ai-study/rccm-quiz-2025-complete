@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>進捗表示バグ修正 - 手動ブラウザテスト</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-container { max-width: 800px; margin: 0 auto; }
+        .btn { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin: 5px; cursor: pointer; }
+        .btn:hover { background: #0056b3; }
+        .log { background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+        .info { color: #17a2b8; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔥 ULTRA SYNC 進捗表示バグ修正検証</h1>
+        <p>この手動テストで進捗表示「1/10固定」バグが完全に修正されたかを確認します。</p>
+        
+        <div class="test-steps">
+            <h2>テスト手順</h2>
+            <ol>
+                <li><button class="btn" onclick="startExam()">試験開始</button> - クイック模擬試験を開始</li>
+                <li>進捗表示が「問題 1/20」と正しく表示されることを確認</li>
+                <li>問題に回答して次の問題に進む</li>
+                <li>進捗表示が「問題 2/20」→「問題 3/20」...と正しく更新されることを確認</li>
+                <li>最低5問まで進捗表示の更新を確認</li>
+            </ol>
+        </div>
+        
+        <div class="test-log">
+            <h2>テストログ</h2>
+            <div id="log-container">
+                <div class="log info">手動テスト開始準備完了</div>
+            </div>
+        </div>
+        
+        <div class="test-results">
+            <h2>期待される結果</h2>
+            <ul>
+                <li class="success">✅ セッションクッキーが正しく設定される</li>
+                <li class="success">✅ 進捗表示が「問題 X/20」形式で正しく表示される</li>
+                <li class="success">✅ 回答提出後に進捗番号が正しく増加する (1→2→3...)</li>
+                <li class="success">✅ 302リダイレクトが発生しない</li>
+                <li class="success">✅ 「試験セッションが無効です」エラーが発生しない</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function log(message, type = 'info') {
+            const container = document.getElementById('log-container');
+            const logEntry = document.createElement('div');
+            logEntry.className = `log ${type}`;
+            logEntry.innerHTML = `${new Date().toLocaleTimeString()}: ${message}`;
+            container.appendChild(logEntry);
+        }
+
+        function startExam() {
+            log('試験開始ボタンがクリックされました', 'info');
+            log('新しいタブで試験画面を開きます...', 'info');
+            window.open('http://localhost:5005/start_exam/quick', '_blank');
+            log('✅ 新しいタブで試験が開始されました。進捗表示を確認してください。', 'success');
+        }
+
+        // ページロード時の初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            log('🔥 ULTRA SYNC 進捗表示バグ修正検証ツール初期化完了', 'success');
+            log('サーバー確認中...', 'info');
+            
+            fetch('http://localhost:5005/')
+                .then(response => {
+                    if (response.ok) {
+                        log('✅ サーバー接続確認: 正常', 'success');
+                    } else {
+                        log('❌ サーバー接続エラー: ' + response.status, 'error');
+                    }
+                })
+                .catch(error => {
+                    log('❌ サーバー接続失敗: ' + error.message, 'error');
+                });
+        });
+    </script>
+</body>
+</html>

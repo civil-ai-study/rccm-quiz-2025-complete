@@ -1,0 +1,30 @@
+{
+  "debug_session": {
+    "start_time": "2025-06-30T07:36:28.334768",
+    "end_time": "2025-06-30T07:36:28.337523",
+    "total_entries": 3
+  },
+  "logs": [
+    {
+      "timestamp": "2025-06-30T07:36:28.334768",
+      "action": "TEST_START",
+      "data": {
+        "target_questions": 5
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:36:28.337444",
+      "action": "EXAM_START_EXCEPTION",
+      "data": {
+        "error": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe562c84880>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:36:28.337523",
+      "action": "TEST_FAILED",
+      "data": {
+        "reason": "EXAM_START_FAILED"
+      }
+    }
+  ]
+}

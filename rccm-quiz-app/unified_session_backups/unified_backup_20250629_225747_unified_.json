@@ -1,0 +1,36 @@
+{
+  "backup_id": "unified_backup_20250629_225747_unified_",
+  "session_id": "unified_1751237867788_8416bd90",
+  "timestamp": "2025-06-29T22:57:47.789255+00:00",
+  "backup_type": "unified",
+  "flags": {
+    "corrupted": true
+  },
+  "session_data": {
+    "quiz_settings": {
+      "questions_per_session": 10
+    },
+    "user_name": "テストユーザー",
+    "_permanent": true,
+    "session_id": "unified_1751237867788_8416bd90"
+  },
+  "metadata": {
+    "manager_stats": {
+      "total_operations": 25,
+      "successful_operations": 24,
+      "failed_operations": 0,
+      "timeouts": 0,
+      "recoveries": 13,
+      "cleanups": 0,
+      "memory_optimizations": 0,
+      "lock_contentions": 0
+    },
+    "session_registry": {},
+    "memory_usage": {
+      "usage_mb": 48.08,
+      "threshold_mb": 500,
+      "should_cleanup": false,
+      "usage_percent": 9.6
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "backup_id": "unified_backup_20250629_225947_unified_",
+  "session_id": "unified_1751236705347_fe9bf437",
+  "timestamp": "2025-06-29T22:59:47.550591+00:00",
+  "backup_type": "unified",
+  "flags": {},
+  "session_data": {
+    "_permanent": true,
+    "backup_history": [
+      {
+        "backup_id": "unified_backup_20250629_223825_unified_",
+        "flags": {
+          "corrupted": true
+        },
+        "timestamp": "2025-06-29T22:38:25.348166+00:00",
+        "type": "unified"
+      }
+    ],
+    "bookmarks": [],
+    "category_stats": {},
+    "corruption_backup": "unified_backup_20250629_223825_unified_",
+    "corruption_repaired": true,
+    "history": [],
+    "initialization_timestamp": "2025-06-29T22:38:25.352702+00:00",
+    "last_activity": "2025-06-29T22:59:47.531785+00:00",
+    "last_auto_backup": "2025-06-29T22:38:25.348166+00:00",
+    "last_request_timestamp": "2025-06-29T22:59:47.531785+00:00",
+    "learning_progress": {},
+    "quiz_settings": {},
+    "repair_timestamp": "2025-06-29T22:38:25.352109+00:00",
+    "session_duration_seconds": 1282,
+    "session_id": "unified_1751236705347_fe9bf437",
+    "session_start": "2025-06-29T22:38:25.352663+00:00",
+    "srs_data": {},
+    "total_requests": 2,
+    "unified_initialized": true,
+    "user_settings": {},
+    "exam_question_ids": [
+      2652,
+      1044,
+      3908,
+      2044,
+      2239,
+      1838,
+      2611,
+      4082,
+      2098,
+      131
+    ],
+    "exam_current": 0,
+    "exam_category": "全体"
+  },
+  "metadata": {
+    "manager_stats": {
+      "total_operations": 50,
+      "successful_operations": 49,
+      "failed_operations": 0,
+      "timeouts": 0,
+      "recoveries": 2,
+      "cleanups": 1,
+      "memory_optimizations": 1,
+      "lock_contentions": 0
+    },
+    "session_registry": {
+      "last_save": 1751237987.55056,
+      "session_size": 1048,
+      "activity_count": 2,
+      "status": "active"
+    },
+    "memory_usage": {
+      "usage_mb": 63.1,
+      "threshold_mb": 500,
+      "should_cleanup": false,
+      "usage_percent": 12.6
+    }
+  }
+}

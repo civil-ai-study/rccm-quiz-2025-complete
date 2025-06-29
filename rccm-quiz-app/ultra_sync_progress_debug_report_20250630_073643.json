@@ -1,0 +1,56 @@
+{
+  "debug_session": {
+    "start_time": "2025-06-30T07:36:43.439722",
+    "end_time": "2025-06-30T07:36:43.515734",
+    "total_entries": 6
+  },
+  "logs": [
+    {
+      "timestamp": "2025-06-30T07:36:43.439722",
+      "action": "TEST_START",
+      "data": {
+        "target_questions": 5
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:36:43.482404",
+      "action": "HOME_ACCESS",
+      "data": {
+        "status": 200
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:36:43.510214",
+      "action": "EXAM_SIMULATOR_ACCESS",
+      "data": {
+        "status": 200
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:36:43.515578",
+      "action": "EXAM_START",
+      "data": {
+        "status": 404,
+        "data": {
+          "exam_type": "quick",
+          "department": "4-1",
+          "category": "basic"
+        }
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:36:43.515660",
+      "action": "EXAM_START_ERROR",
+      "data": {
+        "response": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>エラー 404 | RCCM試験問題集</title>\n    <style>\n        body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }\n        .container { background: white; padding: 30px; border-radius: 8px; max-width: 600px; margin: 0 auto; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }\n        .error-title { color: #d32f2f; margin-bottom: 20px; }\n        .error-message { color: #666; line-height: 1.6; }\n        .btn { display: inline-block; padding: 10px 20px; background: #1976d2; color: white; text-decoration: none; border-radius: 4px; margin: 5px; }\n        .btn:hover { background: #1565c0; }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1 class=\"error-title\">エラー 404</h1>\n        <div class=\"error-message\">\n            <p>ページが見つかりません</p>\n            <p>ご不便をおかけして申し訳ございません。以下の方法をお試しください：</p>\n            <ul>\n                <li>ページを再読み込みしてください</li>\n                <li>ブラウザの戻るボタンで前のページに戻ってください</li>\n                <li>ホームページから改めてアクセスしてください</li>\n            </ul>\n        </div>\n        <div>\n            <a href=\"/\" class=\"btn\">ホームページ</a>\n            <a href=\"javascript:history.back()\" class=\"btn\" style=\"background:#666;\">前のページ</a>\n            <a href=\"javascript:location.reload()\" class=\"btn\" style=\"background:#666;\">再読み込み</a>\n        </div>\n    </div>\n</body>\n</html>"
+      }
+    },
+    {
+      "timestamp": "2025-06-30T07:36:43.515734",
+      "action": "TEST_FAILED",
+      "data": {
+        "reason": "EXAM_START_FAILED"
+      }
+    }
+  ]
+}

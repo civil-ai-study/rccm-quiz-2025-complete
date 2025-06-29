@@ -1,0 +1,66 @@
+{
+  "backup_id": "unified_backup_20250629_230041_unified_",
+  "session_id": "unified_1751236705347_fe9bf437",
+  "timestamp": "2025-06-29T23:00:41.792856+00:00",
+  "backup_type": "unified",
+  "flags": {},
+  "session_data": {
+    "_permanent": true,
+    "backup_history": [
+      {
+        "backup_id": "unified_backup_20250629_223825_unified_",
+        "flags": {
+          "corrupted": true
+        },
+        "timestamp": "2025-06-29T22:38:25.348166+00:00",
+        "type": "unified"
+      }
+    ],
+    "bookmarks": [],
+    "category_stats": {},
+    "corruption_backup": "unified_backup_20250629_223825_unified_",
+    "corruption_repaired": true,
+    "history": [],
+    "initialization_timestamp": "2025-06-29T22:38:25.352702+00:00",
+    "last_activity": "2025-06-29T23:00:41.783159+00:00",
+    "last_auto_backup": "2025-06-29T22:38:25.348166+00:00",
+    "last_request_timestamp": "2025-06-29T23:00:41.783159+00:00",
+    "learning_progress": {},
+    "quiz_settings": {},
+    "repair_timestamp": "2025-06-29T22:38:25.352109+00:00",
+    "session_duration_seconds": 1336,
+    "session_id": "unified_1751236705347_fe9bf437",
+    "session_start": "2025-06-29T22:38:25.352663+00:00",
+    "srs_data": {},
+    "total_requests": 2,
+    "unified_initialized": true,
+    "user_settings": {},
+    "request_history": [
+      "2025-06-30T08:00:41.786405"
+    ]
+  },
+  "metadata": {
+    "manager_stats": {
+      "total_operations": 74,
+      "successful_operations": 73,
+      "failed_operations": 0,
+      "timeouts": 0,
+      "recoveries": 2,
+      "cleanups": 1,
+      "memory_optimizations": 1,
+      "lock_contentions": 0
+    },
+    "session_registry": {
+      "last_save": 1751238041.792827,
+      "session_size": 975,
+      "activity_count": 2,
+      "status": "active"
+    },
+    "memory_usage": {
+      "usage_mb": 63.13,
+      "threshold_mb": 500,
+      "should_cleanup": false,
+      "usage_percent": 12.6
+    }
+  }
+}

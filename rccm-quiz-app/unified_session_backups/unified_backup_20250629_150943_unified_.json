@@ -1,0 +1,403 @@
+{
+  "backup_id": "unified_backup_20250629_150943_unified_",
+  "session_id": "unified_1751205628739_338a219a",
+  "timestamp": "2025-06-29T15:09:43.690448+00:00",
+  "backup_type": "unified",
+  "flags": {},
+  "session_data": {
+    "_permanent": true,
+    "advanced_srs": {
+      "1709": {
+        "correct_count": 0,
+        "difficulty_level": 7.0,
+        "first_attempt": "2025-06-29T14:07:41.764681+00:00",
+        "interval_days": 1,
+        "last_attempt": "2025-06-29T23:07:41.769499",
+        "mastered": false,
+        "next_review": "2025-06-30T14:07:41.769523+00:00",
+        "total_attempts": 2,
+        "wrong_count": 2
+      },
+      "1950": {
+        "correct_count": 0,
+        "difficulty_level": 7.0,
+        "first_attempt": "2025-06-29T14:07:41.967207+00:00",
+        "interval_days": 1,
+        "last_attempt": "2025-06-29T23:07:41.970631",
+        "mastered": false,
+        "next_review": "2025-06-30T14:07:41.970654+00:00",
+        "total_attempts": 2,
+        "wrong_count": 2
+      },
+      "2618": {
+        "correct_count": 0,
+        "difficulty_level": 7.0,
+        "first_attempt": "2025-06-29T14:07:42.058097+00:00",
+        "interval_days": 1,
+        "last_attempt": "2025-06-29T23:07:42.060943",
+        "mastered": false,
+        "next_review": "2025-06-30T14:07:42.060957+00:00",
+        "total_attempts": 2,
+        "wrong_count": 2
+      },
+      "2918": {
+        "correct_count": 0,
+        "difficulty_level": 7.0,
+        "first_attempt": "2025-06-29T14:07:41.870275+00:00",
+        "interval_days": 1,
+        "last_attempt": "2025-06-29T23:07:41.873708",
+        "mastered": false,
+        "next_review": "2025-06-30T14:07:41.873728+00:00",
+        "total_attempts": 2,
+        "wrong_count": 2
+      },
+      "3492": {
+        "correct_count": 0,
+        "difficulty_level": 7.0,
+        "first_attempt": "2025-06-29T14:07:06.118160+00:00",
+        "interval_days": 1,
+        "last_attempt": "2025-06-29T23:07:06.122051",
+        "mastered": false,
+        "next_review": "2025-06-30T14:07:06.122075+00:00",
+        "total_attempts": 2,
+        "wrong_count": 2
+      },
+      "3894": {
+        "correct_count": 0,
+        "difficulty_level": 7.0,
+        "first_attempt": "2025-06-29T14:07:19.286237+00:00",
+        "interval_days": 1,
+        "last_attempt": "2025-06-29T23:07:19.289237",
+        "mastered": false,
+        "next_review": "2025-06-30T14:07:19.289257+00:00",
+        "total_attempts": 2,
+        "wrong_count": 2
+      },
+      "4302": {
+        "correct_count": 0,
+        "difficulty_level": 7.0,
+        "first_attempt": "2025-06-29T14:04:26.289900+00:00",
+        "interval_days": 1,
+        "last_attempt": "2025-06-29T23:04:26.294390",
+        "mastered": false,
+        "next_review": "2025-06-30T14:04:26.294408+00:00",
+        "total_attempts": 2,
+        "wrong_count": 2
+      },
+      "4314": {
+        "correct_count": 2,
+        "difficulty_level": 4.0,
+        "first_attempt": "2025-06-29T14:03:22.320209+00:00",
+        "interval_days": 7,
+        "last_attempt": "2025-06-29T23:03:22.325083",
+        "mastered": false,
+        "next_review": "2025-07-06T14:03:22.325119+00:00",
+        "total_attempts": 2,
+        "wrong_count": 0
+      },
+      "4556": {
+        "correct_count": 0,
+        "difficulty_level": 7.0,
+        "first_attempt": "2025-06-29T14:01:25.372305+00:00",
+        "interval_days": 1,
+        "last_attempt": "2025-06-29T23:01:25.379147",
+        "mastered": false,
+        "next_review": "2025-06-30T14:01:25.379173+00:00",
+        "total_attempts": 2,
+        "wrong_count": 2
+      },
+      "1610": {
+        "correct_count": 2,
+        "wrong_count": 0,
+        "total_attempts": 2,
+        "first_attempt": "2025-06-29T15:09:43.668152+00:00",
+        "last_attempt": "2025-06-30T00:09:43.671021",
+        "mastered": false,
+        "difficulty_level": 4.0,
+        "next_review": "2025-07-06T15:09:43.671030+00:00",
+        "interval_days": 7
+      }
+    },
+    "backup_history": [
+      {
+        "backup_id": "unified_backup_20250629_140028_unified_",
+        "flags": {
+          "corrupted": true
+        },
+        "timestamp": "2025-06-29T14:00:28.740840+00:00",
+        "type": "unified"
+      },
+      {
+        "backup_id": "unified_backup_20250629_140257_unified_",
+        "flags": {},
+        "timestamp": "2025-06-29T14:02:57.478578+00:00",
+        "type": "unified"
+      },
+      {
+        "backup_id": "unified_backup_20250629_140426_unified_",
+        "flags": {},
+        "timestamp": "2025-06-29T14:04:26.310073+00:00",
+        "type": "unified"
+      },
+      {
+        "backup_id": "unified_backup_20250629_140706_unified_",
+        "flags": {},
+        "timestamp": "2025-06-29T14:07:06.144415+00:00",
+        "type": "unified"
+      },
+      {
+        "backup_id": "unified_backup_20250629_141029_unified_",
+        "flags": {},
+        "timestamp": "2025-06-29T14:10:29.642194+00:00",
+        "type": "unified"
+      }
+    ],
+    "bookmarks": [
+      "4556",
+      "4302",
+      "3492",
+      "3894",
+      "1709",
+      "2918",
+      "1950",
+      "2618"
+    ],
+    "category_stats": {
+      "造園": {
+        "correct": 1,
+        "total": 9
+      },
+      "建設環境": {
+        "total": 1,
+        "correct": 1
+      }
+    },
+    "corruption_backup": "unified_backup_20250629_140028_unified_",
+    "corruption_repaired": true,
+    "difficulty_level": "beginner",
+    "dynamic_session_config": {
+      "target_accuracy": 0.65,
+      "time_limit_multiplier": 1.0,
+      "question_distribution": {
+        "basic": 0.6,
+        "specialist": 0.4
+      },
+      "feedback_intensity": "standard",
+      "hint_availability": true,
+      "review_frequency": 5,
+      "challenge_mode": false
+    },
+    "earned_badges": [
+      "first_mondai",
+      "night_owl",
+      "perfect_score"
+    ],
+    "exam_category": "construction_env",
+    "exam_current": 10,
+    "exam_question_ids": [
+      4904,
+      3797,
+      3409,
+      1261,
+      1258,
+      1264,
+      2821,
+      4672,
+      4890,
+      1610
+    ],
+    "history": [
+      {
+        "category": "造園",
+        "correct_answer": "B",
+        "date": "2025-06-29 23:01:25",
+        "department": "landscape",
+        "difficulty": "標準",
+        "elapsed": 12.3,
+        "id": 4556,
+        "is_correct": false,
+        "is_review": true,
+        "question_type": "specialist",
+        "srs_level": 7.0,
+        "user_answer": "C"
+      },
+      {
+        "category": "造園",
+        "correct_answer": "D",
+        "date": "2025-06-29 23:03:22",
+        "department": "landscape",
+        "difficulty": "標準",
+        "elapsed": 8.7,
+        "id": 4314,
+        "is_correct": true,
+        "is_review": true,
+        "question_type": "specialist",
+        "srs_level": 4.0,
+        "user_answer": "D"
+      },
+      {
+        "category": "造園",
+        "correct_answer": "A",
+        "date": "2025-06-29 23:04:26",
+        "department": "landscape",
+        "difficulty": "標準",
+        "elapsed": 11.2,
+        "id": 4302,
+        "is_correct": false,
+        "is_review": true,
+        "question_type": "specialist",
+        "srs_level": 7.0,
+        "user_answer": "C"
+      },
+      {
+        "category": "造園",
+        "correct_answer": "C",
+        "date": "2025-06-29 23:07:06",
+        "department": "landscape",
+        "difficulty": "標準",
+        "elapsed": 9.5,
+        "id": 3492,
+        "is_correct": false,
+        "is_review": true,
+        "question_type": "specialist",
+        "srs_level": 7.0,
+        "user_answer": "B"
+      },
+      {
+        "category": "造園",
+        "correct_answer": "C",
+        "date": "2025-06-29 23:07:19",
+        "department": "landscape",
+        "difficulty": "標準",
+        "elapsed": 6.8,
+        "id": 3894,
+        "is_correct": false,
+        "is_review": true,
+        "question_type": "specialist",
+        "srs_level": 7.0,
+        "user_answer": "A"
+      },
+      {
+        "category": "造園",
+        "correct_answer": "C",
+        "date": "2025-06-29 23:07:41",
+        "department": "landscape",
+        "difficulty": "標準",
+        "elapsed": 11.2,
+        "id": 1709,
+        "is_correct": false,
+        "is_review": true,
+        "question_type": "specialist",
+        "srs_level": 7.0,
+        "user_answer": "B"
+      },
+      {
+        "category": "造園",
+        "correct_answer": "B",
+        "date": "2025-06-29 23:07:41",
+        "department": "landscape",
+        "difficulty": "標準",
+        "elapsed": 12.2,
+        "id": 2918,
+        "is_correct": false,
+        "is_review": true,
+        "question_type": "specialist",
+        "srs_level": 7.0,
+        "user_answer": "C"
+      },
+      {
+        "category": "造園",
+        "correct_answer": "C",
+        "date": "2025-06-29 23:07:41",
+        "department": "landscape",
+        "difficulty": "標準",
+        "elapsed": 13.2,
+        "id": 1950,
+        "is_correct": false,
+        "is_review": true,
+        "question_type": "specialist",
+        "srs_level": 7.0,
+        "user_answer": "A"
+      },
+      {
+        "category": "造園",
+        "correct_answer": "B",
+        "date": "2025-06-29 23:07:42",
+        "department": "landscape",
+        "difficulty": "標準",
+        "elapsed": 14.2,
+        "id": 2618,
+        "is_correct": false,
+        "is_review": true,
+        "question_type": "specialist",
+        "srs_level": 7.0,
+        "user_answer": "D"
+      },
+      {
+        "id": 1610,
+        "category": "建設環境",
+        "department": "construction_env",
+        "question_type": "specialist",
+        "is_correct": true,
+        "user_answer": "B",
+        "correct_answer": "B",
+        "date": "2025-06-30 00:09:43",
+        "elapsed": 0.0,
+        "srs_level": 4.0,
+        "is_review": true,
+        "difficulty": "標準"
+      }
+    ],
+    "initialization_timestamp": "2025-06-29T14:00:28.745994+00:00",
+    "last_activity": "2025-06-29T15:09:43.658160+00:00",
+    "last_auto_backup": "2025-06-29T14:10:29.642194+00:00",
+    "last_backup_id": "unified_backup_20250629_141029_unified_",
+    "last_history_update": "2025-06-29T15:09:43.671789+00:00",
+    "last_request_timestamp": "2025-06-29T15:09:43.658160+00:00",
+    "last_study_date": "2025-06-30",
+    "last_update": "2025-06-30T00:09:43.684390",
+    "learning_progress": {},
+    "max_study_streak": 2,
+    "quiz_settings": {},
+    "repair_timestamp": "2025-06-29T14:00:28.745281+00:00",
+    "selected_department": "construction_env",
+    "selected_question_type": "specialist",
+    "session_duration_seconds": 4154,
+    "session_id": "unified_1751205628739_338a219a",
+    "session_start": "2025-06-29T14:00:28.745954+00:00",
+    "srs_data": {},
+    "study_streak": 2,
+    "total_requests": 26,
+    "unified_initialized": true,
+    "user_settings": {},
+    "request_history": [
+      "2025-06-30T00:09:43.658298"
+    ],
+    "quiz_completed": true,
+    "completion_timestamp": "2025-06-30T00:09:43.684381"
+  },
+  "metadata": {
+    "manager_stats": {
+      "total_operations": 308,
+      "successful_operations": 307,
+      "failed_operations": 0,
+      "timeouts": 0,
+      "recoveries": 8,
+      "cleanups": 5,
+      "memory_optimizations": 8,
+      "lock_contentions": 0
+    },
+    "session_registry": {
+      "last_save": 1751209783.6903396,
+      "session_size": 7991,
+      "activity_count": 26,
+      "status": "active"
+    },
+    "memory_usage": {
+      "usage_mb": 67.07,
+      "threshold_mb": 500,
+      "should_cleanup": false,
+      "usage_percent": 13.4
+    }
+  }
+}

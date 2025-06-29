@@ -26,7 +26,13 @@
     "civil_planning": "river",
     "urban_planning": "urban",
     "soil_foundation": "soil",
-    "common": "basic"
+    "common": "basic",
+    "river_sabo": "river",
+    "construction_environment": "construction_env",
+    "construction_management": "construction_planning",
+    "water_supply_sewerage": "water_supply",
+    "forest_civil": "forestry",
+    "agricultural_civil": "agriculture"
   },
   "validation_rules": {
     "required_departments": [
