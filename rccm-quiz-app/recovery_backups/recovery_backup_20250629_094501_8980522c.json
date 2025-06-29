@@ -1,0 +1,23 @@
+{
+  "backup_id": "recovery_backup_20250629_094501_8980522c",
+  "timestamp": "2025-06-29T09:45:01.667637",
+  "session_data": {
+    "_permanent": true,
+    "backup_history": [
+      {
+        "auto_save": true,
+        "backup_id": "session_backup_20250629_094501_eca8f2d1",
+        "expired": false,
+        "timestamp": "2025-06-29T09:45:01.634955"
+      }
+    ],
+    "data_loaded": true,
+    "exam_question_ids": [],
+    "last_activity": "2025-06-29T00:45:01.655854+00:00",
+    "last_auto_save": "2025-06-29T09:45:01.634935",
+    "session_id": "ce9a89e2b0fa0921be1428e6c63dbafd",
+    "total_requests": 2
+  },
+  "backup_type": "corruption_recovery",
+  "session_size_bytes": 396
+}

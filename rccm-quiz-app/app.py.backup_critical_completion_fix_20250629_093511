@@ -2878,20 +2878,15 @@ def exam():
             safe_current_no = max(0, min(current_no, total_questions_count - 1))
             safe_next_no = safe_current_no + 1
 
-            # 🔥 CRITICAL FIX: 完了判定の根本的修正
-            # **重要**: current_no は今回答した問題のインデックス（0ベース）
-            # 次の問題インデックス safe_next_no を使って最終判定を行う
+            # より堅牢な最終問題判定
+            # 次の問題のインデックスが問題リストの範囲を超えている場合は最終問題
+            is_last_question = (safe_next_no >= total_questions_count)
+
+            # ユーザー設定問題数保証 - 設定数未満では絶対に最終問題にしない
             session_size = get_user_session_size(session)
-            
-            # 最終問題判定: 今回答した問題が最後の問題か
-            # current_no + 1 (回答済み問題数) がセッションサイズに達した = 全問完了
-            answered_questions_count = safe_current_no + 1  # 0ベース→1ベース変換
-            is_last_question = (answered_questions_count >= session_size) or (answered_questions_count >= total_questions_count)
-            
-            # 🛡️ ULTRA SYNC FIX: 完了保証ロジック（絶対に完了を阻害しない）
-            if answered_questions_count >= session_size:
-                is_last_question = True
-                logger.info(f"✅ 完了保証: {answered_questions_count}問回答済み >= {session_size}問セッション - 完了確定")
+            if total_questions_count >= session_size and safe_next_no < session_size:
+                is_last_question = False
+                logger.info(f"問題数保証: {safe_next_no}/{session_size}問目のため、最終問題フラグを強制的にFalseに設定")
 
             # 次の問題のインデックスを安全に設定
             next_question_index = safe_next_no if not is_last_question else None
@@ -2901,8 +2896,6 @@ def exam():
             logger.info(f"問題ID: {qid}, 回答: {answer}, 正否: {is_correct}")
             logger.info(f"セッション状態: current_no={current_no}, next_no={next_no}")
             logger.info(f"安全値: safe_current_no={safe_current_no}, safe_next_no={safe_next_no}")
-            logger.info(f"セッション設定: session_size={session_size}, total_questions={total_questions_count}")
-            logger.info(f"完了判定計算: answered_count({answered_questions_count}) >= session_size({session_size}) = {answered_questions_count >= session_size}")
             logger.info(f"問題リスト: 長さ={total_questions_count}, IDs={exam_question_ids[:3]}..." if total_questions_count > 3 else f"問題リスト: IDs={exam_question_ids}")
             logger.info(f"最終判定: is_last={is_last_question}, next_index={next_question_index}")
             logger.info(f"セッションキー: {list(session.keys())}")
@@ -2913,26 +2906,12 @@ def exam():
             is_review_session = (session.get('selected_question_type') == 'review' or
                                  session.get('exam_category', '').startswith('復習'))
 
-            # 🔥 ULTRA SYNC FIX: 完了時は安全なセッション更新（next_questionが不正値にならない）
-            if is_last_question:
-                # 最終問題の場合、exam_currentは最後の有効インデックスに設定
-                final_exam_current = min(safe_current_no, total_questions_count - 1)
-                session_final_updates = {
-                    'exam_current': final_exam_current,  # 完了状態の安全なインデックス
-                    'exam_question_ids': exam_question_ids,
-                    'quiz_completed': True,  # 完了フラグ
-                    'completion_timestamp': datetime.now().isoformat(),
-                    'last_update': datetime.now().isoformat(),
-                    'history': session.get('history', [])
-                }
-            else:
-                # 通常の次問題への進行
-                session_final_updates = {
-                    'exam_current': safe_next_no,  # 次の問題インデックス
-                    'exam_question_ids': exam_question_ids,
-                    'last_update': datetime.now().isoformat(),
-                    'history': session.get('history', [])
-                }
+            session_final_updates = {
+                'exam_current': safe_next_no,  # 安全な次の問題インデックスを使用
+                'exam_question_ids': exam_question_ids,  # 🔥 CRITICAL FIX: セッション継続に必須
+                'last_update': datetime.now().isoformat(),
+                'history': session.get('history', [])  # 履歴を明示的に保持
+            }
 
             # 復習セッションの場合は追加保護
             if is_review_session:
