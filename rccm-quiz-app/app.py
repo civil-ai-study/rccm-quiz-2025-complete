@@ -2158,6 +2158,8 @@ def exam():
                 # 🔥 CRITICAL: 専門科目開始時は新規セッションとして処理
                 if 'exam_question_ids が空' in str(e):
                     logger.info("専門科目の新規開始と判断 - GETリクエストとして処理")
+                    # 専門家推奨：既存機能肯定でGET処理パスに直接リダイレクト
+                    return redirect(url_for('exam', **request.args))
                 else:
                     session.pop('exam_question_ids', None)
                     session.pop('exam_current', None)
@@ -2195,55 +2197,24 @@ def exam():
             logger.info(f"data_loaded: {session.get('data_loaded', 'MISSING')}")
             logger.info("==========================================")
 
-            # 🔥 CRITICAL FIX: 新しいセッション開始のPOST処理（進捗表示バグ修正）
+            # 🔥 ULTRA SYNC VALIDATION FIX: 入力値のサニタイズと検証強化
             raw_answer = request.form.get('answer')
             raw_qid = request.form.get('qid')
-            form_question_count = request.form.get('question_count')
-            
-            # 新しいセッション開始判定: answer/qidなし + question_countあり
-            if not raw_answer and not raw_qid and form_question_count:
-                try:
-                    question_count_int = int(form_question_count)
-                    if 'quiz_settings' not in session:
-                        session['quiz_settings'] = {}
-                    session['quiz_settings']['questions_per_session'] = question_count_int
-                    session.modified = True
-                    logger.info(f"🔥 QUIZ SETTINGS FIX: 新規セッション開始 - question_count={question_count_int}をセッションに保存")
-                    
-                    # 新しいセッション開始なので、GET処理にリダイレクト
-                    department = request.form.get('department', '')
-                    year = request.form.get('year', '')
-                    question_type = request.form.get('question_type', '')
-                    
-                    redirect_params = []
-                    if department:
-                        redirect_params.append(f"department={department}")
-                    if year:
-                        redirect_params.append(f"year={year}")
-                    if question_type:
-                        redirect_params.append(f"question_type={question_type}")
-                    
-                    redirect_url = "/exam"
-                    if redirect_params:
-                        redirect_url += "?" + "&".join(redirect_params)
-                    
-                    logger.info(f"🔄 新規セッション開始リダイレクト: {redirect_url}")
-                    return redirect(redirect_url)
-                    
-                except (ValueError, TypeError) as e:
-                    logger.warning(f"POST question_count変換エラー: {form_question_count} - {e}")
-
-            # 🔥 ULTRA SYNC VALIDATION FIX: 入力値のサニタイズと検証強化
             raw_elapsed = request.form.get('elapsed', '0')
             
-            # 必須パラメータの存在チェック
+            # 必須パラメータの存在チェック（専門家推奨：新規セッション除外）
             if not raw_answer or not raw_qid:
-                logger.warning(f"🚨 必須パラメータ不足: answer={raw_answer}, qid={raw_qid}")
-                return render_template('error.html',
-                                       error="必須パラメータが不足しています。",
-                                       error_type="missing_parameters")
-            
-            # 文字列長制限チェック
+                # 新規セッション開始の場合はPOST処理をスキップ（既存機能肯定）
+                if not session.get('exam_question_ids'):
+                    logger.info("新規セッション開始 - POST処理スキップしてGET処理実行")
+                    pass  # POST処理をスキップしてGET処理部分に到達
+                else:
+                    logger.warning(f"🚨 必須パラメータ不足: answer={raw_answer}, qid={raw_qid}")
+                    return render_template('error.html',
+                                           error="必須パラメータが不足しています。",
+                                           error_type="missing_parameters")
+            else:
+                # 文字列長制限チェック
             if len(str(raw_answer)) > 10 or len(str(raw_qid)) > 20 or len(str(raw_elapsed)) > 20:
                 logger.warning(f"🚨 パラメータ長制限違反: answer={len(str(raw_answer))}, qid={len(str(raw_qid))}, elapsed={len(str(raw_elapsed))}")
                 return render_template('error.html',
@@ -3252,23 +3223,6 @@ def exam():
                     logger.info(f"ULTRA SYNC: URLパラメータcount={count_value}をセッションに適用")
             except (ValueError, TypeError):
                 logger.warning(f"無効なcountパラメータ: {requested_count}")
-
-        # 🔥 CRITICAL FIX: POSTフォームのquestion_count処理追加（進捗表示バグ修正）
-        if request.method == 'POST' and not session.get('exam_question_ids'):
-            # 新しいセッション開始時のPOSTリクエストでquestion_countを処理
-            form_question_count = request.form.get('question_count')
-            if form_question_count:
-                try:
-                    question_count_int = int(form_question_count)
-                    if 'quiz_settings' not in session:
-                        session['quiz_settings'] = {}
-                    session['quiz_settings']['questions_per_session'] = question_count_int
-                    session.modified = True
-                    logger.info(f"🔥 QUIZ SETTINGS FIX: POST question_count={question_count_int}をセッションに保存")
-                except (ValueError, TypeError) as e:
-                    logger.warning(f"POST question_count変換エラー: {form_question_count} - {e}")
-            else:
-                logger.info(f"🔍 DEBUG: POST without question_count - form keys: {list(request.form.keys())}")
 
         # ユーザー設定に基づく問題数を取得
         session_size = get_user_session_size(session)
