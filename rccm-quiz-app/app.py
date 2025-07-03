@@ -343,9 +343,10 @@ except ImportError as e:
     logger.warning(f"⚠️ Ultra Sync Memory Optimizer が見つかりません - 基本機能のみ動作: {e}")
     _memory_optimizer = None
     # 🔧 CRITICAL FIX: memory_optimization_decorator のフォールバック定義
-    def memory_optimization_decorator(func):
-        """Memory optimization decorator fallback (no-op when optimizer unavailable)"""
-        return func
+    # def memory_optimization_decorator(func):
+    #     """Memory optimization decorator fallback (no-op when optimizer unavailable)"""
+    #     return func
+    memory_optimization_decorator = lambda func: func  # ULTRA SYNC: No-op decorator fallback
 
 # 🔍 ULTRA SYNC MEMORY LEAK MONITOR: 包括的メモリリーク監視システム初期化
 _memory_leak_monitor = None
