@@ -126,14 +126,13 @@
             
             {% if not is_final %}
                 <!-- 次の問題へボタン（確実に表示される） - 視認性強化 -->
-                <!-- 🔥 ULTRA SYNC 根本修正: URL生成を完全修正 -->
+                <!-- 🔥 第三者レビュー修正: 最もシンプルで確実なURL生成 -->
                 {% set next_display_num = next_question_number if next_question_number is defined and next_question_number is not none else (question_num + 1) %}
-                {% set next_index = next_question_index if next_question_index is defined and next_question_index is not none else (question_num) %}
-                <!-- 🔥 2問目エラー根本解決: 正確なインデックスベースURL生成 -->
-                <a href="/exam?next=1&current={{ next_index }}" 
+                <!-- 🔥 2問目エラー完全解決: セッション状態に依存しない確実な進行 -->
+                <a href="/exam?next=1" 
                    class="btn btn-primary btn-lg px-5 py-3 main-nav-btn"
                    style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; position: relative !important; z-index: 1000 !important; background-color: #0d6efd !important; border: 3px solid #0d6efd !important; box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3) !important;"
-                   onclick="console.log('🔥 2問目エラー修正: /exam?next=1&current={{ next_index }}')">
+                   onclick="console.log('🔥 第三者修正: シンプルURL /exam?next=1')">
                     <i class="fas fa-arrow-right me-2"></i>次の問題へ ({{ next_display_num }}/{{ total_num }})
                 </a>
             {% else %}

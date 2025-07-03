@@ -3162,8 +3162,8 @@ def exam():
             # 次の問題のインデックスを安全に設定
             next_question_index = safe_next_no if not is_last_question else None
 
-            # 詳細デバッグログ（セッション状態の完全な記録）
-            logger.info("=== 回答処理デバッグ情報 ===")
+            # 🔥 ULTRA SYNC 500% DEBUG: 詳細デバッグログ（セッション状態の完全な記録）
+            logger.info("=== 🔥 ウルトラシンク 回答処理デバッグ情報 ===")
             logger.info(f"問題ID: {qid}, 回答: {answer}, 正否: {is_correct}")
             logger.info(f"セッション状態: current_no={current_no}, next_no={next_no}")
             logger.info(f"安全値: safe_current_no={safe_current_no}, safe_next_no={safe_next_no}")
@@ -3172,7 +3172,10 @@ def exam():
             logger.info(f"問題リスト: 長さ={total_questions_count}, IDs={exam_question_ids[:3]}..." if total_questions_count > 3 else f"問題リスト: IDs={exam_question_ids}")
             logger.info(f"最終判定: is_last={is_last_question}, next_index={next_question_index}")
             logger.info(f"セッションキー: {list(session.keys())}")
-            logger.info("=========================")
+            logger.info(f"🔥 重要: 次のGET処理で期待される値:")
+            logger.info(f"  - exam_current: {safe_next_no if not is_last_question else safe_current_no}")
+            logger.info(f"  - URL生成: /exam?next=1&current={safe_next_no + 1 if not is_last_question else 'N/A'}")
+            logger.info("=== 🔥 ウルトラシンク デバッグ情報終了 ===")
 
             # 🔥 CRITICAL: 復習セッション保護付きセッション更新（ウルトラシンク修正）
             # 復習モードの場合は特別な保護処理
@@ -3187,16 +3190,15 @@ def exam():
             logger.info(f"問題総数: {total_questions_count}")
             logger.info(f"最終問題判定: {is_last_question}")
             
-            # 🔥 CRITICAL FIX: exam_question_ids整合性の確実な保証
-            # 次の問題インデックスが有効範囲内にあることを確認
-            if not is_last_question and safe_next_no < len(exam_question_ids):
-                # 次の問題が存在する場合のみ進行
+            # 🔥 ULTRA SYNC 500% FIX: 2問目エラー根本原因修正
+            # exam_currentを必ず次の問題インデックスに更新（最終問題を除く）
+            if not is_last_question:
+                # 通常の次問題への進行 - 必ず safe_next_no (= current_no + 1) に更新
                 next_exam_current = safe_next_no
-                logger.info(f"✅ 次問題有効: exam_current = {next_exam_current}")
+                logger.info(f"🔥 ウルトラシンク修正: exam_current = {safe_current_no} → {next_exam_current}")
             else:
-                # 最終問題または次問題が存在しない場合は完了状態
-                next_exam_current = safe_current_no  # 現在の問題インデックスを維持
-                is_last_question = True  # 完了フラグを強制設定
+                # 最終問題の場合は現在位置を維持
+                next_exam_current = safe_current_no
                 logger.info(f"✅ 完了状態: exam_current = {next_exam_current} (維持)")
             
             # ステップ2: セッション更新内容を準備
@@ -3212,9 +3214,9 @@ def exam():
                 }
                 logger.info(f"最終問題: exam_current = {safe_current_no} に維持")
             else:
-                # 通常の次問題への進行 - 安全性を最優先
+                # 🔥 CRITICAL FIX: 必ず次の問題インデックスに更新
                 session_final_updates = {
-                    'exam_current': next_exam_current,  # 検証済みの次問題インデックス
+                    'exam_current': next_exam_current,  # 必ず safe_next_no (= current_no + 1) に設定
                     'exam_question_ids': exam_question_ids,
                     'last_update': datetime.now().isoformat(),
                     'history': session.get('history', [])
@@ -3230,11 +3232,21 @@ def exam():
                 })
                 logger.info(f"復習セッション保護: 問題{qid}回答後, 次={safe_next_no}, 総数={total_questions_count}")
 
-            # ステップ3: セッション更新を実行
-            for key, value in session_final_updates.items():
-                session[key] = value
-            session.permanent = True
-            session.modified = True
+            # 🔥 ULTRA SYNC 500% FIX: セッション更新の原子性確保
+            # セッション更新を一括で実行して競合状態を回避
+            try:
+                for key, value in session_final_updates.items():
+                    session[key] = value
+                session.permanent = True
+                session.modified = True
+                
+                # 🔥 重要: セッション保存の即座確認
+                saved_exam_current = session.get('exam_current')
+                logger.info(f"🔥 ウルトラシンク セッション保存確認: exam_current = {saved_exam_current}")
+                
+            except Exception as e:
+                logger.error(f"🚨 セッション更新エラー: {e}")
+                raise
             
             # ステップ4: 進捗追跡のための専用フィールドを追加
             session['progress_tracking'] = {
@@ -3348,6 +3360,11 @@ def exam():
             # 回答済み問題番号（1ベース）- current_no は回答済み問題のインデックス（0ベース）
             safe_current_number = max(1, current_no + 1)  # シンプルな0→1ベース変換
 
+            # 🔥 ULTRA SYNC 500% FIX: フィードバック画面への正確なデータ受け渡し
+            # テンプレートで正しいURL生成するため、回答済み問題と次問題を明確に分離
+            answered_question_num = safe_current_number  # 今回答した問題の番号（1ベース）
+            next_question_num = answered_question_num + 1 if not is_last_question else None  # 次の問題の番号（1ベース）
+            
             feedback_data = {
                 'question': question,
                 'user_answer': answer,
@@ -3355,7 +3372,8 @@ def exam():
                 'is_last_question': is_last_question,
                 'next_question_index': next_question_index,
                 'total_questions': safe_total_questions,
-                'current_question_number': safe_current_number,  # 回答した問題の番号（1ベース）
+                'current_question_number': answered_question_num,  # 回答した問題の番号（1ベース）
+                'next_question_number': next_question_num,  # 次の問題の番号（1ベース）テンプレート用
                 'category': session.get('exam_category', '全体'),
                 'srs_info': srs_info,
                 'is_review_question': srs_info['total_attempts'] > 1,
@@ -3575,27 +3593,17 @@ def exam():
         # ✅ FIXED: Simplified session state handling with next request support
         logger.info("=== SESSION STATE: Reading current position ===")
         
-        # 🔥 PROGRESS FIX: 次問題リクエスト処理の確実性向上
+        # 🔥 第三者レビュー修正: セッション優先の確実な処理
         if is_next_request:
-            # URLから現在の問題番号を取得（1ベース）
-            url_current = request.args.get('current')
+            # セッション状態に基づく確実な進行（URLパラメータに依存しない）
+            current_no = session.get('exam_current', 0)
+            logger.info(f"🔥 第三者修正: セッション状態で進行 exam_current={current_no}")
             
-            if url_current:
-                try:
-                    # URL値（1ベース）を0ベースインデックスに変換
-                    current_no = int(url_current) - 1
-                    # セッションを更新
-                    session['exam_current'] = current_no
-                    session.modified = True
-                    logger.info(f"🔥 PROGRESS FIX: URL current={url_current} -> current_no={current_no}")
-                except ValueError:
-                    # URLパラメータが無効な場合はセッション値を使用
-                    current_no = session.get('exam_current', 0)
-                    logger.warning(f"🔥 PROGRESS FIX: 無効なURL current={url_current}, セッション値使用={current_no}")
-            else:
-                # URLパラメータがない場合はセッション値を使用
-                current_no = session.get('exam_current', 0)
-                logger.info(f"🔥 PROGRESS FIX: URL currentなし, セッション値使用={current_no}")
+            # セッション整合性の基本チェック
+            exam_question_ids = session.get('exam_question_ids', [])
+            if not exam_question_ids:
+                logger.error("🔥 第三者レビュー: exam_question_ids が空 - セッション復元必要")
+                return redirect(url_for('index'))
         else:
             # 通常のGETリクエスト - セッション値を使用
             current_no = session.get('exam_current', 0)
