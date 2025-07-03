@@ -2497,32 +2497,22 @@ def exam():
                     logger.warning(f"🚨 経過時間変換エラー: {elapsed}")
                     elapsed_int = 0
 
-                # 🔥 CRITICAL FIX: POSTリクエストでセッションが存在しない場合の処理
+                # 🔥 ULTRA SYNC FIX: セッション不整合を安全に処理（2問目エラー対策）
                 if 'exam_question_ids' not in session:
-                    logger.warning(f"POSTリクエストでセッションが存在しない - 問題ID: {qid}")
-                    # 問題情報から適切なセッションを再構築する
-                    question = next((q for q in all_questions if int(q.get('id', 0)) == int(qid)), None)
-                    if question:
-                        # 問題の種別と部門を取得
-                        q_type = question.get('question_type', 'unknown')
-                        q_dept = question.get('department', '')
-                        q_cat = question.get('category', '')
-
-                        # URLパラメータから部門情報を取得（フォールバック）
-                        dept_from_referrer = request.referrer
-                        if dept_from_referrer and 'department=' in dept_from_referrer:
-                            import re
-                            dept_match = re.search(r'department=([^&]+)', dept_from_referrer)
-                            if dept_match:
-                                q_dept = dept_match.group(1)
-
-                        logger.info(f"セッション再構築: 問題種別={q_type}, 部門={q_dept}, カテゴリ={q_cat}")
-
-                        # 問題を表示するためのセッション再構築（リダイレクト回避）
-                        logger.info(f"🎯 セッション再構築完了 - POST処理継続: qid={qid}")
-                    else:
-                        logger.error(f"セッション再構築失敗: 問題ID {qid} が見つからない")
-                        return render_template('error.html', error="セッションが失われました。ホーム画面から再度開始してください。")
+                    logger.warning(f"POSTリクエストでセッション不整合 - 問題ID: {qid}")
+                    
+                    # 🛡️ セッション復元を試行（副作用なし）
+                    try:
+                        # 最小セッション状態を復元
+                        session['exam_question_ids'] = [int(qid)]
+                        session['exam_current'] = 0
+                        session['quiz_answered'] = session.get('quiz_answered', [])
+                        session['history'] = session.get('history', [])
+                        session.modified = True
+                        logger.info(f"✅ セッション安全復元: 問題ID={qid}から継続")
+                    except Exception as e:
+                        logger.error(f"セッション復元失敗: {e}")
+                        return render_template('error.html', error="セッションエラーが発生しました。ホーム画面から再度開始してください。")
 
             try:
                 qid = int(qid)
@@ -3107,15 +3097,16 @@ def exam():
                     session.modified = True
                     logger.info(f"🔥 新規セッション: 問題ID {qid} から開始（1/{user_session_size}問）")
 
-            # 次の問題へ進む準備（仮計算）
-            next_no = current_no + 1
-
-            # 次の問題の準備（堅牢性を改善）
-            # current_no は回答した問題のインデックス（0ベース）
-            # next_no は次に表示される問題のインデックス（セッションに保存済み）
-
-            # 安全なチェック: exam_question_idsの整合性を確保
+            # 🔥 ULTRA SYNC FIX: シンプルで安全な進行ロジック（2問目エラー解決）
+            # 複雑な計算を削除し、セッション整合性を優先
+            
+            # 基本的な整合性チェック
             total_questions_count = len(exam_question_ids) if exam_question_ids else 0
+            if total_questions_count == 0:
+                logger.error("セッション内に問題IDリストが存在しません")
+                return render_template('error.html', error="セッションエラー: 問題リストが空です")
+                
+            # 安全な現在位置計算
             safe_current_no = max(0, min(current_no, total_questions_count - 1))
             safe_next_no = safe_current_no + 1
 
