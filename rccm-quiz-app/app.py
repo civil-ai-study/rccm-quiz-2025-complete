@@ -2412,8 +2412,8 @@ def exam():
                                          error=f"必須フィールドが不足しています: {', '.join(missing_fields)}",
                                          error_type="invalid_data"), 400
                 
-                # 不正なキーの検証
-                valid_keys = ['answer', 'qid', 'elapsed', 'csrf_token']
+                # 不正なキーの検証（2問目エラー修正）
+                valid_keys = ['answer', 'qid', 'elapsed', 'csrf_token', 'session_initialized']
                 invalid_keys = [key for key in form_data.keys() if key not in valid_keys]
                 
                 if invalid_keys:
