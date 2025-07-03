@@ -2497,19 +2497,53 @@ def exam():
                     logger.warning(f"🚨 経過時間変換エラー: {elapsed}")
                     elapsed_int = 0
 
-                # 🔥 ULTRA SYNC FIX: セッション不整合を安全に処理（2問目エラー対策）
+                # 🔥 ULTRA SYNC FIX: 2問目エラー完全解決 - セッション復元ロジック修正
                 if 'exam_question_ids' not in session:
-                    logger.warning(f"POSTリクエストでセッション不整合 - 問題ID: {qid}")
+                    logger.warning(f"🚨 2問目エラー検出: POSTリクエストでセッション不整合 - 問題ID: {qid}")
                     
-                    # 🛡️ セッション復元を試行（副作用なし）
+                    # 🛡️ 完全なセッション復元を試行（2問目エラー解決）
                     try:
-                        # 最小セッション状態を復元
-                        session['exam_question_ids'] = [int(qid)]
-                        session['exam_current'] = 0
-                        session['quiz_answered'] = session.get('quiz_answered', [])
-                        session['history'] = session.get('history', [])
-                        session.modified = True
-                        logger.info(f"✅ セッション安全復元: 問題ID={qid}から継続")
+                        # 問題の部門と種別を特定して適切なセッションを再構築
+                        question = next((q for q in all_questions if int(q.get('id', 0)) == int(qid)), None)
+                        if question:
+                            q_dept = question.get('department', '')
+                            q_type = question.get('question_type', 'basic')
+                            
+                            # 同じ部門・種別の問題を10問再生成
+                            if q_type == 'basic':
+                                dept_questions = [q for q in all_questions if q.get('question_type') == 'basic']
+                            else:
+                                dept_questions = [q for q in all_questions 
+                                                if q.get('department', '') == q_dept and q.get('question_type') == 'advanced']
+                            
+                            if dept_questions:
+                                import random
+                                random.shuffle(dept_questions)
+                                session_size = 10  # デフォルト10問
+                                selected_questions = dept_questions[:session_size]
+                                
+                                # 現在の問題を最初に配置して継続性を確保
+                                question_ids = [int(qid)]
+                                for q in selected_questions:
+                                    if int(q['id']) != int(qid):
+                                        question_ids.append(int(q['id']))
+                                        if len(question_ids) >= session_size:
+                                            break
+                                
+                                session['exam_question_ids'] = question_ids
+                                session['exam_current'] = 0  # 現在の問題は0番目
+                                session['exam_category'] = q_dept if q_dept else '基礎科目'
+                                session['selected_question_type'] = q_type
+                                session['quiz_answered'] = session.get('quiz_answered', [])
+                                session['history'] = session.get('history', [])
+                                session.modified = True
+                                
+                                logger.info(f"✅ 2問目エラー解決: セッション完全復元完了 - {len(question_ids)}問生成, 部門={q_dept}")
+                            else:
+                                raise Exception("適切な問題が見つかりません")
+                        else:
+                            raise Exception(f"問題ID {qid} が見つかりません")
+                            
                     except Exception as e:
                         logger.error(f"セッション復元失敗: {e}")
                         return render_template('error.html', error="セッションエラーが発生しました。ホーム画面から再度開始してください。")
@@ -3145,36 +3179,47 @@ def exam():
             is_review_session = (session.get('selected_question_type') == 'review' or
                                  session.get('exam_category', '').startswith('復習'))
 
-            # 🔥 CRITICAL PROGRESS DISPLAY FIX: セッション状態の確実な保存と検証
-            # ステップ1: 回答前のセッション状態をログ出力
-            logger.info("=== PROGRESS FIX: POST処理でのセッション状態更新 ===")
+            # 🔥 ULTRA SYNC EXPERT FIX: 2問目エラー根本解決
+            # 専門家推薦：POST処理でのセッション状態管理の完全修正
+            logger.info("=== ULTRA SYNC: 2問目エラー根本解決 ===")
             logger.info(f"現在の問題インデックス: {current_no} (回答済み)")
             logger.info(f"次の問題インデックス: {safe_next_no}")
             logger.info(f"問題総数: {total_questions_count}")
             logger.info(f"最終問題判定: {is_last_question}")
             
+            # 🔥 CRITICAL FIX: exam_question_ids整合性の確実な保証
+            # 次の問題インデックスが有効範囲内にあることを確認
+            if not is_last_question and safe_next_no < len(exam_question_ids):
+                # 次の問題が存在する場合のみ進行
+                next_exam_current = safe_next_no
+                logger.info(f"✅ 次問題有効: exam_current = {next_exam_current}")
+            else:
+                # 最終問題または次問題が存在しない場合は完了状態
+                next_exam_current = safe_current_no  # 現在の問題インデックスを維持
+                is_last_question = True  # 完了フラグを強制設定
+                logger.info(f"✅ 完了状態: exam_current = {next_exam_current} (維持)")
+            
             # ステップ2: セッション更新内容を準備
             if is_last_question:
-                # 最終問題の場合、exam_currentは最後の有効インデックスに設定
-                final_exam_current = min(safe_current_no, total_questions_count - 1)
+                # 最終問題の場合、exam_currentは現在の問題インデックスを維持
                 session_final_updates = {
-                    'exam_current': final_exam_current,  # 完了状態の安全なインデックス
+                    'exam_current': safe_current_no,  # 現在位置を維持（重要な修正）
                     'exam_question_ids': exam_question_ids,
                     'quiz_completed': True,  # 完了フラグ
                     'completion_timestamp': datetime.now().isoformat(),
                     'last_update': datetime.now().isoformat(),
                     'history': session.get('history', [])
                 }
-                logger.info(f"最終問題: exam_current = {final_exam_current} に設定")
+                logger.info(f"最終問題: exam_current = {safe_current_no} に維持")
             else:
-                # 通常の次問題への進行 - これが進捗表示の鍵
+                # 通常の次問題への進行 - 安全性を最優先
                 session_final_updates = {
-                    'exam_current': safe_next_no,  # 次の問題インデックス
+                    'exam_current': next_exam_current,  # 検証済みの次問題インデックス
                     'exam_question_ids': exam_question_ids,
                     'last_update': datetime.now().isoformat(),
                     'history': session.get('history', [])
                 }
-                logger.info(f"次問題進行: exam_current = {safe_next_no} に設定")
+                logger.info(f"次問題進行: exam_current = {next_exam_current} に設定")
 
             # 復習セッションの場合は追加保護
             if is_review_session:
@@ -3210,17 +3255,32 @@ def exam():
             logger.info(f"進捗追跡確認: {saved_progress}")
             logger.info(f"exam_question_ids保存確認 = {len(saved_question_ids)}問")
             
-            # ステップ6: 保存失敗時の緊急修復
-            expected_exam_current = safe_next_no if not is_last_question else min(safe_current_no, total_questions_count - 1)
-            if session.get('exam_current') != expected_exam_current:
+            # ステップ6: 保存失敗時の緊急修復（専門家推薦）
+            expected_exam_current = next_exam_current if not is_last_question else safe_current_no
+            actual_exam_current = session.get('exam_current')
+            
+            if actual_exam_current != expected_exam_current:
                 logger.error(f"🚨 CRITICAL: exam_current保存失敗を検出")
-                logger.error(f"期待値: {expected_exam_current}, 実際値: {session.get('exam_current')}")
+                logger.error(f"期待値: {expected_exam_current}, 実際値: {actual_exam_current}")
                 
                 # 緊急修復処理
                 session['exam_current'] = expected_exam_current
                 session['progress_repair_count'] = session.get('progress_repair_count', 0) + 1
                 session.modified = True
                 logger.info(f"✅ 緊急修復完了: exam_current = {expected_exam_current}")
+            
+            # 🔥 ULTRA SYNC: exam_question_ids整合性の最終確認
+            final_exam_current = session.get('exam_current')
+            final_exam_question_ids = session.get('exam_question_ids', [])
+            
+            if final_exam_current >= len(final_exam_question_ids):
+                logger.error(f"🚨 CRITICAL: インデックス範囲外エラー - current={final_exam_current}, length={len(final_exam_question_ids)}")
+                # 安全な値に修正
+                safe_index = max(0, len(final_exam_question_ids) - 1)
+                session['exam_current'] = safe_index
+                session['exam_index_repair'] = True
+                session.modified = True
+                logger.info(f"✅ インデックス修復完了: exam_current = {safe_index}")
             
             # ステップ7: 強制的なセッション保存の確保
             session.permanent = True
