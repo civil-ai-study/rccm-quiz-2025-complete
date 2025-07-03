@@ -1,0 +1,32 @@
+{
+  "f08fb8c624ad": {
+    "id": "f08fb8c624ad",
+    "name": "テストグループ",
+    "description": "RCCM試験対策",
+    "creator_id": "test_user",
+    "department": "public",
+    "target_exam_date": null,
+    "created_at": "2025-06-26T08:56:06.602521",
+    "members": [
+      "test_user"
+    ],
+    "moderators": [
+      "test_user"
+    ],
+    "is_public": true,
+    "settings": {
+      "allow_join_requests": true,
+      "require_approval": false,
+      "max_members": 50,
+      "study_schedule": [],
+      "shared_goals": []
+    },
+    "statistics": {
+      "total_members": 1,
+      "active_members": 1,
+      "discussions_count": 0,
+      "shared_questions": 0,
+      "group_sessions": 0
+    }
+  }
+}

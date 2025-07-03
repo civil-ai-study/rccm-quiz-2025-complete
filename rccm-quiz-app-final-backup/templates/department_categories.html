@@ -1,0 +1,315 @@
+{% extends "base.html" %}
+
+{% block title %}カテゴリ選択 - {{ department.name }} {{ question_type.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <!-- ブレッドクラム -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('index') }}">ホーム</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url_for('departments') }}">部門選択</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url_for('question_types', department_id=department.id) }}">{{ department.name }}</a></li>
+                    <li class="breadcrumb-item active">{{ question_type.name }}</li>
+                </ol>
+            </nav>
+
+            <!-- ヘッダー部分 -->
+            <div class="card border-primary mb-4">
+                <div class="card-header" style="background: linear-gradient(135deg, {{ department.color }}, {{ question_type.color }}); color: white;">
+                    <h3 class="mb-1">
+                        <span>{{ department.icon }}</span>
+                        {{ department.name }}
+                        <span class="mx-2">×</span>
+                        <span>{{ question_type.icon }}</span>
+                        {{ question_type.name }}
+                    </h3>
+                    <p class="mb-0 small opacity-90">{{ question_type.description }}</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="alert alert-primary">
+                                <i class="fas fa-info-circle"></i>
+                                <strong>{{ question_type.full_name }}</strong>のカテゴリ別学習<br>
+                                総問題数: <strong>{{ total_questions }}問</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <a href="{{ url_for('exam', department=department.id, question_type=question_type.id, category='all') }}" 
+                                   class="btn btn-success btn-lg mb-2">
+                                    <i class="fas fa-play"></i> すぐに問題を解く
+                                </a>
+                                {% if question_type.id == 'specialist' %}
+                                <div class="mt-2">
+                                    <button class="btn btn-outline-info btn-sm" onclick="toggleYearSelection()">
+                                        <i class="fas fa-calendar"></i> 年度別問題を選択
+                                    </button>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {% if question_type.id == 'specialist' %}
+                    <!-- 🚨 年度選択UI追加（ウルトラシンク修正） -->
+                    <div id="yearSelection" class="row mt-3" style="display: none;">
+                        <div class="col-12">
+                            <div class="card border-info">
+                                <div class="card-header bg-info text-white">
+                                    <h5 class="mb-0"><i class="fas fa-calendar"></i> 年度別問題選択</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        {% for year in range(2019, 2007, -1) %}
+                                        <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
+                                            <a href="{{ url_for('exam', department=department.id|urlencode, question_type=question_type.id, year=year) }}" 
+                                               class="btn btn-outline-primary btn-block year-btn">
+                                                <i class="fas fa-calendar-alt"></i> {{ year }}年度
+                                            </a>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- カテゴリ一覧 -->
+    {% if category_details %}
+    <div class="row">
+        {% for category, details in category_details.items() %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 category-card" data-category="{{ category }}">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0 text-primary">
+                        <i class="fas fa-folder"></i>
+                        {{ category }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center mb-3">
+                        <div class="col-4">
+                            <div class="stat-box">
+                                <div class="stat-number text-primary">{{ details.total_questions }}</div>
+                                <div class="stat-label">総問題数</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-box">
+                                <div class="stat-number text-info">{{ details.total_answered }}</div>
+                                <div class="stat-label">学習済み</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-box">
+                                <div class="stat-number text-success">{{ details.correct_count }}</div>
+                                <div class="stat-label">正解数</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 進捗バー -->
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <small class="text-muted">学習進捗</small>
+                            <small class="text-muted">{{ progresses[category] }}%</small>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: {{ progresses[category] }}%"></div>
+                        </div>
+                    </div>
+
+                    <!-- 正答率 -->
+                    {% if details.total_answered > 0 %}
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <small class="text-muted">正答率</small>
+                            <small class="text-muted">{{ "%.1f"|format(details.accuracy) }}%</small>
+                        </div>
+                        <div class="progress">
+                            {% if details.accuracy >= 80 %}
+                            <div class="progress-bar bg-success" style="width: {{ details.accuracy }}%"></div>
+                            {% elif details.accuracy >= 60 %}
+                            <div class="progress-bar bg-warning" style="width: {{ details.accuracy }}%"></div>
+                            {% else %}
+                            <div class="progress-bar bg-danger" style="width: {{ details.accuracy }}%"></div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- レベル表示 -->
+                    <div class="mb-3">
+                        {% if details.accuracy >= 90 %}
+                        <span class="badge badge-success">マスター</span>
+                        {% elif details.accuracy >= 80 %}
+                        <span class="badge badge-info">上級</span>
+                        {% elif details.accuracy >= 60 %}
+                        <span class="badge badge-warning">中級</span>
+                        {% elif details.total_answered > 0 %}
+                        <span class="badge badge-danger">初級</span>
+                        {% else %}
+                        <span class="badge badge-light">未学習</span>
+                        {% endif %}
+
+                        {% if progresses[category] >= 80 %}
+                        <span class="badge badge-primary">習熟</span>
+                        {% elif progresses[category] >= 50 %}
+                        <span class="badge badge-secondary">進行中</span>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <div class="text-center text-muted mb-3">
+                        <i class="fas fa-question-circle fa-2x"></i>
+                        <div>まだ学習していません</div>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('exam', department=department.id, question_type=question_type.id, category=category) }}" 
+                       class="btn btn-primary btn-block">
+                        <i class="fas fa-play"></i> {{ category }}を学習
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                <i class="fas fa-exclamation-triangle fa-2x mb-3"></i>
+                <h4>該当する問題が見つかりません</h4>
+                <p>この部門・問題種別の組み合わせではまだ問題が登録されていません。</p>
+                <a href="{{ url_for('question_types', department_id=department.id) }}" class="btn btn-primary">
+                    <i class="fas fa-arrow-left"></i> 問題種別選択に戻る
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- ナビゲーション -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <a href="{{ url_for('question_types', department_id=department.id) }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> 問題種別選択に戻る
+                </a>
+                <div>
+                    <a href="{{ url_for('review_list') }}" class="btn btn-outline-warning">
+                        <i class="fas fa-bookmark"></i> 復習リスト
+                    </a>
+                    <a href="{{ url_for('statistics') }}" class="btn btn-outline-info">
+                        <i class="fas fa-chart-bar"></i> 学習統計
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.category-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.stat-box {
+    padding: 10px 0;
+}
+
+.stat-number {
+    font-size: 1.8em;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.8em;
+    color: #6c757d;
+    margin-top: 5px;
+}
+
+.progress {
+    height: 6px;
+}
+
+.badge {
+    font-size: 0.75em;
+    margin-right: 5px;
+}
+
+.opacity-90 {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .category-card {
+        margin-bottom: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 1.5em;
+    }
+    
+    .stat-label {
+        font-size: 0.7em;
+    }
+}
+</style>
+
+<script>
+// カードクリックでページ遷移
+document.querySelectorAll('.category-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+        if (!e.target.closest('a')) {
+            const category = this.dataset.category;
+            const departmentId = '{{ department.id }}';
+            const questionType = '{{ question_type.id }}';
+            window.location.href = `/exam?department=${departmentId}&question_type=${questionType}&category=${encodeURIComponent(category)}`;
+        }
+    });
+});
+
+// 🚨 年度選択の表示/非表示切り替え（ウルトラシンク修正）
+function toggleYearSelection() {
+    const yearSelection = document.getElementById('yearSelection');
+    if (yearSelection.style.display === 'none') {
+        yearSelection.style.display = 'block';
+        yearSelection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        yearSelection.style.display = 'none';
+    }
+}
+
+// 年度ボタンのホバーエフェクト
+document.addEventListener('DOMContentLoaded', function() {
+    const yearButtons = document.querySelectorAll('.year-btn');
+    yearButtons.forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            this.classList.add('btn-primary');
+            this.classList.remove('btn-outline-primary');
+        });
+        btn.addEventListener('mouseleave', function() {
+            this.classList.remove('btn-primary');
+            this.classList.add('btn-outline-primary');
+        });
+    });
+});
+</script>
+{% endblock %}

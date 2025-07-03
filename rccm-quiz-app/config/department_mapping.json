@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "RCCM Quiz App 部門マッピング設定",
+    "description": "部門名とカテゴリ名の対応関係を定義する設定ファイル",
+    "version": "1.0.0",
+    "last_updated": "2025-06-29",
+    "maintainer": "RCCM Quiz App Development Team",
+    "encoding": "UTF-8"
+  },
+  "department_to_category_mapping": {
+    "road": "道路",
+    "tunnel": "トンネル",
+    "river": "河川、砂防及び海岸・海洋",
+    "urban": "都市計画及び地方計画",
+    "landscape": "造園",
+    "construction_env": "建設環境",
+    "steel_concrete": "鋼構造及びコンクリート",
+    "soil": "土質及び基礎",
+    "construction_planning": "施工計画、施工設備及び積算",
+    "water_supply": "上水道及び工業用水道",
+    "forestry": "森林土木",
+    "agriculture": "農業土木",
+    "basic": "共通"
+  },
+  "legacy_department_aliases": {
+    "civil_planning": "river",
+    "urban_planning": "urban",
+    "soil_foundation": "soil",
+    "common": "basic",
+    "river_sabo": "river",
+    "construction_environment": "construction_env",
+    "construction_management": "construction_planning",
+    "water_supply_sewerage": "water_supply",
+    "forest_civil": "forestry",
+    "agricultural_civil": "agriculture"
+  },
+  "validation_rules": {
+    "required_departments": [
+      "road", "tunnel", "river", "urban", "landscape", "construction_env",
+      "steel_concrete", "soil", "construction_planning", "water_supply",
+      "forestry", "agriculture", "basic"
+    ],
+    "unique_categories": true,
+    "allow_legacy_aliases": true,
+    "case_sensitive": false
+  },
+  "department_details": {
+    "road": {
+      "full_name": "道路部門",
+      "question_type": "specialist",
+      "exam_code": "4-2",
+      "priority": 1
+    },
+    "tunnel": {
+      "full_name": "トンネル部門",
+      "question_type": "specialist",
+      "exam_code": "4-2",
+      "priority": 2
+    },
+    "river": {
+      "full_name": "河川、砂防及び海岸・海洋部門",
+      "question_type": "specialist",
+      "exam_code": "4-2",
+      "priority": 3
+    },
+    "urban": {
+      "full_name": "都市計画及び地方計画部門",
+      "question_type": "specialist",
+      "exam_code": "4-2",
+      "priority": 4
+    },
+    "landscape": {
+      "full_name": "造園部門",
+      "question_type": "specialist",
+      "exam_code": "4-2",
+      "priority": 5
+    },
+    "construction_env": {
+      "full_name": "建設環境部門",
+      "question_type": "specialist",
+      "exam_code": "4-2",
+      "priority": 6
+    },
+    "steel_concrete": {
+      "full_name": "鋼構造及びコンクリート部門",
+      "question_type": "specialist",
+      "exam_code": "4-2",
+      "priority": 7
+    },
+    "soil": {
+      "full_name": "土質及び基礎部門",
+      "question_type": "specialist",
+      "exam_code": "4-2",
+      "priority": 8
+    },
+    "construction_planning": {
+      "full_name": "施工計画、施工設備及び積算部門",
+      "question_type": "specialist",
+      "exam_code": "4-2",
+      "priority": 9
+    },
+    "water_supply": {
+      "full_name": "上水道及び工業用水道部門",
+      "question_type": "specialist",
+      "exam_code": "4-2",
+      "priority": 10
+    },
+    "forestry": {
+      "full_name": "森林土木部門",
+      "question_type": "specialist",
+      "exam_code": "4-2",
+      "priority": 11
+    },
+    "agriculture": {
+      "full_name": "農業土木部門",
+      "question_type": "specialist",
+      "exam_code": "4-2",
+      "priority": 12
+    },
+    "basic": {
+      "full_name": "基礎科目",
+      "question_type": "basic",
+      "exam_code": "4-1",
+      "priority": 13
+    }
+  }
+}

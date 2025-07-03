@@ -1,0 +1,71 @@
+name: RCCM App Automated Test
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest  # テスト専用の新品Linux環境
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install Google Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flask selenium webdriver-manager requests
+
+    - name: Create test data directory
+      run: |
+        mkdir -p data
+        # Create minimal test CSV if not exists
+        if [ ! -f data/questions.csv ]; then
+          echo "ID,Category,Question,Answer_A,Answer_B,Answer_C,Answer_D,Correct_Answer,Explanation" > data/questions.csv
+          echo "1,土質及び基礎,テスト問題です,選択肢A,選択肢B,選択肢C,選択肢D,A,解説です" >> data/questions.csv
+        fi
+
+    - name: Run Flask app in background
+      run: |
+        # Flaskアプリをバックグラウンドで起動し、URLにアクセスできるまで待機
+        python app.py &
+        sleep 10  # アプリが完全に起動するのを待つ
+        # ヘルスチェック（最大30秒間リトライ）
+        for i in {1..6}; do
+          if curl -f http://127.0.0.1:5000; then
+            echo "Flask app is running!"
+            break
+          else
+            echo "Waiting for Flask app... (attempt $i/6)"
+            sleep 5
+          fi
+        done
+
+    - name: Run Selenium E2E Tests
+      run: |
+        # あなたが作成したテストスクリプトを実行
+        python rccm_flask_auto_test.py
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-results
+        path: |
+          test_results_*.json
+          *.log

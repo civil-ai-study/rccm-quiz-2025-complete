@@ -1,0 +1,319 @@
+{% extends "base.html" %}
+
+{% block title %}個人学習プラン - RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- ヘッダー -->
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-route text-success"></i> 個人学習プラン</h2>
+                <a href="{{ url_for('ai_analysis') }}" class="btn btn-outline-info">
+                    <i class="fas fa-brain"></i> AI分析に戻る
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 学習プラン概要 -->
+    {% if plan %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-success">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0"><i class="fas fa-target"></i> あなた専用の学習プラン</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5>プランタイプ: 
+                                {% if plan.plan_type == 'weakness_focused' %}
+                                    <span class="badge badge-warning">弱点克服重点型</span>
+                                {% elif plan.plan_type == 'maintenance' %}
+                                    <span class="badge badge-success">学習維持型</span>
+                                {% else %}
+                                    <span class="badge badge-info">基礎構築型</span>
+                                {% endif %}
+                            </h5>
+                            
+                            {% if plan.motivation_message %}
+                            <div class="alert alert-light mt-3">
+                                <i class="fas fa-heart text-danger"></i> {{ plan.motivation_message }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="study-plan-icon">
+                                <i class="fas fa-graduation-cap fa-4x text-success"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 週間スケジュール -->
+    {% if schedule %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-calendar-week text-primary"></i> 週間学習スケジュール</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for day_plan in schedule %}
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                            <div class="day-card card h-100 border-{% if day_plan.type == 'intensive' %}warning{% elif day_plan.type == 'balanced' %}info{% else %}light{% endif %}">
+                                <div class="card-header bg-{% if day_plan.type == 'intensive' %}warning{% elif day_plan.type == 'balanced' %}info{% else %}light{% endif %} text-{% if day_plan.type == 'light' %}dark{% else %}white{% endif %}">
+                                    <h6 class="mb-0">{{ day_plan.day }}曜日</h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="day-type-icon mb-2">
+                                        {% if day_plan.type == 'intensive' %}
+                                            <i class="fas fa-fire fa-2x text-warning"></i>
+                                        {% elif day_plan.type == 'balanced' %}
+                                            <i class="fas fa-balance-scale fa-2x text-info"></i>
+                                        {% else %}
+                                            <i class="fas fa-feather-alt fa-2x text-muted"></i>
+                                        {% endif %}
+                                    </div>
+                                    <h6>{{ day_plan.description }}</h6>
+                                    <p class="card-text">
+                                        <strong>{{ day_plan.questions }}問</strong><br>
+                                        <small class="text-muted">
+                                            {% if day_plan.focus != 'mixed' %}
+                                                重点: {{ day_plan.focus }}
+                                            {% else %}
+                                                バランス学習
+                                            {% endif %}
+                                        </small>
+                                    </p>
+                                    {% if day_plan.type == 'intensive' %}
+                                    <a href="{{ url_for('adaptive_quiz', mode='foundation') }}" class="btn btn-sm btn-warning">
+                                        <i class="fas fa-play"></i> 開始
+                                    </a>
+                                    {% elif day_plan.type == 'balanced' %}
+                                    <a href="{{ url_for('adaptive_quiz', mode='balanced') }}" class="btn btn-sm btn-info">
+                                        <i class="fas fa-play"></i> 開始
+                                    </a>
+                                    {% else %}
+                                    <a href="{{ url_for('adaptive_quiz', mode='review') }}" class="btn btn-sm btn-outline-secondary">
+                                        <i class="fas fa-play"></i> 開始
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 詳細学習戦略 -->
+    {% if plan and plan.primary_focus %}
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-warning text-white">
+                    <h5 class="mb-0"><i class="fas fa-bullseye"></i> 最優先改善分野</h5>
+                </div>
+                <div class="card-body">
+                    <h4 class="text-warning">{{ plan.primary_focus.category }}</h4>
+                    
+                    <div class="strategy-item mb-3">
+                        <h6><i class="fas fa-chart-line"></i> 推奨学習量</h6>
+                        <p>1日 <strong>{{ plan.primary_focus.recommended_questions }}問</strong></p>
+                    </div>
+                    
+                    <div class="strategy-item mb-3">
+                        <h6><i class="fas fa-road"></i> 学習アプローチ</h6>
+                        <p>
+                            {% if plan.primary_focus.study_approach == 'intensive_study' %}
+                                <span class="badge badge-danger">集中学習</span>
+                                基礎から徹底的に復習しましょう
+                            {% elif plan.primary_focus.study_approach == 'regular_practice' %}
+                                <span class="badge badge-warning">通常練習</span>
+                                継続的な練習で改善を図りましょう
+                            {% else %}
+                                <span class="badge badge-info">軽い復習</span>
+                                軽い復習で知識を定着させましょう
+                            {% endif %}
+                        </p>
+                    </div>
+                    
+                    <div class="strategy-item mb-3">
+                        <h6><i class="fas fa-clock"></i> 改善予想期間</h6>
+                        <p><strong>{{ plan.primary_focus.expected_improvement_days }}日</strong>で改善が期待できます</p>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <a href="{{ url_for('quiz', category=plan.primary_focus.category) }}" class="btn btn-warning">
+                            <i class="fas fa-play-circle"></i> この分野で学習開始
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fas fa-tips"></i> 学習のコツ</h5>
+                </div>
+                <div class="card-body">
+                    <div class="tip-item mb-3">
+                        <h6><i class="fas fa-lightbulb text-warning"></i> 効果的な学習法</h6>
+                        <ul class="list-unstyled">
+                            <li>• 間違えた問題は必ず解説を確認</li>
+                            <li>• 時間を意識して解答練習</li>
+                            <li>• 類似問題で知識を定着</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tip-item mb-3">
+                        <h6><i class="fas fa-calendar-check text-success"></i> 学習リズム</h6>
+                        <ul class="list-unstyled">
+                            <li>• 毎日同じ時間に学習</li>
+                            <li>• 短時間でも継続を重視</li>
+                            <li>• 週1回は総復習を実施</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tip-item">
+                        <h6><i class="fas fa-trophy text-warning"></i> モチベーション維持</h6>
+                        <ul class="list-unstyled">
+                            <li>• 小さな進歩を記録</li>
+                            <li>• バッジ獲得を目標に</li>
+                            <li>• 定期的に成果を確認</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 進捗追跡 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-chart-bar text-info"></i> 進捗追跡</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="progress-card text-center p-3 border rounded">
+                                <div class="display-4 text-primary">📊</div>
+                                <h6>分析信頼度</h6>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" style="width: {{ (analysis.confidence_score or 0) * 100 }}%"></div>
+                                </div>
+                                <small>{{ "%.0f"|format((analysis.confidence_score or 0) * 100) }}%</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="progress-card text-center p-3 border rounded">
+                                <div class="display-4 text-success">✅</div>
+                                <h6>改善項目数</h6>
+                                <h4 class="text-success">{{ analysis.weak_areas|length or 0 }}</h4>
+                                <small>個の分野を改善対象として特定</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="progress-card text-center p-3 border rounded">
+                                <div class="display-4 text-warning">🎯</div>
+                                <h6>推奨優先度</h6>
+                                {% if analysis.recommendation_priority %}
+                                <h4 class="text-warning">{{ analysis.recommendation_priority[0].urgency }}</h4>
+                                <small>{{ analysis.recommendation_priority[0].category }}</small>
+                                {% else %}
+                                <h4 class="text-muted">-</h4>
+                                <small>優先改善項目なし</small>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- アクションボタン -->
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            {% if plan and plan.primary_focus %}
+            <a href="{{ url_for('adaptive_quiz', mode='foundation') }}" class="btn btn-lg btn-warning mr-2">
+                <i class="fas fa-rocket"></i> 弱点克服学習を開始
+            </a>
+            {% endif %}
+            <a href="{{ url_for('adaptive_quiz', mode='balanced') }}" class="btn btn-lg btn-primary mr-2">
+                <i class="fas fa-brain"></i> AI適応学習を開始
+            </a>
+            <a href="{{ url_for('achievements') }}" class="btn btn-lg btn-success mr-2">
+                <i class="fas fa-trophy"></i> 学習記録を確認
+            </a>
+            <a href="{{ url_for('statistics') }}" class="btn btn-lg btn-info">
+                <i class="fas fa-chart-line"></i> 詳細統計
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+.day-card {
+    transition: all 0.3s ease;
+}
+
+.day-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.strategy-item {
+    border-left: 3px solid #ffc107;
+    padding-left: 15px;
+}
+
+.tip-item {
+    border-left: 3px solid #17a2b8;
+    padding-left: 15px;
+}
+
+.progress-card {
+    transition: all 0.3s ease;
+}
+
+.progress-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.study-plan-icon {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .day-card {
+        margin-bottom: 1rem;
+    }
+}
+</style>
+{% endblock %}

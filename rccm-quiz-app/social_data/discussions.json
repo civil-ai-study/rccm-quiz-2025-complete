@@ -1,0 +1,26 @@
+{
+  "c05eefb9da02": {
+    "id": "c05eefb9da02",
+    "title": "テストディスカッション",
+    "content": "テスト内容",
+    "author_id": "test_user",
+    "question_id": "共通",
+    "group_id": [
+      "rccm",
+      "exam"
+    ],
+    "category": "general",
+    "created_at": "2025-06-26T08:56:06.605637",
+    "updated_at": "2025-06-26T08:56:06.605639",
+    "replies": [],
+    "votes": {
+      "up": 0,
+      "down": 0,
+      "voters": []
+    },
+    "tags": [],
+    "is_solved": false,
+    "is_pinned": false,
+    "view_count": 0
+  }
+}

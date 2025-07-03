@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学習進捗 | RCCM試験問題集</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }
+        .container { background: white; padding: 20px; border-radius: 8px; max-width: 800px; margin: 0 auto; }
+        .progress-item { margin: 10px 0; padding: 10px; background: #f9f9f9; border-radius: 4px; }
+        .back-link { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; }
+        .back-link:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 学習進捗</h1>
+        
+        {% if progress %}
+        <div class="progress-item">
+            <h3>✅ 回答済み問題数</h3>
+            <p>{{ progress.total_questions_answered }}問</p>
+        </div>
+        
+        <div class="progress-item">
+            <h3>🔄 現在のセッション</h3>
+            <p>{% if progress.current_session_active %}アクティブ{% else %}非アクティブ{% endif %}</p>
+        </div>
+        
+        <div class="progress-item">
+            <h3>⏰ 最終活動</h3>
+            <p>{{ progress.last_activity }}</p>
+        </div>
+        {% else %}
+        <div class="progress-item">
+            <p>進捗データがありません。問題を解いて進捗を記録してください。</p>
+        </div>
+        {% endif %}
+        
+        <a href="/" class="back-link">🏠 ホームに戻る</a>
+    </div>
+</body>
+</html>

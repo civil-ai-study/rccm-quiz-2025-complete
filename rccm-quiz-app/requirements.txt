@@ -1,0 +1,11 @@
+Flask==3.0.0
+gunicorn==23.0.0
+Werkzeug==3.0.1
+Jinja2==3.1.2
+
+# 🚨 ULTRA SYNC EMERGENCY OPTIMIZATION
+# 重いライブラリ（pandas, numpy）を一時除去
+# デプロイ速度優先のため最小限構成
+
+# ✅ Essential only - Deploy optimization
+python-dotenv==1.1.0

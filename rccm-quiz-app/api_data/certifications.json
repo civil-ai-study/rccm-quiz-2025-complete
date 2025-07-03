@@ -1,0 +1,20 @@
+{
+  "8f2b6f23-234c-4b25-9af3-1a3466cd1e06": {
+    "id": "8f2b6f23-234c-4b25-9af3-1a3466cd1e06",
+    "name": "RCCM基礎認定",
+    "description": "4-1基礎科目の認定プログラム",
+    "organization": null,
+    "requirements": {
+      "accuracy_threshold": 0.8,
+      "question_count": 50
+    },
+    "created_at": "2025-06-26T09:13:24.581884",
+    "is_active": true,
+    "statistics": {
+      "total_participants": 1,
+      "completed": 0,
+      "in_progress": 1,
+      "completion_rate": 0.0
+    }
+  }
+}

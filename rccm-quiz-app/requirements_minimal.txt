@@ -1,0 +1,40 @@
+# RCCM試験問題集2025 - 必要最小限の依存関係
+
+# Core Web Framework
+Flask==3.0.0
+Werkzeug==3.0.1
+
+# Data Processing
+pandas==2.1.4
+numpy==1.26.2
+
+# Template Engine (Flask dependency)
+Jinja2==3.1.2
+MarkupSafe==2.1.3
+
+# Security & Sessions
+itsdangerous==2.1.2
+Flask-WTF==1.1.1
+
+# Click (Flask dependency)
+click==8.1.7
+
+# Production WSGI Server
+gunicorn==21.2.0
+
+# System Monitoring
+psutil==5.9.6
+
+# File Encoding Detection
+chardet==5.2.0
+
+# Date/Time utilities
+python-dateutil==2.8.2
+
+# Additional Core Libraries
+six==1.16.0
+pytz==2023.3
+
+# For future AI features (optional)
+# scikit-learn==1.3.2
+# scipy==1.11.4

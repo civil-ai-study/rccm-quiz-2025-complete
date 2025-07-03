@@ -1,0 +1,53 @@
+{
+  "rccm_01kTEtBbpqsR7qBQOtTTeJcjPl60HHKaQy1FRyY5UDs": {
+    "api_key": "rccm_01kTEtBbpqsR7qBQOtTTeJcjPl60HHKaQy1FRyY5UDs",
+    "api_secret": "qqL57mgASDF8aSpHmwWZi4biodUnC0A1MwVE_cJDPjWMDC47NOXsFNYiL9uCeITe8brrqcHKIlGp9uZgnxm6Iw",
+    "organization": "test-org",
+    "permissions": [
+      "read",
+      "write"
+    ],
+    "created_at": "2025-06-26T00:16:47.134670",
+    "expires_at": "2025-07-26T00:16:47.134673",
+    "is_active": true,
+    "usage_stats": {
+      "total_requests": 1,
+      "last_used": "2025-06-26T00:16:47.144694",
+      "rate_limit": 1000,
+      "current_usage": 0
+    }
+  },
+  "rccm_B4EK5nJgXBk7OCpUCHXDpTCGheIQRtcVRMzNJofZi08": {
+    "api_key": "rccm_B4EK5nJgXBk7OCpUCHXDpTCGheIQRtcVRMzNJofZi08",
+    "api_secret": "Gwmur0BFX21p-v_V1NJe-Lc2FojI2VsNlqNU1sUhARkRCsKM5QHWG8jjPKT5oWkK7p3qPJnOFWStoPRqpjlcjA",
+    "organization": "test",
+    "permissions": [],
+    "created_at": "2025-06-26T00:16:47.151504",
+    "expires_at": "2026-06-26T00:16:47.151513",
+    "is_active": true,
+    "usage_stats": {
+      "total_requests": 0,
+      "last_used": null,
+      "rate_limit": 1000,
+      "current_usage": 0
+    }
+  },
+  "rccm_1wHZZFqhsC3b1bF3tBTBRv_xsGuGPz8Z2Y9LIsZZc5Q": {
+    "api_key": "rccm_1wHZZFqhsC3b1bF3tBTBRv_xsGuGPz8Z2Y9LIsZZc5Q",
+    "api_secret": "bEA_9E13QW-tYvBY5ZuWXatZkive2wh2SY2oUv_48KEfqsGiwDaXiHAiTbPDBgfXjdfXxe6-5bq6JhUaHgq1oA",
+    "organization": "test-users-org",
+    "permissions": [
+      "read_users",
+      "read_progress"
+    ],
+    "created_at": "2025-06-26T00:18:28.510345",
+    "expires_at": "2025-06-27T00:18:28.510357",
+    "is_active": true,
+    "usage_stats": {
+      "total_requests": 4,
+      "last_used": "2025-06-26T00:18:28.608387",
+      "rate_limit": 1000,
+      "current_usage": 0
+    }
+  }
+}

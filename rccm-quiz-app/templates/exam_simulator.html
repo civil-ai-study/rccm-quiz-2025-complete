@@ -1,0 +1,388 @@
+{% extends "base.html" %}
+
+{% block title %}試験シミュレーター - RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- ヘッダー -->
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-graduation-cap text-primary"></i> 試験シミュレーター</h2>
+                <a href="{{ url_for('index') }}" class="btn btn-outline-primary">
+                    <i class="fas fa-home"></i> ホームに戻る
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 試験シミュレーターの説明 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <div class="row align-items-center">
+                    <div class="col-md-2 text-center">
+                        <i class="fas fa-clock fa-3x text-info"></i>
+                    </div>
+                    <div class="col-md-10">
+                        <h5 class="alert-heading">本格的な試験環境を体験</h5>
+                        <p class="mb-2">実際の試験と同じ制限時間・問題数で、本番さながらの環境で学習できます。</p>
+                        <ul class="mb-0">
+                            <li>実際の試験と同じ時間制限</li>
+                            <li>問題・選択肢のランダム配置</li>
+                            <li>詳細な結果分析と弱点診断</li>
+                            <li>見直し機能と問題フラグ機能</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 試験モード選択 -->
+    <div class="row">
+        {% for exam_type, config in exam_configs.items() %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card exam-card h-100 border-{% if exam_type == 'full' %}danger{% elif exam_type == 'standard' %}warning{% else %}success{% endif %}">
+                <div class="card-header bg-{% if exam_type == 'full' %}danger{% elif exam_type == 'standard' %}warning{% else %}success{% endif %} text-white text-center">
+                    <h4 class="mb-0">
+                        {% if exam_type == 'full' %}
+                            <i class="fas fa-crown"></i>
+                        {% elif exam_type == 'standard' %}
+                            <i class="fas fa-trophy"></i>
+                        {% else %}
+                            <i class="fas fa-bolt"></i>
+                        {% endif %}
+                        {{ config.name }}
+                    </h4>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <!-- 試験情報 -->
+                    <div class="exam-info mb-3">
+                        <div class="info-item">
+                            <i class="fas fa-question-circle text-primary"></i>
+                            <span><strong>問題数:</strong> {{ config.total_questions }}問</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock text-warning"></i>
+                            <span><strong>制限時間:</strong> {{ config.time_limit_minutes }}分</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-percentage text-success"></i>
+                            <span><strong>合格ライン:</strong> {{ (config.passing_score * 100)|int }}%</span>
+                        </div>
+                    </div>
+
+                    <!-- カテゴリ分布 -->
+                    <div class="category-distribution mb-3">
+                        <h6><i class="fas fa-chart-pie"></i> 出題分野</h6>
+                        {% for category, count in config.category_distribution.items() %}
+                        <div class="category-item">
+                            <span class="category-name">{{ category }}</span>
+                            <span class="badge badge-secondary">{{ count }}問</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- 難易度分布 -->
+                    <div class="difficulty-distribution mb-4">
+                        <h6><i class="fas fa-layer-group"></i> 難易度分布</h6>
+                        <div class="progress" style="height: 20px;">
+                            {% set basic_width = (config.difficulty_distribution['基本'] * 100)|int %}
+                            {% set standard_width = (config.difficulty_distribution['標準'] * 100)|int %}
+                            {% set advanced_width = (config.difficulty_distribution['応用'] * 100)|int %}
+                            
+                            <div class="progress-bar bg-success" style="width: {{ basic_width }}%" title="基本: {{ basic_width }}%">
+                                基本
+                            </div>
+                            <div class="progress-bar bg-warning" style="width: {{ standard_width }}%" title="標準: {{ standard_width }}%">
+                                標準
+                            </div>
+                            <div class="progress-bar bg-danger" style="width: {{ advanced_width }}%" title="応用: {{ advanced_width }}%">
+                                応用
+                            </div>
+                        </div>
+                        <small class="text-muted mt-1">
+                            基本{{ basic_width }}% / 標準{{ standard_width }}% / 応用{{ advanced_width }}%
+                        </small>
+                    </div>
+
+                    <!-- 推奨レベル -->
+                    <div class="recommended-level mb-3">
+                        {% if exam_type == 'quick' %}
+                        <div class="alert alert-success py-2">
+                            <i class="fas fa-user-check"></i> <strong>初心者・復習向け</strong><br>
+                            <small>基礎力確認や短時間での実力チェックに最適</small>
+                        </div>
+                        {% elif exam_type == 'standard' %}
+                        <div class="alert alert-warning py-2">
+                            <i class="fas fa-user-graduate"></i> <strong>中級者・本格練習向け</strong><br>
+                            <small>本試験に近い環境での実践的な訓練</small>
+                        </div>
+                        {% else %}
+                        <div class="alert alert-danger py-2">
+                            <i class="fas fa-user-ninja"></i> <strong>上級者・本試験完全再現</strong><br>
+                            <small>実際の試験と同じ条件での最終確認</small>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- 開始ボタン -->
+                    <div class="mt-auto text-center">
+                        <button class="btn btn-{% if exam_type == 'full' %}danger{% elif exam_type == 'standard' %}warning{% else %}success{% endif %} btn-lg w-100" 
+                                onclick="startExam('{{ exam_type }}', '{{ config.name }}', {{ config.time_limit_minutes }})">
+                            <i class="fas fa-play-circle"></i> 試験開始
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- 注意事項 -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0"><i class="fas fa-exclamation-triangle"></i> 試験開始前の注意事項</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-clock text-warning"></i> 時間管理</h6>
+                            <ul>
+                                <li>制限時間を超過すると自動提出されます</li>
+                                <li>残り時間は常に画面上部に表示されます</li>
+                                <li>時間の30分前、10分前に警告が表示されます</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-mouse-pointer text-info"></i> 操作方法</h6>
+                            <ul>
+                                <li>見直したい問題にはフラグを設定できます</li>
+                                <li>ナビゲーション画面で回答状況を確認できます</li>
+                                <li>試験中はブラウザの戻るボタンは使用できません</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-chart-bar text-success"></i> 結果分析</h6>
+                            <ul>
+                                <li>詳細な正答率と時間分析を提供</li>
+                                <li>カテゴリ別・難易度別の成績表示</li>
+                                <li>弱点分野の特定と学習推奨</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-save text-primary"></i> データ保存</h6>
+                            <ul>
+                                <li>試験結果は自動的に保存されます</li>
+                                <li>過去の試験結果と比較分析可能</li>
+                                <li>学習進捗に反映されます</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 試験開始確認モーダル -->
+<div class="modal fade" id="startExamModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-graduation-cap"></i> 試験開始確認
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>注意：</strong>試験を開始すると制限時間のカウントが始まります。
+                </div>
+                
+                <div id="examDetailsInModal">
+                    <!-- JavaScriptで動的に設定 -->
+                </div>
+                
+                <div class="mt-3">
+                    <p><strong>準備はよろしいですか？</strong></p>
+                    <ul class="text-muted">
+                        <li>静かな環境で集中できる状態にしてください</li>
+                        <li>途中で中断しないよう時間を確保してください</li>
+                        <li>必要に応じて筆記用具を準備してください</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i> キャンセル
+                </button>
+                <button type="button" class="btn btn-danger" id="confirmStartExam">
+                    <i class="fas fa-play-circle"></i> 試験を開始する
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let selectedExamType = '';
+let selectedExamName = '';
+let selectedTimeLimit = 0;
+
+function startExam(examType, examName, timeLimit) {
+    selectedExamType = examType;
+    selectedExamName = examName;
+    selectedTimeLimit = timeLimit;
+    
+    // モーダルの詳細情報を更新
+    document.getElementById('examDetailsInModal').innerHTML = `
+        <div class="exam-details">
+            <h6><i class="fas fa-info-circle"></i> 試験詳細</h6>
+            <ul class="list-unstyled">
+                <li><strong>試験名:</strong> ${examName}</li>
+                <li><strong>制限時間:</strong> ${timeLimit}分</li>
+                <li><strong>問題数:</strong> ${getQuestionCount(examType)}問</li>
+                <li><strong>合格ライン:</strong> ${getPassingScore(examType)}%</li>
+            </ul>
+        </div>
+    `;
+    
+    // モーダルを表示
+    const modal = new bootstrap.Modal(document.getElementById('startExamModal'));
+    modal.show();
+}
+
+function getQuestionCount(examType) {
+    const counts = {'quick': 20, 'standard': 40, 'full': 60};
+    return counts[examType] || 40;
+}
+
+function getPassingScore(examType) {
+    const scores = {'quick': 60, 'standard': 60, 'full': 65};
+    return scores[examType] || 60;
+}
+
+// 試験開始確認ボタンのイベント
+document.getElementById('confirmStartExam').addEventListener('click', function() {
+    // ローディング表示
+    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 開始中...';
+    this.disabled = true;
+    
+    // 試験開始
+    window.location.href = `/start_exam/${selectedExamType}`;
+});
+
+// ページ読み込み時の設定
+document.addEventListener('DOMContentLoaded', function() {
+    // カードホバー効果
+    const examCards = document.querySelectorAll('.exam-card');
+    examCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+        });
+    });
+});
+</script>
+
+<style>
+.exam-card {
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.info-item i {
+    width: 20px;
+    margin-right: 8px;
+}
+
+.category-item {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.category-name {
+    flex-grow: 1;
+}
+
+.exam-info, .category-distribution, .difficulty-distribution {
+    border-left: 3px solid #17a2b8;
+    padding-left: 15px;
+}
+
+.recommended-level .alert {
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .exam-card {
+        margin-bottom: 1rem;
+    }
+    
+    .progress {
+        height: 15px !important;
+    }
+    
+    .progress-bar {
+        font-size: 0.75rem;
+    }
+}
+
+/* アニメーション */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.exam-card:hover .card-header {
+    animation: pulse 2s infinite;
+}
+
+/* 進捗バーのスタイル */
+.progress-bar {
+    transition: width 0.6s ease;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* モーダルのスタイル */
+.modal-content {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px 15px 0 0;
+}
+
+.exam-details {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+}
+</style>
+{% endblock %}

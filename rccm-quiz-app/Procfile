@@ -1,0 +1,6 @@
+# 🚀 Procfile for Platform Deployment (Heroku, Render, etc.)
+# Uses Gunicorn WSGI server for production deployment
+
+web: gunicorn --config gunicorn.conf.py wsgi:application
+worker: python background_tasks.py  # If you have background tasks
+release: python manage.py migrate    # If you have database migrations

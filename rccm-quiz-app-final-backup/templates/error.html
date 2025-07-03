@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}エラー | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-exclamation-triangle me-2"></i>処理中に問題が発生しました
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger border-0" style="background-color: #f8d7da;">
+                        <p class="mb-0"><strong>{{ error }}</strong></p>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <h6>よくある対処方法：</h6>
+                        <ul class="mb-3">
+                            <li>ページを再読み込みしてください</li>
+                            <li>ブラウザの戻るボタンで前のページに戻ってください</li>
+                            <li>問題が続く場合は、ホームページから改めてお試しください</li>
+                            <li>復習機能をお使いの場合、先に問題を解いて復習登録してください</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="d-flex gap-2 flex-wrap">
+                        <a href="/" class="btn btn-primary">
+                            <i class="fas fa-home me-2"></i>ホームページ
+                        </a>
+                        <button onclick="history.back()" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>前のページに戻る
+                        </button>
+                        <button onclick="location.reload()" class="btn btn-outline-info">
+                            <i class="fas fa-sync-alt me-2"></i>ページを再読み込み
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}同期比較 | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-users me-2"></i>同期比較</h5>
+                </div>
+                <div class="card-body">
+                    {% if peer_comparison %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>あなたの成績</h6>
+                            <div class="progress mb-2">
+                                <div class="progress-bar" role="progressbar" 
+                                     style="width: {{ peer_comparison.user_accuracy }}%"
+                                     aria-valuenow="{{ peer_comparison.user_accuracy }}" 
+                                     aria-valuemin="0" aria-valuemax="100">
+                                    {{ peer_comparison.user_accuracy }}%
+                                </div>
+                            </div>
+                            <small class="text-muted">総問題数: {{ peer_comparison.user_total_questions }}</small>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>平均成績</h6>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-secondary" role="progressbar" 
+                                     style="width: {{ peer_comparison.average_accuracy }}%"
+                                     aria-valuenow="{{ peer_comparison.average_accuracy }}" 
+                                     aria-valuemin="0" aria-valuemax="100">
+                                    {{ peer_comparison.average_accuracy }}%
+                                </div>
+                            </div>
+                            <small class="text-muted">比較対象: {{ peer_comparison.peer_count }}人</small>
+                        </div>
+                    </div>
+                    
+                    {% if peer_comparison.ranking %}
+                    <div class="mt-4">
+                        <h6>あなたの順位</h6>
+                        <div class="alert alert-info">
+                            <i class="fas fa-trophy me-2"></i>
+                            {{ peer_comparison.peer_count }}人中 {{ peer_comparison.ranking }}位
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    {% else %}
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        比較データがありません。問題を解いてから再度お試しください。
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

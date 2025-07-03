@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: rccm-quiz-app-2025
+    runtime: python
+    buildCommand: pip install -r requirements_minimal.txt
+    startCommand: gunicorn -c gunicorn.conf.py wsgi:application
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: RENDER
+        value: true
+    healthCheckPath: /
+    autoDeploy: false

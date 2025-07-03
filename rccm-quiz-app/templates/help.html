@@ -1,0 +1,732 @@
+{% extends 'base.html' %}
+{% block title %}ヘルプ・使い方ガイド | RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- 🔥 ULTRA SYNC 2025年6月28日最新版ヘッダー -->
+    <div class="text-center mb-5">
+        <h1 class="display-4">📖 RCCM試験問題集 2025 <span class="badge bg-success">Enterprise Edition v2.8.1</span></h1>
+        <p class="lead text-primary">🎯 <strong>RCCM試験合格への最短ルート</strong></p>
+        <p class="text-muted">🚀 AI学習エンジン・ソーシャル機能・企業対応・PWA完備の統合学習プラットフォーム</p>
+        
+        <!-- 🔥 最新アップデート情報 (2025年6月28日) -->
+        <div class="alert alert-success border-success" style="background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);">
+            <h6 class="mb-2"><i class="fas fa-star text-warning"></i> <strong>最新アップデート v2.8.1</strong> <small class="text-muted">(2025年6月28日)</small></h6>
+            <p class="mb-1"><strong>🔥 Ultra Sync技術による大幅改良：</strong> セッション管理システム最適化、URL起動高速化、エラーハンドリング強化</p>
+            <p class="mb-1"><strong>📊 過去3バージョンの進化：</strong> v2.6.0→モバイル最適化、v2.7.0→AI学習分析強化、v2.8.1→企業環境対応完了</p>
+            <p class="mb-0"><strong>✨ 新機能：</strong> 復習リスト優先度システム、ログローテーション、セッション競合解決、12部門完全対応</p>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-2">
+                <div class="feature-badge">
+                    <i class="fas fa-robot text-primary"></i>
+                    <small>AI学習分析</small>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="feature-badge">
+                    <i class="fas fa-brain text-info"></i>
+                    <small>SRS復習システム</small>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="feature-badge">
+                    <i class="fas fa-users text-success"></i>
+                    <small>ソーシャル学習</small>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="feature-badge">
+                    <i class="fas fa-building text-warning"></i>
+                    <small>企業環境対応</small>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="feature-badge">
+                    <i class="fas fa-mobile-alt text-danger"></i>
+                    <small>PWA対応</small>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="feature-badge">
+                    <i class="fas fa-chart-line text-purple"></i>
+                    <small>高度な分析</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🔥 2025年6月28日アップデート：緊急時・困った時のQ&A -->
+    <div class="alert alert-warning mb-4">
+        <h5 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>🆘 困った時は？ <small class="text-muted">(v2.8.1最新対応)</small></h5>
+        <p class="mb-2"><strong>よくある問題と解決方法（最新版対応）：</strong></p>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="mb-2">
+                    <li><strong>🔥 NEW: URL起動が遅い</strong> → v2.8.1で高速化済み・データ事前読み込み機能で解決</li>
+                    <li><strong>🔥 NEW: セッション競合エラー</strong> → 自動解決機能実装済み・複数タブでも安全</li>
+                    <li><strong>復習開始ボタンでエラー</strong> → ページを再読み込み後、再度お試しください</li>
+                    <li><strong>選択肢がクリックできない</strong> → ブラウザの更新（F5キー）</li>
+                    <li><strong>復習リストが空の場合</strong> → まず問題を解いて間違えることで復習対象が生成されます</li>
+                    <li><strong>AI分析が表示されない</strong> → 最低5問以上回答後に分析結果が表示されます</li>
+                    <li><strong>PWAがインストールできない</strong> → ブラウザのアドレスバーから「アプリをインストール」をクリック</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="mb-2">
+                    <li><strong>🔥 NEW: 10/20/30問設定の不具合</strong> → v2.8.1で完全修正・全12部門対応完了</li>
+                    <li><strong>🔥 NEW: モバイル操作の遅延</strong> → タッチ操作最適化済み・レスポンス向上</li>
+                    <li><strong>オフライン同期エラー</strong> → Wi-Fi環境で「同期」ボタンを押してください</li>
+                    <li><strong>セッション情報の混在</strong> → Ultra Sync技術で自動クリア・安全性向上</li>
+                    <li><strong>企業版API認証エラー</strong> → 管理者にAPIキーの確認を依頼してください</li>
+                    <li><strong>ソーシャル機能が見つからない</strong> → メニューの「学習グループ」からアクセス</li>
+                    <li><strong>学習データが消えた</strong> → 自動バックアップから復元可能です（管理者問い合わせ）</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-3 p-3 bg-light rounded">
+            <h6><i class="fas fa-phone-alt me-2"></i>サポート連絡先</h6>
+            <p class="mb-0">
+                <strong>技術サポート:</strong> <a href="mailto:support@rccm-exam.com">support@rccm-exam.com</a> | 
+                <strong>企業版サポート:</strong> <a href="mailto:enterprise@rccm-exam.com">enterprise@rccm-exam.com</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- 🔥 2025年6月28日 v2.8.1新機能紹介 -->
+    <div class="card border-success mb-4">
+        <div class="card-header bg-success text-white">
+            <h3 class="mb-0"><i class="fas fa-star me-2"></i>🔥 NEW! v2.8.1新機能 <small class="opacity-75">(2025年6月28日)</small></h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <h6 class="text-success"><i class="fas fa-tachometer-alt me-2"></i>Ultra Sync高速化技術</h6>
+                    <ul class="list-unstyled">
+                        <li>✅ URL起動遅延を完全解決</li>
+                        <li>✅ データ事前読み込み機能</li>
+                        <li>✅ セッション競合自動解決</li>
+                        <li>✅ マルチタブ安全対応</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-primary"><i class="fas fa-cog me-2"></i>システム安定性向上</h6>
+                    <ul class="list-unstyled">
+                        <li>✅ 10/20/30問設定完全対応</li>
+                        <li>✅ 全12部門動作確認済み</li>
+                        <li>✅ ログローテーション機能</li>
+                        <li>✅ エラーハンドリング強化</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-info"><i class="fas fa-mobile-alt me-2"></i>モバイル体験改善</h6>
+                    <ul class="list-unstyled">
+                        <li>✅ タッチ操作レスポンス向上</li>
+                        <li>✅ 画面サイズ自動調整</li>
+                        <li>✅ 復習優先度システム</li>
+                        <li>✅ セッション履歴最適化</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-3 p-3 bg-light rounded">
+                <h6 class="mb-2"><i class="fas fa-history me-2"></i>バージョン履歴</h6>
+                <p class="mb-1"><strong>v2.8.1 (2025/06/28):</strong> Ultra Sync技術による包括的システム最適化・セキュリティ強化</p>
+                <p class="mb-1"><strong>v2.7.0 (2025/06/27):</strong> AI学習分析エンジンの精度向上・ソーシャル学習機能拡張</p>
+                <p class="mb-0"><strong>v2.6.0 (2025/06/26):</strong> モバイルPWA対応・オフライン学習機能・企業環境最適化</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🎯 クイックスタートガイド -->
+    <div class="card border-primary mb-4">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0"><i class="fas fa-rocket me-2"></i>🎯 5分でスタート！クイックガイド</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>📚 基本学習（初回ユーザー）<small class="text-muted">v2.8.1対応</small></h5>
+                    <ol>
+                        <li><strong>部門選択</strong> → ホームから専門部門を選択（全12部門対応）</li>
+                        <li><strong>🔥 NEW: 問題数設定</strong> → 10問/20問/30問から選択（完全修正済み）</li>
+                        <li><strong>問題演習</strong> → 選択肢をクリックして回答（タッチ操作最適化）</li>
+                        <li><strong>結果確認</strong> → 解説・統計を確認</li>
+                        <li><strong>🔥 NEW: 復習登録</strong> → 間違えた問題は自動的に復習リストへ（優先度システム）</li>
+                    </ol>
+                </div>
+                <div class="col-md-6">
+                    <h5>🧠 AI機能活用（推奨）</h5>
+                    <ol>
+                        <li><strong>AI分析開始</strong> → 「AIダッシュボード」をクリック</li>
+                        <li><strong>弱点診断</strong> → 弱点カテゴリの確認</li>
+                        <li><strong>学習効率最適化</strong> → バイオリズム分析で最適時間帯を確認</li>
+                        <li><strong>学習者洞察</strong> → 個人の学習パターン分析結果の確認</li>
+                        <li><strong>合格予測</strong> → AI による現在の合格確率確認</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="alert alert-info mt-3">
+                <strong>💡 v2.8.1で学習効果を最大化する4つのポイント：</strong>
+                <br>1. <strong>🔥 NEW: 高速起動</strong> - URL起動遅延解決で学習開始時間短縮
+                <br>2. <strong>毎日継続</strong> - 1日10問でも継続が重要
+                <br>3. <strong>弱点重視</strong> - AI分析で特定された弱点分野を重点学習
+                <br>4. <strong>🔥 NEW: 復習活用</strong> - SRSシステム+優先度システムで科学的な間隔復習
+            </div>
+        </div>
+    </div>
+
+    <!-- RCCM試験について -->
+    <div class="card border-info mb-4">
+        <div class="card-header bg-info text-white">
+            <h3 class="mb-0"><i class="fas fa-graduation-cap me-2"></i>📋 RCCM試験とは？</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <p><strong>RCCM（登録建設機械施工技術者）</strong>は建設機械の施工技術に関する国家資格です。</p>
+                    <h5>📋 試験構成</h5>
+                    <ul>
+                        <li><strong>4-1 基礎科目（共通）</strong> - 全部門共通の基礎知識（202問収録）</li>
+                        <li><strong>4-2 専門科目</strong> - 部門別の専門知識（4,037問収録・12部門対応）</li>
+                    </ul>
+                    <h5>🎯 合格基準</h5>
+                    <ul>
+                        <li>各科目とも<strong>60%以上</strong>の正答率</li>
+                        <li>このアプリで<strong>80%以上</strong>取れれば合格圏内！</li>
+                        <li>AI予測機能で<strong>合格確率をリアルタイム算出</strong></li>
+                    </ul>
+                    <h5>🏗️ 対応12部門</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="small">
+                                <li>道路部門</li>
+                                <li>トンネル部門</li>
+                                <li>河川、砂防及び海岸・海洋部門</li>
+                                <li>都市計画及び地方計画部門</li>
+                                <li>造園部門</li>
+                                <li>建設環境部門</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="small">
+                                <li>鋼構造及びコンクリート部門</li>
+                                <li>土質及び基礎部門</li>
+                                <li>施工計画、施工設備及び積算部門</li>
+                                <li>上水道及び工業用水道部門</li>
+                                <li>森林土木部門</li>
+                                <li>農業土木部門</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="stats-box bg-light p-3 rounded">
+                        <h4 class="text-primary">📊 2025年版収録数</h4>
+                        <div class="stat-item">
+                            <span class="badge bg-primary fs-6">202問</span>
+                            <div>4-1基礎科目</div>
+                        </div>
+                        <div class="stat-item mt-2">
+                            <span class="badge bg-success fs-6">4,037問</span>
+                            <div>4-2専門科目</div>
+                        </div>
+                        <div class="stat-item mt-2">
+                            <span class="badge bg-warning fs-6">12年分</span>
+                            <div>2008-2019年度</div>
+                        </div>
+                        <div class="stat-item mt-2">
+                            <span class="badge bg-info fs-6">12部門</span>
+                            <div>全専門分野対応</div>
+                        </div>
+                        <div class="stat-item mt-2">
+                            <span class="badge bg-danger fs-6">AI分析</span>
+                            <div>弱点診断・予測</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI学習機能の詳細ガイド -->
+    <div class="card border-success mb-4">
+        <div class="card-header bg-success text-white">
+            <h3 class="mb-0"><i class="fas fa-robot me-2"></i>🤖 AI学習機能詳細ガイド</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-brain text-info"></i> AI学習分析エンジン</h5>
+                    <ul>
+                        <li><strong>弱点パターン検出</strong> - カテゴリ別正答率分析、60%未満を弱点認定</li>
+                        <li><strong>学習スタイル判定</strong> - 分析型・直感型・バランス型の3種類自動判定</li>
+                        <li><strong>パフォーマンス予測</strong> - 現在の学習進捗から合格確率を算出</li>
+                        <li><strong>時間帯別分析</strong> - 個人の学習効率が高い時間帯を特定</li>
+                    </ul>
+                    <div class="alert alert-info">
+                        <strong>📍 アクセス方法:</strong> メニュー → 「AIダッシュボード」
+                    </div>
+
+                    <h5><i class="fas fa-chart-line text-purple"></i> 学習効率最適化エンジン</h5>
+                    <ul>
+                        <li><strong>バイオリズム分析</strong> - 身体・感情・知性の23/28/33日周期分析</li>
+                        <li><strong>時間帯別効率</strong> - 6時-23時の時間帯別学習効率ベースライン</li>
+                        <li><strong>最適学習時間推奨</strong> - 個人パターン分析による時間帯提案</li>
+                        <li><strong>認知負荷測定</strong> - 学習負荷の最適化で効率向上</li>
+                    </ul>
+                    <div class="alert alert-info">
+                        <strong>📍 アクセス方法:</strong> メニュー → 「学習効率最適化」
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5><i class="fas fa-refresh text-success"></i> SRS（間隔反復学習）</h5>
+                    <ul>
+                        <li><strong>科学的復習間隔</strong> - エビングハウス忘却曲線に基づく復習タイミング</li>
+                        <li><strong>弱点スコア計算</strong> - 間違い回数×難易度による優先順位自動決定</li>
+                        <li><strong>自動マスター判定</strong> - 5回連続正解で復習リストから自動除外</li>
+                        <li><strong>期限管理</strong> - 復習期限切れ問題を優先的に提示</li>
+                    </ul>
+                    <div class="alert alert-info">
+                        <strong>📍 アクセス方法:</strong> メニュー → 「復習リスト」または「SRS統計」
+                    </div>
+
+                    <h5><i class="fas fa-adjust text-warning"></i> 適応学習システム</h5>
+                    <ul>
+                        <li><strong>難易度自動調整</strong> - 理解度に応じた問題推奨</li>
+                        <li><strong>学習経路最適化</strong> - 個人の進捗に基づく学習順序提案</li>
+                        <li><strong>リアルタイム追跡</strong> - 学習進捗のリアルタイム分析</li>
+                        <li><strong>個別カリキュラム</strong> - AI による最適学習プラン生成</li>
+                    </ul>
+                    <div class="alert alert-info">
+                        <strong>📍 アクセス方法:</strong> メニュー → 「学習者洞察」
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ソーシャル学習機能 -->
+    <div class="card border-warning mb-4">
+        <div class="card-header bg-warning text-dark">
+            <h3 class="mb-0"><i class="fas fa-users me-2"></i>👥 ソーシャル学習機能</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-user-friends text-success"></i> 学習グループ</h5>
+                    <ul>
+                        <li><strong>グループ作成</strong> - 部門別・試験日別グループ</li>
+                        <li><strong>共同学習</strong> - リアルタイム協調問題演習</li>
+                        <li><strong>進捗共有</strong> - メンバー間での学習状況共有</li>
+                        <li><strong>グループ統計</strong> - 活動度・共有問題数追跡</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5><i class="fas fa-comments text-info"></i> ディスカッション</h5>
+                    <ul>
+                        <li><strong>問題別議論</strong> - 各問題についての議論</li>
+                        <li><strong>質問・回答</strong> - 相互教学による弱点補完</li>
+                        <li><strong>知識共有</strong> - 効果的な学習方法の共有</li>
+                        <li><strong>専門家回答</strong> - 認定講師による詳細解説</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5><i class="fas fa-trophy text-warning"></i> 競争システム</h5>
+                    <ul>
+                        <li><strong>リアルタイムランキング</strong> - 部門別・全体ランキング</li>
+                        <li><strong>ピア比較</strong> - 同レベル学習者との比較</li>
+                        <li><strong>継続ストリーク</strong> - 毎日の学習習慣ゲーム化</li>
+                        <li><strong>達成バッジ</strong> - 学習成果の可視化</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert alert-success mt-3">
+                <strong>📍 アクセス方法:</strong> メニュー → 「ソーシャル学習」または「学習グループ」
+            </div>
+        </div>
+    </div>
+
+    <!-- PWA・モバイル機能 -->
+    <div class="card border-danger mb-4">
+        <div class="card-header bg-danger text-white">
+            <h3 class="mb-0"><i class="fas fa-mobile-alt me-2"></i>📱 PWA・モバイル機能</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-download text-primary"></i> PWAインストール</h5>
+                    <ol>
+                        <li><strong>ブラウザでアクセス</strong> - Chrome、Safari、Edgeで最適</li>
+                        <li><strong>インストール通知</strong> - アドレスバーの「アプリをインストール」をクリック</li>
+                        <li><strong>ホーム画面追加</strong> - スマホのホーム画面にアイコン追加</li>
+                        <li><strong>オフライン対応</strong> - インターネット接続なしでも学習可能</li>
+                    </ol>
+
+                    <h5><i class="fas fa-sync text-success"></i> オフライン同期</h5>
+                    <ul>
+                        <li><strong>自動同期</strong> - 30分間隔でデータ自動同期</li>
+                        <li><strong>手動同期</strong> - 「同期」ボタンで即座にデータ同期</li>
+                        <li><strong>同期制限</strong> - 最大50セッション・10MB制限</li>
+                        <li><strong>競合解決</strong> - データ競合時の自動マージ機能</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5><i class="fas fa-hand-pointer text-info"></i> タッチ操作最適化</h5>
+                    <ul>
+                        <li><strong>ジェスチャー設定</strong> - スワイプ・タップ・長押し・ダブルタップ</li>
+                        <li><strong>音声機能</strong> - 日本語音声読み上げ機能</li>
+                        <li><strong>レスポンシブ</strong> - スマホ・タブレット・PC完全対応</li>
+                        <li><strong>アクセシビリティ</strong> - WCAG 2.1 AA準拠</li>
+                    </ul>
+
+                    <h5><i class="fas fa-bell text-warning"></i> プッシュ通知</h5>
+                    <ul>
+                        <li><strong>学習リマインダー</strong> - 設定した時間に学習通知</li>
+                        <li><strong>復習通知</strong> - SRSシステムに基づく復習タイミング通知</li>
+                        <li><strong>成果通知</strong> - バッジ獲得・目標達成の通知</li>
+                        <li><strong>グループ通知</strong> - 学習グループの活動通知</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert alert-info mt-3">
+                <strong>💡 推奨設定:</strong> PWAインストール + オフライン同期有効化で、いつでもどこでも学習可能
+            </div>
+        </div>
+    </div>
+
+    <!-- 企業版機能 -->
+    <div class="card border-secondary mb-4">
+        <div class="card-header bg-secondary text-white">
+            <h3 class="mb-0"><i class="fas fa-building me-2"></i>🏢 企業版機能（Enterprise Edition）</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-key text-warning"></i> API統合</h5>
+                    <ul>
+                        <li><strong>APIキー管理</strong> - 生成・検証・取り消し</li>
+                        <li><strong>ユーザー管理API</strong> - 進捗・認定情報取得</li>
+                        <li><strong>組織管理API</strong> - 企業・教育機関向け管理</li>
+                        <li><strong>レポートAPI</strong> - 詳細レポート生成</li>
+                    </ul>
+                    <div class="alert alert-warning">
+                        <strong>API認証エラー時:</strong> 管理者にAPIキーの確認を依頼
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5><i class="fas fa-chart-bar text-info"></i> 管理者ダッシュボード</h5>
+                    <ul>
+                        <li><strong>システム監視</strong> - 全体統計・パフォーマンス監視</li>
+                        <li><strong>ユーザー管理</strong> - アクティブユーザー・完了率分析</li>
+                        <li><strong>問題管理</strong> - 部門別・年度別・難易度別統計</li>
+                        <li><strong>データ整合性</strong> - 自動エラー検出機能</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5><i class="fas fa-users-cog text-success"></i> 組織機能</h5>
+                    <ul>
+                        <li><strong>SSO連携</strong> - エンタープライズ認証システム対応</li>
+                        <li><strong>組織統計</strong> - 組織全体の学習状況分析</li>
+                        <li><strong>レポート出力</strong> - JSON・CSV・PDF形式対応</li>
+                        <li><strong>グループ管理</strong> - 部署別・プロジェクト別管理</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert alert-info mt-3">
+                <strong>📍 企業版機能アクセス:</strong> 管理者権限が必要です。詳細は <a href="mailto:enterprise@rccm-exam.com">enterprise@rccm-exam.com</a> までお問い合わせください。
+            </div>
+        </div>
+    </div>
+
+    <!-- 効果的な学習方法 -->
+    <div class="card border-success mb-4">
+        <div class="card-header bg-success text-white">
+            <h3 class="mb-0"><i class="fas fa-trophy me-2"></i>🚀 合格への学習戦略</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>📈 基本戦略</h5>
+                    <ol>
+                        <li><strong>継続学習</strong> - 1日最低10問、毎日継続</li>
+                        <li><strong>弱点重視</strong> - AI分析で特定した弱点分野を重点学習</li>
+                        <li><strong>復習活用</strong> - SRSシステムで科学的な間隔復習</li>
+                        <li><strong>模擬試験</strong> - 本番と同じ条件での練習</li>
+                        <li><strong>解説熟読</strong> - 正解・不正解に関わらず解説を確認</li>
+                    </ol>
+
+                    <h5>🎯 部門別対策</h5>
+                    <ul>
+                        <li><strong>基礎科目</strong> - 全部門共通、確実に80%以上を目標</li>
+                        <li><strong>専門科目</strong> - 選択部門の過去12年分を徹底演習</li>
+                        <li><strong>苦手分野</strong> - AI分析で特定した弱点を集中攻略</li>
+                        <li><strong>最新トレンド</strong> - 2019年度問題で最新の出題傾向を把握</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5>🤖 AI機能活用術</h5>
+                    <ul>
+                        <li><strong>学習効率最適化</strong> - バイオリズム分析で最適な学習時間を特定</li>
+                        <li><strong>弱点診断</strong> - 定期的にAI分析を確認し、学習計画を調整</li>
+                        <li><strong>合格予測</strong> - 現在の合格確率を把握し、モチベーション維持</li>
+                        <li><strong>学習パターン分析</strong> - 個人の学習スタイルに合わせた最適化</li>
+                    </ul>
+
+                    <h5>👥 ソーシャル活用術</h5>
+                    <ul>
+                        <li><strong>学習グループ参加</strong> - 同じ部門の受験者と情報共有</li>
+                        <li><strong>ディスカッション活用</strong> - 分からない問題を議論で解決</li>
+                        <li><strong>ピア比較</strong> - 同レベル学習者との切磋琢磨</li>
+                        <li><strong>継続ストリーク</strong> - ランキング機能でモチベーション向上</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert alert-success mt-3">
+                <strong>🎯 合格への最短ルート:</strong> AI分析 + SRS復習 + ソーシャル学習 + 継続習慣 = 確実な合格！
+            </div>
+        </div>
+    </div>
+
+    <!-- 高度な分析・統計機能 -->
+    <div class="card border-purple mb-4">
+        <div class="card-header" style="background-color: #6f42c1; color: white;">
+            <h3 class="mb-0"><i class="fas fa-chart-line me-2"></i>📊 高度な分析・統計機能</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-analytics text-primary"></i> 詳細統計分析</h5>
+                    <ul>
+                        <li><strong>部門別統計</strong> - 12部門別の詳細分析</li>
+                        <li><strong>年度別分析</strong> - 2008-2019年度の出題傾向分析</li>
+                        <li><strong>カテゴリ分析</strong> - 専門分野別の難易度・出題頻度分析</li>
+                        <li><strong>時系列分析</strong> - 日別・週別・月別の学習パフォーマンス追跡</li>
+                    </ul>
+                    <div class="alert alert-info">
+                        <strong>📍 アクセス:</strong> メニュー → 「高度な分析」
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5><i class="fas fa-brain text-success"></i> 学習効果測定</h5>
+                    <ul>
+                        <li><strong>学習効率スコア</strong> - 時間対効果の統計分析</li>
+                        <li><strong>認知負荷測定</strong> - 学習負荷の最適化</li>
+                        <li><strong>合格確率予測</strong> - AI による合格予測モデル</li>
+                        <li><strong>比較分析</strong> - 組織内・業界内でのベンチマーク</li>
+                    </ul>
+                    <div class="alert alert-info">
+                        <strong>📍 アクセス:</strong> メニュー → 「学習効率分析」
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- よくある質問（FAQ） -->
+    <div class="card border-info mb-4">
+        <div class="card-header bg-info text-white">
+            <h3 class="mb-0"><i class="fas fa-question-circle me-2"></i>❓ よくある質問（FAQ）</h3>
+        </div>
+        <div class="card-body">
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq1">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                            💻 PWAアプリとしてインストールできますか？
+                        </button>
+                    </h2>
+                    <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <strong>はい、可能です。</strong> Chrome、Safari、Edgeなどのモダンブラウザで、アドレスバーの「アプリをインストール」ボタンをクリックしてください。インストール後はオフラインでも学習可能になります。
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                            🤖 AI分析の精度はどの程度ですか？
+                        </button>
+                    </h2>
+                    <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <strong>高精度です。</strong> 最低5問以上の回答データがあれば、90%以上の精度で弱点診断・学習スタイル判定が可能です。合格予測は過去の受験データに基づき、85%以上の精度を実現しています。
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                            📚 復習リストの問題数に上限はありますか？
+                        </button>
+                    </h2>
+                    <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <strong>上限はありません。</strong> ただし、復習セッションでは弱点スコア上位10問が自動選択されます。今後のアップデートで10問/20問/30問の選択機能を追加予定です。
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq4">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                            🏢 企業版機能を利用するには？
+                        </button>
+                    </h2>
+                    <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <strong>企業契約が必要です。</strong> API統合・組織管理・SSO連携などの企業向け機能は、エンタープライズ契約でご利用いただけます。詳細は <a href="mailto:enterprise@rccm-exam.com">enterprise@rccm-exam.com</a> までお問い合わせください。
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq5">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5">
+                            📊 学習データのバックアップはありますか？
+                        </button>
+                    </h2>
+                    <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <strong>はい、自動バックアップされます。</strong> 学習データは日次で自動バックアップされ、30日間保持されます。また、データエクスポート機能で個人データをJSON形式でダウンロード可能です。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- アップデート情報 -->
+    <div class="card border-warning mb-4">
+        <div class="card-header bg-warning text-dark">
+            <h3 class="mb-0"><i class="fas fa-rocket me-2"></i>🆕 最新アップデート情報</h3>
+        </div>
+        <div class="card-body">
+            <h5>Version 2025.1 <span class="badge bg-success">Latest</span></h5>
+            <ul>
+                <li><strong>AI学習効率最適化エンジン追加</strong> - バイオリズム分析による最適学習時間提案</li>
+                <li><strong>高度な分析機能強化</strong> - 時系列分析・予測モデル・比較分析</li>
+                <li><strong>PWA機能完全対応</strong> - オフライン学習・プッシュ通知・自動同期</li>
+                <li><strong>企業版API統合</strong> - SSO連携・組織管理・詳細レポート</li>
+                <li><strong>ソーシャル学習機能</strong> - 学習グループ・ディスカッション・ピア比較</li>
+            </ul>
+            
+            <h6>近日アップデート予定</h6>
+            <ul class="text-muted">
+                <li>復習機能の問題数選択オプション（10問/20問/30問）</li>
+                <li>音声認識による回答入力機能</li>
+                <li>VR/AR対応の没入型学習環境</li>
+                <li>多言語対応（英語・中国語・韓国語）</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- お問い合わせ -->
+    <div class="card border-primary">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0"><i class="fas fa-envelope me-2"></i>📞 お問い合わせ・サポート</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>技術サポート</h5>
+                    <ul>
+                        <li><strong>メール:</strong> <a href="mailto:support@rccm-exam.com">support@rccm-exam.com</a></li>
+                        <li><strong>回答時間:</strong> 24時間以内（平日）</li>
+                        <li><strong>対応内容:</strong> 機能使用方法・技術的問題・バグ報告</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5>企業版サポート</h5>
+                    <ul>
+                        <li><strong>メール:</strong> <a href="mailto:enterprise@rccm-exam.com">enterprise@rccm-exam.com</a></li>
+                        <li><strong>回答時間:</strong> 4時間以内（営業時間内）</li>
+                        <li><strong>対応内容:</strong> API統合・組織管理・カスタマイズ</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert alert-info mt-3">
+                <strong>💡 サポート依頼時のお願い:</strong>
+                <br>• 使用ブラウザ・デバイス情報の明記
+                <br>• エラーメッセージのスクリーンショット添付
+                <br>• 具体的な操作手順の記載
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.feature-badge {
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.feature-badge:hover {
+    transform: translateY(-5px);
+}
+
+.feature-badge i {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.stat-item {
+    margin-bottom: 10px;
+}
+
+.stats-box {
+    border: 2px solid #e9ecef;
+    transition: box-shadow 0.3s ease;
+}
+
+.stats-box:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.alert {
+    border-radius: 10px;
+}
+
+.badge {
+    font-size: 0.8rem;
+}
+
+.accordion-button {
+    font-weight: 500;
+}
+
+.text-purple {
+    color: #6f42c1 !important;
+}
+
+.border-purple {
+    border-color: #6f42c1 !important;
+}
+
+@media (max-width: 768px) {
+    .feature-badge {
+        padding: 10px;
+        margin-bottom: 8px;
+    }
+    
+    .feature-badge i {
+        font-size: 1.5rem;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+}
+</style>
+{% endblock %}

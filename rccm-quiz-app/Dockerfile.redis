@@ -1,0 +1,51 @@
+# RCCM学習アプリ - Redis統合版 Dockerfile
+# Flask-Session + Redis 次世代セッション管理システム対応
+
+FROM python:3.11-slim
+
+# システム依存関係インストール
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    build-essential \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# 作業ディレクトリ設定
+WORKDIR /app
+
+# Python依存関係ファイルコピー
+COPY requirements_redis.txt .
+COPY requirements.txt .
+
+# 依存関係インストール
+RUN pip install --no-cache-dir -r requirements_redis.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# アプリケーションファイルコピー
+COPY . .
+
+# 権限設定
+RUN chmod +x session_migration_tool.py
+
+# ログディレクトリ作成
+RUN mkdir -p /app/logs
+RUN mkdir -p /app/session_migration_backup
+
+# 環境変数設定
+ENV FLASK_APP=app_redis_integration.py
+ENV FLASK_ENV=production
+ENV PYTHONPATH=/app
+ENV REDIS_HOST=redis
+ENV REDIS_PORT=6379
+ENV REDIS_DB=0
+
+# ヘルスチェック
+HEALTHCHECK --interval=30s --timeout=30s --start-period=30s --retries=3 \
+  CMD curl -f http://localhost:5000/admin/session/status || exit 1
+
+# ポート公開
+EXPOSE 5000
+
+# 起動コマンド
+CMD ["python", "app_redis_integration.py"]

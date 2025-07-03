@@ -1,0 +1,691 @@
+{% extends "base.html" %}
+
+{% block title %}モバイル設定 - RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- ヘッダー -->
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-mobile-alt text-primary"></i> モバイル設定</h2>
+                <a href="{{ url_for('index') }}" class="btn btn-outline-primary">
+                    <i class="fas fa-home"></i> ホームに戻る
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PWA機能 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card pwa-card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-download"></i> PWA（Progressive Web App）
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6>アプリとしてインストール</h6>
+                            <p class="text-muted">このWebアプリをスマートフォンやPCにアプリとしてインストールできます。オフライン学習や高速起動が可能になります。</p>
+                            
+                            <div class="pwa-features mb-3">
+                                <div class="feature-item">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span>オフライン学習対応</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span>高速起動</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span>ホーム画面ショートカット</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span>プッシュ通知（今後対応予定）</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <button id="installPWABtn" class="btn btn-success btn-lg mb-3" style="display: none;">
+                                <i class="fas fa-download"></i> アプリをインストール
+                            </button>
+                            <div id="pwaStatus" class="alert alert-info">
+                                <i class="fas fa-info-circle"></i>
+                                <span id="pwaStatusText">PWA対応ブラウザでアクセスしてください</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 音声機能設定 -->
+    <div class="row mb-4">
+        <div class="col-lg-6">
+            <div class="card voice-settings-card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-volume-up"></i> 音声読み上げ設定
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="voiceEnabled" checked>
+                        <label class="form-check-label" for="voiceEnabled">
+                            音声読み上げを有効にする
+                        </label>
+                    </div>
+
+                    <div class="voice-controls">
+                        <div class="mb-3">
+                            <label for="voiceRate" class="form-label">
+                                読み上げ速度: <span id="voiceRateValue">1.0</span>
+                            </label>
+                            <input type="range" class="form-range" id="voiceRate" 
+                                   min="0.5" max="2.0" step="0.1" value="1.0">
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">遅い</small>
+                                <small class="text-muted">速い</small>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="voicePitch" class="form-label">
+                                音の高さ: <span id="voicePitchValue">1.0</span>
+                            </label>
+                            <input type="range" class="form-range" id="voicePitch" 
+                                   min="0.5" max="2.0" step="0.1" value="1.0">
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">低い</small>
+                                <small class="text-muted">高い</small>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="voiceVolume" class="form-label">
+                                音量: <span id="voiceVolumeValue">0.8</span>
+                            </label>
+                            <input type="range" class="form-range" id="voiceVolume" 
+                                   min="0.0" max="1.0" step="0.1" value="0.8">
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">小</small>
+                                <small class="text-muted">大</small>
+                            </div>
+                        </div>
+
+                        <button id="testVoiceBtn" class="btn btn-outline-primary">
+                            <i class="fas fa-play"></i> テスト読み上げ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- タッチジェスチャー設定 -->
+        <div class="col-lg-6">
+            <div class="card touch-settings-card">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                        <i class="fas fa-hand-pointer"></i> タッチジェスチャー設定
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="gesture-settings">
+                        <div class="mb-3">
+                            <label for="swipeThreshold" class="form-label">
+                                スワイプ感度: <span id="swipeThresholdValue">50</span>px
+                            </label>
+                            <input type="range" class="form-range" id="swipeThreshold" 
+                                   min="20" max="100" step="5" value="50">
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">敏感</small>
+                                <small class="text-muted">鈍感</small>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="longPressDelay" class="form-label">
+                                長押し判定時間: <span id="longPressDelayValue">500</span>ms
+                            </label>
+                            <input type="range" class="form-range" id="longPressDelay" 
+                                   min="300" max="1000" step="50" value="500">
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">短い</small>
+                                <small class="text-muted">長い</small>
+                            </div>
+                        </div>
+
+                        <!-- ジェスチャー説明 -->
+                        <div class="gesture-guide">
+                            <h6><i class="fas fa-info-circle"></i> 利用可能なジェスチャー</h6>
+                            <div class="gesture-item">
+                                <div class="gesture-icon">👈</div>
+                                <div class="gesture-desc">
+                                    <strong>左スワイプ</strong><br>
+                                    <small>次の問題に進む</small>
+                                </div>
+                            </div>
+                            <div class="gesture-item">
+                                <div class="gesture-icon">👉</div>
+                                <div class="gesture-desc">
+                                    <strong>右スワイプ</strong><br>
+                                    <small>前の問題に戻る</small>
+                                </div>
+                            </div>
+                            <div class="gesture-item">
+                                <div class="gesture-icon">✋</div>
+                                <div class="gesture-desc">
+                                    <strong>長押し</strong><br>
+                                    <small>コンテキストメニュー表示</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- オフライン機能 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card offline-card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-wifi-slash"></i> オフライン機能
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>オフライン学習データ</h6>
+                            <div id="offlineStatus" class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>保存済みセッション数:</span>
+                                    <span id="offlineSessionCount" class="badge bg-primary">0</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>使用容量:</span>
+                                    <span id="offlineDataSize" class="badge bg-info">0 MB</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>最終同期:</span>
+                                    <span id="lastSyncTime" class="badge bg-secondary">未同期</span>
+                                </div>
+                            </div>
+
+                            <div class="offline-controls">
+                                <button id="syncOfflineBtn" class="btn btn-primary me-2">
+                                    <i class="fas fa-sync"></i> 今すぐ同期
+                                </button>
+                                <button id="clearOfflineBtn" class="btn btn-outline-danger">
+                                    <i class="fas fa-trash"></i> オフラインデータクリア
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>自動同期設定</h6>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="autoSyncEnabled" checked>
+                                <label class="form-check-label" for="autoSyncEnabled">
+                                    オンライン復帰時に自動同期
+                                </label>
+                            </div>
+
+                            <div class="connection-status mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>現在の接続状態:</span>
+                                    <span id="connectionStatus" class="badge bg-success">オンライン</span>
+                                </div>
+                            </div>
+
+                            <div class="offline-info">
+                                <small class="text-muted">
+                                    <i class="fas fa-info-circle"></i>
+                                    オフライン時も学習を続けることができ、オンライン復帰時に自動的にデータが同期されます。
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- キーボードショートカット -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shortcuts-card">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-keyboard"></i> キーボードショートカット
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>問題回答</h6>
+                            <div class="shortcut-item">
+                                <kbd>Ctrl + 1</kbd> <span>選択肢A</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <kbd>Ctrl + 2</kbd> <span>選択肢B</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <kbd>Ctrl + 3</kbd> <span>選択肢C</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <kbd>Ctrl + 4</kbd> <span>選択肢D</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>ナビゲーション・機能</h6>
+                            <div class="shortcut-item">
+                                <kbd>Space</kbd> <span>音声読み上げ</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <kbd>Alt + ←</kbd> <span>前の問題</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <kbd>Alt + →</kbd> <span>次の問題</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <kbd>Ctrl + Enter</kbd> <span>回答提出</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 保存ボタン -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <button id="saveSettingsBtn" class="btn btn-success btn-lg">
+                <i class="fas fa-save"></i> 設定を保存
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// モバイル設定画面の JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // 設定の読み込み
+    loadMobileSettings();
+    
+    // PWA インストールボタンの設定
+    setupPWAInstall();
+    
+    // オフライン状態の更新
+    updateOfflineStatus();
+    updateConnectionStatus();
+    
+    // イベントリスナーの設定
+    setupEventListeners();
+});
+
+function loadMobileSettings() {
+    // 音声設定の読み込み
+    const savedSettings = localStorage.getItem('rccm_mobile_settings');
+    if (savedSettings) {
+        const settings = JSON.parse(savedSettings);
+        
+        if (settings.voiceSettings) {
+            document.getElementById('voiceEnabled').checked = settings.voiceSettings.enabled;
+            document.getElementById('voiceRate').value = settings.voiceSettings.rate;
+            document.getElementById('voicePitch').value = settings.voiceSettings.pitch;
+            document.getElementById('voiceVolume').value = settings.voiceSettings.volume;
+            
+            updateValueDisplays();
+        }
+        
+        if (settings.touchSettings) {
+            document.getElementById('swipeThreshold').value = settings.touchSettings.swipe_threshold;
+            document.getElementById('longPressDelay').value = settings.touchSettings.long_press_delay;
+            
+            updateTouchValueDisplays();
+        }
+        
+        if (settings.offlineSettings) {
+            document.getElementById('autoSyncEnabled').checked = settings.offlineSettings.auto_sync_enabled;
+        }
+    }
+}
+
+function setupPWAInstall() {
+    let deferredPrompt;
+    
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        
+        const installBtn = document.getElementById('installPWABtn');
+        const statusDiv = document.getElementById('pwaStatus');
+        const statusText = document.getElementById('pwaStatusText');
+        
+        installBtn.style.display = 'block';
+        statusDiv.className = 'alert alert-success';
+        statusText.textContent = 'インストール準備完了';
+        
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const choiceResult = await deferredPrompt.userChoice;
+                
+                if (choiceResult.outcome === 'accepted') {
+                    statusText.textContent = 'アプリをインストール中...';
+                } else {
+                    statusText.textContent = 'インストールがキャンセルされました';
+                }
+                
+                deferredPrompt = null;
+                installBtn.style.display = 'none';
+            }
+        });
+    });
+    
+    window.addEventListener('appinstalled', () => {
+        const statusDiv = document.getElementById('pwaStatus');
+        const statusText = document.getElementById('pwaStatusText');
+        
+        statusDiv.className = 'alert alert-success';
+        statusText.textContent = 'アプリのインストールが完了しました！';
+        
+        document.getElementById('installPWABtn').style.display = 'none';
+    });
+}
+
+function updateOfflineStatus() {
+    // IndexedDBからオフラインデータの状況を取得
+    if ('indexedDB' in window) {
+        const request = indexedDB.open('RCCMQuestionApp', 1);
+        
+        request.onsuccess = function(event) {
+            const db = event.target.result;
+            
+            if (db.objectStoreNames.contains('offlineData')) {
+                const transaction = db.transaction(['offlineData'], 'readonly');
+                const store = transaction.objectStore('offlineData');
+                const countRequest = store.count();
+                
+                countRequest.onsuccess = function() {
+                    document.getElementById('offlineSessionCount').textContent = countRequest.result;
+                };
+            }
+        };
+    }
+    
+    // 最終同期時間の取得
+    fetch('/api/mobile/performance')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('offlineDataSize').textContent = data.total_offline_size_mb + ' MB';
+            
+            if (data.last_sync) {
+                const syncDate = new Date(data.last_sync);
+                document.getElementById('lastSyncTime').textContent = syncDate.toLocaleString();
+            }
+        })
+        .catch(error => {
+            console.error('Performance data fetch failed:', error);
+        });
+}
+
+function updateConnectionStatus() {
+    const statusElement = document.getElementById('connectionStatus');
+    
+    if (navigator.onLine) {
+        statusElement.textContent = 'オンライン';
+        statusElement.className = 'badge bg-success';
+    } else {
+        statusElement.textContent = 'オフライン';
+        statusElement.className = 'badge bg-danger';
+    }
+    
+    window.addEventListener('online', () => {
+        statusElement.textContent = 'オンライン';
+        statusElement.className = 'badge bg-success';
+    });
+    
+    window.addEventListener('offline', () => {
+        statusElement.textContent = 'オフライン';
+        statusElement.className = 'badge bg-danger';
+    });
+}
+
+function setupEventListeners() {
+    // 音声設定のスライダー
+    ['voiceRate', 'voicePitch', 'voiceVolume'].forEach(id => {
+        document.getElementById(id).addEventListener('input', updateValueDisplays);
+    });
+    
+    // タッチ設定のスライダー
+    ['swipeThreshold', 'longPressDelay'].forEach(id => {
+        document.getElementById(id).addEventListener('input', updateTouchValueDisplays);
+    });
+    
+    // テスト読み上げ
+    document.getElementById('testVoiceBtn').addEventListener('click', testVoice);
+    
+    // オフライン操作
+    document.getElementById('syncOfflineBtn').addEventListener('click', syncOfflineData);
+    document.getElementById('clearOfflineBtn').addEventListener('click', clearOfflineData);
+    
+    // 設定保存
+    document.getElementById('saveSettingsBtn').addEventListener('click', saveAllSettings);
+}
+
+function updateValueDisplays() {
+    document.getElementById('voiceRateValue').textContent = document.getElementById('voiceRate').value;
+    document.getElementById('voicePitchValue').textContent = document.getElementById('voicePitch').value;
+    document.getElementById('voiceVolumeValue').textContent = document.getElementById('voiceVolume').value;
+}
+
+function updateTouchValueDisplays() {
+    document.getElementById('swipeThresholdValue').textContent = document.getElementById('swipeThreshold').value;
+    document.getElementById('longPressDelayValue').textContent = document.getElementById('longPressDelay').value;
+}
+
+function testVoice() {
+    if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance('これは音声読み上げのテストです。RCCM試験問題集で学習効率を向上させましょう。');
+        utterance.rate = parseFloat(document.getElementById('voiceRate').value);
+        utterance.pitch = parseFloat(document.getElementById('voicePitch').value);
+        utterance.volume = parseFloat(document.getElementById('voiceVolume').value);
+        utterance.lang = 'ja-JP';
+        
+        speechSynthesis.speak(utterance);
+    } else {
+        alert('お使いのブラウザは音声読み上げ機能に対応していません。');
+    }
+}
+
+function syncOfflineData() {
+    const btn = document.getElementById('syncOfflineBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 同期中...';
+    
+    fetch('/api/mobile/offline/sync', {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert(`同期完了: ${data.synced_sessions}件のセッションを同期しました`);
+            updateOfflineStatus();
+        } else {
+            alert('同期に失敗しました: ' + (data.error || '不明なエラー'));
+        }
+    })
+    .catch(error => {
+        alert('同期処理でエラーが発生しました');
+        console.error('Sync error:', error);
+    })
+    .finally(() => {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-sync"></i> 今すぐ同期';
+    });
+}
+
+function clearOfflineData() {
+    if (confirm('オフラインデータをすべて削除しますか？この操作は取り消せません。')) {
+        if ('indexedDB' in window) {
+            const request = indexedDB.open('RCCMQuestionApp', 1);
+            
+            request.onsuccess = function(event) {
+                const db = event.target.result;
+                
+                if (db.objectStoreNames.contains('offlineData')) {
+                    const transaction = db.transaction(['offlineData'], 'readwrite');
+                    const store = transaction.objectStore('offlineData');
+                    
+                    store.clear().onsuccess = function() {
+                        alert('オフラインデータをクリアしました');
+                        updateOfflineStatus();
+                    };
+                }
+            };
+        }
+    }
+}
+
+function saveAllSettings() {
+    const settings = {
+        voiceSettings: {
+            enabled: document.getElementById('voiceEnabled').checked,
+            rate: parseFloat(document.getElementById('voiceRate').value),
+            pitch: parseFloat(document.getElementById('voicePitch').value),
+            volume: parseFloat(document.getElementById('voiceVolume').value),
+            language: 'ja-JP'
+        },
+        touchSettings: {
+            swipe_threshold: parseInt(document.getElementById('swipeThreshold').value),
+            long_press_delay: parseInt(document.getElementById('longPressDelay').value)
+        },
+        offlineSettings: {
+            auto_sync_enabled: document.getElementById('autoSyncEnabled').checked
+        }
+    };
+    
+    localStorage.setItem('rccm_mobile_settings', JSON.stringify(settings));
+    
+    // サーバーにも保存
+    Promise.all([
+        fetch('/api/mobile/voice/settings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(settings.voiceSettings)
+        }),
+        fetch('/api/mobile/touch/settings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(settings.touchSettings)
+        })
+    ])
+    .then(() => {
+        alert('設定を保存しました');
+    })
+    .catch(error => {
+        console.error('Settings save error:', error);
+        alert('設定の保存中にエラーが発生しました');
+    });
+}
+</script>
+
+<style>
+.pwa-card, .voice-settings-card, .touch-settings-card, .offline-card, .shortcuts-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.feature-item i {
+    margin-right: 10px;
+    width: 20px;
+}
+
+.gesture-guide {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.gesture-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.gesture-icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    width: 30px;
+}
+
+.gesture-desc strong {
+    display: block;
+}
+
+.shortcut-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.shortcut-item:last-child {
+    border-bottom: none;
+}
+
+kbd {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-size: 0.8rem;
+}
+
+.voice-controls {
+    transition: opacity 0.3s ease;
+}
+
+.voice-controls.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .gesture-item {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+    
+    .gesture-icon {
+        margin-bottom: 5px;
+    }
+    
+    .shortcut-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+</style>
+{% endblock %}

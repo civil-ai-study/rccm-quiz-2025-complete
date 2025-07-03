@@ -1,0 +1,2 @@
+id,category,question,option_a,option_b,option_c,option_d,correct_answer,explanation,reference,difficulty
+1,レガシーデータ,このファイルはレガシーデータです。現在のアプリケーションは4-1.csvと4-2_*.csvファイルを使用しています。,A,B,C,D,a,このファイルは下位互換性のために残されています,レガシーシステム,標準

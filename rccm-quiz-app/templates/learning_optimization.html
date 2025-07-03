@@ -1,0 +1,468 @@
+{% extends "base.html" %}
+
+{% block title %}学習効率最適化{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <!-- ヘッダー -->
+            <div class="card border-success mb-4">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-chart-line"></i> 学習効率最適化エンジン
+                    </h3>
+                    <p class="mb-0 small">個人の学習パターンとバイオリズム分析による最適化</p>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-lightbulb"></i>
+                        あなたの学習データを分析して、最も効率的な学習時間とスケジュールを提案します。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 学習パターン分析結果 -->
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-user-clock"></i> あなたの学習パターン</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>学習タイプ</h6>
+                            <span class="badge badge-primary badge-lg">
+                                {% if learning_pattern.learning_type == 'morning_intensive' %}朝型集中学習
+                                {% elif learning_pattern.learning_type == 'morning_light' %}朝型軽学習
+                                {% elif learning_pattern.learning_type == 'evening_intensive' %}夜型集中学習
+                                {% elif learning_pattern.learning_type == 'evening_light' %}夜型軽学習
+                                {% elif learning_pattern.learning_type == 'flexible_intensive' %}フレキシブル集中
+                                {% elif learning_pattern.learning_type == 'flexible_light' %}フレキシブル軽学習
+                                {% else %}未分析{% endif %}
+                            </span>
+                            
+                            <h6 class="mt-3">分析信頼度</h6>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" style="width: {{ (learning_pattern.analysis_confidence * 100)|round|int }}%"></div>
+                            </div>
+                            <small class="text-muted">{{ (learning_pattern.analysis_confidence * 100)|round|int }}%</small>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>学習継続性</h6>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-info" style="width: {{ (learning_pattern.consistency.consistency_score * 100)|round|int }}%"></div>
+                            </div>
+                            <small class="text-muted">スコア: {{ (learning_pattern.consistency.consistency_score * 100)|round|int }}%</small>
+                            
+                            <div class="mt-2">
+                                <div class="d-flex justify-content-between">
+                                    <span>学習日数:</span>
+                                    <strong>{{ learning_pattern.consistency.study_days }}日</strong>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>最長ストリーク:</span>
+                                    <strong>{{ learning_pattern.consistency.max_streak }}日</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <h6 class="mb-0"><i class="fas fa-clock"></i> セッション分析</h6>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <span>平均セッション長:</span>
+                        <strong>{{ learning_pattern.session_analysis.avg_session_length|round|int }}分</strong>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>推奨セッション長:</span>
+                        <strong>{{ learning_pattern.session_analysis.optimal_session_length }}分</strong>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>総セッション数:</span>
+                        <strong>{{ learning_pattern.session_analysis.session_count }}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 時間帯別パフォーマンス -->
+    {% if learning_pattern.hourly_performance %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-chart-bar"></i> 時間帯別パフォーマンス</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for hour in range(6, 24) %}
+                        {% set hour_data = learning_pattern.hourly_performance.get(hour) %}
+                        {% if hour_data %}
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3">
+                            <div class="card border-light text-center">
+                                <div class="card-body p-2">
+                                    <h6 class="card-title">{{ hour }}時</h6>
+                                    <div class="progress progress-sm mb-1">
+                                        <div class="progress-bar 
+                                            {% if hour_data.efficiency_score >= 0.8 %}bg-success
+                                            {% elif hour_data.efficiency_score >= 0.6 %}bg-warning
+                                            {% else %}bg-secondary{% endif %}" 
+                                            style="width: {{ (hour_data.efficiency_score * 100)|round|int }}%"></div>
+                                    </div>
+                                    <small class="text-muted">{{ (hour_data.efficiency_score * 100)|round|int }}%</small>
+                                    <br>
+                                    <small class="text-muted">{{ hour_data.sessions }}回</small>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 最適時間推奨 -->
+    {% if learning_pattern.optimal_times %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-success">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fas fa-star"></i> あなたの最適学習時間</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for optimal_time in learning_pattern.optimal_times[:3] %}
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-success">
+                                <div class="card-body text-center">
+                                    <h4 class="text-success">{{ optimal_time.hour }}:00</h4>
+                                    <div class="progress mb-2">
+                                        <div class="progress-bar bg-success" style="width: {{ (optimal_time.efficiency_score * 100)|round|int }}%"></div>
+                                    </div>
+                                    <small class="text-muted">
+                                        効率度: {{ (optimal_time.efficiency_score * 100)|round|int }}%<br>
+                                        セッション数: {{ optimal_time.sessions }}回
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 今日の推奨スケジュール -->
+    {% if optimization_data.optimal_schedule %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-info">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fas fa-calendar-day"></i> 今日の推奨学習スケジュール</h5>
+                </div>
+                <div class="card-body">
+                    {% if optimization_data.optimal_schedule.recommended_sessions %}
+                    <div class="row">
+                        {% for session in optimization_data.optimal_schedule.recommended_sessions %}
+                        <div class="col-lg-4 col-md-6 mb-3">
+                            <div class="card border-primary">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-clock"></i> {{ session.start_time }}
+                                    </h6>
+                                    <p class="card-text">
+                                        <strong>{{ session.duration_minutes }}分間</strong><br>
+                                        効率予測: {{ (session.efficiency_score * 100)|round|int }}%
+                                    </p>
+                                    {% if session.recommended_activities %}
+                                    <small class="text-muted">
+                                        推奨活動:
+                                        {% for activity in session.recommended_activities %}
+                                        <span class="badge badge-light">{{ activity }}</span>
+                                        {% endfor %}
+                                    </small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="alert alert-light">
+                        <strong>総学習時間: {{ optimization_data.optimal_schedule.total_daily_minutes }}分</strong>
+                        {% if optimization_data.optimal_schedule.peak_efficiency_period %}
+                        <br><small class="text-muted">
+                            ピーク効率時間帯: {{ optimization_data.optimal_schedule.peak_efficiency_period.start_hour }}:00
+                        </small>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <div class="alert alert-warning">
+                        十分なデータがないため、個別推奨を生成できません。学習を続けてデータを蓄積してください。
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- バイオリズム分析 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-secondary">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0"><i class="fas fa-heartbeat"></i> バイオリズム分析</h5>
+                </div>
+                <div class="card-body">
+                    <div id="biorhythm-section">
+                        {% if optimization_data.biorhythm_scores %}
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <h6>身体リズム</h6>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-danger" style="width: {{ ((optimization_data.biorhythm_scores.physical + 1) * 50)|round|int }}%"></div>
+                                    </div>
+                                    <small>{{ (optimization_data.biorhythm_scores.physical * 100)|round|int }}%</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <h6>感情リズム</h6>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-warning" style="width: {{ ((optimization_data.biorhythm_scores.emotional + 1) * 50)|round|int }}%"></div>
+                                    </div>
+                                    <small>{{ (optimization_data.biorhythm_scores.emotional * 100)|round|int }}%</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <h6>知性リズム</h6>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" style="width: {{ ((optimization_data.biorhythm_scores.intellectual + 1) * 50)|round|int }}%"></div>
+                                    </div>
+                                    <small>{{ (optimization_data.biorhythm_scores.intellectual * 100)|round|int }}%</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <h6>総合スコア</h6>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" style="width: {{ ((optimization_data.biorhythm_scores.composite + 1) * 50)|round|int }}%"></div>
+                                    </div>
+                                    <small>{{ (optimization_data.biorhythm_scores.composite * 100)|round|int }}%</small>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="alert alert-info">
+                            <p>バイオリズム分析を利用するには、生年月日を設定してください。</p>
+                            <div class="form-group">
+                                <label for="birthDate">生年月日:</label>
+                                <input type="date" class="form-control" id="birthDate" style="max-width: 200px;">
+                                <button class="btn btn-primary mt-2" onclick="setBirthDate()">設定</button>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- リアルタイム効率追跡 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0"><i class="fas fa-tachometer-alt"></i> リアルタイム効率追跡</h5>
+                </div>
+                <div class="card-body">
+                    <div id="realtime-tracking">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <h6>現在の効率</h6>
+                                    <h4 id="current-efficiency" class="text-primary">--</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <h6>疲労度</h6>
+                                    <h4 id="fatigue-level" class="text-warning">--</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <h6>セッション時間</h6>
+                                    <h4 id="session-duration" class="text-info">--</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <h6>推奨アクション</h6>
+                                    <h4 id="recommended-action" class="text-success">--</h4>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <button class="btn btn-success" onclick="startRealtimeTracking()">
+                                <i class="fas fa-play"></i> 追跡開始
+                            </button>
+                            <button class="btn btn-secondary" onclick="stopRealtimeTracking()">
+                                <i class="fas fa-stop"></i> 追跡停止
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ナビゲーション -->
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> ホームに戻る
+                </a>
+                <div>
+                    <a href="{{ url_for('learner_insights') }}" class="btn btn-outline-info">
+                        <i class="fas fa-user-graduate"></i> 学習者レベル分析
+                    </a>
+                    <a href="{{ url_for('adaptive_quiz') }}" class="btn btn-outline-success">
+                        <i class="fas fa-brain"></i> 最適化学習開始
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+let realtimeTrackingInterval;
+let sessionStartTime;
+
+// バイオリズム設定
+function setBirthDate() {
+    const birthDate = document.getElementById('birthDate').value;
+    if (!birthDate) {
+        alert('生年月日を選択してください');
+        return;
+    }
+    
+    fetch('/api/learning/biorhythm', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            birth_date: birthDate
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload(); // ページを更新してバイオリズムを表示
+        } else {
+            alert('エラー: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('バイオリズム設定エラー:', error);
+        alert('設定に失敗しました');
+    });
+}
+
+// リアルタイム追跡開始
+function startRealtimeTracking() {
+    sessionStartTime = new Date().toISOString();
+    
+    realtimeTrackingInterval = setInterval(function() {
+        fetch('/api/learning/realtime_tracking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                session_start_time: sessionStartTime,
+                question_count: 0
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                updateRealtimeDisplay(data.tracking_data);
+            }
+        })
+        .catch(error => {
+            console.error('リアルタイム追跡エラー:', error);
+        });
+    }, 5000); // 5秒ごとに更新
+    
+    document.querySelector('button[onclick="startRealtimeTracking()"]').disabled = true;
+    document.querySelector('button[onclick="stopRealtimeTracking()"]').disabled = false;
+}
+
+// リアルタイム追跡停止
+function stopRealtimeTracking() {
+    if (realtimeTrackingInterval) {
+        clearInterval(realtimeTrackingInterval);
+        realtimeTrackingInterval = null;
+    }
+    
+    document.querySelector('button[onclick="startRealtimeTracking()"]').disabled = false;
+    document.querySelector('button[onclick="stopRealtimeTracking()"]').disabled = true;
+}
+
+// リアルタイムデータ表示更新
+function updateRealtimeDisplay(trackingData) {
+    document.getElementById('current-efficiency').textContent = 
+        Math.round(trackingData.current_efficiency * 100) + '%';
+    
+    document.getElementById('fatigue-level').textContent = 
+        Math.round(trackingData.fatigue_level * 100) + '%';
+    
+    document.getElementById('session-duration').textContent = 
+        Math.round(trackingData.session_duration) + '分';
+    
+    document.getElementById('recommended-action').textContent = 
+        trackingData.should_continue ? '継続' : '休憩';
+    
+    // 色の調整
+    const efficiencyElement = document.getElementById('current-efficiency');
+    if (trackingData.current_efficiency >= 0.7) {
+        efficiencyElement.className = 'text-success';
+    } else if (trackingData.current_efficiency >= 0.5) {
+        efficiencyElement.className = 'text-warning';
+    } else {
+        efficiencyElement.className = 'text-danger';
+    }
+}
+
+// ページ読み込み時の初期化
+document.addEventListener('DOMContentLoaded', function() {
+    // リアルタイム追跡ボタンの初期状態
+    document.querySelector('button[onclick="stopRealtimeTracking()"]').disabled = true;
+});
+</script>
+{% endblock %}

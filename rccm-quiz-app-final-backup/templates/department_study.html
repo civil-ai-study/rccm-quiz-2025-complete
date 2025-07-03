@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% block title %}{{ department.name }}部門学習 | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="container my-4">
+  <!-- 部門ヘッダー -->
+  <div class="text-center mb-4">
+    <div class="d-flex align-items-center justify-content-center mb-3">
+      <a href="/" class="btn btn-outline-secondary me-3">
+        <i class="fas fa-arrow-left me-2"></i>ホームに戻る
+      </a>
+      <h1 class="mb-0">
+        <i class="{{ department.icon }} me-2"></i>{{ department.name }}部門
+      </h1>
+    </div>
+    <p class="text-muted">{{ department.description }}</p>
+  </div>
+
+  <!-- 学習進捗サマリー -->
+  <div class="row mb-4">
+    <div class="col-md-8 mx-auto">
+      <div class="card border-primary">
+        <div class="card-header text-white text-center" style="background-color: var(--primary-color)">
+          <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i>{{ department.name }}部門 専門科目学習進捗</h5>
+        </div>
+        <div class="card-body">
+          <div class="row text-center">
+            <div class="col-4">
+              <div class="h3 text-primary">{{ specialist_stats.total_questions }}</div>
+              <small class="text-muted">問題数</small>
+            </div>
+            <div class="col-4">
+              <div class="h3 text-warning">{{ specialist_stats.answered }}</div>
+              <small class="text-muted">解答済み</small>
+            </div>
+            <div class="col-4">
+              <div class="h3 text-success">{{ "%.1f"|format(specialist_stats.accuracy) }}%</div>
+              <small class="text-muted">正答率</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4-2 専門科目 メインセクション -->
+  <div class="row mb-4">
+    <div class="col-md-10 mx-auto">
+      <div class="card border-success">
+        <div class="card-header text-white" style="background-color: var(--success-color)">
+          <h5 class="mb-0">
+            <i class="fas fa-cogs me-2"></i>4-2 専門科目 - {{ department.name }}部門
+          </h5>
+          <small>{{ department.name }}部門専門問題</small>
+        </div>
+        <div class="card-body">
+          <!-- 進捗バー -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span><strong>学習進捗</strong></span>
+              <span class="text-success"><strong>{{ (specialist_stats.answered / specialist_stats.total_questions * 100)|round(1) if specialist_stats.total_questions > 0 else 0 }}%</strong></span>
+            </div>
+            <div class="progress" style="height: 12px;">
+              <div class="progress-bar bg-success" 
+                   style="width: {{ (specialist_stats.answered / specialist_stats.total_questions * 100) if specialist_stats.total_questions > 0 else 0 }}%"></div>
+            </div>
+          </div>
+          
+          <!-- 学習ボタン -->
+          <div class="row g-3">
+            {% if (department.id == 'basic' and basic_stats.total_questions > 0) or (department.id != 'basic' and specialist_stats.total_questions > 0) %}
+              <div class="col-md-6">
+                <!-- ランダム出題ボタン -->
+                <a href="/exam?department={{ department_key }}&type=specialist" 
+                   class="btn btn-success btn-lg w-100">
+                  <i class="fas fa-random me-2"></i>ランダム学習（2011-2019年全問題）
+                </a>
+              </div>
+              
+              <div class="col-md-6">
+                <!-- 年度別学習ボタン -->
+                <button class="btn btn-outline-success btn-lg w-100" type="button" data-bs-toggle="collapse" 
+                        data-bs-target="#yearSelection" aria-expanded="false" aria-controls="yearSelection">
+                  <i class="fas fa-calendar-alt me-2"></i>年度別過去問を選択
+                  <i class="fas fa-chevron-down ms-2"></i>
+                </button>
+              </div>
+              
+              <!-- 年度選択（折りたたみ） -->
+              <div class="col-12">
+                <div class="collapse mt-2" id="yearSelection">
+                  <div class="card card-body">
+                    <h6 class="mb-3"><i class="fas fa-history me-2"></i>過去問年度選択</h6>
+                    <div class="row g-2">
+                      {% for year in range(2019, 2007, -1) %}
+                      <div class="col-md-3 col-6">
+                        <a href="/exam?department={{ department_key }}&type=specialist&year={{ year }}" 
+                           class="btn btn-sm btn-outline-primary w-100">
+                          <i class="fas fa-file-alt me-1"></i>{{ year }}年度
+                        </a>
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            {% else %}
+              <div class="col-12">
+                <div class="alert alert-info mb-0">
+                  <i class="fas fa-info-circle me-2"></i>
+                  この部門の専門問題はまだ利用できません
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 復習・その他の機能 -->
+  <div class="row mt-4">
+    <div class="col-md-8 mx-auto">
+      <div class="card border-info">
+        <div class="card-header bg-info text-white">
+          <h5 class="mb-0"><i class="fas fa-tools me-2"></i>学習支援機能</h5>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <a href="/review?department={{ department_key }}" 
+                 class="btn btn-info w-100">
+                <i class="fas fa-bookmark me-2"></i>
+                <div><strong>復習リスト</strong></div>
+                <small class="d-block">間違えた問題 ({{ review_count }}問)</small>
+              </a>
+            </div>
+            <div class="col-md-4">
+              <a href="/adaptive_quiz?department={{ department_key }}" 
+                 class="btn btn-outline-info w-100">
+                <i class="fas fa-brain me-2"></i>
+                <div><strong>AI適応学習</strong></div>
+                <small class="d-block">最適な問題を自動選択</small>
+              </a>
+            </div>
+            <div class="col-md-4">
+              <a href="/statistics?department={{ department_key }}" 
+                 class="btn btn-outline-info w-100">
+                <i class="fas fa-chart-line me-2"></i>
+                <div><strong>詳細統計</strong></div>
+                <small class="d-block">部門別成績確認</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 部門学習のヒント -->
+  <div class="row mt-4">
+    <div class="col-md-10 mx-auto">
+      <div class="alert alert-light border">
+        <h6><i class="fas fa-lightbulb me-2 text-warning"></i>{{ department.name }}部門 効果的な学習のヒント</h6>
+        <ul class="mb-0">
+          <li><strong>専門科目集中：</strong> {{ department.name }}部門に特化した内容を重点的に学習</li>
+          <li><strong>年度別学習：</strong> 過去問を年度別に解いて出題傾向を把握</li>
+          <li><strong>ランダム学習：</strong> 全年度をシャッフルして実力テスト</li>
+          <li><strong>復習徹底：</strong> 間違えた問題は復習リストで確実に理解を深める</li>
+          <li><strong>基礎科目：</strong> ホーム画面から4-1基礎科目も並行して学習推奨</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.card {
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.progress {
+  border-radius: 10px;
+}
+
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+</style>
+{% endblock %}

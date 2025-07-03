@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}AIダッシュボード - RCCM試験対策{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center mb-4">
+                <i class="fas fa-robot"></i> AI学習分析ダッシュボード
+            </h1>
+        </div>
+    </div>
+
+    <!-- AI分析サマリー -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h4><i class="fas fa-brain"></i> AI分析サマリー</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="alert alert-info text-center">
+                                <h5>学習スタイル</h5>
+                                <h3><i class="fas fa-user-graduate"></i> {{ analysis.learning_style or "分析中..." }}</h3>
+                                <small>あなたに最適な学習方法</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="alert alert-success text-center">
+                                <h5>パフォーマンス予測</h5>
+                                <h3><i class="fas fa-chart-line"></i> {{ analysis.performance_prediction.score|default(0) }}%</h3>
+                                <small>現在の理解度</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="alert alert-warning text-center">
+                                <h5>最適学習時間</h5>
+                                <h3><i class="fas fa-clock"></i> {{ analysis.optimal_study_time or "計算中..." }}</h3>
+                                <small>効率的な学習時間帯</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 弱点パターン分析 -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h5><i class="fas fa-exclamation-triangle"></i> 弱点パターン分析</h5>
+                </div>
+                <div class="card-body">
+                    {% if analysis.weakness_patterns %}
+                        <ul class="list-group">
+                            {% for pattern in analysis.weakness_patterns[:5] %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ pattern.description }}
+                                <span class="badge bg-danger rounded-pill">{{ pattern.frequency }}回</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="text-muted">まだデータが不足しています。問題を解いてください。</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- 記憶定着率 -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5><i class="fas fa-memory"></i> 記憶定着率分析</h5>
+                </div>
+                <div class="card-body">
+                    {% if analysis.memory_retention %}
+                        <div class="progress mb-3" style="height: 30px;">
+                            <div class="progress-bar bg-success" role="progressbar" 
+                                 style="width: {{ analysis.memory_retention.retention_rate|default(0) }}%">
+                                {{ analysis.memory_retention.retention_rate|default(0) }}%
+                            </div>
+                        </div>
+                        <p>
+                            <strong>平均記憶保持期間:</strong> {{ analysis.memory_retention.average_retention_days|default(0) }}日<br>
+                            <strong>忘却曲線タイプ:</strong> {{ analysis.memory_retention.forgetting_curve_type|default("標準型") }}
+                        </p>
+                    {% else %}
+                        <p class="text-muted">記憶定着率を計算中です...</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI推奨事項 -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card border-info">
+                <div class="card-header bg-info text-white">
+                    <h5><i class="fas fa-lightbulb"></i> AI学習推奨事項</h5>
+                </div>
+                <div class="card-body">
+                    {% if analysis.study_recommendations %}
+                        <div class="row">
+                            {% for rec in analysis.study_recommendations[:6] %}
+                            <div class="col-md-4 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h6 class="card-title">
+                                            <i class="{{ rec.icon|default('fas fa-check') }}"></i> {{ rec.title }}
+                                        </h6>
+                                        <p class="card-text small">{{ rec.description }}</p>
+                                        {% if rec.priority == "high" %}
+                                        <span class="badge bg-danger">優先度：高</span>
+                                        {% elif rec.priority == "medium" %}
+                                        <span class="badge bg-warning">優先度：中</span>
+                                        {% else %}
+                                        <span class="badge bg-secondary">優先度：低</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted">学習データを分析して推奨事項を生成します...</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- アクションボタン -->
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <a href="/advanced_analytics" class="btn btn-primary btn-lg me-2">
+                <i class="fas fa-chart-line"></i> 高度分析を見る
+            </a>
+            <a href="/statistics" class="btn btn-success btn-lg me-2">
+                <i class="fas fa-chart-bar"></i> 統計情報
+            </a>
+            <a href="/" class="btn btn-secondary btn-lg">
+                <i class="fas fa-home"></i> ホームに戻る
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// 定期的にデータを更新
+setInterval(function() {
+    // AIアニメーション効果
+    $('.fa-robot').addClass('fa-spin');
+    setTimeout(function() {
+        $('.fa-robot').removeClass('fa-spin');
+    }, 1000);
+}, 5000);
+</script>
+{% endblock %}

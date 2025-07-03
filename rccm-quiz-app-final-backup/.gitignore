@@ -1,0 +1,69 @@
+# 🔥 ULTRA SYNC EMERGENCY GITIGNORE
+# 大容量ファイル除外（プロジェクト軽量化）
+
+# ログファイル（最重要）
+*.log
+*.log.*
+rccm_app.log*
+logs/
+
+# Python関連
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 仮想環境
+test_env/
+venv/
+ENV/
+env/
+
+# バックアップファイル
+*_backup*
+*_emergency*
+*.bak
+*.tmp
+
+# ULTRA SYNC関連（一時ファイル）
+ultra_sync_*.py
+ultra_sync_*.json
+*_test_*.json
+
+# IDE関連
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS関連
+.DS_Store
+Thumbs.db
+
+# キャッシュ
+.cache/
+.pytest_cache/
+
+# セッションデータ（大きくなる可能性）
+user_data/*.json
+session_data/
+
+# 環境変数ファイル（セキュリティ）
+.env
+.env.local

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}ヘルプ・操作説明 | RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>ヘルプ・操作説明</h1>
+    <p class="lead">このアプリケーションの使い方についてご説明します。</p>
+
+    <h2 class="mt-4">1. はじめに</h2>
+    <p>このアプリケーションは、RCCM試験対策のための問題集アプリです。ランダム出題や分野別の学習、学習履歴の確認ができます。</p>
+
+    <h2 class="mt-4">2. 初期画面</h2>
+    <p>アプリを起動すると表示される画面です。</p>
+    <ul>
+        <li><strong>ランダム出題開始:</strong> 全体の問題からランダムに{{ total_questions }}問出題します。（注：現在の設定では{{ total_questions }}問ですが、設定により変動します）</li>
+        <li><strong>カテゴリー別出題開始:</strong> 分野を選択して学習を開始します。</li>
+        <li><strong>回答結果分析:</strong> これまでの学習履歴や分野ごとの成績を確認できます。</li>
+    </ul>
+
+    <h2 class="mt-4">3. 問題解答画面</h2>
+    <p>問題が表示される画面です。</p>
+    <ul>
+        <li>問題文と選択肢 (A, B, C, D) が表示されます。</li>
+        <li>適切な選択肢を選び、「解答する」ボタンをクリックしてください。</li>
+        <li>現在の問題番号と合計問題数が画面上部に表示されます。</li>
+    </ul>
+
+    <h2 class="mt-4">4. 結果画面</h2>
+    <p>問題解答セッションが終了すると表示される画面です。</p>
+    <ul>
+        <li>合計正答数と出題数が表示されます。</li>
+        <li>分野別成績の表では、分野ごとの解答数、正答数、正答率が確認できます。正答率に応じてセルの色が変化し、得意・苦手分野を把握できます。</li>
+    </ul>
+
+    <h2 class="mt-4">5. カテゴリー別問題選択画面</h2>
+    <p>「カテゴリー別出題開始」ボタンをクリックすると表示される画面です。</p>
+    <ul>
+        <li>分野ごとの問題数、解答済み数、正答数、正答率が表示された表が見えます。</li>
+        <li>各分野の右側にある「学習」ボタンをクリックすると、その分野の問題が出題されます。</li>
+    </ul>
+
+    <h2 class="mt-4">6. 回答結果分析画面</h2>
+    <p>「回答結果分析」ボタンをクリックすると表示される画面です。</p>
+    <ul>
+        <li>全体の解答数、正答率、平均解答時間などの統計情報が表示されます。</li>
+        <li>カテゴリ別の成績詳細や、最近の解答履歴、日別の正答率なども確認できます。</li>
+    </ul>
+
+    <h2 class="mt-4">7. トラブルシューティング</h2>
+    <div class="alert alert-warning">
+        <h5><i class="fas fa-exclamation-triangle"></i> 問題が正常に動作しない場合</h5>
+        <p>以下の症状がある場合は、下記の解決方法をお試しください：</p>
+        <ul>
+            <li>毎回同じ1問目が出題される</li>
+            <li>正解時に「次の問題へ」ボタンが表示されない</li>
+            <li>問題番号が正しく表示されない</li>
+        </ul>
+        
+        <h6>解決方法：</h6>
+        <ol>
+            <li><strong>ブラウザの再読み込み:</strong> Ctrl + F5 (Windows) / Cmd + R (Mac) で強制リロード</li>
+            <li><strong>キャッシュクリア:</strong> <a href="/reset" class="btn btn-sm btn-outline-secondary">設定リセット</a> ページからデータリセット</li>
+            <li><strong>完全リセット:</strong> <button class="btn btn-sm btn-danger" onclick="forceReset()">強制リセット実行</button></li>
+        </ol>
+    </div>
+
+    <h2 class="mt-4">8. その他</h2>
+    <p>アプリケーションを終了するには、ブラウザのタブまたはウィンドウを閉じてください。</p>
+
+</div>
+
+<script>
+function forceReset() {
+    if (confirm('完全リセットを実行しますか？\n学習データがすべて削除されます。')) {
+        fetch('/force_reset')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                window.location.href = '/';
+            } else {
+                alert('リセットに失敗しました: ' + data.error);
+            }
+        })
+        .catch(error => {
+            alert('エラーが発生しました: ' + error);
+        });
+    }
+}
+</script>
+{% endblock %} 

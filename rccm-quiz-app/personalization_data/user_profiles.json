@@ -1,0 +1,65 @@
+{
+  "test_user": {
+    "user_id": "test_user",
+    "updated_at": "2025-06-26T09:47:38.101543",
+    "learning_patterns": {},
+    "learning_style": {
+      "primary_style": "visual",
+      "style_scores": {
+        "visual": 0.3,
+        "auditory": 0.0,
+        "kinesthetic": 0.0,
+        "reading": 0.0
+      },
+      "confidence": 0.3,
+      "style_description": {
+        "name": "視覚的学習者",
+        "description": "図表や画像で理解しやすい",
+        "preferences": [
+          "diagrams",
+          "charts",
+          "color_coding",
+          "mind_maps"
+        ]
+      },
+      "mixed_style": false
+    },
+    "cognitive_load": {},
+    "time_patterns": {},
+    "motivation_profile": {
+      "persistence_level": 0.0,
+      "max_study_streak": 1,
+      "current_streak": 1,
+      "challenge_seeking": 0.5,
+      "progress_sensitivity": 0.5,
+      "reward_responsiveness": 0.5,
+      "motivation_type": "balanced"
+    },
+    "learning_effectiveness": {
+      "insufficient_data": true
+    },
+    "personalization_recommendations": [
+      {
+        "type": "learning_style",
+        "priority": "high",
+        "title": "視覚的学習者向け学習法",
+        "description": "図表や画像で理解しやすい",
+        "action": "style_adaptation",
+        "preferences": [
+          "diagrams",
+          "charts",
+          "color_coding",
+          "mind_maps"
+        ]
+      },
+      {
+        "type": "motivation",
+        "priority": "medium",
+        "title": "動機づけ最適化",
+        "description": "balancedタイプに適した報酬システム",
+        "action": "motivation_enhancement"
+      }
+    ],
+    "confidence_score": 0.1
+  }
+}

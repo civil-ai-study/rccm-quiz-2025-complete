@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+    <title>RCCM専門部門選択</title>
+    
+    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <script>
+        // 🔥 ページ読み込み時のキャッシュ強制クリア（ユーザー要求による）
+        (function() {
+            if (window.performance && window.performance.navigation.type === 2) {
+                // 戻るボタンでアクセスされた場合は強制リロード
+                window.location.reload(true);
+            }
+            // セッションストレージの問題関連データもクリア
+            if (typeof(Storage) !== "undefined") {
+                sessionStorage.removeItem('exam_data');
+                sessionStorage.removeItem('current_question');
+                sessionStorage.removeItem('question_answers');
+            }
+        })();
+    </script>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- アクセシビリティ改善 -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="RCCM試験問題集">
+    <meta name="application-name" content="RCCM問題集">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon-16x16.png">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ダークモード対応CSS -->
+    <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #1e293b;
+      --card-bg: #f8fafc;
+      --border-color: #e2e8f0;
+      /* モダン・シック・インテリジェンスなカラーパレット */
+      --primary-color: #334155; /* プロフェッショナルスレートグレー */
+      --secondary-color: #475569; /* エレガントグレー */
+      --success-color: #059669; /* 洗練されたエメラルド */
+      --danger-color: #dc2626; /* 控えめなレッド */
+      --warning-color: #d97706; /* インテリジェントアンバー */
+      --info-color: #0284c7; /* 知的ブルー */
+      --dark-color: #0f172a; /* ディープネイビー */
+      --light-color: #f1f5f9; /* ソフトグレー */
+      --text-muted-color: #64748b; /* 上品なミュート */
+      --accent-color: #6366f1; /* 知性のインディゴ */
+      --surface-color: #ffffff;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #0f172a;
+      --text-color: #e2e8f0;
+      --card-bg: #1e293b;
+      --border-color: #334155;
+      /* ダークモード - エレガント&プロフェッショナル */
+      --primary-color: #64748b; /* ソフトスレート */
+      --secondary-color: #94a3b8; /* ライトグレー */
+      --success-color: #10b981; /* エメラルド */
+      --danger-color: #ef4444; /* 洗練されたレッド */
+      --warning-color: #f59e0b; /* ゴールド */
+      --info-color: #3b82f6; /* ブライトブルー */
+      --dark-color: #f1f5f9; /* ライトテキスト */
+      --light-color: #1e293b; /* ダークサーフェス */
+      --text-muted-color: #94a3b8; /* エレガントミュート */
+      --accent-color: #818cf8; /* ライトインディゴ */
+      --surface-color: #1e293b;
+    }
+
+    body { 
+      background-color: var(--bg-color) !important; 
+      color: var(--text-color) !important; 
+    }
+
+    /* モダン&プロフェッショナルBootstrapカラー変数の上書き */
+    .btn-primary {
+        --bs-btn-bg: var(--primary-color);
+        --bs-btn-border-color: var(--primary-color);
+        --bs-btn-hover-bg: #1e293b;
+        --bs-btn-hover-border-color: #0f172a;
+        --bs-btn-active-bg: #0f172a;
+        --bs-btn-active-border-color: #020617;
+        color: white;
+        font-weight: 500;
+        border-radius: 0.5rem;
+    }
+    .btn-secondary {
+        --bs-btn-bg: var(--secondary-color);
+        --bs-btn-border-color: var(--secondary-color);
+        --bs-btn-hover-bg: #334155;
+        --bs-btn-hover-border-color: #1e293b;
+        --bs-btn-active-bg: #1e293b;
+        --bs-btn-active-border-color: #0f172a;
+        color: white;
+        font-weight: 500;
+        border-radius: 0.5rem;
+    }
+    .btn-success {
+        --bs-btn-bg: var(--success-color);
+        --bs-btn-border-color: var(--success-color);
+        --bs-btn-hover-bg: #047857;
+        --bs-btn-hover-border-color: #065f46;
+        --bs-btn-active-bg: #558b2f;
+        --bs-btn-active-border-color: #33691e;
+    }
+    .btn-danger {
+        --bs-btn-bg: var(--danger-color);
+        --bs-btn-border-color: var(--danger-color);
+        --bs-btn-hover-bg: #ff1744;
+        --bs-btn-hover-border-color: #d50000;
+        --bs-btn-active-bg: #c62828;
+        --bs-btn-active-border-color: #b71c1c;
+    }
+    .btn-warning {
+        --bs-btn-bg: var(--warning-color);
+        --bs-btn-border-color: var(--warning-color);
+        --bs-btn-hover-bg: #ffb300;
+        --bs-btn-hover-border-color: #ffa000;
+        --bs-btn-active-bg: #ff8f00;
+        --bs-btn-active-border-color: #ff6f00;
+        --bs-btn-color: #212529; /* 文字色を黒に */
+    }
+     .btn-info {
+        --bs-btn-bg: var(--info-color);
+        --bs-btn-border-color: var(--info-color);
+        --bs-btn-hover-bg: #1e88e5;
+        --bs-btn-hover-border-color: #1976d2;
+        --bs-btn-active-bg: #1565c0;
+        --bs-btn-active-border-color: #0d47a1;
+    }
+    .btn-dark {
+        --bs-btn-bg: var(--dark-color);
+        --bs-btn-border-color: var(--dark-color);
+        --bs-btn-hover-bg: #212529;
+        --bs-btn-hover-border-color: #1a1d20;
+        --bs-btn-active-bg: #1a1d20;
+        --bs-btn-active-border-color: #131619;
+    }
+
+    .card { 
+      background-color: var(--card-bg) !important; 
+      color: var(--text-color) !important;
+      border-color: var(--border-color) !important;
+    }
+
+    /* ナビゲーションバーの色 */
+    .navbar-custom {
+        background-color: var(--primary-color) !important;
+    }
+    .navbar-custom .nav-link, .navbar-custom .navbar-brand {
+        color: var(--light-color) !important;
+    }
+
+    [data-theme="dark"] .card { 
+      background-color: var(--card-bg) !important; 
+      color: var(--text-color) !important;
+      border-color: var(--border-color) !important;
+    }
+    [data-theme="dark"] .navbar-custom {
+      background-color: #0d1117 !important; /* ダークモード用ナビゲーションバー */
+    }
+    [data-theme="dark"] .alert { 
+      background-color: var(--card-bg) !important;
+      border-color: var(--border-color) !important;
+      color: var(--text-color) !important;
+    }
+    [data-theme="dark"] .table { 
+      color: var(--text-color) !important; 
+    }
+    [data-theme="dark"] .table td, [data-theme="dark"] .table th { 
+      border-color: var(--border-color) !important; 
+    }
+
+    /* 今後開発予定の項目をグレーアウト */
+    .future-feature {
+        color: var(--text-muted-color) !important;
+        font-style: italic;
+    }
+    
+    /* 学習ストリーク表示スタイル */
+    .streak-display {
+      background: linear-gradient(45deg, #FF6B35, #F7931E);
+      color: white;
+      border-radius: 25px;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      display: inline-block;
+      margin: 0.5rem 0;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from { box-shadow: 0 0 5px rgba(255, 107, 53, 0.3); }
+      to { box-shadow: 0 0 20px rgba(255, 107, 53, 0.6); }
+    }
+    
+    [data-theme="dark"] .streak-display {
+      background: linear-gradient(45deg, #FF6B35, #F7931E);
+    }
+    
+    /* SRS用バッジ */
+    .badge.bg-gold {
+      background-color: #ffd700 !important;
+      color: #000 !important;
+    }
+
+    /* 解答結果画面のスタイル */
+    .card-correct {
+      border-color: var(--success-color) !important;
+      background-color: #d4edda !important; /* 淡い緑 */
+    }
+    .card-incorrect {
+      border-color: var(--danger-color) !important;
+      background-color: #f8d7da !important; /* 淡い赤 */
+    }
+    [data-theme="dark"] .card-correct {
+      border-color: var(--success-color) !important;
+      background-color: #1e3c2f !important; /* ダークモード用の緑 */
+    }
+    [data-theme="dark"] .card-incorrect {
+      border-color: var(--danger-color) !important;
+      background-color: #4e2b31 !important; /* ダークモード用の赤 */
+    }
+    
+    /* アクセシビリティ改善：大きなボタンクラス */
+    .btn-accessibility-lg {
+      min-height: 48px !important;
+      padding: 12px 24px !important;
+      font-size: 1.1rem !important;
+      font-weight: 500 !important;
+      border-radius: 8px !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    .btn-accessibility-xl {
+      min-height: 56px !important;
+      padding: 16px 32px !important;
+      font-size: 1.25rem !important;
+      font-weight: 600 !important;
+      border-radius: 10px !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    /* タッチターゲットサイズの確保（WCAG基準） */
+    .touch-target {
+      min-width: 44px !important;
+      min-height: 44px !important;
+    }
+    
+    /* フォーカスインジケーターの強化 */
+    button:focus,
+    input:focus,
+    select:focus,
+    textarea:focus,
+    a:focus {
+      outline: 3px solid var(--accent-color) !important;
+      outline-offset: 2px !important;
+    }
+    
+    /* シニアユーザー向けの読みやすいフォントサイズ */
+    @media (min-width: 768px) {
+      .senior-friendly {
+        font-size: 1.125rem !important;
+        line-height: 1.75 !important;
+      }
+    }
+    </style>
+
+    <!-- Service Worker & PWA 登録 -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/static/sw.js')
+            .then(function(registration) {
+              console.log('ServiceWorker registration successful');
+            })
+            .catch(function(error) {
+              console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+      }
+    </script>
+    
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-custom mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/" style="color: white !important;">RCCM試験問題集</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="/statistics" style="color: white !important;">解答結果分析</a></li>
+        <li class="nav-item"><a class="nav-link" href="/categories" style="color: white !important;">部門別</a></li>
+        <li class="nav-item"><a class="nav-link" href="/review" style="color: white !important;">復習リスト</a></li>
+        <li class="nav-item"><a class="nav-link" href="/reset" style="color: white !important;">リセット</a></li>
+        <li class="nav-item"><a class="nav-link" href="/help" style="color: white !important;">ヘルプ</a></li>
+        <li class="nav-item ms-2">
+          <button class="btn btn-outline-light btn-sm" onclick="toggleTheme()" id="themeToggle" title="ダークモード切替">
+            🌙
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  
+    
+  
+  
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <!-- ヘッダー部分 -->
+            <div class="card border-primary mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-building"></i> RCCM専門部門選択
+                    </h3>
+                    <p class="mb-0 small">学習したい専門部門を選択してください</p>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        RCCM（登録建設機械施工技術者）試験の12専門部門から選択できます。<br>
+                        各部門で<strong>4-1必須科目（基礎技術）</strong>と<strong>4-2選択科目（専門技術）</strong>の学習が可能です。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 部門カード表示 -->
+    <div class="row">
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 department-card" data-department="road">
+                <div class="card-header" style="background-color: #FF9800; color: white;">
+                    <h5 class="mb-0">
+                        <span class="department-icon">🛣️</span>
+                        道路
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted small">道路計画、道路設計、道路施工に関する専門技術</p>
+                    
+                    <!-- 学習進捗 -->
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">学習進捗</small>
+                            <small class="text-muted">
+                                0/0問正解
+                            </small>
+                        </div>
+                        
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted">まだ学習していません</small>
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/departments/road/types" 
+                       class="btn btn-primary btn-block mb-2">
+                        <i class="fas fa-play"></i> この部門で学習
+                    </a>
+                    <div class="row">
+                        <div class="col-6 pr-1">
+                            <a href="/adaptive_questions?department=road&amp;mode=department_mastery" 
+                               class="btn btn-outline-success btn-block btn-sm">
+                                <i class="fas fa-brain"></i> AI学習
+                            </a>
+                        </div>
+                        <div class="col-6 pl-1">
+                            <a href="/integrated_learning_selection?department=road" 
+                               class="btn btn-outline-warning btn-block btn-sm">
+                                <i class="fas fa-link"></i> 連携学習
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 department-card" data-department="tunnel">
+                <div class="card-header" style="background-color: #795548; color: white;">
+                    <h5 class="mb-0">
+                        <span class="department-icon">🚇</span>
+                        トンネル
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted small">トンネル計画、設計、施工に関する専門技術</p>
+                    
+                    <!-- 学習進捗 -->
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">学習進捗</small>
+                            <small class="text-muted">
+                                0/0問正解
+                            </small>
+                        </div>
+                        
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted">まだ学習していません</small>
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/departments/tunnel/types" 
+                       class="btn btn-primary btn-block mb-2">
+                        <i class="fas fa-play"></i> この部門で学習
+                    </a>
+                    <div class="row">
+                        <div class="col-6 pr-1">
+                            <a href="/adaptive_questions?department=tunnel&amp;mode=department_mastery" 
+                               class="btn btn-outline-success btn-block btn-sm">
+                                <i class="fas fa-brain"></i> AI学習
+                            </a>
+                        </div>
+                        <div class="col-6 pl-1">
+                            <a href="/integrated_learning_selection?department=tunnel" 
+                               class="btn btn-outline-warning btn-block btn-sm">
+                                <i class="fas fa-link"></i> 連携学習
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 department-card" data-department="civil_planning">
+                <div class="card-header" style="background-color: #2196F3; color: white;">
+                    <h5 class="mb-0">
+                        <span class="department-icon">🌊</span>
+                        河川、砂防及び海岸・海洋
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted small">河川工学、砂防工学、海岸・海洋工学に関する専門技術</p>
+                    
+                    <!-- 学習進捗 -->
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">学習進捗</small>
+                            <small class="text-muted">
+                                0/0問正解
+                            </small>
+                        </div>
+                        
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted">まだ学習していません</small>
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/departments/civil_planning/types" 
+                       class="btn btn-primary btn-block mb-2">
+                        <i class="fas fa-play"></i> この部門で学習
+                    </a>
+                    <div class="row">
+                        <div class="col-6 pr-1">
+                            <a href="/adaptive_questions?department=civil_planning&amp;mode=department_mastery" 
+                               class="btn btn-outline-success btn-block btn-sm">
+                                <i class="fas fa-brain"></i> AI学習
+                            </a>
+                        </div>
+                        <div class="col-6 pl-1">
+                            <a href="/integrated_learning_selection?department=civil_planning" 
+                               class="btn btn-outline-warning btn-block btn-sm">
+                                <i class="fas fa-link"></i> 連携学習
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 department-card" data-department="urban_planning">
+                <div class="card-header" style="background-color: #9C27B0; color: white;">
+                    <h5 class="mb-0">
+                        <span class="department-icon">🏙️</span>
+                        都市計画及び地方計画
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted small">都市計画、地方計画に関する専門技術</p>
+                    
+                    <!-- 学習進捗 -->
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">学習進捗</small>
+                            <small class="text-muted">
+                                0/0問正解
+                            </small>
+                        </div>
+                        
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted">まだ学習していません</small>
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/departments/urban_planning/types" 
+                       class="btn btn-primary btn-block mb-2">
+                        <i class="fas fa-play"></i> この部門で学習
+                    </a>
+                    <div class="row">
+                        <div class="col-6 pr-1">
+                            <a href="/adaptive_questions?department=urban_planning&amp;mode=department_mastery" 
+                               class="btn btn-outline-success btn-block btn-sm">
+                                <i class="fas fa-brain"></i> AI学習
+                            </a>
+                        </div>
+                        <div class="col-6 pl-1">
+                            <a href="/integrated_learning_selection?department=urban_planning" 
+                               class="btn btn-outline-warning btn-block btn-sm">
+                                <i class="fas fa-link"></i> 連携学習
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 department-card" data-department="landscape">
+                <div class="card-header" style="background-color: #E91E63; color: white;">
+                    <h5 class="mb-0">
+                        <span class="department-icon">🌸</span>
+                        造園
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted small">造園計画、設計、施工に関する専門技術</p>
+                    
+                    <!-- 学習進捗 -->
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">学習進捗</small>
+                            <small class="text-muted">
+                                0/0問正解
+                            </small>
+                        </div>
+                        
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted">まだ学習していません</small>
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/departments/landscape/types" 
+                       class="btn btn-primary btn-block mb-2">
+                        <i class="fas fa-play"></i> この部門で学習
+                    </a>
+                    <div class="row">
+                        <div class="col-6 pr-1">
+                            <a href="/adaptive_questions?department=landscape&amp;mode=department_mastery" 
+                               class="btn btn-outline-success btn-block btn-sm">
+                                <i class="fas fa-brain"></i> AI学習
+                            </a>
+                        </div>
+                        <div class="col-6 pl-1">
+                            <a href="/integrated_learning_selection?department=landscape" 
+                               class="btn btn-outline-warning btn-block btn-sm">
+                                <i class="fas fa-link"></i> 連携学習
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 department-card" data-department="construction_env">
+                <div class="card-header" style="background-color: #4CAF50; color: white;">
+                    <h5 class="mb-0">
+                        <span class="department-icon">🌱</span>
+                        建設環境
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted small">建設環境、環境保全に関する専門技術</p>
+                    
+                    <!-- 学習進捗 -->
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">学習進捗</small>
+                            <small class="text-muted">
+                                0/0問正解
+                            </small>
+                        </div>
+                        
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted">まだ学習していません</small>
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/departments/construction_env/types" 
+                       class="btn btn-primary btn-block mb-2">
+                        <i class="fas fa-play"></i> この部門で学習
+                    </a>
+                    <div class="row">
+                        <div class="col-6 pr-1">
+                            <a href="/adaptive_questions?department=construction_env&amp;mode=department_mastery" 
+                               class="btn btn-outline-success btn-block btn-sm">
+                                <i class="fas fa-brain"></i> AI学習
+                            </a>
+                        </div>
+                        <div class="col-6 pl-1">
+                            <a href="/integrated_learning_selection?department=construction_env" 
+                               class="btn btn-outline-warning btn-block btn-sm">
+                                <i class="fas fa-link"></i> 連携学習
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 department-card" data-department="steel_concrete">
+                <div class="card-header" style="background-color: #607D8B; color: white;">
+                    <h5 class="mb-0">
+                        <span class="department-icon">🏗️</span>
+                        鋼構造及びコンクリート
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted small">鋼構造、コンクリート構造に関する専門技術</p>
+                    
+                    <!-- 学習進捗 -->
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">学習進捗</small>
+                            <small class="text-muted">
+                                0/0問正解
+                            </small>
+                        </div>
+                        
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted">まだ学習していません</small>
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/departments/steel_concrete/types" 
+                       class="btn btn-primary btn-block mb-2">
+                        <i class="fas fa-play"></i> この部門で学習
+                    </a>
+                    <div class="row">
+                        <div class="col-6 pr-1">
+                            <a href="/adaptive_questions?department=steel_concrete&amp;mode=department_mastery" 
+                               class="btn btn-outline-success btn-block btn-sm">
+                                <i class="fas fa-brain"></i> AI学習
+                            </a>
+                        </div>
+                        <div class="col-6 pl-1">
+                            <a href="/integrated_learning_selection?department=steel_concrete" 
+                               class="btn btn-outline-warning btn-block btn-sm">
+                                <i class="fas fa-link"></i> 連携学習
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 department-card" data-department="soil_foundation">
+                <div class="card-header" style="background-color: #8D6E63; color: white;">
+                    <h5 class="mb-0">
+                        <span class="department-icon">🪨</span>
+                        土質及び基礎
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted small">土質工学、基礎工学に関する専門技術</p>
+                    
+                    <!-- 学習進捗 -->
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">学習進捗</small>
+                            <small class="text-muted">
+                                0/0問正解
+                            </small>
+                        </div>
+                        
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted">まだ学習していません</small>
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/departments/soil_foundation/types" 
+                       class="btn btn-primary btn-block mb-2">
+                        <i class="fas fa-play"></i> この部門で学習
+                    </a>
+                    <div class="row">
+                        <div class="col-6 pr-1">
+                            <a href="/adaptive_questions?department=soil_foundation&amp;mode=department_mastery" 
+                               class="btn btn-outline-success btn-block btn-sm">
+                                <i class="fas fa-brain"></i> AI学習
+                            </a>
+                        </div>
+                        <div class="col-6 pl-1">
+                            <a href="/integrated_learning_selection?department=soil_foundation" 
+                               class="btn btn-outline-warning btn-block btn-sm">
+                                <i class="fas fa-link"></i> 連携学習
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 department-card" data-department="construction_planning">
+                <div class="card-header" style="background-color: #FF5722; color: white;">
+                    <h5 class="mb-0">
+                        <span class="department-icon">📋</span>
+                        施工計画、施工設備及び積算
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted small">施工計画、施工設備、積算に関する専門技術</p>
+                    
+                    <!-- 学習進捗 -->
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">学習進捗</small>
+                            <small class="text-muted">
+                                0/0問正解
+                            </small>
+                        </div>
+                        
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted">まだ学習していません</small>
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/departments/construction_planning/types" 
+                       class="btn btn-primary btn-block mb-2">
+                        <i class="fas fa-play"></i> この部門で学習
+                    </a>
+                    <div class="row">
+                        <div class="col-6 pr-1">
+                            <a href="/adaptive_questions?department=construction_planning&amp;mode=department_mastery" 
+                               class="btn btn-outline-success btn-block btn-sm">
+                                <i class="fas fa-brain"></i> AI学習
+                            </a>
+                        </div>
+                        <div class="col-6 pl-1">
+                            <a href="/integrated_learning_selection?department=construction_planning" 
+                               class="btn btn-outline-warning btn-block btn-sm">
+                                <i class="fas fa-link"></i> 連携学習
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 department-card" data-department="water_supply">
+                <div class="card-header" style="background-color: #00BCD4; color: white;">
+                    <h5 class="mb-0">
+                        <span class="department-icon">💧</span>
+                        上水道及び工業用水道
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted small">上水道、工業用水道に関する専門技術</p>
+                    
+                    <!-- 学習進捗 -->
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">学習進捗</small>
+                            <small class="text-muted">
+                                0/0問正解
+                            </small>
+                        </div>
+                        
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted">まだ学習していません</small>
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/departments/water_supply/types" 
+                       class="btn btn-primary btn-block mb-2">
+                        <i class="fas fa-play"></i> この部門で学習
+                    </a>
+                    <div class="row">
+                        <div class="col-6 pr-1">
+                            <a href="/adaptive_questions?department=water_supply&amp;mode=department_mastery" 
+                               class="btn btn-outline-success btn-block btn-sm">
+                                <i class="fas fa-brain"></i> AI学習
+                            </a>
+                        </div>
+                        <div class="col-6 pl-1">
+                            <a href="/integrated_learning_selection?department=water_supply" 
+                               class="btn btn-outline-warning btn-block btn-sm">
+                                <i class="fas fa-link"></i> 連携学習
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 department-card" data-department="forestry">
+                <div class="card-header" style="background-color: #8BC34A; color: white;">
+                    <h5 class="mb-0">
+                        <span class="department-icon">🌲</span>
+                        森林土木
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted small">森林土木、治山工事に関する専門技術</p>
+                    
+                    <!-- 学習進捗 -->
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">学習進捗</small>
+                            <small class="text-muted">
+                                0/0問正解
+                            </small>
+                        </div>
+                        
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted">まだ学習していません</small>
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/departments/forestry/types" 
+                       class="btn btn-primary btn-block mb-2">
+                        <i class="fas fa-play"></i> この部門で学習
+                    </a>
+                    <div class="row">
+                        <div class="col-6 pr-1">
+                            <a href="/adaptive_questions?department=forestry&amp;mode=department_mastery" 
+                               class="btn btn-outline-success btn-block btn-sm">
+                                <i class="fas fa-brain"></i> AI学習
+                            </a>
+                        </div>
+                        <div class="col-6 pl-1">
+                            <a href="/integrated_learning_selection?department=forestry" 
+                               class="btn btn-outline-warning btn-block btn-sm">
+                                <i class="fas fa-link"></i> 連携学習
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 department-card" data-department="agriculture">
+                <div class="card-header" style="background-color: #CDDC39; color: white;">
+                    <h5 class="mb-0">
+                        <span class="department-icon">🌾</span>
+                        農業土木
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted small">農業基盤整備に関する専門技術</p>
+                    
+                    <!-- 学習進捗 -->
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">学習進捗</small>
+                            <small class="text-muted">
+                                0/0問正解
+                            </small>
+                        </div>
+                        
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted">まだ学習していません</small>
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/departments/agriculture/types" 
+                       class="btn btn-primary btn-block mb-2">
+                        <i class="fas fa-play"></i> この部門で学習
+                    </a>
+                    <div class="row">
+                        <div class="col-6 pr-1">
+                            <a href="/adaptive_questions?department=agriculture&amp;mode=department_mastery" 
+                               class="btn btn-outline-success btn-block btn-sm">
+                                <i class="fas fa-brain"></i> AI学習
+                            </a>
+                        </div>
+                        <div class="col-6 pl-1">
+                            <a href="/integrated_learning_selection?department=agriculture" 
+                               class="btn btn-outline-warning btn-block btn-sm">
+                                <i class="fas fa-link"></i> 連携学習
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- ナビゲーション -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <a href="/" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> ホームに戻る
+                </a>
+                <a href="/categories" class="btn btn-outline-primary">
+                    <i class="fas fa-list"></i> 従来のカテゴリ別学習
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.department-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.department-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.department-icon {
+    font-size: 1.2em;
+    margin-right: 8px;
+}
+
+.progress-sm {
+    height: 6px;
+}
+
+@media (max-width: 768px) {
+    .department-card {
+        margin-bottom: 1rem;
+    }
+    
+    .card-header h5 {
+        font-size: 1rem;
+    }
+}
+</style>
+
+<script>
+// カードクリックでページ遷移
+document.querySelectorAll('.department-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+        if (!e.target.closest('a')) {
+            const departmentId = this.dataset.department;
+            window.location.href = `/departments/${departmentId}/types`;
+        }
+    });
+});
+</script>
+
+</div>
+<footer class="text-center mt-4 mb-2 text-muted">
+  RCCM試験問題集 &copy; 2025
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- メインJavaScript（分離版） -->
+<script src="/static/js/main.js"></script>
+
+<!-- モバイル機能JavaScript -->
+<script src="/static/js/mobile-features.js"></script>
+
+
+</body>
+</html> 

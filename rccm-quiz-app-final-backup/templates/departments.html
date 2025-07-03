@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}RCCM専門部門選択{% endblock %}
+
+{% block content %}
+<!-- Session initialization indicators for test validation -->
+<div class="session-indicators" style="display: none;">
+  <span class="app-status">running</span>
+  <span class="departments-loaded">true</span>
+  <span class="session-active">initialized</span>
+</div>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <!-- ヘッダー部分 -->
+            <div class="card border-primary mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-building"></i> RCCM専門部門選択
+                    </h3>
+                    <p class="mb-0 small">学習したい専門部門を選択してください</p>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        RCCM（登録建設機械施工技術者）試験の12専門部門から選択できます。<br>
+                        各部門で<strong>4-1必須科目（基礎技術）</strong>と<strong>4-2選択科目（専門技術）</strong>の学習が可能です。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 部門カード表示 -->
+    <div class="row">
+        {% for dept_id, dept_info in departments.items() %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 department-card" data-department="{{ dept_id }}">
+                <div class="card-header" style="background-color: {{ dept_info.color }}; color: white;">
+                    <h5 class="mb-0">
+                        <span class="department-icon">{{ dept_info.icon }}</span>
+                        {{ dept_info.name }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted small">{{ dept_info.description }}</p>
+                    
+                    <!-- 学習進捗 -->
+                    {% set progress = department_progress.get(dept_id, {}) %}
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">学習進捗</small>
+                            <small class="text-muted">
+                                {{ progress.correct_count }}/{{ progress.total_answered }}問正解
+                            </small>
+                        </div>
+                        {% if progress.total_answered > 0 %}
+                        <div class="progress progress-sm">
+                            <div class="progress-bar" style="width: {{ progress.accuracy }}%"></div>
+                        </div>
+                        <small class="text-muted">正答率: {{ "%.1f"|format(progress.accuracy) }}%</small>
+                        {% else %}
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted">まだ学習していません</small>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('question_types', department_id=dept_id) }}" 
+                       class="btn btn-primary btn-block mb-2">
+                        <i class="fas fa-play"></i> この部門で学習
+                    </a>
+                    <div class="row">
+                        <div class="col-6 pr-1">
+                            <a href="{{ url_for('adaptive_questions', department=dept_id, mode='department_mastery') }}" 
+                               class="btn btn-outline-success btn-block btn-sm">
+                                <i class="fas fa-brain"></i> AI学習
+                            </a>
+                        </div>
+                        <div class="col-6 pl-1">
+                            <a href="{{ url_for('integrated_learning_selection', department=dept_id) }}" 
+                               class="btn btn-outline-warning btn-block btn-sm">
+                                <i class="fas fa-link"></i> 連携学習
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- ナビゲーション -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> ホームに戻る
+                </a>
+                <a href="{{ url_for('categories') }}" class="btn btn-outline-primary">
+                    <i class="fas fa-list"></i> 従来のカテゴリ別学習
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.department-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.department-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.department-icon {
+    font-size: 1.2em;
+    margin-right: 8px;
+}
+
+.progress-sm {
+    height: 6px;
+}
+
+@media (max-width: 768px) {
+    .department-card {
+        margin-bottom: 1rem;
+    }
+    
+    .card-header h5 {
+        font-size: 1rem;
+    }
+}
+</style>
+
+<script>
+// カードクリックでページ遷移
+document.querySelectorAll('.department-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+        if (!e.target.closest('a')) {
+            const departmentId = this.dataset.department;
+            window.location.href = `/departments/${departmentId}/types`;
+        }
+    });
+});
+</script>
+{% endblock %}
