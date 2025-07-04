@@ -128,12 +128,12 @@
                 <!-- 次の問題へボタン（確実に表示される） - 視認性強化 -->
                 <!-- 🔥 ULTRA SYNC 根本修正: URL生成を完全修正 -->
                 {% set next_display_num = next_question_number if next_question_number is defined and next_question_number is not none else (question_num + 1) %}
-                {% set next_index = next_question_index if next_question_index is defined and next_question_index is not none else (current_question_number) %}
-                <!-- 🔥 2問目エラー根本解決: 正確なインデックスベースURL生成 -->
-                <a href="/exam?next=1&current={{ next_index }}" 
+                {% set next_display_number = next_question_number if next_question_number is not none else current_question_number %}
+                <!-- 🔥 ULTRA SYNC 根本修正: 表示番号ベースURL生成 -->
+                <a href="/exam?next=1&current={{ next_display_number }}" 
                    class="btn btn-primary btn-lg px-5 py-3 main-nav-btn"
                    style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; position: relative !important; z-index: 1000 !important; background-color: #0d6efd !important; border: 3px solid #0d6efd !important; box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3) !important;"
-                   onclick="console.log('🔥 2問目エラー修正: /exam?next=1&current={{ next_index }}')">
+                   onclick="console.log('🔥 ULTRA SYNC修正: /exam?next=1&current={{ next_display_number }}')">
                     <i class="fas fa-arrow-right me-2"></i>次の問題へ ({{ next_display_num }}/{{ total_num }})
                 </a>
             {% else %}

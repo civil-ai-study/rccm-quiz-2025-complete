@@ -3417,6 +3417,7 @@ def exam():
                 'is_correct': is_correct,
                 'is_last_question': is_last_question,
                 'next_question_index': next_question_index,
+                'next_question_number': (next_question_index + 1) if next_question_index is not None else None,  # 🔥 ULTRA SYNC: 次問題番号（1ベース）
                 'total_questions': safe_total_questions,
                 'current_question_number': safe_current_number,  # 回答した問題の番号（1ベース）
                 'category': session.get('exam_category', '全体'),
