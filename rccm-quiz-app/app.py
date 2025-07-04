@@ -55,13 +55,31 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 from utils import load_questions_improved, DataLoadError, get_sample_data_improved, load_rccm_data_files
 from config import Config, ExamConfig, SRSConfig, DataConfig, RCCMConfig
 
-# ⚡ Redis Cache Integration (optional)
+# ⚡ Redis Cache Integration (optional) + 🛡️ ULTRA SYNC 安全フォールバック
 try:
     from redis_cache import init_cache, cache_manager, get_cache_statistics, invalidate_cache
     REDIS_CACHE_INTEGRATION = True
 except ImportError:
     REDIS_CACHE_INTEGRATION = False
     init_cache = None
+
+# 🛡️ ULTRA SYNC 安全キャッシュフォールバック（副作用ゼロ）
+try:
+    from ultra_sync_cache_fallback import init_safe_cache, get_safe_cache, safe_cached_questions
+    ULTRA_SYNC_CACHE_AVAILABLE = True
+    logger.info("🛡️ ULTRA SYNC 安全キャッシュシステム利用可能")
+except ImportError:
+    ULTRA_SYNC_CACHE_AVAILABLE = False
+    logger.warning("⚠️ ULTRA SYNC 安全キャッシュ無効 - 標準処理継続")
+
+# 🛡️ ULTRA SYNC データ欠損安全処理（副作用ゼロ）
+try:
+    from ultra_sync_data_gap_handler import create_safe_data_handler, DataGapHandler
+    ULTRA_SYNC_DATA_GAP_HANDLER_AVAILABLE = True
+    logger.info("🛡️ ULTRA SYNC データ欠損ハンドラー利用可能")
+except ImportError:
+    ULTRA_SYNC_DATA_GAP_HANDLER_AVAILABLE = False
+    logger.warning("⚠️ ULTRA SYNC データ欠損ハンドラー無効 - 標準処理継続")
 
 # 🛡️ セキュリティ強化: CSRF保護 (optional)
 try:
@@ -634,7 +652,12 @@ LEGACY_DEPARTMENT_ALIASES = {
     'water_supply_sewerage': 'water_supply',     # 上下水道
     'forest_civil': 'forestry',                  # 森林土木
     'agricultural_civil': 'agriculture',         # 農業土木
-    'common': 'basic'                            # 基礎科目
+    'common': 'basic',                           # 基礎科目
+    # 🔥 ULTRA SYNC FIX: 不足していた土質・都市計画エイリアス追加
+    'soil': 'soil_foundation',                   # 土質及び基礎部門の短縮形
+    'urban': 'urban_planning',                   # 都市計画部門の短縮形
+    'foundation': 'soil_foundation',             # 土質及び基礎部門の別名
+    'planning': 'urban_planning'                 # 都市計画部門の別名
 }
 
 # 🚀 ULTRA SYNC: 正規化された一意逆マッピング
@@ -4488,17 +4511,35 @@ def department_study(department):
             specialist_history = [h for h in session.get('history', [])
                                   if h.get('question_type') == 'specialist' and h.get('category') == target_category]
 
-        # ウルトラシンク強化デバッグログ
-        logger.error(f"🚨 CRITICAL DEBUG: department={department_key}, total_questions={len(questions)}")
-        logger.error(f"🚨 CRITICAL DEBUG: specialist_questions count={len(specialist_questions)}")
-        all_road = [q for q in questions if q.get('department') == 'road']
-        logger.error(f"🚨 CRITICAL DEBUG: road_questions total={len(all_road)}")
+        # 🔥 ULTRA SYNC強化デバッグログ（包括的問題診断）
+        logger.error(f"🚨 CRITICAL DEBUG: department_original={department}, department_key={department_key}")
+        logger.error(f"🚨 CRITICAL DEBUG: target_category={target_category}")
+        logger.error(f"🚨 CRITICAL DEBUG: total_questions_loaded={len(questions)}")
+        logger.error(f"🚨 CRITICAL DEBUG: specialist_questions_filtered={len(specialist_questions)}")
+        
+        # カテゴリ別集計デバッグ
+        category_counts = {}
+        type_counts = {}
+        for q in questions:
+            cat = q.get('category', 'unknown')
+            qtype = q.get('question_type', 'unknown')
+            category_counts[cat] = category_counts.get(cat, 0) + 1
+            type_counts[qtype] = type_counts.get(qtype, 0) + 1
+        
+        logger.error(f"🚨 CRITICAL DEBUG: category_counts={category_counts}")
+        logger.error(f"🚨 CRITICAL DEBUG: question_type_counts={type_counts}")
+        
+        # 土質・都市計画特化デバッグ
+        soil_questions = [q for q in questions if q.get('category') == '土質及び基礎']
+        urban_questions = [q for q in questions if q.get('category') == '都市計画及び地方計画']
+        logger.error(f"🚨 CRITICAL DEBUG: 土質及び基礎_total={len(soil_questions)}")
+        logger.error(f"🚨 CRITICAL DEBUG: 都市計画及び地方計画_total={len(urban_questions)}")
+        
         if len(specialist_questions) > 0:
             sample = specialist_questions[0]
-            logger.error(f"🚨 CRITICAL DEBUG sample: dept={sample.get('department')}, type={sample.get('question_type')}, id={sample.get('id')}")
-        elif len(all_road) > 0:
-            sample_road = all_road[0]
-            logger.error(f"🚨 CRITICAL DEBUG road sample: dept={sample_road.get('department')}, type={sample_road.get('question_type')}, id={sample_road.get('id')}")
+            logger.error(f"🚨 CRITICAL DEBUG sample: category={sample.get('category')}, type={sample.get('question_type')}, dept={sample.get('department')}")
+        else:
+            logger.error(f"🚨 CRITICAL WARNING: specialist_questions is EMPTY for {department_key} -> {target_category}")
 
         specialist_stats = {
             'total_questions': len(specialist_questions),
@@ -5170,6 +5211,90 @@ def force_reset():
     except Exception as e:
         logger.error(f"強制リセットエラー: {e}")
         return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/debug/soil_test')
+def debug_soil_test():
+    """🔥 ULTRA SYNC: 土質部門デバッグテスト"""
+    questions = load_questions()
+    soil_questions = [q for q in questions if q.get('category') == '土質及び基礎']
+    soil_specialist = [q for q in soil_questions if q.get('question_type') == 'specialist']
+    
+    return jsonify({
+        'total_questions': len(questions),
+        'soil_total': len(soil_questions),
+        'soil_specialist': len(soil_specialist),
+        'sample_soil': soil_questions[0] if soil_questions else None,
+        'department_mapping': {
+            'soil_foundation': DEPARTMENT_TO_CATEGORY_MAPPING.get('soil_foundation'),
+            'aliases': [k for k, v in LEGACY_DEPARTMENT_ALIASES.items() if v == 'soil_foundation']
+        }
+    })
+
+@app.route('/debug/urban_test')
+def debug_urban_test():
+    """🔥 ULTRA SYNC: 都市計画部門デバッグテスト"""
+    questions = load_questions()
+    urban_questions = [q for q in questions if q.get('category') == '都市計画及び地方計画']
+    urban_specialist = [q for q in urban_questions if q.get('question_type') == 'specialist']
+    
+    return jsonify({
+        'total_questions': len(questions),
+        'urban_total': len(urban_questions),
+        'urban_specialist': len(urban_specialist),
+        'sample_urban': urban_questions[0] if urban_questions else None,
+        'department_mapping': {
+            'urban_planning': DEPARTMENT_TO_CATEGORY_MAPPING.get('urban_planning'),
+            'aliases': [k for k, v in LEGACY_DEPARTMENT_ALIASES.items() if v == 'urban_planning']
+        }
+    })
+
+@app.route('/debug/all_departments')
+def debug_all_departments():
+    """🔥 ULTRA SYNC: 全12部門包括チェック"""
+    questions = load_questions()
+    
+    # 全12部門の情報収集
+    departments_info = {}
+    for dept_key, dept_info in RCCMConfig.DEPARTMENTS.items():
+        if dept_key == 'basic':  # 基礎科目は除外
+            continue
+            
+        target_category = DEPARTMENT_TO_CATEGORY_MAPPING.get(dept_key, dept_key)
+        dept_questions = [q for q in questions if q.get('category') == target_category]
+        specialist_questions = [q for q in dept_questions if q.get('question_type') == 'specialist']
+        
+        departments_info[dept_key] = {
+            'name': dept_info['name'],
+            'category': target_category,
+            'total_questions': len(dept_questions),
+            'specialist_questions': len(specialist_questions),
+            'aliases': [k for k, v in LEGACY_DEPARTMENT_ALIASES.items() if v == dept_key],
+            'has_sufficient_data': len(specialist_questions) >= 30,  # 30問以上で十分
+            'can_run_30q_quiz': len(specialist_questions) >= 30
+        }
+    
+    # 問題のある部門を特定
+    problematic_departments = {
+        k: v for k, v in departments_info.items() 
+        if not v['has_sufficient_data']
+    }
+    
+    # カテゴリ別集計
+    category_counts = {}
+    for q in questions:
+        cat = q.get('category', 'unknown')
+        category_counts[cat] = category_counts.get(cat, 0) + 1
+    
+    return jsonify({
+        'total_questions': len(questions),
+        'departments_count': len(departments_info),
+        'departments_info': departments_info,
+        'problematic_departments': problematic_departments,
+        'category_counts': category_counts,
+        'mapping_check': DEPARTMENT_TO_CATEGORY_MAPPING,
+        'aliases_check': LEGACY_DEPARTMENT_ALIASES
+    })
 
 
 @app.route('/help')
