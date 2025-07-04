@@ -53,6 +53,35 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
+# === セキュリティ関数 ===
+
+def validate_file_path(path: str, allowed_dir: str = None) -> str:
+    """
+    パストラバーサル攻撃を防ぐファイルパス検証
+    ULTRA SYNC セキュリティ強化
+    """
+    import os.path
+    
+    if not path:
+        raise ValueError("パスが空です")
+    
+    # パスの正規化
+    normalized_path = os.path.normpath(path)
+    
+    # パストラバーサル攻撃チェック
+    if '..' in normalized_path or normalized_path.startswith(('/', '\\')):
+        raise ValueError(f"不正なパス: {path}")
+    
+    # 許可ディレクトリの指定がある場合の追加チェック
+    if allowed_dir:
+        allowed_dir = os.path.normpath(allowed_dir)
+        full_path = os.path.normpath(os.path.join(allowed_dir, normalized_path))
+        if not full_path.startswith(allowed_dir):
+            raise ValueError(f"許可ディレクトリ外のパス: {path}")
+        return full_path
+    
+    return normalized_path
+
 # === キャッシュシステム ===
 
 class LRUCache:
@@ -224,11 +253,18 @@ def cache_result(cache_name: str, ttl: Optional[int] = None):
 
 def get_file_hash(filepath: str) -> str:
     """ファイルのハッシュ値を計算"""
-    if not os.path.exists(filepath):
+    # 🛡️ ULTRA SYNC セキュリティ: パストラバーサル攻撃防止
+    try:
+        validated_filepath = validate_file_path(filepath)
+    except ValueError as e:
+        logger.error(f"不正なファイルパス (ハッシュ計算): {e}")
+        return ""
+    
+    if not os.path.exists(validated_filepath):
         return ""
     
     hash_md5 = hashlib.md5()
-    with open(filepath, "rb") as f:
+    with open(validated_filepath, "rb") as f:
         for chunk in iter(lambda: f.read(4096), b""):
             hash_md5.update(chunk)
     return hash_md5.hexdigest()
@@ -275,13 +311,20 @@ _file_monitor = FileHandleMonitor()
 @contextmanager
 def monitored_file_open(filepath, mode='r', encoding='utf-8', **kwargs):
     """監視付きファイルオープン（ウルトラシンク安全性保証）"""
+    # 🛡️ ULTRA SYNC セキュリティ: パストラバーサル攻撃防止
+    try:
+        validated_filepath = validate_file_path(filepath)
+    except ValueError as e:
+        logger.error(f"不正なファイルパス (監視ファイルオープン): {e}")
+        raise ValueError(f"不正なファイルパス: {e}")
+    
     file_handle = None
     try:
         # ハンドル取得制限チェック
-        _file_monitor.acquire_handle(filepath)
+        _file_monitor.acquire_handle(validated_filepath)
         
         # ファイルオープン
-        file_handle = open(filepath, mode, encoding=encoding, **kwargs)
+        file_handle = open(validated_filepath, mode, encoding=encoding, **kwargs)
         yield file_handle
         
     except Exception as e:
@@ -321,6 +364,13 @@ def load_questions_improved(csv_path: str) -> List[Dict]:
     ⚡ Redis統合 改善版問題データ読み込み
     具体的なエラーハンドリングと高速Redisキャッシュ
     """
+    # 🛡️ ULTRA SYNC セキュリティ: パストラバーサル攻撃防止
+    try:
+        csv_path = validate_file_path(csv_path, 'data')
+    except ValueError as e:
+        logger.error(f"不正なファイルパス: {e}")
+        raise DataLoadError(f"不正なファイルパス: {e}")
+    
     logger.info(f"問題データ読み込み開始: {csv_path}")
     
     # ⚡ Redis Cache Integration - ファイルベースキャッシュ確認
@@ -545,9 +595,16 @@ def load_rccm_data_files(data_dir: str) -> List[Dict]:
     
     # 4-1基礎データファイル読み込み
     basic_file = os.path.join(data_dir, '4-1.csv')
-    if os.path.exists(basic_file):
+    # 🛡️ ULTRA SYNC セキュリティ: パストラバーサル攻撃防止
+    try:
+        validated_basic_file = validate_file_path(basic_file, data_dir)
+    except ValueError as e:
+        logger.error(f"不正な基礎データファイルパス: {e}")
+        validated_basic_file = None
+    
+    if validated_basic_file and os.path.exists(validated_basic_file):
         try:
-            basic_questions = load_questions_improved(basic_file)
+            basic_questions = load_questions_improved(validated_basic_file)
             for q in basic_questions:
                 q['question_type'] = 'basic'
                 q['department'] = 'common'  # 基礎科目は共通
@@ -564,9 +621,16 @@ def load_rccm_data_files(data_dir: str) -> List[Dict]:
     specialist_years = []
     for year in range(2008, 2020):  # 2008-2019年の範囲で確認
         specialist_file = os.path.join(data_dir, f'4-2_{year}.csv')
-        if os.path.exists(specialist_file):
+        # 🛡️ ULTRA SYNC セキュリティ: パストラバーサル攻撃防止
+        try:
+            validated_specialist_file = validate_file_path(specialist_file, data_dir)
+        except ValueError as e:
+            logger.error(f"不正な専門データファイルパス ({year}年): {e}")
+            continue
+        
+        if os.path.exists(validated_specialist_file):
             try:
-                year_questions = load_questions_improved(specialist_file)
+                year_questions = load_questions_improved(validated_specialist_file)
                 for q in year_questions:
                     q['question_type'] = 'specialist'
                     q['year'] = year
@@ -883,14 +947,21 @@ class EnterpriseDataManager:
         """単一CSVファイルの事前読み込み"""
         try:
             file_path = os.path.join(self.data_dir, filename)
-            if not os.path.exists(file_path):
+            # 🛡️ ULTRA SYNC セキュリティ: パストラバーサル攻撃防止
+            try:
+                validated_file_path = validate_file_path(file_path, self.data_dir)
+            except ValueError as e:
+                logger.error(f"不正なファイルパス (事前読み込み): {e}")
+                return False
+            
+            if not os.path.exists(validated_file_path):
                 return False
             
             # キャッシュキー生成
             cache_key = f"csv_preload_{filename}"
             
             # ファイルサイズとタイムスタンプでキャッシュ判定
-            stat = os.stat(file_path)
+            stat = os.stat(validated_file_path)
             metadata_key = f"{cache_key}_metadata"
             current_metadata = f"{stat.st_size}_{stat.st_mtime}"
             
@@ -902,7 +973,7 @@ class EnterpriseDataManager:
                 return True
             
             # ファイル読み込み
-            data = load_questions_improved(file_path)
+            data = load_questions_improved(validated_file_path)
             
             # キャッシュに保存
             questions_cache = self.cache_manager.get_cache('questions')
@@ -932,7 +1003,14 @@ class EnterpriseDataManager:
         # キャッシュミス時はリアルタイム読み込み
         logger.info(f"キャッシュミス - リアルタイム読み込み: {filename}")
         file_path = os.path.join(self.data_dir, filename)
-        data = load_questions_improved(file_path)
+        # 🛡️ ULTRA SYNC セキュリティ: パストラバーサル攻撃防止
+        try:
+            validated_file_path = validate_file_path(file_path, self.data_dir)
+        except ValueError as e:
+            logger.error(f"不正なファイルパス (最適化データ取得): {e}")
+            return []
+        
+        data = load_questions_improved(validated_file_path)
         
         # 結果をキャッシュに保存
         questions_cache.put(cache_key, data)
@@ -957,12 +1035,23 @@ class EnterpriseDataManager:
                     file_path = os.path.join(self.data_dir, filename)
                     
                     try:
+                        # 🛡️ ULTRA SYNC セキュリティ: パストラバーサル攻撃防止
+                        try:
+                            validated_file_path = validate_file_path(file_path, self.data_dir)
+                        except ValueError as e:
+                            logger.error(f"不正なファイルパス (整合性チェック): {e}")
+                            integrity_report['files'][filename] = {
+                                'status': 'error',
+                                'error': f'不正なパス: {e}'
+                            }
+                            integrity_report['status'] = 'degraded'
+                            continue
+                        
                         # ファイル基本情報
-                        stat = os.stat(file_path)
+                        stat = os.stat(validated_file_path)
                         
                         # データ読み込みテスト
-                        file_path_full = os.path.join(self.data_dir, filename)
-                        data = load_questions_improved(file_path_full)
+                        data = load_questions_improved(validated_file_path)
                         
                         integrity_report['files'][filename] = {
                             'size_bytes': stat.st_size,

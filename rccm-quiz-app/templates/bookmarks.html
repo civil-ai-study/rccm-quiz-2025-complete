@@ -188,7 +188,7 @@ function removeBookmark(questionId) {
         }
     })
     .catch(error => {
-        console.error('エラー:', error);
+        // Error handling (production mode)
         alert('復習リストからの削除に失敗しました。時間をおいて再度お試しください。');
     });
 }

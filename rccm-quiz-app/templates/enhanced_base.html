@@ -254,10 +254,10 @@
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/static/sw.js')
                     .then(registration => {
-                        console.log('SW registered: ', registration);
+                        // Service Worker registered successfully
                     })
                     .catch(registrationError => {
-                        console.log('SW registration failed: ', registrationError);
+                        // Service Worker registration failed
                     });
             });
         }
@@ -271,9 +271,9 @@
             new PerformanceObserver((entryList) => {
                 for (const entry of entryList.getEntries()) {
                     if (entry.startTime < 2500) { // Good LCP threshold
-                        console.log('✅ Good LCP:', entry.startTime);
+                        // Good LCP performance
                     } else {
-                        console.warn('⚠️ Poor LCP:', entry.startTime);
+                        // Poor LCP performance
                     }
                 }
             }).observe({entryTypes: ['largest-contentful-paint']});
@@ -287,9 +287,9 @@
                     }
                 }
                 if (clsValue < 0.1) {
-                    console.log('✅ Good CLS:', clsValue);
+                    // Good CLS performance
                 } else {
-                    console.warn('⚠️ Poor CLS:', clsValue);
+                    // Poor CLS performance
                 }
             }).observe({entryTypes: ['layout-shift']});
         }

@@ -477,39 +477,20 @@ window.addEventListener('unhandledrejection', function(e) {
 
 // 🔥 CRITICAL: HTTPリクエスト追跡機能
 function logHTTPRequest(method, url, data, timestamp) {
-    console.log('🔍 HTTP Request:', {
-        method: method,
-        url: url,
-        data: data,
-        timestamp: timestamp,
-        userAgent: navigator.userAgent,
-        referrer: document.referrer
-    });
+    // HTTP Request logged (production mode)
+    // method: method, url: url, data: data, timestamp: timestamp, referrer: document.referrer
 }
 
 function logHTTPResponse(method, url, status, response, timestamp) {
-    console.log('🔍 HTTP Response:', {
-        method: method,
-        url: url,
-        status: status,
-        response: response,
-        timestamp: timestamp,
-        duration: Date.now() - timestamp
-    });
+    // HTTP Response logged (production mode)
+    // method: method, url: url, status: status, response: response, timestamp: timestamp
 }
 
 // DOMContentLoaded内での初期化
 document.addEventListener('DOMContentLoaded', function() {
     
     // 🔥 CRITICAL: ページ読み込み状態をログ
-    console.log('🔍 Page Load State:', {
-        url: window.location.href,
-        referrer: document.referrer,
-        userAgent: navigator.userAgent,
-        timestamp: new Date().toISOString(),
-        sessionStorage: sessionStorage.length,
-        localStorage: localStorage.length
-    });
+    // Page load state logged (production mode)
     
     // フォーム送信処理
     const questionForm = document.getElementById('questionForm');
@@ -519,13 +500,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const selected = document.querySelector('input[name="answer"]:checked');
             
             // 🔥 CRITICAL: フォーム送信前の完全状態ログ
-            console.log('🔍 Form Submission:', {
-                hasSelection: !!selected,
-                selectedValue: selected?.value || null,
-                formData: new FormData(questionForm),
-                timestamp: new Date().toISOString(),
-                elapsedTime: Math.floor((Date.now() - startTime) / 1000)
-            });
+            // Form submission logged (production mode)
             
             if (!selected) {
                 e.preventDefault();
@@ -610,7 +585,7 @@ function bookmarkQuestion(questionId) {
         }
     })
     .catch((error) => {
-        console.error('Error:', error);
+        // Bookmark error (production mode)
         alert('復習リストへの登録に失敗しました。ネットワーク接続を確認してください。');
     });
 }

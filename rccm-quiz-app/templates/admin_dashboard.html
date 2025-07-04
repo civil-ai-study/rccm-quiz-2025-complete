@@ -648,7 +648,7 @@
                 reportList.appendChild(reportItem);
             })
             .catch(error => {
-                console.error('レポート生成エラー:', error);
+                // Report generation error (production mode)
                 alert('レポート生成に失敗しました');
             });
         }

@@ -527,7 +527,7 @@ if ('performance' in window) {
     window.addEventListener('load', function() {
         const loadTime = performance.now();
         if (loadTime > 3000) {
-            console.warn('ページ読み込みが遅いです:', loadTime + 'ms');
+            // Performance monitoring (production mode)
         }
     });
 }

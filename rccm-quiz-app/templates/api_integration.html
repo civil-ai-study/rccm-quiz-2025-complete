@@ -760,7 +760,7 @@
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
+                // API error (production mode)
                 alert('APIキー生成に失敗しました');
             });
         }
@@ -792,7 +792,7 @@
                     }
                 })
                 .catch(error => {
-                    console.error('Error:', error);
+                    // API error (production mode)
                     alert('APIキー無効化に失敗しました');
                 });
             }
@@ -816,7 +816,7 @@
                 location.reload();
             })
             .catch(error => {
-                console.error('Error:', error);
+                // API error (production mode)
                 alert('レポート生成に失敗しました');
             });
         }

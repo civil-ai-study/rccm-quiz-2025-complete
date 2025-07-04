@@ -435,7 +435,7 @@ function updateOfflineStatus() {
             }
         })
         .catch(error => {
-            console.error('Performance data fetch failed:', error);
+            // Performance data fetch failed (production mode)
         });
 }
 
@@ -527,7 +527,7 @@ function syncOfflineData() {
     })
     .catch(error => {
         alert('同期処理でエラーが発生しました');
-        console.error('Sync error:', error);
+        // Sync error (production mode)
     })
     .finally(() => {
         btn.disabled = false;
@@ -594,7 +594,7 @@ function saveAllSettings() {
         alert('設定を保存しました');
     })
     .catch(error => {
-        console.error('Settings save error:', error);
+        // Settings save error (production mode)
         alert('設定の保存中にエラーが発生しました');
     });
 }

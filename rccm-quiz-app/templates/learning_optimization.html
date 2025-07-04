@@ -388,7 +388,7 @@ function setBirthDate() {
         }
     })
     .catch(error => {
-        console.error('バイオリズム設定エラー:', error);
+        // Biorhythm setting error (production mode)
         alert('設定に失敗しました');
     });
 }
@@ -415,7 +415,7 @@ function startRealtimeTracking() {
             }
         })
         .catch(error => {
-            console.error('リアルタイム追跡エラー:', error);
+            // Real-time tracking error (production mode)
         });
     }, 5000); // 5秒ごとに更新
     

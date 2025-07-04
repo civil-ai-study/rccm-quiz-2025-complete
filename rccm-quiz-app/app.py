@@ -134,8 +134,7 @@ def safe_file_operation(file_path, operation='read', encoding='utf-8', mode='r',
     Returns:
         ファイルハンドル（context managerとして使用）
     """
-    import os
-    import threading
+    # 🛡️ ULTRA SYNC: 重複import削除 (os, threading already imported at top)
     from contextlib import contextmanager
     
     # スレッドセーフなファイル操作カウンター
@@ -270,7 +269,7 @@ def require_api_key(f):
         api_key = request.headers.get('X-API-Key')
 
         # 🔥 ULTRA SYNC SECURITY FIX: 基本的なAPIキーチェック（実際の環境ではより強固な認証を実装）
-        from flask import current_app
+        # 🛡️ ULTRA SYNC: current_app already imported above
         valid_keys_config = current_app.config.get('VALID_API_KEYS') or os.environ.get('VALID_API_KEYS')
         
         # 🔥 ULTRA SYNC SECURITY FIX: API機能無効化による安全運用
@@ -1375,7 +1374,7 @@ def get_adaptive_review_list(session):
             weighted_questions.append(qid)
 
     # シャッフルして自然な順序にする
-    import random
+    # 🛡️ ULTRA SYNC: random already imported at top
     random.shuffle(weighted_questions)
 
     logger.info(f"アダプティブ復習リスト生成: {len(weighted_questions)}問（重み付き）")
@@ -1957,18 +1956,42 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
 
         logger.info(f"カテゴリフィルタ適用: {requested_category} → {target_category}, {pre_category_count} → {len(available_questions)}問")
 
-    # 🚨 年度でフィルタリング（ウルトラシンク年度混在防止修正）
+    # 🚨 年度でフィルタリング（ウルトラシンク年度混在防止修正・緊急強化版）
     if year and question_type == 'specialist':
         pre_year_count = len(available_questions)
-        # 年度フィルタリング: 指定年度のみの問題を選択
-        available_questions = [q for q in available_questions 
-                               if str(q.get('year', '')) == str(year)]
-        logger.info(f"🚨 年度フィルタ適用（ウルトラシンク修正）: {year}年度, {pre_year_count} → {len(available_questions)}問")
         
-        # 年度フィルタ後に問題がない場合の警告
-        if len(available_questions) == 0:
-            logger.warning(f"❌ 年度フィルタ後に問題が0件になりました: 年度={year}, 部門={department}")
-            # フォールバック: 年度フィルタを緩和せず、エラーとして処理
+        # 🔥 緊急修正: 年度データの厳密な検証と変換
+        try:
+            target_year = int(year)
+            # 有効年度範囲チェック（2008-2019年）
+            if target_year < 2008 or target_year > 2019:
+                logger.error(f"❌ 無効な年度範囲: {target_year} (有効範囲: 2008-2019)")
+                return []
+            
+            # 年度フィルタリング: 厳密な数値比較
+            available_questions = [q for q in available_questions 
+                                   if q.get('year') is not None and int(q.get('year', 0)) == target_year]
+            
+            logger.info(f"🚨 年度フィルタ適用（緊急強化版）: {target_year}年度, {pre_year_count} → {len(available_questions)}問")
+            
+            # 年度フィルタ後に問題がない場合の詳細分析
+            if len(available_questions) == 0:
+                logger.error(f"❌ 年度フィルタ後に問題が0件: 年度={target_year}, 部門={department}")
+                
+                # デバッグ: 利用可能な年度の分析
+                if question_type == 'specialist' and department:
+                    all_years_in_dept = [q.get('year') for q in all_questions 
+                                         if q.get('question_type') == 'specialist' 
+                                         and department in DEPARTMENT_TO_CATEGORY_MAPPING 
+                                         and q.get('category') == DEPARTMENT_TO_CATEGORY_MAPPING[department]]
+                    unique_years = list(set([y for y in all_years_in_dept if y is not None]))
+                    logger.error(f"📊 デバッグ情報: 部門「{department}」で利用可能な年度: {sorted(unique_years)}")
+                
+                # エラーとして処理（フォールバックなし）
+                return []
+                
+        except (ValueError, TypeError) as e:
+            logger.error(f"❌ 年度変換エラー: {year} - {e}")
             return []
 
     # 既に選択済みの問題を除外
@@ -1985,16 +2008,49 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         if len(selected_categories) > 1:
             logger.warning(f"警告：複数のカテゴリが混在しています！ {selected_categories}")
     
-    # 🚨 年度混在チェック（ウルトラシンク年度混在防止検証）
+    # 🚨 年度混在チェック（ウルトラシンク年度混在防止検証・緊急強化版）
     if year and question_type == 'specialist':
-        selected_years = list(set(str(q.get('year', '不明')) for q in selected_questions))
-        logger.info(f"🚨 最終選択問題の年度分布: {selected_years}")
-        if len(selected_years) > 1 or (len(selected_years) == 1 and selected_years[0] != str(year)):
-            logger.error(f"❌ 重大エラー：年度混在を検出！指定年度: {year}, 実際の年度: {selected_years}")
-            # 年度混在問題の詳細ログ
+        try:
+            target_year = int(year)
+            selected_years = []
+            mixed_year_questions = []
+            
             for q in selected_questions:
-                if str(q.get('year', '')) != str(year):
-                    logger.error(f"   問題ID {q.get('id')}: 期待年度={year}, 実際年度={q.get('year')}")
+                q_year = q.get('year')
+                if q_year is not None:
+                    try:
+                        q_year_int = int(q_year)
+                        selected_years.append(q_year_int)
+                        if q_year_int != target_year:
+                            mixed_year_questions.append(q)
+                    except (ValueError, TypeError):
+                        logger.error(f"❌ 問題ID {q.get('id')}: 無効な年度データ '{q_year}'")
+                        mixed_year_questions.append(q)
+                else:
+                    logger.error(f"❌ 問題ID {q.get('id')}: 年度データがNone")
+                    mixed_year_questions.append(q)
+            
+            unique_years = list(set(selected_years))
+            logger.info(f"🚨 最終選択問題の年度分布: {sorted(unique_years)}")
+            
+            # 年度混在の厳密チェック
+            if len(unique_years) > 1 or len(mixed_year_questions) > 0:
+                logger.error(f"❌ 重大エラー：年度混在を検出！")
+                logger.error(f"   指定年度: {target_year}")
+                logger.error(f"   検出された年度: {sorted(unique_years)}")
+                logger.error(f"   混在問題数: {len(mixed_year_questions)}")
+                
+                # 混在問題の詳細ログ
+                for q in mixed_year_questions:
+                    logger.error(f"   問題ID {q.get('id')}: 期待年度={target_year}, 実際年度={q.get('year')}")
+                
+                # 🔥 緊急措置: 年度混在問題を除外
+                logger.warning(f"🔧 緊急措置: 年度混在問題 {len(mixed_year_questions)}問を除外")
+                selected_questions = [q for q in selected_questions if q not in mixed_year_questions]
+                logger.info(f"🔧 除外後の問題数: {len(selected_questions)}問")
+                
+        except (ValueError, TypeError) as e:
+            logger.error(f"❌ 年度混在チェックエラー: {e}")
     
     # 🧪 ULTRA SYNC MANUAL TEST SUPPORT: 手動テスト支援ログ（副作用ゼロ）
     if question_type == 'specialist' and department and year:
@@ -2005,14 +2061,37 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         logger.info(f"📋 テスト条件: 部門={department}, 年度={year}, 問題種別={question_type}")
         logger.info(f"📊 選択問題数: {len(selected_questions)}問 (目標: {session_size}問)")
         
-        # 年度統一性確認
+        # 年度統一性確認（緊急強化版）
         if selected_questions:
-            actual_years = [str(q.get('year', '不明')) for q in selected_questions]
-            unique_years = list(set(actual_years))
-            if len(unique_years) == 1 and unique_years[0] == str(year):
-                logger.info(f"✅ 年度統一性: 完全 - 全{len(selected_questions)}問が{year}年度")
-            else:
-                logger.error(f"❌ 年度統一性: 失敗 - 混在年度: {unique_years}")
+            try:
+                target_year = int(year)
+                actual_years = []
+                invalid_year_count = 0
+                
+                for q in selected_questions:
+                    q_year = q.get('year')
+                    if q_year is not None:
+                        try:
+                            actual_years.append(int(q_year))
+                        except (ValueError, TypeError):
+                            invalid_year_count += 1
+                            logger.error(f"❌ 問題ID {q.get('id')}: 無効な年度データ '{q_year}'")
+                    else:
+                        invalid_year_count += 1
+                        logger.error(f"❌ 問題ID {q.get('id')}: 年度データがNone")
+                
+                unique_years = list(set(actual_years))
+                
+                if len(unique_years) == 1 and unique_years[0] == target_year and invalid_year_count == 0:
+                    logger.info(f"✅ 年度統一性: 完全 - 全{len(selected_questions)}問が{target_year}年度")
+                else:
+                    logger.error(f"❌ 年度統一性: 失敗")
+                    logger.error(f"   期待年度: {target_year}")
+                    logger.error(f"   実際の年度: {sorted(unique_years)}")
+                    logger.error(f"   無効年度問題数: {invalid_year_count}")
+                    
+            except (ValueError, TypeError) as e:
+                logger.error(f"❌ 年度統一性確認エラー: {e}")
         
         # 部門統一性確認
         if selected_questions:
@@ -2069,10 +2148,17 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
             fallback_questions = [q for q in fallback_questions if q.get('category') == target_category]
             logger.info(f"フォールバック: 部門「{target_category}」を維持 - {len(fallback_questions)}問")
             
-        # 🚨 年度フィルタリングもフォールバックで維持（ウルトラシンク年度混在防止）
+        # 🚨 年度フィルタリングもフォールバックで維持（緊急強化版）
         if year and question_type == 'specialist':
-            fallback_questions = [q for q in fallback_questions if str(q.get('year', '')) == str(year)]
-            logger.info(f"🚨 フォールバック年度フィルタ維持: {year}年度 - {len(fallback_questions)}問")
+            try:
+                target_year = int(year)
+                pre_fallback_count = len(fallback_questions)
+                fallback_questions = [q for q in fallback_questions 
+                                      if q.get('year') is not None and int(q.get('year', 0)) == target_year]
+                logger.info(f"🚨 フォールバック年度フィルタ維持（緊急強化版）: {target_year}年度, {pre_fallback_count} → {len(fallback_questions)}問")
+            except (ValueError, TypeError) as e:
+                logger.error(f"❌ フォールバック年度フィルタエラー: {e}")
+                fallback_questions = []
 
         random.shuffle(fallback_questions)
         additional_questions = fallback_questions[:shortage]
@@ -2135,10 +2221,11 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
 #     return response
 
 
-@app.route('/health')
+@app.route('/health_simple')
 def health():
     """ヘルスチェック（高速）"""
     # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準のヘルスチェックタイムスタンプ
+    # 🛡️ ULTRA SYNC: ルート変更 - /health重複回避
     return jsonify({'status': 'healthy', 'timestamp': format_utc_to_iso()})
 
 
@@ -2350,7 +2437,7 @@ def exam():
                         # 基礎科目
                         basic_questions = [q for q in all_questions if q.get('question_type') == 'basic']
                         if basic_questions:
-                            import random
+                            # 🛡️ ULTRA SYNC: random already imported at top
                             random.shuffle(basic_questions)
                             selected = basic_questions[:10]
                             session['exam_question_ids'] = [q['id'] for q in selected]
@@ -3310,7 +3397,8 @@ def exam():
             session.modified = True
 
             # ステップ5: セッション保存の検証
-            saved_current = session.get('exam_current', 'NOT_FOUND')
+            # 🛡️ ULTRA SYNC: デフォルト値統一 (文字列 → 数値)
+            saved_current = session.get('exam_current', 0)
             saved_question_ids = session.get('exam_question_ids', [])
             saved_progress = session.get('progress_tracking', {})
             
@@ -5616,7 +5704,8 @@ def review_questions():
                 while verification_attempts < max_verification_attempts:
                     try:
                         final_ids = session.get('exam_question_ids', [])
-                        final_current = session.get('exam_current', -1)
+                        # 🛡️ ULTRA SYNC: デフォルト値統一 (負数 → 0)
+                        final_current = session.get('exam_current', 0)
                         final_category = session.get('exam_category', '')
                         final_question_type = session.get('selected_question_type', '')
 
@@ -8101,10 +8190,10 @@ def create_study_group():
     try:
         user_id = session.get('user_id', 'anonymous')
 
-        group_name = request.form.get('group_name')
-        description = request.form.get('description', '')
-        department = request.form.get('department')
-        target_exam_date = request.form.get('target_exam_date')
+        group_name = sanitize_input(request.form.get('group_name'))
+        description = sanitize_input(request.form.get('description', ''))
+        department = sanitize_input(request.form.get('department'))
+        target_exam_date = sanitize_input(request.form.get('target_exam_date'))
 
         if not group_name:
             return jsonify({'success': False, 'error': 'グループ名は必須です'})
@@ -8162,11 +8251,11 @@ def create_discussion():
     try:
         user_id = session.get('user_id', 'anonymous')
 
-        title = request.form.get('title')
-        content = request.form.get('content')
-        category = request.form.get('category', 'general')
-        question_id = request.form.get('question_id')
-        group_id = request.form.get('group_id')
+        title = sanitize_input(request.form.get('title'))
+        content = sanitize_input(request.form.get('content'))
+        category = sanitize_input(request.form.get('category', 'general'))
+        question_id = sanitize_input(request.form.get('question_id'))
+        group_id = sanitize_input(request.form.get('group_id'))
 
         if not title or not content:
             return jsonify({'success': False, 'error': 'タイトルと内容は必須です'})
