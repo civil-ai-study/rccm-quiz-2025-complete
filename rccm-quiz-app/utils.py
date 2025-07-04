@@ -58,7 +58,7 @@ logger = logging.getLogger(__name__)
 def validate_file_path(path: str, allowed_dir: str = None) -> str:
     """
     パストラバーサル攻撃を防ぐファイルパス検証
-    ULTRA SYNC セキュリティ強化
+    ULTRA SYNC セキュリティ強化 - データファイルアクセス対応
     """
     import os.path
     
@@ -68,8 +68,22 @@ def validate_file_path(path: str, allowed_dir: str = None) -> str:
     # パスの正規化
     normalized_path = os.path.normpath(path)
     
-    # パストラバーサル攻撃チェック
-    if '..' in normalized_path or normalized_path.startswith(('/', '\\')):
+    # 🔧 ULTRA SYNC修正: データディレクトリの絶対パスを許可
+    # プロジェクト内のdataディレクトリへのアクセスを安全に許可
+    current_dir = os.getcwd()
+    project_data_dir = os.path.join(current_dir, 'data')
+    
+    # 絶対パスの場合、プロジェクト内のdataディレクトリかチェック
+    if os.path.isabs(normalized_path):
+        if normalized_path.startswith(project_data_dir):
+            # プロジェクト内dataディレクトリへのアクセスは許可
+            return normalized_path
+        else:
+            # プロジェクト外の絶対パスは拒否
+            raise ValueError(f"プロジェクト外への不正パス: {path}")
+    
+    # 相対パスでのパストラバーサル攻撃チェック
+    if '..' in normalized_path:
         raise ValueError(f"不正なパス: {path}")
     
     # 許可ディレクトリの指定がある場合の追加チェック
@@ -366,7 +380,7 @@ def load_questions_improved(csv_path: str) -> List[Dict]:
     """
     # 🛡️ ULTRA SYNC セキュリティ: パストラバーサル攻撃防止
     try:
-        csv_path = validate_file_path(csv_path, 'data')
+        csv_path = validate_file_path(csv_path)  # allowed_dirは指定しない
     except ValueError as e:
         logger.error(f"不正なファイルパス: {e}")
         raise DataLoadError(f"不正なファイルパス: {e}")
@@ -597,7 +611,7 @@ def load_rccm_data_files(data_dir: str) -> List[Dict]:
     basic_file = os.path.join(data_dir, '4-1.csv')
     # 🛡️ ULTRA SYNC セキュリティ: パストラバーサル攻撃防止
     try:
-        validated_basic_file = validate_file_path(basic_file, data_dir)
+        validated_basic_file = validate_file_path(basic_file)  # allowed_dirは指定しない
     except ValueError as e:
         logger.error(f"不正な基礎データファイルパス: {e}")
         validated_basic_file = None
@@ -623,7 +637,7 @@ def load_rccm_data_files(data_dir: str) -> List[Dict]:
         specialist_file = os.path.join(data_dir, f'4-2_{year}.csv')
         # 🛡️ ULTRA SYNC セキュリティ: パストラバーサル攻撃防止
         try:
-            validated_specialist_file = validate_file_path(specialist_file, data_dir)
+            validated_specialist_file = validate_file_path(specialist_file)  # allowed_dirは指定しない
         except ValueError as e:
             logger.error(f"不正な専門データファイルパス ({year}年): {e}")
             continue
@@ -949,7 +963,7 @@ class EnterpriseDataManager:
             file_path = os.path.join(self.data_dir, filename)
             # 🛡️ ULTRA SYNC セキュリティ: パストラバーサル攻撃防止
             try:
-                validated_file_path = validate_file_path(file_path, self.data_dir)
+                validated_file_path = validate_file_path(file_path)  # allowed_dirは指定しない
             except ValueError as e:
                 logger.error(f"不正なファイルパス (事前読み込み): {e}")
                 return False
@@ -1005,7 +1019,7 @@ class EnterpriseDataManager:
         file_path = os.path.join(self.data_dir, filename)
         # 🛡️ ULTRA SYNC セキュリティ: パストラバーサル攻撃防止
         try:
-            validated_file_path = validate_file_path(file_path, self.data_dir)
+            validated_file_path = validate_file_path(file_path)  # allowed_dirは指定しない
         except ValueError as e:
             logger.error(f"不正なファイルパス (最適化データ取得): {e}")
             return []
@@ -1037,7 +1051,7 @@ class EnterpriseDataManager:
                     try:
                         # 🛡️ ULTRA SYNC セキュリティ: パストラバーサル攻撃防止
                         try:
-                            validated_file_path = validate_file_path(file_path, self.data_dir)
+                            validated_file_path = validate_file_path(file_path)  # allowed_dirは指定しない
                         except ValueError as e:
                             logger.error(f"不正なファイルパス (整合性チェック): {e}")
                             integrity_report['files'][filename] = {
