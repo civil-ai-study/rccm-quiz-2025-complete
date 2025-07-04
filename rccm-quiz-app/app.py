@@ -67,19 +67,15 @@ except ImportError:
 try:
     from ultra_sync_cache_fallback import init_safe_cache, get_safe_cache, safe_cached_questions
     ULTRA_SYNC_CACHE_AVAILABLE = True
-    logger.info("🛡️ ULTRA SYNC 安全キャッシュシステム利用可能")
 except ImportError:
     ULTRA_SYNC_CACHE_AVAILABLE = False
-    logger.warning("⚠️ ULTRA SYNC 安全キャッシュ無効 - 標準処理継続")
 
 # 🛡️ ULTRA SYNC データ欠損安全処理（副作用ゼロ）
 try:
     from ultra_sync_data_gap_handler import create_safe_data_handler, DataGapHandler
     ULTRA_SYNC_DATA_GAP_HANDLER_AVAILABLE = True
-    logger.info("🛡️ ULTRA SYNC データ欠損ハンドラー利用可能")
 except ImportError:
     ULTRA_SYNC_DATA_GAP_HANDLER_AVAILABLE = False
-    logger.warning("⚠️ ULTRA SYNC データ欠損ハンドラー無効 - 標準処理継続")
 
 # 🛡️ セキュリティ強化: CSRF保護 (optional)
 try:
@@ -382,6 +378,17 @@ else:
                 cleanup_count += 1
         return cleanup_count
 logger = logging.getLogger(__name__)
+
+# 🛡️ ULTRA SYNC ステータスログ（logger初期化後）
+if ULTRA_SYNC_CACHE_AVAILABLE:
+    logger.info("🛡️ ULTRA SYNC 安全キャッシュシステム利用可能")
+else:
+    logger.warning("⚠️ ULTRA SYNC 安全キャッシュ無効 - 標準処理継続")
+
+if ULTRA_SYNC_DATA_GAP_HANDLER_AVAILABLE:
+    logger.info("🛡️ ULTRA SYNC データ欠損ハンドラー利用可能")
+else:
+    logger.warning("⚠️ ULTRA SYNC データ欠損ハンドラー無効 - 標準処理継続")
 
 # 🔍 ULTRA SYNC MEMORY FIX: Memory Optimizer 遅延初期化（logger初期化後）
 try:
