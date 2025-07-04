@@ -74,14 +74,9 @@ class SessionTimeoutManager {
     
     async checkSessionStatus() {
         try {
-            const response = await fetch('/api/session/status');
-            if (!response.ok) {
-                console.warn('セッション状態取得失敗:', response.statusText);
-                return;
-            }
-            
-            const status = await response.json();
-            this.handleSessionStatus(status);
+            // 🔥 緊急修正: 存在しないAPIを無効化
+            console.log('セッション状態チェック: APIエンドポイントが存在しないため無効化');
+            return;
             
         } catch (error) {
             console.error('セッション状態チェックエラー:', error);
