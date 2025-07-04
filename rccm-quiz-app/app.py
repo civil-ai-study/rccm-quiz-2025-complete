@@ -1224,7 +1224,7 @@ def update_advanced_srs_data(question_id, is_correct, session):
 
     # 統計更新
     question_data['total_attempts'] += 1
-    question_data['last_attempt'] = datetime.now().isoformat()
+    question_data['last_attempt'] = get_utc_now().isoformat()
 
     if is_correct:
         question_data['correct_count'] += 1
@@ -1739,7 +1739,7 @@ def safe_update_review_session(session_data, question_ids, current_index=0):
             'exam_category': f'復習問題（統合{len(question_ids)}問）',
             'selected_question_type': 'review',
             'review_session_active': True,
-            'review_session_created': datetime.now().isoformat(),
+            'review_session_created': get_utc_now().isoformat(),
             'review_session_protected': True  # 保護フラグ
         })
 
@@ -2216,7 +2216,7 @@ def set_user():
         session['user_id'] = session_aware_user_id  # セッション固有の一意ID
         session['base_user_id'] = base_user_id      # データ永続化用の基本ID
         session['session_id'] = unique_session_id   # セッション識別用
-        session['login_time'] = datetime.now().isoformat()
+        session['login_time'] = get_utc_now().isoformat()
 
         logger.info(f"🔒 セッション安全性確保: {user_name} (セッションID: {unique_session_id[:8]}...)")
 
@@ -3269,8 +3269,8 @@ def exam():
                     'exam_current': safe_current_no,  # 現在位置を維持（重要な修正）
                     'exam_question_ids': exam_question_ids,
                     'quiz_completed': True,  # 完了フラグ
-                    'completion_timestamp': datetime.now().isoformat(),
-                    'last_update': datetime.now().isoformat(),
+                    'completion_timestamp': get_utc_now().isoformat(),
+                    'last_update': get_utc_now().isoformat(),
                     'history': session.get('history', [])
                 }
                 logger.info(f"最終問題: exam_current = {safe_current_no} に維持")
@@ -3279,7 +3279,7 @@ def exam():
                 session_final_updates = {
                     'exam_current': next_exam_current,  # 検証済みの次問題インデックス
                     'exam_question_ids': exam_question_ids,
-                    'last_update': datetime.now().isoformat(),
+                    'last_update': get_utc_now().isoformat(),
                     'history': session.get('history', [])
                 }
                 logger.info(f"次問題進行: exam_current = {next_exam_current} に設定")
@@ -3289,7 +3289,7 @@ def exam():
                 session_final_updates.update({
                     'selected_question_type': 'review',  # 復習モード維持
                     'review_session_active': True,       # 復習セッションアクティブフラグ
-                    'review_session_timestamp': datetime.now().isoformat()  # タイムスタンプ
+                    'review_session_timestamp': get_utc_now().isoformat()  # タイムスタンプ
                 })
                 logger.info(f"復習セッション保護: 問題{qid}回答後, 次={safe_next_no}, 総数={total_questions_count}")
 
@@ -3305,7 +3305,7 @@ def exam():
                 'total_questions': session_size,        # セッション総問題数
                 'current_index': safe_next_no,          # 次の問題インデックス（0ベース）
                 'last_answered_qid': qid,               # 最後に回答した問題ID
-                'timestamp': datetime.now().isoformat()
+                'timestamp': get_utc_now().isoformat()
             }
             session.modified = True
 
@@ -3358,7 +3358,7 @@ def exam():
             logger.info(f"次回GET処理での期待値: display_current = {expected_exam_current + 1}, display_total = {session_size}")
             
             # 🔥 PROGRESS TRACKING FIX: セッション進捗の確実な保存
-            session['exam_progress_timestamp'] = datetime.now().isoformat()
+            session['exam_progress_timestamp'] = get_utc_now().isoformat()
             session['last_answered_question_id'] = qid
             session['total_questions_in_session'] = len(exam_question_ids)
             session.modified = True
@@ -5002,7 +5002,7 @@ def get_cache_stats():
     try:
         stats = {
             'redis_integration': REDIS_CACHE_INTEGRATION,
-            'timestamp': datetime.now().isoformat()
+            'timestamp': get_utc_now().isoformat()
         }
         
         if REDIS_CACHE_INTEGRATION:
@@ -9002,7 +9002,7 @@ def health_status():
         'status': 'ok',
         'app': 'RCCM Quiz App',
         'version': '2025.1',
-        'timestamp': datetime.now().isoformat()
+        'timestamp': get_utc_now().isoformat()
     })
 
 # 🛡️ ULTRA SYNC UNIFIED ERROR HANDLERS: 統合エラーハンドラーシステム
