@@ -2602,8 +2602,8 @@ def exam():
             logger.info(f"🔍 Session Permanent: {session.permanent}")
             
             # 🔥 CRITICAL: 2問目エラー追跡のための時系列ログ
-            import datetime
-            timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+            from datetime import datetime as dt
+            timestamp = dt.now().strftime("%Y-%m-%d %H:%M:%S.%f")
             logger.info(f"🔍 Timestamp: {timestamp}")
             logger.info(f"🔍 Current Question Check: qid={form_data.get('qid')}, exam_current={session.get('exam_current')}")
             
@@ -4045,8 +4045,8 @@ def exam():
         logger.info(f"問題表示: {current_no + 1}/{len(exam_question_ids)} - ID:{current_question_id}")
         
         # 🔥 CRITICAL: 完全なレスポンス追跡ログ
-        import datetime
-        response_timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+        from datetime import datetime as dt
+        response_timestamp = dt.now().strftime("%Y-%m-%d %H:%M:%S.%f")
         logger.info("=== RESPONSE GENERATION TRACE ===")
         logger.info(f"🔍 Response Timestamp: {response_timestamp}")
         logger.info(f"🔍 Template: exam.html")
