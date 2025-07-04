@@ -3194,7 +3194,7 @@ def exam():
             # 詳細デバッグログ（セッション状態の完全な記録）
             logger.info("=== 回答処理デバッグ情報 ===")
             logger.info(f"問題ID: {qid}, 回答: {answer}, 正否: {is_correct}")
-            logger.info(f"セッション状態: current_no={current_no}, next_no={next_no}")
+            logger.info(f"セッション状態: current_no={current_no}, next_no={safe_next_no}")
             logger.info(f"安全値: safe_current_no={safe_current_no}, safe_next_no={safe_next_no}")
             logger.info(f"セッション設定: session_size={session_size}, total_questions={total_questions_count}")
             logger.info(f"完了判定計算: answered_count({answered_questions_count}) >= session_size({session_size}) = {answered_questions_count >= session_size}")
