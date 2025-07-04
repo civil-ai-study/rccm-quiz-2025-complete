@@ -128,7 +128,7 @@
                 <!-- 次の問題へボタン（確実に表示される） - 視認性強化 -->
                 <!-- 🔥 ULTRA SYNC 根本修正: URL生成を完全修正 -->
                 {% set next_display_num = next_question_number if next_question_number is defined and next_question_number is not none else (question_num + 1) %}
-                {% set next_index = next_question_index if next_question_index is defined and next_question_index is not none else (question_num) %}
+                {% set next_index = next_question_index if next_question_index is defined and next_question_index is not none else (current_question_number) %}
                 <!-- 🔥 2問目エラー根本解決: 正確なインデックスベースURL生成 -->
                 <a href="/exam?next=1&current={{ next_index }}" 
                    class="btn btn-primary btn-lg px-5 py-3 main-nav-btn"

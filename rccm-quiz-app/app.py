@@ -3257,10 +3257,10 @@ def exam():
                 next_exam_current = safe_next_no
                 logger.info(f"✅ 次問題有効: exam_current = {next_exam_current}")
             else:
-                # 最終問題または次問題が存在しない場合は完了状態
-                next_exam_current = safe_current_no  # 現在の問題インデックスを維持
+                # 最終問題の場合は完了状態 - インデックスは進行させない
+                next_exam_current = safe_current_no  # 最終問題のインデックスを維持
                 is_last_question = True  # 完了フラグを強制設定
-                logger.info(f"✅ 完了状態: exam_current = {next_exam_current} (維持)")
+                logger.info(f"✅ 最終問題完了状態: exam_current = {next_exam_current} (最終問題維持)")
             
             # ステップ2: セッション更新内容を準備
             if is_last_question:
