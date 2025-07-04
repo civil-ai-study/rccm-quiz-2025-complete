@@ -1,4 +1,4 @@
-# 🔥 ULTRA SYNC OPTIMIZED IMPORTS: メモリ効率とパフォーマンス最適化
+# 🔥 ULTRA SYNC STRUCTURAL FIX: アーキテクチャ修正版
 import threading
 import uuid
 import time
@@ -9,9 +9,44 @@ import gc
 import logging
 from datetime import datetime, timedelta, timezone
 from collections import defaultdict
-from typing import Dict, List
+from typing import Dict, List, Optional, Tuple
 from functools import wraps
 from decimal import Decimal, ROUND_HALF_UP
+
+# 🛡️ CRITICAL: セッション状態管理クラス
+class SessionStateManager:
+    """セッション状態の一元管理 - スコープ問題根本解決"""
+    
+    def __init__(self, session):
+        self.session = session
+        self._validated = False
+    
+    def get_safe_indices(self) -> Tuple[int, int, bool]:
+        """安全なインデックス計算 - next_no未定義エラー根絶"""
+        try:
+            exam_question_ids = self.session.get('exam_question_ids', [])
+            current_no = max(0, int(self.session.get('exam_current', 0)))
+            
+            if not exam_question_ids:
+                return 0, 0, True  # エラー状態
+            
+            total_questions = len(exam_question_ids)
+            safe_current_no = min(current_no, total_questions - 1)
+            safe_next_no = safe_current_no + 1
+            is_last = safe_next_no >= total_questions
+            
+            return safe_current_no, safe_next_no, is_last
+            
+        except (ValueError, TypeError, AttributeError):
+            return 0, 0, True  # フォールバック
+    
+    def validate_session(self) -> bool:
+        """セッション検証の一元化"""
+        required_keys = ['exam_question_ids', 'exam_current']
+        return all(key in self.session for key in required_keys)
+
+# グローバルセッション管理インスタンス
+_session_managers = {}
 
 # Flask core imports
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory, make_response, flash
@@ -3169,13 +3204,12 @@ def exam():
                 logger.error("セッション内に問題IDリストが存在しません")
                 return render_template('error.html', error="セッションエラー: 問題リストが空です")
                 
-            # 安全な現在位置計算
-            safe_current_no = max(0, min(current_no, total_questions_count - 1))
-            safe_next_no = safe_current_no + 1
-
-            # 🔥 CRITICAL FIX: 完了判定の根本的修正
-            # **重要**: current_no は今回答した問題のインデックス（0ベース）
-            # 次の問題インデックス safe_next_no を使って最終判定を行う
+            # 🛡️ STRUCTURAL FIX: セッション状態管理クラス使用
+            session_manager = SessionStateManager(session)
+            safe_current_no, safe_next_no, is_last_question = session_manager.get_safe_indices()
+            
+            # 変数スコープ問題完全解決: すべて一箇所で定義
+            logger.info(f"構造的修正後の安全値: current={safe_current_no}, next={safe_next_no}, is_last={is_last_question}")
             session_size = get_user_session_size(session)
             
             # 最終問題判定: 今回答した問題が最後の問題か
