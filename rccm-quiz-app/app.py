@@ -2422,21 +2422,50 @@ def exam():
                                          error=f"不正なフィールドが含まれています: {', '.join(invalid_keys)}",
                                          error_type="invalid_fields"), 400
             
-            # 🔥 DEBUG: POSTリクエスト詳細ログ
-            logger.info("=== POST処理開始 - セッション状態デバッグ ===")
+            # 🔥 DEBUG: POSTリクエスト詳細ログ - エラー追跡強化版
+            logger.info("=== POST処理開始 - 完全デバッグトレース ===")
             logger.info(f"🔍 POST Request URL: {request.url}")
             logger.info(f"🔍 POST Form Data: {form_data}")
             logger.info(f"🔍 POST Content Type: {request.content_type}")
+            logger.info(f"🔍 POST Headers: {dict(request.headers)}")
+            logger.info(f"🔍 POST Method: {request.method}")
+            logger.info(f"🔍 POST Remote Address: {request.remote_addr}")
+            logger.info(f"🔍 POST User Agent: {request.user_agent}")
+            logger.info(f"🔍 POST Referrer: {request.referrer}")
+            logger.info(f"🔍 POST Query String: {request.query_string}")
+            
             # デバッグ: POST処理時のセッション状態を完全ログ出力
             # 🔥 ULTRA SYNC セキュリティ FIX: 機密情報を含まない安全なログ出力
-            logger.info(f"セッションキー数: {len(session.keys())}")
-            logger.info(f"exam_question_ids数: {len(session.get('exam_question_ids', []))}")
-            logger.info(f"exam_current: {session.get('exam_current', 'MISSING')}")
-            logger.info(f"exam_category: {session.get('exam_category', 'MISSING')}")
-            logger.info(f"selected_question_type: {session.get('selected_question_type', 'MISSING')}")
-            logger.info(f"selected_department: {session.get('selected_department', 'MISSING')}")
-            logger.info(f"session_id存在: {'Yes' if session.get('session_id') else 'No'}")
-            logger.info(f"data_loaded: {session.get('data_loaded', 'MISSING')}")
+            logger.info(f"🔍 Session Keys: {list(session.keys())}")
+            logger.info(f"🔍 Session Size: {len(session.keys())}")
+            logger.info(f"🔍 exam_question_ids: {session.get('exam_question_ids', 'MISSING')}")
+            logger.info(f"🔍 exam_question_ids Length: {len(session.get('exam_question_ids', []))}")
+            logger.info(f"🔍 exam_current: {session.get('exam_current', 'MISSING')}")
+            logger.info(f"🔍 exam_category: {session.get('exam_category', 'MISSING')}")
+            logger.info(f"🔍 selected_question_type: {session.get('selected_question_type', 'MISSING')}")
+            logger.info(f"🔍 selected_department: {session.get('selected_department', 'MISSING')}")
+            logger.info(f"🔍 session_id存在: {'Yes' if session.get('session_id') else 'No'}")
+            logger.info(f"🔍 data_loaded: {session.get('data_loaded', 'MISSING')}")
+            logger.info(f"🔍 Session Modified: {session.modified}")
+            logger.info(f"🔍 Session Permanent: {session.permanent}")
+            
+            # 🔥 CRITICAL: 2問目エラー追跡のための時系列ログ
+            import datetime
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+            logger.info(f"🔍 Timestamp: {timestamp}")
+            logger.info(f"🔍 Current Question Check: qid={form_data.get('qid')}, exam_current={session.get('exam_current')}")
+            
+            # 🔥 CRITICAL: セッションとPOSTデータの不整合チェック
+            if 'exam_question_ids' in session and session.get('exam_question_ids'):
+                current_index = session.get('exam_current', 0)
+                question_ids = session.get('exam_question_ids', [])
+                if current_index < len(question_ids):
+                    expected_qid = question_ids[current_index]
+                    actual_qid = form_data.get('qid')
+                    logger.info(f"🔍 Question ID Match Check: expected={expected_qid}, actual={actual_qid}, match={expected_qid == int(actual_qid) if actual_qid else False}")
+                else:
+                    logger.warning(f"🚨 Index Out of Range: current={current_index}, total={len(question_ids)}")
+            
             logger.info("==========================================")
 
             # 🔥 ULTRA SYNC VALIDATION FIX: 入力値のサニタイズと検証強化
@@ -3861,6 +3890,23 @@ def exam():
         }
         
         logger.info(f"問題表示: {current_no + 1}/{len(exam_question_ids)} - ID:{current_question_id}")
+        
+        # 🔥 CRITICAL: 完全なレスポンス追跡ログ
+        import datetime
+        response_timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+        logger.info("=== RESPONSE GENERATION TRACE ===")
+        logger.info(f"🔍 Response Timestamp: {response_timestamp}")
+        logger.info(f"🔍 Template: exam.html")
+        logger.info(f"🔍 Template Variables: {template_vars}")
+        logger.info(f"🔍 Session State Before Response:")
+        logger.info(f"  - exam_question_ids: {session.get('exam_question_ids')}")
+        logger.info(f"  - exam_current: {session.get('exam_current')}")
+        logger.info(f"  - exam_category: {session.get('exam_category')}")
+        logger.info(f"  - selected_question_type: {session.get('selected_question_type')}")
+        logger.info(f"  - selected_department: {session.get('selected_department')}")
+        logger.info(f"  - session_modified: {session.modified}")
+        logger.info("====================================")
+        
         return render_template('exam.html', **template_vars)
     except Exception as e:
         import traceback
@@ -6629,6 +6675,55 @@ def api_exam_status():
         return jsonify({'error': str(e)}), 500
 
 # モバイル機能のAPI エンドポイント
+
+@app.route('/api/log_error', methods=['POST'])
+def api_log_error():
+    """🔥 CRITICAL: クライアントサイドエラーログAPI"""
+    try:
+        data = request.get_json()
+        
+        # エラーデータの検証
+        if not data or 'type' not in data:
+            return jsonify({'success': False, 'error': 'Invalid error data'}), 400
+            
+        error_type = data.get('type')
+        timestamp = data.get('timestamp')
+        url = data.get('url')
+        user_agent = data.get('userAgent')
+        
+        # 🔥 CRITICAL: 完全なクライアントエラーログ
+        logger.error("=== CLIENT-SIDE ERROR DETECTED ===")
+        logger.error(f"🚨 Error Type: {error_type}")
+        logger.error(f"🚨 URL: {url}")
+        logger.error(f"🚨 User Agent: {user_agent}")
+        logger.error(f"🚨 Timestamp: {timestamp}")
+        
+        if error_type == 'javascript_error':
+            logger.error(f"🚨 JS Error Message: {data.get('message')}")
+            logger.error(f"🚨 JS Error File: {data.get('filename')}")
+            logger.error(f"🚨 JS Error Line: {data.get('line')}")
+            logger.error(f"🚨 JS Error Column: {data.get('column')}")
+            logger.error(f"🚨 JS Error Stack: {data.get('stack')}")
+            
+        elif error_type == 'promise_rejection':
+            logger.error(f"🚨 Promise Rejection: {data.get('reason')}")
+            logger.error(f"🚨 Promise Stack: {data.get('stack')}")
+            
+        # セッション情報もログ
+        logger.error(f"🚨 Session State at Error:")
+        logger.error(f"  - exam_question_ids: {session.get('exam_question_ids')}")
+        logger.error(f"  - exam_current: {session.get('exam_current')}")
+        logger.error(f"  - exam_category: {session.get('exam_category')}")
+        logger.error(f"  - selected_question_type: {session.get('selected_question_type')}")
+        logger.error(f"  - session_keys: {list(session.keys())}")
+        
+        logger.error("=====================================")
+        
+        return jsonify({'success': True, 'logged': True})
+        
+    except Exception as e:
+        logger.error(f"エラーログAPI自体のエラー: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 
 @app.route('/api/mobile/manifest')
