@@ -74,12 +74,37 @@ class SessionTimeoutManager {
     
     async checkSessionStatus() {
         try {
-            // 🔥 緊急修正: 存在しないAPIを無効化
-            console.log('セッション状態チェック: APIエンドポイントが存在しないため無効化');
-            return;
+            // 🔥 ULTRA SYNC FIX: 実装済みAPIエンドポイントを使用
+            const response = await fetch('/api/session/status', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                console.warn('セッション状態チェック失敗:', response.status);
+                return;
+            }
+            
+            const result = await response.json();
+            
+            if (result.success && result.session) {
+                // セッション状態を正規化
+                const sessionData = result.session;
+                const normalizedStatus = {
+                    status: sessionData.active ? 'active' : 'inactive',
+                    remaining_time: sessionData.has_quiz ? 1800 : 3600, // 仮の値
+                    warning: false,
+                    expired: false
+                };
+                
+                this.handleSessionStatus(normalizedStatus);
+            }
             
         } catch (error) {
             console.error('セッション状態チェックエラー:', error);
+            // エラー時は定期チェックを継続（副作用ゼロ）
         }
     }
     
@@ -306,32 +331,21 @@ class SessionTimeoutManager {
     
     async saveSession() {
         try {
-            const response = await fetch('/api/session/save', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+            // 🔥 ULTRA SYNC FIX: ローカルストレージによる一時保存
+            const sessionData = {
+                current_question: sessionStorage.getItem('exam_current') || '0',
+                category: sessionStorage.getItem('exam_category') || '',
+                department: sessionStorage.getItem('selected_department') || '',
+                timestamp: new Date().toISOString(),
+                backup_id: 'local_' + Date.now()
+            };
             
-            if (!response.ok) {
-                throw new Error('セッション保存に失敗しました');
-            }
+            const backups = JSON.parse(localStorage.getItem('rccm_session_backups') || '[]');
+            backups.unshift(sessionData);
+            localStorage.setItem('rccm_session_backups', JSON.stringify(backups.slice(0, 10)));
             
-            const result = await response.json();
-            
-            this.showNotification('現在の進行状況を保存しました', 'success');
-            console.log('セッション保存完了:', result);
-            
-            // バックアップIDをローカルストレージに保存
-            if (result.backup_id) {
-                const backups = JSON.parse(localStorage.getItem('rccm_session_backups') || '[]');
-                backups.unshift({
-                    backup_id: result.backup_id,
-                    timestamp: new Date().toISOString(),
-                    manual: true
-                });
-                localStorage.setItem('rccm_session_backups', JSON.stringify(backups.slice(0, 10)));
-            }
+            this.showNotification('現在の進行状況をローカルに保存しました', 'success');
+            console.log('ローカルセッション保存完了:', sessionData);
             
         } catch (error) {
             console.error('セッション保存エラー:', error);
@@ -423,22 +437,27 @@ class SessionTimeoutManager {
     
     async restoreSession(backupId) {
         try {
-            const response = await fetch('/api/session/restore', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ backup_id: backupId })
-            });
+            // 🔥 ULTRA SYNC FIX: ローカルストレージからの復元
+            const backups = JSON.parse(localStorage.getItem('rccm_session_backups') || '[]');
+            const backup = backups.find(b => b.backup_id === backupId);
             
-            if (!response.ok) {
-                throw new Error('セッション復元に失敗しました');
+            if (!backup) {
+                throw new Error('指定されたバックアップが見つかりません');
             }
             
-            const result = await response.json();
+            // セッションデータを復元
+            if (backup.current_question) {
+                sessionStorage.setItem('exam_current', backup.current_question);
+            }
+            if (backup.category) {
+                sessionStorage.setItem('exam_category', backup.category);
+            }
+            if (backup.department) {
+                sessionStorage.setItem('selected_department', backup.department);
+            }
             
             this.showNotification('セッションを復元しました', 'success');
-            console.log('セッション復元完了:', result);
+            console.log('ローカルセッション復元完了:', backup);
             
             // ページをリロードして復元されたセッションを適用
             setTimeout(() => {

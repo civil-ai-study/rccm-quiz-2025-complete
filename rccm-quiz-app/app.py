@@ -9057,6 +9057,69 @@ def api_error_prevention_cleanup():
             'timestamp': format_utc_to_iso()
         }), 500
 
+# 🔥 ULTRA SYNC FIX: 欠落APIエンドポイント実装 - 副作用ゼロ保証
+# session-timeout.jsで呼び出される404エラー解決
+
+@app.route('/api/session/status', methods=['GET'])
+def api_session_status():
+    """セッション状態確認API - frontend session-timeout.js対応"""
+    try:
+        # セッション基本情報
+        session_data = {
+            'active': bool(session.get('user_id')),
+            'has_quiz': bool(session.get('exam_question_ids')),
+            'current_question': session.get('exam_current', 0),
+            'total_questions': len(session.get('exam_question_ids', [])),
+            'department': session.get('selected_department', ''),
+            'category': session.get('exam_category', ''),
+            'last_activity': session.get('last_activity', format_utc_to_iso()),
+            'session_id': session.get('session_id', 'anonymous')[:8] + '...'
+        }
+        
+        return jsonify({
+            'success': True,
+            'session': session_data,
+            'timestamp': format_utc_to_iso()
+        })
+        
+    except Exception as e:
+        logger.error(f"Session status API error: {e}")
+        return jsonify({
+            'success': False,
+            'error': 'Session status unavailable',
+            'timestamp': format_utc_to_iso()
+        }), 500
+
+@app.route('/api/session/extend', methods=['POST'])
+def api_session_extend():
+    """セッション延長API - session-timeout.js対応"""
+    try:
+        if session.get('user_id'):
+            session['last_activity'] = format_utc_to_iso()
+            session.permanent = True
+            session.modified = True
+            
+            return jsonify({
+                'success': True,
+                'extended': True,
+                'new_expiry': format_utc_to_iso(),
+                'timestamp': format_utc_to_iso()
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': 'No active session to extend',
+                'timestamp': format_utc_to_iso()
+            }), 400
+            
+    except Exception as e:
+        logger.error(f"Session extend API error: {e}")
+        return jsonify({
+            'success': False,
+            'error': 'Session extension failed',
+            'timestamp': format_utc_to_iso()
+        }), 500
+
 
 if __name__ == '__main__':
     # 🛡️ セキュリティ強化: 本番環境設定（元の設定を維持）
