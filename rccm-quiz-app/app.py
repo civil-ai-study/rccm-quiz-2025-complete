@@ -47,7 +47,72 @@ class SessionStateManager:
 
 
 # 🛡️ ULTRA SAFE セッション管理関数群
-def safe_exam_session_reset():
+
+# 🛡️ HTTP 431対策: 軽量セッション用問題データロード機能
+def load_questions_from_lightweight_session(session, data_manager=None):
+    """
+    軽量化されたセッションから完全な問題データを復元
+    """
+    try:
+        exam_session = session.get('exam_session', {})
+        question_ids = exam_session.get('question_ids', [])
+        
+        if not question_ids:
+            return []
+        
+        # 全問題データから該当問題を取得
+        if data_manager:
+            all_questions = data_manager.get_all_questions()
+        else:
+            from utils import load_questions_data
+            all_questions = load_questions_data()
+        
+        # IDに基づいて問題を復元
+        questions = []
+        for q_id in question_ids:
+            for question in all_questions:
+                if str(question.get('id', '')) == str(q_id):
+                    questions.append(question)
+                    break
+        
+        return questions
+        
+    except Exception as e:
+        logger.error(f"軽量セッション問題データロードエラー: {e}")
+        return []
+
+def get_current_question_from_lightweight_session(session, data_manager=None):
+    """
+    軽量化されたセッションから現在の問題データを取得
+    """
+    try:
+        exam_session = session.get('exam_session', {})
+        current_question_index = exam_session.get('current_question', 0)
+        question_ids = exam_session.get('question_ids', [])
+        
+        if current_question_index >= len(question_ids):
+            return None
+        
+        current_question_id = question_ids[current_question_index]
+        
+        # 全問題データから該当問題を取得
+        if data_manager:
+            all_questions = data_manager.get_all_questions()
+        else:
+            from utils import load_questions_data
+            all_questions = load_questions_data()
+        
+        for question in all_questions:
+            if str(question.get('id', '')) == str(current_question_id):
+                return question
+        
+        return None
+        
+    except Exception as e:
+        logger.error(f"現在問題取得エラー: {e}")
+        return None
+
+\ndef safe_exam_session_reset():
     """
     安全なセッション初期化
     複数箇所のsession.pop呼び出しを一元化
@@ -69,6 +134,35 @@ def safe_exam_session_reset():
         pass  # loggerが定義されていない場合は無視
     
     return len(removed_keys)
+
+# 🛡️ HTTP 431対策: 軽量セッション用問題データ復元機能
+def load_question_from_lightweight_session(session, question_index=None):
+    """軽量化されたセッションから問題データを動的ロード"""
+    try:
+        exam_session = session.get('exam_session', {})
+        question_ids = exam_session.get('question_ids', [])
+        
+        if question_index is None:
+            question_index = exam_session.get('current_question', 0)
+        
+        if question_index >= len(question_ids):
+            return None
+        
+        target_id = question_ids[question_index]
+        
+        # 全問題データから該当問題を取得
+        from utils import load_questions_data
+        all_questions = load_questions_data()
+        
+        for question in all_questions:
+            if str(question.get('id', '')) == str(target_id):
+                return question
+        
+        return None
+        
+    except Exception as e:
+        logger.error(f"軽量セッション問題ロードエラー: {e}")
+        return None
 
 def safe_session_check():
     """
@@ -6735,8 +6829,20 @@ def start_exam(exam_type):
         exam_session = exam_simulator.generate_exam_session(all_questions, exam_type, session)
         logger.info(f"🔥 EXAM START: 試験セッション生成完了 - ID: {exam_session.get('exam_id', 'UNKNOWN')}")
 
-        # 🔥 ULTRA SYNC FIX: セッション保存の確認強化
-        session['exam_session'] = exam_session
+        # 🛡️ HTTP 431緊急対策: exam_session完全軽量化
+        # 300-600KBのexam_sessionを10KB以下に削減
+        lightweight_session = {
+            'exam_id': exam_session.get('exam_id', ''),
+            'exam_type': exam_session.get('exam_type', ''),
+            'question_ids': [q.get('id', '') for q in exam_session.get('questions', [])],
+            'current_question': exam_session.get('current_question', 0),
+            'start_time': exam_session.get('start_time', ''),
+            'time_limit_minutes': exam_session.get('time_limit_minutes', 0),
+            'answers': {},
+            'flagged_ids': [],
+            'status': 'in_progress'
+        }
+        session['exam_session'] = lightweight_session
         session.modified = True
         
         # 🔥 ULTRA SYNC FIX: セッション保存後の検証
@@ -6860,7 +6966,12 @@ def submit_exam_answer():
         if exam_simulator.auto_submit_check(exam_session):
             logger.info(f"🔥 SUBMIT ANSWER: 自動提出実行")
             result = exam_simulator.finish_exam(exam_session)
-            session['exam_session'] = exam_session
+            # HTTP 431対策: 軽量セッション更新
+            session['exam_session'].update({
+                'status': 'completed',
+                'current_question': exam_session.get('current_question', 0),
+                'answers': exam_session.get('answers', {})
+            })
             session.modified = True
             return jsonify({
                 'success': True,
@@ -6879,8 +6990,11 @@ def submit_exam_answer():
         post_current = exam_session.get('current_question', 'UNKNOWN')
         logger.info(f"🔥 PROGRESS UPDATE: 回答提出後 - current_question: {post_current}, result: {result}")
 
-        # セッション更新
-        session['exam_session'] = exam_session
+        # HTTP 431対策: 軽量セッション更新
+        session['exam_session'].update({
+            'current_question': exam_session.get('current_question', 0),
+            'answers': exam_session.get('answers', {})
+        })
         session.modified = True
         
         # 🔥 ULTRA SYNC FIX: セッション更新後の確認
@@ -6946,7 +7060,17 @@ def flag_exam_question():
         else:
             success = exam_simulator.unflag_question(exam_session, question_index)
 
-        session['exam_session'] = exam_session
+        # HTTP 431対策: フラグ情報のみ軽量更新
+        if 'flagged_ids' not in session['exam_session']:
+            session['exam_session']['flagged_ids'] = []
+        
+        if success:
+            flag_id = str(question_index)
+            if action == 'flag' and flag_id not in session['exam_session']['flagged_ids']:
+                session['exam_session']['flagged_ids'].append(flag_id)
+            elif action == 'unflag' and flag_id in session['exam_session']['flagged_ids']:
+                session['exam_session']['flagged_ids'].remove(flag_id)
+        
         session.modified = True
 
         return jsonify({'success': success})
@@ -6982,7 +7106,12 @@ def finish_exam():
             return jsonify({'success': False, 'error': '試験セッションが無効です'})
 
         exam_simulator.finish_exam(exam_session)
-        session['exam_session'] = exam_session
+        # HTTP 431対策: 軽量セッション更新（完了状態）
+        session['exam_session'].update({
+            'status': 'completed',
+            'current_question': exam_session.get('current_question', 0),
+            'answers': exam_session.get('answers', {})
+        })
         session.modified = True
 
         return jsonify({
