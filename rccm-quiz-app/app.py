@@ -1,4 +1,23 @@
 # 🔥 ULTRA SYNC STRUCTURAL FIX: アーキテクチャ修正版
+
+# 🛡️ HTTP 431対策: POST移行ドキュメント
+# =================================
+# 
+# 【問題】Render.com URL Parameter制限 72 bytes
+# 【解決】GET + URL Params → POST + Body Data
+# 
+# 【変更されたルート】
+# - /start_exam/<department> : GET/POST両対応
+# 
+# 【フロントエンド対応】
+# - JavaScript: submitExamForm() 関数
+# - Forms: method="POST"に変更
+# - Links: POST フォームに変換
+# 
+# 【テスト方法】
+# curl -X POST https://rccm-quiz-2025.onrender.com/start_exam/基礎科目 \
+#      -d "questions=10&year=2024"
+# 
 import threading
 import uuid
 import time
@@ -112,7 +131,7 @@ def get_current_question_from_lightweight_session(session, data_manager=None):
         logger.error(f"現在問題取得エラー: {e}")
         return None
 
-\ndef safe_exam_session_reset():
+def safe_exam_session_reset():
     """
     安全なセッション初期化
     複数箇所のsession.pop呼び出しを一元化
@@ -6834,20 +6853,75 @@ def exam_simulator_page():
         return render_template('error.html', error="試験シミュレーター画面の表示中にエラーが発生しました。")
 
 
-@app.route('/start_exam/<exam_type>')
+@app.route('/start_exam/<exam_type>', methods=['GET', 'POST'])
 # 🔥 ULTRA SYNC: 統合セッション管理システムで自動処理
 @memory_monitoring_decorator(_memory_leak_monitor)
 def start_exam(exam_type):
-    """試験開始"""
+    """
+    試験開始
+    
+    HTTP 431対策: GET/POSTリクエストの両方をサポート
+    - 大きなデータ（questions parameter等）をPOSTで受信してヘッダーサイズ制限を回避
+    - 従来のGETリクエストも継続サポート
+    - JSON形式のカスタム問題データや試験設定を受け付け
+    """
     try:
         # 🔥 CRITICAL FIX: モジュール遅延読み込み確認
         ensure_modules_loaded()
         
+        # 🛡️ HTTP 431対策: GET/POSTパラメータ統合処理
+        # 大きなデータをPOSTで受信してHTTP 431エラーを回避
+        def get_request_param(param_name, default=None):
+            """GET/POSTリクエストから統合的にパラメータを取得"""
+            if request.method == 'POST':
+                return request.form.get(param_name, default)
+            else:
+                return request.args.get(param_name, default)
+        
+        questions_param = get_request_param('questions')
+        
+        # 🛡️ HTTP 431対策: その他のパラメータも統合処理で対応
+        exam_config_param = get_request_param('exam_config')
+        category_param = get_request_param('category')
+        difficulty_param = get_request_param('difficulty')
+        
         # 🔥 ULTRA SYNC FIX: 詳細エラーログ追加
-        logger.info(f"🔥 EXAM START: 試験開始処理開始 - exam_type: {exam_type}")
+        logger.info(f"🔥 EXAM START: 試験開始処理開始 - exam_type: {exam_type}, method: {request.method}")
+        if questions_param:
+            logger.info(f"🔥 EXAM START: questions parameter received - length: {len(questions_param)}")
+        if exam_config_param:
+            logger.info(f"🔥 EXAM START: exam_config parameter received - length: {len(exam_config_param)}")
+        if category_param:
+            logger.info(f"🔥 EXAM START: category parameter received: {category_param}")
+        if difficulty_param:
+            logger.info(f"🔥 EXAM START: difficulty parameter received: {difficulty_param}")
         
         all_questions = load_questions()
         logger.info(f"🔥 EXAM START: 問題データ読み込み完了 - {len(all_questions)}問")
+        
+        # 🛡️ HTTP 431対策: questions parameterが提供された場合の処理
+        if questions_param:
+            try:
+                # JSON形式の問題データを解析
+                import json
+                custom_questions = json.loads(questions_param)
+                if isinstance(custom_questions, list) and len(custom_questions) > 0:
+                    all_questions = custom_questions
+                    logger.info(f"🔥 EXAM START: カスタム問題データ使用 - {len(all_questions)}問")
+            except (json.JSONDecodeError, TypeError) as e:
+                logger.warning(f"🔥 EXAM START: questions parameterの解析に失敗 - {e}")
+                # カスタム問題データの解析に失敗した場合は通常の問題データを使用
+        
+        # 🛡️ HTTP 431対策: exam_config parameterが提供された場合の処理
+        custom_exam_config = None
+        if exam_config_param:
+            try:
+                import json
+                custom_exam_config = json.loads(exam_config_param)
+                logger.info(f"🔥 EXAM START: カスタム試験設定使用")
+            except (json.JSONDecodeError, TypeError) as e:
+                logger.warning(f"🔥 EXAM START: exam_config parameterの解析に失敗 - {e}")
+                # カスタム試験設定の解析に失敗した場合は通常の設定を使用
         
         if not all_questions:
             logger.error(f"🔥 EXAM START: 問題データが空です")
@@ -6855,7 +6929,15 @@ def start_exam(exam_type):
 
         # 🔥 ULTRA SYNC FIX: 試験セッション生成に詳細ログ追加
         logger.info(f"🔥 EXAM START: 試験セッション生成開始")
-        exam_session = exam_simulator.generate_exam_session(all_questions, exam_type, session)
+        
+        # 🛡️ HTTP 431対策: カスタム設定やフィルタリングを適用
+        filtered_session = session.copy()
+        if category_param:
+            filtered_session['category_filter'] = category_param
+        if difficulty_param:
+            filtered_session['difficulty_filter'] = difficulty_param
+        
+        exam_session = exam_simulator.generate_exam_session(all_questions, exam_type, filtered_session)
         logger.info(f"🔥 EXAM START: 試験セッション生成完了 - ID: {exam_session.get('exam_id', 'UNKNOWN')}")
 
         # 🛡️ HTTP 431緊急対策: exam_session完全軽量化
