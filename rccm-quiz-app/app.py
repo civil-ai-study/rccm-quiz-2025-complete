@@ -2100,6 +2100,14 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         # 🚨 年度フィルタリング追加（ウルトラシンク修正）
         if year and str(question.get('year', '')) != str(year):
             continue
+            
+        # 🛡️ ULTRATHIN区緊急修正: 問題種別厳格チェック（カテゴリー混在防止）
+        if question_type == 'specialist' and question.get('question_type') != 'specialist':
+            logger.warning(f"🚨 専門科目要求だが基礎科目問題を除外: ID={question.get('id')}, type={question.get('question_type')}")
+            continue
+        elif question_type == 'basic' and question.get('question_type') != 'basic':
+            logger.warning(f"🚨 基礎科目要求だが専門科目問題を除外: ID={question.get('id')}, type={question.get('question_type')}")
+            continue
 
         selected_questions.append(question)
 
@@ -2114,26 +2122,44 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         from ai_analyzer import ai_analyzer
         ai_analyzer.analyze_weak_areas(user_session, department)
 
-    # 問題種別でフィルタリング（最優先・厳格）
+    # 🛡️ ULTRATHIN区緊急修正: 問題種別でフィルタリング（最優先・厳格・カテゴリー混在完全防止）
     if question_type:
+        logger.info(f"🛡️ ULTRATHIN区: 問題種別フィルタ開始 - type={question_type}, 対象問題数={len(available_questions)}")
+        
         # 基礎科目の場合
         if question_type == 'basic':
+            pre_basic_count = len(available_questions)
             available_questions = [q for q in available_questions
                                    if q.get('question_type') == 'basic'
                                    and q.get('year') is None]  # 基礎科目は年度なし
-            logger.info(f"基礎科目フィルタ適用: 結果 {len(available_questions)}問")
+            logger.info(f"🛡️ ULTRATHIN区: 基礎科目フィルタ適用 - {pre_basic_count} → {len(available_questions)}問")
+            
+            # 🚨 専門科目混入チェック
+            specialist_contamination = [q for q in all_questions 
+                                      if q.get('question_type') == 'specialist' and int(q.get('id', 0)) in [int(aq.get('id', 0)) for aq in available_questions]]
+            if specialist_contamination:
+                logger.error(f"🚨 基礎科目に専門科目混入検出: {len(specialist_contamination)}問")
+                available_questions = [q for q in available_questions if q not in specialist_contamination]
 
         # 専門科目の場合
         elif question_type == 'specialist':
+            pre_specialist_count = len(available_questions)
             available_questions = [q for q in available_questions
                                    if q.get('question_type') == 'specialist'
                                    and q.get('year') is not None]  # 専門科目は年度必須
-            logger.info(f"専門科目フィルタ適用: 結果 {len(available_questions)}問")
+            logger.info(f"🛡️ ULTRATHIN区: 専門科目フィルタ適用 - {pre_specialist_count} → {len(available_questions)}問")
+            
+            # 🚨 基礎科目混入チェック
+            basic_contamination = [q for q in all_questions 
+                                 if q.get('question_type') == 'basic' and int(q.get('id', 0)) in [int(aq.get('id', 0)) for aq in available_questions]]
+            if basic_contamination:
+                logger.error(f"🚨 専門科目に基礎科目混入検出: {len(basic_contamination)}問")
+                available_questions = [q for q in available_questions if q not in basic_contamination]
 
         # その他の場合
         else:
             available_questions = [q for q in available_questions if q.get('question_type') == question_type]
-            logger.info(f"問題種別フィルタ適用: {question_type}, 結果: {len(available_questions)}問")
+            logger.info(f"🛡️ ULTRATHIN区: その他問題種別フィルタ適用 - {question_type}, 結果: {len(available_questions)}問")
 
         # 🚀 ULTRA SYNC: 専門科目で部門指定がある場合の正規化フィルタ適用
         if question_type == 'specialist' and department:
@@ -2374,9 +2400,23 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         selected_ids = [int(q.get('id', 0)) for q in selected_questions]
         fallback_questions = [q for q in all_questions if int(q.get('id', 0)) not in selected_ids]
 
-        # 問題種別は維持しつつ、他のフィルタを緩和
+        # 🛡️ ULTRATHIN区緊急修正: 問題種別は維持しつつ、他のフィルタを緩和（カテゴリー混在完全防止）
         if question_type:
+            pre_fallback_count = len(fallback_questions)
             fallback_questions = [q for q in fallback_questions if q.get('question_type') == question_type]
+            logger.info(f"🛡️ ULTRATHIN区: フォールバック問題種別フィルタ - {question_type}, {pre_fallback_count} → {len(fallback_questions)}問")
+            
+            # 🚨 フォールバック時の混入チェック
+            if question_type == 'specialist':
+                basic_contamination_fb = [q for q in fallback_questions if q.get('question_type') == 'basic']
+                if basic_contamination_fb:
+                    logger.error(f"🚨 専門科目フォールバックに基礎科目混入: {len(basic_contamination_fb)}問除外")
+                    fallback_questions = [q for q in fallback_questions if q.get('question_type') != 'basic']
+            elif question_type == 'basic':
+                specialist_contamination_fb = [q for q in fallback_questions if q.get('question_type') == 'specialist']
+                if specialist_contamination_fb:
+                    logger.error(f"🚨 基礎科目フォールバックに専門科目混入: {len(specialist_contamination_fb)}問除外")
+                    fallback_questions = [q for q in fallback_questions if q.get('question_type') != 'specialist']
             
         # 専門科目の場合は部門も維持（重要）
         if question_type == 'specialist' and department:
@@ -2434,11 +2474,17 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
                 else:
                     logger.warning(f"🚨 {department}の{year}年度問題が不足: 要求{session_size}問, 利用可能{len(selected_questions)}問のみ")
             else:
-                # 基礎科目等では従来通りの処理
+                # 🛡️ ULTRATHIN区緊急修正: 基礎科目等では従来通りの処理（カテゴリー混在防止）
                 final_fallback = [q for q in all_questions if int(q.get('id', 0)) not in selected_ids]
+                
+                # 🚨 基礎科目の場合は専門科目を除外
+                if question_type == 'basic':
+                    final_fallback = [q for q in final_fallback if q.get('question_type') == 'basic']
+                    logger.info(f"🛡️ ULTRATHIN区: 基礎科目最終フォールバック - 専門科目除外, {len(final_fallback)}問利用可能")
+                
                 random.shuffle(final_fallback)
                 selected_questions.extend(final_fallback[:final_shortage])
-                logger.info(f"最終フォールバック完了: {final_shortage}問追加, 最終合計{len(selected_questions)}問")
+                logger.info(f"🛡️ ULTRATHIN区: 最終フォールバック完了 - {min(final_shortage, len(final_fallback))}問追加, 最終合計{len(selected_questions)}問")
 
     random.shuffle(selected_questions)
 
@@ -2469,6 +2515,25 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
     
     # 🚨 ULTRA CRITICAL FIX: ユーザー設定問題数で制限（河川砂防バグ根本解決）
     selected_questions = selected_questions[:session_size]
+    
+    # 🛡️ ULTRATHIN区緊急修正: 最終選択問題の整合性チェック（カテゴリー混在完全防止）
+    if question_type and selected_questions:
+        actual_types = [q.get('question_type', 'unknown') for q in selected_questions]
+        type_distribution = {t: actual_types.count(t) for t in set(actual_types)}
+        logger.info(f"🛡️ ULTRATHIN区: 最終選択問題の種別分布 - {type_distribution}")
+        
+        # 🚨 混入検出とクリーンアップ
+        if question_type == 'specialist':
+            basic_contamination_final = [q for q in selected_questions if q.get('question_type') == 'basic']
+            if basic_contamination_final:
+                logger.error(f"🚨 最終選択に基礎科目混入検出: {len(basic_contamination_final)}問 - 除外処理")
+                selected_questions = [q for q in selected_questions if q.get('question_type') != 'basic']
+        elif question_type == 'basic':
+            specialist_contamination_final = [q for q in selected_questions if q.get('question_type') == 'specialist']
+            if specialist_contamination_final:
+                logger.error(f"🚨 最終選択に専門科目混入検出: {len(specialist_contamination_final)}問 - 除外処理")
+                selected_questions = [q for q in selected_questions if q.get('question_type') != 'specialist']
+    
     logger.info(f"🔥 ULTRA SYNC: 最終問題数確定 {len(selected_questions)}問（{session_size}問設定に従って切断）")
     return selected_questions
 
@@ -4069,8 +4134,18 @@ def exam():
 
                 # 10問セッションを作成し、指定問題を含める
                 if 'exam_question_ids' not in session or not session['exam_question_ids']:
+                    # 🛡️ ULTRATHIN区緊急修正: 専門科目フォールバック防止
+                    # 🚨 CRITICAL FIX: question_type or 'basic'によるカテゴリー混在バグ完全修正
+                    safe_question_type = question_type
+                    if not safe_question_type:
+                        # セッションから推定
+                        safe_question_type = session.get('selected_question_type', 'basic')
+                        if department and department != '基礎科目':
+                            safe_question_type = 'specialist'
+                        logger.info(f"🛡️ ULTRATHIN区: question_type推定 - {safe_question_type} (dept={department})")
+                    
                     # 新しい10問セッションを作成
-                    mixed_questions = get_mixed_questions(session, all_questions, '全体', session_size, department, question_type or 'basic', None)
+                    mixed_questions = get_mixed_questions(session, all_questions, '全体', session_size, department, safe_question_type, None)
                     if mixed_questions and len(mixed_questions) >= 10:
                         session['exam_question_ids'] = [int(q.get('id', 0)) for q in mixed_questions[:10]]
                     else:
@@ -4253,9 +4328,23 @@ def exam():
                     if q:
                         selected_questions.append(q)
             else:
-                # SRSを考慮した問題選択（RCCM部門対応）
-                logger.info(f"get_mixed_questions呼び出し前: department={requested_department}, question_type={requested_question_type}, category={requested_category}")
-                selected_questions = get_mixed_questions(session, all_questions, requested_category, session_size, requested_department, requested_question_type, requested_year)
+                # 🛡️ ULTRATHIN区緊急修正: SRSを考慮した問題選択（RCCM部門対応・カテゴリー混在完全防止）
+                # 🚨 CRITICAL FIX: requested_question_typeが空の場合の安全な推定
+                safe_requested_question_type = requested_question_type
+                if not safe_requested_question_type and requested_department:
+                    if requested_department == '基礎科目' or requested_category == '共通':
+                        safe_requested_question_type = 'basic'
+                        logger.info(f"🛡️ ULTRATHIN区: 基礎科目推定 - {requested_department}/{requested_category}")
+                    else:
+                        safe_requested_question_type = 'specialist' 
+                        logger.info(f"🛡️ ULTRATHIN区: 専門科目推定 - {requested_department}/{requested_category}")
+                elif not safe_requested_question_type:
+                    # セッションから推定
+                    safe_requested_question_type = session.get('selected_question_type', 'basic')
+                    logger.warning(f"🛡️ ULTRATHIN区: セッションから推定 - {safe_requested_question_type}")
+                
+                logger.info(f"🛡️ ULTRATHIN区 get_mixed_questions呼び出し前: dept={requested_department}, type={safe_requested_question_type} (元:{requested_question_type}), category={requested_category}")
+                selected_questions = get_mixed_questions(session, all_questions, requested_category, session_size, requested_department, safe_requested_question_type, requested_year)
                 
                 # 🛡️ ULTRATHIN区追加: 空リスト安全チェック
                 if not selected_questions:
@@ -6994,6 +7083,30 @@ def start_exam(exam_type):
 
         # 🔥 ULTRA SYNC FIX: 試験セッション生成に詳細ログ追加
         logger.info(f"🔥 EXAM START: 試験セッション生成開始")
+        
+        # 🛡️ ULTRATHIN区緊急修正: 専門科目選択時のセッション設定
+        # 🚨 CRITICAL FIX: selected_question_typeの設定（カテゴリー混在バグ完全解決）
+        if exam_type == 'specialist':
+            session['selected_question_type'] = 'specialist'
+            session['selected_department'] = category_param or ''
+            session['selected_year'] = year_param
+            logger.info(f"🛡️ ULTRATHIN区: 専門科目セッション設定完了 - type=specialist, dept={category_param}, year={year_param}")
+        elif exam_type == 'basic':
+            session['selected_question_type'] = 'basic'
+            session['selected_department'] = ''
+            session['selected_year'] = None
+            logger.info(f"🛡️ ULTRATHIN区: 基礎科目セッション設定完了 - type=basic")
+        else:
+            # フォールバック: exam_typeから推定
+            if 'specialist' in exam_type or 'department' in exam_type:
+                session['selected_question_type'] = 'specialist'
+            else:
+                session['selected_question_type'] = 'basic'
+            session['selected_department'] = category_param or ''
+            session['selected_year'] = year_param
+            logger.warning(f"🛡️ ULTRATHIN区: フォールバック設定 - exam_type={exam_type}, inferred_type={session['selected_question_type']}")
+        
+        session.modified = True
         
         # 🛡️ HTTP 431対策: カスタム設定やフィルタリングを適用
         filtered_session = session.copy()
