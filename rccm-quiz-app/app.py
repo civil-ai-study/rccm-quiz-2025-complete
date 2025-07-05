@@ -788,9 +788,9 @@ def cleanup_session_data(session):
         else:
             # フォールバック: 従来の履歴データクリーンアップ
             history = session.get('history', [])
-            if isinstance(history, list) and len(history) > 30:
-                session['history'] = history[-30:]  # 最新30件のみ (HTTP 431対策)
-                logger.debug(f"履歴データクリーンアップ: {len(history)} → 30件")
+            if isinstance(history, list) and len(history) > 10:
+                session['history'] = history[-10:]  # 最新10件のみ (HTTP 431対策強化)
+                logger.debug(f"履歴データクリーンアップ: {len(history)} → 10件")
         
         # 一時的なキーのクリーンアップ
         temp_keys = [
@@ -4359,7 +4359,7 @@ def statistics():
                 basic_specialty_details[score_type]['accuracy'] = 0.0
 
         # 最近の履歴
-        exam_history = history[-30:] if history else []
+        exam_history = history[-10:] if history else []
 
         # 日付別統計
         daily_stats = defaultdict(lambda: {'total': 0, 'correct': 0})
