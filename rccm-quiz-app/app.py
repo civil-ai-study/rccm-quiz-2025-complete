@@ -6718,7 +6718,7 @@ def start_exam(exam_type):
     """試験開始"""
     try:
         # 🔥 CRITICAL FIX: モジュール遅延読み込み確認
-        load_modules_if_needed()
+        ensure_modules_loaded()
         
         # 🔥 ULTRA SYNC FIX: 詳細エラーログ追加
         logger.info(f"🔥 EXAM START: 試験開始処理開始 - exam_type: {exam_type}")
