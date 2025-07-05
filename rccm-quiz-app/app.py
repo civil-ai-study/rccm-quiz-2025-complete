@@ -135,6 +135,29 @@ def get_current_question_from_lightweight_session(session, data_manager=None):
     
     return len(removed_keys)
 
+# 🛡️ ULTRATHIN最終対策: インメモリ試験データストレージ
+EXAM_DATA_CACHE = {}
+
+def store_exam_data_in_memory(exam_id, exam_session):
+    """試験データをメモリに一時保存"""
+    global EXAM_DATA_CACHE
+    EXAM_DATA_CACHE[exam_id] = {
+        'questions': exam_session.get('questions', []),
+        'answers': {},
+        'flagged_ids': [],
+        'stored_at': datetime.now()
+    }
+    # 古いデータ削除（メモリリーク防止）
+    current_time = datetime.now()
+    for key in list(EXAM_DATA_CACHE.keys()):
+        if (current_time - EXAM_DATA_CACHE[key]['stored_at']).total_seconds() > 3600:
+            del EXAM_DATA_CACHE[key]
+
+def get_exam_data_from_memory(exam_id):
+    """メモリから試験データ取得"""
+    global EXAM_DATA_CACHE
+    return EXAM_DATA_CACHE.get(exam_id, {})
+
 # 🛡️ HTTP 431対策: 軽量セッション用問題データ復元機能
 def load_question_from_lightweight_session(session, question_index=None):
     """軽量化されたセッションから問題データを動的ロード"""
@@ -6837,17 +6860,19 @@ def start_exam(exam_type):
 
         # 🛡️ HTTP 431緊急対策: exam_session完全軽量化
         # 300-600KBのexam_sessionを10KB以下に削減
+        # 🛡️ ULTRATHIN最終対策: 超軽量セッション（必須データのみ）
         lightweight_session = {
-            'exam_id': exam_session.get('exam_id', ''),
-            'exam_type': exam_session.get('exam_type', ''),
-            'question_ids': [q.get('id', '') for q in exam_session.get('questions', [])],
-            'current_question': exam_session.get('current_question', 0),
-            'start_time': exam_session.get('start_time', ''),
-            'time_limit_minutes': exam_session.get('time_limit_minutes', 0),
-            'answers': {},
-            'flagged_ids': [],
-            'status': 'in_progress'
+            'exam_id': exam_session.get('exam_id', '')[:8],  # ID短縮
+            'exam_type': exam_session.get('exam_type', '')[:10],  # タイプ短縮
+            'q_count': len(exam_session.get('questions', [])),  # 問題数のみ
+            'current': 0,  # 現在位置
+            'status': 'active'  # 状態最小化
         }
+        
+        # メモリに試験データ保存（セッション外）
+        exam_id = exam_session.get('exam_id', '')
+        store_exam_data_in_memory(exam_id, exam_session)
+        
         session['exam_session'] = lightweight_session
         session.modified = True
         
