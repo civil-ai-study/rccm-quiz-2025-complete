@@ -2404,14 +2404,41 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
 
         logger.info(f"フォールバック完了: {len(additional_questions)}問追加, 合計{len(selected_questions)}問")
 
-        # フォールバック2: それでも不足の場合は全問題から選択
+        # 🛡️ ULTRATHIN区修正: フォールバック2でも部門・年度制約を厳格維持
         if len(selected_questions) < session_size:
             final_shortage = session_size - len(selected_questions)
             selected_ids = [int(q.get('id', 0)) for q in selected_questions]
-            final_fallback = [q for q in all_questions if int(q.get('id', 0)) not in selected_ids]
-            random.shuffle(final_fallback)
-            selected_questions.extend(final_fallback[:final_shortage])
-            logger.info(f"最終フォールバック完了: {final_shortage}問追加, 最終合計{len(selected_questions)}問")
+            
+            # 4-2専門問題では部門・年度制約を絶対に維持
+            if question_type == 'specialist' and department:
+                # 部門制約を維持したフォールバック
+                target_category = get_department_category(normalize_department_name(department))
+                filtered_fallback = [q for q in all_questions 
+                                   if int(q.get('id', 0)) not in selected_ids
+                                   and q.get('category') == target_category]
+                
+                # 年度制約も維持
+                if year:
+                    try:
+                        target_year = int(year)
+                        if 2008 <= target_year <= 2019:
+                            filtered_fallback = [q for q in filtered_fallback 
+                                               if q.get('year') is not None and int(q.get('year', 0)) == target_year]
+                    except (ValueError, TypeError):
+                        pass
+                
+                if filtered_fallback:
+                    random.shuffle(filtered_fallback)
+                    selected_questions.extend(filtered_fallback[:final_shortage])
+                    logger.info(f"制約維持フォールバック完了: {min(final_shortage, len(filtered_fallback))}問追加, 最終合計{len(selected_questions)}問")
+                else:
+                    logger.warning(f"🚨 {department}の{year}年度問題が不足: 要求{session_size}問, 利用可能{len(selected_questions)}問のみ")
+            else:
+                # 基礎科目等では従来通りの処理
+                final_fallback = [q for q in all_questions if int(q.get('id', 0)) not in selected_ids]
+                random.shuffle(final_fallback)
+                selected_questions.extend(final_fallback[:final_shortage])
+                logger.info(f"最終フォールバック完了: {final_shortage}問追加, 最終合計{len(selected_questions)}問")
 
     random.shuffle(selected_questions)
 
@@ -2429,6 +2456,17 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
                 f"新規{len(selected_questions) - len([q for q in selected_questions if any(due['question'] == q for due in due_questions)])}問, "
                 f"フィルタ:[{', '.join(filter_info) if filter_info else '全体'}]")
 
+    # 🛡️ ULTRATHIN区追加: 問題数不足時の安全処理
+    if len(selected_questions) < session_size:
+        shortage = session_size - len(selected_questions)
+        if question_type == 'specialist' and department and year:
+            logger.error(f"🚨 問題数不足: {department}の{year}年度で{session_size}問要求されましたが、{len(selected_questions)}問しか利用できません（不足{shortage}問）")
+            # 4-2専門問題では問題数不足を厳密にチェック
+            if len(selected_questions) < max(5, session_size // 2):  # 最低5問または要求の半分
+                logger.error(f"🚨 致命的問題数不足: 最低限の問題数も確保できません")
+                return []  # 空リストを返してエラーハンドリングに委ねる
+        logger.warning(f"⚠️ 問題数不足のため利用可能な{len(selected_questions)}問で開始します")
+    
     # 🚨 ULTRA CRITICAL FIX: ユーザー設定問題数で制限（河川砂防バグ根本解決）
     selected_questions = selected_questions[:session_size]
     logger.info(f"🔥 ULTRA SYNC: 最終問題数確定 {len(selected_questions)}問（{session_size}問設定に従って切断）")
@@ -3232,6 +3270,14 @@ def exam():
                                 question_type='basic',
                                 year=None
                             )
+                            
+                            # 🛡️ ULTRATHIN区追加: 基礎科目セッション再構築の安全チェック
+                            if not selected_questions:
+                                logger.error(f"🚨 基礎科目セッション再構築失敗: 問題が選択できません")
+                                return render_template('error.html', 
+                                                     error="基礎科目の問題データが見つかりません。データファイルを確認してください。",
+                                                     error_type="basic_questions_not_found")
+                            
                             question_ids = [int(q.get('id', 0)) for q in selected_questions]
                             current_index = question_ids.index(qid) if qid in question_ids else 0
 
@@ -4210,6 +4256,22 @@ def exam():
                 # SRSを考慮した問題選択（RCCM部門対応）
                 logger.info(f"get_mixed_questions呼び出し前: department={requested_department}, question_type={requested_question_type}, category={requested_category}")
                 selected_questions = get_mixed_questions(session, all_questions, requested_category, session_size, requested_department, requested_question_type, requested_year)
+                
+                # 🛡️ ULTRATHIN区追加: 空リスト安全チェック
+                if not selected_questions:
+                    error_msg = f"選択された条件（部門:{requested_department}, 年度:{requested_year}, 問題数:{session_size}）では問題が見つかりません。"
+                    if requested_question_type == 'specialist' and requested_department and requested_year:
+                        error_msg += f" {requested_department}の{requested_year}年度の問題データを確認してください。"
+                    logger.error(f"🚨 問題選択失敗: {error_msg}")
+                    return render_template('error.html', 
+                                         error=error_msg,
+                                         error_type="question_not_found",
+                                         suggestions=[
+                                             "問題数を減らして再試行してください",
+                                             "別の年度を選択してください", 
+                                             "部門選択画面に戻って確認してください"
+                                         ])
+                
                 question_ids = [int(q.get('id', 0)) for q in selected_questions]
 
             # デバッグ: 問題選択の詳細ログ
