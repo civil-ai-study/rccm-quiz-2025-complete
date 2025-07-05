@@ -6884,6 +6884,7 @@ def start_exam(exam_type):
         exam_config_param = get_request_param('exam_config')
         category_param = get_request_param('category')
         difficulty_param = get_request_param('difficulty')
+        year_param = get_request_param('year')
         
         # 🔥 ULTRA SYNC FIX: 詳細エラーログ追加
         logger.info(f"🔥 EXAM START: 試験開始処理開始 - exam_type: {exam_type}, method: {request.method}")
@@ -6895,6 +6896,8 @@ def start_exam(exam_type):
             logger.info(f"🔥 EXAM START: category parameter received: {category_param}")
         if difficulty_param:
             logger.info(f"🔥 EXAM START: difficulty parameter received: {difficulty_param}")
+        if year_param:
+            logger.info(f"🔥 EXAM START: year parameter received: {year_param}")
         
         all_questions = load_questions()
         logger.info(f"🔥 EXAM START: 問題データ読み込み完了 - {len(all_questions)}問")
@@ -6936,6 +6939,8 @@ def start_exam(exam_type):
             filtered_session['category_filter'] = category_param
         if difficulty_param:
             filtered_session['difficulty_filter'] = difficulty_param
+        if year_param:
+            filtered_session['year_filter'] = year_param
         
         exam_session = exam_simulator.generate_exam_session(all_questions, exam_type, filtered_session)
         logger.info(f"🔥 EXAM START: 試験セッション生成完了 - ID: {exam_session.get('exam_id', 'UNKNOWN')}")
@@ -6948,7 +6953,8 @@ def start_exam(exam_type):
             'exam_type': exam_session.get('exam_type', '')[:10],  # タイプ短縮
             'q_count': len(exam_session.get('questions', [])),  # 問題数のみ
             'current': 0,  # 現在位置
-            'status': 'active'  # 状態最小化
+            'status': 'active',  # 状態最小化
+            'year': year_param  # 年度情報追加
         }
         
         # メモリに試験データ保存（セッション外）
@@ -7036,7 +7042,8 @@ def exam_question():
             'exam_question.html',
             question=current_question,
             exam_info=exam_info,
-            time_warning=time_warning
+            time_warning=time_warning,
+            year=lightweight_session.get('year')
         )
 
     except Exception as e:
