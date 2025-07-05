@@ -1,0 +1,180 @@
+{
+  "homepage_response": {
+    "endpoint": "homepage",
+    "url": "http://localhost:5000/",
+    "error": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f435be0e6f0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "success": false,
+    "timestamp": 1751700619.7167537
+  },
+  "departments_response": {
+    "endpoint": "departments",
+    "url": "http://localhost:5000/departments",
+    "error": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /departments (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f435be0ede0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "success": false,
+    "timestamp": 1751700622.7286828
+  },
+  "static_files_response": [
+    {
+      "endpoint": "static_enhanced_ui.css",
+      "url": "http://localhost:5000/static/css/enhanced_ui.css",
+      "error": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /static/css/enhanced_ui.css (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f435be0e9f0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "success": false,
+      "timestamp": 1751700625.738415
+    },
+    {
+      "endpoint": "static_main.js",
+      "url": "http://localhost:5000/static/js/main.js",
+      "error": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /static/js/main.js (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f435be0e630>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "success": false,
+      "timestamp": 1751700627.744109
+    },
+    {
+      "endpoint": "static_favicon.ico",
+      "url": "http://localhost:5000/static/icons/favicon.ico",
+      "error": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /static/icons/favicon.ico (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f435be0f830>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "success": false,
+      "timestamp": 1751700629.7490263
+    }
+  ],
+  "memory_monitoring": {
+    "baseline_memory_mb": 0.0,
+    "samples": [
+      {
+        "process_memory_mb": 0.0,
+        "process_memory_percent": 0.0,
+        "system_memory_percent": 0.0,
+        "system_available_mb": 0.0,
+        "timestamp": 1751700630.751423,
+        "note": "psutil not available"
+      },
+      {
+        "process_memory_mb": 0.0,
+        "process_memory_percent": 0.0,
+        "system_memory_percent": 0.0,
+        "system_available_mb": 0.0,
+        "timestamp": 1751700631.2517257,
+        "note": "psutil not available"
+      },
+      {
+        "process_memory_mb": 0.0,
+        "process_memory_percent": 0.0,
+        "system_memory_percent": 0.0,
+        "system_available_mb": 0.0,
+        "timestamp": 1751700631.751924,
+        "note": "psutil not available"
+      },
+      {
+        "process_memory_mb": 0.0,
+        "process_memory_percent": 0.0,
+        "system_memory_percent": 0.0,
+        "system_available_mb": 0.0,
+        "timestamp": 1751700632.2523522,
+        "note": "psutil not available"
+      },
+      {
+        "process_memory_mb": 0.0,
+        "process_memory_percent": 0.0,
+        "system_memory_percent": 0.0,
+        "system_available_mb": 0.0,
+        "timestamp": 1751700632.7525594,
+        "note": "psutil not available"
+      },
+      {
+        "process_memory_mb": 0.0,
+        "process_memory_percent": 0.0,
+        "system_memory_percent": 0.0,
+        "system_available_mb": 0.0,
+        "timestamp": 1751700633.252832,
+        "note": "psutil not available"
+      },
+      {
+        "process_memory_mb": 0.0,
+        "process_memory_percent": 0.0,
+        "system_memory_percent": 0.0,
+        "system_available_mb": 0.0,
+        "timestamp": 1751700633.7531466,
+        "note": "psutil not available"
+      },
+      {
+        "process_memory_mb": 0.0,
+        "process_memory_percent": 0.0,
+        "system_memory_percent": 0.0,
+        "system_available_mb": 0.0,
+        "timestamp": 1751700634.253327,
+        "note": "psutil not available"
+      },
+      {
+        "process_memory_mb": 0.0,
+        "process_memory_percent": 0.0,
+        "system_memory_percent": 0.0,
+        "system_available_mb": 0.0,
+        "timestamp": 1751700634.7535193,
+        "note": "psutil not available"
+      },
+      {
+        "process_memory_mb": 0.0,
+        "process_memory_percent": 0.0,
+        "system_memory_percent": 0.0,
+        "system_available_mb": 0.0,
+        "timestamp": 1751700635.253787,
+        "note": "psutil not available"
+      }
+    ],
+    "min_memory_mb": 0.0,
+    "max_memory_mb": 0.0,
+    "avg_memory_mb": 0.0,
+    "memory_variation_mb": 0.0,
+    "sample_count": 10
+  },
+  "garbage_collection": {
+    "before_gc_memory_mb": 0.0,
+    "after_gc_memory_mb": 0.0,
+    "memory_freed_mb": 0.0,
+    "gc_time_ms": 6.461858749389648,
+    "objects_collected": 471,
+    "gc_stats": [
+      {
+        "collections": 40,
+        "collected": 560,
+        "uncollectable": 0
+      },
+      {
+        "collections": 3,
+        "collected": 0,
+        "uncollectable": 0
+      },
+      {
+        "collections": 1,
+        "collected": 471,
+        "uncollectable": 0
+      }
+    ]
+  },
+  "csv_load_time": {
+    "error": "Failed to measure CSV load time",
+    "samples": []
+  },
+  "session_creation": {
+    "error": "Failed to measure session creation time",
+    "samples": []
+  },
+  "light_load": {
+    "total_requests": 20,
+    "successful_requests": 0,
+    "failed_requests": 20,
+    "test_duration_seconds": 8.432137966156006,
+    "success_rate_percent": 0,
+    "errors": [],
+    "error": "No successful requests"
+  },
+  "test_summary": {
+    "total_test_duration_seconds": 53.0490825176239,
+    "baseline_memory_mb": 0.0,
+    "final_memory_mb": 0.0,
+    "memory_change_mb": 0.0,
+    "baseline_cpu_percent": 0,
+    "final_cpu_percent": 0,
+    "test_timestamp": "2025-07-05T16:31:10.752681",
+    "total_tests_run": 8
+  }
+}

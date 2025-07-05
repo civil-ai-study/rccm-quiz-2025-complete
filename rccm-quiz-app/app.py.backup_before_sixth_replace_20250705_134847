@@ -2447,11 +2447,6 @@ def force_refresh():
 def exam():
     """SRS対応の問題関数（統合版）"""
     try:
-        # 🔥 PROGRESS DEBUG: 各リクエストの開始ログ
-        logger.info(f"🔥 PROGRESS DEBUG: exam route called - method={request.method}, args={dict(request.args)}")
-        if request.method == 'POST':
-            logger.info(f"🔥 PROGRESS DEBUG: POST data={dict(request.form)}")
-        logger.info(f"🔥 PROGRESS DEBUG: Current session exam_current={session.get('exam_current')}, question_ids={len(session.get('exam_question_ids', []))}")
         # 🔥 CRITICAL: ウルトラシンク セッション整合性チェック・自動修復（改修版）
         # 🚨 BUG FIX: 初回アクセス時(GET)は空セッション許可、回答時(POST)のみ厳格チェック
         # 🔥 CRITICAL FIX: POSTでもセッションが存在しない場合は新規開始として扱う
@@ -2520,18 +2515,8 @@ def exam():
             department = request.args.get('department', '')
             year = request.args.get('year', '')
             
-            # 🔥 PROGRESS FIX: セッション開始条件を厳密化 - 既存セッション保護
-            # 新規セッション開始の条件：明示的なパラメータがある場合のみ
-            has_new_session_params = any([
-                question_type and question_type != 'basic',  # 明示的な問題種別指定
-                department,  # 部門指定
-                year,  # 年度指定
-                request.args.get('count'),  # 問題数指定
-                request.args.get('category'),  # カテゴリ指定
-            ])
-            
-            # 既存セッションがない場合、または明示的な新規セッション要求の場合のみ初期化
-            if ('exam_question_ids' not in session or not session.get('exam_question_ids')) and has_new_session_params:
+            # 既存セッションがない場合、新規セッションを開始
+            if 'exam_question_ids' not in session or not session.get('exam_question_ids'):
                 logger.info(f"新規セッション開始: 種別={question_type}, 部門={department}")
                 
                 # セッションをクリア
@@ -2564,6 +2549,7 @@ def exam():
                                                   if q.get('category') == target_category]
                         
                         if specialist_questions:
+                            import random
                             random.shuffle(specialist_questions)
                             selected = specialist_questions[:10]
                             session['exam_question_ids'] = [q['id'] for q in selected]
@@ -2577,6 +2563,7 @@ def exam():
                             # フォールバック：全専門問題から選択
                             all_specialist = [q for q in all_questions if q.get('question_type') == 'specialist']
                             if all_specialist:
+                                import random
                                 random.shuffle(all_specialist)
                                 selected = all_specialist[:10]
                                 session['exam_question_ids'] = [q['id'] for q in selected]
@@ -2590,6 +2577,7 @@ def exam():
                         # デフォルト：基礎科目
                         basic_questions = [q for q in all_questions if q.get('question_type') == 'basic']
                         if basic_questions:
+                            import random
                             random.shuffle(basic_questions)
                             selected = basic_questions[:10]
                             session['exam_question_ids'] = [q['id'] for q in selected]
@@ -2771,6 +2759,7 @@ def exam():
                                                 if q.get('department', '') == q_dept and q.get('question_type') == 'advanced']
                             
                             if dept_questions:
+                                import random
                                 random.shuffle(dept_questions)
                                 session_size = 10  # デフォルト10問
                                 selected_questions = dept_questions[:session_size]
@@ -3285,7 +3274,9 @@ def exam():
 
                     if current_question_type == 'review':
                         logger.info("復習モード緊急フォールバック - 復習リストに戻る")
-                        safe_exam_session_reset()
+                        session.pop('exam_question_ids', None)
+                        session.pop('exam_current', None)
+                        session.pop('exam_category', None)
                         session.pop('selected_question_type', None)
                         session.modified = True
                         return redirect(url_for('review_list'))
@@ -3634,10 +3625,6 @@ def exam():
         # 🔥 PROGRESS FIX: next パラメータ検出の確実性向上
         next_param = request.args.get('next', '')
         is_next_request = (next_param == '1')  # シンプルで確実な判定
-        
-        # 🔥 PROGRESS DEBUG: GET処理開始時のセッション状態
-        logger.info(f"🔥 PROGRESS DEBUG: GET処理開始 - exam_current={session.get('exam_current')}, is_next_request={is_next_request}")
-        logger.info(f"🔥 PROGRESS DEBUG: セッションキー存在確認 - exam_question_ids={'exam_question_ids' in session}, exam_current={'exam_current' in session}")
         if is_next_request:
             requested_category = session.get('exam_category', '全体')
             requested_department = session.get('selected_department', '')
@@ -3925,22 +3912,13 @@ def exam():
                 logger.error(f"無効な問題IDが指定されました: {specific_qid}")
                 return render_template('error.html', error="無効な問題IDが指定されました。")
 
-        # 🔥 CRITICAL PROGRESS FIX: 簡単で確実なセッション保護
-        # パラメータなしアクセスでも進行中セッションを保護
-        current_exam_current = session.get('exam_current', 0)
-        current_question_ids = session.get('exam_question_ids', [])
-        
-        # 進行中セッションの判定: exam_current > 0 または有効な問題リストがある
-        has_active_progress = (current_exam_current > 0 and current_question_ids and len(current_question_ids) > 0)
-        
-        logger.info(f"🔥 PROGRESS FIX: セッション状態確認 - exam_current={current_exam_current}, question_ids={len(current_question_ids)}, has_active_progress={has_active_progress}")
-        
-        # 次の問題への遷移要求またはアクティブな進行中セッションの場合は保持
-        if is_next_request or has_active_progress:
-            logger.info("🔥 PROGRESS FIX: 次問題リクエストまたは進行中セッション検出 - セッション強制保持モード")
-            # セッションリセットを完全に無効化
+        # 🔥 ULTRA SYNC: セッション継続問題完全解決（副作用なし）
+        # 次の問題への遷移要求の場合は、セッション情報を保持し続行
+        if is_next_request:
+            logger.info("🔥 ULTRA SYNC: 次問題リクエスト検出 - セッション保持モード")
+            # 次問題リクエストの場合は一切のリセット処理をスキップ
             need_reset = False
-            logger.info("🔥 PROGRESS FIX: 進行中セッション保護のためneed_reset=False強制設定")
+            logger.info("🔥 ULTRA SYNC: 次問題リクエストのためneed_reset=False強制設定")
         else:
             # 通常のリクエストの場合のみリセット判定を実行
             session_question_type = session.get('selected_question_type')
@@ -3968,72 +3946,20 @@ def exam():
             )
 
             # 🔥 CRITICAL PROGRESS FIX: 次問題リクエスト時はリセットを禁止
-            # 🔥 PROGRESS FIX: アクティブセッション保護 - パラメータなしアクセスでもセッション維持
-            has_url_params = any([
-                request.args.get('department'),
-                request.args.get('question_type'),
-                request.args.get('type'),
-                request.args.get('category'),
-                request.args.get('year'),
-                request.args.get('count'),
-                request.args.get('reset')
-            ])
-            
-            # アクティブセッション中でパラメータなしの場合はリセットしない
-            has_active_session = (exam_question_ids and 
-                                session.get('exam_current', 0) >= 0 and
-                                session.get('exam_current', 0) < len(exam_question_ids))
-            
-            # 🔥 PROGRESS DEBUG: セッション状態の詳細ログ
-            logger.info(f"🔥 PROGRESS DEBUG: has_active_session={has_active_session}")
-            logger.info(f"🔥 PROGRESS DEBUG: exam_question_ids={bool(exam_question_ids)}, length={len(exam_question_ids) if exam_question_ids else 0}")
-            logger.info(f"🔥 PROGRESS DEBUG: exam_current={session.get('exam_current')}")
-            logger.info(f"🔥 PROGRESS DEBUG: has_url_params={has_url_params}")
-            logger.info(f"🔥 PROGRESS DEBUG: is_next_request={is_next_request}")
-            logger.info(f"🔥 PROGRESS DEBUG: progress_tracking={bool(session.get('progress_tracking'))}")
-            
             # 通常のリセット判定（次問題リクエスト以外）
             need_reset = (not is_review_mode and not is_next_request and (
                 not exam_question_ids or                    # 問題IDがない
                 request.args.get('reset') == '1' or        # 明示的リセット要求
-                (referrer_is_home and not is_review_mode and has_url_params) or  # ホームから来た場合（パラメータありのみ）
-                (not question_type_match and not is_review_mode and has_url_params) or  # 問題種別変更（パラメータありのみ）
-                (not department_match and not is_review_mode and has_url_params) or    # 部門変更（パラメータありのみ）
-                (not year_match and not is_review_mode and has_url_params) or          # 年度変更（パラメータありのみ）
+                (referrer_is_home and not is_review_mode) or  # ホームから来た場合（復習除く）
+                (not question_type_match and not is_review_mode) or  # 問題種別変更（復習除く）
+                (not department_match and not is_review_mode) or    # 部門変更（復習除く）
+                (not year_match and not is_review_mode) or          # 年度変更（復習除く）
                 len(exam_question_ids) == 0))              # 空の問題リスト
                 
-            # 🔥 PROGRESS FIX: 強化されたアクティブセッション保護
-            # 条件1: アクティブセッション + パラメータなし + リセット要求なし
-            if has_active_session and not has_url_params and not request.args.get('reset'):
-                need_reset = False
-                logger.info("🔥 PROGRESS FIX: アクティブセッション保護 - パラメータなしアクセスでもセッション維持")
-                
-            # 条件2: next=1リクエスト時は強制的にリセットを無効化
+            # 🔥 PROGRESS FIX: next=1リクエスト時は強制的にリセットを無効化
             if is_next_request:
                 need_reset = False
                 logger.info("🔥 PROGRESS FIX: next=1リクエストのためリセット強制無効化")
-                
-            # 条件3: current パラメータ付きリクエストもセッション保持
-            if request.args.get('current') and has_active_session:
-                need_reset = False
-                logger.info("🔥 PROGRESS FIX: currentパラメータ付きアクティブセッション保護")
-                
-            # 条件4: 最近の活動があれば強制保護（安全チェック付き）
-            session_has_recent_activity = session.get('last_update') and True  # 簡易チェック
-            if session_has_recent_activity and has_active_session:
-                need_reset = False
-                logger.info("🔥 PROGRESS FIX: 活性セッション強制保護 - 最近の活動を検出")
-                
-            # 条件5: 進捗追跡データがある場合は強制保護
-            progress_tracking = session.get('progress_tracking')
-            if progress_tracking and has_active_session:
-                need_reset = False
-                logger.info("🔥 PROGRESS FIX: 進捗追跡データ保護 - セッション継続")
-                
-            # 条件6: exam_current > 0 の場合は進行中セッションとして保護
-            if session.get('exam_current', 0) > 0 and has_active_session:
-                need_reset = False  
-                logger.info(f"🔥 PROGRESS FIX: 進行中セッション保護 - exam_current={session.get('exam_current')}")
 
         logger.info(f"🔥 ULTRA SYNC: need_reset = {need_reset} (is_next_request={is_next_request})")
 
@@ -4166,21 +4092,18 @@ def exam():
         question_srs = srs_data.get(str(current_question_id), {})
         
         # テンプレート用変数
-        # 🔥 PROGRESS FIX: ユーザー設定問題数を使用して正確な進捗表示（20問→1/20,2/20...20/20）
-        user_session_size = get_user_session_size(session)
         template_vars = {
             'question': question,
             'current_no': current_no + 1,  # 表示用は1から開始
-            'total_questions': user_session_size,  # 🔥 FIX: ユーザー設定問題数使用
+            'total_questions': len(exam_question_ids),
             'category': session.get('exam_category', ''),
-            'progress_percentage': int(((current_no + 1) / user_session_size) * 100),  # 🔥 FIX: 正確な進捗計算
-            'is_last_question': (current_no + 1) >= user_session_size,  # 🔥 FIX: 正確な最終問題判定
+            'progress_percentage': int(((current_no + 1) / len(exam_question_ids)) * 100),
+            'is_last_question': (current_no + 1) >= len(exam_question_ids),
             'srs_info': question_srs,
             'is_review_question': question_srs.get('total_attempts', 0) > 0
         }
         
-        logger.info(f"問題表示: {current_no + 1}/{user_session_size} - ID:{current_question_id}")
-        logger.info(f"🔥 PROGRESS DEBUG: template_vars = {template_vars}")
+        logger.info(f"問題表示: {current_no + 1}/{len(exam_question_ids)} - ID:{current_question_id}")
         
         # 🔥 CRITICAL: 完全なレスポンス追跡ログ
         from datetime import datetime as dt
@@ -6040,6 +5963,8 @@ def create_review_test_data():
     """🔥 復習テスト用ダミーデータ作成（ウルトラシンク対応）"""
     try:
         from datetime import datetime, timedelta
+        import random
+
         # データディレクトリの設定
         data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
         all_questions = load_rccm_data_files(data_dir)
@@ -9507,48 +9432,6 @@ def api_session_extend():
             'error': 'Session extension failed',
             'timestamp': format_utc_to_iso()
         }), 500
-
-
-# 🛡️ ULTRATHIN区 100%必達: 欠けているルート実装 (副作用ゼロ)
-@app.route('/review_wrong')
-def review_wrong():
-    """間違い問題復習ページ"""
-    try:
-        # 既存のreview機能にリダイレクト
-        return redirect('/review')
-    except Exception as e:
-        logger.error(f"復習間違い問題エラー: {e}")
-        return render_template('error.html', error="復習機能の表示中にエラーが発生しました。")
-
-@app.route('/review_list')
-def review_list_redirect():
-    """復習リストページ (エイリアス)"""
-    try:
-        # 既存のreview機能にリダイレクト
-        return redirect('/review')
-    except Exception as e:
-        logger.error(f"復習リストエラー: {e}")
-        return render_template('error.html', error="復習機能の表示中にエラーが発生しました。")
-
-@app.route('/srs_review')
-def srs_review():
-    """SRS復習ページ"""
-    try:
-        # 既存のreview機能にリダイレクト
-        return redirect('/review')
-    except Exception as e:
-        logger.error(f"SRS復習エラー: {e}")
-        return render_template('error.html', error="SRS復習機能の表示中にエラーが発生しました。")
-
-@app.route('/stats')
-def stats_alias():
-    """統計ページ (エイリアス)"""
-    try:
-        # 既存のstatistics機能にリダイレクト
-        return redirect('/statistics')
-    except Exception as e:
-        logger.error(f"統計ページエラー: {e}")
-        return render_template('error.html', error="統計機能の表示中にエラーが発生しました。")
 
 
 if __name__ == '__main__':

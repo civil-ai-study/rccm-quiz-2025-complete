@@ -1,0 +1,36 @@
+{
+  "timestamp": "20250705_104142",
+  "target_replacements": 3,
+  "insert_position": 47,
+  "safety_checks": [
+    "バックアップファイルの存在確認",
+    "構文エラーチェック（python -m py_compile）",
+    "インポートテスト",
+    "関数定義の重複チェック",
+    "インデントレベルの一貫性"
+  ],
+  "rollback_points": [
+    {
+      "stage": "関数追加前",
+      "action": "app.pyのバックアップ作成",
+      "file": "app.py.backup_before_session_functions"
+    },
+    {
+      "stage": "関数追加後",
+      "action": "構文チェック実行",
+      "file": "app.py.backup_after_functions"
+    },
+    {
+      "stage": "置換実行後",
+      "action": "全体テスト実行",
+      "file": "app.py.backup_after_replacements"
+    }
+  ],
+  "test_scenarios": [
+    "セッション初期化テスト（新規開始）",
+    "セッション継続テスト（既存セッション）",
+    "エラー回復テスト（破損セッション）",
+    "並行アクセステスト",
+    "メモリリークテスト"
+  ]
+}

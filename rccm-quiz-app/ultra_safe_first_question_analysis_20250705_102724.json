@@ -1,0 +1,81 @@
+{
+  "session_initialization_issues": [
+    {
+      "pattern": "session.pop('exam_question_ids'",
+      "occurrences": 6,
+      "risk_level": "HIGH"
+    },
+    {
+      "pattern": "session.clear()",
+      "occurrences": 2,
+      "risk_level": "MEDIUM"
+    },
+    {
+      "pattern": "del session[",
+      "occurrences": 3,
+      "risk_level": "MEDIUM"
+    },
+    {
+      "pattern": "'exam_question_ids' not in session",
+      "occurrences": 3,
+      "risk_level": "MEDIUM"
+    },
+    {
+      "pattern": "session['exam_question_ids'] = []",
+      "occurrences": 1,
+      "risk_level": "MEDIUM"
+    }
+  ],
+  "route_problems": [
+    {
+      "pattern": "return render_template('error.html'",
+      "description": "エラーページへの早期リダイレクト",
+      "line_numbers": [
+        2441,
+        2449,
+        2531
+      ]
+    },
+    {
+      "pattern": "if not",
+      "description": "条件チェック失敗",
+      "line_numbers": [
+        2395,
+        2409,
+        2440
+      ]
+    },
+    {
+      "pattern": "session.get('exam_question_ids')",
+      "description": "セッション取得",
+      "line_numbers": [
+        2458
+      ]
+    }
+  ],
+  "template_errors": [
+    {
+      "file": "templates/exam.html",
+      "issues": [
+        "問題ID参照: あり"
+      ]
+    },
+    {
+      "file": "templates/exam_feedback.html",
+      "issues": [
+        "問題ID参照: あり"
+      ]
+    },
+    {
+      "file": "templates/error.html",
+      "issues": [
+        "エラー表示: あり"
+      ]
+    }
+  ],
+  "data_loading_issues": [],
+  "critical_findings": [
+    "セッション初期化に複数の問題あり - 一問目で初期化失敗の可能性",
+    "/exam ルートに複数の問題あり - リクエスト処理失敗の可能性"
+  ]
+}

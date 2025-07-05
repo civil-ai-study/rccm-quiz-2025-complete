@@ -1,0 +1,41 @@
+============================================================
+ULTRATHIN Performance Test Report (Zero Side Effects)
+============================================================
+Test Date: 2025-07-05 16:31:10
+Base URL: http://localhost:5000
+
+TEST SUMMARY
+--------------------
+Total Duration: 53.05 seconds
+Memory Change: +0.00 MB
+Tests Run: 8
+
+RESPONSE TIME RESULTS
+-------------------------
+
+Static Files:
+
+MEMORY MONITORING
+-----------------
+Baseline: 0.00 MB
+Average: 0.00 MB
+Variation: 0.00 MB
+
+LIGHT LOAD TEST
+---------------
+Total Requests: 20
+Success Rate: 0.0%
+Avg Response Time: 0.00ms
+Requests/Second: 0.00
+
+ERRORS AND WARNINGS
+-------------------
+⚠️  homepage_response: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f435be0e6f0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+⚠️  departments_response: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /departments (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f435be0ede0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+⚠️  csv_load_time: Failed to measure CSV load time
+⚠️  session_creation: Failed to measure session creation time
+⚠️  light_load: No successful requests
+
+============================================================
+Test completed with zero side effects guarantee
+============================================================

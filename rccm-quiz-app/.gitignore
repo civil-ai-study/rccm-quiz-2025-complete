@@ -34,6 +34,7 @@ test_env/
 venv/
 ENV/
 env/
+ultrathin_test_env/
 
 # バックアップファイル
 *_backup*
@@ -45,6 +46,11 @@ env/
 ultra_sync_*.py
 ultra_sync_*.json
 *_test_*.json
+ultrathin_*.py
+ultrathin_test_env/
+isolated_test_env/
+ultrathin_*.log
+*_fixed.log
 
 # IDE関連
 .vscode/

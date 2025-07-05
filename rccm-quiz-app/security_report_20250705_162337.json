@@ -1,0 +1,152 @@
+{
+  "timestamp": "2025-07-05T16:23:37.813543",
+  "summary": {
+    "total_tests": 17,
+    "passed": 7,
+    "failed": 10,
+    "severity_counts": {
+      "INFO": 8,
+      "HIGH": 4,
+      "CRITICAL": 2,
+      "MEDIUM": 3
+    }
+  },
+  "results": [
+    {
+      "test_name": "SQL Injection Static Analysis",
+      "severity": "INFO",
+      "passed": true,
+      "details": "No obvious SQL injection patterns detected in static analysis",
+      "remediation": "",
+      "timestamp": "2025-07-05T16:23:35.152890"
+    },
+    {
+      "test_name": "XSS Static Analysis",
+      "severity": "HIGH",
+      "passed": false,
+      "details": "Potential XSS vulnerabilities found: api_integration.html: Variable in event handler; bookmarks.html: Variable in event handler; department_categories.html: Variable in event handler; discussion_detail.html: Variable in event handler; enhanced_base.html: Variable in event handler; enterprise_dashboard.html: Variable in event handler; exam.html: Variable in event handler; exam_feedback.html: Variable in event handler; exam_navigation.html: Variable in event handler; exam_question.html: Variable in event handler; exam_results.html: Variable in event handler; exam_simulator.html: Variable in event handler; review.html: Variable in event handler; social_learning.html: Variable in event handler; statistics.html: Use of |safe filter",
+      "remediation": "Ensure all user input is properly escaped in templates",
+      "timestamp": "2025-07-05T16:23:35.276331"
+    },
+    {
+      "test_name": "CSRF Protection",
+      "severity": "INFO",
+      "passed": true,
+      "details": "CSRF protection appears to be implemented or no POST routes found",
+      "remediation": "",
+      "timestamp": "2025-07-05T16:23:35.284071"
+    },
+    {
+      "test_name": "Input Validation",
+      "severity": "INFO",
+      "passed": true,
+      "details": "Input validation appears adequate: 174 checks for 72 inputs",
+      "remediation": "",
+      "timestamp": "2025-07-05T16:23:35.299573"
+    },
+    {
+      "test_name": "Dangerous Functions",
+      "severity": "CRITICAL",
+      "passed": false,
+      "details": "Found dangerous functions: eval",
+      "remediation": "Replace dangerous functions with safer alternatives",
+      "timestamp": "2025-07-05T16:23:35.309882"
+    },
+    {
+      "test_name": "Hardcoded Secrets",
+      "severity": "HIGH",
+      "passed": false,
+      "details": "Found potential hardcoded secrets: redis_cache.py: Hardcoded password; redis_session_manager.py: Hardcoded password",
+      "remediation": "Use environment variables or secure configuration files for secrets",
+      "timestamp": "2025-07-05T16:23:37.645353"
+    },
+    {
+      "test_name": "Flask Security Configuration",
+      "severity": "MEDIUM",
+      "passed": false,
+      "details": "Missing security configurations: Session lifetime should be configured",
+      "remediation": "Add missing security configurations to Flask app",
+      "timestamp": "2025-07-05T16:23:37.653550"
+    },
+    {
+      "test_name": "Debug Mode",
+      "severity": "INFO",
+      "passed": true,
+      "details": "Debug mode appears to be disabled",
+      "remediation": "",
+      "timestamp": "2025-07-05T16:23:37.665578"
+    },
+    {
+      "test_name": "Secret Key Strength",
+      "severity": "HIGH",
+      "passed": false,
+      "details": "Secret key is too short (< 16 characters)",
+      "remediation": "Use a cryptographically secure random key of at least 32 characters",
+      "timestamp": "2025-07-05T16:23:37.674947"
+    },
+    {
+      "test_name": "File Permissions",
+      "severity": "HIGH",
+      "passed": false,
+      "details": "Insecure file permissions: app.py: world-writable; config.py: world-writable",
+      "remediation": "Set appropriate file permissions (e.g., 600 for sensitive files)",
+      "timestamp": "2025-07-05T16:23:37.679043"
+    },
+    {
+      "test_name": "Error Handling",
+      "severity": "MEDIUM",
+      "passed": false,
+      "details": "Potential information disclosure in error messages",
+      "remediation": "Implement generic error messages for production",
+      "timestamp": "2025-07-05T16:23:37.691208"
+    },
+    {
+      "test_name": "HTTP Security Headers",
+      "severity": "MEDIUM",
+      "passed": false,
+      "details": "Missing security headers: Strict-Transport-Security (Forces HTTPS); Content-Security-Policy (Controls resource loading)...",
+      "remediation": "Implement security headers using Flask-Talisman or manually",
+      "timestamp": "2025-07-05T16:23:37.702900"
+    },
+    {
+      "test_name": "Session Security",
+      "severity": "INFO",
+      "passed": true,
+      "details": "Session security appears to be properly configured",
+      "remediation": "",
+      "timestamp": "2025-07-05T16:23:37.712139"
+    },
+    {
+      "test_name": "Directory Traversal",
+      "severity": "INFO",
+      "passed": false,
+      "details": "Error during analysis: missing ), unterminated subpattern at position 4",
+      "remediation": "",
+      "timestamp": "2025-07-05T16:23:37.723284"
+    },
+    {
+      "test_name": "Sensitive Data Exposure",
+      "severity": "INFO",
+      "passed": true,
+      "details": "No obvious sensitive data exposure detected",
+      "remediation": "",
+      "timestamp": "2025-07-05T16:23:37.770762"
+    },
+    {
+      "test_name": "Data Validation",
+      "severity": "INFO",
+      "passed": true,
+      "details": "Data files appear to be safe",
+      "remediation": "",
+      "timestamp": "2025-07-05T16:23:37.804178"
+    },
+    {
+      "test_name": "Access Control",
+      "severity": "CRITICAL",
+      "passed": false,
+      "details": "Found 9 admin routes without authentication",
+      "remediation": "Implement proper authentication and authorization",
+      "timestamp": "2025-07-05T16:23:37.813222"
+    }
+  ]
+}

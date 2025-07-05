@@ -1,0 +1,41 @@
+{
+  "session_errors": [
+    {
+      "test_name": "test_session_initialization_failure",
+      "error_type": "KeyError",
+      "error_message": "'Required session key missing: exam_question_ids'",
+      "timestamp": "2025-07-05T07:10:11.552111+00:00"
+    },
+    {
+      "test_name": "test_session_timeout_handling",
+      "error_type": "TimeoutError",
+      "error_message": "Session has timed out",
+      "timestamp": "2025-07-05T07:10:11.555565+00:00"
+    }
+  ],
+  "data_load_errors": [],
+  "question_display_errors": [],
+  "answer_processing_errors": [],
+  "progress_display_errors": [],
+  "result_screen_errors": [],
+  "exception_handling_errors": [],
+  "total_errors_found": 2,
+  "verification_timestamp": "2025-07-05T07:10:11.545421+00:00",
+  "verification_mode": "ULTRATHIN_ZERO_SIDE_EFFECTS",
+  "error_summary": {
+    "session_errors": 2,
+    "data_load_errors": 0,
+    "question_display_errors": 0,
+    "answer_processing_errors": 0,
+    "progress_display_errors": 0,
+    "result_screen_errors": 0,
+    "exception_handling_errors": 0
+  },
+  "verification_stats": {
+    "total_tests_run": 30,
+    "total_errors_detected": 2,
+    "error_detection_rate": 6.666666666666667,
+    "verification_duration": "N/A",
+    "verification_success": false
+  }
+}

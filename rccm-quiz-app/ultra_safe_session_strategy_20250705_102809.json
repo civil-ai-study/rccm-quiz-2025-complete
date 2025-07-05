@@ -1,0 +1,72 @@
+{
+  "issues_found": [
+    {
+      "issue": "セッション初期化の重複実行",
+      "lines": [
+        [
+          2415,
+          "session.pop('exam_question_ids', None)"
+        ],
+        [
+          2429,
+          "session.pop('exam_question_ids', None)"
+        ],
+        [
+          2434,
+          "session.pop('exam_question_ids', None)"
+        ],
+        [
+          3216,
+          "session.pop('exam_question_ids', None)"
+        ],
+        [
+          5797,
+          "session.pop('exam_question_ids', None)"
+        ],
+        [
+          5977,
+          "session.pop('exam_question_ids', None)"
+        ]
+      ],
+      "severity": "HIGH",
+      "description": "6箇所でsession.pop('exam_question_ids')が実行されている"
+    }
+  ],
+  "safe_fixes": [
+    {
+      "fix_name": "セッション初期化一元化",
+      "description": "複数箇所のsession.pop呼び出しを一つの関数に統合",
+      "implementation": "\ndef safe_exam_session_reset():\n    \"\"\"安全なセッション初期化\"\"\"\n    keys_to_remove = ['exam_question_ids', 'exam_current', 'exam_category']\n    for key in keys_to_remove:\n        session.pop(key, None)\n    session.modified = True\n    logger.info(\"セッション安全リセット完了\")\n",
+      "risk_level": "LOW",
+      "testing_required": true
+    },
+    {
+      "fix_name": "セッション状態チェック改善",
+      "description": "セッション存在チェックを修正前に実行",
+      "implementation": "\ndef safe_session_check():\n    \"\"\"安全なセッション状態チェック\"\"\"\n    required_keys = ['exam_question_ids', 'exam_current']\n    return all(key in session and session[key] is not None for key in required_keys)\n",
+      "risk_level": "LOW",
+      "testing_required": true
+    },
+    {
+      "fix_name": "エラーハンドリング強化",
+      "description": "セッション操作時の例外処理を追加",
+      "implementation": "\ntry:\n    # セッション操作\n    if safe_session_check():\n        # 正常処理\n        pass\n    else:\n        # セッション初期化\n        safe_exam_session_reset()\nexcept Exception as e:\n    logger.error(f\"セッション操作エラー: {e}\")\n    # フォールバック処理\n",
+      "risk_level": "LOW",
+      "testing_required": true
+    }
+  ],
+  "testing_plan": [
+    "新規セッション開始テスト",
+    "既存セッション継続テスト",
+    "セッション破損時の復旧テスト",
+    "同時アクセス時の競合テスト",
+    "エラー発生時のフォールバックテスト"
+  ],
+  "rollback_plan": [
+    "現在のapp.pyのバックアップ作成",
+    "修正前の動作確認テスト実行",
+    "修正適用",
+    "修正後テスト実行",
+    "問題発生時は即座にバックアップから復旧"
+  ]
+}

@@ -1,0 +1,275 @@
+[
+  {
+    "id": 1,
+    "category": "SECURITY",
+    "title": "XSS脆弱性修正",
+    "description": "URLパラメータのサニタイゼーション追加",
+    "risk_level": "LOW",
+    "affected_files": [
+      "app.py"
+    ],
+    "fix_method": "input_validation_only",
+    "testing_strategy": "security_scan_only",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.300452"
+  },
+  {
+    "id": 2,
+    "category": "SECURITY",
+    "title": "SQLインジェクション対策",
+    "description": "パラメータバインディング強化",
+    "risk_level": "LOW",
+    "affected_files": [
+      "app.py"
+    ],
+    "fix_method": "parameter_binding",
+    "testing_strategy": "sql_injection_test",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.300481"
+  },
+  {
+    "id": 3,
+    "category": "SECURITY",
+    "title": "パストラバーサル対策",
+    "description": "ファイルパス検証追加",
+    "risk_level": "LOW",
+    "affected_files": [
+      "utils.py"
+    ],
+    "fix_method": "path_validation",
+    "testing_strategy": "path_traversal_test",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.300485"
+  },
+  {
+    "id": 4,
+    "category": "DATA",
+    "title": "questions.csv修正",
+    "description": "空ファイルを実際のデータで置換",
+    "risk_level": "MEDIUM",
+    "affected_files": [
+      "data/questions.csv"
+    ],
+    "fix_method": "data_file_replacement",
+    "testing_strategy": "data_load_test",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.300488"
+  },
+  {
+    "id": 5,
+    "category": "DATA",
+    "title": "CSVカラム数不整合修正",
+    "description": "4-1.csv, 4-2_2013.csv, 4-2_2014.csvの修正",
+    "risk_level": "MEDIUM",
+    "affected_files": [
+      "data/4-1.csv",
+      "data/4-2_2013.csv",
+      "data/4-2_2014.csv"
+    ],
+    "fix_method": "csv_column_fix",
+    "testing_strategy": "csv_validation_test",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.300491"
+  },
+  {
+    "id": 6,
+    "category": "DATA",
+    "title": "エンコーディング統一",
+    "description": "全CSVファイルをUTF-8に統一",
+    "risk_level": "MEDIUM",
+    "affected_files": [
+      "data/*.csv"
+    ],
+    "fix_method": "encoding_conversion",
+    "testing_strategy": "encoding_test",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.300493"
+  },
+  {
+    "id": 7,
+    "category": "TEMPLATE",
+    "title": "未定義変数修正（typo修正）",
+    "description": "71個のテンプレートエラー修正",
+    "risk_level": "LOW",
+    "affected_files": [
+      "templates/*.html"
+    ],
+    "fix_method": "template_variable_fix",
+    "testing_strategy": "ui_display_test",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.301150"
+  },
+  {
+    "id": 8,
+    "category": "TEMPLATE",
+    "title": "閉じタグ修正",
+    "description": "HTMLタグの不整合修正",
+    "risk_level": "LOW",
+    "affected_files": [
+      "templates/*.html"
+    ],
+    "fix_method": "html_tag_fix",
+    "testing_strategy": "html_validation",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.301157"
+  },
+  {
+    "id": 9,
+    "category": "TEMPLATE",
+    "title": "本番用console.log削除",
+    "description": "デバッグコードの除去",
+    "risk_level": "LOW",
+    "affected_files": [
+      "templates/*.html"
+    ],
+    "fix_method": "debug_code_removal",
+    "testing_strategy": "js_console_check",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.301159"
+  },
+  {
+    "id": 10,
+    "category": "CODE_CLEANUP",
+    "title": "重複import削除",
+    "description": "logging等の重複import修正",
+    "risk_level": "LOW",
+    "affected_files": [
+      "app.py"
+    ],
+    "fix_method": "import_cleanup",
+    "testing_strategy": "import_test",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.301162"
+  },
+  {
+    "id": 11,
+    "category": "CODE_CLEANUP",
+    "title": "ファイルハンドルリーク修正",
+    "description": "with文を使用した安全なファイル処理",
+    "risk_level": "MEDIUM",
+    "affected_files": [
+      "app.py",
+      "utils.py"
+    ],
+    "fix_method": "file_handle_fix",
+    "testing_strategy": "resource_leak_test",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.301164"
+  },
+  {
+    "id": 12,
+    "category": "ROUTE",
+    "title": "重複ルート修正",
+    "description": "/health ルートの重複解消",
+    "risk_level": "MEDIUM",
+    "affected_files": [
+      "app.py"
+    ],
+    "fix_method": "route_deduplication",
+    "testing_strategy": "route_mapping_test",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.301166"
+  },
+  {
+    "id": 13,
+    "category": "ROUTE",
+    "title": "類似ルート統合",
+    "description": "/api/bookmark vs /api/bookmarks等の統合",
+    "risk_level": "HIGH",
+    "affected_files": [
+      "app.py"
+    ],
+    "fix_method": "route_consolidation",
+    "testing_strategy": "api_endpoint_test",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.301169"
+  },
+  {
+    "id": 14,
+    "category": "SESSION",
+    "title": "セッション変数デフォルト値統一",
+    "description": "不整合なデフォルト値の統一",
+    "risk_level": "HIGH",
+    "affected_files": [
+      "app.py"
+    ],
+    "fix_method": "session_default_fix",
+    "testing_strategy": "session_state_test",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.301171"
+  },
+  {
+    "id": 15,
+    "category": "SESSION",
+    "title": "読み取り専用セッション変数対応",
+    "description": "未使用セッション変数の整理",
+    "risk_level": "HIGH",
+    "affected_files": [
+      "app.py"
+    ],
+    "fix_method": "session_variable_cleanup",
+    "testing_strategy": "session_flow_test",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.301173"
+  },
+  {
+    "id": 16,
+    "category": "ARCHITECTURE",
+    "title": "論理エラー修正（段階1）",
+    "description": "5,456個の論理エラーを100個ずつ段階的修正",
+    "risk_level": "CRITICAL",
+    "affected_files": [
+      "app.py"
+    ],
+    "fix_method": "gradual_logic_fix",
+    "testing_strategy": "comprehensive_function_test",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.301175"
+  },
+  {
+    "id": 17,
+    "category": "ARCHITECTURE",
+    "title": "N+1クエリ問題修正",
+    "description": "142箇所のパフォーマンス問題修正",
+    "risk_level": "HIGH",
+    "affected_files": [
+      "app.py"
+    ],
+    "fix_method": "query_optimization",
+    "testing_strategy": "performance_test",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.301737"
+  },
+  {
+    "id": 18,
+    "category": "ARCHITECTURE",
+    "title": "メモリリーク修正",
+    "description": "グローバル変数蓄積・循環参照の解消",
+    "risk_level": "HIGH",
+    "affected_files": [
+      "app.py"
+    ],
+    "fix_method": "memory_optimization",
+    "testing_strategy": "memory_usage_test",
+    "dependencies": [],
+    "status": "pending",
+    "created_at": "2025-07-04T17:52:16.301754"
+  }
+]
