@@ -788,9 +788,9 @@ def cleanup_session_data(session):
         else:
             # フォールバック: 従来の履歴データクリーンアップ
             history = session.get('history', [])
-            if isinstance(history, list) and len(history) > 100:
-                session['history'] = history[-100:]  # 最新100件のみ
-                logger.debug(f"履歴データクリーンアップ: {len(history)} → 100件")
+            if isinstance(history, list) and len(history) > 30:
+                session['history'] = history[-30:]  # 最新30件のみ (HTTP 431対策)
+                logger.debug(f"履歴データクリーンアップ: {len(history)} → 30件")
         
         # 一時的なキーのクリーンアップ
         temp_keys = [
