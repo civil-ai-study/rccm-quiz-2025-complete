@@ -468,6 +468,13 @@ def load_questions_improved(csv_path: str) -> List[Dict]:
     # データフレームの最初の行からカラムを取得
     if df:
         columns = list(df[0].keys())
+        # 🛡️ ULTRATHIN区: BOM除去処理
+        columns = [col.lstrip('\ufeff') for col in columns]
+        # 最初の行のキーも修正
+        if df[0] and '\ufeffid' in df[0]:
+            for row in df:
+                if '\ufeffid' in row:
+                    row['id'] = row.pop('\ufeffid')
     else:
         columns = []
     

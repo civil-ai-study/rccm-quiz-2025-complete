@@ -5934,7 +5934,19 @@ def review_questions():
         try:
             # データディレクトリの設定
             data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
-            all_questions = load_rccm_data_files(data_dir)
+            # 🛡️ ULTRATHIN区 Stage 2: 分離データ読み込み適用
+            from utils import load_basic_questions_only, load_specialist_questions_only
+            basic_questions = load_basic_questions_only(data_dir)
+            # 専門科目は全部門・全年度を統合読み込み
+            specialist_questions = []
+            for year in range(2008, 2020):
+                for dept in ['道路', '土質及び基礎', '造園', '農業土木', '森林土木', 'トンネル', '建設環境', '上水道及び工業用水道', '都市計画及び地方計画', '鋼構造及びコンクリート', '施工計画、施工設備及び積算', '河川、砂防及び海岸・海洋']:
+                    try:
+                        dept_questions = load_specialist_questions_only(dept, year, data_dir)
+                        specialist_questions.extend(dept_questions)
+                    except Exception as e:
+                        logger.debug(f"部門 {dept} 年度 {year} 読み込みスキップ: {e}")
+            all_questions = basic_questions + specialist_questions
             if not all_questions:
                 logger.error("問題データが空です")
                 return render_template('error.html',
