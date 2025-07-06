@@ -7117,7 +7117,49 @@ def start_exam(exam_type):
         if year_param:
             filtered_session['year_filter'] = year_param
         
-        exam_session = exam_simulator.generate_exam_session(all_questions, exam_type, filtered_session)
+        # 🚨 緊急修正: 4-1と4-2の完全分離（大きな壁の設置）
+        # exam_simulatorを使わず、get_mixed_questions関数で直接問題選択
+        selected_questions = get_mixed_questions(
+            session, 
+            all_questions, 
+            '全体', 
+            session_size=get_user_session_size(session),
+            department=category_param or '',
+            question_type=session.get('selected_question_type', ''),
+            year=year_param
+        )
+        
+        # 4-1と4-2の混在を防ぐ最終チェック
+        question_type_check = session.get('selected_question_type', '')
+        if question_type_check == 'basic':
+            # 基礎科目の場合：専門科目が混入していないかチェック
+            contaminated = [q for q in selected_questions if q.get('question_type') != 'basic']
+            if contaminated:
+                logger.error(f"🚨 基礎科目に専門科目混入検出: {len(contaminated)}問 - 除去します")
+                selected_questions = [q for q in selected_questions if q.get('question_type') == 'basic']
+        elif question_type_check == 'specialist':
+            # 専門科目の場合：基礎科目が混入していないかチェック
+            contaminated = [q for q in selected_questions if q.get('question_type') != 'specialist']
+            if contaminated:
+                logger.error(f"🚨 専門科目に基礎科目混入検出: {len(contaminated)}問 - 除去します")
+                selected_questions = [q for q in selected_questions if q.get('question_type') == 'specialist']
+        
+        # 手動でsimple exam_session作成
+        import time as time_module
+        exam_session = {
+            'exam_id': f"exam_{int(time_module.time())}",
+            'exam_type': exam_type,
+            'questions': selected_questions,
+            'current_question': 0,
+            'start_time': time_module.time(),
+            'status': 'in_progress',
+            'answers': [],
+            'selected_question_type': session.get('selected_question_type', ''),
+            'selected_department': session.get('selected_department', ''),
+            'selected_year': session.get('selected_year')
+        }
+        
+        logger.info(f"🛡️ 4-1/4-2完全分離: {question_type_check}で{len(selected_questions)}問選択完了")
         logger.info(f"🔥 EXAM START: 試験セッション生成完了 - ID: {exam_session.get('exam_id', 'UNKNOWN')}")
 
         # 🛡️ HTTP 431緊急対策: exam_session完全軽量化
@@ -7179,8 +7221,15 @@ def exam_question():
             logger.error(f"🔥 EXAM QUESTION: セッション状態が不正 - status: {session_status} - リダイレクト")
             return redirect(url_for('exam_simulator_page'))
 
-        current_q_index = exam_session['current_question']
-        questions = exam_session['questions']
+        # メモリからexam_dataを取得
+        exam_id = exam_session.get('exam_id', '')
+        full_exam_data = retrieve_exam_data_from_memory(exam_id)
+        if not full_exam_data:
+            logger.error(f"🔥 EXAM QUESTION: exam_dataが見つかりません - exam_id: {exam_id}")
+            return redirect(url_for('exam_simulator_page'))
+
+        current_q_index = full_exam_data['current_question']
+        questions = full_exam_data['questions']
         
         logger.info(f"🔥 EXAM QUESTION: 問題情報 - current_index: {current_q_index}, total: {len(questions)}")
 
