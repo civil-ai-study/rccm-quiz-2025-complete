@@ -983,7 +983,19 @@ def preload_startup_data():
             
             # RCCM統合データ読み込み（一度だけ実行）
             data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
-            questions = load_rccm_data_files(data_dir)
+            # 🛡️ ULTRATHIN区 Stage 3: 事前データ読み込みでも分離適用
+            from utils import load_basic_questions_only, load_specialist_questions_only
+            basic_questions = load_basic_questions_only(data_dir)
+            # 起動時は全専門科目データを読み込み（重いが初期化用）
+            specialist_questions = []
+            for year in range(2008, 2020):
+                for dept in ['道路', '土質及び基礎', '造園', '農業土木', '森林土木', 'トンネル', '建設環境', '上水道及び工業用水道', '都市計画及び地方計画', '鋼構造及びコンクリート', '施工計画、施工設備及び積算', '河川、砂防及び海岸・海洋']:
+                    try:
+                        dept_questions = load_specialist_questions_only(dept, year, data_dir)
+                        specialist_questions.extend(dept_questions)
+                    except Exception as e:
+                        logger.debug(f"起動時読み込み: {dept}/{year} スキップ: {e}")
+            questions = basic_questions + specialist_questions
             
             if questions:
                 # データ整合性チェック
@@ -1802,7 +1814,18 @@ def load_questions():
     try:
         # RCCM統合データ読み込み（4-1・4-2ファイル対応）
         data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
-        questions = load_rccm_data_files(data_dir)
+        # 🛡️ ULTRATHIN区 Stage 3: メインデータ読み込みでも分離適用
+        from utils import load_basic_questions_only, load_specialist_questions_only
+        basic_questions = load_basic_questions_only(data_dir)
+        specialist_questions = []
+        for year in range(2008, 2020):
+            for dept in ['道路', '土質及び基礎', '造園', '農業土木', '森林土木', 'トンネル', '建設環境', '上水道及び工業用水道', '都市計画及び地方計画', '鋼構造及びコンクリート', '施工計画、施工設備及び積算', '河川、砂防及び海岸・海洋']:
+                try:
+                    dept_questions = load_specialist_questions_only(dept, year, data_dir)
+                    specialist_questions.extend(dept_questions)
+                except Exception as e:
+                    logger.debug(f"メインデータ読み込み: {dept}/{year} スキップ: {e}")
+        questions = basic_questions + specialist_questions
 
         if questions:
             # データ整合性チェック
@@ -2753,7 +2776,18 @@ def exam():
                                    error_type="rate_limit")
         # データディレクトリの設定
         data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
-        all_questions = load_rccm_data_files(data_dir)
+        # 🛡️ ULTRATHIN区 Stage 3: メインルート機能でも分離適用
+        from utils import load_basic_questions_only, load_specialist_questions_only
+        basic_questions = load_basic_questions_only(data_dir)
+        specialist_questions = []
+        for year in range(2008, 2020):
+            for dept in ['道路', '土質及び基礎', '造園', '農業土木', '森林土木', 'トンネル', '建設環境', '上水道及び工業用水道', '都市計画及び地方計画', '鋼構造及びコンクリート', '施工計画、施工設備及び積算', '河川、砂防及び海岸・海洋']:
+                try:
+                    dept_questions = load_specialist_questions_only(dept, year, data_dir)
+                    specialist_questions.extend(dept_questions)
+                except Exception as e:
+                    logger.debug(f"メインルート読み込み: {dept}/{year} スキップ: {e}")
+        all_questions = basic_questions + specialist_questions
         if not all_questions:
             logger.error("問題データが空")
             return render_template('error.html', error="問題データが存在しません。")
@@ -3211,7 +3245,18 @@ def exam():
                     department = session.get('selected_department', '')
 
                     # 🔥 ウルトラシンク包括修正: 全問題種別統一セッション再構築システム
-                    all_questions = load_rccm_data_files('data')
+                    # 🛡️ ULTRATHIN区 Stage 3: セッション再構築でも分離適用
+                    from utils import load_basic_questions_only, load_specialist_questions_only
+                    basic_questions = load_basic_questions_only('data')
+                    specialist_questions = []
+                    for year in range(2008, 2020):
+                        for dept in ['道路', '土質及び基礎', '造園', '農業土木', '森林土木', 'トンネル', '建設環境', '上水道及び工業用水道', '都市計画及び地方計画', '鋼構造及びコンクリート', '施工計画、施工設備及び積算', '河川、砂防及び海岸・海洋']:
+                            try:
+                                dept_questions = load_specialist_questions_only(dept, year, 'data')
+                                specialist_questions.extend(dept_questions)
+                            except Exception as e:
+                                logger.debug(f"セッション再構築: {dept}/{year} スキップ: {e}")
+                    all_questions = basic_questions + specialist_questions
 
                     logger.info(f"セッション再構築開始: 問題ID={qid}, 種別={question_type}, 部門={department}")
 
@@ -6346,7 +6391,12 @@ def create_review_test_data():
         from datetime import datetime, timedelta
         # データディレクトリの設定
         data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
-        all_questions = load_rccm_data_files(data_dir)
+        # 🛡️ ULTRATHIN区 Stage 3: デバッグ機能でも分離データ読み込み適用
+        from utils import load_basic_questions_only, load_specialist_questions_only
+        basic_questions = load_basic_questions_only(data_dir)
+        # デバッグ用は限定的な専門科目読み込み（道路/2016年のみ）
+        specialist_questions = load_specialist_questions_only('道路', 2016, data_dir)
+        all_questions = basic_questions + specialist_questions
         if not all_questions:
             return "問題データが見つかりません", 400
 
