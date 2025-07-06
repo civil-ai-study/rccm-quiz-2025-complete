@@ -8272,9 +8272,21 @@ def api_performance_rebuild_index():
             # 🔥 ULTRA SYNC FIX: 未定義関数修正 - 適切なデータ読み込み関数を使用
             current_questions = load_questions_improved('data/questions.csv')
             if not current_questions:
+                # 🚀 ULTRATHIN区段階1: 分離設計への移行（バックアップ処理のみ）
                 # バックアップとしてRCCMデータファイルからも読み込み試行
                 data_dir = os.path.dirname('data/questions.csv') or 'data'
-                rccm_data = load_rccm_data_files(data_dir)
+                logger.info("🛡️ ULTRATHIN区段階1: 分離関数使用開始（データ整合性チェック）")
+                
+                # 基礎科目と専門科目を分離して読み込み
+                from utils import load_basic_questions_only, load_specialist_questions_only
+                
+                basic_questions = load_basic_questions_only(data_dir)
+                specialist_questions_2016 = load_specialist_questions_only('土質及び基礎', 2016, data_dir)
+                
+                # 統合（バックアップ処理のため既存互換性を維持）
+                rccm_data = basic_questions + specialist_questions_2016
+                logger.info(f"🛡️ ULTRATHIN区段階1: 分離読み込み完了 - 基礎:{len(basic_questions)}問, 専門:{len(specialist_questions_2016)}問")
+                
                 # load_rccm_data_files は List[Dict] を返すため直接使用
                 current_questions = rccm_data if isinstance(rccm_data, list) else []
         except Exception as e:
