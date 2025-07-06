@@ -1101,4 +1101,94 @@ _data_load_lock = threading.Lock()
 cache_manager_instance = CacheManager()
 
 # グローバルインスタンス（企業環境用）
-enterprise_data_manager = EnterpriseDataManager(cache_manager=cache_manager_instance) 
+enterprise_data_manager = EnterpriseDataManager(cache_manager=cache_manager_instance)
+
+
+# ========================================
+# 🚀 ULTRATHIN区: 完全分離データ読み込み関数
+# ========================================
+
+def load_basic_questions_only(data_dir: str = 'data') -> List[Dict]:
+    """
+    🛡️ ULTRATHIN区: 基礎科目(4-1)専用読み込み関数
+    絶対に専門科目と混ぜない安全設計
+    """
+    logger.info("🛡️ ULTRATHIN区: 基礎科目専用読み込み開始")
+    
+    basic_questions = []
+    basic_file = os.path.join(data_dir, '4-1.csv')
+    
+    # セキュリティチェック
+    try:
+        validated_basic_file = validate_file_path(basic_file)
+    except ValueError as e:
+        logger.error(f"🚨 基礎科目ファイルパスエラー: {e}")
+        return []
+    
+    if not os.path.exists(validated_basic_file):
+        logger.error(f"🚨 基礎科目ファイル未発見: {validated_basic_file}")
+        return []
+    
+    try:
+        questions = load_questions_improved(validated_basic_file)
+        
+        # 基礎科目専用フィールド設定
+        for q in questions:
+            q['question_type'] = 'basic'  # 絶対に'basic'
+            q['department'] = 'common'     # 基礎科目は共通
+            q['category'] = '共通'          # カテゴリも統一
+            q['year'] = None              # 基礎科目は年度不問
+            q['source_file'] = '4-1.csv'  # ソース識別
+        
+        basic_questions = questions
+        logger.info(f"✅ ULTRATHIN区: 基礎科目読み込み完了 - {len(basic_questions)}問")
+        
+    except Exception as e:
+        logger.error(f"🚨 基礎科目読み込みエラー: {e}")
+        return []
+    
+    return basic_questions
+
+
+def load_specialist_questions_only(department: str, year: int, data_dir: str = 'data') -> List[Dict]:
+    """
+    🛡️ ULTRATHIN区: 専門科目(4-2)専用読み込み関数
+    指定部門・年度のみ、絶対に基礎科目と混ぜない安全設計
+    """
+    logger.info(f"🛡️ ULTRATHIN区: 専門科目専用読み込み開始 - {department}/{year}年")
+    
+    specialist_questions = []
+    specialist_file = os.path.join(data_dir, f'4-2_{year}.csv')
+    
+    # セキュリティチェック
+    try:
+        validated_specialist_file = validate_file_path(specialist_file)
+    except ValueError as e:
+        logger.error(f"🚨 専門科目ファイルパスエラー: {e}")
+        return []
+    
+    if not os.path.exists(validated_specialist_file):
+        logger.error(f"🚨 専門科目ファイル未発見: {validated_specialist_file}")
+        return []
+    
+    try:
+        questions = load_questions_improved(validated_specialist_file)
+        
+        # 指定部門のみフィルタリング
+        department_questions = []
+        for q in questions:
+            if q.get('category') == department:
+                q['question_type'] = 'specialist'  # 絶対に'specialist'
+                q['department'] = map_category_to_department(department)
+                q['year'] = year                   # 年度情報必須
+                q['source_file'] = f'4-2_{year}.csv'  # ソース識別
+                department_questions.append(q)
+        
+        specialist_questions = department_questions
+        logger.info(f"✅ ULTRATHIN区: 専門科目読み込み完了 - {department}/{year}年 {len(specialist_questions)}問")
+        
+    except Exception as e:
+        logger.error(f"🚨 専門科目読み込みエラー: {e}")
+        return []
+    
+    return specialist_questions 
