@@ -7118,11 +7118,24 @@ def start_exam(exam_type):
             target_year = int(year_param) if year_param and year_param.isdigit() else 2016
             
             try:
+                # 🚨 ULTRATHIN区段階38緊急修正: 部門名マッピング修正
+                # URL部門名をデータファイル内部門名に変換
+                department_mapping = {
+                    '都市計画': '都市計画及び地方計画',
+                    '鋼構造・コンクリート': '鋼構造及びコンクリート',
+                    '土質・基礎': '土質及び基礎', 
+                    '施工計画': '施工計画、施工設備及び積算',
+                    '上下水道': '上水道及び工業用水道'
+                }
+                
+                # 部門名を正しくマッピング
+                mapped_department = department_mapping.get(exam_type, exam_type)
+                
                 # 🛡️ ULTRATHIN区 段階3: 詳細診断情報追加
-                logger.info(f"🔥 EXAM START: 専門科目読み込み開始 - 部門:{exam_type}, 年度:{target_year}, data_dir:{data_dir}")
+                logger.info(f"🔥 EXAM START: 専門科目読み込み開始 - URL部門:{exam_type}, マップ部門:{mapped_department}, 年度:{target_year}, data_dir:{data_dir}")
                 
                 # 指定された部門・年度のみ読み込み（混在防止）
-                specialist_questions = load_specialist_questions_only(exam_type, target_year, data_dir)
+                specialist_questions = load_specialist_questions_only(mapped_department, target_year, data_dir)
                 all_questions = specialist_questions
                 logger.info(f"🔥 EXAM START: 専門科目データ読み込み完了 - 部門:{exam_type}, 年度:{target_year}, {len(all_questions)}問")
                 
