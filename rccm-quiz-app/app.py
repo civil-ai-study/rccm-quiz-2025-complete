@@ -986,19 +986,12 @@ def preload_startup_data():
             
             # RCCM統合データ読み込み（一度だけ実行）
             data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
-            # 🛡️ ULTRATHIN区 Stage 3: 事前データ読み込みでも分離適用
-            from utils import load_basic_questions_only, load_specialist_questions_only
+            # 🛡️ ULTRATHIN区 緊急修正: 起動時は基礎科目のみ読み込み（専門科目は必要時に動的読み込み）
+            from utils import load_basic_questions_only
             basic_questions = load_basic_questions_only(data_dir)
-            # 起動時は全専門科目データを読み込み（重いが初期化用）
-            specialist_questions = []
-            for year in range(2008, 2020):
-                for dept in ['道路', '土質及び基礎', '造園', '農業土木', '森林土木', 'トンネル', '建設環境', '上水道及び工業用水道', '都市計画及び地方計画', '鋼構造及びコンクリート', '施工計画、施工設備及び積算', '河川、砂防及び海岸・海洋']:
-                    try:
-                        dept_questions = load_specialist_questions_only(dept, year, data_dir)
-                        specialist_questions.extend(dept_questions)
-                    except Exception as e:
-                        logger.debug(f"起動時読み込み: {dept}/{year} スキップ: {e}")
-            questions = basic_questions + specialist_questions
+            
+            # 専門科目は動的読み込みに変更（混在防止）
+            questions = basic_questions
             
             if questions:
                 # データ整合性チェック
@@ -1817,18 +1810,10 @@ def load_questions():
     try:
         # RCCM統合データ読み込み（4-1・4-2ファイル対応）
         data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
-        # 🛡️ ULTRATHIN区 Stage 3: メインデータ読み込みでも分離適用
-        from utils import load_basic_questions_only, load_specialist_questions_only
+        # 🛡️ ULTRATHIN区 緊急修正: 基礎科目のみ読み込み（専門科目は必要時に動的読み込み）
+        from utils import load_basic_questions_only
         basic_questions = load_basic_questions_only(data_dir)
-        specialist_questions = []
-        for year in range(2008, 2020):
-            for dept in ['道路', '土質及び基礎', '造園', '農業土木', '森林土木', 'トンネル', '建設環境', '上水道及び工業用水道', '都市計画及び地方計画', '鋼構造及びコンクリート', '施工計画、施工設備及び積算', '河川、砂防及び海岸・海洋']:
-                try:
-                    dept_questions = load_specialist_questions_only(dept, year, data_dir)
-                    specialist_questions.extend(dept_questions)
-                except Exception as e:
-                    logger.debug(f"メインデータ読み込み: {dept}/{year} スキップ: {e}")
-        questions = basic_questions + specialist_questions
+        questions = basic_questions
 
         if questions:
             # データ整合性チェック
@@ -2779,18 +2764,10 @@ def exam():
                                    error_type="rate_limit")
         # データディレクトリの設定
         data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
-        # 🛡️ ULTRATHIN区 Stage 3: メインルート機能でも分離適用
-        from utils import load_basic_questions_only, load_specialist_questions_only
+        # 🛡️ ULTRATHIN区 緊急修正: 基礎科目のみ読み込み（専門科目は必要時に動的読み込み）
+        from utils import load_basic_questions_only
         basic_questions = load_basic_questions_only(data_dir)
-        specialist_questions = []
-        for year in range(2008, 2020):
-            for dept in ['道路', '土質及び基礎', '造園', '農業土木', '森林土木', 'トンネル', '建設環境', '上水道及び工業用水道', '都市計画及び地方計画', '鋼構造及びコンクリート', '施工計画、施工設備及び積算', '河川、砂防及び海岸・海洋']:
-                try:
-                    dept_questions = load_specialist_questions_only(dept, year, data_dir)
-                    specialist_questions.extend(dept_questions)
-                except Exception as e:
-                    logger.debug(f"メインルート読み込み: {dept}/{year} スキップ: {e}")
-        all_questions = basic_questions + specialist_questions
+        all_questions = basic_questions
         if not all_questions:
             logger.error("問題データが空")
             return render_template('error.html', error="問題データが存在しません。")
@@ -3248,18 +3225,10 @@ def exam():
                     department = session.get('selected_department', '')
 
                     # 🔥 ウルトラシンク包括修正: 全問題種別統一セッション再構築システム
-                    # 🛡️ ULTRATHIN区 Stage 3: セッション再構築でも分離適用
-                    from utils import load_basic_questions_only, load_specialist_questions_only
+                    # 🛡️ ULTRATHIN区 緊急修正: 基礎科目のみ読み込み（専門科目は必要時に動的読み込み）
+                    from utils import load_basic_questions_only
                     basic_questions = load_basic_questions_only('data')
-                    specialist_questions = []
-                    for year in range(2008, 2020):
-                        for dept in ['道路', '土質及び基礎', '造園', '農業土木', '森林土木', 'トンネル', '建設環境', '上水道及び工業用水道', '都市計画及び地方計画', '鋼構造及びコンクリート', '施工計画、施工設備及び積算', '河川、砂防及び海岸・海洋']:
-                            try:
-                                dept_questions = load_specialist_questions_only(dept, year, 'data')
-                                specialist_questions.extend(dept_questions)
-                            except Exception as e:
-                                logger.debug(f"セッション再構築: {dept}/{year} スキップ: {e}")
-                    all_questions = basic_questions + specialist_questions
+                    all_questions = basic_questions
 
                     logger.info(f"セッション再構築開始: 問題ID={qid}, 種別={question_type}, 部門={department}")
 
@@ -5982,19 +5951,10 @@ def review_questions():
         try:
             # データディレクトリの設定
             data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
-            # 🛡️ ULTRATHIN区 Stage 2: 分離データ読み込み適用
-            from utils import load_basic_questions_only, load_specialist_questions_only
+            # 🛡️ ULTRATHIN区 緊急修正: 基礎科目のみ読み込み（専門科目は必要時に動的読み込み）
+            from utils import load_basic_questions_only
             basic_questions = load_basic_questions_only(data_dir)
-            # 専門科目は全部門・全年度を統合読み込み
-            specialist_questions = []
-            for year in range(2008, 2020):
-                for dept in ['道路', '土質及び基礎', '造園', '農業土木', '森林土木', 'トンネル', '建設環境', '上水道及び工業用水道', '都市計画及び地方計画', '鋼構造及びコンクリート', '施工計画、施工設備及び積算', '河川、砂防及び海岸・海洋']:
-                    try:
-                        dept_questions = load_specialist_questions_only(dept, year, data_dir)
-                        specialist_questions.extend(dept_questions)
-                    except Exception as e:
-                        logger.debug(f"部門 {dept} 年度 {year} 読み込みスキップ: {e}")
-            all_questions = basic_questions + specialist_questions
+            all_questions = basic_questions
             if not all_questions:
                 logger.error("問題データが空です")
                 return render_template('error.html',
@@ -7115,8 +7075,29 @@ def start_exam(exam_type):
         if year_param:
             logger.info(f"🔥 EXAM START: year parameter received: {year_param}")
         
-        all_questions = load_questions()
-        logger.info(f"🔥 EXAM START: 問題データ読み込み完了 - {len(all_questions)}問")
+        # 🛡️ ULTRATHIN区 段階2: 部門別動的読み込み実装
+        if exam_type == '基礎科目':
+            # 基礎科目の場合は基礎問題のみ
+            all_questions = load_questions()  # 基礎科目のみ読み込み
+            logger.info(f"🔥 EXAM START: 基礎科目データ読み込み完了 - {len(all_questions)}問")
+        else:
+            # 専門科目の場合は該当部門のみ動的読み込み
+            from utils import load_specialist_questions_only
+            data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
+            
+            # 年度パラメータの取得（デフォルト2016）
+            target_year = int(year_param) if year_param and year_param.isdigit() else 2016
+            
+            try:
+                # 指定された部門・年度のみ読み込み（混在防止）
+                specialist_questions = load_specialist_questions_only(exam_type, target_year, data_dir)
+                all_questions = specialist_questions
+                logger.info(f"🔥 EXAM START: 専門科目データ読み込み完了 - 部門:{exam_type}, 年度:{target_year}, {len(all_questions)}問")
+            except Exception as e:
+                logger.error(f"専門科目読み込みエラー: {exam_type}/{target_year} - {e}")
+                # エラー時は基礎科目にフォールバック
+                all_questions = load_questions()
+                logger.warning("専門科目読み込み失敗、基礎科目にフォールバック")
         
         # 🛡️ HTTP 431対策: questions parameterが提供された場合の処理
         if questions_param:
