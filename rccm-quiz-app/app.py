@@ -7112,7 +7112,14 @@ def start_exam(exam_type):
         else:
             # 専門科目の場合は該当部門のみ動的読み込み
             from utils import load_specialist_questions_only
+            # 🚨 ULTRATHIN区段階46緊急修正: 本番環境パス問題解決
+            # 絶対パス確保でRender.com環境対応
             data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
+            if not data_dir or not os.path.exists(data_dir):
+                # フォールバック: カレントディレクトリからの相対パス
+                data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+                logger.warning(f"🚨 ULTRATHIN区段階46: data_dirフォールバック適用 - {data_dir}")
+            logger.info(f"🛡️ ULTRATHIN区段階46: data_dir確定 - {data_dir} (exists: {os.path.exists(data_dir)})")
             
             # 年度パラメータの取得（デフォルト2016）
             target_year = int(year_param) if year_param and year_param.isdigit() else 2016
