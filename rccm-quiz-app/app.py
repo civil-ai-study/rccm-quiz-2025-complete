@@ -7077,6 +7077,37 @@ def start_exam(exam_type):
         
         questions_param = get_request_param('questions')
         
+        # 🚨 ULTRATHIN区段階50緊急修正: questions_param バリデーション追加
+        # 無効な問題数でのエラーハンドリング改善
+        if questions_param is not None:
+            # 数値形式の問題数バリデーション
+            try:
+                if not questions_param.strip():
+                    logger.warning(f"🚨 ULTRATHIN段階50: 空の問題数パラメータ")
+                    return render_template('error.html', error="問題数が指定されていません。")
+                
+                # JSON形式かどうかをチェック（既存のカスタム問題機能保護）
+                if questions_param.strip().startswith('[') or questions_param.strip().startswith('{'):
+                    # JSON形式の場合は既存処理に委譲
+                    logger.info(f"🛡️ ULTRATHIN段階50: JSON形式の問題データ検出")
+                else:
+                    # 通常の数値形式の場合のバリデーション
+                    questions_count = int(questions_param.strip())
+                    if questions_count <= 0:
+                        logger.warning(f"🚨 ULTRATHIN段階50: 無効な問題数 - {questions_count}")
+                        return render_template('error.html', error="問題数は1以上の数値を指定してください。")
+                    if questions_count > 100:
+                        logger.warning(f"🚨 ULTRATHIN段階50: 過大な問題数 - {questions_count}")
+                        return render_template('error.html', error="問題数は100問以下で指定してください。")
+                    
+                    logger.info(f"✅ ULTRATHIN段階50: 有効な問題数確認 - {questions_count}問")
+            except ValueError:
+                logger.warning(f"🚨 ULTRATHIN段階50: 数値変換エラー - '{questions_param}'")
+                return render_template('error.html', error="問題数は有効な数値で指定してください。")
+            except Exception as e:
+                logger.error(f"🚨 ULTRATHIN段階50: 問題数バリデーション例外 - {e}")
+                return render_template('error.html', error="問題数の処理でエラーが発生しました。")
+        
         # 🛡️ HTTP 431対策: その他のパラメータも統合処理で対応
         exam_config_param = get_request_param('exam_config')
         category_param = get_request_param('category')
