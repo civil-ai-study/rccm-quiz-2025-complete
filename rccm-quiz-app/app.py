@@ -28,7 +28,7 @@ import gc
 import logging
 from datetime import datetime, timedelta, timezone
 from collections import defaultdict
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List
 from functools import wraps
 from decimal import Decimal, ROUND_HALF_UP
 
@@ -40,7 +40,7 @@ class SessionStateManager:
         self.session = session
         self._validated = False
     
-    def get_safe_indices(self) -> Tuple[int, int, bool]:
+    def get_safe_indices(self):
         """安全なインデックス計算 - next_no未定義エラー根絶"""
         try:
             exam_question_ids = self.session.get('exam_question_ids', [])
@@ -255,7 +255,7 @@ _session_managers = {}
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory, make_response, flash
 
 # Project-specific imports
-from utils import load_questions_improved, DataLoadError, get_sample_data_improved, load_rccm_data_files
+from utils import load_questions_improved, DataLoadError, get_sample_data_improved
 from config import Config, ExamConfig, SRSConfig, DataConfig, RCCMConfig
 
 # ⚡ Redis Cache Integration (optional) + 🛡️ ULTRA SYNC 安全フォールバック
@@ -267,18 +267,10 @@ except ImportError:
     init_cache = None
 
 # 🛡️ ULTRA SYNC 安全キャッシュフォールバック（副作用ゼロ）
-try:
-    from ultra_sync_cache_fallback import init_safe_cache, get_safe_cache, safe_cached_questions
-    ULTRA_SYNC_CACHE_AVAILABLE = True
-except ImportError:
-    ULTRA_SYNC_CACHE_AVAILABLE = False
+# REMOVED: ultra_sync_cache_fallback - 未使用のため削除
 
 # 🛡️ ULTRA SYNC データ欠損安全処理（副作用ゼロ）
-try:
-    from ultra_sync_data_gap_handler import create_safe_data_handler, DataGapHandler
-    ULTRA_SYNC_DATA_GAP_HANDLER_AVAILABLE = True
-except ImportError:
-    ULTRA_SYNC_DATA_GAP_HANDLER_AVAILABLE = False
+# REMOVED: ultra_sync_data_gap_handler - 未使用のため削除
 
 # 🛡️ セキュリティ強化: CSRF保護 (optional)
 try:
@@ -583,15 +575,9 @@ else:
 logger = logging.getLogger(__name__)
 
 # 🛡️ ULTRA SYNC ステータスログ（logger初期化後）
-if ULTRA_SYNC_CACHE_AVAILABLE:
-    logger.info("🛡️ ULTRA SYNC 安全キャッシュシステム利用可能")
-else:
-    logger.warning("⚠️ ULTRA SYNC 安全キャッシュ無効 - 標準処理継続")
+# REMOVED: ULTRA_SYNC_CACHE_AVAILABLE check - 未使用のため削除
 
-if ULTRA_SYNC_DATA_GAP_HANDLER_AVAILABLE:
-    logger.info("🛡️ ULTRA SYNC データ欠損ハンドラー利用可能")
-else:
-    logger.warning("⚠️ ULTRA SYNC データ欠損ハンドラー無効 - 標準処理継続")
+# REMOVED: ULTRA_SYNC_DATA_GAP_HANDLER_AVAILABLE check - 未使用のため削除
 
 # 🔍 ULTRA SYNC MEMORY FIX: Memory Optimizer 遅延初期化（logger初期化後）
 try:
@@ -872,6 +858,23 @@ LEGACY_DEPARTMENT_ALIASES = {
 
 # 🚀 ULTRA SYNC: 正規化された一意逆マッピング
 CATEGORY_TO_DEPARTMENT_MAPPING = {v: k for k, v in DEPARTMENT_TO_CATEGORY_MAPPING.items()}
+
+def get_safe_category_name(department):
+    """
+    部門名から安全なカテゴリー名を取得
+    4-1基礎科目、4-2専門科目の判定を含む
+    """
+    if department == "基礎科目":
+        return "4-1"
+    elif department == "専門科目":
+        return "4-2"
+    
+    # 正規化された部門名を取得
+    normalized = normalize_department_name(department)
+    if normalized and normalized in DEPARTMENT_TO_CATEGORY_MAPPING:
+        return DEPARTMENT_TO_CATEGORY_MAPPING[normalized]
+    
+    return None
 
 def normalize_department_name(department_name):
     """🚀 ULTRA SYNC: 部門名正規化（旧名称互換性保持）"""
@@ -8349,7 +8352,7 @@ def api_performance_rebuild_index():
                 rccm_data = basic_questions + specialist_questions_2016
                 logger.info(f"🛡️ ULTRATHIN区段階1: 分離読み込み完了 - 基礎:{len(basic_questions)}問, 専門:{len(specialist_questions_2016)}問")
                 
-                # load_rccm_data_files は List[Dict] を返すため直接使用
+                # 🛡️ ULTRATHIN区: 分離読み込み関数は List[Dict] を返すため直接使用
                 current_questions = rccm_data if isinstance(rccm_data, list) else []
         except Exception as e:
             logger.error(f"問題データ読み込みエラー: {e}")
