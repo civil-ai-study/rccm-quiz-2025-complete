@@ -421,7 +421,7 @@ def load_questions_improved(csv_path: str) -> List[Dict]:
         df, used_encoding = cached_df
     else:
         # エンコーディング別読み込み試行（CLAUDE.md準拠: Shift_JIS優先）
-        encodings = ['shift_jis', 'utf-8', 'cp932', 'utf-8-sig', 'iso-2022-jp']
+        encodings = ['utf-8-sig', 'utf-8', 'shift_jis', 'cp932', 'iso-2022-jp']
         df = None
         used_encoding = None
         
