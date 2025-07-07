@@ -7114,6 +7114,29 @@ def start_exam(exam_type):
         difficulty_param = get_request_param('difficulty')
         year_param = get_request_param('year')
         
+        # 🚨 ULTRATHIN区段階51緊急修正: year_param バリデーション追加
+        # 不正な年度パラメータでのエラーハンドリング改善
+        VALID_YEARS = [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
+        
+        if year_param:
+            try:
+                if not year_param.strip():
+                    logger.warning(f"🚨 ULTRATHIN段階51: 空の年度パラメータ")
+                    return render_template('error.html', error="年度が指定されていません。")
+                
+                year_value = int(year_param.strip())
+                if year_value not in VALID_YEARS:
+                    logger.warning(f"🚨 ULTRATHIN段階51: 無効な年度 - {year_param}")
+                    return render_template('error.html', error=f"指定された年度 {year_param} は利用できません。有効な年度: {', '.join(map(str, VALID_YEARS))}")
+                
+                logger.info(f"✅ ULTRATHIN段階51: 有効な年度確認 - {year_value}年")
+            except ValueError:
+                logger.warning(f"🚨 ULTRATHIN段階51: 年度数値変換エラー - '{year_param}'")
+                return render_template('error.html', error=f"年度は数値で指定してください。有効な年度: {', '.join(map(str, VALID_YEARS))}")
+            except Exception as e:
+                logger.error(f"🚨 ULTRATHIN段階51: 年度バリデーション例外 - {e}")
+                return render_template('error.html', error="年度の処理でエラーが発生しました。")
+        
         # 🔥 ULTRA SYNC FIX: 詳細エラーログ追加
         logger.info(f"🔥 EXAM START: 試験開始処理開始 - exam_type: {exam_type}, method: {request.method}")
         
