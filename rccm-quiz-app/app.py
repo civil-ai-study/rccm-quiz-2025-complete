@@ -7089,15 +7089,42 @@ def start_exam(exam_type):
             target_year = int(year_param) if year_param and year_param.isdigit() else 2016
             
             try:
+                # 🛡️ ULTRATHIN区 段階3: 詳細診断情報追加
+                logger.info(f"🔥 EXAM START: 専門科目読み込み開始 - 部門:{exam_type}, 年度:{target_year}, data_dir:{data_dir}")
+                
                 # 指定された部門・年度のみ読み込み（混在防止）
                 specialist_questions = load_specialist_questions_only(exam_type, target_year, data_dir)
                 all_questions = specialist_questions
                 logger.info(f"🔥 EXAM START: 専門科目データ読み込み完了 - 部門:{exam_type}, 年度:{target_year}, {len(all_questions)}問")
+                
+                # 成功時のデバッグ情報
+                if all_questions:
+                    sample_q = all_questions[0]
+                    logger.info(f"🔥 EXAM START: サンプル問題 - カテゴリ:{sample_q.get('category')}, ID:{sample_q.get('id')}")
+                
             except Exception as e:
-                logger.error(f"専門科目読み込みエラー: {exam_type}/{target_year} - {e}")
+                # 🛡️ ULTRATHIN区 段階3: 詳細エラー情報
+                import traceback
+                error_detail = traceback.format_exc()
+                logger.error(f"🚨 専門科目読み込み例外詳細: {exam_type}/{target_year}")
+                logger.error(f"🚨 例外タイプ: {type(e).__name__}")
+                logger.error(f"🚨 例外メッセージ: {str(e)}")
+                logger.error(f"🚨 スタックトレース: {error_detail}")
+                logger.error(f"🚨 data_dir値: {data_dir}")
+                
+                # エラー情報をセッションに保存（デバッグ用）
+                session['specialist_error'] = {
+                    "type": type(e).__name__,
+                    "message": str(e),
+                    "department": exam_type,
+                    "year": target_year,
+                    "data_dir": data_dir,
+                    "timestamp": datetime.now().strftime('%H:%M:%S')
+                }
+                
                 # エラー時は基礎科目にフォールバック
                 all_questions = load_questions()
-                logger.warning("専門科目読み込み失敗、基礎科目にフォールバック")
+                logger.warning(f"🔄 専門科目読み込み失敗、基礎科目にフォールバック - 基礎科目数:{len(all_questions)}問")
         
         # 🛡️ HTTP 431対策: questions parameterが提供された場合の処理
         if questions_param:
@@ -7123,8 +7150,19 @@ def start_exam(exam_type):
                 logger.warning(f"🔥 EXAM START: exam_config parameterの解析に失敗 - {e}")
                 # カスタム試験設定の解析に失敗した場合は通常の設定を使用
         
+        # 🛡️ ULTRATHIN区 段階3: デバッグ情報をセッションに保存（副作用なし）
+        debug_info = {
+            "exam_type": exam_type,
+            "target_year": target_year if exam_type != '基礎科目' else 'N/A',
+            "questions_count": len(all_questions) if all_questions else 0,
+            "data_source": "specialist" if exam_type != '基礎科目' else "basic",
+            "timestamp": datetime.now().strftime('%H:%M:%S')
+        }
+        session['debug_info'] = debug_info
+        
         if not all_questions:
             logger.error(f"🔥 EXAM START: 問題データが空です")
+            debug_info["error"] = "問題データが空"
             return render_template('error.html', error="問題データが存在しません。")
 
         # 🔥 ULTRA SYNC FIX: 試験セッション生成に詳細ログ追加
@@ -10148,3 +10186,22 @@ if __name__ == '__main__':
             # 🛡️ セキュリティ強化: SSLコンテキスト設定(本番ではリバースプロキシで処理)
             ssl_context=None  # リバースプロキシ(nginx, Render)でSSL終端
         )
+
+
+@app.route("/debug/session_info")
+def debug_session_info():
+    """🛡️ ULTRATHIN区 段階3: セッションデバッグ情報表示（安全）"""
+    try:
+        debug_data = {
+            "debug_info": session.get("debug_info", {}),
+            "specialist_error": session.get("specialist_error", {}),
+            "session_keys": list(session.keys()),
+            "current_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+        
+        return jsonify(debug_data)
+    except Exception as e:
+        return jsonify({
+            "error": str(e),
+            "message": "Debug info unavailable"
+        })
