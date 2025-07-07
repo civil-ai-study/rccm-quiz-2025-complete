@@ -7371,7 +7371,7 @@ def start_exam(exam_type):
         return render_template('error.html', error=f"試験の開始中にエラーが発生しました。詳細: {str(e)}")
 
 
-@app.route('/exam_question')
+@app.route('/exam_question', methods=['GET', 'POST'])
 def exam_question():
     """試験問題表示"""
     try:
