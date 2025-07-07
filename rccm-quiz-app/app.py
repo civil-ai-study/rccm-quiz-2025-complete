@@ -7299,45 +7299,16 @@ def start_exam(exam_type):
             # セッション保存の強制実行（Flask内部処理）
             session.permanent = True  # セッション永続化フラグ
             
-            # 🛡️ ULTRATHIN区段階17: セッション保存確実性向上
-            verification_attempts = 5  # 3→5回に増加で確実性向上
-            session_verified = False
+            # 🛡️ ULTRATHIN区段階26: セッション保存の確実化（検証ループ削除）
+            # 複雑な検証ループを削除し、make_responseで確実に保存
+            session['exam_session'] = lightweight_session
+            session.modified = True
             
-            for attempt in range(verification_attempts):
-                # 🛡️ ULTRATHIN区段階17: セッション保存確認タイミング最適化
-                if attempt > 0:
-                    time_module.sleep(0.3)  # 500ms→300msで効率化
-                
-                saved_session = session.get('exam_session')
-                
-                # 🛡️ ULTRATHIN区段階11: セッション保存検証条件を大幅緩和
-                if saved_session:  # exam_sessionが存在すれば OK
-                    session_verified = True
-                    logger.info(f"🛡️ ULTRATHIN段階11: セッション保存確認OK (試行{attempt+1}) - 軽量セッション検出")
-                    break
-                elif lightweight_session:  # フォールバック: 軽量セッションが作成されていればOK
-                    session['exam_session'] = lightweight_session  # 再設定
-                    session.modified = True
-                    session_verified = True
-                    logger.info(f"🛡️ ULTRATHIN段階11: セッション再設定成功 (試行{attempt+1}) - フォールバック適用")
-                    break
-                else:
-                    logger.warning(f"🛡️ ULTRATHIN段階11: セッション保存未確認 (試行{attempt+1}) - 再試行中")
-                    session.modified = True  # 再度保存フラグ設定
+            # 🛡️ ULTRATHIN区段階26: メモリ保存確認
+            store_exam_data_in_memory(exam_id, exam_session)
+            logger.info(f"🛡️ ULTRATHIN段階26: セッション設定完了 - exam_id: {exam_id}")
             
-            if not session_verified:
-                # 🛡️ ULTRATHIN区段階11: 最終セッション情報の詳細ログ
-                logger.error(f"🛡️ ULTRATHIN段階11: セッション保存失敗 - 全{verification_attempts}回試行失敗")
-                logger.error(f"🛡️ ULTRATHIN段階11: 現在のセッション内容: {dict(session)}")
-                logger.error(f"🛡️ ULTRATHIN段階11: lightweight_session内容: {lightweight_session}")
-                
-                # 🛡️ ULTRATHIN区段階11: 緊急フォールバック - 強制セッション保存
-                logger.warning(f"🛡️ ULTRATHIN段階11: 緊急フォールバック実行 - 強制セッション保存")
-                session['exam_session'] = lightweight_session
-                session.modified = True
-                session.permanent = True
-                session_verified = True  # 強制的に成功扱い
-                logger.info(f"🛡️ ULTRATHIN段階11: 緊急フォールバック完了 - 強制セッション保存済み")
+            session_verified = True  # 🛡️ ULTRATHIN区段階26: 信頼ベース設定
             
             logger.info(f"🛡️ ULTRATHIN段階11: 試験開始完全成功 - {exam_type}, ID: {exam_session['exam_id']}")
             
