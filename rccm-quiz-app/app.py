@@ -2005,11 +2005,29 @@ def load_questions():
             return emergency_data
 
     except Exception as e:
-        logger.warning(f"RCCM統合データ読み込みエラー: {e}")
-        logger.info("レガシーデータ読み込みを試行")
+        logger.error(f"🚨 ULTRATHIN段階61: RCCM統合データ読み込みエラー: {e}")
+        logger.warning("🛡️ ULTRATHIN段階61: 強化フォールバック処理開始")
+
+        # 🛡️ ULTRATHIN段階61: 段階的フォールバック戦略
+        try:
+            # フォールバック1: 基礎科目のみでも確実に読み込み
+            logger.warning("🛡️ ULTRATHIN段階61: フォールバック1 - 基礎科目専用読み込み")
+            from utils import load_basic_questions_only
+            data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
+            basic_only_questions = load_basic_questions_only(data_dir)
+            
+            if basic_only_questions and len(basic_only_questions) > 0:
+                logger.warning(f"🛡️ ULTRATHIN段階61: 基礎科目確保成功 - {len(basic_only_questions)}問")
+                _questions_cache = basic_only_questions
+                _cache_timestamp = current_time
+                return basic_only_questions
+            
+        except Exception as fb1_e:
+            logger.error(f"🚨 ULTRATHIN段階61: フォールバック1失敗: {fb1_e}")
 
         try:
-            # フォールバック: レガシーデータ読み込み
+            # フォールバック2: レガシーデータ読み込み
+            logger.warning("🛡️ ULTRATHIN段階61: フォールバック2 - レガシーデータ読み込み")
             questions = load_questions_improved(DataConfig.QUESTIONS_CSV)
             # レガシーデータに部門・問題種別情報を追加
             for q in questions:
@@ -2018,18 +2036,40 @@ def load_questions():
                 if 'question_type' not in q:
                     q['question_type'] = 'basic'  # デフォルト問題種別
 
-            _questions_cache = questions
-            _cache_timestamp = current_time
-            logger.info(f"レガシーデータ読み込み完了: {len(questions)}問")
-            return questions
+            if questions and len(questions) > 0:
+                logger.warning(f"🛡️ ULTRATHIN段階61: レガシーデータ確保成功 - {len(questions)}問")
+                _questions_cache = questions
+                _cache_timestamp = current_time
+                return questions
 
-        except Exception as e2:
-            logger.error(f"レガシーデータ読み込みエラー: {e2}")
-            logger.warning("サンプルデータを使用")
-            questions = get_sample_data_improved()
-            _questions_cache = questions
-            _cache_timestamp = current_time
-            return questions
+        except Exception as fb2_e:
+            logger.error(f"🚨 ULTRATHIN段階61: フォールバック2失敗: {fb2_e}")
+
+        # フォールバック3: 緊急サンプルデータ（絶対安全策）
+        logger.error("🚨 ULTRATHIN段階61: 全フォールバック失敗 - 緊急サンプルデータ使用")
+        emergency_questions = get_sample_data_improved()
+        if not emergency_questions:
+            # 最終安全策: ハードコードサンプル
+            emergency_questions = [{
+                'id': 1,
+                'category': 'コンクリート',
+                'department': 'road',
+                'question_type': 'basic',
+                'question': '基礎科目緊急問題: セメントの凝結に関する記述で適切なものはどれか。',
+                'option_a': '始発凝結時間は45分以上',
+                'option_b': '終結凝結時間は8時間以内',
+                'option_c': '始発凝結時間は60分以内',
+                'option_d': '終結凝結時間は12時間以内',
+                'correct_answer': 'C',
+                'explanation': 'JIS規格による基準値です。',
+                'reference': 'JIS R 5210',
+                'difficulty': '基本'
+            }]
+            
+        _questions_cache = emergency_questions
+        _cache_timestamp = current_time
+        logger.warning(f"🚨 ULTRATHIN段階61: 緊急サンプルデータ使用 - {len(emergency_questions)}問")
+        return emergency_questions
 
 
 def clear_questions_cache():
