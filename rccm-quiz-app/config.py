@@ -39,6 +39,11 @@ class Config:
     # 🚨 ULTRATHIN区段階55緊急修正: ペイロードサイズ制限追加
     # 異常大ペイロードでのDoS攻撃防止
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB制限
+    
+    # 🚨 ULTRATHIN区段階58緊急修正: JSON日本語エンコーディング修正
+    # JSON応答での日本語文字適切表示
+    JSON_AS_ASCII = False  # 日本語文字をUnicodeエスケープしない
+    JSONIFY_PRETTYPRINT_REGULAR = True  # JSON整形表示
 
 
 class ExamConfig:
