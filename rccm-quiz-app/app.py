@@ -1883,10 +1883,51 @@ def load_questions():
     try:
         # RCCM統合データ読み込み（4-1・4-2ファイル対応）
         data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
-        # 🛡️ ULTRATHIN区 緊急修正: 基礎科目のみ読み込み（専門科目は必要時に動的読み込み）
+        # 🚨 CRITICAL FIX: 全問題データを読み込み（基礎科目+専門科目）
         from utils import load_basic_questions_only
+        import os
+        import pandas as pd
+        
+        # 基礎科目を読み込み
         basic_questions = load_basic_questions_only(data_dir)
-        questions = basic_questions
+        
+        # 専門科目も読み込み（全年度・全部門）
+        specialist_questions = []
+        specialist_files = [
+            '4-2_2008.csv', '4-2_2009.csv', '4-2_2010.csv', '4-2_2011.csv',
+            '4-2_2012.csv', '4-2_2013.csv', '4-2_2014.csv', '4-2_2015.csv',
+            '4-2_2016.csv', '4-2_2017.csv', '4-2_2018.csv', '4-2_2019.csv'
+        ]
+        
+        for filename in specialist_files:
+            filepath = os.path.join(data_dir, filename)
+            if os.path.exists(filepath):
+                try:
+                    df = pd.read_csv(filepath, encoding='utf-8')
+                    year = int(filename.split('_')[1].split('.')[0])
+                    for _, row in df.iterrows():
+                        question = {
+                            'id': row.get('id', ''),
+                            'category': row.get('category', ''),
+                            'year': year,
+                            'question': row.get('question', ''),
+                            'option_a': row.get('option_a', ''),
+                            'option_b': row.get('option_b', ''),
+                            'option_c': row.get('option_c', ''),
+                            'option_d': row.get('option_d', ''),
+                            'correct_answer': row.get('correct_answer', ''),
+                            'explanation': row.get('explanation', ''),
+                            'reference': row.get('reference', ''),
+                            'difficulty': row.get('difficulty', 'medium'),
+                            'question_type': 'specialist'
+                        }
+                        specialist_questions.append(question)
+                except Exception as e:
+                    logger.warning(f"専門科目ファイル読み込みエラー {filename}: {e}")
+        
+        # 基礎科目と専門科目を結合
+        questions = basic_questions + specialist_questions
+        logger.info(f"全問題データ読み込み完了: 基礎{len(basic_questions)}問 + 専門{len(specialist_questions)}問 = 合計{len(questions)}問")
 
         if questions:
             # データ整合性チェック
