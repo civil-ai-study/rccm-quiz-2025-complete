@@ -1924,7 +1924,6 @@ def load_questions():
         data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
         # 🚨 CRITICAL FIX: 全問題データを読み込み（基礎科目+専門科目）
         from utils import load_basic_questions_only
-        import os
         
         # 🛡️ ULTRATHIN段階59: 基礎科目を確実に読み込み
         logger.warning(f"🛡️ ULTRATHIN段階59: 基礎科目読み込み開始 - データディレクトリ: {data_dir}")
