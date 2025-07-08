@@ -4555,7 +4555,7 @@ def exam():
             'current_no': current_no + 1,  # 表示用は1から開始
             'total_questions': user_session_size,  # 🔥 FIX: ユーザー設定問題数使用
             'category': session.get('exam_category', ''),
-            'progress_percentage': int(((current_no + 1) / user_session_size) * 100),  # 🔥 FIX: 正確な進捗計算
+            'progress_percentage': int(((current_no + 1) / user_session_size) * 100) if user_session_size > 0 else 0,  # 🔥 FIX: ゼロ除算防止
             'is_last_question': (current_no + 1) >= user_session_size,  # 🔥 FIX: 正確な最終問題判定
             'srs_info': question_srs,
             'is_review_question': question_srs.get('total_attempts', 0) > 0
@@ -5731,7 +5731,7 @@ def reset():
 
     if history:
         correct = sum(1 for h in history if h.get('is_correct'))
-        analytics['accuracy'] = round((correct / len(history)) * 100, 1)
+        analytics['accuracy'] = round((correct / len(history)) * 100, 1) if len(history) > 0 else 0
 
     return render_template('reset_confirm.html', analytics=analytics)
 
@@ -7207,7 +7207,8 @@ def start_exam(exam_type):
         
         # 🚨 ULTRATHIN区段階51緊急修正: year_param バリデーション追加
         # 不正な年度パラメータでのエラーハンドリング改善
-        VALID_YEARS = [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
+        # 🛡️ ULTRATHIN修復: 2024年度を有効年度に追加
+        VALID_YEARS = [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2024]
         
         if year_param:
             try:
