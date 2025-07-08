@@ -35,6 +35,10 @@ class Config:
         'X-XSS-Protection': '1; mode=block',
         'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'
     }
+    
+    # 🚨 ULTRATHIN区段階55緊急修正: ペイロードサイズ制限追加
+    # 異常大ペイロードでのDoS攻撃防止
+    MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB制限
 
 
 class ExamConfig:

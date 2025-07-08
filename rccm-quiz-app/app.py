@@ -809,6 +809,11 @@ else:
     def basic_500_handler(e):
         logger.error(f"500エラー (フォールバック): {str(e)}")
         return "内部サーバーエラーが発生しました", 500
+    
+    @app.errorhandler(413)
+    def basic_413_handler(e):
+        logger.warning(f"🚨 ULTRATHIN段階55: 413エラー (Request Entity Too Large): {request.url}")
+        return render_template('error.html', error='リクエストサイズが大きすぎます。16MB以下にしてください。'), 413
 
 # 企業環境最適化: 遅延初期化で重複読み込み防止
 data_manager = None
@@ -7090,6 +7095,12 @@ def start_exam(exam_type):
     - JSON形式のカスタム問題データや試験設定を受け付け
     """
     try:
+        # 🚨 ULTRATHIN区段階55緊急修正: 異常大ペイロードエラーハンドリング追加
+        # DoS攻撃防止のための追加チェック
+        if request.content_length and request.content_length > (16 * 1024 * 1024):  # 16MB
+            logger.warning(f"🚨 ULTRATHIN段階55: 異常大ペイロード検出 - {request.content_length} bytes")
+            return render_template('error.html', error=f"リクエストが大きすぎます ({request.content_length//1024//1024}MB)。16MB以下にしてください。")
+        
         # 🛡️ ULTRATHIN区段階11: 最上位例外処理強化
         logger.info(f"🛡️ ULTRATHIN段階11: start_exam開始 - {exam_type}, method: {request.method}")
         

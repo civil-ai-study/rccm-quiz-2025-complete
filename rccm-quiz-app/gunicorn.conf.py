@@ -27,6 +27,8 @@ preload_app = True
 limit_request_line = 4096
 limit_request_fields = 100
 limit_request_field_size = 8190
+# 🚨 ULTRATHIN区段階55緊急修正: ペイロードサイズ制限追加
+limit_request_body = 16 * 1024 * 1024  # 16MB制限 - DoS攻撃防止
 
 # 📊 Logging
 accesslog = "-"  # stdout
