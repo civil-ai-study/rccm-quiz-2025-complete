@@ -26,6 +26,7 @@ import random
 import re
 import gc
 import logging
+import json
 from datetime import datetime, timedelta, timezone
 from collections import defaultdict
 from typing import Dict, List
@@ -407,7 +408,6 @@ def safe_json_load(file_path, default_value=None):
     """JSONファイルの安全な読み込み"""
     try:
         with safe_file_operation(file_path, 'read') as f:
-            import json
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError, Exception) as e:
         logger.warning(f"JSON読み込み失敗: {file_path} - {e}")
@@ -417,7 +417,6 @@ def safe_json_save(file_path, data):
     """JSONファイルの安全な保存"""
     try:
         with safe_file_operation(file_path, 'write') as f:
-            import json
             json.dump(data, f, ensure_ascii=False, indent=2)
         return True
     except Exception as e:
@@ -6192,7 +6191,6 @@ def settings_page():
 @app.route('/debug')
 def debug_page():
     """デバッグページ"""
-    import json
     session_data = dict(session)
     session_data_json = json.dumps(session_data, indent=2, default=str)
     return render_template('debug.html', session_data=session_data_json)
@@ -7671,7 +7669,6 @@ def start_exam(exam_type):
         if questions_param:
             try:
                 # JSON形式の問題データを解析
-                import json
                 custom_questions = json.loads(questions_param)
                 if isinstance(custom_questions, list) and len(custom_questions) > 0:
                     all_questions = custom_questions
@@ -7684,7 +7681,6 @@ def start_exam(exam_type):
         custom_exam_config = None
         if exam_config_param:
             try:
-                import json
                 custom_exam_config = json.loads(exam_config_param)
                 logger.info(f"🔥 EXAM START: カスタム試験設定使用")
             except (json.JSONDecodeError, TypeError) as e:
@@ -7846,7 +7842,6 @@ def start_exam(exam_type):
                 response = make_response(redirect(url_for('exam_question')))
                 
                 # 🚨 バックアップクッキーも設定（緊急対策）
-                import json
                 session_backup = json.dumps({
                     'exam_id': exam_id,
                     'exam_type': exam_type,
