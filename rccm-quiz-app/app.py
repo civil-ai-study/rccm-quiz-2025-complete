@@ -7131,6 +7131,13 @@ def exam_simulator_page():
         logger.error(f"試験シミュレーター画面エラー: {e}")
         return render_template('error.html', error="試験シミュレーター画面の表示中にエラーが発生しました。")
 
+# 🛡️ ULTRATHIN修復: 基礎科目専用ルート（405エラー回避）
+@app.route('/start_exam/basic', methods=['GET', 'POST'])
+@app.route('/start_exam/foundation', methods=['GET', 'POST'])
+@memory_monitoring_decorator(_memory_leak_monitor)
+def start_exam_basic():
+    """基礎科目専用試験開始（日本語パス405エラー回避）"""
+    return start_exam('基礎科目')
 
 @app.route('/start_exam/<exam_type>', methods=['GET', 'POST'])
 # 🔥 ULTRA SYNC: 統合セッション管理システムで自動処理
