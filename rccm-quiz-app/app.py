@@ -5348,6 +5348,12 @@ def api_review_count():
 def get_review_questions():
     """復習リストの問題詳細を一括取得"""
     try:
+        # 🚨 ULTRATHIN区段階54緊急修正: セッション未初期化エラーハンドリング追加
+        # 復習リスト機能のセッション検証強化
+        if not session or not session.get('session_id'):
+            logger.warning(f"🚨 ULTRATHIN段階54: 復習リスト機能 - セッション未初期化アクセス")
+            return jsonify({'success': False, 'error': 'セッションが初期化されていません。最初に問題を解いてください。'}), 401
+        
         data = request.get_json()
         question_ids = data.get('question_ids', [])
 
@@ -5378,6 +5384,12 @@ def get_review_questions():
 def remove_from_review():
     """復習リストから問題を削除"""
     try:
+        # 🚨 ULTRATHIN区段階54緊急修正: セッション未初期化エラーハンドリング追加
+        # 復習リスト削除機能のセッション検証強化
+        if not session or not session.get('session_id'):
+            logger.warning(f"🚨 ULTRATHIN段階54: 復習リスト削除機能 - セッション未初期化アクセス")
+            return jsonify({'success': False, 'error': 'セッションが初期化されていません。最初に問題を解いてください。'}), 401
+        
         data = request.get_json()
         question_id = str(data.get('question_id', ''))
 
@@ -5403,6 +5415,12 @@ def remove_from_review():
 def bulk_remove_from_review():
     """復習リストから複数問題を削除"""
     try:
+        # 🚨 ULTRATHIN区段階54緊急修正: セッション未初期化エラーハンドリング追加
+        # 復習リスト一括削除機能のセッション検証強化
+        if not session or not session.get('session_id'):
+            logger.warning(f"🚨 ULTRATHIN段階54: 復習リスト一括削除機能 - セッション未初期化アクセス")
+            return jsonify({'success': False, 'error': 'セッションが初期化されていません。最初に問題を解いてください。'}), 401
+        
         data = request.get_json()
         question_ids = data.get('question_ids', [])
 
@@ -5821,6 +5839,12 @@ def debug_page():
 def bookmark_question():
     """問題のブックマーク機能"""
     try:
+        # 🚨 ULTRATHIN区段階54緊急修正: セッション未初期化エラーハンドリング追加
+        # ブックマーク機能のセッション検証強化
+        if not session or not session.get('session_id'):
+            logger.warning(f"🚨 ULTRATHIN段階54: ブックマーク機能 - セッション未初期化アクセス")
+            return jsonify({'success': False, 'error': 'セッションが初期化されていません。最初に問題を解いてください。'}), 401
+        
         data = request.get_json()
         question_id = data.get('question_id')
 
@@ -5861,6 +5885,12 @@ def get_bookmarks():
 def add_bookmark():
     """フォーム形式でのブックマーク追加"""
     try:
+        # 🚨 ULTRATHIN区段階54緊急修正: セッション未初期化エラーハンドリング追加
+        # フォームベースブックマーク機能のセッション検証強化
+        if not session or not session.get('session_id'):
+            logger.warning(f"🚨 ULTRATHIN段階54: フォームブックマーク機能 - セッション未初期化アクセス")
+            return render_template('error.html', error='セッションが初期化されていません。最初に問題を解いてください。')
+        
         qid = request.form.get('qid')
 
         if not qid:
