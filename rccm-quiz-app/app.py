@@ -2033,13 +2033,13 @@ def load_questions():
     """
     global _questions_cache, _cache_timestamp
 
-    # 🛡️ ULTRATHIN段階65: 緊急代替実装の優先実行
-    logger.warning("🛡️ ULTRATHIN段階65: 緊急代替実装チェック開始")
+    # 🛡️ ULTRATHIN段階74: 緊急代替実装無効化 - 正常CSVファイル読み込みに復帰
+    logger.warning("🛡️ ULTRATHIN段階74: 正常CSVファイル読み込みモードに復帰")
     
-    # 環境変数またはフラグで緊急モードを確認
-    emergency_mode = os.environ.get('ULTRATHIN_EMERGENCY_MODE', 'true').lower() == 'true'
+    # 緊急モードは一時的に無効化 - CSVファイルは存在するため正常読み込み
+    emergency_mode = False
     if emergency_mode:
-        logger.warning("🚨 ULTRATHIN段階65: 緊急モード有効 - 代替実装使用")
+        logger.warning("🚨 緊急モード: 代替実装使用")
         emergency_questions = load_questions_emergency_backup()
         _questions_cache = emergency_questions
         _cache_timestamp = datetime.now()
