@@ -7068,6 +7068,33 @@ def adaptive_questions():
         return render_template('error.html', error="アダプティブ問題の開始中にエラーが発生しました。")
 
 
+@app.route('/adaptive_quiz')
+def adaptive_quiz():
+    """
+    🛡️ ULTRATHIN段階76: adaptive_quizルート修復
+    既存テンプレートとの互換性維持のため、adaptive_questionsにリダイレクト
+    """
+    logger.info("🛡️ ULTRATHIN段階76: adaptive_quiz -> adaptive_questions リダイレクト")
+    
+    # クエリパラメータを保持してリダイレクト
+    department = request.args.get('department')
+    mode = request.args.get('mode')
+    
+    redirect_url = '/adaptive_questions'
+    params = []
+    
+    if department:
+        params.append(f'department={department}')
+    if mode:
+        params.append(f'mode={mode}')
+    
+    if params:
+        redirect_url += '?' + '&'.join(params)
+    
+    logger.info(f"🛡️ ULTRATHIN段階76: リダイレクト先 - {redirect_url}")
+    return redirect(redirect_url)
+
+
 @app.route('/integrated_learning')
 def integrated_learning():
     """4-1基礎と4-2専門の連携学習モード"""
