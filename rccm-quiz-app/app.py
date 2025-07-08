@@ -7118,7 +7118,7 @@ def generate_weekly_schedule(learning_plan: Dict, weak_areas: Dict) -> List[Dict
     return schedule
 
 
-@app.route('/exam_simulator')
+@app.route('/exam_simulator', methods=['GET', 'POST'])
 def exam_simulator_page():
     """試験シミュレーター画面"""
     try:
