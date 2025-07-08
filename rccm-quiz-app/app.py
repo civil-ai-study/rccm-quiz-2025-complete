@@ -7145,6 +7145,15 @@ def start_exam(exam_type):
             logger.info(f"🛡️ ULTRATHIN段階10: 純粋なGETリクエスト検出 - exam_simulatorにリダイレクト")
             return redirect(url_for('exam_simulator_page'))
         
+        # 🚨 ULTRATHIN区段階52緊急修正: 必須パラメータ欠如エラーハンドリング追加
+        # 5/7シナリオで正常レスポンス問題解決
+        questions_empty = not questions_param or not questions_param.strip()
+        exam_config_empty = not exam_config_param or not exam_config_param.strip()
+        
+        if questions_empty and exam_config_empty and not category_param:
+            logger.warning(f"🚨 ULTRATHIN段階52: 必須パラメータ欠如 - questions: {questions_param}, exam_config: {exam_config_param}")
+            return render_template('error.html', error="試験設定または問題データが必要です。問題数またはカスタム設定を指定してください。")
+        
         # 🛡️ ULTRATHIN区段階10: POSTリクエスト確認ログ
         logger.info(f"🛡️ ULTRATHIN段階10: リクエスト詳細 - method: {request.method}, has_form_data: {len(request.form) > 0}")
         if questions_param:
