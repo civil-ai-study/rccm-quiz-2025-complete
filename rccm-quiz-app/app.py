@@ -1864,19 +1864,9 @@ def load_questions():
     """
     global _questions_cache, _cache_timestamp
 
-    # 🔥 ULTRA SYNC FIX: 事前読み込み済みデータがあればそれを使用（URL起動遅延解決）
-    if _startup_data_loaded and _questions_cache is not None:
-        logger.debug(f"事前読み込み済みデータ使用: {len(_questions_cache)}問（⚡高速）")
-        return _questions_cache
-
+    # 🚨 CRITICAL FIX: キャッシュを無効化して強制的に最新データを読み込み
     current_time = datetime.now()
-
-    # キャッシュが有効かチェック
-    if (_questions_cache is not None and
-        _cache_timestamp is not None and
-            (current_time - _cache_timestamp).seconds < DataConfig.CACHE_TIMEOUT):
-        logger.debug("キャッシュからデータを返却")
-        return _questions_cache
+    logger.warning("🚨 CRITICAL: キャッシュ無効化 - 専門科目データ読み込み修正のため強制リロード")
 
     logger.info("RCCM統合問題データの読み込み開始")
 
