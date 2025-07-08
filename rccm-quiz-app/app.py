@@ -1443,6 +1443,53 @@ def calculate_next_review_date(correct_count, wrong_count, last_interval=1):
     return next_review, adjusted_interval
 
 
+def save_srs_data_to_file(user_id, srs_data):
+    """
+    🚨 ULTRATHIN区段階62緊急修正: SRSデータをファイルに安全保存
+    HTTP 431エラー回避のためのファイルベースストレージ
+    """
+    try:
+        import os
+        srs_dir = os.path.join('user_data', 'srs')
+        os.makedirs(srs_dir, exist_ok=True)
+        
+        file_path = os.path.join(srs_dir, f'{user_id}_srs.json')
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(srs_data, f, ensure_ascii=False, indent=2)
+        
+        logger.info(f"✅ ULTRATHIN段階62: SRSデータ保存完了 - {user_id}, 問題数: {len(srs_data)}")
+        return True
+    except Exception as e:
+        logger.error(f"🚨 ULTRATHIN段階62: SRSデータ保存エラー - {e}")
+        return False
+
+
+def load_srs_data_from_file(user_id):
+    """
+    🚨 ULTRATHIN区段階62緊急修正: SRSデータをファイルから安全読み込み
+    HTTP 431エラー回避のためのファイルベースストレージ
+    """
+    try:
+        import os
+        file_path = os.path.join('user_data', 'srs', f'{user_id}_srs.json')
+        
+        if not os.path.exists(file_path):
+            logger.info(f"🔍 ULTRATHIN段階62: SRSファイル未存在 - {user_id}, 新規作成")
+            return {}
+            
+        with open(file_path, 'r', encoding='utf-8') as f:
+            srs_data = json.load(f)
+        
+        logger.info(f"✅ ULTRATHIN段階62: SRSデータ読み込み完了 - {user_id}, 問題数: {len(srs_data)}")
+        return srs_data
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        logger.warning(f"⚠️ ULTRATHIN段階62: SRSデータ読み込み失敗 - {e}, 空データ返却")
+        return {}
+    except Exception as e:
+        logger.error(f"🚨 ULTRATHIN段階62: SRSデータ読み込みエラー - {e}")
+        return {}
+
+
 def update_advanced_srs_data(question_id, is_correct, session):
     """
     高度なSRSデータの更新
@@ -1457,13 +1504,10 @@ def update_advanced_srs_data(question_id, is_correct, session):
     """
     from datetime import datetime
 
-    # SRSデータの初期化
-    # HTTP 431完全対策: advanced_srs完全無効化
-    # if 'advanced_srs' not in session:
-    #     session['advanced_srs'] = {}
-
-    # srs_data = session['advanced_srs']
-    srs_data = {}  # 空のSRSデータで動作（セッション保存なし）
+    # 🚨 ULTRATHIN区段階62緊急修正: ファイルベースSRSデータ取得
+    # HTTP 431エラー回避のためセッションではなくファイルから読み込み
+    user_id = session.get('session_id', 'anonymous')
+    srs_data = load_srs_data_from_file(user_id)
     qid_str = str(question_id)
 
     # 問題のSRSデータを取得または初期化
@@ -1521,13 +1565,16 @@ def update_advanced_srs_data(question_id, is_correct, session):
         question_data['next_review'] = format_utc_to_iso(next_review)
         question_data['interval_days'] = interval
 
-    # HTTP 431完全対策: SRSデータセッション保存無効化
-    # session['advanced_srs'] = srs_data
-    session.modified = True
-
-    logger.info(f"SRS更新: 問題{question_id} - 正解:{question_data['correct_count']}, "
-                f"間違い:{question_data['wrong_count']}, 難易度:{question_data['difficulty_level']:.1f}, "
-                f"マスター:{question_data['mastered']}")
+    # 🚨 ULTRATHIN区段階62緊急修正: ファイルベースSRSデータ保存
+    # HTTP 431エラー回避のためセッションではなくファイルに保存
+    save_success = save_srs_data_to_file(user_id, srs_data)
+    
+    if save_success:
+        logger.info(f"✅ SRS更新保存成功: 問題{question_id} - 正解:{question_data['correct_count']}, "
+                    f"間違い:{question_data['wrong_count']}, 難易度:{question_data['difficulty_level']:.1f}, "
+                    f"マスター:{question_data['mastered']}")
+    else:
+        logger.error(f"🚨 SRS更新保存失敗: 問題{question_id}")
 
     return question_data
 
@@ -1543,10 +1590,13 @@ def get_due_review_questions(session, max_count=50):
     Returns:
         復習が必要な問題IDのリスト（優先度順）
     """
-    if 'advanced_srs' not in session:
+    # 🚨 ULTRATHIN区段階62緊急修正: ファイルベースSRSデータ取得
+    # HTTP 431エラー回避のためセッションではなくファイルから読み込み
+    user_id = session.get('session_id', 'anonymous')
+    srs_data = load_srs_data_from_file(user_id)
+    
+    if not srs_data:
         return []
-
-    srs_data = session['advanced_srs']
     # 🔥 ULTRA SYNC TIMEZONE FIX: UTC基準の現在時刻取得
     now = get_utc_now()
     due_questions = []
