@@ -1858,14 +1858,15 @@ def validate_question_data_integrity(questions):
 
 def load_questions_emergency_backup():
     """
-    🛡️ ULTRATHIN段階65: 緊急代替実装
-    確実に動作する最小限の問題データ読み込み
+    🛡️ ULTRATHIN段階71: 12部門対応緊急代替実装
+    全12部門で確実に動作する問題データ読み込み
     """
-    logger.warning("🚨 ULTRATHIN段階65: 緊急代替実装起動")
+    logger.warning("🚨 ULTRATHIN段階71: 12部門対応緊急代替実装起動")
     
-    emergency_questions = [
+    # 基礎科目(4-1) - 全部門共通
+    basic_questions = [
         {
-            'id': 1, 'category': 'コンクリート', 'department': 'road', 'question_type': 'basic',
+            'id': 1, 'category': 'コンクリート', 'department': 'basic', 'question_type': 'basic',
             'question': '普通ポルトランドセメントの凝結時間に関する記述で最も適切なものはどれか。',
             'option_a': '始発凝結時間は45分以上', 'option_b': '終結凝結時間は8時間以内',
             'option_c': '始発凝結時間は60分以内', 'option_d': '終結凝結時間は12時間以内',
@@ -1873,7 +1874,7 @@ def load_questions_emergency_backup():
             'reference': 'JIS R 5210', 'difficulty': '基本'
         },
         {
-            'id': 2, 'category': '土質', 'department': 'road', 'question_type': 'basic',
+            'id': 2, 'category': '土質', 'department': 'basic', 'question_type': 'basic',
             'question': '土の液性限界に関する説明として正しいものはどれか。',
             'option_a': '土が液体状態から塑性状態に変わる含水比', 'option_b': '土が塑性状態から半固体状態に変わる含水比',
             'option_c': '土の自然含水比と等しい値', 'option_d': '土の最適含水比の目安となる値',
@@ -1881,16 +1882,147 @@ def load_questions_emergency_backup():
             'reference': 'JIS A 1205', 'difficulty': '基本'
         },
         {
+            'id': 3, 'category': '力学', 'department': 'basic', 'question_type': 'basic',
+            'question': '単純梁のたわみ公式に関する記述として正しいものはどれか。',
+            'option_a': 'たわみは荷重の2乗に比例する', 'option_b': 'たわみは支間長の3乗に比例する',
+            'option_c': 'たわみはヤング係数に反比例する', 'option_d': 'たわみは断面二次モーメントの2乗に反比例する',
+            'correct_answer': 'C', 'explanation': 'たわみはヤング係数に反比例します。',
+            'reference': '構造力学', 'difficulty': '基本'
+        }
+    ]
+    
+    # 専門科目(4-2) - 12部門対応
+    specialist_questions = [
+        # 道路部門
+        {
             'id': 1001, 'category': '道路', 'department': 'road', 'question_type': 'specialist', 'year': 2019,
             'question': '道路の設計速度に関する記述として適切なものはどれか。',
             'option_a': '制限速度と同じ値にする', 'option_b': '交通量に応じて決定する',
             'option_c': '道路の幾何構造設計の基準となる速度', 'option_d': '最高速度の80%の値にする',
             'correct_answer': 'C', 'explanation': '設計速度は道路の幾何構造を設計する際の基準となる速度です。',
             'reference': '道路構造令', 'difficulty': '標準'
+        },
+        {
+            'id': 1002, 'category': '道路', 'department': 'road', 'question_type': 'specialist', 'year': 2018,
+            'question': 'アスファルト舗装の疲労ひび割れに関する記述として適切なものはどれか。',
+            'option_a': '路面から発生する', 'option_b': '舗装底面から発生する',
+            'option_c': '側溝部から発生する', 'option_d': '路肩部から発生する',
+            'correct_answer': 'B', 'explanation': '疲労ひび割れは舗装底面の引張応力により発生します。',
+            'reference': '舗装設計便覧', 'difficulty': '標準'
+        },
+        # 河川・砂防部門
+        {
+            'id': 2001, 'category': '河川', 'department': 'river_erosion', 'question_type': 'specialist', 'year': 2019,
+            'question': '河川の流量観測に関する記述として適切なものはどれか。',
+            'option_a': '洪水時のみ実施する', 'option_b': '平水時のみ実施する',
+            'option_c': '定期的かつ継続的に実施する', 'option_d': '月1回実施する',
+            'correct_answer': 'C', 'explanation': '流量観測は河川管理上、定期的かつ継続的な実施が必要です。',
+            'reference': '河川砂防技術基準', 'difficulty': '標準'
+        },
+        {
+            'id': 2002, 'category': '砂防', 'department': 'river_erosion', 'question_type': 'specialist', 'year': 2018,
+            'question': '砂防ダムの機能として適切なものはどれか。',
+            'option_a': '発電のみ', 'option_b': '土砂流出抑制のみ',
+            'option_c': '土砂流出抑制と渓床勾配緩和', 'option_d': '洪水調節のみ',
+            'correct_answer': 'C', 'explanation': '砂防ダムは土砂流出抑制と渓床勾配緩和の両機能を持ちます。',
+            'reference': '砂防基本計画策定指針', 'difficulty': '標準'
+        },
+        # 都市計画部門
+        {
+            'id': 3001, 'category': '都市計画', 'department': 'urban_planning', 'question_type': 'specialist', 'year': 2019,
+            'question': '都市計画法における市街化区域の定義として適切なものはどれか。',
+            'option_a': '市街化を抑制すべき区域', 'option_b': '市街化を図る区域',
+            'option_c': '農地を保全する区域', 'option_d': '自然を保護する区域',
+            'correct_answer': 'B', 'explanation': '市街化区域は積極的に市街化を図るべき区域です。',
+            'reference': '都市計画法', 'difficulty': '基本'
+        },
+        # 造園部門
+        {
+            'id': 4001, 'category': '造園', 'department': 'landscape', 'question_type': 'specialist', 'year': 2019,
+            'question': '都市公園法における都市公園の定義として適切なものはどれか。',
+            'option_a': '地方公共団体が設置する公園', 'option_b': '国が設置する公園',
+            'option_c': '民間が設置する公園', 'option_d': '都市計画施設である公園',
+            'correct_answer': 'D', 'explanation': '都市公園は都市計画施設である公園として定義されます。',
+            'reference': '都市公園法', 'difficulty': '基本'
+        },
+        # 建設環境部門
+        {
+            'id': 5001, 'category': '建設環境', 'department': 'construction_environment', 'question_type': 'specialist', 'year': 2019,
+            'question': '環境影響評価法における環境影響評価の手続きとして適切なものはどれか。',
+            'option_a': '事業完了後に実施', 'option_b': '事業実施中のみ実施',
+            'option_c': '事業実施前に実施', 'option_d': '事業開始1年後に実施',
+            'correct_answer': 'C', 'explanation': '環境影響評価は事業実施前に行う手続きです。',
+            'reference': '環境影響評価法', 'difficulty': '基本'
+        },
+        # 鋼構造・コンクリート部門
+        {
+            'id': 6001, 'category': '鋼構造', 'department': 'steel_concrete', 'question_type': 'specialist', 'year': 2019,
+            'question': '鋼材の降伏点に関する記述として適切なものはどれか。',
+            'option_a': '弾性変形から塑性変形に移る点', 'option_b': '最大応力点',
+            'option_c': '破断点', 'option_d': '疲労限界点',
+            'correct_answer': 'A', 'explanation': '降伏点は弾性変形から塑性変形に移る境界点です。',
+            'reference': '鋼構造設計規準', 'difficulty': '基本'
+        },
+        # 土質・基礎部門
+        {
+            'id': 7001, 'category': '土質', 'department': 'soil_foundation', 'question_type': 'specialist', 'year': 2019,
+            'question': '標準貫入試験のN値に関する記述として適切なものはどれか。',
+            'option_a': '土の密度を示す', 'option_b': '土の強度を示す',
+            'option_c': '土の相対的な硬軟を示す', 'option_d': '土の含水比を示す',
+            'correct_answer': 'C', 'explanation': 'N値は土の相対的な硬軟や締まり具合を示します。',
+            'reference': 'JIS A 1219', 'difficulty': '基本'
+        },
+        # 施工計画部門
+        {
+            'id': 8001, 'category': '施工', 'department': 'construction_planning', 'question_type': 'specialist', 'year': 2019,
+            'question': '建設工事における工程管理の目的として適切なものはどれか。',
+            'option_a': '費用の削減のみ', 'option_b': '品質向上のみ',
+            'option_c': '工期短縮のみ', 'option_d': '工期・品質・費用の総合的管理',
+            'correct_answer': 'D', 'explanation': '工程管理は工期・品質・費用を総合的に管理することが目的です。',
+            'reference': '建設工事標準仕様書', 'difficulty': '基本'
+        },
+        # 上下水道部門
+        {
+            'id': 9001, 'category': '上下水道', 'department': 'water_supply', 'question_type': 'specialist', 'year': 2019,
+            'question': '上水道の水質基準に関する記述として適切なものはどれか。',
+            'option_a': '厚生労働省が定める', 'option_b': '国土交通省が定める',
+            'option_c': '環境省が定める', 'option_d': '地方自治体が独自に定める',
+            'correct_answer': 'A', 'explanation': '水道水質基準は厚生労働省が水道法に基づき定めています。',
+            'reference': '水道法', 'difficulty': '基本'
+        },
+        # 森林土木部門
+        {
+            'id': 10001, 'category': '森林土木', 'department': 'forest_engineering', 'question_type': 'specialist', 'year': 2019,
+            'question': '森林の水源涵養機能に関する記述として適切なものはどれか。',
+            'option_a': '洪水を促進する', 'option_b': '渇水を促進する',
+            'option_c': '水質を悪化させる', 'option_d': '洪水緩和と水質浄化',
+            'correct_answer': 'D', 'explanation': '森林は洪水緩和と水質浄化の水源涵養機能を持ちます。',
+            'reference': '森林・林業基本法', 'difficulty': '基本'
+        },
+        # 農業土木部門
+        {
+            'id': 11001, 'category': '農業土木', 'department': 'agricultural_engineering', 'question_type': 'specialist', 'year': 2019,
+            'question': '農業用水路の機能として適切なものはどれか。',
+            'option_a': '排水のみ', 'option_b': '給水のみ',
+            'option_c': '給排水兼用', 'option_d': '発電のみ',
+            'correct_answer': 'C', 'explanation': '農業用水路は給水と排水の両機能を担います。',
+            'reference': '土地改良法', 'difficulty': '基本'
+        },
+        # トンネル部門
+        {
+            'id': 12001, 'category': 'トンネル', 'department': 'tunnel', 'question_type': 'specialist', 'year': 2019,
+            'question': 'NATM工法の特徴として適切なものはどれか。',
+            'option_a': '地山の持つ支保能力を活用', 'option_b': '完全に人工支保に依存',
+            'option_c': '地山を全て除去', 'option_d': '機械掘削のみ使用',
+            'correct_answer': 'A', 'explanation': 'NATMは地山の持つ支保能力を最大限活用する工法です。',
+            'reference': 'トンネル標準示方書', 'difficulty': '基本'
         }
     ]
     
-    logger.warning(f"🛡️ ULTRATHIN段階65: 緊急代替データ提供 - {len(emergency_questions)}問")
+    # 全問題を統合
+    emergency_questions = basic_questions + specialist_questions
+    
+    logger.warning(f"🛡️ ULTRATHIN段階71: 12部門対応緊急代替データ提供 - 基礎{len(basic_questions)}問 + 専門{len(specialist_questions)}問 = 合計{len(emergency_questions)}問")
     return emergency_questions
 
 def load_questions():
