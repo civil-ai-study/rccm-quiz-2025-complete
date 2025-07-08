@@ -1889,31 +1889,85 @@ def load_questions():
             '4-2_2016.csv', '4-2_2017.csv', '4-2_2018.csv', '4-2_2019.csv'
         ]
         
-        for filename in specialist_files:
-            filepath = os.path.join(data_dir, filename)
-            if os.path.exists(filepath):
-                try:
-                    df = pd.read_csv(filepath, encoding='utf-8')
-                    year = int(filename.split('_')[1].split('.')[0])
-                    for _, row in df.iterrows():
-                        question = {
-                            'id': row.get('id', ''),
-                            'category': row.get('category', ''),
-                            'year': year,
-                            'question': row.get('question', ''),
-                            'option_a': row.get('option_a', ''),
-                            'option_b': row.get('option_b', ''),
-                            'option_c': row.get('option_c', ''),
-                            'option_d': row.get('option_d', ''),
-                            'correct_answer': row.get('correct_answer', ''),
-                            'explanation': row.get('explanation', ''),
-                            'reference': row.get('reference', ''),
-                            'difficulty': row.get('difficulty', 'medium'),
-                            'question_type': 'specialist'
-                        }
-                        specialist_questions.append(question)
-                except Exception as e:
-                    logger.warning(f"専門科目ファイル読み込みエラー {filename}: {e}")
+        logger.warning(f"🚨 CRITICAL: 専門科目データ読み込み開始 - データディレクトリ: {data_dir}")
+        
+        try:
+            import pandas as pd
+            specialist_load_success = 0
+            
+            for filename in specialist_files:
+                filepath = os.path.join(data_dir, filename)
+                logger.warning(f"🚨 CRITICAL: 専門科目ファイル確認 - {filepath} (存在: {os.path.exists(filepath)})")
+                
+                if os.path.exists(filepath):
+                    try:
+                        df = pd.read_csv(filepath, encoding='utf-8')
+                        year = int(filename.split('_')[1].split('.')[0])
+                        file_questions = 0
+                        
+                        for _, row in df.iterrows():
+                            question = {
+                                'id': row.get('id', ''),
+                                'category': str(row.get('category', '')).strip(),
+                                'year': year,
+                                'question': row.get('question', ''),
+                                'option_a': row.get('option_a', ''),
+                                'option_b': row.get('option_b', ''),
+                                'option_c': row.get('option_c', ''),
+                                'option_d': row.get('option_d', ''),
+                                'correct_answer': row.get('correct_answer', ''),
+                                'explanation': row.get('explanation', ''),
+                                'reference': row.get('reference', ''),
+                                'difficulty': row.get('difficulty', 'medium'),
+                                'question_type': 'specialist'
+                            }
+                            specialist_questions.append(question)
+                            file_questions += 1
+                        
+                        specialist_load_success += 1
+                        logger.warning(f"🚨 CRITICAL: {filename} 読み込み成功 - {file_questions}問")
+                        
+                    except Exception as e:
+                        logger.error(f"🚨 CRITICAL ERROR: 専門科目ファイル読み込みエラー {filename}: {e}")
+                        raise e  # エラーを再発生させてフォールバックを防ぐ
+            
+            logger.warning(f"🚨 CRITICAL: 専門科目読み込み完了 - {specialist_load_success}ファイル成功, 合計{len(specialist_questions)}問")
+            
+        except Exception as e:
+            logger.error(f"🚨 CRITICAL FATAL: 専門科目読み込み完全失敗: {e}")
+            # pandasが無い場合の手動CSVパース
+            try:
+                import csv
+                logger.warning("🚨 CRITICAL: pandas失敗 - 手動CSV読み込みに切り替え")
+                
+                for filename in specialist_files:
+                    filepath = os.path.join(data_dir, filename)
+                    if os.path.exists(filepath):
+                        try:
+                            with open(filepath, 'r', encoding='utf-8') as f:
+                                reader = csv.DictReader(f)
+                                year = int(filename.split('_')[1].split('.')[0])
+                                for row in reader:
+                                    question = {
+                                        'id': row.get('id', ''),
+                                        'category': str(row.get('category', '')).strip(),
+                                        'year': year,
+                                        'question': row.get('question', ''),
+                                        'option_a': row.get('option_a', ''),
+                                        'option_b': row.get('option_b', ''),
+                                        'option_c': row.get('option_c', ''),
+                                        'option_d': row.get('option_d', ''),
+                                        'correct_answer': row.get('correct_answer', ''),
+                                        'explanation': row.get('explanation', ''),
+                                        'reference': row.get('reference', ''),
+                                        'difficulty': row.get('difficulty', 'medium'),
+                                        'question_type': 'specialist'
+                                    }
+                                    specialist_questions.append(question)
+                        except Exception as csv_e:
+                            logger.error(f"🚨 CSV手動読み込みエラー {filename}: {csv_e}")
+            except Exception as manual_e:
+                logger.error(f"🚨 手動CSV読み込み完全失敗: {manual_e}")
         
         # 基礎科目と専門科目を結合
         questions = basic_questions + specialist_questions
