@@ -699,6 +699,10 @@ def map_category_to_department(category: str) -> str:
     カテゴリ名から適切なRCCM部門IDにマッピング（実際のCSVデータ対応）
     """
     category_mapping = {
+        # 基礎科目
+        '共通': 'common',
+        '基礎科目': 'common',
+        
         # 道路
         '道路': 'road',
         
@@ -758,7 +762,7 @@ def map_category_to_department(category: str) -> str:
 def resolve_id_conflicts(questions: List[Dict]) -> List[Dict]:
     """
     IDの重複を解決し、一意のIDを設定（問題種別別に範囲分け）
-    基礎科目: 1-1000, 専門科目: 1001-10000
+    基礎科目: 1000000-1999999, 専門科目: 2000000-2999999
     ⚠️ 重複問題の根本原因解決と完全なID整合性保証
     """
     logger.info(f"ID重複解決開始: 入力問題数={len(questions)}問")
@@ -790,17 +794,17 @@ def resolve_id_conflicts(questions: List[Dict]) -> List[Dict]:
     
     logger.info(f"問題分類: 基礎={len(basic_questions)}問, 専門={len(specialist_questions)}問, その他={len(other_questions)}問")
     
-    # 基礎科目のID範囲: 1-1000
-    next_basic_id = 1
+    # 基礎科目のID範囲: 1000000-1999999
+    next_basic_id = 1000000
     for index, q in enumerate(basic_questions):
         original_id = q.get('id')
         
         # 安全な次のIDを見つける
-        while next_basic_id in used_ids or next_basic_id > 1000:
+        while next_basic_id in used_ids or next_basic_id > 1999999:
             next_basic_id += 1
-            if next_basic_id > 1000:
-                logger.error(f"基礎科目のID範囲(1-1000)を超過: {len(basic_questions)}問は範囲を超えています")
-                raise DataValidationError(f"基礎科目の問題数({len(basic_questions)})がID範囲(1-1000)を超過")
+            if next_basic_id > 1999999:
+                logger.error(f"基礎科目のID範囲(1000000-1999999)を超過: {len(basic_questions)}問は範囲を超えています")
+                raise DataValidationError(f"基礎科目の問題数({len(basic_questions)})がID範囲(1000000-1999999)を超過")
         
         # IDを更新
         q['id'] = next_basic_id
@@ -811,18 +815,18 @@ def resolve_id_conflicts(questions: List[Dict]) -> List[Dict]:
         id_mapping[f"basic_{original_id}"] = next_basic_id
         next_basic_id += 1
     
-    # 専門科目のID範囲: 1001-10000
-    next_specialist_id = 1001
+    # 専門科目のID範囲: 2000000-2999999
+    next_specialist_id = 2000000
     for index, q in enumerate(specialist_questions):
         original_id = q.get('id')
         year = q.get('year', 'unknown')
         
         # 安全な次のIDを見つける
-        while next_specialist_id in used_ids or next_specialist_id > 10000:
+        while next_specialist_id in used_ids or next_specialist_id > 2999999:
             next_specialist_id += 1
-            if next_specialist_id > 10000:
-                logger.error(f"専門科目のID範囲(1001-10000)を超過: {len(specialist_questions)}問は範囲を超えています")
-                raise DataValidationError(f"専門科目の問題数({len(specialist_questions)})がID範囲(1001-10000)を超過")
+            if next_specialist_id > 2999999:
+                logger.error(f"専門科目のID範囲(2000000-2999999)を超過: {len(specialist_questions)}問は範囲を超えています")
+                raise DataValidationError(f"専門科目の問題数({len(specialist_questions)})がID範囲(2000000-2999999)を超過")
         
         # IDを更新
         q['id'] = next_specialist_id
@@ -833,8 +837,8 @@ def resolve_id_conflicts(questions: List[Dict]) -> List[Dict]:
         id_mapping[f"specialist_{year}_{original_id}"] = next_specialist_id
         next_specialist_id += 1
     
-    # その他の問題: 10001以降
-    next_other_id = 10001
+    # その他の問題: 3000000以降
+    next_other_id = 3000000
     for index, q in enumerate(other_questions):
         original_id = q.get('id')
         
@@ -866,16 +870,16 @@ def resolve_id_conflicts(questions: List[Dict]) -> List[Dict]:
     basic_ids = [q['id'] for q in resolved_questions if q.get('question_type') == 'basic']
     specialist_ids = [q['id'] for q in resolved_questions if q.get('question_type') == 'specialist']
     
-    if basic_ids and (min(basic_ids) < 1 or max(basic_ids) > 1000):
+    if basic_ids and (min(basic_ids) < 1000000 or max(basic_ids) > 1999999):
         logger.error(f"基礎科目ID範囲エラー: {min(basic_ids)}-{max(basic_ids)}")
         raise DataValidationError("基礎科目のID範囲が正しくありません")
     
-    if specialist_ids and (min(specialist_ids) < 1001 or max(specialist_ids) > 10000):
+    if specialist_ids and (min(specialist_ids) < 2000000 or max(specialist_ids) > 2999999):
         logger.error(f"専門科目ID範囲エラー: {min(specialist_ids)}-{max(specialist_ids)}")
         raise DataValidationError("専門科目のID範囲が正しくありません")
     
-    logger.info(f"✅ ID重複解決完了: 基礎={len(basic_questions)}問(1-{max(basic_ids) if basic_ids else 0}), "
-               f"専門={len(specialist_questions)}問(1001-{max(specialist_ids) if specialist_ids else 1000}), "
+    logger.info(f"✅ ID重複解決完了: 基礎={len(basic_questions)}問(1000000-{max(basic_ids) if basic_ids else 1000000}), "
+               f"専門={len(specialist_questions)}問(2000000-{max(specialist_ids) if specialist_ids else 2000000}), "
                f"その他={len(other_questions)}問, 総計={len(resolved_questions)}問")
     
     # ID変更の記録をログ出力（デバッグ用）
