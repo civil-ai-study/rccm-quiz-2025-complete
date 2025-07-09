@@ -858,7 +858,13 @@ LEGACY_DEPARTMENT_ALIASES = {
     'soil': 'soil_foundation',                   # 土質及び基礎部門の短縮形
     'urban': 'urban_planning',                   # 都市計画部門の短縮形
     'foundation': 'soil_foundation',             # 土質及び基礎部門の別名
-    'planning': 'urban_planning'                 # 都市計画部門の別名
+    'planning': 'urban_planning',                # 都市計画部門の別名
+    # 🚨 CRITICAL FIX: 日本語部門名マッピング追加（回帰バグ修正）
+    '土質・基礎': 'soil_foundation',             # 土質・基礎 → soil_foundation
+    '都市計画': 'urban_planning',                # 都市計画 → urban_planning
+    '鋼構造・コンクリート': 'steel_concrete',    # 鋼構造・コンクリート → steel_concrete
+    '施工計画': 'construction_planning',         # 施工計画 → construction_planning
+    '上下水道': 'water_supply'                   # 上下水道 → water_supply
 }
 
 # 🚀 ULTRA SYNC: 正規化された一意逆マッピング
@@ -7646,10 +7652,14 @@ def start_exam(exam_type):
         # 🔥 ULTRA SYNC FIX: 詳細エラーログ追加
         logger.info(f"🔥 EXAM START: 試験開始処理開始 - exam_type: {exam_type}, method: {request.method}")
         
-        # 🛡️ ULTRATHIN区段階10: GETリクエスト時の適切な処理（修正版）
+        # 🛡️ ULTRASYNC緊急修正: GETリクエスト時のデフォルト試験開始
         if request.method == 'GET' and not any([questions_param, exam_config_param, category_param]):
-            logger.info(f"🛡️ ULTRATHIN段階10: 純粋なGETリクエスト検出 - exam_simulatorにリダイレクト")
-            return redirect(url_for('exam_simulator_page'))
+            logger.info(f"🛡️ ULTRASYNC: 純粋なGETリクエスト検出 - デフォルト10問試験開始")
+            # デフォルト値を設定して継続処理
+            questions_param = '10'  # デフォルト10問
+            if exam_type == '基礎科目':
+                category_param = '基礎科目'
+            logger.info(f"🛡️ ULTRASYNC: デフォルト設定適用 - questions: {questions_param}, category: {category_param}")
         
         # 🚨 ULTRATHIN区段階52緊急修正: 必須パラメータ欠如エラーハンドリング追加
         # 5/7シナリオで正常レスポンス問題解決
