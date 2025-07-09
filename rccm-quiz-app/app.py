@@ -7945,6 +7945,22 @@ def start_exam(exam_type):
             # 🚨 ULTRATHIN区段階32緊急修正4: 基礎科目超軽量処理
             # 基礎科目は段階29を完全回避
             logger.info(f"🚨 ULTRATHIN段階32: 基礎科目超軽量処理開始 - {exam_id}")
+            
+            # 🛡️ ULTRASYNC緊急修正: 基礎科目でもセッションの問題IDを設定
+            try:
+                # 基礎科目用のセッション設定
+                question_ids = [q['id'] for q in selected_questions]
+                session['exam_question_ids'] = question_ids
+                session['exam_current'] = 0
+                session['exam_category'] = '基礎科目'
+                session.modified = True
+                
+                logger.info(f"🛡️ ULTRASYNC: 基礎科目セッション設定完了 - 問題数: {len(question_ids)}")
+                
+            except Exception as basic_error:
+                logger.error(f"🛡️ ULTRASYNC: 基礎科目セッション設定エラー - {basic_error}")
+                return render_template('error.html', error="基礎科目のセッション設定でエラーが発生しました。", error_type="basic_session_error")
+            
             return redirect(url_for('exam_question'))
 
     except Exception as e:
