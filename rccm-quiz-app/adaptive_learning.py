@@ -397,6 +397,9 @@ class AdaptiveLearningEngine:
         try:
             from app import get_due_questions
             due_questions = get_due_questions(user_session, all_questions)
+        except (ImportError, AttributeError, ModuleNotFoundError) as e:
+            logger.warning(f"SRS機能のインポートエラー: {e}")
+            due_questions = []
             
             # 部門フィルタリング
             if department:
@@ -463,6 +466,8 @@ class AdaptiveLearningEngine:
         
         for question_id, data in srs_data.items():
             try:
+                if not isinstance(data, dict) or 'next_review' not in data:
+                    continue
                 next_review = datetime.fromisoformat(data['next_review']).date()
                 if next_review <= today:
                     question = next((q for q in all_questions if str(q.get('id', 0)) == question_id), None)
@@ -472,7 +477,8 @@ class AdaptiveLearningEngine:
                             'question': question,
                             'days_overdue': days_overdue
                         })
-            except (ValueError, KeyError):
+            except (ValueError, TypeError, KeyError) as e:
+                logger.warning(f"SRSデータの日付パースエラー (ID: {question_id}): {e}")
                 continue
         
         # 優先度順にソート
@@ -1416,6 +1422,9 @@ class AdaptiveLearningEngine:
             basic_due = [item['question'] for item in due_questions 
                         if item['question'].get('question_type') == 'basic' and 
                         (not department or item['question'].get('department') == department)]
+        except (ImportError, AttributeError, ModuleNotFoundError) as e:
+            logger.warning(f"SRS機能のインポートエラー: {e}")
+            basic_due = []
             
             if len(basic_due) >= count:
                 return basic_due[:count]

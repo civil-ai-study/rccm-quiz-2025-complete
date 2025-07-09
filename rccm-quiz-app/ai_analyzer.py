@@ -57,8 +57,17 @@ class AILearningAnalyzer:
             return {'style': 'unknown', 'confidence': 0.0}
         
         # 回答時間分析
-        response_times = [item.get('response_time', 0) for item in history if item.get('response_time')]
-        avg_time = statistics.mean(response_times) if response_times else 0
+        response_times = []
+        for item in history:
+            if isinstance(item, dict):
+                response_time = item.get('response_time', 0)
+                if isinstance(response_time, (int, float)) and response_time > 0:
+                    response_times.append(response_time)
+        
+        try:
+            avg_time = statistics.mean(response_times) if response_times else 0
+        except (TypeError, ValueError, statistics.StatisticsError):
+            avg_time = 0
         
         # 正答率の時系列変化
         correct_rates = []
@@ -94,13 +103,18 @@ class AILearningAnalyzer:
             if isinstance(data, dict):
                 total = data.get('total_attempts', 0)
                 correct = data.get('correct_count', 0)
-                if total > 0:
+                if (isinstance(total, (int, float)) and 
+                    isinstance(correct, (int, float)) and 
+                    total > 0):
                     mastery_scores.append(correct / total)
         
         if not mastery_scores:
             return {'predicted_score': 0, 'confidence': 0.0}
         
-        avg_mastery = statistics.mean(mastery_scores)
+        try:
+            avg_mastery = statistics.mean(mastery_scores)
+        except (TypeError, ValueError, statistics.StatisticsError):
+            return {'predicted_score': 0, 'confidence': 0.0}
         predicted_score = min(100, avg_mastery * 100 + 10)  # 予測スコア
         
         return {
@@ -456,22 +470,40 @@ class AILearningAnalyzer:
         if not times:
             return {}
         
-        avg_time = statistics.mean(times)
-        median_time = statistics.median(times)
+        try:
+            avg_time = statistics.mean(times)
+            median_time = statistics.median(times)
+        except (TypeError, ValueError, statistics.StatisticsError):
+            return {}
+        
+        # time_consistency計算の安全化
+        time_consistency = 1
+        if len(times) > 1 and avg_time > 0:
+            try:
+                stdev_time = statistics.stdev(times)
+                time_consistency = 1 - (stdev_time / avg_time)
+            except (TypeError, ValueError, statistics.StatisticsError, ZeroDivisionError):
+                time_consistency = 1
         
         analysis = {
             'avg_time': avg_time,
             'median_time': median_time,
-            'time_consistency': 1 - (statistics.stdev(times) / avg_time) if len(times) > 1 else 1,
+            'time_consistency': max(0, min(1, time_consistency)),  # 0-1範囲に制限
             'speed_category': self._categorize_speed(avg_time),
         }
         
+        # correct_vs_incorrect分析の安全化
         if correct_times and incorrect_times:
-            analysis['correct_vs_incorrect'] = {
-                'correct_avg': statistics.mean(correct_times),
-                'incorrect_avg': statistics.mean(incorrect_times),
-                'time_difference': statistics.mean(incorrect_times) - statistics.mean(correct_times)
-            }
+            try:
+                correct_avg = statistics.mean(correct_times)
+                incorrect_avg = statistics.mean(incorrect_times)
+                analysis['correct_vs_incorrect'] = {
+                    'correct_avg': correct_avg,
+                    'incorrect_avg': incorrect_avg,
+                    'time_difference': incorrect_avg - correct_avg
+                }
+            except (TypeError, ValueError, statistics.StatisticsError):
+                pass  # correct_vs_incorrectセクションを省略
         
         return analysis
     
@@ -496,16 +528,25 @@ class AILearningAnalyzer:
         else:
             recent_trend = overall_trend = 0
         
-        # 学習安定性
-        stability = 1 - statistics.stdev(accuracy_trend) if len(accuracy_trend) > 1 else 0
+        # 学習安定性の安全計算
+        stability = 0
+        volatility = 0
+        if len(accuracy_trend) > 1:
+            try:
+                stdev_accuracy = statistics.stdev(accuracy_trend)
+                stability = 1 - stdev_accuracy
+                volatility = stdev_accuracy
+            except (TypeError, ValueError, statistics.StatisticsError):
+                stability = 0
+                volatility = 0
         
         return {
             'trend': 'improving' if overall_trend > 0.1 else 'declining' if overall_trend < -0.1 else 'stable',
             'recent_trend': recent_trend,
             'overall_trend': overall_trend,
-            'stability': stability,
+            'stability': max(0, min(1, stability)),  # 0-1範囲に制限
             'accuracy_points': accuracy_trend,
-            'volatility': statistics.stdev(accuracy_trend) if len(accuracy_trend) > 1 else 0
+            'volatility': max(0, volatility)  # 非負値に制限
         }
     
     def _analyze_error_patterns(self, history: List[Dict]) -> Dict[str, Any]:
@@ -773,6 +814,9 @@ class AILearningAnalyzer:
         category_counts = Counter(categories)
         total_errors = len(incorrect_answers)
         
+        if total_errors == 0:
+            return {}
+        
         return {
             category: count / total_errors 
             for category, count in category_counts.items()
@@ -863,7 +907,10 @@ class AILearningAnalyzer:
         
         # 時間効率（部門により基準時間が異なる）
         target_time = self._get_department_target_time(department)
-        time_factor = max(0, (avg_time - target_time) / target_time * 0.3)
+        if target_time > 0:
+            time_factor = max(0, (avg_time - target_time) / target_time * 0.3)
+        else:
+            time_factor = 0
         
         # サンプルサイズによる信頼度
         confidence = min(sample_size / 15, 1.0)
@@ -1029,6 +1076,9 @@ class AILearningAnalyzer:
         
         # 基本統計
         total_questions = len(history)
+        if total_questions == 0:
+            return {'readiness_level': 'insufficient_data'}
+        
         correct_count = sum(1 for h in history if h.get('is_correct', False))
         overall_accuracy = correct_count / total_questions
         

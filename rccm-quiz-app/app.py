@@ -1826,11 +1826,40 @@ def validate_question_data_integrity(questions):
                 logger.warning(f"問題{question.get('id')}: 選択肢が不完全")
                 continue
 
-            # 正解の妥当性チェック
-            correct_answer = question.get('correct_answer', '').upper()
+            # 正解の妥当性チェック（強化版）
+            correct_answer = question.get('correct_answer', '').strip()
+            
+            # 正解値を正規化
+            def normalize_correct_answer(answer):
+                """正解値を正規化（データ読み込み時用）"""
+                if not answer:
+                    return ""
+                
+                normalized = str(answer).strip().upper()
+                
+                # 数値形式の正解値を文字に変換
+                if normalized in ['1', '2', '3', '4']:
+                    mapping = {'1': 'A', '2': 'B', '3': 'C', '4': 'D'}
+                    normalized = mapping[normalized]
+                
+                # 小文字正解値を大文字に変換
+                if normalized in ['a', 'b', 'c', 'd']:
+                    normalized = normalized.upper()
+                
+                # 全角文字を半角に変換
+                if normalized in ['Ａ', 'Ｂ', 'Ｃ', 'Ｄ']:
+                    mapping = {'Ａ': 'A', 'Ｂ': 'B', 'Ｃ': 'C', 'Ｄ': 'D'}
+                    normalized = mapping[normalized]
+                
+                return normalized
+            
+            correct_answer = normalize_correct_answer(correct_answer)
             if correct_answer not in ['A', 'B', 'C', 'D']:
-                logger.warning(f"問題{question.get('id')}: 正解が無効 ({correct_answer})")
+                logger.warning(f"問題{question.get('id')}: 正解が無効 ({question.get('correct_answer', '')} → {correct_answer})")
                 continue
+            
+            # 正規化された正解値を設定
+            question['correct_answer'] = correct_answer
 
             # 部門・問題種別の整合性チェック
             question_type = question.get('question_type', '')
@@ -3357,16 +3386,61 @@ def exam():
                                            error="パラメータが長すぎます。",
                                            error_type="parameter_too_long")
                 
-                answer = sanitize_input(raw_answer)
+                # 🔥 CRITICAL FIX: 回答値は特別扱い（過剰なサニタイズを避ける）
+                # 回答値は A, B, C, D のみを受け入れるため、軽量なサニタイズで十分
+                answer = str(raw_answer).strip() if raw_answer else ""
                 qid = sanitize_input(raw_qid)
                 elapsed = sanitize_input(raw_elapsed)
 
-                # 回答値の厳密な検証
-                if answer not in ['A', 'B', 'C', 'D']:
+                # 回答値の正規化処理（大文字・小文字対応）
+                def normalize_answer(answer):
+                    """回答値を正規化（大文字・小文字対応）"""
+                    if not answer:
+                        return ""
+                    
+                    # 文字列に変換して正規化
+                    normalized = str(answer).strip().upper()
+                    
+                    # 数値形式の回答値を文字に変換（1=A, 2=B, 3=C, 4=D）
+                    if normalized in ['1', '2', '3', '4']:
+                        mapping = {'1': 'A', '2': 'B', '3': 'C', '4': 'D'}
+                        normalized = mapping[normalized]
+                        logger.info(f"数値回答値を文字に変換: {answer} → {normalized}")
+                    
+                    # 小文字回答値を大文字に変換
+                    if normalized in ['a', 'b', 'c', 'd']:
+                        normalized = normalized.upper()
+                        logger.info(f"小文字回答値を大文字に変換: {answer} → {normalized}")
+                    
+                    # 全角文字を半角に変換
+                    if normalized in ['Ａ', 'Ｂ', 'Ｃ', 'Ｄ']:
+                        mapping = {'Ａ': 'A', 'Ｂ': 'B', 'Ｃ': 'C', 'Ｄ': 'D'}
+                        normalized = mapping[normalized]
+                        logger.info(f"全角回答値を半角に変換: {answer} → {normalized}")
+                    
+                    # 有効な回答値のみ受け入れ
+                    if normalized in ['A', 'B', 'C', 'D']:
+                        return normalized
+                    
+                    # 無効な回答値の詳細ログ
+                    logger.warning(f"無効な回答値: '{answer}' (正規化後: '{normalized}')")
+                    return ""
+
+                # 回答値の正規化と検証
+                normalized_answer = normalize_answer(answer)
+                
+                # 🔥 DEBUG: 回答値処理の詳細ログ（エラー原因の特定用）
+                logger.info(f"回答値デバッグ - Raw: {repr(raw_answer)}, Processed: {repr(answer)}, Normalized: {repr(normalized_answer)}")
+                
+                if not normalized_answer:
                     logger.warning(f"🚨 無効な回答値: {answer} (元: {raw_answer})")
+                    logger.warning(f"🚨 詳細: raw_answer={repr(raw_answer)}, answer={repr(answer)}, normalized={repr(normalized_answer)}")
                     return render_template('error.html',
                                            error="無効な回答が選択されました。",
                                            error_type="invalid_input")
+
+                # 正規化された回答値を使用
+                answer = normalized_answer
 
                 # 問題IDの検証強化
                 try:

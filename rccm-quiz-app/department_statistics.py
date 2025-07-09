@@ -33,6 +33,13 @@ class DepartmentStatisticsAnalyzer:
             'agriculture': 1.0  # 農業土木
         }
     
+    def _safe_mean(self, values: List[float]) -> float:
+        """安全な平均値計算"""
+        try:
+            return statistics.mean(values) if values else 0
+        except (TypeError, ValueError, statistics.StatisticsError):
+            return 0
+    
     def generate_comprehensive_department_report(self, user_session: Dict) -> Dict[str, Any]:
         """包括的な部門別統計レポートを生成"""
         history = user_session.get('history', [])
@@ -354,7 +361,7 @@ class DepartmentStatisticsAnalyzer:
         return {
             'cross_performance': cross_analysis,
             'basic_specialist_correlations': correlations,
-            'overall_correlation': statistics.mean([c['correlation'] for c in correlations]) if correlations else 0
+            'overall_correlation': self._safe_mean([c['correlation'] for c in correlations]) if correlations else 0
         }
     
     def _analyze_time_series_trends(self, history: List[Dict]) -> Dict[str, Any]:
@@ -412,9 +419,9 @@ class DepartmentStatisticsAnalyzer:
         # 全体的なトレンド方向の判定
         if weekly_trend and len(weekly_trend) >= 2:
             recent_weeks = weekly_trend[-3:] if len(weekly_trend) >= 3 else weekly_trend
-            recent_avg = statistics.mean([w['accuracy'] for w in recent_weeks])
+            recent_avg = self._safe_mean([w['accuracy'] for w in recent_weeks])
             early_weeks = weekly_trend[:3] if len(weekly_trend) >= 3 else weekly_trend[:-1]
-            early_avg = statistics.mean([w['accuracy'] for w in early_weeks]) if early_weeks else 0
+            early_avg = self._safe_mean([w['accuracy'] for w in early_weeks]) if early_weeks else 0
             
             trend_direction = 'improving' if recent_avg > early_avg + 0.05 else \
                             'declining' if recent_avg < early_avg - 0.05 else 'stable'

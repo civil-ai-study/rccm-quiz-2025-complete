@@ -290,8 +290,11 @@ class DynamicDifficultyController:
         if not times:
             return {'level': 'intermediate', 'score': 0.5}
         
-        avg_time = statistics.mean(times)
-        median_time = statistics.median(times)
+        try:
+            avg_time = statistics.mean(times)
+            median_time = statistics.median(times)
+        except (TypeError, ValueError, statistics.StatisticsError):
+            return {'level': 'intermediate', 'score': 0.5}
         
         # 速度レベル判定（秒）
         if avg_time <= 30:
@@ -304,7 +307,13 @@ class DynamicDifficultyController:
             level = 'beginner'
         
         # 安定性評価
-        consistency = 1 - (statistics.stdev(times) / avg_time) if len(times) > 1 else 1
+        consistency = 1
+        if len(times) > 1 and avg_time > 0:
+            try:
+                stdev_time = statistics.stdev(times)
+                consistency = 1 - (stdev_time / avg_time)
+            except (TypeError, ValueError, statistics.StatisticsError, ZeroDivisionError):
+                consistency = 1
         
         return {
             'level': level,
@@ -336,11 +345,17 @@ class DynamicDifficultyController:
         streaks.append(current_streak)
         
         # 一貫性スコア
-        avg_streak = statistics.mean(streaks)
-        max_streak = max(streaks)
+        try:
+            avg_streak = statistics.mean(streaks) if streaks else 1
+            max_streak = max(streaks) if streaks else 1
+        except (TypeError, ValueError, statistics.StatisticsError):
+            avg_streak = max_streak = 1
         
         # バリアンス（低いほど一貫）
-        variance = statistics.variance(results) if len(results) > 1 else 0
+        try:
+            variance = statistics.variance(results) if len(results) > 1 else 0
+        except (TypeError, ValueError, statistics.StatisticsError):
+            variance = 0
         consistency_score = 1 - variance
         
         # レベル判定
@@ -574,7 +589,10 @@ class DynamicDifficultyController:
         accuracy = sum(1 for r in recent_results if r.get('is_correct', False)) / len(recent_results)
         
         times = [r.get('elapsed', 0) for r in recent_results if r.get('elapsed', 0) > 0]
-        avg_time = statistics.mean(times) if times else 60
+        try:
+            avg_time = statistics.mean(times) if times else 60
+        except (TypeError, ValueError, statistics.StatisticsError):
+            avg_time = 60
         
         return {
             'accuracy': accuracy,

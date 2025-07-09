@@ -248,8 +248,12 @@ class LearningOptimizer:
         hourly_performance = {}
         for hour, data in hourly_data.items():
             if data['sessions'] > 0:
-                avg_accuracy = statistics.mean(data['accuracy']) if data['accuracy'] else 0
-                avg_speed = statistics.mean(data['speed']) if data['speed'] else 60
+                try:
+                    avg_accuracy = statistics.mean(data['accuracy']) if data['accuracy'] else 0
+                    avg_speed = statistics.mean(data['speed']) if data['speed'] else 60
+                except (TypeError, ValueError, statistics.StatisticsError):
+                    avg_accuracy = 0
+                    avg_speed = 60
                 
                 # 効率スコア計算（正答率重視、速度も考慮）
                 efficiency_score = avg_accuracy * 0.7 + (1 - min(avg_speed / 120, 1)) * 0.3
@@ -322,12 +326,18 @@ class LearningOptimizer:
                 )
                 analysis['performance_by_length'][length_category]['count'] += 1
             
-            analysis['avg_session_length'] = statistics.mean(lengths)
+            try:
+                analysis['avg_session_length'] = statistics.mean(lengths) if lengths else 0
+            except (TypeError, ValueError, statistics.StatisticsError):
+                analysis['avg_session_length'] = 0
             
             # パフォーマンス統計を計算
             for category, data in analysis['performance_by_length'].items():
                 if data['accuracy']:
-                    data['avg_accuracy'] = statistics.mean(data['accuracy'])
+                    try:
+                        data['avg_accuracy'] = statistics.mean(data['accuracy'])
+                    except (TypeError, ValueError, statistics.StatisticsError):
+                        data['avg_accuracy'] = 0
                 else:
                     data['avg_accuracy'] = 0
         
@@ -419,11 +429,14 @@ class LearningOptimizer:
                 first_half = daily_data[:mid_point]
                 second_half = daily_data[mid_point:]
                 
-                first_accuracy = statistics.mean([d['accuracy'] for d in first_half])
-                second_accuracy = statistics.mean([d['accuracy'] for d in second_half])
-                
-                first_speed = statistics.mean([d['speed'] for d in first_half])
-                second_speed = statistics.mean([d['speed'] for d in second_half])
+                try:
+                    first_accuracy = statistics.mean([d['accuracy'] for d in first_half]) if first_half else 0
+                    second_accuracy = statistics.mean([d['accuracy'] for d in second_half]) if second_half else 0
+                    first_speed = statistics.mean([d['speed'] for d in first_half]) if first_half else 60
+                    second_speed = statistics.mean([d['speed'] for d in second_half]) if second_half else 60
+                except (TypeError, ValueError, statistics.StatisticsError):
+                    first_accuracy = second_accuracy = 0
+                    first_speed = second_speed = 60
                 
                 accuracy_decline = first_accuracy - second_accuracy
                 speed_decline = (second_speed - first_speed) / first_speed if first_speed > 0 else 0
@@ -432,9 +445,15 @@ class LearningOptimizer:
                 speed_decline_rates.append(speed_decline)
         
         if decline_rates:
-            fatigue_indicators['accuracy_decline_rate'] = statistics.mean(decline_rates)
+            try:
+                fatigue_indicators['accuracy_decline_rate'] = statistics.mean(decline_rates)
+            except (TypeError, ValueError, statistics.StatisticsError):
+                fatigue_indicators['accuracy_decline_rate'] = 0
         if speed_decline_rates:
-            fatigue_indicators['speed_decline_rate'] = statistics.mean(speed_decline_rates)
+            try:
+                fatigue_indicators['speed_decline_rate'] = statistics.mean(speed_decline_rates)
+            except (TypeError, ValueError, statistics.StatisticsError):
+                fatigue_indicators['speed_decline_rate'] = 0
         
         return fatigue_indicators
     
@@ -470,15 +489,19 @@ class LearningOptimizer:
         morning_hours = [6, 7, 8, 9, 10]
         evening_hours = [19, 20, 21, 22]
         
-        morning_efficiency = statistics.mean([
-            hourly_performance.get(h, {}).get('efficiency_score', 0)
-            for h in morning_hours
-        ])
-        
-        evening_efficiency = statistics.mean([
-            hourly_performance.get(h, {}).get('efficiency_score', 0)
-            for h in evening_hours
-        ])
+        try:
+            morning_scores = [
+                hourly_performance.get(h, {}).get('efficiency_score', 0)
+                for h in morning_hours
+            ]
+            evening_scores = [
+                hourly_performance.get(h, {}).get('efficiency_score', 0)
+                for h in evening_hours
+            ]
+            morning_efficiency = statistics.mean(morning_scores) if morning_scores else 0
+            evening_efficiency = statistics.mean(evening_scores) if evening_scores else 0
+        except (TypeError, ValueError, statistics.StatisticsError):
+            morning_efficiency = evening_efficiency = 0
         
         avg_session_length = session_analysis.get('avg_session_length', 0)
         

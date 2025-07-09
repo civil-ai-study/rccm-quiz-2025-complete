@@ -102,7 +102,8 @@ class GamificationManager:
         if isinstance(last_study, str):
             try:
                 last_study = datetime.fromisoformat(last_study).date()
-            except:
+            except (ValueError, TypeError) as e:
+                logger.warning(f"日付パースエラー: {last_study}: {e}")
                 last_study = None
         
         if last_study is None:
@@ -113,6 +114,7 @@ class GamificationManager:
             current_streak += 1
         elif (today - last_study).days == 0:
             # 同日学習（ストリーク維持）
+            # current_streakは変更なし
             pass
         else:
             # ストリーク途切れ
@@ -172,12 +174,14 @@ class GamificationManager:
         for category, stats in category_stats.items():
             badge_key = f"category_master_{category.lower().replace(' ', '_')}"
             if badge_key in self.achievements and badge_key not in earned_badges:
-                if stats.get('total', 0) >= 20 and (stats.get('correct', 0) / stats.get('total', 1)) >= 0.8:
+                category_total = stats.get('total', 0)
+                category_correct = stats.get('correct', 0)
+                if category_total >= 20 and (category_correct / category_total) >= 0.8:
                     new_badges.append(badge_key)
         
         # スピードデーモンバッジ
         if 'speed_demon' not in earned_badges and total_questions >= 30:
-            avg_time = sum(h.get('elapsed', 0) for h in history) / total_questions
+            avg_time = sum(h.get('elapsed', 0) for h in history) / total_questions if total_questions > 0 else 0
             if avg_time <= 30:
                 new_badges.append('speed_demon')
         
@@ -195,11 +199,15 @@ class GamificationManager:
             first_half = history[:50]
             last_half = history[-50:]
             
-            first_accuracy = sum(1 for h in first_half if h.get('is_correct')) / 50
-            last_accuracy = sum(1 for h in last_half if h.get('is_correct')) / 50
+            first_correct = sum(1 for h in first_half if h.get('is_correct'))
+            last_correct = sum(1 for h in last_half if h.get('is_correct'))
             
-            if first_accuracy <= 0.5 and last_accuracy >= 0.8:
-                new_badges.append('comeback_kid')
+            if len(first_half) > 0 and len(last_half) > 0:
+                first_accuracy = first_correct / len(first_half)
+                last_accuracy = last_correct / len(last_half)
+                
+                if first_accuracy <= 0.5 and last_accuracy >= 0.8:
+                    new_badges.append('comeback_kid')
         
         # 新しいバッジを記録
         for badge in new_badges:
@@ -235,7 +243,11 @@ class GamificationManager:
         # 日付別の学習データを集計
         session_dates = set()
         for entry in history:
-            date_str = entry.get('date', '')[:10]
+            raw_date = entry.get('date', '')
+            if len(raw_date) >= 10:
+                date_str = raw_date[:10]
+            else:
+                continue
             if date_str:
                 calendar_data[date_str]['questions'] += 1
                 if entry.get('is_correct'):
@@ -262,7 +274,7 @@ class GamificationManager:
             # カレンダー表示用の追加情報
             data['date'] = date_str
             data['accuracy'] = data['correct'] / data['questions'] if data['questions'] > 0 else 0
-            data['intensity'] = min(data['questions'] / 10, 1.0)  # 学習強度（0-1）
+            data['intensity'] = min(data['questions'] / 10, 1.0) if data['questions'] > 0 else 0  # 学習強度（0-1）
             
             result[date_str] = data
             current_date += timedelta(days=1)
@@ -295,7 +307,7 @@ class GamificationManager:
         
         # 最近の傾向（直近20問）
         recent_history = history[-20:] if len(history) >= 20 else history
-        recent_accuracy = sum(1 for h in recent_history if h.get('is_correct')) / len(recent_history)
+        recent_accuracy = sum(1 for h in recent_history if h.get('is_correct')) / len(recent_history) if recent_history else 0
         
         # 学習パターン分析
         study_hours = defaultdict(int)
@@ -305,10 +317,14 @@ class GamificationManager:
                 try:
                     hour = datetime.fromisoformat(date_str).hour
                     study_hours[hour] += 1
-                except:
-                    pass
+                except (ValueError, TypeError) as e:
+                    logger.warning(f"学習時間の日付パースエラー: {date_str}: {e}")
         
-        peak_hour = max(study_hours.items(), key=lambda x: x[1])[0] if study_hours else 12
+        try:
+            peak_hour = max(study_hours.items(), key=lambda x: x[1])[0] if study_hours else 12
+        except (ValueError, TypeError) as e:
+            logger.warning(f"ピーク時間計算エラー: {e}")
+            peak_hour = 12
         
         # カテゴリ別強み・弱み
         category_stats = user_session.get('category_stats', {})
@@ -316,18 +332,20 @@ class GamificationManager:
         weaknesses = []
         
         for category, stats in category_stats.items():
-            if stats.get('total', 0) >= 10:
-                accuracy = stats.get('correct', 0) / stats.get('total', 1)
-                if accuracy >= 0.8:
+            cat_total = stats.get('total', 0)
+            cat_correct = stats.get('correct', 0)
+            if cat_total >= 10:
+                cat_accuracy = cat_correct / cat_total
+                if cat_accuracy >= 0.8:
                     strengths.append(category)
-                elif accuracy <= 0.6:
+                elif cat_accuracy <= 0.6:
                     weaknesses.append(category)
         
         return {
             'total_questions': total_questions,
-            'overall_accuracy': correct_count / total_questions,
+            'overall_accuracy': correct_count / total_questions if total_questions > 0 else 0,
             'total_study_time': total_time,
-            'avg_time_per_question': total_time / total_questions,
+            'avg_time_per_question': total_time / total_questions if total_questions > 0 else 0,
             'recent_accuracy': recent_accuracy,
             'study_streak': user_session.get('study_streak', 0),
             'max_streak': user_session.get('max_study_streak', 0),
@@ -335,7 +353,7 @@ class GamificationManager:
             'strengths': strengths,
             'weaknesses': weaknesses,
             'badges_earned': len(user_session.get('earned_badges', [])),
-            'improvement_trend': recent_accuracy - (correct_count / total_questions)
+            'improvement_trend': recent_accuracy - (correct_count / total_questions if total_questions > 0 else 0)
         }
 
 # グローバルインスタンス

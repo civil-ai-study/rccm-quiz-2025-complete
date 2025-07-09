@@ -48,7 +48,7 @@ class AdvancedAnalytics:
         return {
             'trends': sorted(trends, key=lambda x: x['date']),
             'total_days': len(trends),
-            'avg_daily_questions': statistics.mean([t['question_count'] for t in trends]) if trends else 0
+            'avg_daily_questions': statistics.mean([t['question_count'] for t in trends]) if trends and all(isinstance(t.get('question_count'), (int, float)) for t in trends) else 0
         }
     
     def analyze_difficulty_distribution(self, srs_data: Dict) -> Dict[str, Any]:
@@ -72,7 +72,10 @@ class AdvancedAnalytics:
         distribution = {}
         for level in range(1, 11):  # 1-10の難易度
             count = difficulty_counts.get(level, 0)
-            accuracy = statistics.mean(difficulty_accuracy[level]) if difficulty_accuracy[level] else 0
+            try:
+                accuracy = statistics.mean(difficulty_accuracy[level]) if difficulty_accuracy[level] else 0
+            except (TypeError, ValueError, statistics.StatisticsError):
+                accuracy = 0
             distribution[str(level)] = {
                 'count': count,
                 'accuracy': accuracy
@@ -82,7 +85,7 @@ class AdvancedAnalytics:
             'distribution': distribution,
             'summary': {
                 'total_questions': sum(difficulty_counts.values()),
-                'avg_difficulty': statistics.mean(difficulty_counts.keys()) if difficulty_counts else 5
+                'avg_difficulty': statistics.mean(list(difficulty_counts.keys())) if difficulty_counts else 5
             }
         }
     
@@ -108,8 +111,12 @@ class AdvancedAnalytics:
             first_half = curve_points[:len(curve_points)//2]
             second_half = curve_points[len(curve_points)//2:]
             
-            first_avg = statistics.mean([p['accuracy'] for p in first_half])
-            second_avg = statistics.mean([p['accuracy'] for p in second_half])
+            try:
+                first_avg = statistics.mean([p['accuracy'] for p in first_half]) if first_half else 0
+                second_avg = statistics.mean([p['accuracy'] for p in second_half]) if second_half else 0
+            except (TypeError, ValueError, statistics.StatisticsError) as e:
+                logger.warning(f"学習曲線トレンド分析で統計エラー: {e}")
+                first_avg = second_avg = 0
             
             if second_avg > first_avg + 0.1:
                 trend = 'improving'
@@ -147,7 +154,11 @@ class AdvancedAnalytics:
                     correct = data.get('correct_count', 0)
                     if total > 0:
                         mastery_scores.append(correct / total)
-            mastery_level = statistics.mean(mastery_scores) if mastery_scores else 0
+            try:
+                mastery_level = statistics.mean(mastery_scores) if mastery_scores else 0
+            except (TypeError, ValueError, statistics.StatisticsError) as e:
+                logger.warning(f"成功確率計算で習熟度エラー: {e}")
+                mastery_level = 0
         
         # 総合確率計算
         combined_score = (recent_accuracy * 0.6 + mastery_level * 0.4)
@@ -206,8 +217,12 @@ class AdvancedAnalytics:
             
             accuracy_over_time.append(1 if is_correct else 0)
         
-        avg_efficiency = statistics.mean(time_efficiency) if time_efficiency else 0
-        overall_accuracy = statistics.mean(accuracy_over_time) if accuracy_over_time else 0
+        try:
+            avg_efficiency = statistics.mean(time_efficiency) if time_efficiency else 0
+            overall_accuracy = statistics.mean(accuracy_over_time) if accuracy_over_time else 0
+        except (TypeError, ValueError, statistics.StatisticsError) as e:
+            logger.warning(f"学習効率計算で統計エラー: {e}")
+            avg_efficiency = overall_accuracy = 0
         
         return {
             'efficiency': round(avg_efficiency, 3),
@@ -239,9 +254,15 @@ class AdvancedAnalytics:
         if not difficulties:
             return {'load': 0, 'factors': {}}
         
-        avg_difficulty = statistics.mean(difficulties)
-        difficulty_variance = statistics.variance(difficulties) if len(difficulties) > 1 else 0
-        avg_attempts = statistics.mean(attempts) if attempts else 0
+        try:
+            avg_difficulty = statistics.mean(difficulties) if difficulties else 5
+            difficulty_variance = statistics.variance(difficulties) if len(difficulties) > 1 else 0
+            avg_attempts = statistics.mean(attempts) if attempts else 0
+        except (TypeError, ValueError, statistics.StatisticsError) as e:
+            logger.warning(f"認知負荷推定で統計計算エラー: {e}")
+            avg_difficulty = 5
+            difficulty_variance = 0
+            avg_attempts = 0
         
         # 認知負荷スコア計算
         cognitive_load = (avg_difficulty / 10) * 0.4 + (difficulty_variance / 10) * 0.3 + min(1, avg_attempts / 5) * 0.3
@@ -321,13 +342,18 @@ class AdvancedAnalytics:
         try:
             review_date = datetime.fromisoformat(next_review.replace('Z', '+00:00'))
             return review_date <= datetime.now()
-        except:
+        except (ValueError, TypeError) as e:
+            logger.warning(f"復習期限チェックで日付パースエラー: {next_review}: {e}")
             return False
     
     def _parse_time(self, time_str: str) -> int:
         """時間文字列をパースして分数に変換"""
         if '分' in time_str:
-            return int(time_str.replace('分', '').replace('/日', ''))
+            try:
+                return int(time_str.replace('分', '').replace('/日', ''))
+            except (ValueError, TypeError) as e:
+                logger.warning(f"時間文字列パースエラー: {time_str}: {e}")
+                return 0
         return 0
     
     def analyze_memory_retention(self, srs_data: Dict) -> Dict[str, Any]:

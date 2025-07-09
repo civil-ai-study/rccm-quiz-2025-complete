@@ -368,14 +368,24 @@ class AdminDashboard:
         if not os.path.exists(self.user_data_dir):
             return user_data
         
-        for filename in os.listdir(self.user_data_dir):
-            if filename.endswith('.json'):
-                user_id = filename[:-5]  # .json除去
-                try:
-                    with open(os.path.join(self.user_data_dir, filename), 'r', encoding='utf-8') as f:
-                        user_data[user_id] = json.load(f)
-                except Exception as e:
-                    logger.warning(f"ユーザーデータ読み込みエラー {filename}: {e}")
+        try:
+            if not os.path.exists(self.user_data_dir):
+                logger.warning(f"ユーザーデータディレクトリが存在しません: {self.user_data_dir}")
+                return user_data
+            
+            for filename in os.listdir(self.user_data_dir):
+                if filename.endswith('.json'):
+                    user_id = filename[:-5]  # .json除去
+                    file_path = os.path.join(self.user_data_dir, filename)
+                    try:
+                        with open(file_path, 'r', encoding='utf-8') as f:
+                            user_data[user_id] = json.load(f)
+                    except (FileNotFoundError, PermissionError, json.JSONDecodeError, UnicodeDecodeError) as e:
+                        logger.warning(f"ユーザーデータ読み込みエラー {filename}: {e}")
+                    except Exception as e:
+                        logger.error(f"予期しないエラー {filename}: {e}")
+        except (OSError, PermissionError) as e:
+            logger.error(f"ディレクトリアクセスエラー {self.user_data_dir}: {e}")
         
         return user_data
     
@@ -385,8 +395,20 @@ class AdminDashboard:
             return None
         
         try:
-            last_entry = max(history, key=lambda x: x.get('date', ''))
-            return datetime.fromisoformat(last_entry.get('date', ''))
+            # 有効な日付を持つエントリのみをフィルタ
+            valid_entries = [entry for entry in history if entry.get('date')]
+            if not valid_entries:
+                return None
+            
+            last_entry = max(valid_entries, key=lambda x: x.get('date', ''))
+            date_str = last_entry.get('date', '')
+            if not date_str:
+                return None
+            
+            return datetime.fromisoformat(date_str)
+        except (ValueError, TypeError, KeyError) as e:
+            logger.warning(f"日付パースエラー: {e}")
+            return None
         except:
             return None
     
@@ -430,8 +452,12 @@ class AdminDashboard:
         try:
             with open(filepath, 'r', encoding='utf-8') as f:
                 user_data = json.load(f)
+        except (FileNotFoundError, PermissionError) as e:
+            return {'error': f'ファイルアクセスエラー: {e}'}
+        except (json.JSONDecodeError, UnicodeDecodeError) as e:
+            return {'error': f'データ読み込みエラー: {e}'}
         except Exception as e:
-            return {'error': f'Failed to load user data: {e}'}
+            return {'error': f'予期しないエラー: {e}'}
         
         history = user_data.get('history', [])
         

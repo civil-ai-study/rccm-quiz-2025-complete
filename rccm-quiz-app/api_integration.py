@@ -138,9 +138,13 @@ class APIManager:
                 return {'valid': False, 'error': 'API key is deactivated'}
             
             # 有効期限チェック
-            expires_at = datetime.fromisoformat(key_info['expires_at'])
-            if datetime.now() > expires_at:
-                return {'valid': False, 'error': 'API key has expired'}
+            try:
+                expires_at = datetime.fromisoformat(key_info['expires_at'])
+                if datetime.now() > expires_at:
+                    return {'valid': False, 'error': 'API key has expired'}
+            except (ValueError, TypeError, KeyError) as e:
+                logger.warning(f"有効期限の日付パースエラー: {e}")
+                return {'valid': False, 'error': 'Invalid expiration date format'}
             
             # 権限チェック
             if required_permission and required_permission not in key_info['permissions']:
@@ -695,12 +699,19 @@ class APIManager:
     def _load_json_file(self, filepath: str, default: Any) -> Any:
         """JSONファイル読み込み"""
         try:
-            if os.path.exists(filepath):
-                with open(filepath, 'r', encoding='utf-8') as f:
-                    return json.load(f)
+            if not os.path.exists(filepath):
+                return default
+            
+            with open(filepath, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except (FileNotFoundError, PermissionError) as e:
+            logger.warning(f"ファイルアクセスエラー {filepath}: {e}")
+            return default
+        except (json.JSONDecodeError, UnicodeDecodeError) as e:
+            logger.warning(f"データ読み込みエラー {filepath}: {e}")
             return default
         except Exception as e:
-            logger.warning(f"JSONファイル読み込みエラー {filepath}: {e}")
+            logger.error(f"予期しないエラー {filepath}: {e}")
             return default
     
     def _save_json_file(self, filepath: str, data: Any):
@@ -749,7 +760,7 @@ class APIManager:
         for req_name, req_config in requirements.items():
             if req_config['type'] == 'accuracy':
                 target_accuracy = req_config['target']
-                current_accuracy = sum(1 for h in history if h.get('is_correct', False)) / len(history) if history else 0
+                current_accuracy = sum(1 for h in history if h.get('is_correct', False)) / len(history) if len(history) > 0 else 0
                 progress['requirements_met'][req_name] = current_accuracy >= target_accuracy
             
             elif req_config['type'] == 'question_count':

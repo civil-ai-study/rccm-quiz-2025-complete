@@ -333,7 +333,8 @@ class AdvancedPersonalizationEngine:
             try:
                 dt = datetime.fromisoformat(entry.get('date', ''))
                 study_times.append(dt.hour)
-            except:
+            except (ValueError, TypeError, AttributeError) as e:
+                logger.warning(f"学習時間パターン分析で日付パースエラー: {entry.get('date', 'unknown')}: {e}")
                 continue
         
         # 学習頻度パターン
@@ -342,7 +343,8 @@ class AdvancedPersonalizationEngine:
             try:
                 dt = datetime.fromisoformat(entry.get('date', ''))
                 study_dates.add(dt.date())
-            except:
+            except (ValueError, TypeError, AttributeError) as e:
+                logger.warning(f"学習頻度パターン分析で日付パースエラー: {entry.get('date', 'unknown')}: {e}")
                 continue
         
         # 正答率推移
@@ -385,7 +387,15 @@ class AdvancedPersonalizationEngine:
         error_patterns = self._analyze_error_patterns(history)
         
         # 時間帯から推定
-        study_hours = [datetime.fromisoformat(h.get('date', '')).hour for h in history if h.get('date')]
+        study_hours = []
+        for h in history:
+            if h.get('date'):
+                try:
+                    hour = datetime.fromisoformat(h.get('date', '')).hour
+                    study_hours.append(hour)
+                except (ValueError, TypeError) as e:
+                    logger.warning(f"日付パースエラー: {h.get('date', '')}: {e}")
+                    continue
         if study_hours:
             avg_hour = sum(study_hours) / len(study_hours)
             if 9 <= avg_hour <= 12:  # 午前集中 → 読み書き型
@@ -461,7 +471,8 @@ class AdvancedPersonalizationEngine:
                 hour = dt.hour
                 accuracy = 1 if entry.get('is_correct', False) else 0
                 hourly_performance[hour].append(accuracy)
-            except:
+            except (ValueError, TypeError, AttributeError) as e:
+                logger.warning(f"時間パターン分析で日付パースエラー: {entry.get('date', 'unknown')}: {e}")
                 continue
         
         # 最適時間帯特定
@@ -494,7 +505,8 @@ class AdvancedPersonalizationEngine:
             try:
                 dt = datetime.fromisoformat(entry.get('date', ''))
                 study_dates.append(dt.date())
-            except:
+            except (ValueError, TypeError, AttributeError) as e:
+                logger.warning(f"動機づけプロファイル分析で日付パースエラー: {entry.get('date', 'unknown')}: {e}")
                 continue
         
         study_dates = sorted(set(study_dates))
@@ -727,12 +739,19 @@ class AdvancedPersonalizationEngine:
         """ユーザーデータ読み込み"""
         filepath = os.path.join(self.user_data_dir, f"{user_id}.json")
         try:
-            if os.path.exists(filepath):
-                with open(filepath, 'r', encoding='utf-8') as f:
-                    return json.load(f)
+            if not os.path.exists(filepath):
+                return {}
+            
+            with open(filepath, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except (FileNotFoundError, PermissionError, IOError, OSError) as e:
+            logger.warning(f"ファイルアクセスエラー {filepath}: {type(e).__name__}: {e}")
+            return {}
+        except (json.JSONDecodeError, UnicodeDecodeError) as e:
+            logger.warning(f"データ読み込みエラー {filepath}: {type(e).__name__}: {e}")
             return {}
         except Exception as e:
-            logger.warning(f"ユーザーデータ読み込みエラー {filepath}: {e}")
+            logger.error(f"予期しないエラー {filepath}: {type(e).__name__}: {e}")
             return {}
     
     def _save_user_profile(self, user_id: str, profile: Dict[str, Any]):
@@ -740,15 +759,23 @@ class AdvancedPersonalizationEngine:
         try:
             profiles = {}
             if os.path.exists(self.user_profiles_file):
-                with open(self.user_profiles_file, 'r', encoding='utf-8') as f:
-                    profiles = json.load(f)
+                try:
+                    with open(self.user_profiles_file, 'r', encoding='utf-8') as f:
+                        profiles = json.load(f)
+                except (json.JSONDecodeError, UnicodeDecodeError) as e:
+                    logger.warning(f"既存プロファイル読み込みエラー: {e}")
+                    profiles = {}
             
             profiles[user_id] = profile
             
             with open(self.user_profiles_file, 'w', encoding='utf-8') as f:
                 json.dump(profiles, f, ensure_ascii=False, indent=2)
+        except (FileNotFoundError, PermissionError, IOError, OSError) as e:
+            logger.error(f"ファイルアクセスエラー: {type(e).__name__}: {e}")
+        except json.JSONDecodeError as e:
+            logger.error(f"JSON書き込みエラー: 行{getattr(e, 'lineno', 'N/A')}, 列{getattr(e, 'colno', 'N/A')}: {e.msg}")
         except Exception as e:
-            logger.error(f"ユーザープロファイル保存エラー: {e}")
+            logger.error(f"ユーザープロファイル保存エラー: {type(e).__name__}: {e}")
     
     def _load_ui_preferences(self, user_id: str) -> Dict[str, Any]:
         """UI設定読み込み"""
@@ -758,8 +785,14 @@ class AdvancedPersonalizationEngine:
                     preferences = json.load(f)
                     return preferences.get(user_id, {})
             return {}
+        except (FileNotFoundError, PermissionError, IOError, OSError) as e:
+            logger.warning(f"UI設定ファイルアクセスエラー: {type(e).__name__}: {e}")
+            return {}
+        except (json.JSONDecodeError, UnicodeDecodeError) as e:
+            logger.warning(f"UI設定JSON読み込みエラー: {type(e).__name__}: {e}")
+            return {}
         except Exception as e:
-            logger.warning(f"UI設定読み込みエラー: {e}")
+            logger.warning(f"UI設定読み込みエラー: {type(e).__name__}: {e}")
             return {}
     
     def _save_ui_preferences(self, user_id: str, preferences: Dict[str, Any]):
@@ -774,8 +807,12 @@ class AdvancedPersonalizationEngine:
             
             with open(self.ui_preferences_file, 'w', encoding='utf-8') as f:
                 json.dump(all_preferences, f, ensure_ascii=False, indent=2)
+        except (FileNotFoundError, PermissionError, IOError, OSError) as e:
+            logger.error(f"UI設定ファイルアクセスエラー: {type(e).__name__}: {e}")
+        except (json.JSONDecodeError, UnicodeDecodeError) as e:
+            logger.error(f"UI設定JSON処理エラー: {type(e).__name__}: {e}")
         except Exception as e:
-            logger.error(f"UI設定保存エラー: {e}")
+            logger.error(f"UI設定保存エラー: {type(e).__name__}: {e}")
     
     def _create_default_profile(self, user_id: str) -> Dict[str, Any]:
         """デフォルトプロファイル作成"""
@@ -806,7 +843,8 @@ class AdvancedPersonalizationEngine:
             try:
                 dt = datetime.fromisoformat(entry.get('date', ''))
                 dates.append(dt.date())
-            except:
+            except (ValueError, TypeError, AttributeError) as e:
+                logger.warning(f"プロファイル信頼度計算で日付パースエラー: {entry.get('date', 'unknown')}: {e}")
                 continue
         
         if dates:
