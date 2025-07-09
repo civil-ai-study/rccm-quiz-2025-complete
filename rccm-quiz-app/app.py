@@ -8043,14 +8043,24 @@ def exam_question():
         
         if session_status != 'in_progress':
             logger.error(f"🛡️ ULTRATHIN段階6: セッション状態不正 - status: {session_status}, 期待値: 'in_progress'")
-            return redirect(url_for('exam_simulator_page'))
+            # 🛡️ ULTRASYNC緊急修正: 基礎科目は実際の試験ページにリダイレクト
+            exam_type = exam_session.get('exam_type', '')
+            if exam_type == '基礎科目':
+                return redirect(url_for('exam'))
+            else:
+                return redirect(url_for('exam_simulator_page'))
 
         # メモリからexam_dataを取得
         exam_id = exam_session.get('exam_id', '')
         full_exam_data = get_exam_data_from_memory(exam_id)  # 🛡️ ULTRATHIN区段階5: 正しい関数名に修正
         if not full_exam_data:
             logger.error(f"🔥 EXAM QUESTION: exam_dataが見つかりません - exam_id: {exam_id}")
-            return redirect(url_for('exam_simulator_page'))
+            # 🛡️ ULTRASYNC緊急修正: 基礎科目は実際の試験ページにリダイレクト
+            exam_type = exam_session.get('exam_type', '')
+            if exam_type == '基礎科目':
+                return redirect(url_for('exam'))
+            else:
+                return redirect(url_for('exam_simulator_page'))
 
         current_q_index = full_exam_data['current_question']
         questions = full_exam_data['questions']
