@@ -696,68 +696,31 @@ def load_rccm_data_files(data_dir: str) -> List[Dict]:
 
 def map_category_to_department(category: str) -> str:
     """
-    カテゴリ名から適切なRCCM部門IDにマッピング（実際のCSVデータ対応）
+    カテゴリ名をそのまま使用（シンプル設計）
+    4-1.csv: 「共通」カテゴリーをそのまま使用
+    4-2.csv: 日本語カテゴリー名をそのまま使用
     """
-    category_mapping = {
-        # 基礎科目
-        '共通': 'common',
-        '基礎科目': 'common',
-        
-        # 道路
-        '道路': 'road',
-        
-        # トンネル
-        'トンネル': 'tunnel',
-        
-        # 河川砂防海岸（年度による表記の違いに対応）
-        '河川、砂防及び海岸・海洋': 'civil_planning',
-        '河川砂防海岸': 'civil_planning',
-        '河川砂防': 'civil_planning',  # 2008年度
-        '河川砂防海岸海洋': 'civil_planning',  # 2010年度
-        '河川砂防及び海岸・海洋': 'civil_planning',  # 2012年度
-        '河川、砂防及び海岸･海洋': 'civil_planning',  # 2013年度
-        '河川・砂防及び海岸・海洋': 'civil_planning',  # 2014年度
-        
-        # 都市計画（年度による表記の違いに対応）
-        '都市計画及び地方計画': 'urban_planning',
-        '都市計画地方計画': 'urban_planning',
-        
-        # 造園
-        '造園': 'landscape',
-        
-        # 建設環境
-        '建設環境': 'construction_env',
-        
-        # 鋼構造コンクリート（年度による表記の違いに対応）
-        '鋼構造及びコンクリート': 'steel_concrete',
-        '鋼構造コンクリート': 'steel_concrete',
-        
-        # 土質基礎
-        '土質及び基礎': 'soil_foundation',
-        
-        # 施工計画（年度による表記の違いに対応）
-        '施工計画': 'construction_planning',
-        '施工計画施工設備積算': 'construction_planning',
-        '施工計画、施工設備及び積算': 'construction_planning',
-        
-        # 上水道
-        '上水道及び工業用水道': 'water_supply',
-        
-        # 森林土木
-        '森林土木': 'forestry',
-        
-        # 農業土木
-        '農業土木': 'agriculture',
-        
-        # 未分類・その他
-        '未分類': 'road',  # デフォルト部門
-    }
+    # 基礎科目（4-1.csv）の「共通」カテゴリーはそのまま使用
+    if category == '共通':
+        return '共通'
     
-    for key, dept in category_mapping.items():
-        if key in category:
-            return dept
+    # 専門科目（4-2.csv）の日本語カテゴリー名をそのまま使用
+    # 年度による表記の違いのみ正規化
+    if '河川' in category and '砂防' in category:
+        return '河川、砂防及び海岸・海洋'
+    elif '都市計画' in category and '地方計画' in category:
+        return '都市計画及び地方計画'
+    elif '鋼構造' in category and 'コンクリート' in category:
+        return '鋼構造及びコンクリート'
+    elif '土質' in category and '基礎' in category:
+        return '土質及び基礎'
+    elif '施工計画' in category:
+        return '施工計画、施工設備及び積算'
+    elif '上水道' in category:
+        return '上水道及び工業用水道'
     
-    return 'road'  # デフォルト
+    # その他の専門科目はそのまま使用
+    return category
 
 def resolve_id_conflicts(questions: List[Dict]) -> List[Dict]:
     """
