@@ -7939,8 +7939,8 @@ def start_exam(exam_type):
                 return response
                 
             except Exception as emergency_error:
-                logger.error(f"🚨 ULTRATHIN段階32: 専門科目段階29エラー - {emergency_error}")
-                return redirect(url_for('exam_simulator_page'))
+                logger.error(f"🚨 ULTRASYNC段階32: 専門科目段階29エラー - {emergency_error}")
+                return render_template('error.html', error="専門科目の問題データ読み込みでエラーが発生しました。", error_type="specialist_load_error")
         else:
             # 🚨 ULTRATHIN区段階32緊急修正4: 基礎科目超軽量処理
             # 基礎科目は段階29を完全回避
@@ -8022,20 +8022,20 @@ def exam_question():
                             # 復元されたセッションで処理継続
                             exam_session = restored_session
                         else:
-                            logger.error(f"🛡️ ULTRATHIN段階14: 専門科目データ未読み込み - 復元不可")
-                            return redirect(url_for('exam_simulator_page'))
+                            logger.error(f"🛡️ ULTRASYNC段階14: 専門科目データ未読み込み - 復元不可")
+                            return render_template('error.html', error="専門科目データが見つかりません。部門を再選択してください。", error_type="specialist_data_missing")
                     else:
-                        logger.error(f"🛡️ ULTRATHIN段階14: デバッグ情報取得失敗")
-                        return redirect(url_for('exam_simulator_page'))
+                        logger.error(f"🛡️ ULTRASYNC段階14: デバッグ情報取得失敗")
+                        return render_template('error.html', error="セッション情報の復元に失敗しました。", error_type="session_restore_error")
                         
             except Exception as restore_error:
-                logger.error(f"🛡️ ULTRATHIN段階14: セッション復元エラー - {restore_error}")
-                return redirect(url_for('exam_simulator_page'))
+                logger.error(f"🛡️ ULTRASYNC段階14: セッション復元エラー - {restore_error}")
+                return render_template('error.html', error="セッション復元中にエラーが発生しました。", error_type="session_restore_exception")
         
         # 復元されたセッションまたは元のセッションで処理継続
         if not exam_session:
-            logger.error(f"🛡️ ULTRATHIN段階14: 最終的にセッション取得失敗")
-            return redirect(url_for('exam_simulator_page'))
+            logger.error(f"🛡️ ULTRASYNC段階14: 最終的にセッション取得失敗")
+            return render_template('error.html', error="試験セッションが見つかりません。試験を再開してください。", error_type="session_not_found")
             
         session_status = exam_session.get('status', 'UNKNOWN')
         exam_id = exam_session.get('exam_id', 'NO_ID')
