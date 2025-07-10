@@ -1,0 +1,108 @@
+{
+  "timestamp": "2025-07-08T13:04:06.113574",
+  "summary": {
+    "total": 13,
+    "successful": 9,
+    "failed": 4,
+    "success_rate": 69.23076923076923
+  },
+  "category_results": {
+    "2024_year_fix": false,
+    "other_years": true,
+    "invalid_years": true
+  },
+  "repair_successful": false,
+  "results": [
+    {
+      "test_name": "セッション初期化",
+      "success": true,
+      "details": "",
+      "content_preview": "",
+      "timestamp": "2025-07-08T13:03:54.707691"
+    },
+    {
+      "test_name": "2024年度_基礎科目_10問",
+      "success": false,
+      "details": "エラーページ: はい, コンテンツ良好: いいえ, 問題要素: はい",
+      "content_preview": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n",
+      "timestamp": "2025-07-08T13:03:54.967275"
+    },
+    {
+      "test_name": "2024年度_道路_10問",
+      "success": false,
+      "details": "エラーページ: はい, コンテンツ良好: いいえ, 問題要素: はい",
+      "content_preview": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n",
+      "timestamp": "2025-07-08T13:03:56.256199"
+    },
+    {
+      "test_name": "2024年度_河川・砂防_5問",
+      "success": false,
+      "details": "エラーページ: はい, コンテンツ良好: いいえ, 問題要素: はい",
+      "content_preview": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n",
+      "timestamp": "2025-07-08T13:03:57.550065"
+    },
+    {
+      "test_name": "2024年度_都市計画_15問",
+      "success": false,
+      "details": "エラーページ: はい, コンテンツ良好: いいえ, 問題要素: はい",
+      "content_preview": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n",
+      "timestamp": "2025-07-08T13:03:58.855019"
+    },
+    {
+      "test_name": "他年度_基礎科目_2019年",
+      "success": true,
+      "details": "HTTP 302",
+      "content_preview": "",
+      "timestamp": "2025-07-08T13:04:00.181871"
+    },
+    {
+      "test_name": "他年度_道路_2018年",
+      "success": true,
+      "details": "HTTP 302",
+      "content_preview": "",
+      "timestamp": "2025-07-08T13:04:01.001511"
+    },
+    {
+      "test_name": "他年度_河川・砂防_2017年",
+      "success": true,
+      "details": "HTTP 200",
+      "content_preview": "",
+      "timestamp": "2025-07-08T13:04:01.780393"
+    },
+    {
+      "test_name": "他年度_都市計画_2016年",
+      "success": true,
+      "details": "HTTP 302",
+      "content_preview": "",
+      "timestamp": "2025-07-08T13:04:02.558132"
+    },
+    {
+      "test_name": "無効年度_2025年",
+      "success": true,
+      "details": "エラーページ: はい, 年度エラー: はい",
+      "content_preview": "",
+      "timestamp": "2025-07-08T13:04:03.339041"
+    },
+    {
+      "test_name": "無効年度_2026年",
+      "success": true,
+      "details": "エラーページ: はい, 年度エラー: はい",
+      "content_preview": "",
+      "timestamp": "2025-07-08T13:04:04.072770"
+    },
+    {
+      "test_name": "無効年度_2000年",
+      "success": true,
+      "details": "エラーページ: はい, 年度エラー: はい",
+      "content_preview": "",
+      "timestamp": "2025-07-08T13:04:04.849667"
+    },
+    {
+      "test_name": "無効年度_1999年",
+      "success": true,
+      "details": "エラーページ: はい, 年度エラー: はい",
+      "content_preview": "",
+      "timestamp": "2025-07-08T13:04:05.606531"
+    }
+  ]
+}

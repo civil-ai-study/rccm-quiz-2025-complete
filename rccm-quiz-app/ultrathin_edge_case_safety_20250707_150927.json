@@ -1,0 +1,92 @@
+{
+  "timestamp": "2025-07-07T15:09:15.713587",
+  "base_url": "https://rccm-quiz-2025.onrender.com",
+  "edge_cases": [
+    {
+      "test": "存在しないページ",
+      "method": "GET",
+      "path": "/this_page_does_not_exist",
+      "status_code": 404,
+      "response_time": 0.291731,
+      "content_type": "text/html; charset=utf-8",
+      "has_error": false,
+      "safe": true
+    },
+    {
+      "test": "SQLインジェクション風パス",
+      "method": "GET",
+      "path": "/quiz_selection/'; DROP TABLE--",
+      "status_code": 403,
+      "response_time": 0.493876,
+      "content_type": "text/html; charset=UTF-8",
+      "has_error": false,
+      "safe": true
+    },
+    {
+      "test": "問題数0",
+      "method": "POST",
+      "path": "/start_exam/基礎科目",
+      "status_code": 200,
+      "response_time": 0.160687,
+      "content_type": "text/html; charset=utf-8",
+      "has_error": true,
+      "safe": true
+    },
+    {
+      "test": "問題数999999",
+      "method": "POST",
+      "path": "/start_exam/基礎科目",
+      "status_code": 200,
+      "response_time": 0.443451,
+      "content_type": "text/html; charset=utf-8",
+      "has_error": true,
+      "safe": true
+    },
+    {
+      "test": "無効な年度",
+      "method": "POST",
+      "path": "/start_exam/基礎科目",
+      "status_code": 200,
+      "response_time": 0.158984,
+      "content_type": "text/html; charset=utf-8",
+      "has_error": true,
+      "safe": true
+    },
+    {
+      "test": "特殊文字カテゴリ",
+      "method": "GET",
+      "path": "/quiz_selection/テスト🔥⚡️",
+      "status_code": 404,
+      "response_time": 0.342496,
+      "content_type": "text/html; charset=utf-8",
+      "has_error": false,
+      "safe": true
+    },
+    {
+      "test": "超長文カテゴリ名",
+      "method": "GET",
+      "path": "/quiz_selection/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "status_code": 404,
+      "response_time": 0.668845,
+      "content_type": "text/html; charset=utf-8",
+      "has_error": false,
+      "safe": true
+    },
+    {
+      "test": "不正なセッションCookie",
+      "method": "GET",
+      "path": "/",
+      "status_code": 200,
+      "response_time": 0.279871,
+      "content_type": "text/html; charset=utf-8",
+      "has_error": true,
+      "safe": true
+    },
+    {
+      "test": "並列アクセス",
+      "parallel_requests": 5,
+      "all_successful": true,
+      "safe": true
+    }
+  ]
+}

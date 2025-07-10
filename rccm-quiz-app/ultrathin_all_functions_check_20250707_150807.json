@@ -1,0 +1,108 @@
+{
+  "timestamp": "2025-07-07T15:07:54.992424",
+  "base_url": "https://rccm-quiz-2025.onrender.com",
+  "functions": [
+    {
+      "function": "トップページ",
+      "method": "GET",
+      "path": "/",
+      "status_code": 200,
+      "response_time": 0.329578,
+      "content_length": 35120,
+      "cookies_changed": true,
+      "redirect": false,
+      "success": true,
+      "potential_error": true
+    },
+    {
+      "function": "ヘルプページ",
+      "method": "GET",
+      "path": "/help",
+      "status_code": 200,
+      "response_time": 0.192255,
+      "content_length": 47812,
+      "cookies_changed": false,
+      "redirect": false,
+      "success": true,
+      "potential_error": true
+    },
+    {
+      "function": "基礎科目選択",
+      "method": "GET",
+      "path": "/quiz_selection/基礎科目",
+      "status_code": 404,
+      "response_time": 0.141441,
+      "content_length": 11,
+      "cookies_changed": false,
+      "redirect": false,
+      "success": false
+    },
+    {
+      "function": "専門科目_土質及び基礎",
+      "method": "GET",
+      "path": "/quiz_selection/土質及び基礎",
+      "status_code": 404,
+      "response_time": 0.199266,
+      "content_length": 11,
+      "cookies_changed": false,
+      "redirect": false,
+      "success": false
+    },
+    {
+      "function": "専門科目_道路",
+      "method": "GET",
+      "path": "/quiz_selection/道路",
+      "status_code": 404,
+      "response_time": 0.172185,
+      "content_length": 11,
+      "cookies_changed": false,
+      "redirect": false,
+      "success": false
+    },
+    {
+      "function": "専門科目_都市計画及び地方計画",
+      "method": "GET",
+      "path": "/quiz_selection/都市計画及び地方計画",
+      "status_code": 404,
+      "response_time": 0.458377,
+      "content_length": 11,
+      "cookies_changed": false,
+      "redirect": false,
+      "success": false
+    },
+    {
+      "function": "試験開始_基礎科目",
+      "method": "POST",
+      "path": "/start_exam/基礎科目",
+      "status_code": 200,
+      "response_time": 0.176854,
+      "content_length": 36999,
+      "cookies_changed": true,
+      "redirect": true,
+      "success": true,
+      "potential_error": true
+    },
+    {
+      "function": "統計API",
+      "method": "GET",
+      "path": "/api/statistics",
+      "status_code": 404,
+      "response_time": 0.158995,
+      "content_length": 11,
+      "cookies_changed": false,
+      "redirect": false,
+      "success": false
+    },
+    {
+      "function": "進捗API",
+      "method": "GET",
+      "path": "/api/progress",
+      "status_code": 404,
+      "response_time": 0.190408,
+      "content_length": 11,
+      "cookies_changed": false,
+      "redirect": false,
+      "success": false
+    }
+  ]
+}

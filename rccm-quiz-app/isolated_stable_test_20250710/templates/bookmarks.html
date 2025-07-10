@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% block title %}復習リスト | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <!-- ヘッダー -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-bookmark text-warning"></i> 復習リスト</h2>
+        <div class="action-buttons">
+            <a href="/" class="btn btn-outline-secondary me-2">
+                <i class="fas fa-home"></i> ホーム
+            </a>
+            {% if questions %}
+            <a href="/review" class="btn btn-primary">
+                <i class="fas fa-play"></i> 復習開始
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- 統計情報 -->
+    {% if questions %}
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="stat-item">
+                        <div class="stat-value text-warning">{{ total_count }}</div>
+                        <div class="stat-label">復習問題数</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-item">
+                        {% set basic_count = questions | selectattr('question_type', 'equalto', 'basic') | list | length %}
+                        <div class="stat-value text-info">{{ basic_count }}</div>
+                        <div class="stat-label">基礎科目</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-item">
+                        {% set specialist_count = questions | selectattr('question_type', 'equalto', 'specialist') | list | length %}
+                        <div class="stat-value text-success">{{ specialist_count }}</div>
+                        <div class="stat-label">専門科目</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 復習問題リスト -->
+    {% if questions %}
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0"><i class="fas fa-list"></i> 復習問題一覧</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 80px;">問題ID</th>
+                            <th style="width: 100px;">種別</th>
+                            <th style="width: 150px;">部門</th>
+                            <th style="width: 100px;">年度</th>
+                            <th style="width: 150px;">分野</th>
+                            <th>問題内容</th>
+                            <th style="width: 100px;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for question in questions %}
+                        <tr class="bookmark-item">
+                            <td><span class="badge bg-light text-dark">{{ question.id }}</span></td>
+                            <td>
+                                {% if question.question_type == 'basic' %}
+                                <span class="badge bg-warning text-dark">4-1 基礎</span>
+                                {% elif question.question_type == 'specialist' %}
+                                <span class="badge bg-success">4-2 専門</span>
+                                {% else %}
+                                <span class="badge bg-secondary">不明</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ question.department_name or '未分類' }}</td>
+                            <td>
+                                {% if question.year %}
+                                {{ question.year }}年度
+                                {% else %}
+                                -
+                                {% endif %}
+                            </td>
+                            <td>{{ question.category or '未分類' }}</td>
+                            <td class="question-preview">{{ question.question }}</td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-danger" 
+                                        onclick="removeBookmark('{{ question.id }}')" 
+                                        title="復習リストから削除">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <!-- 空の状態 -->
+    <div class="card">
+        <div class="card-body text-center py-5">
+            <i class="fas fa-bookmark fa-3x text-muted mb-3"></i>
+            <h4 class="text-muted">復習問題がありません</h4>
+            <p class="text-muted">
+                {{ message or "問題を解いて、復習したい問題をブックマークしてください。" }}
+            </p>
+            <a href="/exam" class="btn btn-primary mt-3">
+                <i class="fas fa-play"></i> 問題を解く
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+.stat-item {
+    padding: 15px;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.question-preview {
+    max-width: 300px;
+    word-wrap: break-word;
+    font-size: 0.9rem;
+}
+
+.bookmark-item:hover {
+    background-color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+    .table-responsive {
+        font-size: 0.8rem;
+    }
+    
+    .question-preview {
+        max-width: 200px;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
+    }
+}
+</style>
+
+<script>
+function removeBookmark(questionId) {
+    if (!confirm('この問題を復習リストから削除しますか？')) {
+        return;
+    }
+    
+    fetch('/api/bookmark', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            question_id: questionId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        } else {
+            alert('削除に失敗しました: ' + data.error);
+        }
+    })
+    .catch(error => {
+        // Error handling (production mode)
+        alert('復習リストからの削除に失敗しました。時間をおいて再度お試しください。');
+    });
+}
+</script>
+{% endblock %}

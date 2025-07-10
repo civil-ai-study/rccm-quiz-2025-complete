@@ -1,0 +1,59 @@
+{
+  "timestamp": "2025-07-08T13:20:43.612176",
+  "summary": {
+    "total": 4,
+    "successful": 0,
+    "failed": 4,
+    "success_rate": 0.0
+  },
+  "results": [
+    {
+      "test_name": "基礎科目_標準パラメータ",
+      "http_status": 405,
+      "content_length": 153,
+      "redirect_count": 0,
+      "content_type": "application/x-www-form-urlencoded",
+      "is_html": true,
+      "has_title": true,
+      "is_error_page": false,
+      "has_exam_content": false,
+      "success": false
+    },
+    {
+      "test_name": "基礎科目_詳細パラメータ",
+      "http_status": 405,
+      "content_length": 153,
+      "redirect_count": 0,
+      "content_type": "application/x-www-form-urlencoded",
+      "is_html": true,
+      "has_title": true,
+      "is_error_page": false,
+      "has_exam_content": false,
+      "success": false
+    },
+    {
+      "test_name": "basic_標準パラメータ",
+      "http_status": 200,
+      "content_length": 16903,
+      "redirect_count": 0,
+      "content_type": "application/x-www-form-urlencoded",
+      "is_html": true,
+      "has_title": true,
+      "is_error_page": true,
+      "has_exam_content": true,
+      "success": false
+    },
+    {
+      "test_name": "基礎科目_パラメータなし",
+      "http_status": 200,
+      "content_length": 16930,
+      "redirect_count": 0,
+      "content_type": "text/html; charset=utf-8",
+      "is_html": true,
+      "has_title": true,
+      "is_error_page": true,
+      "has_exam_content": true,
+      "success": false
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "homepage": {
+    "status": 200,
+    "response_time": 0.535693,
+    "headers": {
+      "Date": "Wed, 09 Jul 2025 15:30:25 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "access-control-allow-credentials": "true",
+      "access-control-allow-headers": "Content-Type",
+      "access-control-allow-methods": "GET, POST, OPTIONS",
+      "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0, private",
+      "expires": "-1",
+      "permissions-policy": "geolocation=(), microphone=(), camera=()",
+      "pragma": "no-cache",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "rndr-id": "c1fef6a3-cdd2-47f4",
+      "Set-Cookie": "rccm_session=eyJjYXRlZ29yeV9zdGF0cyI6e30sImhpc3RvcnkiOltdfQ.aG6LEQ.1UYde_03_6sMnrUfCzxWVys8AmA; HttpOnly; Path=/; SameSite=Lax",
+      "strict-transport-security": "max-age=31536000; includeSubDomains",
+      "vary": "Cookie, Accept-Encoding",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY",
+      "x-render-origin-server": "gunicorn",
+      "x-xss-protection": "1; mode=block",
+      "cf-cache-status": "DYNAMIC",
+      "Server": "cloudflare",
+      "CF-RAY": "95c8dcc998acd53f-NRT",
+      "Content-Encoding": "gzip",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    }
+  },
+  "basic_get": {
+    "status": 200,
+    "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+    "redirects": 2,
+    "content_length": 36999
+  },
+  "basic_post": {
+    "status": 200,
+    "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+    "redirects": 2,
+    "content_length": 36999
+  },
+  "route_/exam": {
+    "status": 200,
+    "exists": true
+  },
+  "route_/exam_simulator": {
+    "status": 200,
+    "exists": true
+  },
+  "route_/start_exam/basic": {
+    "status": 200,
+    "exists": true
+  },
+  "route_/start_exam/foundation": {
+    "status": 200,
+    "exists": true
+  },
+  "diagnostic_time": "2025-07-10T00:30:31.013090",
+  "summary": {
+    "homepage_ok": true,
+    "basic_get_redirects_to_exam_simulator": true,
+    "post_works": true,
+    "modification_reflected": false
+  }
+}

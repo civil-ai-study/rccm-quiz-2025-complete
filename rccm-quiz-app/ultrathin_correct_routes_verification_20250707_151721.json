@@ -1,0 +1,125 @@
+{
+  "timestamp": "2025-07-07T15:17:09.297603",
+  "base_url": "https://rccm-quiz-2025.onrender.com",
+  "correct_routes": true,
+  "tests": [
+    {
+      "test": "基礎科目学習ページ",
+      "method": "GET",
+      "path": "/department_study/基礎科目",
+      "status_code": 200,
+      "success": true,
+      "content_length": 16906,
+      "session_ok": true,
+      "content_check": {
+        "基礎科目": false,
+        "4-1関連": false
+      }
+    },
+    {
+      "test": "基礎科目試験開始",
+      "method": "POST",
+      "path": "/start_exam/基礎科目",
+      "status_code": 200,
+      "success": true,
+      "content_length": 36999,
+      "session_ok": true,
+      "content_check": {
+        "問題表示": false,
+        "基礎科目のみ": false,
+        "専門科目混入なし": false
+      }
+    },
+    {
+      "test": "専門科目_土質及び基礎",
+      "method": "GET",
+      "path": "/department_study/土質及び基礎",
+      "status_code": 200,
+      "success": true,
+      "content_length": 25437,
+      "session_ok": true,
+      "content_check": {
+        "部門名": true,
+        "専門科目": false
+      }
+    },
+    {
+      "test": "専門試験_土質及び基礎",
+      "method": "POST",
+      "path": "/start_exam/土質及び基礎",
+      "status_code": 200,
+      "success": true,
+      "content_length": 36999,
+      "session_ok": true,
+      "content_check": {
+        "専門問題": false,
+        "基礎科目混入なし": false
+      }
+    },
+    {
+      "test": "専門科目_鋼構造及びコンクリート",
+      "method": "GET",
+      "path": "/department_study/鋼構造及びコンクリート",
+      "status_code": 200,
+      "success": true,
+      "content_length": 25460,
+      "session_ok": true,
+      "content_check": {
+        "部門名": true,
+        "専門科目": false
+      }
+    },
+    {
+      "test": "専門試験_鋼構造及びコンクリート",
+      "method": "POST",
+      "path": "/start_exam/鋼構造及びコンクリート",
+      "status_code": 200,
+      "success": true,
+      "content_length": 36999,
+      "session_ok": true,
+      "content_check": {
+        "専門問題": false,
+        "基礎科目混入なし": false
+      }
+    },
+    {
+      "test": "専門科目_道路",
+      "method": "GET",
+      "path": "/department_study/道路",
+      "status_code": 200,
+      "success": true,
+      "content_length": 25239,
+      "session_ok": true,
+      "content_check": {
+        "部門名": true,
+        "専門科目": false
+      }
+    },
+    {
+      "test": "専門試験_道路",
+      "method": "POST",
+      "path": "/start_exam/道路",
+      "status_code": 200,
+      "success": true,
+      "content_length": 36999,
+      "session_ok": true,
+      "content_check": {
+        "専門問題": false,
+        "基礎科目混入なし": false
+      }
+    },
+    {
+      "test": "部門一覧",
+      "method": "GET",
+      "path": "/departments",
+      "status_code": 200,
+      "success": true,
+      "content_length": 48690,
+      "session_ok": true,
+      "content_check": {
+        "基礎科目": false,
+        "専門科目複数": false
+      }
+    }
+  ]
+}

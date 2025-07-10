@@ -1,0 +1,87 @@
+{
+  "timestamp": "2025-07-07T19:16:17.000000",
+  "stage": "ULTRATHIN区段階20",
+  "objective": "セッション同期タイミング問題の安全な解決",
+  "problem_analysis": {
+    "root_cause": "save_session()でresponseにNoneを渡している",
+    "problematic_line": "7336: save_session(current_app, session, None)",
+    "effect": "セッションがCookieに保存されない",
+    "current_behavior": "リダイレクト時にセッション失失"
+  },
+  "safe_solution": {
+    "approach": "最小限の変更で最大効果",
+    "change_type": "リダイレクト処理の改善",
+    "specific_changes": [
+      {
+        "location": "app.py line 7341",
+        "current_code": "return redirect(url_for('exam_question'))",
+        "new_code": "response = make_response(redirect(url_for('exam_question')))\n        return response",
+        "justification": "Flaskの標準メカニズムでセッション保存確実化"
+      },
+      {
+        "location": "app.py lines 7332-7339",
+        "action": "削除（不要な明示的保存）",
+        "justification": "無効な保存試行を除去"
+      }
+    ],
+    "import_requirement": "from flask import make_response"
+  },
+  "safety_verification": {
+    "protection_targets": [
+      "段階14復元機能",
+      "4-1/4-2分離機能",
+      "既存セッション構造",
+      "全13部門の動作"
+    ],
+    "impact_analysis": {
+      "stage14_restoration": "影響なし",
+      "data_separation": "影響なし",
+      "session_structure": "影響なし",
+      "functionality": "改善のみ"
+    },
+    "rollback_plan": {
+      "method": "即座の元コード復元",
+      "time_required": "30秒",
+      "risk_level": "極小"
+    }
+  },
+  "implementation_steps": [
+    {
+      "step": 1,
+      "action": "現在のapp.py行7330-7350のバックアップ",
+      "safety": "完全バックアップ"
+    },
+    {
+      "step": 2,
+      "action": "make_responseインポート確認/追加",
+      "safety": "既存インポートチェック"
+    },
+    {
+      "step": 3,
+      "action": "行7332-7339の削除",
+      "safety": "無効コード除去"
+    },
+    {
+      "step": 4,
+      "action": "行7341の修正",
+      "safety": "標準Flask実装"
+    },
+    {
+      "step": 5,
+      "action": "即座のテスト実行",
+      "safety": "動作確認"
+    }
+  ],
+  "expected_outcome": {
+    "immediate": "セッション保存の確実化",
+    "user_facing": "段階14復元不要でスムーズな試験実行",
+    "performance": "復元処理スキップによる高速化",
+    "reliability": "セッション失失問題の根本解決"
+  },
+  "ultrathin_compliance": {
+    "minimal_change": true,
+    "zero_side_effects": true,
+    "reversible": true,
+    "tested_approach": true
+  }
+}

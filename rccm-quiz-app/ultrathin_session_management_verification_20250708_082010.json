@@ -1,0 +1,367 @@
+{
+  "timestamp": "2025-07-08T08:19:43.010265",
+  "stage": "ULTRATHIN区段階47",
+  "functionality": "セッション管理完全性検証",
+  "department_sessions": {
+    "基礎科目": {
+      "department": "基礎科目",
+      "session_complete": true,
+      "session_initialization": {
+        "successful": true,
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999,
+        "has_session_content": true
+      },
+      "session_persistence": {
+        "successful": true,
+        "status_code": 200,
+        "content_length": 36999,
+        "has_exam_content": true
+      },
+      "navigation_flow": {
+        "successful": true,
+        "status_code": 200,
+        "navigation_elements_found": 3,
+        "has_next_navigation": false,
+        "has_previous_navigation": true,
+        "has_completion_navigation": true,
+        "has_progress_indicator": true
+      },
+      "failure_points": []
+    },
+    "道路": {
+      "department": "道路",
+      "session_complete": true,
+      "session_initialization": {
+        "successful": true,
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999,
+        "has_session_content": true
+      },
+      "session_persistence": {
+        "successful": true,
+        "status_code": 200,
+        "content_length": 36999,
+        "has_exam_content": true
+      },
+      "navigation_flow": {
+        "successful": true,
+        "status_code": 200,
+        "navigation_elements_found": 3,
+        "has_next_navigation": false,
+        "has_previous_navigation": true,
+        "has_completion_navigation": true,
+        "has_progress_indicator": true
+      },
+      "failure_points": []
+    },
+    "河川、砂防及び海岸・海洋": {
+      "department": "河川、砂防及び海岸・海洋",
+      "session_complete": true,
+      "session_initialization": {
+        "successful": true,
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999,
+        "has_session_content": true
+      },
+      "session_persistence": {
+        "successful": true,
+        "status_code": 200,
+        "content_length": 36999,
+        "has_exam_content": true
+      },
+      "navigation_flow": {
+        "successful": true,
+        "status_code": 200,
+        "navigation_elements_found": 3,
+        "has_next_navigation": false,
+        "has_previous_navigation": true,
+        "has_completion_navigation": true,
+        "has_progress_indicator": true
+      },
+      "failure_points": []
+    },
+    "都市計画": {
+      "department": "都市計画",
+      "session_complete": true,
+      "session_initialization": {
+        "successful": true,
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999,
+        "has_session_content": true
+      },
+      "session_persistence": {
+        "successful": true,
+        "status_code": 200,
+        "content_length": 36999,
+        "has_exam_content": true
+      },
+      "navigation_flow": {
+        "successful": true,
+        "status_code": 200,
+        "navigation_elements_found": 3,
+        "has_next_navigation": false,
+        "has_previous_navigation": true,
+        "has_completion_navigation": true,
+        "has_progress_indicator": true
+      },
+      "failure_points": []
+    },
+    "造園": {
+      "department": "造園",
+      "session_complete": true,
+      "session_initialization": {
+        "successful": true,
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999,
+        "has_session_content": true
+      },
+      "session_persistence": {
+        "successful": true,
+        "status_code": 200,
+        "content_length": 36999,
+        "has_exam_content": true
+      },
+      "navigation_flow": {
+        "successful": true,
+        "status_code": 200,
+        "navigation_elements_found": 3,
+        "has_next_navigation": false,
+        "has_previous_navigation": true,
+        "has_completion_navigation": true,
+        "has_progress_indicator": true
+      },
+      "failure_points": []
+    },
+    "建設環境": {
+      "department": "建設環境",
+      "session_complete": true,
+      "session_initialization": {
+        "successful": true,
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999,
+        "has_session_content": true
+      },
+      "session_persistence": {
+        "successful": true,
+        "status_code": 200,
+        "content_length": 36999,
+        "has_exam_content": true
+      },
+      "navigation_flow": {
+        "successful": true,
+        "status_code": 200,
+        "navigation_elements_found": 3,
+        "has_next_navigation": false,
+        "has_previous_navigation": true,
+        "has_completion_navigation": true,
+        "has_progress_indicator": true
+      },
+      "failure_points": []
+    },
+    "鋼構造・コンクリート": {
+      "department": "鋼構造・コンクリート",
+      "session_complete": true,
+      "session_initialization": {
+        "successful": true,
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999,
+        "has_session_content": true
+      },
+      "session_persistence": {
+        "successful": true,
+        "status_code": 200,
+        "content_length": 36999,
+        "has_exam_content": true
+      },
+      "navigation_flow": {
+        "successful": true,
+        "status_code": 200,
+        "navigation_elements_found": 3,
+        "has_next_navigation": false,
+        "has_previous_navigation": true,
+        "has_completion_navigation": true,
+        "has_progress_indicator": true
+      },
+      "failure_points": []
+    },
+    "土質・基礎": {
+      "department": "土質・基礎",
+      "session_complete": true,
+      "session_initialization": {
+        "successful": true,
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999,
+        "has_session_content": true
+      },
+      "session_persistence": {
+        "successful": true,
+        "status_code": 200,
+        "content_length": 36999,
+        "has_exam_content": true
+      },
+      "navigation_flow": {
+        "successful": true,
+        "status_code": 200,
+        "navigation_elements_found": 3,
+        "has_next_navigation": false,
+        "has_previous_navigation": true,
+        "has_completion_navigation": true,
+        "has_progress_indicator": true
+      },
+      "failure_points": []
+    },
+    "施工計画": {
+      "department": "施工計画",
+      "session_complete": true,
+      "session_initialization": {
+        "successful": true,
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999,
+        "has_session_content": true
+      },
+      "session_persistence": {
+        "successful": true,
+        "status_code": 200,
+        "content_length": 36999,
+        "has_exam_content": true
+      },
+      "navigation_flow": {
+        "successful": true,
+        "status_code": 200,
+        "navigation_elements_found": 3,
+        "has_next_navigation": false,
+        "has_previous_navigation": true,
+        "has_completion_navigation": true,
+        "has_progress_indicator": true
+      },
+      "failure_points": []
+    },
+    "上下水道": {
+      "department": "上下水道",
+      "session_complete": true,
+      "session_initialization": {
+        "successful": true,
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999,
+        "has_session_content": true
+      },
+      "session_persistence": {
+        "successful": true,
+        "status_code": 200,
+        "content_length": 36999,
+        "has_exam_content": true
+      },
+      "navigation_flow": {
+        "successful": true,
+        "status_code": 200,
+        "navigation_elements_found": 3,
+        "has_next_navigation": false,
+        "has_previous_navigation": true,
+        "has_completion_navigation": true,
+        "has_progress_indicator": true
+      },
+      "failure_points": []
+    },
+    "森林土木": {
+      "department": "森林土木",
+      "session_complete": true,
+      "session_initialization": {
+        "successful": true,
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999,
+        "has_session_content": true
+      },
+      "session_persistence": {
+        "successful": true,
+        "status_code": 200,
+        "content_length": 36999,
+        "has_exam_content": true
+      },
+      "navigation_flow": {
+        "successful": true,
+        "status_code": 200,
+        "navigation_elements_found": 3,
+        "has_next_navigation": false,
+        "has_previous_navigation": true,
+        "has_completion_navigation": true,
+        "has_progress_indicator": true
+      },
+      "failure_points": []
+    },
+    "農業土木": {
+      "department": "農業土木",
+      "session_complete": true,
+      "session_initialization": {
+        "successful": true,
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999,
+        "has_session_content": true
+      },
+      "session_persistence": {
+        "successful": true,
+        "status_code": 200,
+        "content_length": 36999,
+        "has_exam_content": true
+      },
+      "navigation_flow": {
+        "successful": true,
+        "status_code": 200,
+        "navigation_elements_found": 3,
+        "has_next_navigation": false,
+        "has_previous_navigation": true,
+        "has_completion_navigation": true,
+        "has_progress_indicator": true
+      },
+      "failure_points": []
+    },
+    "トンネル": {
+      "department": "トンネル",
+      "session_complete": true,
+      "session_initialization": {
+        "successful": true,
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999,
+        "has_session_content": true
+      },
+      "session_persistence": {
+        "successful": true,
+        "status_code": 200,
+        "content_length": 36999,
+        "has_exam_content": true
+      },
+      "navigation_flow": {
+        "successful": true,
+        "status_code": 200,
+        "navigation_elements_found": 3,
+        "has_next_navigation": false,
+        "has_previous_navigation": true,
+        "has_completion_navigation": true,
+        "has_progress_indicator": true
+      },
+      "failure_points": []
+    }
+  },
+  "session_integrity_analysis": {
+    "total_departments": 13,
+    "successful_initialization": 13,
+    "successful_persistence": 13,
+    "successful_navigation": 13,
+    "overall_success_rate": 1.0,
+    "overall_integrity": "excellent",
+    "improvement_recommendations": []
+  }
+}

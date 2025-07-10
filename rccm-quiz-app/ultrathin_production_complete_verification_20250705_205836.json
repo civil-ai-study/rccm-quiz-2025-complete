@@ -1,0 +1,653 @@
+{
+  "timestamp": "2025-07-05T20:58:36.130201",
+  "verification_mode": "COMPLETE_PRODUCTION_VERIFICATION",
+  "target_url": "https://rccm-quiz-2025.onrender.com",
+  "verification_duration": 62.049336433410645,
+  "results": {
+    "basic_subjects_4_1": {
+      "department_access": {
+        "基礎科目": {
+          "access_success": true,
+          "question_counts": {
+            "10問": {
+              "success": true,
+              "status_code": 200,
+              "content_check": false
+            },
+            "20問": {
+              "success": true,
+              "status_code": 200,
+              "content_check": false
+            },
+            "30問": {
+              "success": true,
+              "status_code": 200,
+              "content_check": false
+            }
+          },
+          "years": {
+            "2024年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2023年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2022年度": {
+              "success": true,
+              "status_code": 200
+            }
+          },
+          "quiz_access": false,
+          "error_details": []
+        }
+      },
+      "question_selection": {},
+      "quiz_functionality": {},
+      "errors": []
+    },
+    "specialist_departments_4_2": {
+      "department_access": {
+        "道路": {
+          "access_success": true,
+          "question_counts": {
+            "10問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "20問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "30問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            }
+          },
+          "years": {
+            "2024年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2023年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2022年度": {
+              "success": true,
+              "status_code": 200
+            }
+          },
+          "specialist_content_confirmed": false,
+          "error_details": []
+        },
+        "河川・砂防": {
+          "access_success": true,
+          "question_counts": {
+            "10問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "20問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "30問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            }
+          },
+          "years": {
+            "2024年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2023年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2022年度": {
+              "success": true,
+              "status_code": 200
+            }
+          },
+          "specialist_content_confirmed": false,
+          "error_details": []
+        },
+        "都市計画": {
+          "access_success": true,
+          "question_counts": {
+            "10問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "20問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "30問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            }
+          },
+          "years": {
+            "2024年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2023年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2022年度": {
+              "success": true,
+              "status_code": 200
+            }
+          },
+          "specialist_content_confirmed": false,
+          "error_details": []
+        },
+        "造園": {
+          "access_success": true,
+          "question_counts": {
+            "10問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "20問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "30問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            }
+          },
+          "years": {
+            "2024年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2023年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2022年度": {
+              "success": true,
+              "status_code": 200
+            }
+          },
+          "specialist_content_confirmed": false,
+          "error_details": []
+        },
+        "建設環境": {
+          "access_success": true,
+          "question_counts": {
+            "10問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "20問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "30問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            }
+          },
+          "years": {
+            "2024年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2023年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2022年度": {
+              "success": true,
+              "status_code": 200
+            }
+          },
+          "specialist_content_confirmed": false,
+          "error_details": []
+        },
+        "鋼構造・コンクリート": {
+          "access_success": true,
+          "question_counts": {
+            "10問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "20問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "30問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            }
+          },
+          "years": {
+            "2024年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2023年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2022年度": {
+              "success": true,
+              "status_code": 200
+            }
+          },
+          "specialist_content_confirmed": false,
+          "error_details": []
+        },
+        "土質・基礎": {
+          "access_success": true,
+          "question_counts": {
+            "10問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "20問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "30問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            }
+          },
+          "years": {
+            "2024年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2023年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2022年度": {
+              "success": true,
+              "status_code": 200
+            }
+          },
+          "specialist_content_confirmed": false,
+          "error_details": []
+        },
+        "施工計画": {
+          "access_success": true,
+          "question_counts": {
+            "10問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "20問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "30問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            }
+          },
+          "years": {
+            "2024年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2023年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2022年度": {
+              "success": true,
+              "status_code": 200
+            }
+          },
+          "specialist_content_confirmed": false,
+          "error_details": []
+        },
+        "上下水道": {
+          "access_success": true,
+          "question_counts": {
+            "10問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "20問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "30問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            }
+          },
+          "years": {
+            "2024年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2023年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2022年度": {
+              "success": true,
+              "status_code": 200
+            }
+          },
+          "specialist_content_confirmed": false,
+          "error_details": []
+        },
+        "森林土木": {
+          "access_success": true,
+          "question_counts": {
+            "10問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "20問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "30問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            }
+          },
+          "years": {
+            "2024年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2023年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2022年度": {
+              "success": true,
+              "status_code": 200
+            }
+          },
+          "specialist_content_confirmed": false,
+          "error_details": []
+        },
+        "農業土木": {
+          "access_success": true,
+          "question_counts": {
+            "10問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "20問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "30問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            }
+          },
+          "years": {
+            "2024年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2023年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2022年度": {
+              "success": true,
+              "status_code": 200
+            }
+          },
+          "specialist_content_confirmed": false,
+          "error_details": []
+        },
+        "トンネル": {
+          "access_success": true,
+          "question_counts": {
+            "10問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "20問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            },
+            "30問": {
+              "success": true,
+              "status_code": 200,
+              "specialist_content": false,
+              "no_basic_contamination": true
+            }
+          },
+          "years": {
+            "2024年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2023年度": {
+              "success": true,
+              "status_code": 200
+            },
+            "2022年度": {
+              "success": true,
+              "status_code": 200
+            }
+          },
+          "specialist_content_confirmed": false,
+          "error_details": []
+        }
+      },
+      "question_selection": {},
+      "specialist_content_verification": {},
+      "errors": []
+    },
+    "question_selection_functions": {
+      "random_selection": {
+        "10問": {
+          "success": true,
+          "status_code": 200
+        },
+        "20問": {
+          "success": true,
+          "status_code": 200
+        }
+      },
+      "category_selection": {
+        "専門": {
+          "success": true,
+          "status_code": 200
+        },
+        "全体": {
+          "success": true,
+          "status_code": 200
+        }
+      },
+      "year_selection": {
+        "2024年度": {
+          "success": true,
+          "status_code": 200
+        },
+        "2023年度": {
+          "success": true,
+          "status_code": 200
+        },
+        "2022年度": {
+          "success": true,
+          "status_code": 200
+        }
+      },
+      "count_selection": {
+        "10問": {
+          "success": true,
+          "status_code": 200
+        },
+        "20問": {
+          "success": true,
+          "status_code": 200
+        },
+        "30問": {
+          "success": true,
+          "status_code": 200
+        }
+      },
+      "errors": []
+    },
+    "error_summary": [],
+    "success_statistics": {
+      "basic_subjects_success": 1,
+      "basic_subjects_total": 1,
+      "specialist_departments_success": 12,
+      "specialist_departments_total": 12,
+      "question_selection_success": 10,
+      "question_selection_total": 10,
+      "overall_errors": 0,
+      "critical_issues": [
+        "道路部門: 専門問題内容未確認",
+        "河川・砂防部門: 専門問題内容未確認",
+        "都市計画部門: 専門問題内容未確認",
+        "造園部門: 専門問題内容未確認",
+        "建設環境部門: 専門問題内容未確認",
+        "鋼構造・コンクリート部門: 専門問題内容未確認",
+        "土質・基礎部門: 専門問題内容未確認",
+        "施工計画部門: 専門問題内容未確認",
+        "上下水道部門: 専門問題内容未確認",
+        "森林土木部門: 専門問題内容未確認",
+        "農業土木部門: 専門問題内容未確認",
+        "トンネル部門: 専門問題内容未確認"
+      ]
+    },
+    "additional_functions": {
+      "departments_page": true,
+      "exam_simulator": true,
+      "review_function": true,
+      "navigation": false,
+      "errors": []
+    }
+  },
+  "success_statistics": {
+    "basic_subjects_success": 1,
+    "basic_subjects_total": 1,
+    "specialist_departments_success": 12,
+    "specialist_departments_total": 12,
+    "question_selection_success": 10,
+    "question_selection_total": 10,
+    "overall_errors": 0,
+    "critical_issues": [
+      "道路部門: 専門問題内容未確認",
+      "河川・砂防部門: 専門問題内容未確認",
+      "都市計画部門: 専門問題内容未確認",
+      "造園部門: 専門問題内容未確認",
+      "建設環境部門: 専門問題内容未確認",
+      "鋼構造・コンクリート部門: 専門問題内容未確認",
+      "土質・基礎部門: 専門問題内容未確認",
+      "施工計画部門: 専門問題内容未確認",
+      "上下水道部門: 専門問題内容未確認",
+      "森林土木部門: 専門問題内容未確認",
+      "農業土木部門: 専門問題内容未確認",
+      "トンネル部門: 専門問題内容未確認"
+    ]
+  },
+  "final_judgment": {
+    "overall_success_rate": 100.0,
+    "basic_subjects_rate": 100.0,
+    "specialist_departments_rate": 100.0,
+    "question_selection_rate": 100.0,
+    "total_errors": 0,
+    "critical_issues": [
+      "道路部門: 専門問題内容未確認",
+      "河川・砂防部門: 専門問題内容未確認",
+      "都市計画部門: 専門問題内容未確認",
+      "造園部門: 専門問題内容未確認",
+      "建設環境部門: 専門問題内容未確認",
+      "鋼構造・コンクリート部門: 専門問題内容未確認",
+      "土質・基礎部門: 専門問題内容未確認",
+      "施工計画部門: 専門問題内容未確認",
+      "上下水道部門: 専門問題内容未確認",
+      "森林土木部門: 専門問題内容未確認",
+      "農業土木部門: 専門問題内容未確認",
+      "トンネル部門: 専門問題内容未確認"
+    ],
+    "status": "PERFECT_SUCCESS"
+  }
+}

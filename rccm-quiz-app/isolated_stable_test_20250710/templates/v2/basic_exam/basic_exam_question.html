@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>問題{{ progress.current }}/{{ progress.total }} - RCCM基礎科目専用システム</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .progress-header {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .question-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .option-card {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+        .option-card:hover {
+            border-color: #007bff;
+            background-color: #f8f9fa;
+        }
+        .option-card.selected {
+            border-color: #007bff;
+            background-color: #e3f2fd;
+        }
+        .option-label {
+            font-weight: bold;
+            color: #007bff;
+            margin-right: 10px;
+        }
+        .navigation-buttons {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .btn-nav {
+            padding: 12px 24px;
+            font-weight: 500;
+        }
+        .session-info {
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+        .system-indicator {
+            background-color: #6f42c1;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- 進捗ヘッダー -->
+        <div class="progress-header">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h2><i class="fas fa-clipboard-list"></i> 問題 {{ progress.current }} / {{ progress.total }}</h2>
+                    <p class="mb-0">基礎科目専用試験システム</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-warning" style="width: {{ progress.percentage }}%"></div>
+                    </div>
+                    <small>進捗: {{ "%.1f"|format(progress.percentage) }}%</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- セッション情報 -->
+        <div class="session-info mb-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <small><strong>セッションID:</strong> {{ session_info.session_id }}</small>
+                </div>
+                <div class="col-md-4">
+                    <small><strong>開始時刻:</strong> {{ session_info.start_time[:16] }}</small>
+                </div>
+                <div class="col-md-4">
+                    <span class="system-indicator">{{ session_info.system_version }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <!-- 問題カード -->
+                <div class="question-card">
+                    <h3 class="mb-4">
+                        <i class="fas fa-question-circle text-primary"></i> 
+                        問題{{ progress.current }}
+                    </h3>
+                    
+                    <div class="question-text mb-4" style="font-size: 1.1em; line-height: 1.6;">
+                        {{ question.question }}
+                    </div>
+
+                    <!-- 選択肢 -->
+                    <div class="options-container">
+                        <div class="option-card" data-option="A">
+                            <div class="d-flex align-items-start">
+                                <span class="option-label">A)</span>
+                                <div class="flex-grow-1">{{ question.option_a }}</div>
+                            </div>
+                        </div>
+
+                        <div class="option-card" data-option="B">
+                            <div class="d-flex align-items-start">
+                                <span class="option-label">B)</span>
+                                <div class="flex-grow-1">{{ question.option_b }}</div>
+                            </div>
+                        </div>
+
+                        <div class="option-card" data-option="C">
+                            <div class="d-flex align-items-start">
+                                <span class="option-label">C)</span>
+                                <div class="flex-grow-1">{{ question.option_c }}</div>
+                            </div>
+                        </div>
+
+                        <div class="option-card" data-option="D">
+                            <div class="d-flex align-items-start">
+                                <span class="option-label">D)</span>
+                                <div class="flex-grow-1">{{ question.option_d }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ナビゲーションボタン -->
+                <div class="navigation-buttons">
+                    <div class="row">
+                        <div class="col-6">
+                            {% if navigation.has_previous %}
+                                <a href="{{ navigation.previous_url }}" class="btn btn-outline-secondary btn-nav">
+                                    <i class="fas fa-arrow-left"></i> 前の問題
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="col-6 text-end">
+                            {% if navigation.has_next %}
+                                <button type="button" class="btn btn-primary btn-nav" id="nextBtn" disabled>
+                                    次の問題 <i class="fas fa-arrow-right"></i>
+                                </button>
+                            {% else %}
+                                <button type="button" class="btn btn-success btn-nav" id="finishBtn" disabled>
+                                    <i class="fas fa-flag-checkered"></i> 結果を見る
+                                </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- デバッグ情報（開発用） -->
+                <div class="text-center mt-3">
+                    <small class="text-muted">
+                        Blueprint: basic_exam | URL: /v2/basic_exam/question/{{ progress.current }} | 
+                        セッション分離: basic_exam_* | 基礎科目専用
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+
+    <script>
+        // 選択肢クリック処理
+        let selectedAnswer = null;
+        
+        document.querySelectorAll('.option-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // 既存の選択を解除
+                document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+                
+                // 新しい選択を設定
+                this.classList.add('selected');
+                selectedAnswer = this.dataset.option;
+                
+                // ナビゲーションボタンを有効化
+                const nextBtn = document.getElementById('nextBtn');
+                const finishBtn = document.getElementById('finishBtn');
+                
+                if (nextBtn) nextBtn.disabled = false;
+                if (finishBtn) finishBtn.disabled = false;
+            });
+        });
+
+        // 回答送信処理
+        function submitAnswer() {
+            if (!selectedAnswer) {
+                alert('回答を選択してください');
+                return;
+            }
+
+            const answerData = {
+                question_no: {{ progress.current }},
+                answer: selectedAnswer
+            };
+
+            fetch('{{ url_for("basic_exam.basic_exam_submit") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(answerData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = data.next_url;
+                } else {
+                    alert('回答の送信に失敗しました: ' + (data.message || '不明なエラー'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('回答の送信中にエラーが発生しました');
+            });
+        }
+
+        // ボタンイベント設定
+        document.addEventListener('DOMContentLoaded', function() {
+            const nextBtn = document.getElementById('nextBtn');
+            const finishBtn = document.getElementById('finishBtn');
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', submitAnswer);
+            }
+            
+            if (finishBtn) {
+                finishBtn.addEventListener('click', submitAnswer);
+            }
+        });
+
+        // キーボードショートカット
+        document.addEventListener('keydown', function(event) {
+            if (event.key >= '1' && event.key <= '4') {
+                const options = ['A', 'B', 'C', 'D'];
+                const optionIndex = parseInt(event.key) - 1;
+                const optionCard = document.querySelector(`[data-option="${options[optionIndex]}"]`);
+                if (optionCard) {
+                    optionCard.click();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

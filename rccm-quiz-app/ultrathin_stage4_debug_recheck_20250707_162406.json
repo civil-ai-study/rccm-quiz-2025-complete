@@ -1,0 +1,44 @@
+[
+  {
+    "department": "河川、砂防及び海岸・海洋",
+    "response_length": 36999,
+    "debug_info": {
+      "data_source": "specialist",
+      "exam_type": "河川、砂防及び海岸・海洋",
+      "questions_count": 30,
+      "target_year": 2016,
+      "timestamp": "07:23:54"
+    },
+    "error_info": {},
+    "status_code": 200,
+    "response_time": 0.642493724822998
+  },
+  {
+    "department": "土質及び基礎",
+    "response_length": 36999,
+    "debug_info": {
+      "data_source": "specialist",
+      "exam_type": "土質及び基礎",
+      "questions_count": 30,
+      "target_year": 2016,
+      "timestamp": "07:23:57"
+    },
+    "error_info": {},
+    "status_code": 200,
+    "response_time": 0.9210431575775146
+  },
+  {
+    "department": "トンネル",
+    "response_length": 36999,
+    "debug_info": {
+      "data_source": "specialist",
+      "exam_type": "トンネル",
+      "questions_count": 30,
+      "target_year": 2016,
+      "timestamp": "07:24:00"
+    },
+    "error_info": {},
+    "status_code": 200,
+    "response_time": 0.6247446537017822
+  }
+]

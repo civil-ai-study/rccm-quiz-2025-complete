@@ -1,0 +1,290 @@
+{
+  "timestamp": "2025-07-05T21:21:28.726922",
+  "audit_mode": "COMPREHENSIVE_QUALITY_AUDIT",
+  "target_url": "https://rccm-quiz-2025.onrender.com",
+  "audit_duration": 27.497828006744385,
+  "results": {
+    "content_quality": {
+      "specialist_content_verification": {
+        "基礎科目": {
+          "content_type_correct": false,
+          "question_completeness": false,
+          "answer_options_present": false,
+          "explanation_available": false,
+          "text_quality_score": 0,
+          "issues_found": [
+            "試験開始失敗: 503"
+          ]
+        },
+        "道路": {
+          "content_type_correct": false,
+          "question_completeness": false,
+          "answer_options_present": false,
+          "explanation_available": false,
+          "text_quality_score": 0,
+          "issues_found": [
+            "試験開始失敗: 503"
+          ]
+        },
+        "トンネル": {
+          "content_type_correct": false,
+          "question_completeness": false,
+          "answer_options_present": false,
+          "explanation_available": false,
+          "text_quality_score": 0,
+          "issues_found": [
+            "試験開始失敗: 503"
+          ]
+        },
+        "土質・基礎": {
+          "content_type_correct": false,
+          "question_completeness": false,
+          "answer_options_present": false,
+          "explanation_available": false,
+          "text_quality_score": 0,
+          "issues_found": [
+            "試験開始失敗: 503"
+          ]
+        }
+      },
+      "basic_subject_separation": {},
+      "question_text_quality": {},
+      "answer_format_consistency": {},
+      "content_completeness": {}
+    },
+    "year_accuracy": {
+      "year_display_verification": {
+        "2024": {
+          "year_clearly_displayed": false,
+          "year_in_question_text": false,
+          "year_in_metadata": false,
+          "date_format_variations": [],
+          "contamination_detected": [],
+          "consistency_issues": [
+            "試験開始失敗: 503"
+          ]
+        },
+        "2023": {
+          "year_clearly_displayed": false,
+          "year_in_question_text": false,
+          "year_in_metadata": false,
+          "date_format_variations": [],
+          "contamination_detected": [],
+          "consistency_issues": [
+            "試験開始失敗: 503"
+          ]
+        },
+        "2022": {
+          "year_clearly_displayed": false,
+          "year_in_question_text": false,
+          "year_in_metadata": false,
+          "date_format_variations": [],
+          "contamination_detected": [],
+          "consistency_issues": [
+            "試験開始失敗: 503"
+          ]
+        }
+      },
+      "year_filtering_accuracy": {},
+      "cross_contamination_check": {},
+      "date_format_consistency": {}
+    },
+    "category_separation": {},
+    "review_functionality": {},
+    "navigation_consistency": {
+      "menu_consistency": {
+        "/": {
+          "navigation_elements_present": false,
+          "menu_links_count": 0,
+          "breadcrumb_present": false,
+          "back_link_present": false,
+          "responsive_navigation": false,
+          "navigation_issues": [
+            "ページアクセス失敗: 503"
+          ]
+        },
+        "/departments": {
+          "navigation_elements_present": false,
+          "menu_links_count": 0,
+          "breadcrumb_present": false,
+          "back_link_present": false,
+          "responsive_navigation": false,
+          "navigation_issues": [
+            "ページアクセス失敗: 503"
+          ]
+        },
+        "/exam_simulator": {
+          "navigation_elements_present": false,
+          "menu_links_count": 0,
+          "breadcrumb_present": false,
+          "back_link_present": false,
+          "responsive_navigation": false,
+          "navigation_issues": [
+            "ページアクセス失敗: 503"
+          ]
+        },
+        "/review": {
+          "navigation_elements_present": false,
+          "menu_links_count": 0,
+          "breadcrumb_present": false,
+          "back_link_present": false,
+          "responsive_navigation": false,
+          "navigation_issues": [
+            "ページアクセス失敗: 503"
+          ]
+        }
+      },
+      "breadcrumb_accuracy": {},
+      "link_functionality": {},
+      "back_forward_navigation": {},
+      "mobile_navigation": {}
+    },
+    "session_management": {},
+    "error_handling": {
+      "error_page_responses": {
+        "存在しないページ": {
+          "status_code": 503,
+          "error_page_displayed": false,
+          "user_friendly_message": false,
+          "recovery_options": false,
+          "error_details": [
+            "期待値外ステータス: 503"
+          ]
+        },
+        "存在しない部門": {
+          "status_code": 503,
+          "error_page_displayed": false,
+          "user_friendly_message": false,
+          "recovery_options": false,
+          "error_details": [
+            "期待値外ステータス: 503"
+          ]
+        },
+        "セッションなしクイズ": {
+          "status_code": 503,
+          "error_page_displayed": false,
+          "user_friendly_message": false,
+          "recovery_options": false,
+          "error_details": [
+            "期待値外ステータス: 503"
+          ]
+        }
+      },
+      "invalid_input_handling": {},
+      "network_error_recovery": {},
+      "user_friendly_messages": {}
+    },
+    "ui_ux_consistency": {},
+    "accessibility": {
+      "alt_text_presence": {},
+      "heading_structure": {},
+      "form_labels": {},
+      "keyboard_navigation": {},
+      "color_contrast": {},
+      "basic_accessibility": {
+        "images_with_alt": 0,
+        "images_without_alt": 0,
+        "heading_levels_found": [],
+        "form_inputs_with_labels": 0,
+        "form_inputs_without_labels": 0,
+        "accessibility_issues": [
+          "ページアクセス失敗: 503"
+        ]
+      }
+    },
+    "performance": {
+      "page_load_times": {
+        "/": {
+          "load_time": 0.36,
+          "response_size": 243864,
+          "cache_headers_present": false,
+          "compression_used": true,
+          "performance_issues": [
+            "キャッシュヘッダー未設定"
+          ]
+        },
+        "/departments": {
+          "load_time": 0.21,
+          "response_size": 243864,
+          "cache_headers_present": false,
+          "compression_used": true,
+          "performance_issues": [
+            "キャッシュヘッダー未設定"
+          ]
+        },
+        "/start_exam/道路": {
+          "load_time": 0.2,
+          "response_size": 243864,
+          "cache_headers_present": false,
+          "compression_used": true,
+          "performance_issues": [
+            "キャッシュヘッダー未設定"
+          ]
+        }
+      },
+      "response_size_analysis": {},
+      "cdn_usage": {},
+      "caching_headers": {}
+    },
+    "security_basics": {},
+    "data_integrity": {}
+  },
+  "overall_assessment": {
+    "total_issues_found": 18,
+    "critical_issues": [],
+    "quality_score": 50.0,
+    "recommendations": [
+      "複数改善点あり - 優先度付き修正推奨"
+    ],
+    "audit_categories": {
+      "content_quality": {
+        "issues_count": 4,
+        "status": "要修正"
+      },
+      "year_accuracy": {
+        "issues_count": 3,
+        "status": "要修正"
+      },
+      "category_separation": {
+        "issues_count": 0,
+        "status": "良好"
+      },
+      "review_functionality": {
+        "issues_count": 0,
+        "status": "良好"
+      },
+      "navigation_consistency": {
+        "issues_count": 4,
+        "status": "要修正"
+      },
+      "session_management": {
+        "issues_count": 0,
+        "status": "良好"
+      },
+      "error_handling": {
+        "issues_count": 3,
+        "status": "要修正"
+      },
+      "ui_ux_consistency": {
+        "issues_count": 0,
+        "status": "良好"
+      },
+      "accessibility": {
+        "issues_count": 1,
+        "status": "要改善"
+      },
+      "performance": {
+        "issues_count": 3,
+        "status": "要修正"
+      },
+      "security_basics": {
+        "issues_count": 0,
+        "status": "良好"
+      },
+      "data_integrity": {
+        "issues_count": 0,
+        "status": "良好"
+      }
+    }
+  }
+}

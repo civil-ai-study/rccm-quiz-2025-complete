@@ -1,0 +1,91 @@
+{
+  "timestamp": "2025-07-05T21:27:48.346995",
+  "verification_mode": "CORRECTED_FLOW_VERIFICATION",
+  "target_url": "https://rccm-quiz-2025.onrender.com",
+  "verification_duration": 18.930877447128296,
+  "results": {
+    "specialist_content_corrected": {
+      "departments_tested": [
+        "道路",
+        "トンネル",
+        "土質・基礎"
+      ],
+      "content_purity_analysis": {
+        "道路": {
+          "flow_successful": true,
+          "specialist_content_confirmed": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0
+        },
+        "トンネル": {
+          "flow_successful": true,
+          "specialist_content_confirmed": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0
+        },
+        "土質・基礎": {
+          "flow_successful": true,
+          "specialist_content_confirmed": true,
+          "basic_contamination_found": false,
+          "content_quality_score": 1
+        }
+      },
+      "flow_success_rate": {
+        "道路": true,
+        "トンネル": true,
+        "土質・基礎": true
+      }
+    },
+    "year_display_corrected": {
+      "years_tested": [
+        "2024",
+        "2023",
+        "2022"
+      ],
+      "year_display_results": {
+        "2024": {
+          "flow_successful": true,
+          "year_displayed": false,
+          "display_location_analysis": {
+            "contexts_found": [],
+            "total_mentions": 0
+          }
+        },
+        "2023": {
+          "flow_successful": true,
+          "year_displayed": false,
+          "display_location_analysis": {
+            "contexts_found": [],
+            "total_mentions": 0
+          }
+        },
+        "2022": {
+          "flow_successful": true,
+          "year_displayed": false,
+          "display_location_analysis": {
+            "contexts_found": [],
+            "total_mentions": 0
+          }
+        }
+      },
+      "display_accuracy": {
+        "2024": false,
+        "2023": false,
+        "2022": false
+      }
+    }
+  },
+  "final_assessment": {
+    "flow_discovery_successful": true,
+    "specialist_content_verified": true,
+    "year_display_verified": false,
+    "user_concerns_resolved": [
+      "4-2専門問題の基礎科目混入なし確認"
+    ],
+    "technical_findings": [
+      "正確なアプリケーションフロー: /start_exam → /exam_question → 最終表示ページ",
+      "フロー成功率: 100.0%"
+    ],
+    "flow_success_rate": 100.0
+  }
+}

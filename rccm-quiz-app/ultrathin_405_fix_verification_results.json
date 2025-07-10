@@ -1,0 +1,95 @@
+{
+  "timestamp": "2025-07-08T13:30:32.592463",
+  "summary": {
+    "total": 11,
+    "successful": 6,
+    "failed": 5,
+    "success_rate": 54.54545454545454,
+    "critical_success_rate": 20.0
+  },
+  "stage_results": {
+    "405_fix_verification": false,
+    "no_side_effects": true,
+    "basic_functionality": false
+  },
+  "overall_success": false,
+  "verification_results": [
+    {
+      "step": "セッション初期化",
+      "success": true,
+      "details": "Cookie保存完了",
+      "critical": false,
+      "timestamp": "2025-07-08T13:30:15.878820"
+    },
+    {
+      "step": "basic_10問_2024年",
+      "success": false,
+      "details": "サイズ: 153, 405エラー: あり, エラーページ: なし, 試験要素: なし",
+      "critical": true,
+      "timestamp": "2025-07-08T13:30:18.239682"
+    },
+    {
+      "step": "foundation_5問_2024年",
+      "success": false,
+      "details": "サイズ: 153, 405エラー: あり, エラーページ: なし, 試験要素: なし",
+      "critical": true,
+      "timestamp": "2025-07-08T13:30:21.724699"
+    },
+    {
+      "step": "basic_20問_2019年",
+      "success": false,
+      "details": "サイズ: 153, 405エラー: あり, エラーページ: なし, 試験要素: なし",
+      "critical": true,
+      "timestamp": "2025-07-08T13:30:24.652902"
+    },
+    {
+      "step": "405修復総合",
+      "success": false,
+      "details": "0/3 成功",
+      "critical": true,
+      "timestamp": "2025-07-08T13:30:26.655129"
+    },
+    {
+      "step": "道路部門_専門科目",
+      "success": true,
+      "details": "HTTP 302",
+      "critical": false,
+      "timestamp": "2025-07-08T13:30:26.993548"
+    },
+    {
+      "step": "河川・砂防部門_専門科目",
+      "success": true,
+      "details": "HTTP 200",
+      "critical": false,
+      "timestamp": "2025-07-08T13:30:28.295819"
+    },
+    {
+      "step": "ホームページ",
+      "success": true,
+      "details": "HTTP 200",
+      "critical": false,
+      "timestamp": "2025-07-08T13:30:29.561388"
+    },
+    {
+      "step": "部門選択ページ",
+      "success": true,
+      "details": "HTTP 200",
+      "critical": false,
+      "timestamp": "2025-07-08T13:30:30.949307"
+    },
+    {
+      "step": "副作用なし総合",
+      "success": true,
+      "details": "4/4 成功",
+      "critical": true,
+      "timestamp": "2025-07-08T13:30:31.950827"
+    },
+    {
+      "step": "基礎科目機能確認",
+      "success": false,
+      "details": "発見要素: [] (0/6)",
+      "critical": false,
+      "timestamp": "2025-07-08T13:30:32.587814"
+    }
+  ]
+}

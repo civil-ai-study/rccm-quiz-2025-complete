@@ -1,0 +1,100 @@
+{
+  "timestamp": "2025-07-07T18:30:25.326233",
+  "issue_investigation": {
+    "problematic_department": "施工計画、施工設備及び積算",
+    "test_results": [
+      {
+        "attempt": 1,
+        "questions_count": 31,
+        "data_source": "specialist",
+        "exam_type": "施工計画、施工設備及び積算",
+        "timestamp": "09:30:25"
+      },
+      {
+        "attempt": 2,
+        "questions_count": 31,
+        "data_source": "specialist",
+        "exam_type": "施工計画、施工設備及び積算",
+        "timestamp": "09:30:29"
+      },
+      {
+        "attempt": 3,
+        "questions_count": 31,
+        "data_source": "specialist",
+        "exam_type": "施工計画、施工設備及び積算",
+        "timestamp": "09:30:33"
+      }
+    ],
+    "consistent_issue": true,
+    "consistent_count": 31,
+    "expected_count": 30,
+    "deviation": 1
+  },
+  "impact_assessment": {
+    "other_departments_status": {
+      "河川、砂防及び海岸・海洋": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "still_normal": true
+      },
+      "トンネル": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "still_normal": true
+      },
+      "道路": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "still_normal": true
+      },
+      "土質及び基礎": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "still_normal": true
+      },
+      "鋼構造及びコンクリート": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "still_normal": true
+      }
+    },
+    "basic_subject_status": {
+      "questions_count": 202,
+      "data_source": "basic",
+      "still_normal": true
+    },
+    "normal_departments_intact": true,
+    "basic_subject_intact": true,
+    "issue_isolated": true,
+    "affected_scope": "single_department"
+  },
+  "safe_resolution_strategy": {
+    "selected_strategy": {
+      "strategy_type": "isolated_data_issue_resolution",
+      "approach": "単一部門データ問題の安全対応",
+      "risk_level": "low",
+      "actions": [
+        {
+          "action": "施工計画部門データの詳細確認",
+          "purpose": "31問の原因特定",
+          "safety_impact": "none"
+        },
+        {
+          "action": "他機能への影響監視継続",
+          "purpose": "問題拡散防止",
+          "safety_impact": "positive"
+        },
+        {
+          "action": "段階15実装計画の一時保留",
+          "purpose": "システム安定性優先",
+          "safety_impact": "maximum_safety"
+        }
+      ],
+      "implementation_impact": "一時保留、安全性優先",
+      "ultrathin_compliance": "full"
+    },
+    "recommended_action": "単一部門問題の安全対応",
+    "ultrathin_principle_adherence": true,
+    "safety_first_maintained": true
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "empty_year_processing": {
+    "empty_year_result_count": 0,
+    "with_year_result_count": 30,
+    "function_behavior": "load_specialist_questions_only関数は年度引数を受け取るが、年度がNoneの場合の処理が不明"
+  },
+  "department_name_conversion": {
+    "input_department": "soil_foundation",
+    "expected_category": "土質及び基礎",
+    "mapping_correct": true
+  },
+  "error_message_conditions": {
+    "error_conditions": {
+      "requested_department": "soil_foundation",
+      "requested_year": "",
+      "session_size": 10,
+      "selected_questions_count": 0
+    },
+    "generated_error_msg": "選択された条件（部門:soil_foundation, 年度:, 問題数:10）では問題が見つかりません。",
+    "analysis": "エラーメッセージは部門名がsoil_foundationのまま表示されている"
+  },
+  "root_cause_analysis": {
+    "identified_causes": [
+      {
+        "cause": "load_specialist_questions_only関数の年度None処理",
+        "description": "utils.pyのload_specialist_questions_only関数は年度がNoneの場合の処理が不完全",
+        "evidence": "utils.pyの1160行目で年度引数を受け取るが、年度がNoneの場合の処理が不明確",
+        "severity": "critical"
+      },
+      {
+        "cause": "部門名変換のタイミング問題",
+        "description": "soil_foundation → 土質及び基礎の変換がload_specialist_questions_only呼び出し前に行われていない",
+        "evidence": "app.pyの2587行でnormalize_department_name呼び出しはあるが、load_specialist_questions_only呼び出し時は元の部門名のまま",
+        "severity": "critical"
+      },
+      {
+        "cause": "年度空指定時の処理パス不備",
+        "description": "年度が空の場合、get_mixed_questionsでの処理が適切に行われていない",
+        "evidence": "app.pyの4818行でget_mixed_questionsが呼び出されるが、年度がNoneの場合の処理が不完全",
+        "severity": "high"
+      }
+    ],
+    "primary_cause": "load_specialist_questions_only関数に日本語カテゴリ名が渡されているが、関数内で適切な年度フィルタリングが行われていない",
+    "solution_direction": "app.pyでの部門名変換後、適切な年度処理を行う必要がある"
+  },
+  "decisive_issue": {
+    "issue": "load_specialist_questions_only関数の呼び出し方法が不適切",
+    "details": [
+      "app.pyでsoil_foundation → 土質及び基礎の変換は正しく実装されている",
+      "しかし、load_specialist_questions_only関数は日本語カテゴリ名を受け取るが、年度が空の場合の処理が不完全",
+      "utils.pyの1187行で q.get('category') == department の比較が行われるが、年度フィルタリングが適切に行われていない可能性"
+    ],
+    "critical_line": "utils.py:1187 - if q.get('category') == department:"
+  }
+}

@@ -1016,12 +1016,27 @@ def preload_startup_data():
             
             # RCCM統合データ読み込み（一度だけ実行）
             data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
-            # 🛡️ ULTRATHIN区 緊急修正: 起動時は基礎科目のみ読み込み（専門科目は必要時に動的読み込み）
-            from utils import load_basic_questions_only
-            basic_questions = load_basic_questions_only(data_dir)
+            # 🚨 根本修正: 基礎科目と専門科目を完全分離して両方読み込み
+            from utils import load_basic_questions_only, load_specialist_questions_only
             
-            # 専門科目は動的読み込みに変更（混在防止）
-            questions = basic_questions
+            # 基礎科目データ読み込み（4-1.csv）
+            basic_questions = load_basic_questions_only(data_dir)
+            logger.info(f"✅ 基礎科目データ: {len(basic_questions)}問")
+            
+            # 専門科目データ読み込み（4-2_*.csv全年度全部門）
+            specialist_questions = load_specialist_questions_only(data_dir)
+            logger.info(f"✅ 専門科目データ: {len(specialist_questions)}問")
+            
+            # データを分離保存（絶対に混合しない）
+            global _basic_questions_cache, _specialist_questions_cache
+            _basic_questions_cache = basic_questions
+            _specialist_questions_cache = specialist_questions
+            
+            # 起動確認用（混合はしない）
+            total_count = len(basic_questions) + len(specialist_questions)
+            logger.info(f"✅ データ読み込み完了: 基礎{len(basic_questions)} + 専門{len(specialist_questions)} = 計{total_count}問")
+            
+            questions = basic_questions  # 起動時は基礎科目データで初期化
             
             if questions:
                 # データ整合性チェック
@@ -3023,6 +3038,34 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
 #     """統合セッション管理システムで自動処理されます"""
 #     return response
 
+# 🔥 【ULTRATHIN区 Phase 2】Blueprint統合実装
+# ==============================================
+# 段階的アーキテクチャ改善 - 既存システム完全保護
+# Strangler Fig Pattern適用による安全な機能分離
+
+# Blueprint import (安全な順序で実行)
+try:
+    from blueprints.static_bp import static_bp
+    from blueprints.health_bp import health_bp
+    
+    # Blueprint登録 (副作用ゼロ保証)
+    app.register_blueprint(static_bp)
+    app.register_blueprint(health_bp)
+    
+    print("✅ ULTRATHIN区: Blueprint統合完了 (static_bp + health_bp)")
+    
+except ImportError as e:
+    # Blueprint未作成時の安全な処理
+    print(f"⚠️ ULTRATHIN区: Blueprint読み込みスキップ - {e}")
+    pass
+except Exception as e:
+    # 予期しないエラーの安全な処理
+    print(f"🛡️ ULTRATHIN区: Blueprint登録エラー回避 - {e}")
+    pass
+
+# 従来システム継続動作保証
+# ===========================
+
 
 @app.route('/health_simple')
 def health():
@@ -3215,10 +3258,34 @@ def exam():
                                    error_type="rate_limit")
         # データディレクトリの設定
         data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
-        # 🛡️ ULTRATHIN区 緊急修正: 基礎科目のみ読み込み（専門科目は必要時に動的読み込み）
-        from utils import load_basic_questions_only
-        basic_questions = load_basic_questions_only(data_dir)
-        all_questions = basic_questions
+        # 【根本修正】基礎科目と専門科目の完全分離データ読み込み
+        exam_session = session.get('exam_session', {})
+        selected_question_type = exam_session.get('exam_type', '')
+        
+        if selected_question_type == '基礎科目' or (selected_question_type and '基礎' in selected_question_type):
+            # 基礎科目（4-1）のみ読み込み
+            from utils import load_basic_questions_only
+            all_questions = load_basic_questions_only(data_dir)
+            logger.info(f"✅ 【根本修正】基礎科目データ読み込み完了: {len(all_questions)}問")
+        elif selected_question_type and '専門' in selected_question_type:
+            # 専門科目（4-2）のみ読み込み
+            from utils import load_specialist_questions_only
+            # セッションから部門1年度情報を取得
+            selected_department = exam_session.get('selected_department', '')
+            selected_year = exam_session.get('year', 2016)
+            try:
+                selected_year = int(selected_year)
+            except (ValueError, TypeError):
+                selected_year = 2016
+            
+            all_questions = load_specialist_questions_only(selected_department, selected_year, data_dir)
+            logger.info(f"✅ 【根本修正】専門科目データ読み込み完了: 部門={selected_department}, 年度={selected_year}, {len(all_questions)}問")
+        else:
+            # フォールバック: 基礎科目をデフォルトとして読み込み
+            from utils import load_basic_questions_only
+            all_questions = load_basic_questions_only(data_dir)
+            logger.warning(f"⚠️ 【根本修正】フォールバック: 基礎科目でデータ読み込み - type={selected_question_type}, {len(all_questions)}問")
+        
         if not all_questions:
             logger.error("問題データが空")
             return render_template('error.html', error="問題データが存在しません。")
@@ -3230,14 +3297,20 @@ def exam():
             year = request.args.get('year', '')
             
             # 🔥 PROGRESS FIX: セッション開始条件を厳密化 - 既存セッション保護
-            # 新規セッション開始の条件：明示的なパラメータがある場合のみ
+            # 【根本修正】新規セッション開始条件を安全化
             has_new_session_params = any([
-                question_type and question_type != 'basic',  # 明示的な問題種別指定
-                department,  # 部門指定
-                year,  # 年度指定
+                question_type and question_type not in ['basic', '基礎科目'],  # 基礎科目以外の指定
+                department and department != '',  # 部門指定
+                year and year != '',  # 年度指定
                 request.args.get('count'),  # 問題数指定
                 request.args.get('category'),  # カテゴリ指定
             ])
+            
+            # 【根本修正】基礎科目と専門科目の混在防止
+            if question_type == 'specialist' or ('専門' in str(question_type)):
+                # 専門科目の場合は必ず新規セッションで開始
+                has_new_session_params = True
+                logger.info(f"✅ 【根本修正】専門科目新規セッション開始: {question_type}")
             
             # 既存セッションがない場合、または明示的な新規セッション要求の場合のみ初期化
             if ('exam_question_ids' not in session or not session.get('exam_question_ids')) and has_new_session_params:
@@ -7569,12 +7642,39 @@ def generate_weekly_schedule(learning_plan: Dict, weak_areas: Dict) -> List[Dict
 
 @app.route('/exam_simulator', methods=['GET', 'POST'])
 def exam_simulator_page():
-    """試験シミュレーター画面"""
+    """試験シミュレーター画面 - 【根本修正】セッション状態読み取り処理追加"""
     try:
-        return render_template(
-            'exam_simulator.html',
-            exam_configs=exam_simulator.exam_configs
-        )
+        # 【根本修正】セッション状態確認とデータ復元
+        exam_session = session.get('exam_session')
+        if not exam_session:
+            logger.warning("exam_simulator: セッション不存在 - ホーム画面にリダイレクト")
+            return redirect(url_for('index'))
+        
+        # 【根本修正】メモリからの試験データ復元
+        exam_id = exam_session.get('exam_id', '')
+        if exam_id:
+            exam_data = get_exam_data_from_memory(exam_id)
+            if not exam_data:
+                logger.warning(f"exam_simulator: メモリデータ不存在 - exam_id: {exam_id}")
+                return redirect(url_for('index'))
+        else:
+            logger.warning("exam_simulator: exam_id不存在")
+            return redirect(url_for('index'))
+        
+        # 【根本修正】セッション状態をテンプレートに渡す
+        template_context = {
+            'exam_configs': exam_simulator.exam_configs,
+            'exam_session': exam_session,
+            'exam_data': exam_data,
+            'current_question': exam_data.get('current_question', 0),
+            'total_questions': len(exam_data.get('questions', [])),
+            'exam_type': exam_session.get('exam_type', ''),
+            'csrf_token': session.get('_csrf_token', '')  # CSRFトークン追加
+        }
+        
+        logger.info(f"✅ exam_simulator: セッション正常読み取り完了 - exam_id: {exam_id}, 問題数: {template_context['total_questions']}")
+        
+        return render_template('exam_simulator.html', **template_context)
 
     except Exception as e:
         logger.error(f"試験シミュレーター画面エラー: {e}")
@@ -7693,7 +7793,7 @@ def start_exam(exam_type):
             logger.info(f"🛡️ ULTRASYNC: 純粋なGETリクエスト検出 - デフォルト10問試験開始")
             # デフォルト値を設定して継続処理
             questions_param = '10'  # デフォルト10問
-            if exam_type == '基礎科目':
+            if exam_type == '基礎科目' or exam_type == 'basic':
                 category_param = '基礎科目'
             logger.info(f"🛡️ ULTRASYNC: デフォルト設定適用 - questions: {questions_param}, category: {category_param}")
         
@@ -7832,7 +7932,7 @@ def start_exam(exam_type):
             session['selected_department'] = category_param or ''
             session['selected_year'] = year_param
             logger.info(f"🛡️ ULTRATHIN区: 専門科目セッション設定完了 - type=specialist, dept={category_param}, year={year_param}")
-        elif exam_type == 'basic':
+        elif exam_type == '基礎科目' or exam_type == 'basic':
             session['selected_question_type'] = 'basic'
             session['selected_department'] = ''
             session['selected_year'] = None
@@ -7841,19 +7941,19 @@ def start_exam(exam_type):
             # フォールバック: exam_typeから推定（修正版 - DEPARTMENT_TO_CATEGORY_MAPPINGを使用）
             if exam_type in DEPARTMENT_TO_CATEGORY_MAPPING:
                 # マッピングに存在する場合、基礎科目かどうか判定
-                if exam_type == 'basic' or DEPARTMENT_TO_CATEGORY_MAPPING[exam_type] == '共通':
+                if exam_type == 'basic' or (exam_type in DEPARTMENT_TO_CATEGORY_MAPPING and DEPARTMENT_TO_CATEGORY_MAPPING[exam_type] == '共通'):
                     session['selected_question_type'] = 'basic'
                 else:
                     session['selected_question_type'] = 'specialist'
             elif exam_type in DEPARTMENT_TO_CATEGORY_MAPPING.values():
                 # 日本語部門名の場合、基礎科目かどうか判定
-                if exam_type == '共通' or exam_type == '基礎科目':
+                if exam_type == '基礎科目' or exam_type == '共通':
                     session['selected_question_type'] = 'basic'
                 else:
                     session['selected_question_type'] = 'specialist'
             else:
                 # 最終フォールバック: 文字列チェック
-                if 'basic' in exam_type.lower() or '基礎' in exam_type or '共通' in exam_type:
+                if exam_type.lower() == 'basic' or exam_type == '基礎科目' or exam_type == '共通':
                     session['selected_question_type'] = 'basic'
                 else:
                     session['selected_question_type'] = 'specialist'
@@ -7927,8 +8027,12 @@ def start_exam(exam_type):
             'q_count': len(exam_session.get('questions', [])),  # 問題数のみ
             'current': 0,  # 現在位置
             'status': 'in_progress',  # 🛡️ ULTRATHIN区段階5: exam_question関数との整合性確保
-            'year': year_param  # 年度情報追加
+            'year': year_param,  # 年度情報追加
+            'question_ids': [q['id'] for q in selected_questions]  # 問題IDリスト追加
         }
+        
+        # 🚨 【CRITICAL修正】lightweight_session変数を明示的に定義
+        lightweight_session = unified_session.copy()
         
         # メモリに試験データ保存（セッション外）
         exam_id = exam_session.get('exam_id', '')
@@ -7969,11 +8073,13 @@ def start_exam(exam_type):
                 session.modified = True
                 session.permanent = True
                 
+                logger.info(f"✅ 【CRITICAL修正】セッション確実保存完了 - lightweight_session定義済み: {lightweight_session['exam_id']}")
+                
                 # 🚨 メモリ保存の再確認
                 store_exam_data_in_memory(exam_id, exam_session)
                 
                 # 🚨 確実なレスポンス作成とセッション保存
-                response = make_response(redirect(url_for('exam_question')))
+                response = make_response(redirect(url_for('exam')))
                 
                 # 🚨 バックアップクッキーも設定（緊急対策）
                 session_backup = json.dumps({
@@ -8011,7 +8117,7 @@ def start_exam(exam_type):
                 logger.error(f"🛡️ ULTRASYNC: 基礎科目セッション設定エラー - {basic_error}")
                 return render_template('error.html', error="基礎科目のセッション設定でエラーが発生しました。", error_type="basic_session_error")
             
-            return redirect(url_for('exam_question'))
+            return redirect(url_for('exam'))
 
     except Exception as e:
         # 🛡️ ULTRATHIN区段階11: 詳細例外情報の記録強化

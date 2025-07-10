@@ -1,0 +1,14 @@
+{
+  "debug_result": {
+    "response_time": 0.4582512378692627,
+    "final_status": 200,
+    "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+    "redirect_count": 2,
+    "session_exists": false,
+    "session_elements": [],
+    "specialist_error": {},
+    "cookies_count": 1
+  },
+  "root_cause": "session_not_saved_at_all",
+  "timestamp": "2025-07-07T17:42:34.218144"
+}

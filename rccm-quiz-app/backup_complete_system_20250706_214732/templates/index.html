@@ -1,0 +1,766 @@
+{% extends 'base.html' %}
+{% block title %}ホーム | RCCM試験問題集{% endblock %}
+{% block content %}
+<!-- Session initialization indicators for test validation -->
+<div class="session-indicators" style="display: none;">
+  <span class="app-status">running</span>
+  <span class="home-loaded">true</span>
+  <span class="session-active">initialized</span>
+</div>
+<div class="text-center">
+  <h1 class="mb-3">🤖 AI搭載 RCCM試験問題集アプリ</h1>
+  <div class="alert alert-primary d-inline-block mb-4" style="max-width: 600px;">
+    <p class="mb-2"><i class="fas fa-cog me-2"></i><strong>10問・20問・30問はこちらで設定ができます</strong></p>
+    <a href="/settings" class="btn btn-primary btn-sm">
+      <i class="fas fa-sliders-h me-1"></i>設定画面へ
+    </a>
+  </div>
+  
+  <!-- ユーザー識別セクション（企業環境対応） -->
+  <div class="user-identification mb-4" id="userSection">
+    {% if session.get('user_name') %}
+    <div class="alert alert-success d-inline-block">
+      <i class="fas fa-user me-2"></i>
+      <strong>{{ session.get('user_name') }}</strong> さん、お疲れ様です！
+      <button class="btn btn-sm btn-outline-secondary ms-2" onclick="changeUser()">
+        <i class="fas fa-user-edit"></i> ユーザー変更
+      </button>
+    </div>
+    {% else %}
+    <div class="card mx-auto" style="max-width: 400px;">
+      <div class="card-body">
+        <h5 class="card-title">
+          <i class="fas fa-user-plus me-2"></i>ユーザー名を入力してください
+        </h5>
+        <p class="text-muted small">学習進捗を個別管理するためのユーザー識別です</p>
+        <form method="POST" action="/set_user" class="d-flex gap-2" onsubmit="return validateUserName()">
+          <input type="text" name="user_name" class="form-control" id="userName"
+                 placeholder="山田太郎" maxlength="20" 
+                 title="日本語、英数字、長音符、中点、スペースが使用できます"
+                 aria-label="ユーザー名入力欄">
+          <button type="submit" class="btn btn-primary btn-accessibility-lg">
+            <i class="fas fa-arrow-right"></i> 開始
+          </button>
+        </form>
+        <div class="mt-2">
+          <button type="button" class="btn btn-outline-secondary btn-sm" onclick="skipUserName()">
+            <i class="fas fa-play"></i> ユーザー名なしで開始
+          </button>
+        </div>
+        <small class="text-muted">
+          <i class="fas fa-info-circle"></i> 
+          複数人で利用する場合は、それぞれ異なる名前を入力してください
+        </small>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  
+  <!-- 学習ストリーク表示 -->
+  <div class="streak-display mb-3">
+    🔥 連続学習: <span id="streak-counter">0</span>日目
+  </div>
+  
+  <!-- 初心者向けガイダンス強化 -->
+  <div class="beginner-guide" id="beginnerGuide" style="display: none; margin-bottom: 0 !important;">
+    <div class="alert alert-primary d-flex align-items-center mb-3" role="alert">
+      <i class="fas fa-lightbulb me-3 fs-4" aria-hidden="true"></i>
+      <div class="flex-grow-1">
+        <h5 class="alert-heading mb-2">はじめての方へ</h5>
+        <p class="mb-2">RCCM試験対策を効率的に進めるため、まずは<strong>問題を解く</strong>から始めることをお勧めします。</p>
+        <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#quickGuide" aria-expanded="false" aria-controls="quickGuide">
+          <i class="fas fa-question-circle me-1"></i>詳しい使い方を見る
+        </button>
+      </div>
+      <button type="button" class="btn-close" aria-label="ガイドを閉じる" onclick="dismissGuide()"></button>
+    </div>
+    
+    <div class="collapse" id="quickGuide">
+      <div class="card border-primary">
+        <div class="card-body">
+          <h6><i class="fas fa-route me-2"></i>推奨学習フロー</h6>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <div class="step-card">
+                <div class="step-number">1</div>
+                <h6>問題を解く</h6>
+                <p class="small text-muted">まずはランダム出題で実力を確認</p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="step-card">
+                <div class="step-number">2</div>
+                <h6>専門科目学習</h6>
+                <p class="small text-muted">各部門の専門問題を学習</p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="step-card">
+                <div class="step-number">3</div>
+                <h6>復習・統計確認</h6>
+                <p class="small text-muted">間違えた問題を復習し、進捗を確認</p>
+              </div>
+            </div>
+          </div>
+          <div class="alert alert-info mt-3">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong>ヒント:</strong> 各機能には詳細な説明があります。わからないことがあれば「ヘルプ」ボタンをクリックしてください。<br>
+            <strong>新機能:</strong> ソーシャル学習、AI分析、認定追跡など豊富な学習支援機能を利用できます。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✨ 1画面完結型コンパクトレイアウト（ウルトラシンク設計） -->
+  <div class="row g-2">
+    <div class="col-12">
+      
+      <!-- メイン学習グリッド（3列レイアウト） -->
+      <div class="main-grid">
+        
+        <!-- 1️⃣ 基礎科目カード -->
+        <div class="learning-card basic-card">
+          <div class="card-icon">📚</div>
+          <h3>4-1 基礎科目</h3>
+          <p>全部門共通・202問</p>
+          <a href="/exam?question_type=basic" class="btn-start basic-btn btn-accessibility-lg">
+            <i class="fas fa-play me-1"></i>開始
+          </a>
+        </div>
+        
+        <!-- 2️⃣ 専門科目カード -->
+        <div class="learning-card specialist-card">
+          <div class="card-icon">🎯</div>
+          <h3>4-2 専門科目</h3>
+          <p>部門別・3,681問</p>
+          <button class="btn-start specialist-btn btn-accessibility-lg" onclick="toggleDepartments()">
+            <i class="fas fa-list me-1"></i>部門選択
+          </button>
+        </div>
+        
+        <!-- 3️⃣ 復習リストカード -->
+        <div class="learning-card review-card">
+          <div class="card-icon">⭐</div>
+          <h3>復習リスト</h3>
+          <p>弱点問題・<span id="reviewCount">0</span>問</p>
+          <a href="/review" class="btn-start review-btn btn-accessibility-lg">
+            <i class="fas fa-redo me-1"></i>復習開始
+          </a>
+        </div>
+      </div>
+      
+      <!-- AI機能案内エリア（下部移動） -->
+      <div class="ai-features-bottom mt-4">
+        <div class="alert alert-info" style="max-width: 800px; margin: 0 auto;">
+          <div class="row text-start">
+            <div class="col-md-6">
+              <small><strong>🧠 AI学習分析</strong> - 弱点自動検出</small><br>
+              <small><strong>📊 適応学習</strong> - 個人最適化カリキュラム</small>
+            </div>
+            <div class="col-md-6">
+              <small><strong>🔬 科学的復習</strong> - SRS忘却曲線システム</small><br>
+              <small><strong>🎯 合格予測</strong> - AI学習効率分析</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 部門選択エリア（折りたたみ式） -->
+      <div id="departmentArea" class="department-area" style="display: none;">
+        <div class="dept-header">
+          <h4><i class="fas fa-building me-2"></i>受験部門を選択</h4>
+          <button class="btn-close-dept" onclick="toggleDepartments()">×</button>
+        </div>
+        
+        <!-- 主要3部門 -->
+        <div class="dept-main">
+          <a href="/department_study/road" class="dept-btn road">
+            <i class="fas fa-road"></i>
+            <span>道路</span>
+          </a>
+          <a href="/department_study/civil_planning" class="dept-btn river">
+            <i class="fas fa-water"></i>
+            <span>河川・砂防</span>
+          </a>
+          <a href="/department_study/tunnel" class="dept-btn tunnel">
+            <i class="fas fa-mountain"></i>
+            <span>トンネル</span>
+          </a>
+        </div>
+        
+        <!-- その他の部門（コンパクト配置） -->
+        <div class="dept-others">
+          <a href="/department_study/urban_planning" class="dept-btn-small">都市計画</a>
+          <a href="/department_study/landscape" class="dept-btn-small">造園</a>
+          <a href="/department_study/construction_env" class="dept-btn-small">建設環境</a>
+          <a href="/department_study/steel_concrete" class="dept-btn-small">鋼構造</a>
+          <a href="/department_study/soil_foundation" class="dept-btn-small">土質基礎</a>
+          <a href="/department_study/construction_planning" class="dept-btn-small">施工計画</a>
+          <a href="/department_study/water_supply" class="dept-btn-small">上水道</a>
+          <a href="/department_study/forestry" class="dept-btn-small">森林土木</a>
+          <a href="/department_study/agriculture" class="dept-btn-small">農業土木</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+  <!-- 学習支援機能 -->
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="row g-2">
+        <div class="col-md-6">
+          <a href="/statistics" class="btn btn-outline-primary w-100 utility-btn">
+            <i class="fas fa-chart-bar me-2"></i><strong>学習記録</strong>
+          </a>
+        </div>
+        <div class="col-md-6">
+          <a href="/help" class="btn btn-outline-info w-100 utility-btn">
+            <i class="fas fa-question-circle me-2"></i><strong>使い方ガイド</strong>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+<style>
+/* ✨ 1画面完結型コンパクトレイアウト（ウルトラシンク設計） */
+.main-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+    max-width: 100%;
+}
+
+.learning-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.learning-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    border-color: #6366f1;
+}
+
+.learning-card .card-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.learning-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 8px 0;
+    color: #1e293b;
+}
+
+.learning-card p {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 8px 0;
+}
+
+.btn-start {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    transition: all 0.2s ease;
+    margin-top: auto;
+}
+
+.basic-btn {
+    background: #059669;
+    color: white;
+}
+
+.basic-btn:hover {
+    background: #047857;
+    color: white;
+}
+
+.specialist-btn {
+    background: #0284c7;
+    color: white;
+}
+
+.specialist-btn:hover {
+    background: #0369a1;
+    color: white;
+}
+
+.review-btn {
+    background: #d97706;
+    color: white;
+}
+
+.review-btn:hover {
+    background: #b45309;
+    color: white;
+}
+
+/* 部門選択エリア */
+.department-area {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.dept-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.dept-header h4 {
+    font-size: 1.2rem;
+    color: #1e293b;
+    margin: 0;
+}
+
+.btn-close-dept {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #64748b;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.btn-close-dept:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+.dept-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.dept-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #1e293b;
+    transition: all 0.2s ease;
+    min-height: 80px;
+}
+
+.dept-btn:hover {
+    border-color: #6366f1;
+    background: #6366f1;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.dept-btn.road:hover { background: #059669; border-color: #059669; }
+.dept-btn.river:hover { background: #0284c7; border-color: #0284c7; }
+.dept-btn.tunnel:hover { background: #d97706; border-color: #d97706; }
+
+.dept-btn i {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.dept-btn span {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.dept-others {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.dept-btn-small {
+    padding: 10px 8px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #64748b;
+    text-align: center;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dept-btn-small:hover {
+    border-color: #6366f1;
+    background: #6366f1;
+    color: white;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin: 15px 0;
+    }
+    
+    .learning-card {
+        min-height: 120px;
+        padding: 15px 12px;
+    }
+    
+    .learning-card h3 {
+        font-size: 1rem;
+    }
+    
+    .learning-card .card-icon {
+        font-size: 1.5rem;
+    }
+    
+    .dept-main {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .dept-others {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .dept-others {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+// ゲーミフィケーション状態を取得
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/api/gamification/status')
+        .then(response => response.json())
+        .then(data => {
+            if (data.streak !== undefined) {
+                document.getElementById('streak-counter').textContent = data.streak;
+                
+                // ストリーク表示の色を調整
+                const streakDisplay = document.querySelector('.streak-display');
+                if (data.streak >= 7) {
+                    streakDisplay.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+                } else if (data.streak >= 3) {
+                    streakDisplay.style.background = 'linear-gradient(45deg, #ffc107, #fd7e14)';
+                }
+            }
+        })
+        .catch(error => {
+        });
+});
+
+// ユーザー変更機能（企業環境での複数ユーザー対応）
+function changeUser() {
+    if (confirm('ユーザーを変更しますか？\n現在の学習セッションデータは保持されます。')) {
+        window.location.href = '/change_user';
+    }
+}
+
+// キャッシュクリア機能
+function clearCache() {
+    // Service Worker のキャッシュクリア
+    if ('serviceWorker' in navigator && 'caches' in window) {
+        caches.keys().then(function(cacheNames) {
+            return Promise.all(
+                cacheNames.map(function(cacheName) {
+                    return caches.delete(cacheName);
+                })
+            );
+        }).then(function() {
+            // ページリロード
+            window.location.reload(true);
+        });
+    } else {
+        // 通常のハードリロード
+        window.location.reload(true);
+    }
+}
+
+// UI/UX改善用追加機能
+// パフォーマンスモニタリング
+if ('performance' in window) {
+    window.addEventListener('load', function() {
+        const loadTime = performance.now();
+        if (loadTime > 3000) {
+            // Performance monitoring (production mode)
+        }
+    });
+}
+
+
+// 初心者ガイダンス表示制御
+function showBeginnerGuideIfNeeded() {
+    const hasVisited = localStorage.getItem('rccm_has_visited');
+    const guideDismissed = localStorage.getItem('rccm_guide_dismissed');
+    if (!hasVisited && !guideDismissed) {
+        document.getElementById('beginnerGuide').style.display = 'block';
+        localStorage.setItem('rccm_has_visited', 'true');
+    }
+}
+
+function dismissGuide() {
+    document.getElementById('beginnerGuide').style.display = 'none';
+    localStorage.setItem('rccm_guide_dismissed', 'true');
+}
+
+// ページ読み込み時に初心者ガイダンスを表示
+document.addEventListener('DOMContentLoaded', function() {
+    showBeginnerGuideIfNeeded();
+});
+
+// 部門選択の表示/非表示切り替え
+function toggleDepartments() {
+    const deptArea = document.getElementById('departmentArea');
+    if (deptArea.style.display === 'none' || deptArea.style.display === '') {
+        deptArea.style.display = 'block';
+        // スムーズなスクロール
+        setTimeout(() => {
+            deptArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+    } else {
+        deptArea.style.display = 'none';
+    }
+}
+
+// 復習問題数を更新
+function updateReviewCount() {
+    fetch('/api/review/count')
+        .then(response => response.json())
+        .then(data => {
+            if (data.count !== undefined) {
+                document.getElementById('reviewCount').textContent = data.count;
+            }
+        })
+        .catch(error => {
+        });
+}
+
+// ページ読み込み時に復習数を更新
+document.addEventListener('DOMContentLoaded', function() {
+    updateReviewCount();
+});
+
+// 部門ボタンのスタイル追加
+const departmentStyles = `
+.department-btn {
+    padding: 1.5rem 1rem !important;
+    text-align: center;
+    border: 2px solid #dee2e6;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.department-btn:hover {
+    border-color: #0d6efd;
+    background-color: #0d6efd;
+    color: white !important;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+}
+
+.department-btn-small {
+    padding: 0.75rem 0.5rem !important;
+    text-align: center;
+    border: 1px solid #dee2e6;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.department-btn-small:hover {
+    border-color: #6c757d;
+    background-color: #6c757d;
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+.card.border-success {
+    border-color: #28a745 !important;
+}
+
+.card-header.bg-success {
+    background: linear-gradient(135deg, #28a745, #20c997) !important;
+}
+
+.major-department-btn {
+    padding: 2rem 1rem !important;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.major-department-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.major-department-btn .h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.main-dept-btn {
+    padding: 1.5rem 1rem !important;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    border-width: 2px;
+    letter-spacing: 0.02em;
+}
+
+.main-dept-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.dept-btn {
+    padding: 1rem 0.75rem !important;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    letter-spacing: 0.01em;
+}
+
+.dept-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.common-btn {
+    padding: 1rem !important;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+.common-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.utility-btn {
+    padding: 0.75rem !important;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    border-radius: 6px;
+}
+
+.utility-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+`;
+
+// スタイルを動的に追加
+const styleSheet = document.createElement('style');
+styleSheet.textContent = departmentStyles;
+document.head.appendChild(styleSheet);
+
+// ユーザー名入力検証
+function validateUserName() {
+    const userNameInput = document.getElementById('userName');
+    const userName = userNameInput.value.trim();
+    
+    if (!userName) {
+        alert('ユーザー名を入力してください。');
+        userNameInput.focus();
+        return false;
+    }
+    
+    if (userName.length > 20) {
+        alert('ユーザー名は20文字以内で入力してください。');
+        userNameInput.focus();
+        return false;
+    }
+    
+    // 危険な文字をチェック
+    const dangerousChars = ['<', '>', '&', '"', "'", ';', '--', '/*', '*/', '\\'];
+    for (let char of dangerousChars) {
+        if (userName.includes(char)) {
+            alert('使用できない文字が含まれています。日本語、英数字、長音符、中点、スペースのみ使用可能です。');
+            userNameInput.focus();
+            return false;
+        }
+    }
+    
+    return true;
+}
+</script>
+{% endblock %} 

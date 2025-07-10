@@ -1,0 +1,105 @@
+{
+  "timestamp": "2025-07-08T07:58:34.599029",
+  "stage": "ULTRATHIN区段階44",
+  "functionality": "専門科目読み込みデバッグ",
+  "department_tests": {
+    "都市計画": {
+      "url_department": "都市計画",
+      "mapped_department": "都市計画及び地方計画",
+      "test_success": true,
+      "questions_found": 30,
+      "error_details": {},
+      "sample_question": {
+        "id": 474,
+        "category": "都市計画及び地方計画",
+        "question_type": "specialist",
+        "department": "urban_planning",
+        "year": 2016
+      }
+    },
+    "鋼構造・コンクリート": {
+      "url_department": "鋼構造・コンクリート",
+      "mapped_department": "鋼構造及びコンクリート",
+      "test_success": true,
+      "questions_found": 30,
+      "error_details": {},
+      "sample_question": {
+        "id": 293,
+        "category": "鋼構造及びコンクリート",
+        "question_type": "specialist",
+        "department": "steel_concrete",
+        "year": 2016
+      }
+    },
+    "土質・基礎": {
+      "url_department": "土質・基礎",
+      "mapped_department": "土質及び基礎",
+      "test_success": true,
+      "questions_found": 30,
+      "error_details": {},
+      "sample_question": {
+        "id": 233,
+        "category": "土質及び基礎",
+        "question_type": "specialist",
+        "department": "soil_foundation",
+        "year": 2016
+      }
+    },
+    "施工計画": {
+      "url_department": "施工計画",
+      "mapped_department": "施工計画、施工設備及び積算",
+      "test_success": true,
+      "questions_found": 31,
+      "error_details": {},
+      "sample_question": {
+        "id": 353,
+        "category": "施工計画、施工設備及び積算",
+        "question_type": "specialist",
+        "department": "construction_planning",
+        "year": 2016
+      }
+    },
+    "上下水道": {
+      "url_department": "上下水道",
+      "mapped_department": "上水道及び工業用水道",
+      "test_success": true,
+      "questions_found": 30,
+      "error_details": {},
+      "sample_question": {
+        "id": 504,
+        "category": "上水道及び工業用水道",
+        "question_type": "specialist",
+        "department": "water_supply",
+        "year": 2016
+      }
+    },
+    "道路_working": {
+      "url_department": "道路",
+      "mapped_department": "道路",
+      "test_success": true,
+      "questions_found": 30,
+      "is_working_department": true
+    },
+    "造園_working": {
+      "url_department": "造園",
+      "mapped_department": "造園",
+      "test_success": true,
+      "questions_found": 30,
+      "is_working_department": true
+    },
+    "森林土木_working": {
+      "url_department": "森林土木",
+      "mapped_department": "森林土木",
+      "test_success": true,
+      "questions_found": 30,
+      "is_working_department": true
+    }
+  },
+  "analysis": {
+    "failed_departments_count": 5,
+    "failed_tests_count": 0,
+    "working_tests_count": 3,
+    "load_function_accessible": true,
+    "root_cause_identified": true
+  }
+}

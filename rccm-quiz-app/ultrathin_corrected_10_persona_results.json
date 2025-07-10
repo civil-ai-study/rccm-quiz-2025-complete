@@ -1,0 +1,142 @@
+{
+  "timestamp": "2025-07-08T15:03:04.887603",
+  "summary": {
+    "total_tests": 15,
+    "successful_tests": 14,
+    "failed_tests": 1,
+    "success_rate": 93.33333333333333,
+    "successful_personas": 4,
+    "total_personas": 5,
+    "persona_success_rate": 80.0,
+    "critical_success_rate": 80.0
+  },
+  "personas_tested": [
+    "初心者学習者",
+    "中級者",
+    "上級者",
+    "忙しい社会人",
+    "学生"
+  ],
+  "test_results": [
+    {
+      "persona_name": "初心者学習者",
+      "test_name": "セッション作成",
+      "success": true,
+      "details": "完了",
+      "critical": false,
+      "timestamp": "2025-07-08T15:02:30.576531"
+    },
+    {
+      "persona_name": "初心者学習者",
+      "test_name": "ナビゲーション",
+      "success": true,
+      "details": "ホームページ: HTTP 200, 38733バイト, 部門選択: HTTP 200, 52013バイト, ヘルプページ: HTTP 200, 58474バイト",
+      "critical": false,
+      "timestamp": "2025-07-08T15:02:34.455241"
+    },
+    {
+      "persona_name": "初心者学習者",
+      "test_name": "試験機能",
+      "success": true,
+      "details": "基礎科目_10問_2024年: HTTP 200, 40455バイト, 問題要素あり",
+      "critical": true,
+      "timestamp": "2025-07-08T15:02:35.082119"
+    },
+    {
+      "persona_name": "中級者",
+      "test_name": "セッション作成",
+      "success": true,
+      "details": "完了",
+      "critical": false,
+      "timestamp": "2025-07-08T15:02:37.382160"
+    },
+    {
+      "persona_name": "中級者",
+      "test_name": "ナビゲーション",
+      "success": true,
+      "details": "ホームページ: HTTP 200, 38733バイト, 部門選択: HTTP 200, 52013バイト, ヘルプページ: HTTP 200, 58474バイト",
+      "critical": false,
+      "timestamp": "2025-07-08T15:02:41.645585"
+    },
+    {
+      "persona_name": "中級者",
+      "test_name": "試験機能",
+      "success": true,
+      "details": "基礎科目_10問_2018年: HTTP 200, 40455バイト, 問題要素あり, 途中終了: 中級者の行動パターン（10%確率）",
+      "critical": true,
+      "timestamp": "2025-07-08T15:02:42.515273"
+    },
+    {
+      "persona_name": "上級者",
+      "test_name": "セッション作成",
+      "success": true,
+      "details": "完了",
+      "critical": false,
+      "timestamp": "2025-07-08T15:02:44.793991"
+    },
+    {
+      "persona_name": "上級者",
+      "test_name": "ナビゲーション",
+      "success": true,
+      "details": "ホームページ: HTTP 200, 38733バイト, 部門選択: HTTP 200, 52013バイト, ヘルプページ: HTTP 200, 58474バイト",
+      "critical": false,
+      "timestamp": "2025-07-08T15:02:48.616696"
+    },
+    {
+      "persona_name": "上級者",
+      "test_name": "試験機能",
+      "success": false,
+      "details": "河川・砂防_20問_2019年: HTTP 200, 18667バイト, エラーページ, 問題要素あり",
+      "critical": true,
+      "timestamp": "2025-07-08T15:02:48.904505"
+    },
+    {
+      "persona_name": "忙しい社会人",
+      "test_name": "セッション作成",
+      "success": true,
+      "details": "完了",
+      "critical": false,
+      "timestamp": "2025-07-08T15:02:51.229622"
+    },
+    {
+      "persona_name": "忙しい社会人",
+      "test_name": "ナビゲーション",
+      "success": true,
+      "details": "ホームページ: HTTP 200, 38733バイト, 部門選択: HTTP 200, 52013バイト, ヘルプページ: HTTP 200, 58474バイト",
+      "critical": false,
+      "timestamp": "2025-07-08T15:02:55.089113"
+    },
+    {
+      "persona_name": "忙しい社会人",
+      "test_name": "試験機能",
+      "success": true,
+      "details": "基礎科目_10問_2019年: HTTP 200, 40455バイト, 問題要素あり",
+      "critical": true,
+      "timestamp": "2025-07-08T15:02:55.716935"
+    },
+    {
+      "persona_name": "学生",
+      "test_name": "セッション作成",
+      "success": true,
+      "details": "完了",
+      "critical": false,
+      "timestamp": "2025-07-08T15:02:58.016564"
+    },
+    {
+      "persona_name": "学生",
+      "test_name": "ナビゲーション",
+      "success": true,
+      "details": "ホームページ: HTTP 200, 38733バイト, 部門選択: HTTP 200, 52013バイト, ヘルプページ: HTTP 200, 58474バイト",
+      "critical": false,
+      "timestamp": "2025-07-08T15:03:02.010670"
+    },
+    {
+      "persona_name": "学生",
+      "test_name": "試験機能",
+      "success": true,
+      "details": "都市計画_20問_2019年: HTTP 200, 40455バイト, 問題要素あり",
+      "critical": true,
+      "timestamp": "2025-07-08T15:03:02.865527"
+    }
+  ]
+}

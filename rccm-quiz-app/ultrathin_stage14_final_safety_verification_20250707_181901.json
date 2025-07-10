@@ -1,0 +1,42 @@
+{
+  "timestamp": "2025-07-07T18:18:51.636496",
+  "specialist_separation_final_check": {
+    "河川、砂防及び海岸・海洋": {
+      "questions_count": 30,
+      "expected_count": 30,
+      "data_source": "specialist",
+      "exam_type": "河川、砂防及び海岸・海洋",
+      "separation_correct": true
+    },
+    "トンネル": {
+      "questions_count": 30,
+      "expected_count": 30,
+      "data_source": "specialist",
+      "exam_type": "トンネル",
+      "separation_correct": true
+    },
+    "道路": {
+      "questions_count": 30,
+      "expected_count": 30,
+      "data_source": "specialist",
+      "exam_type": "道路",
+      "separation_correct": true
+    }
+  },
+  "side_effects_verification": {
+    "basic_subject_intact": true,
+    "basic_questions_count": 202,
+    "basic_data_source": "basic",
+    "basic_exam_type": "基礎科目"
+  },
+  "ultrathin_methodology_success": {
+    "success_criteria": {
+      "specialist_separation_maintained": true,
+      "no_side_effects": true,
+      "post_processing_improved": true,
+      "zero_breaking_changes": true
+    },
+    "overall_success": true,
+    "success_rate": 100.0
+  }
+}

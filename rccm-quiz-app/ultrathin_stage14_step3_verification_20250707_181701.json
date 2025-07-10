@@ -1,0 +1,8 @@
+{
+  "timestamp": "2025-07-07T18:17:00.267687",
+  "session_restoration_test": {
+    "error": "name 'exam_session' is not defined"
+  },
+  "specialist_separation_maintained": {},
+  "post_processing_improvement": {}
+}

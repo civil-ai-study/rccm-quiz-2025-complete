@@ -1,0 +1,837 @@
+{
+  "timestamp": "2025-07-05T20:50:21.574008",
+  "verification_mode": "HTTP_431_FIX_VERIFICATION",
+  "target_url": "https://rccm-quiz-2025.onrender.com",
+  "total_tests": 39,
+  "success_count": 39,
+  "success_rate": 100.0,
+  "test_results": [
+    {
+      "department": "基礎科目",
+      "questions": 10,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 1.58030104637146
+    },
+    {
+      "department": "基礎科目",
+      "questions": 20,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 1.086327314376831
+    },
+    {
+      "department": "基礎科目",
+      "questions": 30,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.305849552154541
+    },
+    {
+      "department": "道路",
+      "questions": 10,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.25109124183654785
+    },
+    {
+      "department": "道路",
+      "questions": 20,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.5529720783233643
+    },
+    {
+      "department": "道路",
+      "questions": 30,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.27191877365112305
+    },
+    {
+      "department": "河川・砂防",
+      "questions": 10,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.5910604000091553
+    },
+    {
+      "department": "河川・砂防",
+      "questions": 20,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.3108363151550293
+    },
+    {
+      "department": "河川・砂防",
+      "questions": 30,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.5363821983337402
+    },
+    {
+      "department": "都市計画",
+      "questions": 10,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.27130651473999023
+    },
+    {
+      "department": "都市計画",
+      "questions": 20,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.2671520709991455
+    },
+    {
+      "department": "都市計画",
+      "questions": 30,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.26709961891174316
+    },
+    {
+      "department": "造園",
+      "questions": 10,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.28087568283081055
+    },
+    {
+      "department": "造園",
+      "questions": 20,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.26141881942749023
+    },
+    {
+      "department": "造園",
+      "questions": 30,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.5494208335876465
+    },
+    {
+      "department": "建設環境",
+      "questions": 10,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.521054744720459
+    },
+    {
+      "department": "建設環境",
+      "questions": 20,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.5827109813690186
+    },
+    {
+      "department": "建設環境",
+      "questions": 30,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.34026384353637695
+    },
+    {
+      "department": "鋼構造・コンクリート",
+      "questions": 10,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.2753486633300781
+    },
+    {
+      "department": "鋼構造・コンクリート",
+      "questions": 20,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.25177979469299316
+    },
+    {
+      "department": "鋼構造・コンクリート",
+      "questions": 30,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.535325288772583
+    },
+    {
+      "department": "土質・基礎",
+      "questions": 10,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.2485816478729248
+    },
+    {
+      "department": "土質・基礎",
+      "questions": 20,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.2624478340148926
+    },
+    {
+      "department": "土質・基礎",
+      "questions": 30,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.5330638885498047
+    },
+    {
+      "department": "施工計画",
+      "questions": 10,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.37099695205688477
+    },
+    {
+      "department": "施工計画",
+      "questions": 20,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.24807953834533691
+    },
+    {
+      "department": "施工計画",
+      "questions": 30,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.2627136707305908
+    },
+    {
+      "department": "上下水道",
+      "questions": 10,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.5842599868774414
+    },
+    {
+      "department": "上下水道",
+      "questions": 20,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.5837616920471191
+    },
+    {
+      "department": "上下水道",
+      "questions": 30,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.26940107345581055
+    },
+    {
+      "department": "森林土木",
+      "questions": 10,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.2630491256713867
+    },
+    {
+      "department": "森林土木",
+      "questions": 20,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.2539200782775879
+    },
+    {
+      "department": "森林土木",
+      "questions": 30,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.5926680564880371
+    },
+    {
+      "department": "農業土木",
+      "questions": 10,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.2856709957122803
+    },
+    {
+      "department": "農業土木",
+      "questions": 20,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.5427141189575195
+    },
+    {
+      "department": "農業土木",
+      "questions": 30,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.5441999435424805
+    },
+    {
+      "department": "トンネル",
+      "questions": 10,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.5990734100341797
+    },
+    {
+      "department": "トンネル",
+      "questions": 20,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.5634322166442871
+    },
+    {
+      "department": "トンネル",
+      "questions": 30,
+      "post_success": true,
+      "get_fallback": false,
+      "status_code": 302,
+      "error": null,
+      "response_time": 0.33393144607543945
+    }
+  ],
+  "department_results": {
+    "基礎科目": [
+      {
+        "department": "基礎科目",
+        "questions": 10,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 1.58030104637146
+      },
+      {
+        "department": "基礎科目",
+        "questions": 20,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 1.086327314376831
+      },
+      {
+        "department": "基礎科目",
+        "questions": 30,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.305849552154541
+      },
+      {
+        "department": "基礎科目",
+        "method": "GET",
+        "success": true,
+        "status_code": 302,
+        "error": null
+      }
+    ],
+    "道路": [
+      {
+        "department": "道路",
+        "questions": 10,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.25109124183654785
+      },
+      {
+        "department": "道路",
+        "questions": 20,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.5529720783233643
+      },
+      {
+        "department": "道路",
+        "questions": 30,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.27191877365112305
+      },
+      {
+        "department": "道路",
+        "method": "GET",
+        "success": true,
+        "status_code": 302,
+        "error": null
+      }
+    ],
+    "河川・砂防": [
+      {
+        "department": "河川・砂防",
+        "questions": 10,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.5910604000091553
+      },
+      {
+        "department": "河川・砂防",
+        "questions": 20,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.3108363151550293
+      },
+      {
+        "department": "河川・砂防",
+        "questions": 30,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.5363821983337402
+      },
+      {
+        "department": "河川・砂防",
+        "method": "GET",
+        "success": true,
+        "status_code": 302,
+        "error": null
+      }
+    ],
+    "都市計画": [
+      {
+        "department": "都市計画",
+        "questions": 10,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.27130651473999023
+      },
+      {
+        "department": "都市計画",
+        "questions": 20,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.2671520709991455
+      },
+      {
+        "department": "都市計画",
+        "questions": 30,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.26709961891174316
+      },
+      {
+        "department": "都市計画",
+        "method": "GET",
+        "success": true,
+        "status_code": 302,
+        "error": null
+      }
+    ],
+    "造園": [
+      {
+        "department": "造園",
+        "questions": 10,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.28087568283081055
+      },
+      {
+        "department": "造園",
+        "questions": 20,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.26141881942749023
+      },
+      {
+        "department": "造園",
+        "questions": 30,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.5494208335876465
+      },
+      {
+        "department": "造園",
+        "method": "GET",
+        "success": true,
+        "status_code": 302,
+        "error": null
+      }
+    ],
+    "建設環境": [
+      {
+        "department": "建設環境",
+        "questions": 10,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.521054744720459
+      },
+      {
+        "department": "建設環境",
+        "questions": 20,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.5827109813690186
+      },
+      {
+        "department": "建設環境",
+        "questions": 30,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.34026384353637695
+      },
+      {
+        "department": "建設環境",
+        "method": "GET",
+        "success": true,
+        "status_code": 302,
+        "error": null
+      }
+    ],
+    "鋼構造・コンクリート": [
+      {
+        "department": "鋼構造・コンクリート",
+        "questions": 10,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.2753486633300781
+      },
+      {
+        "department": "鋼構造・コンクリート",
+        "questions": 20,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.25177979469299316
+      },
+      {
+        "department": "鋼構造・コンクリート",
+        "questions": 30,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.535325288772583
+      },
+      {
+        "department": "鋼構造・コンクリート",
+        "method": "GET",
+        "success": true,
+        "status_code": 302,
+        "error": null
+      }
+    ],
+    "土質・基礎": [
+      {
+        "department": "土質・基礎",
+        "questions": 10,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.2485816478729248
+      },
+      {
+        "department": "土質・基礎",
+        "questions": 20,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.2624478340148926
+      },
+      {
+        "department": "土質・基礎",
+        "questions": 30,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.5330638885498047
+      },
+      {
+        "department": "土質・基礎",
+        "method": "GET",
+        "success": true,
+        "status_code": 302,
+        "error": null
+      }
+    ],
+    "施工計画": [
+      {
+        "department": "施工計画",
+        "questions": 10,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.37099695205688477
+      },
+      {
+        "department": "施工計画",
+        "questions": 20,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.24807953834533691
+      },
+      {
+        "department": "施工計画",
+        "questions": 30,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.2627136707305908
+      },
+      {
+        "department": "施工計画",
+        "method": "GET",
+        "success": true,
+        "status_code": 302,
+        "error": null
+      }
+    ],
+    "上下水道": [
+      {
+        "department": "上下水道",
+        "questions": 10,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.5842599868774414
+      },
+      {
+        "department": "上下水道",
+        "questions": 20,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.5837616920471191
+      },
+      {
+        "department": "上下水道",
+        "questions": 30,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.26940107345581055
+      },
+      {
+        "department": "上下水道",
+        "method": "GET",
+        "success": true,
+        "status_code": 302,
+        "error": null
+      }
+    ],
+    "森林土木": [
+      {
+        "department": "森林土木",
+        "questions": 10,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.2630491256713867
+      },
+      {
+        "department": "森林土木",
+        "questions": 20,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.2539200782775879
+      },
+      {
+        "department": "森林土木",
+        "questions": 30,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.5926680564880371
+      },
+      {
+        "department": "森林土木",
+        "method": "GET",
+        "success": true,
+        "status_code": 302,
+        "error": null
+      }
+    ],
+    "農業土木": [
+      {
+        "department": "農業土木",
+        "questions": 10,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.2856709957122803
+      },
+      {
+        "department": "農業土木",
+        "questions": 20,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.5427141189575195
+      },
+      {
+        "department": "農業土木",
+        "questions": 30,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.5441999435424805
+      },
+      {
+        "department": "農業土木",
+        "method": "GET",
+        "success": true,
+        "status_code": 302,
+        "error": null
+      }
+    ],
+    "トンネル": [
+      {
+        "department": "トンネル",
+        "questions": 10,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.5990734100341797
+      },
+      {
+        "department": "トンネル",
+        "questions": 20,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.5634322166442871
+      },
+      {
+        "department": "トンネル",
+        "questions": 30,
+        "post_success": true,
+        "get_fallback": false,
+        "status_code": 302,
+        "error": null,
+        "response_time": 0.33393144607543945
+      },
+      {
+        "department": "トンネル",
+        "method": "GET",
+        "success": true,
+        "status_code": 302,
+        "error": null
+      }
+    ]
+  },
+  "fix_effectiveness": {
+    "http_431_eliminated": true,
+    "post_support_working": 39,
+    "still_failing_departments": [],
+    "error_breakdown": {}
+  }
+}

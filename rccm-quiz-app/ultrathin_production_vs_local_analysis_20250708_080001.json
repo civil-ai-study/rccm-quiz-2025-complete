@@ -1,0 +1,127 @@
+{
+  "timestamp": "2025-07-08T08:00:00.207235",
+  "stage": "ULTRATHIN区段階45",
+  "functionality": "本番環境vs局所環境差異分析",
+  "local_test_results": "全部門100%成功",
+  "production_test_results": {
+    "都市計画": {
+      "department": "都市計画",
+      "redirect_successful": false,
+      "status_code": 200,
+      "response_details": {
+        "location": "",
+        "content_length": 16903,
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8"
+      },
+      "error_analysis": {
+        "found_error_messages": [
+          "問題データが存在しません"
+        ],
+        "has_error_page": true,
+        "has_data_error": true
+      },
+      "error_content": "問題データが存在しません"
+    },
+    "鋼構造・コンクリート": {
+      "department": "鋼構造・コンクリート",
+      "redirect_successful": false,
+      "status_code": 200,
+      "response_details": {
+        "location": "",
+        "content_length": 16903,
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8"
+      },
+      "error_analysis": {
+        "found_error_messages": [
+          "問題データが存在しません"
+        ],
+        "has_error_page": true,
+        "has_data_error": true
+      },
+      "error_content": "問題データが存在しません"
+    },
+    "土質・基礎": {
+      "department": "土質・基礎",
+      "redirect_successful": false,
+      "status_code": 200,
+      "response_details": {
+        "location": "",
+        "content_length": 16903,
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8"
+      },
+      "error_analysis": {
+        "found_error_messages": [
+          "問題データが存在しません"
+        ],
+        "has_error_page": true,
+        "has_data_error": true
+      },
+      "error_content": "問題データが存在しません"
+    },
+    "施工計画": {
+      "department": "施工計画",
+      "redirect_successful": false,
+      "status_code": 200,
+      "response_details": {
+        "location": "",
+        "content_length": 16903,
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8"
+      },
+      "error_analysis": {
+        "found_error_messages": [
+          "問題データが存在しません"
+        ],
+        "has_error_page": true,
+        "has_data_error": true
+      },
+      "error_content": "問題データが存在しません"
+    },
+    "上下水道": {
+      "department": "上下水道",
+      "redirect_successful": false,
+      "status_code": 200,
+      "response_details": {
+        "location": "",
+        "content_length": 16903,
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8"
+      },
+      "error_analysis": {
+        "found_error_messages": [
+          "問題データが存在しません"
+        ],
+        "has_error_page": true,
+        "has_data_error": true
+      },
+      "error_content": "問題データが存在しません"
+    }
+  },
+  "environment_analysis": {
+    "file_check": {
+      "test_successful": true,
+      "status_code": 200,
+      "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+      "working_department_accessible": true
+    },
+    "local_file_check": {
+      "file_exists": true,
+      "file_path": "data/4-2_2016.csv",
+      "file_size": 291783,
+      "file_readable": true
+    },
+    "possible_causes": [
+      "本番環境でのファイルパス問題（相対パス vs 絶対パス）",
+      "本番環境でのファイルアクセス権限問題",
+      "本番環境での環境変数設定問題",
+      "本番環境でのメモリ制限によるファイル読み込み失敗",
+      "本番環境でのディスク容量問題",
+      "本番環境でのPythonパス問題",
+      "Render.comの一時的なファイルシステム問題",
+      "デプロイ時のファイル同期問題"
+    ]
+  }
+}

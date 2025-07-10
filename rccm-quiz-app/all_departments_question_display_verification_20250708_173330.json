@@ -1,0 +1,279 @@
+{
+  "timestamp": "2025-07-08T17:33:09.575307",
+  "stage": "ULTRATHIN区段階40",
+  "functionality": "全部門問題表示",
+  "department_results": {
+    "基礎科目": {
+      "department": "基礎科目",
+      "access_successful": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "display_quality": {
+        "has_question_text": false,
+        "has_all_options": false,
+        "has_navigation": false,
+        "has_progress_indicator": true,
+        "all_elements_present": false
+      },
+      "sample_content": {
+        "option_count": 0
+      }
+    },
+    "道路": {
+      "department": "道路",
+      "access_successful": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "display_quality": {
+        "has_question_text": false,
+        "has_all_options": false,
+        "has_navigation": false,
+        "has_progress_indicator": true,
+        "all_elements_present": false
+      },
+      "sample_content": {
+        "option_count": 0
+      }
+    },
+    "河川、砂防及び海岸・海洋": {
+      "department": "河川、砂防及び海岸・海洋",
+      "access_successful": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "display_quality": {
+        "has_question_text": false,
+        "has_all_options": false,
+        "has_navigation": false,
+        "has_progress_indicator": true,
+        "all_elements_present": false
+      },
+      "sample_content": {
+        "option_count": 0
+      }
+    },
+    "都市計画": {
+      "department": "都市計画",
+      "access_successful": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "display_quality": {
+        "has_question_text": false,
+        "has_all_options": false,
+        "has_navigation": false,
+        "has_progress_indicator": true,
+        "all_elements_present": false
+      },
+      "sample_content": {
+        "option_count": 0
+      }
+    },
+    "造園": {
+      "department": "造園",
+      "access_successful": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "display_quality": {
+        "has_question_text": false,
+        "has_all_options": false,
+        "has_navigation": false,
+        "has_progress_indicator": true,
+        "all_elements_present": false
+      },
+      "sample_content": {
+        "option_count": 0
+      }
+    },
+    "建設環境": {
+      "department": "建設環境",
+      "access_successful": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "display_quality": {
+        "has_question_text": false,
+        "has_all_options": false,
+        "has_navigation": false,
+        "has_progress_indicator": true,
+        "all_elements_present": false
+      },
+      "sample_content": {
+        "option_count": 0
+      }
+    },
+    "鋼構造・コンクリート": {
+      "department": "鋼構造・コンクリート",
+      "access_successful": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "display_quality": {
+        "has_question_text": false,
+        "has_all_options": false,
+        "has_navigation": false,
+        "has_progress_indicator": true,
+        "all_elements_present": false
+      },
+      "sample_content": {
+        "option_count": 0
+      }
+    },
+    "土質・基礎": {
+      "department": "土質・基礎",
+      "access_successful": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "display_quality": {
+        "has_question_text": false,
+        "has_all_options": false,
+        "has_navigation": false,
+        "has_progress_indicator": true,
+        "all_elements_present": false
+      },
+      "sample_content": {
+        "option_count": 0
+      }
+    },
+    "施工計画": {
+      "department": "施工計画",
+      "access_successful": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "display_quality": {
+        "has_question_text": false,
+        "has_all_options": false,
+        "has_navigation": false,
+        "has_progress_indicator": true,
+        "all_elements_present": false
+      },
+      "sample_content": {
+        "option_count": 0
+      }
+    },
+    "上下水道": {
+      "department": "上下水道",
+      "access_successful": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "display_quality": {
+        "has_question_text": false,
+        "has_all_options": false,
+        "has_navigation": false,
+        "has_progress_indicator": true,
+        "all_elements_present": false
+      },
+      "sample_content": {
+        "option_count": 0
+      }
+    },
+    "森林土木": {
+      "department": "森林土木",
+      "access_successful": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "display_quality": {
+        "has_question_text": false,
+        "has_all_options": false,
+        "has_navigation": false,
+        "has_progress_indicator": true,
+        "all_elements_present": false
+      },
+      "sample_content": {
+        "option_count": 0
+      }
+    },
+    "農業土木": {
+      "department": "農業土木",
+      "access_successful": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "display_quality": {
+        "has_question_text": false,
+        "has_all_options": false,
+        "has_navigation": false,
+        "has_progress_indicator": true,
+        "all_elements_present": false
+      },
+      "sample_content": {
+        "option_count": 0
+      }
+    },
+    "トンネル": {
+      "department": "トンネル",
+      "access_successful": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "display_quality": {
+        "has_question_text": false,
+        "has_all_options": false,
+        "has_navigation": false,
+        "has_progress_indicator": true,
+        "all_elements_present": false
+      },
+      "sample_content": {
+        "option_count": 0
+      }
+    }
+  },
+  "overall_assessment": {
+    "total_departments": 13,
+    "perfect_display_count": 0,
+    "imperfect_display_count": 13,
+    "failed_access_count": 0,
+    "perfect_display_rate": 0.0,
+    "system_quality": "needs_improvement",
+    "perfect_departments": [],
+    "imperfect_departments": [
+      "基礎科目",
+      "道路",
+      "河川、砂防及び海岸・海洋",
+      "都市計画",
+      "造園",
+      "建設環境",
+      "鋼構造・コンクリート",
+      "土質・基礎",
+      "施工計画",
+      "上下水道",
+      "森林土木",
+      "農業土木",
+      "トンネル"
+    ],
+    "failed_departments": []
+  }
+}

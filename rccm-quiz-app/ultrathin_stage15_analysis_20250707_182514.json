@@ -1,0 +1,88 @@
+{
+  "timestamp": "2025-07-07T18:25:02.918535",
+  "current_system_status": {
+    "basic_subject_health": {
+      "questions_count": 202,
+      "data_source": "basic",
+      "exam_type": "基礎科目",
+      "healthy": true
+    },
+    "specialist_subjects_health": {
+      "河川、砂防及び海岸・海洋": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "河川、砂防及び海岸・海洋",
+        "healthy": true
+      },
+      "トンネル": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "トンネル",
+        "healthy": true
+      },
+      "道路": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "道路",
+        "healthy": true
+      },
+      "土質及び基礎": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "土質及び基礎",
+        "healthy": true
+      }
+    },
+    "overall_health_score": 100.0,
+    "system_stable": true
+  },
+  "remaining_improvement_opportunities": {
+    "post_processing_analysis": {
+      "reaches_exam_question": false,
+      "reaches_exam_simulator": true,
+      "redirect_count": 2
+    },
+    "identified_opportunities": [
+      {
+        "area": "POST処理最適化",
+        "description": "exam_questionページへの直接到達率向上",
+        "priority": "medium",
+        "risk_level": "low",
+        "estimated_effort": "small"
+      },
+      {
+        "area": "セッション持続性強化",
+        "description": "POST処理でのセッション保持率向上",
+        "priority": "medium",
+        "risk_level": "minimal",
+        "estimated_effort": "small"
+      }
+    ],
+    "total_opportunities": 2
+  },
+  "ultrathin_stage15_plan": {
+    "strategy": {
+      "approach": "targeted_optimization",
+      "description": "特定された改善機会への最小リスク対応",
+      "phases": [
+        {
+          "phase": 1,
+          "name": "最小リスク改善検討",
+          "description": "最も安全で効果的な改善を慎重に分析",
+          "risk_level": "minimal"
+        },
+        {
+          "phase": 2,
+          "name": "段階的実装準備",
+          "description": "ULTRATHIN手法での安全実装計画",
+          "risk_level": "minimal"
+        }
+      ],
+      "safety_priority": "maximum",
+      "rollback_readiness": "immediate"
+    },
+    "recommended_next_action": "慎重な改善検討",
+    "ultrathin_principles_maintained": true,
+    "safety_first_approach": true
+  }
+}

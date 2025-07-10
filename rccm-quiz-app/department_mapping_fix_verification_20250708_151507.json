@@ -1,0 +1,72 @@
+{
+  "timestamp": "2025-07-08T15:15:07.286802",
+  "test_type": "department_mapping_fix_verification",
+  "results": {
+    "河川・砂防_mapping": {
+      "url_department": "河川・砂防",
+      "expected_csv_department": "河川、砂防及び海岸・海洋",
+      "actual_mapped_department": "河川、砂防及び海岸・海洋",
+      "mapping_correct": true,
+      "test_status": "PASS"
+    },
+    "都市計画_mapping": {
+      "url_department": "都市計画",
+      "expected_csv_department": "都市計画及び地方計画",
+      "actual_mapped_department": "都市計画及び地方計画",
+      "mapping_correct": true,
+      "test_status": "PASS"
+    },
+    "鋼構造・コンクリート_mapping": {
+      "url_department": "鋼構造・コンクリート",
+      "expected_csv_department": "鋼構造及びコンクリート",
+      "actual_mapped_department": "鋼構造及びコンクリート",
+      "mapping_correct": true,
+      "test_status": "PASS"
+    },
+    "土質・基礎_mapping": {
+      "url_department": "土質・基礎",
+      "expected_csv_department": "土質及び基礎",
+      "actual_mapped_department": "土質及び基礎",
+      "mapping_correct": true,
+      "test_status": "PASS"
+    },
+    "施工計画_mapping": {
+      "url_department": "施工計画",
+      "expected_csv_department": "施工計画、施工設備及び積算",
+      "actual_mapped_department": "施工計画、施工設備及び積算",
+      "mapping_correct": true,
+      "test_status": "PASS"
+    },
+    "上下水道_mapping": {
+      "url_department": "上下水道",
+      "expected_csv_department": "上水道及び工業用水道",
+      "actual_mapped_department": "上水道及び工業用水道",
+      "mapping_correct": true,
+      "test_status": "PASS"
+    },
+    "csv_files_found": {
+      "data_directory": "/mnt/c/Users/ABC/Desktop/rccm-quiz-app/rccm-quiz-app/data",
+      "csv_files_count": 13,
+      "csv_files": [
+        "4-1.csv",
+        "4-2_2008.csv",
+        "4-2_2009.csv",
+        "4-2_2010.csv",
+        "4-2_2011.csv",
+        "4-2_2012.csv",
+        "4-2_2013.csv",
+        "4-2_2014.csv",
+        "4-2_2015.csv",
+        "4-2_2016.csv"
+      ],
+      "test_status": "PASS"
+    }
+  },
+  "overall_status": "PASS",
+  "summary": {
+    "total_tests": 7,
+    "passed_tests": 7,
+    "failed_tests": 0,
+    "critical_fix_status": "河川・砂防マッピング修正完了"
+  }
+}

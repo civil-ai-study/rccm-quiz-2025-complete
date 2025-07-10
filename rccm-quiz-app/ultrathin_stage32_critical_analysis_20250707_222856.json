@@ -1,0 +1,77 @@
+{
+  "timestamp": "2025-07-07T22:28:56.918825",
+  "stage": "ULTRATHIN区段階32",
+  "critical_situation": "基礎科目POST処理でタイムアウト/405エラー継続",
+  "user_requirement": "1万人使用ソフトウェア100%品質",
+  "identified_issues": {
+    "post_405_persistence": {
+      "description": "段階31修正後も405エラーが継続",
+      "symptoms": [
+        "基礎科目POST: 405 Method Not Allowed",
+        "専門科目POST: 200 正常応答",
+        "GET方式: 全て正常動作"
+      ],
+      "root_cause": "Render.comデプロイ反映遅延またはコード問題",
+      "impact": "基礎科目ユーザー完全ブロック",
+      "severity": "CRITICAL"
+    },
+    "timeout_occurrence": {
+      "description": "基礎科目POST処理でタイムアウト発生",
+      "symptoms": [
+        "30秒でタイムアウト",
+        "GET方式は正常（0.94秒）",
+        "専門科目POST正常（0.60秒）"
+      ],
+      "root_cause": "段階29緊急修正コードが基礎科目で無限ループ化",
+      "impact": "基礎科目完全利用不可",
+      "severity": "CRITICAL"
+    },
+    "basic_subject_flow": {
+      "description": "基礎科目と専門科目の処理フロー差異",
+      "symptoms": [
+        "基礎科目: exam_type == '基礎科目'で段階29実行",
+        "専門科目: 段階29をスキップして正常動作",
+        "リダイレクト先: exam_question（POST未対応疑い）"
+      ],
+      "root_cause": "段階29緊急修正が基礎科目でのみ実行される条件分岐",
+      "impact": "基礎科目利用者の完全排除",
+      "severity": "HIGH"
+    }
+  },
+  "emergency_solutions": {
+    "solution1_stage29_safety": {
+      "priority": "最高",
+      "approach": "段階29緊急修正コードの条件分岐修正",
+      "target": "app.py lines 7319-7349",
+      "solution": {
+        "description": "基礎科目でタイムアウトを起こす段階29コードを安全化",
+        "method": "条件分岐追加で専門科目のみ段階29実行",
+        "code": "\n# 🚨 ULTRATHIN区段階32緊急修正3: 段階29の安全化\n# 基礎科目でのタイムアウト問題解決\nif exam_type != '基礎科目':  # 基礎科目は段階29をスキップ\n    try:\n        # 段階29緊急修正1のコード（専門科目のみ）\n        session['exam_session'] = lightweight_session\n        session.modified = True\n        session.permanent = True\n        \n        store_exam_data_in_memory(exam_id, exam_session)\n        \n        response = make_response(redirect(url_for('exam_question')))\n        \n        # バックアップクッキー（専門科目のみ）\n        import json\n        session_backup = json.dumps({\n            'exam_id': exam_id,\n            'exam_type': exam_type,\n            'timestamp': str(datetime.now()),\n            'stage32_specialist_only': True\n        })\n        response.set_cookie('exam_backup', session_backup, \n                           secure=True, httponly=True, samesite='Lax', max_age=3600)\n        \n        logger.info(f\"🚨 ULTRATHIN段階32: 専門科目のみ段階29実行 - {exam_id}\")\n        return response\n        \n    except Exception as emergency_error:\n        logger.error(f\"🚨 ULTRATHIN段階32: 専門科目段階29エラー - {emergency_error}\")\n        return redirect(url_for('exam_simulator_page'))\nelse:\n    # 基礎科目は従来の軽量リダイレクト\n    logger.info(f\"🚨 ULTRATHIN段階32: 基礎科目は軽量処理 - {exam_id}\")\n    return redirect(url_for('exam_question'))\n",
+        "expected_improvement": "基礎科目: タイムアウト解決、専門科目: 段階29効果維持"
+      }
+    },
+    "solution2_basic_lightweight": {
+      "priority": "高",
+      "approach": "基礎科目専用の超軽量処理実装",
+      "target": "基礎科目フロー全体",
+      "solution": {
+        "description": "基礎科目のみ段階29を完全回避",
+        "method": "基礎科目判定での早期リターン",
+        "code": "\n# 🚨 ULTRATHIN区段階32緊急修正4: 基礎科目超軽量化\nif exam_type == '基礎科目':\n    # 基礎科目は最短ルートで処理\n    session['exam_session'] = lightweight_session\n    session.modified = True\n    \n    store_exam_data_in_memory(exam_id, exam_session)\n    \n    # 段階29を一切実行せず即座にリダイレクト\n    logger.info(f\"🚨 ULTRATHIN段階32: 基礎科目超軽量処理 - {exam_id}\")\n    return redirect(url_for('exam_question'))\n",
+        "expected_improvement": "基礎科目: 0%→100%復旧、応答時間1秒以下"
+      }
+    }
+  },
+  "implementation_priority": [
+    "solution1_stage29_safety",
+    "solution2_basic_lightweight"
+  ],
+  "expected_outcome": {
+    "basic_subject_post": "タイムアウト解決、200応答",
+    "specialist_subject_post": "段階29効果維持、200応答",
+    "overall_success_rate": "100%",
+    "response_time_basic": "< 1秒",
+    "response_time_specialist": "< 2秒",
+    "user_experience": "1万人完全対応"
+  }
+}

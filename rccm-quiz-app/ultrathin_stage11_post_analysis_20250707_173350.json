@@ -1,0 +1,58 @@
+{
+  "post_analysis": {
+    "status_code": 200,
+    "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+    "response_time": 0.9897170066833496,
+    "content_length": 36999,
+    "has_redirects": true,
+    "keywords": {
+      "試験シミュレーター": 3,
+      "exam_simulator": 0,
+      "exam_question": 0,
+      "エラー": 0,
+      "error": 9,
+      "問題": 15,
+      "選択肢": 2
+    },
+    "debug_available": true,
+    "session_exists": false
+  },
+  "methods_comparison": {
+    "GET": {
+      "status": 200,
+      "url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+      "content_length": 36999,
+      "page_type": "exam_simulator"
+    },
+    "POST": {
+      "status": 200,
+      "url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+      "content_length": 36999,
+      "page_type": "exam_simulator"
+    }
+  },
+  "post_issues": [
+    {
+      "department": "河川、砂防及び海岸・海洋",
+      "status": 200,
+      "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+      "content_length": 36999,
+      "is_simulator": true
+    },
+    {
+      "department": "トンネル",
+      "status": 200,
+      "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+      "content_length": 36999,
+      "is_simulator": true
+    },
+    {
+      "department": "基礎科目",
+      "status": 200,
+      "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+      "content_length": 36999,
+      "is_simulator": true
+    }
+  ],
+  "timestamp": "2025-07-07T17:33:50.977375"
+}

@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+
+{% block title %}4-1基礎と4-2専門の連携学習 - RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- ヘッダー -->
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-link text-primary"></i> 連携学習モード</h2>
+                <div>
+                    <a href="{{ url_for('departments') }}" class="btn btn-outline-secondary mr-2">
+                        <i class="fas fa-building"></i> 部門選択
+                    </a>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-home"></i> ホーム
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 連携学習の説明 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <h5><i class="fas fa-info-circle"></i> 連携学習とは？</h5>
+                <p class="mb-0">
+                    4-1基礎科目での理解度に基づいて、4-2専門科目への学習を最適化します。
+                    基礎がしっかりしていない分野は重点的に復習し、理解が進んでいる分野は専門へと段階的に進みます。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 現在の基礎理解度表示 -->
+    {% if foundation_mastery is defined %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-chart-bar"></i> 現在の基礎理解度</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="text-center">
+                                <h3 class="text-primary">{{ "%.1f"|format(foundation_mastery * 100) }}%</h3>
+                                <p class="text-muted">4-1基礎科目の習熟度</p>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar 
+                                        {% if foundation_mastery >= 0.7 %}bg-success
+                                        {% elif foundation_mastery >= 0.4 %}bg-warning
+                                        {% else %}bg-danger{% endif %}" 
+                                         style="width: {{ foundation_mastery * 100 }}%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>推奨学習段階:</h6>
+                            {% if foundation_mastery < 0.4 %}
+                            <span class="badge badge-danger badge-lg">基礎構築段階</span>
+                            <p class="small text-muted mt-2">4-1基礎科目の徹底的な学習が必要です</p>
+                            {% elif foundation_mastery < 0.7 %}
+                            <span class="badge badge-warning badge-lg">橋渡し学習段階</span>
+                            <p class="small text-muted mt-2">基礎の強化と専門への導入を並行して行います</p>
+                            {% elif foundation_mastery < 0.85 %}
+                            <span class="badge badge-info badge-lg">専門進歩段階</span>
+                            <p class="small text-muted mt-2">4-2専門科目を中心に学習を進めます</p>
+                            {% else %}
+                            <span class="badge badge-success badge-lg">統合習熟段階</span>
+                            <p class="small text-muted mt-2">高度な専門問題で実践力を養います</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 学習モード選択 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h4 class="mb-3">学習モードを選択してください</h4>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100 border-success">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-arrow-right"></i> 基礎→専門連携学習
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                基礎理解度に応じて4-1から4-2への段階的学習を行います。
+                                習熟度に合わせて問題の配分を動的に調整します。
+                            </p>
+                            <ul class="list-unstyled small">
+                                <li><i class="fas fa-check text-success"></i> 習熟度ベースの進行</li>
+                                <li><i class="fas fa-check text-success"></i> 段階的難易度調整</li>
+                                <li><i class="fas fa-check text-success"></i> 弱点分野の重点強化</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            {% if department %}
+                            <a href="{{ url_for('integrated_learning', mode='basic_to_specialist', department=department) }}" 
+                               class="btn btn-success btn-block">
+                                <i class="fas fa-play"></i> この方式で学習開始
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('integrated_learning', mode='basic_to_specialist') }}" 
+                               class="btn btn-success btn-block">
+                                <i class="fas fa-play"></i> この方式で学習開始
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100 border-warning">
+                        <div class="card-header bg-warning text-dark">
+                            <h5 class="mb-0">
+                                <i class="fas fa-building"></i> 基礎強化学習
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                4-1基礎科目を重点的に強化し、専門学習への土台を固めます。
+                                基礎が不安な方におすすめです。
+                            </p>
+                            <ul class="list-unstyled small">
+                                <li><i class="fas fa-check text-warning"></i> 基礎重視（60%以上）</li>
+                                <li><i class="fas fa-check text-warning"></i> 橋渡し学習</li>
+                                <li><i class="fas fa-check text-warning"></i> 段階的専門導入</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            {% if department %}
+                            <a href="{{ url_for('integrated_learning', mode='foundation_reinforced', department=department) }}" 
+                               class="btn btn-warning btn-block">
+                                <i class="fas fa-play"></i> この方式で学習開始
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('integrated_learning', mode='foundation_reinforced') }}" 
+                               class="btn btn-warning btn-block">
+                                <i class="fas fa-play"></i> この方式で学習開始
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 部門別学習のメリット -->
+    {% if department %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-light border">
+                <h6><i class="fas fa-lightbulb text-warning"></i> 
+                    {{ departments.get(department, {}).get('name', department) }}部門での連携学習</h6>
+                <p class="mb-0 small">
+                    この部門の基礎カテゴリ（
+                    {% if department in department_patterns %}
+                        {% for cat in department_patterns[department]['foundation_categories'] %}
+                            {{ cat }}{% if not loop.last %}、{% endif %}
+                        {% endfor %}
+                    {% else %}
+                        構造力学、材料工学など
+                    {% endif %}
+                    ）の理解度に基づいて、専門分野（
+                    {% if department in department_patterns %}
+                        {% for cat in department_patterns[department]['application_categories'] %}
+                            {{ cat }}{% if not loop.last %}、{% endif %}
+                        {% endfor %}
+                    {% else %}
+                        設計、施工、維持管理など
+                    {% endif %}
+                    ）への学習を最適化します。
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 学習効果の説明 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-chart-line text-info"></i> 連携学習の効果</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <i class="fas fa-graduation-cap fa-3x text-primary mb-3"></i>
+                            <h6>理解度向上</h6>
+                            <p class="small text-muted">基礎を固めてから専門に進むことで、より深い理解が得られます</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <i class="fas fa-target fa-3x text-success mb-3"></i>
+                            <h6>効率的学習</h6>
+                            <p class="small text-muted">弱点を重点的に学習し、強みは維持することで効率が向上します</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <i class="fas fa-trophy fa-3x text-warning mb-3"></i>
+                            <h6>合格率向上</h6>
+                            <p class="small text-muted">段階的な学習により、確実な知識定着と合格率向上が期待できます</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ナビゲーション -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="btn-group" role="group">
+                <a href="{{ url_for('adaptive_quiz') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-brain"></i> 通常のAI学習
+                </a>
+                <a href="{{ url_for('ai_analysis') }}" class="btn btn-outline-info">
+                    <i class="fas fa-chart-bar"></i> 弱点分析
+                </a>
+                <a href="{{ url_for('department_statistics') }}" class="btn btn-outline-primary">
+                    <i class="fas fa-chart-line"></i> 詳細統計
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.badge-lg {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.card-footer .btn {
+    font-weight: bold;
+}
+
+.progress {
+    border-radius: 10px;
+}
+
+.alert-light {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,298 @@
+{% extends "base.html" %}
+
+{% block title %}高度分析 - RCCM試験対策{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center mb-4">
+                <i class="fas fa-chart-line"></i> 高度学習分析
+            </h1>
+        </div>
+    </div>
+
+    <!-- 学習効率分析 -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h4><i class="fas fa-tachometer-alt"></i> 学習効率分析</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <h5>学習効率スコア</h5>
+                            <div class="display-4 text-primary">
+                                {{ analytics.study_efficiency.score|default(0) }}%
+                            </div>
+                            <small class="text-muted">平均: 65%</small>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <h5>認知負荷</h5>
+                            <div class="display-4 text-warning">
+                                {{ analytics.cognitive_load.level|default("中") }}
+                            </div>
+                            <small class="text-muted">最適範囲内</small>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <h5>成功確率</h5>
+                            <div class="display-4 text-success">
+                                {{ analytics.success_probability.probability|default(0) }}%
+                            </div>
+                            <small class="text-muted">試験合格予測</small>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <h5>学習曲線</h5>
+                            <div class="display-4 text-info">
+                                {{ analytics.learning_curve.phase|default("成長期") }}
+                            </div>
+                            <small class="text-muted">現在のフェーズ</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 時系列分析 -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5><i class="fas fa-calendar-alt"></i> 時系列パフォーマンス分析</h5>
+                </div>
+                <div class="card-body">
+                    {% if analytics.time_series_analysis %}
+                        <canvas id="timeSeriesChart" height="200"></canvas>
+                        <div class="mt-3">
+                            <p><strong>トレンド:</strong> {{ analytics.time_series_analysis.trend|default("上昇傾向") }}</p>
+                            <p><strong>最高記録:</strong> {{ analytics.time_series_analysis.peak_performance|default("--") }}%</p>
+                            <p><strong>安定性:</strong> {{ analytics.time_series_analysis.stability|default("良好") }}</p>
+                        </div>
+                    {% else %}
+                        <p class="text-muted">時系列データを収集中...</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- 難易度分布 -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h5><i class="fas fa-layer-group"></i> 難易度別パフォーマンス</h5>
+                </div>
+                <div class="card-body">
+                    {% if analytics.difficulty_distribution %}
+                        <canvas id="difficultyChart" height="200"></canvas>
+                        <div class="mt-3">
+                            <p><strong>得意レベル:</strong> {{ analytics.difficulty_distribution.best_level|default("中級") }}</p>
+                            <p><strong>改善必要:</strong> {{ analytics.difficulty_distribution.needs_improvement|default("上級") }}</p>
+                        </div>
+                    {% else %}
+                        <p class="text-muted">難易度分析を実行中...</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 部門別ヒートマップ -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5><i class="fas fa-th"></i> 部門別習熟度ヒートマップ</h5>
+                </div>
+                <div class="card-body">
+                    {% if analytics.department_heatmap %}
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>部門</th>
+                                        <th>基礎</th>
+                                        <th>応用</th>
+                                        <th>実践</th>
+                                        <th>総合評価</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for dept, scores in analytics.department_heatmap.items() %}
+                                    <tr>
+                                        <td><strong>{{ dept }}</strong></td>
+                                        <td class="text-center" style="background-color: {{ scores.basic_color }}">
+                                            {{ scores.basic|default(0) }}%
+                                        </td>
+                                        <td class="text-center" style="background-color: {{ scores.applied_color }}">
+                                            {{ scores.applied|default(0) }}%
+                                        </td>
+                                        <td class="text-center" style="background-color: {{ scores.practical_color }}">
+                                            {{ scores.practical|default(0) }}%
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="badge bg-{{ scores.overall_badge }}">
+                                                {{ scores.overall_rating }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="text-muted">部門別データを分析中...</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI学習計画 -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h5><i class="fas fa-tasks"></i> AI推奨学習計画</h5>
+                </div>
+                <div class="card-body">
+                    {% if analytics.recommendation_engine %}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h6>今週の重点項目</h6>
+                                <ul class="list-group">
+                                    {% for item in analytics.recommendation_engine.recommendations[:5] %}
+                                    <li class="list-group-item">
+                                        <i class="fas fa-arrow-right text-danger"></i> 
+                                        {% if item is mapping %}
+                                            {{ item.title }} <small class="text-muted">({{ item.category }})</small>
+                                        {% else %}
+                                            {{ item }}
+                                        {% endif %}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>推奨学習順序</h6>
+                                <ol class="list-group list-group-numbered">
+                                    {% for step in analytics.recommendation_engine.recommendations[:5] %}
+                                    <li class="list-group-item">
+                                        {% if step is mapping %}
+                                            {{ step.title }}
+                                        {% else %}
+                                            {{ step }}
+                                        {% endif %}
+                                    </li>
+                                    {% endfor %}
+                                </ol>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>時間配分提案</h6>
+                                <div class="list-group">
+                                    {% for allocation in analytics.recommendation_engine.time_allocation %}
+                                    <div class="list-group-item">
+                                        <div class="d-flex justify-content-between">
+                                            <span>{{ allocation.category }}</span>
+                                            <span class="badge bg-primary">{{ allocation.percentage }}%</span>
+                                        </div>
+                                        <div class="progress mt-1" style="height: 10px;">
+                                            <div class="progress-bar" style="width: {{ allocation.percentage }}%"></div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <p class="text-muted">学習計画を生成中...</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- アクションボタン -->
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <a href="/ai_dashboard" class="btn btn-primary btn-lg me-2">
+                <i class="fas fa-robot"></i> AIダッシュボード
+            </a>
+            <a href="/exam" class="btn btn-success btn-lg me-2">
+                <i class="fas fa-play"></i> 学習を開始
+            </a>
+            <a href="/" class="btn btn-secondary btn-lg">
+                <i class="fas fa-home"></i> ホームに戻る
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// ダミーチャートの初期化（実際のデータがある場合は置き換え）
+document.addEventListener('DOMContentLoaded', function() {
+    // 時系列チャート
+    var ctx1 = document.getElementById('timeSeriesChart');
+    if (ctx1) {
+        new Chart(ctx1.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['月', '火', '水', '木', '金', '土', '日'],
+                datasets: [{
+                    label: '正答率',
+                    data: [65, 70, 68, 75, 80, 78, 85],
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    }
+
+    // 難易度チャート
+    var ctx2 = document.getElementById('difficultyChart');
+    if (ctx2) {
+        new Chart(ctx2.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['初級', '中級', '上級', '専門'],
+                datasets: [{
+                    label: '正答率',
+                    data: [85, 70, 55, 40],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

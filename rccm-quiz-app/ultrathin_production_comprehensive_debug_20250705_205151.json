@@ -1,0 +1,244 @@
+{
+  "review_function_debug": {
+    "review_list_access": true,
+    "error_details": [],
+    "session_state": {},
+    "response_analysis": {
+      "status_code": 200,
+      "headers": {
+        "Date": "Sat, 05 Jul 2025 11:50:53 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "access-control-allow-credentials": "true",
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "GET, POST, OPTIONS",
+        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0, private, no-transform",
+        "Content-Encoding": "br",
+        "etag": "\"0\"",
+        "expires": "-1",
+        "last-modified": "Wed, 11 Jan 1984 05:00:00 GMT",
+        "permissions-policy": "geolocation=(), microphone=(), camera=()",
+        "pragma": "no-cache",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "rndr-id": "d54d4336-0d87-4125",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "vary": "*, Cookie, Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-render-origin-server": "gunicorn",
+        "x-xss-protection": "1; mode=block",
+        "cf-cache-status": "DYNAMIC",
+        "Server": "cloudflare",
+        "CF-RAY": "95a6a5b3880280d2-NRT",
+        "alt-svc": "h3=\":443\"; ma=86400"
+      },
+      "content_length": 5709,
+      "/review_list": 200,
+      "/api/review": 404,
+      "/bookmarks": 200
+    },
+    "root_cause": "NO_REVIEW_DATA"
+  },
+  "category_integrity_check": {
+    "tunnel_department_test": {
+      "start_exam_status": 200,
+      "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+      "response_size": 8585
+    },
+    "category_mismatch_detection": {},
+    "question_routing_analysis": {},
+    "data_integrity_issues": [
+      "Quiz page access failed: 404"
+    ],
+    "year_selection_test": {
+      "2024": {
+        "status": 200,
+        "accessible": true
+      },
+      "2023": {
+        "status": 200,
+        "accessible": true
+      },
+      "2022": {
+        "status": 200,
+        "accessible": true
+      }
+    }
+  },
+  "department_specific_tests": {
+    "基礎科目": {
+      "basic_access": true,
+      "question_selection_10": true,
+      "question_selection_20": true,
+      "question_selection_30": true,
+      "year_selection": {
+        "2024": true,
+        "2023": true
+      },
+      "category_verification": {},
+      "errors": []
+    },
+    "道路": {
+      "basic_access": true,
+      "question_selection_10": true,
+      "question_selection_20": true,
+      "question_selection_30": true,
+      "year_selection": {
+        "2024": true,
+        "2023": true
+      },
+      "category_verification": {},
+      "errors": []
+    },
+    "河川・砂防": {
+      "basic_access": true,
+      "question_selection_10": true,
+      "question_selection_20": true,
+      "question_selection_30": true,
+      "year_selection": {
+        "2024": true,
+        "2023": true
+      },
+      "category_verification": {},
+      "errors": []
+    },
+    "都市計画": {
+      "basic_access": true,
+      "question_selection_10": true,
+      "question_selection_20": true,
+      "question_selection_30": true,
+      "year_selection": {
+        "2024": true,
+        "2023": true
+      },
+      "category_verification": {},
+      "errors": []
+    },
+    "造園": {
+      "basic_access": true,
+      "question_selection_10": true,
+      "question_selection_20": true,
+      "question_selection_30": true,
+      "year_selection": {
+        "2024": true,
+        "2023": true
+      },
+      "category_verification": {},
+      "errors": []
+    },
+    "建設環境": {
+      "basic_access": true,
+      "question_selection_10": true,
+      "question_selection_20": true,
+      "question_selection_30": true,
+      "year_selection": {
+        "2024": true,
+        "2023": true
+      },
+      "category_verification": {},
+      "errors": []
+    },
+    "鋼構造・コンクリート": {
+      "basic_access": true,
+      "question_selection_10": true,
+      "question_selection_20": true,
+      "question_selection_30": true,
+      "year_selection": {
+        "2024": true,
+        "2023": true
+      },
+      "category_verification": {},
+      "errors": []
+    },
+    "土質・基礎": {
+      "basic_access": true,
+      "question_selection_10": true,
+      "question_selection_20": true,
+      "question_selection_30": true,
+      "year_selection": {
+        "2024": true,
+        "2023": true
+      },
+      "category_verification": {},
+      "errors": []
+    },
+    "施工計画": {
+      "basic_access": true,
+      "question_selection_10": true,
+      "question_selection_20": true,
+      "question_selection_30": true,
+      "year_selection": {
+        "2024": true,
+        "2023": true
+      },
+      "category_verification": {},
+      "errors": []
+    },
+    "上下水道": {
+      "basic_access": true,
+      "question_selection_10": true,
+      "question_selection_20": true,
+      "question_selection_30": true,
+      "year_selection": {
+        "2024": true,
+        "2023": true
+      },
+      "category_verification": {},
+      "errors": []
+    },
+    "森林土木": {
+      "basic_access": true,
+      "question_selection_10": true,
+      "question_selection_20": true,
+      "question_selection_30": true,
+      "year_selection": {
+        "2024": true,
+        "2023": true
+      },
+      "category_verification": {},
+      "errors": []
+    },
+    "農業土木": {
+      "basic_access": true,
+      "question_selection_10": true,
+      "question_selection_20": true,
+      "question_selection_30": true,
+      "year_selection": {
+        "2024": true,
+        "2023": true
+      },
+      "category_verification": {},
+      "errors": []
+    },
+    "トンネル": {
+      "basic_access": true,
+      "question_selection_10": true,
+      "question_selection_20": true,
+      "question_selection_30": true,
+      "year_selection": {
+        "2024": true,
+        "2023": true
+      },
+      "category_verification": {},
+      "errors": []
+    }
+  },
+  "critical_errors": [
+    {
+      "type": "REVIEW_FUNCTION_ERROR",
+      "severity": "HIGH",
+      "details": [],
+      "root_cause": "NO_REVIEW_DATA"
+    },
+    {
+      "type": "CATEGORY_INTEGRITY_ERROR",
+      "severity": "HIGH",
+      "details": [
+        "Quiz page access failed: 404"
+      ],
+      "affected_department": "トンネル"
+    }
+  ],
+  "session_state_analysis": {}
+}

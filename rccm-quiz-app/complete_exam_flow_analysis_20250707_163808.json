@@ -1,0 +1,22 @@
+{
+  "timestamp": "2025-07-07 16:38:08",
+  "flow_analysis": {
+    "error": "'ascii' codec can't encode characters in position 17-20: ordinal not in range(128)"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "main_page_access",
+      "url": "https://rccm-quiz-2025.onrender.com",
+      "status": 200,
+      "cookies": 1
+    },
+    {
+      "step": 2,
+      "action": "simulator_page_access",
+      "url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+      "status": 200,
+      "cookies": 1
+    }
+  ]
+}

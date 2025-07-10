@@ -1,0 +1,103 @@
+{
+  "timestamp": "2025-07-07T15:15:40.094666",
+  "base_url": "https://rccm-quiz-2025.onrender.com",
+  "findings": [
+    {
+      "path": "/",
+      "method": "GET",
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_length": 35120,
+      "expected": 200,
+      "match": true
+    },
+    {
+      "path": "/help",
+      "method": "GET",
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_length": 47812,
+      "expected": 200,
+      "match": true
+    },
+    {
+      "path": "/index",
+      "method": "GET",
+      "status_code": 404,
+      "content_type": "text/html; charset=utf-8",
+      "content_length": 11,
+      "expected": 200,
+      "match": false
+    },
+    {
+      "path": "/quiz_selection/基礎科目",
+      "method": "GET",
+      "status_code": 404,
+      "content_type": "text/html; charset=utf-8",
+      "content_length": 11,
+      "expected": 404,
+      "match": true
+    },
+    {
+      "path": "/quiz_selection/土質及び基礎",
+      "method": "GET",
+      "status_code": 404,
+      "content_type": "text/html; charset=utf-8",
+      "content_length": 11,
+      "expected": 404,
+      "match": true
+    },
+    {
+      "path": "/departments",
+      "method": "GET",
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_length": 48690,
+      "expected": null,
+      "match": null
+    },
+    {
+      "path": "/department_study",
+      "method": "GET",
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_length": 48690,
+      "expected": null,
+      "match": null
+    },
+    {
+      "path": "/department_study/基礎科目",
+      "method": "GET",
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_length": 16906,
+      "expected": null,
+      "match": null
+    },
+    {
+      "path": "/department_study/土質及び基礎",
+      "method": "GET",
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_length": 25437,
+      "expected": null,
+      "match": null
+    },
+    {
+      "path": "/start_exam/基礎科目",
+      "method": "GET",
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_length": 36999,
+      "expected": null,
+      "match": null
+    },
+    {
+      "path": "/start_exam/基礎科目",
+      "method": "POST",
+      "status_code": 200,
+      "description": "POST試験開始",
+      "session_ok": true
+    }
+  ]
+}

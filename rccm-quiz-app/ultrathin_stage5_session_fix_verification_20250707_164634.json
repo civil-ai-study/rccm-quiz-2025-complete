@@ -1,0 +1,50 @@
+[
+  {
+    "department": "河川、砂防及び海岸・海洋",
+    "status": "redirect_to_simulator",
+    "start_response_code": 200,
+    "exam_response_code": 200,
+    "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+    "response_length": 36999,
+    "debug_info": {
+      "data_source": "specialist",
+      "exam_type": "河川、砂防及び海岸・海洋",
+      "questions_count": 30,
+      "target_year": 2016,
+      "timestamp": "07:46:25"
+    },
+    "success": false
+  },
+  {
+    "department": "土質及び基礎",
+    "status": "redirect_to_simulator",
+    "start_response_code": 200,
+    "exam_response_code": 200,
+    "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+    "response_length": 36999,
+    "debug_info": {
+      "data_source": "specialist",
+      "exam_type": "土質及び基礎",
+      "questions_count": 30,
+      "target_year": 2016,
+      "timestamp": "07:46:28"
+    },
+    "success": false
+  },
+  {
+    "department": "トンネル",
+    "status": "redirect_to_simulator",
+    "start_response_code": 200,
+    "exam_response_code": 200,
+    "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+    "response_length": 36999,
+    "debug_info": {
+      "data_source": "specialist",
+      "exam_type": "トンネル",
+      "questions_count": 30,
+      "target_year": 2016,
+      "timestamp": "07:46:32"
+    },
+    "success": false
+  }
+]

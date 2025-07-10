@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="RCCM試験対策 - AI搭載の学習アシスタントで効率的な資格取得を支援">
+    <meta name="keywords" content="RCCM, 試験対策, 建設コンサルタント, 学習, AI">
+    <meta name="author" content="RCCM Quiz App">
+    
+    <!-- Enhanced Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="{% block og_title %}RCCM試験問題集 - AI学習アシスタント{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}AI搭載のRCCM試験対策アプリ。効率的な学習で資格取得をサポートします。{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:image" content="{{ url_for('static', filename='icons/icon-512x512.png') }}">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}RCCM試験問題集 - AI学習アシスタント{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}AI搭載のRCCM試験対策アプリ{% endblock %}">
+    
+    <!-- Enhanced PWA Configuration -->
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="RCCM問題集">
+    
+    <!-- Favicon Enhanced -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='icons/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='icons/favicon-32x32.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='icons/icon-144x144.png') }}">
+    
+    <title>{% block title %}RCCM試験問題集 - AI学習アシスタント{% endblock %}</title>
+    
+    <!-- Enhanced CSS Framework -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+          crossorigin="anonymous">
+    
+    <!-- Font Awesome Enhanced -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- Google Fonts - Inter for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Enhanced UI Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/enhanced_ui.css') }}">
+    
+    <!-- Existing Styles (for backward compatibility) -->
+    {% block styles %}{% endblock %}
+    
+    <!-- Enhanced Accessibility Styles -->
+    <style>
+        /* Accessibility enhancements */
+        .font-size-small { font-size: 0.875rem; }
+        .font-size-normal { font-size: 1rem; }
+        .font-size-large { font-size: 1.125rem; }
+        .font-size-xl { font-size: 1.25rem; }
+        
+        .high-contrast {
+            --primary-color: #000000;
+            --text-color: #000000;
+            --bg-color: #ffffff;
+            --border-color: #000000;
+        }
+        
+        .high-contrast .enhanced-card,
+        .high-contrast .option-enhanced {
+            border: 2px solid var(--border-color) !important;
+            background: var(--bg-color) !important;
+            color: var(--text-color) !important;
+        }
+        
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        /* Focus indicators */
+        .focus-visible,
+        *:focus-visible {
+            outline: 3px solid #2563eb !important;
+            outline-offset: 2px !important;
+        }
+        
+        /* Skip to content link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #2563eb;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 1000;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+    </style>
+    
+    <!-- Performance and Security -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="{{ url_for('static', filename='css/enhanced_ui.css') }}" as="style">
+    <link rel="preload" href="{{ url_for('static', filename='js/enhanced_interactions.js') }}" as="script">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalApplication",
+        "name": "RCCM試験問題集",
+        "description": "AI搭載のRCCM試験対策アプリケーション",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "JPY"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "RCCM Quiz App"
+        }
+    }
+    </script>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-link">メインコンテンツにスキップ</a>
+    
+    <!-- Enhanced Navigation -->
+    <nav class="nav-enhanced" role="navigation" aria-label="メインナビゲーション">
+        <div class="nav-content">
+            <div class="d-flex align-items-center">
+                <a href="{{ url_for('index') }}" class="navbar-brand text-decoration-none">
+                    <i class="fas fa-graduation-cap text-primary me-2"></i>
+                    <span class="fw-bold text-dark">RCCM問題集</span>
+                </a>
+                {% block nav_brand_extra %}{% endblock %}
+            </div>
+            
+            <div class="d-flex align-items-center gap-3">
+                <!-- Accessibility Controls -->
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" 
+                            type="button" 
+                            id="accessibilityMenu" 
+                            data-bs-toggle="dropdown" 
+                            aria-expanded="false"
+                            aria-label="アクセシビリティ設定">
+                        <i class="fas fa-universal-access"></i>
+                        <span class="d-none d-md-inline ms-1">設定</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accessibilityMenu">
+                        <li><h6 class="dropdown-header">アクセシビリティ</h6></li>
+                        <li>
+                            <button class="dropdown-item" onclick="toggleHighContrast()">
+                                <i class="fas fa-adjust me-2"></i>ハイコントラスト
+                            </button>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><h6 class="dropdown-header">文字サイズ</h6></li>
+                        <li>
+                            <button class="dropdown-item" onclick="setFontSize('small')">
+                                <i class="fas fa-text-width me-2"></i>小
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" onclick="setFontSize('normal')">
+                                <i class="fas fa-text-width me-2"></i>標準
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" onclick="setFontSize('large')">
+                                <i class="fas fa-text-width me-2"></i>大
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" onclick="setFontSize('xl')">
+                                <i class="fas fa-text-width me-2"></i>特大
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                
+                {% block nav_extra %}{% endblock %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-shrink-0" id="main-content" role="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Enhanced Footer -->
+    <footer class="footer mt-auto py-4 bg-light border-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center text-muted">
+                        <i class="fas fa-graduation-cap me-2 text-primary"></i>
+                        <span>&copy; 2024 RCCM試験問題集. All rights reserved.</span>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex justify-content-md-end justify-content-center gap-3 mt-2 mt-md-0">
+                        <a href="#" class="text-muted text-decoration-none" aria-label="プライバシーポリシー">
+                            <i class="fas fa-shield-alt me-1"></i>プライバシー
+                        </a>
+                        <a href="#" class="text-muted text-decoration-none" aria-label="利用規約">
+                            <i class="fas fa-file-contract me-1"></i>利用規約
+                        </a>
+                        <a href="#" class="text-muted text-decoration-none" aria-label="お問い合わせ">
+                            <i class="fas fa-envelope me-1"></i>お問い合わせ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+            crossorigin="anonymous"></script>
+    
+    <!-- Enhanced Interactions -->
+    <script src="{{ url_for('static', filename='js/enhanced_interactions.js') }}"></script>
+    
+    <!-- Service Worker Registration for PWA -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/static/sw.js')
+                    .then(registration => {
+                        // Service Worker registered successfully
+                    })
+                    .catch(registrationError => {
+                        // Service Worker registration failed
+                    });
+            });
+        }
+    </script>
+    
+    <!-- Performance Monitoring -->
+    <script>
+        // Web Vitals monitoring
+        if ('PerformanceObserver' in window) {
+            // Monitor LCP (Largest Contentful Paint)
+            new PerformanceObserver((entryList) => {
+                for (const entry of entryList.getEntries()) {
+                    if (entry.startTime < 2500) { // Good LCP threshold
+                        // Good LCP performance
+                    } else {
+                        // Poor LCP performance
+                    }
+                }
+            }).observe({entryTypes: ['largest-contentful-paint']});
+            
+            // Monitor CLS (Cumulative Layout Shift)
+            new PerformanceObserver((entryList) => {
+                let clsValue = 0;
+                for (const entry of entryList.getEntries()) {
+                    if (!entry.hadRecentInput) {
+                        clsValue += entry.value;
+                    }
+                }
+                if (clsValue < 0.1) {
+                    // Good CLS performance
+                } else {
+                    // Poor CLS performance
+                }
+            }).observe({entryTypes: ['layout-shift']});
+        }
+    </script>
+    
+    <!-- Custom Scripts -->
+    {% block scripts %}{% endblock %}
+    
+    <!-- Error Tracking for Enhanced UI -->
+    <script>
+        window.addEventListener('error', function(e) {
+            // Enhanced error tracking
+            console.error('Enhanced UI Error:', {
+                message: e.message,
+                filename: e.filename,
+                lineno: e.lineno,
+                colno: e.colno,
+                stack: e.error?.stack,
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                url: window.location.href
+            });
+        });
+        
+        window.addEventListener('unhandledrejection', function(e) {
+            console.error('Enhanced UI Promise Rejection:', {
+                reason: e.reason,
+                stack: e.reason?.stack,
+                timestamp: new Date().toISOString(),
+                url: window.location.href
+            });
+        });
+    </script>
+</body>
+</html>

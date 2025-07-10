@@ -1,0 +1,1264 @@
+{
+  "timestamp": "2025-07-05T20:22:47.778248",
+  "verification_mode": "READ_ONLY_SAFE",
+  "session_analysis": {
+    "session_assignments": [
+      {
+        "key": "history",
+        "value": "[]  # 履歴機能を完全無効化",
+        "line": 887
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "[]",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "0",
+        "line": 1151
+      },
+      {
+        "key": "history",
+        "value": "[]",
+        "line": 887
+      },
+      {
+        "key": "exam_current",
+        "value": "max(0, len(exam_ids) - 1)",
+        "line": 1151
+      },
+      {
+        "key": "advanced_srs",
+        "value": "{}",
+        "line": 1390
+      },
+      {
+        "key": "advanced_srs",
+        "value": "srs_data",
+        "line": 1390
+      },
+      {
+        "key": "request_history",
+        "value": "request_history",
+        "line": 1680
+      },
+      {
+        "key": "history",
+        "value": "[]",
+        "line": 887
+      },
+      {
+        "key": "category_stats",
+        "value": "{}",
+        "line": 2454
+      },
+      {
+        "key": "user_name",
+        "value": "user_name",
+        "line": 2498
+      },
+      {
+        "key": "user_id",
+        "value": "session_aware_user_id  # セッション固有の一意ID",
+        "line": 2499
+      },
+      {
+        "key": "base_user_id",
+        "value": "base_user_id      # データ永続化用の基本ID",
+        "line": 2500
+      },
+      {
+        "key": "session_id",
+        "value": "unique_session_id   # セッション識別用",
+        "line": 2501
+      },
+      {
+        "key": "login_time",
+        "value": "get_utc_now().isoformat()",
+        "line": 2502
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "[q['id'] for q in selected]",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "0",
+        "line": 1151
+      },
+      {
+        "key": "exam_category",
+        "value": "'基礎科目'",
+        "line": 2650
+      },
+      {
+        "key": "selected_question_type",
+        "value": "'basic'",
+        "line": 2651
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "[q['id'] for q in selected]",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "0",
+        "line": 1151
+      },
+      {
+        "key": "exam_category",
+        "value": "target_category if department else '専門科目'",
+        "line": 2650
+      },
+      {
+        "key": "selected_question_type",
+        "value": "'specialist'",
+        "line": 2651
+      },
+      {
+        "key": "selected_department",
+        "value": "department",
+        "line": 2672
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "[q['id'] for q in selected]",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "0",
+        "line": 1151
+      },
+      {
+        "key": "exam_category",
+        "value": "'専門科目（混合）'",
+        "line": 2650
+      },
+      {
+        "key": "selected_question_type",
+        "value": "'specialist'",
+        "line": 2651
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "[q['id'] for q in selected]",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "0",
+        "line": 1151
+      },
+      {
+        "key": "exam_category",
+        "value": "'基礎科目'",
+        "line": 2650
+      },
+      {
+        "key": "selected_question_type",
+        "value": "'basic'",
+        "line": 2651
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "0  # 現在の問題は0番目",
+        "line": 1151
+      },
+      {
+        "key": "exam_category",
+        "value": "q_dept if q_dept else '基礎科目'",
+        "line": 2650
+      },
+      {
+        "key": "selected_question_type",
+        "value": "q_type",
+        "line": 2651
+      },
+      {
+        "key": "quiz_answered",
+        "value": "session.get('quiz_answered', [])",
+        "line": 2889
+      },
+      {
+        "key": "history",
+        "value": "session.get('history', [])",
+        "line": 887
+      },
+      {
+        "key": "bookmarks",
+        "value": "bookmarks",
+        "line": 2935
+      },
+      {
+        "key": "bookmarks",
+        "value": "bookmarks",
+        "line": 2935
+      },
+      {
+        "key": "bookmarks",
+        "value": "bookmarks",
+        "line": 2935
+      },
+      {
+        "key": "history",
+        "value": "[]",
+        "line": 887
+      },
+      {
+        "key": "category_stats",
+        "value": "{}",
+        "line": 2454
+      },
+      {
+        "key": "exam_current",
+        "value": "current_index",
+        "line": 1151
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "review_question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "current_index",
+        "line": 1151
+      },
+      {
+        "key": "selected_question_type",
+        "value": "'review'",
+        "line": 2651
+      },
+      {
+        "key": "exam_category",
+        "value": "f'復習問題（再構築{len(review_question_ids)}問）'",
+        "line": 2650
+      },
+      {
+        "key": "review_session_restored",
+        "value": "True  # 復習セッション復旧フラグ",
+        "line": 3152
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "minimal_review",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "0",
+        "line": 1151
+      },
+      {
+        "key": "selected_question_type",
+        "value": "'review'",
+        "line": 2651
+      },
+      {
+        "key": "exam_category",
+        "value": "'復習問題（最小セッション）'",
+        "line": 2650
+      },
+      {
+        "key": "review_session_minimal",
+        "value": "True",
+        "line": 3168
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "current_index",
+        "line": 1151
+      },
+      {
+        "key": "selected_question_type",
+        "value": "'basic'",
+        "line": 2651
+      },
+      {
+        "key": "exam_category",
+        "value": "'基礎科目'",
+        "line": 2650
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "current_index",
+        "line": 1151
+      },
+      {
+        "key": "selected_question_type",
+        "value": "'specialist'",
+        "line": 2651
+      },
+      {
+        "key": "exam_category",
+        "value": "actual_category",
+        "line": 2650
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "current_index",
+        "line": 1151
+      },
+      {
+        "key": "selected_question_type",
+        "value": "'basic'",
+        "line": 2651
+      },
+      {
+        "key": "exam_category",
+        "value": "'基礎科目'",
+        "line": 2650
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "current_index",
+        "line": 1151
+      },
+      {
+        "key": "selected_question_type",
+        "value": "'specialist'",
+        "line": 2651
+      },
+      {
+        "key": "exam_category",
+        "value": "actual_category",
+        "line": 2650
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "current_index",
+        "line": 1151
+      },
+      {
+        "key": "selected_question_type",
+        "value": "actual_question_type or 'mixed'",
+        "line": 2651
+      },
+      {
+        "key": "exam_category",
+        "value": "actual_category or '混合'",
+        "line": 2650
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "[q['id'] for q in emergency_questions[:10]]",
+        "line": 1147
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "available_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "0",
+        "line": 1151
+      },
+      {
+        "key": "selected_question_type",
+        "value": "'emergency'",
+        "line": 2651
+      },
+      {
+        "key": "exam_category",
+        "value": "'緊急復旧'",
+        "line": 2650
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "exam_question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "exam_question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "current_no",
+        "line": 1151
+      },
+      {
+        "key": "selected_question_type",
+        "value": "'minimal'",
+        "line": 2651
+      },
+      {
+        "key": "exam_category",
+        "value": "'最小復旧'",
+        "line": 2650
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "exam_question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "exam_question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "exam_question_ids",
+        "line": 1147
+      },
+      {
+        "key": "progress_tracking",
+        "value": "{",
+        "line": 3589
+      },
+      {
+        "key": "exam_current",
+        "value": "expected_exam_current",
+        "line": 1151
+      },
+      {
+        "key": "progress_repair_count",
+        "value": "session.get('progress_repair_count', 0) + 1",
+        "line": 3618
+      },
+      {
+        "key": "exam_current",
+        "value": "safe_index",
+        "line": 1151
+      },
+      {
+        "key": "exam_index_repair",
+        "value": "True",
+        "line": 3631
+      },
+      {
+        "key": "exam_progress_timestamp",
+        "value": "get_utc_now().isoformat()",
+        "line": 3648
+      },
+      {
+        "key": "last_answered_question_id",
+        "value": "qid",
+        "line": 3649
+      },
+      {
+        "key": "total_questions_in_session",
+        "value": "len(exam_question_ids)",
+        "line": 3650
+      },
+      {
+        "key": "quiz_settings",
+        "value": "{}",
+        "line": 3891
+      },
+      {
+        "key": "exam_current",
+        "value": "current_no",
+        "line": 1151
+      },
+      {
+        "key": "exam_current",
+        "value": "0",
+        "line": 1151
+      },
+      {
+        "key": "exam_current",
+        "value": "current_no",
+        "line": 1151
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "[int(q.get('id', 0)) for q in mixed_questions[:10]]",
+        "line": 1147
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "[int(q.get('id', 0)) for q in available_questions]",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "specific_index",
+        "line": 1151
+      },
+      {
+        "key": "exam_current",
+        "value": "0",
+        "line": 1151
+      },
+      {
+        "key": "exam_category",
+        "value": "question.get('category', '全体')",
+        "line": 2650
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "0",
+        "line": 1151
+      },
+      {
+        "key": "exam_category",
+        "value": "requested_category",
+        "line": 2650
+      },
+      {
+        "key": "selected_question_type",
+        "value": "requested_question_type",
+        "line": 2651
+      },
+      {
+        "key": "selected_year",
+        "value": "requested_year",
+        "line": 4186
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "recovered_question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "len(recovered_question_ids) - 1  # 最後の問題位置",
+        "line": 1151
+      },
+      {
+        "key": "exam_category",
+        "value": "recent_history[-1].get('category', '全体')",
+        "line": 2650
+      },
+      {
+        "key": "selected_question_type",
+        "value": "recent_history[-1].get('question_type', 'basic')",
+        "line": 2651
+      },
+      {
+        "key": "selected_department",
+        "value": "recent_history[-1].get('department', '')",
+        "line": 2672
+      },
+      {
+        "key": "review_completed",
+        "value": "True",
+        "line": 4247
+      },
+      {
+        "key": "selected_department",
+        "value": "department_id",
+        "line": 2672
+      },
+      {
+        "key": "selected_department",
+        "value": "department_id",
+        "line": 2672
+      },
+      {
+        "key": "selected_question_type",
+        "value": "question_type",
+        "line": 2651
+      },
+      {
+        "key": "selected_department",
+        "value": "department_key",
+        "line": 2672
+      },
+      {
+        "key": "advanced_srs",
+        "value": "{}",
+        "line": 1390
+      },
+      {
+        "key": "bookmarks",
+        "value": "[]  # 互換性維持",
+        "line": 2935
+      },
+      {
+        "key": "bookmarks",
+        "value": "bookmarks",
+        "line": 2935
+      },
+      {
+        "key": "bookmarks",
+        "value": "bookmarks",
+        "line": 2935
+      },
+      {
+        "key": "quiz_settings",
+        "value": "{}",
+        "line": 3891
+      },
+      {
+        "key": "bookmarks",
+        "value": "[]",
+        "line": 2935
+      },
+      {
+        "key": "bookmarks",
+        "value": "[]",
+        "line": 2935
+      },
+      {
+        "key": "bookmarks",
+        "value": "bookmarks",
+        "line": 2935
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "0",
+        "line": 1151
+      },
+      {
+        "key": "exam_category",
+        "value": "category_name",
+        "line": 2650
+      },
+      {
+        "key": "selected_question_type",
+        "value": "'review'  # 復習専用タイプ",
+        "line": 2651
+      },
+      {
+        "key": "department",
+        "value": "''  # 復習では部門指定なし",
+        "line": 6044
+      },
+      {
+        "key": "selected_department",
+        "value": "''  # セッション再構築用（復習では部門なし）",
+        "line": 2672
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "0",
+        "line": 1151
+      },
+      {
+        "key": "exam_category",
+        "value": "category_name",
+        "line": 2650
+      },
+      {
+        "key": "selected_question_type",
+        "value": "'review'",
+        "line": 2651
+      },
+      {
+        "key": "advanced_srs",
+        "value": "srs_data",
+        "line": 1390
+      },
+      {
+        "key": "bookmarks",
+        "value": "bookmarks",
+        "line": 2935
+      },
+      {
+        "key": "exam_current",
+        "value": "new_current",
+        "line": 1151
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "0",
+        "line": 1151
+      },
+      {
+        "key": "exam_category",
+        "value": "category_name",
+        "line": 2650
+      },
+      {
+        "key": "adaptive_mode",
+        "value": "learning_mode",
+        "line": 6427
+      },
+      {
+        "key": "selected_department",
+        "value": "department",
+        "line": 2672
+      },
+      {
+        "key": "exam_question_ids",
+        "value": "question_ids",
+        "line": 1147
+      },
+      {
+        "key": "exam_current",
+        "value": "0",
+        "line": 1151
+      },
+      {
+        "key": "exam_category",
+        "value": "category_name",
+        "line": 2650
+      },
+      {
+        "key": "adaptive_mode",
+        "value": "learning_mode",
+        "line": 6427
+      },
+      {
+        "key": "foundation_mastery",
+        "value": "foundation_mastery",
+        "line": 6492
+      },
+      {
+        "key": "selected_department",
+        "value": "department",
+        "line": 2672
+      },
+      {
+        "key": "birth_date",
+        "value": "birth_date",
+        "line": 6662
+      },
+      {
+        "key": "exam_session",
+        "value": "lightweight_session",
+        "line": 6851
+      },
+      {
+        "key": "_initialized",
+        "value": "True",
+        "line": 7040
+      },
+      {
+        "key": "exam_history",
+        "value": "[]",
+        "line": 7145
+      },
+      {
+        "key": "status",
+        "value": "= 'in_progress',",
+        "line": 7192
+      },
+      {
+        "key": "last_activity",
+        "value": "format_utc_to_iso()",
+        "line": 9624
+      }
+    ],
+    "session_reads": [
+      "progress_tracking",
+      "last_update",
+      "progress_repair_count",
+      "category_stats",
+      "exam_id",
+      "srs_data",
+      "exam_category",
+      "exam_current",
+      "selected_question_type",
+      "user_name",
+      "questions",
+      "time_limit_minutes",
+      "start_time",
+      "selected_department",
+      "history",
+      "earned_badges",
+      "bookmarks",
+      "quiz_settings",
+      "data_loaded",
+      "admin_authenticated_at",
+      "exam_type",
+      "last_activity",
+      "quiz_answered",
+      "advanced_srs",
+      "current_question",
+      "request_history",
+      "question_ids",
+      "selected_year",
+      "dynamic_session_config",
+      "exam_history",
+      "answers",
+      "exam_session",
+      "exam_question_ids",
+      "session_id",
+      "status",
+      "is_admin",
+      "user_id"
+    ],
+    "large_session_keys": [
+      {
+        "key": "exam_session",
+        "usage_count": 10,
+        "estimated_size": "300-600KB (問題データ含む)"
+      },
+      {
+        "key": "history",
+        "usage_count": 6,
+        "estimated_size": "5-10KB (履歴データ)"
+      },
+      {
+        "key": "advanced_srs",
+        "usage_count": 8,
+        "estimated_size": "10-20KB (SRSデータ)"
+      },
+      {
+        "key": "request_history",
+        "usage_count": 1,
+        "estimated_size": "5-10KB (リクエスト履歴)"
+      },
+      {
+        "key": "category_stats",
+        "usage_count": 6,
+        "estimated_size": "1-5KB (統計データ)"
+      }
+    ],
+    "exam_session_usage": [
+      {
+        "line_number": 6851,
+        "content": "session['exam_session'] = lightweight_session",
+        "operation": "WRITE"
+      },
+      {
+        "line_number": 6861,
+        "content": "logger.info(f\"🔥 EXAM START: 試験開始完了 - {exam_type}, ID: {exam_session['exam_id']}\")",
+        "operation": "READ"
+      },
+      {
+        "line_number": 6894,
+        "content": "current_q_index = exam_session['current_question']",
+        "operation": "WRITE"
+      },
+      {
+        "line_number": 6895,
+        "content": "questions = exam_session['questions']",
+        "operation": "WRITE"
+      },
+      {
+        "line_number": 6914,
+        "content": "'exam_type': exam_session['exam_type'],",
+        "operation": "READ"
+      },
+      {
+        "line_number": 6915,
+        "content": "'exam_name': exam_session['config']['name'],",
+        "operation": "READ"
+      },
+      {
+        "line_number": 6916,
+        "content": "'flagged_questions': exam_session['flagged_questions'],",
+        "operation": "READ"
+      },
+      {
+        "line_number": 6917,
+        "content": "'answered_questions': list(exam_session['answers'].keys())",
+        "operation": "READ"
+      },
+      {
+        "line_number": 6967,
+        "content": "question_index = exam_session['current_question']",
+        "operation": "WRITE"
+      },
+      {
+        "line_number": 6976,
+        "content": "session['exam_session'].update({",
+        "operation": "READ"
+      },
+      {
+        "line_number": 7000,
+        "content": "session['exam_session'].update({",
+        "operation": "READ"
+      },
+      {
+        "line_number": 7070,
+        "content": "if 'flagged_ids' not in session['exam_session']:",
+        "operation": "READ"
+      },
+      {
+        "line_number": 7071,
+        "content": "session['exam_session']['flagged_ids'] = []",
+        "operation": "WRITE"
+      },
+      {
+        "line_number": 7075,
+        "content": "if action == 'flag' and flag_id not in session['exam_session']['flagged_ids']:",
+        "operation": "WRITE"
+      },
+      {
+        "line_number": 7076,
+        "content": "session['exam_session']['flagged_ids'].append(flag_id)",
+        "operation": "READ"
+      },
+      {
+        "line_number": 7077,
+        "content": "elif action == 'unflag' and flag_id in session['exam_session']['flagged_ids']:",
+        "operation": "WRITE"
+      },
+      {
+        "line_number": 7078,
+        "content": "session['exam_session']['flagged_ids'].remove(flag_id)",
+        "operation": "READ"
+      },
+      {
+        "line_number": 7116,
+        "content": "session['exam_session'].update({",
+        "operation": "READ"
+      },
+      {
+        "line_number": 7141,
+        "content": "results = exam_session['results']",
+        "operation": "WRITE"
+      },
+      {
+        "line_number": 7148,
+        "content": "'exam_id': exam_session['exam_id'],",
+        "operation": "READ"
+      },
+      {
+        "line_number": 7149,
+        "content": "'exam_type': exam_session['exam_type'],",
+        "operation": "READ"
+      },
+      {
+        "line_number": 7151,
+        "content": "'date': exam_session['start_time'][:10],",
+        "operation": "READ"
+      },
+      {
+        "line_number": 7192,
+        "content": "'exam_active': exam_session['status'] == 'in_progress',",
+        "operation": "WRITE"
+      },
+      {
+        "line_number": 7194,
+        "content": "'current_question': exam_session['current_question'],",
+        "operation": "READ"
+      },
+      {
+        "line_number": 7195,
+        "content": "'total_questions': len(exam_session['questions']),",
+        "operation": "READ"
+      }
+    ],
+    "total_session_operations": 194
+  },
+  "csv_analysis": {
+    "csv_files_found": [
+      "./test_checklist_20250616_213040.csv",
+      "./data/4-1.csv",
+      "./data/4-2_2008.csv",
+      "./data/4-2_2009.csv",
+      "./data/4-2_2010.csv",
+      "./data/4-2_2011.csv",
+      "./data/4-2_2012.csv",
+      "./data/4-2_2013.csv",
+      "./data/4-2_2014.csv",
+      "./data/4-2_2015.csv",
+      "./data/4-2_2016.csv",
+      "./data/4-2_2017.csv",
+      "./data/4-2_2018.csv",
+      "./data/4-2_2019.csv",
+      "./data/questions.csv",
+      "./data/questions_fixed.csv",
+      "./data/backup_20250616_211637/4-2_2008.csv",
+      "./data/backup_20250616_211637/4-2_2009.csv",
+      "./data/backup_20250616_211637/4-2_2010.csv",
+      "./data/backup_20250616_211637/4-2_2011.csv",
+      "./data/backup_20250616_211637/4-2_2012.csv",
+      "./data/backup_20250616_211637/4-2_2013.csv",
+      "./data/backup_20250616_211637/4-2_2013_backup.csv",
+      "./data/backup_20250616_211637/4-2_2013_fixed.csv",
+      "./data/backup_20250616_211637/4-2_2014.csv",
+      "./data/backup_20250616_211637/4-2_2014_backup.csv",
+      "./data/backup_20250616_211637/4-2_2014_fixed.csv",
+      "./data/backup_20250616_211637/4-2_2015.csv",
+      "./data/backup_20250616_211637/4-2_2016.csv",
+      "./data/backup_20250616_211637/4-2_2017.csv",
+      "./data/backup_20250616_211637/4-2_2018.csv",
+      "./isolated_test_env/test_checklist_20250616_213040.csv",
+      "./isolated_test_env/data/4-1.csv",
+      "./isolated_test_env/data/4-2_2008.csv",
+      "./isolated_test_env/data/4-2_2009.csv",
+      "./isolated_test_env/data/4-2_2010.csv",
+      "./isolated_test_env/data/4-2_2011.csv",
+      "./isolated_test_env/data/4-2_2012.csv",
+      "./isolated_test_env/data/4-2_2013.csv",
+      "./isolated_test_env/data/4-2_2014.csv",
+      "./isolated_test_env/data/4-2_2015.csv",
+      "./isolated_test_env/data/4-2_2016.csv",
+      "./isolated_test_env/data/4-2_2017.csv",
+      "./isolated_test_env/data/4-2_2018.csv",
+      "./isolated_test_env/data/4-2_2019.csv",
+      "./isolated_test_env/data/questions.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2008.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2009.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2010.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2011.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2012.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2013.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2013_backup.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2013_fixed.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2014.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2014_backup.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2014_fixed.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2015.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2016.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2017.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2018.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-1.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2008.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2009.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2010.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2011.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2012.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2013.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2014.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2015.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2016.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2017.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2018.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2019.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/questions.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2008.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2009.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2010.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2011.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2012.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2013.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2013_backup.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2013_fixed.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2014.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2014_backup.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2014_fixed.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2015.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2016.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2017.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2018.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-1.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2008.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2009.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2010.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2011.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2012.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2013.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2014.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2015.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2016.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2017.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2018.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2019.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/questions.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2008.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2009.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2010.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2011.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2012.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2013.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2013_backup.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2013_fixed.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2014.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2014_backup.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2014_fixed.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2015.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2016.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2017.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2018.csv"
+    ],
+    "basic_4_1_files": [
+      "./data/4-1.csv",
+      "./isolated_test_env/data/4-1.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-1.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-1.csv"
+    ],
+    "specialist_4_2_files": [
+      "./data/4-2_2008.csv",
+      "./data/4-2_2009.csv",
+      "./data/4-2_2010.csv",
+      "./data/4-2_2011.csv",
+      "./data/4-2_2012.csv",
+      "./data/4-2_2013.csv",
+      "./data/4-2_2014.csv",
+      "./data/4-2_2015.csv",
+      "./data/4-2_2016.csv",
+      "./data/4-2_2017.csv",
+      "./data/4-2_2018.csv",
+      "./data/4-2_2019.csv",
+      "./data/backup_20250616_211637/4-2_2008.csv",
+      "./data/backup_20250616_211637/4-2_2009.csv",
+      "./data/backup_20250616_211637/4-2_2010.csv",
+      "./data/backup_20250616_211637/4-2_2011.csv",
+      "./data/backup_20250616_211637/4-2_2012.csv",
+      "./data/backup_20250616_211637/4-2_2013.csv",
+      "./data/backup_20250616_211637/4-2_2013_backup.csv",
+      "./data/backup_20250616_211637/4-2_2013_fixed.csv",
+      "./data/backup_20250616_211637/4-2_2014.csv",
+      "./data/backup_20250616_211637/4-2_2014_backup.csv",
+      "./data/backup_20250616_211637/4-2_2014_fixed.csv",
+      "./data/backup_20250616_211637/4-2_2015.csv",
+      "./data/backup_20250616_211637/4-2_2016.csv",
+      "./data/backup_20250616_211637/4-2_2017.csv",
+      "./data/backup_20250616_211637/4-2_2018.csv",
+      "./isolated_test_env/data/4-2_2008.csv",
+      "./isolated_test_env/data/4-2_2009.csv",
+      "./isolated_test_env/data/4-2_2010.csv",
+      "./isolated_test_env/data/4-2_2011.csv",
+      "./isolated_test_env/data/4-2_2012.csv",
+      "./isolated_test_env/data/4-2_2013.csv",
+      "./isolated_test_env/data/4-2_2014.csv",
+      "./isolated_test_env/data/4-2_2015.csv",
+      "./isolated_test_env/data/4-2_2016.csv",
+      "./isolated_test_env/data/4-2_2017.csv",
+      "./isolated_test_env/data/4-2_2018.csv",
+      "./isolated_test_env/data/4-2_2019.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2008.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2009.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2010.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2011.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2012.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2013.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2013_backup.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2013_fixed.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2014.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2014_backup.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2014_fixed.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2015.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2016.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2017.csv",
+      "./isolated_test_env/data/backup_20250616_211637/4-2_2018.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2008.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2009.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2010.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2011.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2012.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2013.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2014.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2015.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2016.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2017.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2018.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/4-2_2019.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2008.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2009.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2010.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2011.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2012.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2013.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2013_backup.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2013_fixed.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2014.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2014_backup.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2014_fixed.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2015.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2016.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2017.csv",
+      "./safe_debug_backups/checkpoint_20250704_174817/data/backup_20250616_211637/4-2_2018.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2008.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2009.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2010.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2011.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2012.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2013.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2014.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2015.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2016.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2017.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2018.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/4-2_2019.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2008.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2009.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2010.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2011.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2012.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2013.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2013_backup.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2013_fixed.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2014.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2014_backup.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2014_fixed.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2015.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2016.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2017.csv",
+      "./safe_debug_backups/checkpoint_20250704_175144/data/backup_20250616_211637/4-2_2018.csv"
+    ],
+    "separation_status": "SEPARATED",
+    "cross_reference_risk": []
+  },
+  "logic_analysis": {
+    "random_selection_found": true,
+    "category_filtering_found": true,
+    "year_filtering_found": true,
+    "department_filtering_found": true,
+    "selection_functions": [
+      "def get_current_question",
+      "def get_due_review_question",
+      "def get_due_questions(user_session, all_question",
+      "def get_mixed_questions(user_session, all_questions, requested_category='全体', session_size=None, department='', question",
+      "def get_review_question"
+    ]
+  },
+  "safe_recommendations": [
+    "🔧 大容量セッションキーの段階的削減",
+    "  - exam_session: 問題データを問題IDのみに変更",
+    "  - history: 履歴保存を一時停止",
+    "  - advanced_srs: SRSデータ保存を無効化",
+    "✅ CSV分離済み - 参照ロジックの確認",
+    "🛡️ 段階的な変更適用（一度に一つの最適化）",
+    "🧪 各変更後の動作確認テスト",
+    "💾 変更前の必須バックアップ作成",
+    "🔄 変更失敗時の自動ロールバック機能"
+  ],
+  "risk_assessment": {
+    "overall_risk": "HIGH",
+    "high_risk_keys": [
+      "exam_session"
+    ],
+    "modification_points": 25,
+    "safety_recommendations": [
+      "段階的な変更適用",
+      "十分なテスト実行",
+      "バックアップ必須"
+    ]
+  }
+}

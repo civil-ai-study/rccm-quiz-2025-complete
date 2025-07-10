@@ -1,0 +1,30 @@
+{
+  "timestamp": "2025-07-05T17:33:42.363238",
+  "duration_seconds": 5.686519622802734,
+  "total_tests": 16,
+  "passed_tests": 3,
+  "success_rate": 18.75,
+  "basic_pages": {
+    "homepage": true,
+    "departments": true
+  },
+  "departments": {
+    "基礎科目": true,
+    "道路": false,
+    "河川・砂防": false,
+    "都市計画": false,
+    "造園": false,
+    "建設環境": false,
+    "鋼構造・コンクリート": false,
+    "土質・基礎": false,
+    "施工計画": false,
+    "上下水道": false,
+    "森林土木": false,
+    "農業土木": false,
+    "トンネル": false
+  },
+  "question_display": {
+    "success": false,
+    "error": "Start exam failed: 431"
+  }
+}

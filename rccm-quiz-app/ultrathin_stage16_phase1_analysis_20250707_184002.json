@@ -1,0 +1,272 @@
+{
+  "timestamp": "2025-07-07T18:39:10.041393",
+  "year_based_analysis": {
+    "tested_years": [
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020"
+    ],
+    "year_results": {
+      "2016": {
+        "tests_performed": 3,
+        "valid_tests": 3,
+        "question_counts": [
+          31,
+          31,
+          31
+        ],
+        "consistent_count": 31,
+        "deviation_from_30": 1,
+        "test_results": [
+          {
+            "attempt": 1,
+            "questions_count": 31,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2016,
+            "timestamp": "09:39:10",
+            "post_status": 200
+          },
+          {
+            "attempt": 2,
+            "questions_count": 31,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2016,
+            "timestamp": "09:39:13",
+            "post_status": 200
+          },
+          {
+            "attempt": 3,
+            "questions_count": 31,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2016,
+            "timestamp": "09:39:15",
+            "post_status": 200
+          }
+        ],
+        "year_stable": true
+      },
+      "2017": {
+        "tests_performed": 3,
+        "valid_tests": 3,
+        "question_counts": [
+          28,
+          28,
+          28
+        ],
+        "consistent_count": 28,
+        "deviation_from_30": -2,
+        "test_results": [
+          {
+            "attempt": 1,
+            "questions_count": 28,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2017,
+            "timestamp": "09:39:19",
+            "post_status": 200
+          },
+          {
+            "attempt": 2,
+            "questions_count": 28,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2017,
+            "timestamp": "09:39:22",
+            "post_status": 200
+          },
+          {
+            "attempt": 3,
+            "questions_count": 28,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2017,
+            "timestamp": "09:39:24",
+            "post_status": 200
+          }
+        ],
+        "year_stable": true
+      },
+      "2018": {
+        "tests_performed": 3,
+        "valid_tests": 3,
+        "question_counts": [
+          30,
+          30,
+          30
+        ],
+        "consistent_count": 30,
+        "deviation_from_30": 0,
+        "test_results": [
+          {
+            "attempt": 1,
+            "questions_count": 30,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2018,
+            "timestamp": "09:39:28",
+            "post_status": 200
+          },
+          {
+            "attempt": 2,
+            "questions_count": 30,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2018,
+            "timestamp": "09:39:31",
+            "post_status": 200
+          },
+          {
+            "attempt": 3,
+            "questions_count": 30,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2018,
+            "timestamp": "09:39:33",
+            "post_status": 200
+          }
+        ],
+        "year_stable": true
+      },
+      "2019": {
+        "tests_performed": 3,
+        "valid_tests": 3,
+        "question_counts": [
+          30,
+          30,
+          30
+        ],
+        "consistent_count": 30,
+        "deviation_from_30": 0,
+        "test_results": [
+          {
+            "attempt": 1,
+            "questions_count": 30,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2019,
+            "timestamp": "09:39:37",
+            "post_status": 200
+          },
+          {
+            "attempt": 2,
+            "questions_count": 30,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2019,
+            "timestamp": "09:39:40",
+            "post_status": 200
+          },
+          {
+            "attempt": 3,
+            "questions_count": 30,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2019,
+            "timestamp": "09:39:42",
+            "post_status": 200
+          }
+        ],
+        "year_stable": true
+      },
+      "2020": {
+        "tests_performed": 3,
+        "valid_tests": 3,
+        "question_counts": [
+          0,
+          0,
+          0
+        ],
+        "consistent_count": 0,
+        "deviation_from_30": -30,
+        "test_results": [
+          {
+            "attempt": 1,
+            "questions_count": 0,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2020,
+            "timestamp": "09:39:46",
+            "post_status": 200
+          },
+          {
+            "attempt": 2,
+            "questions_count": 0,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2020,
+            "timestamp": "09:39:48",
+            "post_status": 200
+          },
+          {
+            "attempt": 3,
+            "questions_count": 0,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2020,
+            "timestamp": "09:39:51",
+            "post_status": 200
+          }
+        ],
+        "year_stable": true
+      }
+    },
+    "analysis_summary": {
+      "valid_years_count": 5,
+      "total_years_tested": 5,
+      "year_question_counts": {
+        "2016": 31,
+        "2017": 28,
+        "2018": 30,
+        "2019": 30,
+        "2020": 0
+      },
+      "unique_question_counts": [
+        0,
+        28,
+        30,
+        31
+      ],
+      "pattern_identified": true
+    }
+  },
+  "data_source_investigation": {
+    "control_departments": {
+      "河川、砂防及び海岸・海洋": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "still_normal": true
+      },
+      "トンネル": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "still_normal": true
+      },
+      "道路": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "still_normal": true
+      }
+    },
+    "basic_subject_control": {
+      "questions_count": 202,
+      "data_source": "basic",
+      "still_normal": true
+    },
+    "safety_maintained": true,
+    "no_collateral_damage": true
+  },
+  "impact_assessment": {
+    "problem_severity": "significant",
+    "impact_level": "high",
+    "max_deviation": 30,
+    "safety_maintained": true,
+    "recommended_action": "comprehensive_resolution",
+    "next_phase_required": true,
+    "ultrathin_compliant_resolution": true
+  }
+}

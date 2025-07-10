@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>試験結果 - RCCM基礎科目専用システム</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .result-header {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .result-header.fail {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        }
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2em;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .score-circle.fail {
+            color: #dc3545;
+        }
+        .summary-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .detail-row {
+            padding: 10px;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 5px;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .correct {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+        .system-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .action-buttons {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- 結果ヘッダー -->
+        <div class="result-header {% if result_summary.result_status == 'fail' %}fail{% endif %}">
+            <div class="score-circle {% if result_summary.result_status == 'fail' %}fail{% endif %}">
+                {{ "%.1f"|format(result_summary.score_percentage) }}%
+            </div>
+            <h1>
+                {% if result_summary.result_status == 'pass' %}
+                    <i class="fas fa-trophy"></i> {{ result_summary.result_message }}
+                {% else %}
+                    <i class="fas fa-times-circle"></i> {{ result_summary.result_message }}
+                {% endif %}
+            </h1>
+            <p class="mb-0">基礎科目専用試験システム v2.0</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <!-- 結果サマリー -->
+                <div class="summary-card">
+                    <h3><i class="fas fa-chart-pie"></i> 試験結果サマリー</h3>
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <h4 class="text-primary">{{ result_summary.total_questions }}</h4>
+                            <p class="text-muted">総問題数</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4 class="text-success">{{ result_summary.correct_count }}</h4>
+                            <p class="text-muted">正解数</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4 class="text-danger">{{ result_summary.incorrect_count }}</h4>
+                            <p class="text-muted">不正解数</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4 class="text-info">{{ "%.1f"|format(result_summary.score_percentage) }}%</h4>
+                            <p class="text-muted">正答率</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 試験情報 -->
+                <div class="summary-card">
+                    <h4><i class="fas fa-info-circle"></i> 試験情報</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>開始時刻:</strong> {{ result_summary.start_time[:19] }}</p>
+                            <p><strong>終了時刻:</strong> {{ result_summary.end_time[:19] }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>セッションID:</strong> {{ result_summary.session_id[:8] }}...</p>
+                            <p><strong>データソース:</strong> {{ system_info.data_source }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 問題別詳細結果 -->
+                <div class="summary-card">
+                    <h4><i class="fas fa-list-alt"></i> 問題別詳細結果</h4>
+                    <div class="details-container">
+                        {% for detail in result_details %}
+                        <div class="detail-row {% if detail.is_correct %}correct{% else %}incorrect{% endif %}">
+                            <div class="row align-items-center">
+                                <div class="col-md-1 text-center">
+                                    <strong>Q{{ detail.question_no }}</strong>
+                                </div>
+                                <div class="col-md-6">
+                                    {{ detail.question_text }}
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <span class="badge {% if detail.is_correct %}bg-success{% else %}bg-danger{% endif %}">
+                                        あなた: {{ detail.user_answer }}
+                                    </span>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <span class="badge bg-info">
+                                        正解: {{ detail.correct_answer }}
+                                    </span>
+                                </div>
+                                <div class="col-md-1 text-center">
+                                    {% if detail.is_correct %}
+                                        <i class="fas fa-check text-success"></i>
+                                    {% else %}
+                                        <i class="fas fa-times text-danger"></i>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- システム情報 -->
+                <div class="system-info">
+                    <h5><i class="fas fa-cogs"></i> システム情報</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <small><strong>システム:</strong> {{ system_info.version }}</small>
+                        </div>
+                        <div class="col-md-4">
+                            <small><strong>セッション:</strong> {{ system_info.session_type }}</small>
+                        </div>
+                        <div class="col-md-4">
+                            <small><strong>データ:</strong> {{ system_info.data_source }}</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- アクションボタン -->
+                <div class="action-buttons">
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <a href="{{ url_for('basic_exam.basic_exam_start') }}" class="btn btn-primary">
+                                <i class="fas fa-redo"></i> もう一度挑戦
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="{{ url_for('basic_exam.basic_exam_index') }}" class="btn btn-secondary">
+                                <i class="fas fa-home"></i> トップページ
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info" onclick="window.print()">
+                                <i class="fas fa-print"></i> 結果を印刷
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- フィードバック -->
+                <div class="text-center mt-4">
+                    {% if result_summary.result_status == 'pass' %}
+                        <div class="alert alert-success">
+                            <h5><i class="fas fa-star"></i> おめでとうございます！</h5>
+                            <p>基礎科目の理解度が十分であることが確認できました。この調子で専門科目の学習も頑張ってください。</p>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning">
+                            <h5><i class="fas fa-lightbulb"></i> 学習を続けましょう</h5>
+                            <p>今回は合格ラインに届きませんでしたが、諦めずに復習を重ねることで必ず上達します。間違えた問題を中心に復習しましょう。</p>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- 実装情報 -->
+                <div class="text-center mt-4">
+                    <small class="text-muted">
+                        ULTRATHIN区 PHASE 2-2 実装 | 
+                        Blueprint: basic_exam | 
+                        URL: /v2/basic_exam/result | 
+                        完全分離セッション管理
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+
+    <script>
+        // 印刷用スタイル調整
+        window.addEventListener('beforeprint', function() {
+            // 印刷時にボタンなどを非表示にする処理
+            document.querySelectorAll('.action-buttons').forEach(el => {
+                el.style.display = 'none';
+            });
+        });
+
+        window.addEventListener('afterprint', function() {
+            // 印刷後に要素を再表示
+            document.querySelectorAll('.action-buttons').forEach(el => {
+                el.style.display = 'block';
+            });
+        });
+
+        // 結果データの統計表示
+        document.addEventListener('DOMContentLoaded', function() {
+            const scorePercentage = {{ result_summary.score_percentage }};
+            console.log('基礎科目試験結果 - スコア:', scorePercentage + '%');
+            console.log('システム: 基礎科目専用 v2.0');
+            console.log('セッション分離: basic_exam_*');
+        });
+    </script>
+</body>
+</html>

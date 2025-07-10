@@ -1,0 +1,432 @@
+{
+  "timestamp": "2025-07-06T07:58:33.181865",
+  "analysis_type": "PRODUCTION_CONTENT_ENCODING_ANALYSIS",
+  "target_url": "https://rccm-quiz-2025.onrender.com",
+  "encoding_tests": {
+    "no_compression": {
+      "test_name": "圧縮なしリクエスト",
+      "status_code": 200,
+      "headers": {
+        "Date": "Sat, 05 Jul 2025 22:58:34 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "access-control-allow-credentials": "true",
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "GET, POST, OPTIONS",
+        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0, private, no-transform",
+        "etag": "W/\"0\"",
+        "expires": "-1",
+        "last-modified": "Wed, 11 Jan 1984 05:00:00 GMT",
+        "permissions-policy": "geolocation=(), microphone=(), camera=()",
+        "pragma": "no-cache",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "rndr-id": "79300195-3db6-4062",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "vary": "*, Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-render-origin-server": "gunicorn",
+        "x-xss-protection": "1; mode=block",
+        "cf-cache-status": "DYNAMIC",
+        "Server": "cloudflare",
+        "CF-RAY": "95aa77c30f3ad79c-NRT",
+        "alt-svc": "h3=\":443\"; ma=86400"
+      },
+      "encoding_detected": "utf-8",
+      "content_length": 40455,
+      "text_length": 36999,
+      "is_binary": false,
+      "compression_detected": "",
+      "charset_from_headers": "text/html; charset=utf-8",
+      "decoding_attempts": [
+        {
+          "method": "utf-8",
+          "success": true,
+          "decoded_length": 36999,
+          "japanese_detected": true,
+          "question_keywords_found": [
+            "問題",
+            "問",
+            "選択",
+            "回答",
+            "解答",
+            "Question"
+          ],
+          "sample_text": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n    <title>試験シミュレーター - RCCM試験問題集</title>\n    \n    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->\n    <meta http-equiv=\"Cache-Control\" content=\"no-store, no-cache, must-revalidate, max-age=0\">\n    <meta http-equiv=\"Pragma\" content=\"no-cache\">\n    <meta http-equiv=\"Expires\" content=\"-1\">\n    <script>\n   ",
+          "html_tags_found": true
+        },
+        {
+          "method": "shift_jis",
+          "success": false,
+          "error": "'shift_jis' codec can't decode byte 0xf0 in position 283: illegal multibyte sequence"
+        },
+        {
+          "method": "euc-jp",
+          "success": false,
+          "error": "'euc_jp' codec can't decode byte 0xa6 in position 213: illegal multibyte sequence"
+        },
+        {
+          "method": "iso-2022-jp",
+          "success": false,
+          "error": "'iso2022_jp' codec can't decode byte 0xe8 in position 211: illegal multibyte sequence"
+        },
+        {
+          "method": "gzip+utf-8",
+          "success": false,
+          "error": "Not a gzipped file (b'<!')"
+        },
+        {
+          "method": "deflate+utf-8",
+          "success": false,
+          "error": "Error -3 while decompressing data: incorrect header check"
+        },
+        {
+          "method": "latin1+utf-8",
+          "success": true,
+          "decoded_length": 36999,
+          "japanese_detected": true,
+          "question_keywords_found": [
+            "問題",
+            "問",
+            "選択",
+            "回答",
+            "解答",
+            "Question"
+          ],
+          "sample_text": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n    <title>試験シミュレーター - RCCM試験問題集</title>\n    \n    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->\n    <meta http-equiv=\"Cache-Control\" content=\"no-store, no-cache, must-revalidate, max-age=0\">\n    <meta http-equiv=\"Pragma\" content=\"no-cache\">\n    <meta http-equiv=\"Expires\" content=\"-1\">\n    <script>\n   ",
+          "html_tags_found": true
+        }
+      ]
+    },
+    "identity_encoding": {
+      "test_name": "identity encoding",
+      "status_code": 200,
+      "headers": {
+        "Date": "Sat, 05 Jul 2025 22:58:37 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "access-control-allow-credentials": "true",
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "GET, POST, OPTIONS",
+        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0, private, no-transform",
+        "etag": "W/\"0\"",
+        "expires": "-1",
+        "last-modified": "Wed, 11 Jan 1984 05:00:00 GMT",
+        "permissions-policy": "geolocation=(), microphone=(), camera=()",
+        "pragma": "no-cache",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "rndr-id": "c27702f7-653c-41a8",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "vary": "*, Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-render-origin-server": "gunicorn",
+        "x-xss-protection": "1; mode=block",
+        "cf-cache-status": "DYNAMIC",
+        "Server": "cloudflare",
+        "CF-RAY": "95aa77d50a53d4b7-NRT",
+        "alt-svc": "h3=\":443\"; ma=86400"
+      },
+      "encoding_detected": "utf-8",
+      "content_length": 40455,
+      "text_length": 36999,
+      "is_binary": false,
+      "compression_detected": "",
+      "charset_from_headers": "text/html; charset=utf-8",
+      "decoding_attempts": [
+        {
+          "method": "utf-8",
+          "success": true,
+          "decoded_length": 36999,
+          "japanese_detected": true,
+          "question_keywords_found": [
+            "問題",
+            "問",
+            "選択",
+            "回答",
+            "解答",
+            "Question"
+          ],
+          "sample_text": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n    <title>試験シミュレーター - RCCM試験問題集</title>\n    \n    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->\n    <meta http-equiv=\"Cache-Control\" content=\"no-store, no-cache, must-revalidate, max-age=0\">\n    <meta http-equiv=\"Pragma\" content=\"no-cache\">\n    <meta http-equiv=\"Expires\" content=\"-1\">\n    <script>\n   ",
+          "html_tags_found": true
+        },
+        {
+          "method": "shift_jis",
+          "success": false,
+          "error": "'shift_jis' codec can't decode byte 0xf0 in position 283: illegal multibyte sequence"
+        },
+        {
+          "method": "euc-jp",
+          "success": false,
+          "error": "'euc_jp' codec can't decode byte 0xa6 in position 213: illegal multibyte sequence"
+        },
+        {
+          "method": "iso-2022-jp",
+          "success": false,
+          "error": "'iso2022_jp' codec can't decode byte 0xe8 in position 211: illegal multibyte sequence"
+        },
+        {
+          "method": "gzip+utf-8",
+          "success": false,
+          "error": "Not a gzipped file (b'<!')"
+        },
+        {
+          "method": "deflate+utf-8",
+          "success": false,
+          "error": "Error -3 while decompressing data: incorrect header check"
+        },
+        {
+          "method": "latin1+utf-8",
+          "success": true,
+          "decoded_length": 36999,
+          "japanese_detected": true,
+          "question_keywords_found": [
+            "問題",
+            "問",
+            "選択",
+            "回答",
+            "解答",
+            "Question"
+          ],
+          "sample_text": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n    <title>試験シミュレーター - RCCM試験問題集</title>\n    \n    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->\n    <meta http-equiv=\"Cache-Control\" content=\"no-store, no-cache, must-revalidate, max-age=0\">\n    <meta http-equiv=\"Pragma\" content=\"no-cache\">\n    <meta http-equiv=\"Expires\" content=\"-1\">\n    <script>\n   ",
+          "html_tags_found": true
+        }
+      ]
+    },
+    "gzip_only": {
+      "test_name": "gzip圧縮のみ",
+      "status_code": 200,
+      "headers": {
+        "Date": "Sat, 05 Jul 2025 22:58:39 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "access-control-allow-credentials": "true",
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "GET, POST, OPTIONS",
+        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0, private, no-transform",
+        "etag": "W/\"0\"",
+        "expires": "-1",
+        "last-modified": "Wed, 11 Jan 1984 05:00:00 GMT",
+        "permissions-policy": "geolocation=(), microphone=(), camera=()",
+        "pragma": "no-cache",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "rndr-id": "d75b0d51-63ea-416c",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "vary": "*, Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-render-origin-server": "gunicorn",
+        "x-xss-protection": "1; mode=block",
+        "cf-cache-status": "DYNAMIC",
+        "Server": "cloudflare",
+        "CF-RAY": "95aa77e53dc4d757-NRT",
+        "alt-svc": "h3=\":443\"; ma=86400"
+      },
+      "encoding_detected": "utf-8",
+      "content_length": 40455,
+      "text_length": 36999,
+      "is_binary": false,
+      "compression_detected": "",
+      "charset_from_headers": "text/html; charset=utf-8",
+      "decoding_attempts": [
+        {
+          "method": "utf-8",
+          "success": true,
+          "decoded_length": 36999,
+          "japanese_detected": true,
+          "question_keywords_found": [
+            "問題",
+            "問",
+            "選択",
+            "回答",
+            "解答",
+            "Question"
+          ],
+          "sample_text": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n    <title>試験シミュレーター - RCCM試験問題集</title>\n    \n    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->\n    <meta http-equiv=\"Cache-Control\" content=\"no-store, no-cache, must-revalidate, max-age=0\">\n    <meta http-equiv=\"Pragma\" content=\"no-cache\">\n    <meta http-equiv=\"Expires\" content=\"-1\">\n    <script>\n   ",
+          "html_tags_found": true
+        },
+        {
+          "method": "shift_jis",
+          "success": false,
+          "error": "'shift_jis' codec can't decode byte 0xf0 in position 283: illegal multibyte sequence"
+        },
+        {
+          "method": "euc-jp",
+          "success": false,
+          "error": "'euc_jp' codec can't decode byte 0xa6 in position 213: illegal multibyte sequence"
+        },
+        {
+          "method": "iso-2022-jp",
+          "success": false,
+          "error": "'iso2022_jp' codec can't decode byte 0xe8 in position 211: illegal multibyte sequence"
+        },
+        {
+          "method": "gzip+utf-8",
+          "success": false,
+          "error": "Not a gzipped file (b'<!')"
+        },
+        {
+          "method": "deflate+utf-8",
+          "success": false,
+          "error": "Error -3 while decompressing data: incorrect header check"
+        },
+        {
+          "method": "latin1+utf-8",
+          "success": true,
+          "decoded_length": 36999,
+          "japanese_detected": true,
+          "question_keywords_found": [
+            "問題",
+            "問",
+            "選択",
+            "回答",
+            "解答",
+            "Question"
+          ],
+          "sample_text": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n    <title>試験シミュレーター - RCCM試験問題集</title>\n    \n    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->\n    <meta http-equiv=\"Cache-Control\" content=\"no-store, no-cache, must-revalidate, max-age=0\">\n    <meta http-equiv=\"Pragma\" content=\"no-cache\">\n    <meta http-equiv=\"Expires\" content=\"-1\">\n    <script>\n   ",
+          "html_tags_found": true
+        }
+      ]
+    },
+    "basic_exam": {
+      "test_name": "基礎科目試験",
+      "status_code": 200,
+      "headers": {
+        "Date": "Sat, 05 Jul 2025 22:58:42 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "access-control-allow-credentials": "true",
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "GET, POST, OPTIONS",
+        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0, private, no-transform",
+        "Content-Encoding": "br",
+        "etag": "\"0\"",
+        "expires": "-1",
+        "last-modified": "Wed, 11 Jan 1984 05:00:00 GMT",
+        "permissions-policy": "geolocation=(), microphone=(), camera=()",
+        "pragma": "no-cache",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "rndr-id": "e29a0152-cd19-4eea",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "vary": "*, Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-render-origin-server": "gunicorn",
+        "x-xss-protection": "1; mode=block",
+        "cf-cache-status": "DYNAMIC",
+        "Server": "cloudflare",
+        "CF-RAY": "95aa77f55a56d771-NRT",
+        "alt-svc": "h3=\":443\"; ma=86400"
+      },
+      "encoding_detected": "utf-8",
+      "content_length": 8585,
+      "text_length": 8115,
+      "is_binary": true,
+      "compression_detected": "br",
+      "charset_from_headers": "text/html; charset=utf-8",
+      "decoding_attempts": [
+        {
+          "method": "utf-8",
+          "success": false,
+          "error": "'utf-8' codec can't decode byte 0x9e in position 2: invalid start byte"
+        },
+        {
+          "method": "shift_jis",
+          "success": false,
+          "error": "'shift_jis' codec can't decode byte 0xff in position 14: illegal multibyte sequence"
+        },
+        {
+          "method": "euc-jp",
+          "success": false,
+          "error": "'euc_jp' codec can't decode byte 0x9e in position 2: illegal multibyte sequence"
+        },
+        {
+          "method": "iso-2022-jp",
+          "success": false,
+          "error": "'iso2022_jp' codec can't decode byte 0xcc in position 5: illegal multibyte sequence"
+        },
+        {
+          "method": "gzip+utf-8",
+          "success": false,
+          "error": "Not a gzipped file (b'\\x1b\\x06')"
+        },
+        {
+          "method": "deflate+utf-8",
+          "success": false,
+          "error": "Error -3 while decompressing data: incorrect header check"
+        },
+        {
+          "method": "latin1+utf-8",
+          "success": false,
+          "error": "'utf-8' codec can't decode byte 0x9e in position 2: invalid start byte"
+        }
+      ]
+    }
+  },
+  "decoding_attempts": {},
+  "successful_extractions": [
+    {
+      "test_name": "no_compression",
+      "decoding_method": "utf-8",
+      "questions_extracted": [],
+      "choices_extracted": [],
+      "japanese_content_confirmed": true,
+      "html_structure_confirmed": true,
+      "extraction_confidence": "LOW"
+    },
+    {
+      "test_name": "no_compression",
+      "decoding_method": "latin1+utf-8",
+      "questions_extracted": [],
+      "choices_extracted": [],
+      "japanese_content_confirmed": true,
+      "html_structure_confirmed": true,
+      "extraction_confidence": "LOW"
+    },
+    {
+      "test_name": "identity_encoding",
+      "decoding_method": "utf-8",
+      "questions_extracted": [],
+      "choices_extracted": [],
+      "japanese_content_confirmed": true,
+      "html_structure_confirmed": true,
+      "extraction_confidence": "LOW"
+    },
+    {
+      "test_name": "identity_encoding",
+      "decoding_method": "latin1+utf-8",
+      "questions_extracted": [],
+      "choices_extracted": [],
+      "japanese_content_confirmed": true,
+      "html_structure_confirmed": true,
+      "extraction_confidence": "LOW"
+    },
+    {
+      "test_name": "gzip_only",
+      "decoding_method": "utf-8",
+      "questions_extracted": [],
+      "choices_extracted": [],
+      "japanese_content_confirmed": true,
+      "html_structure_confirmed": true,
+      "extraction_confidence": "LOW"
+    },
+    {
+      "test_name": "gzip_only",
+      "decoding_method": "latin1+utf-8",
+      "questions_extracted": [],
+      "choices_extracted": [],
+      "japanese_content_confirmed": true,
+      "html_structure_confirmed": true,
+      "extraction_confidence": "LOW"
+    }
+  ],
+  "critical_findings": [
+    "最適デコード手法: utf-8",
+    "標準的なエンコーディング問題",
+    "問題内容抽出失敗"
+  ]
+}

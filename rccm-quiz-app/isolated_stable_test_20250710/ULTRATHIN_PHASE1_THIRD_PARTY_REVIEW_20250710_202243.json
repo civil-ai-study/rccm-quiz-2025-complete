@@ -1,0 +1,15 @@
+{
+  "overall_grade": "PASS",
+  "critical_issues": [],
+  "major_issues": [
+    "MAJOR: ルート構造分析の文書化が不十分",
+    "MAJOR: 関数構造分析の文書化が不十分"
+  ],
+  "minor_issues": [],
+  "strengths": [],
+  "recommendations": [],
+  "phase2_readiness": true,
+  "overall_score": 464,
+  "total_max_score": 500,
+  "overall_percentage": 92.80000000000001
+}

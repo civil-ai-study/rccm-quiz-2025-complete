@@ -1,0 +1,14 @@
+{
+  "main_debug": null,
+  "persistence_test": [
+    {
+      "department": "土質及び基礎",
+      "result": "memory_failure"
+    },
+    {
+      "department": "トンネル",
+      "result": "memory_failure"
+    }
+  ],
+  "timestamp": "2025-07-07T16:57:21.146033"
+}

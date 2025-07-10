@@ -1,0 +1,798 @@
+{
+  "timestamp": "2025-07-07T23:14:50.286461",
+  "emergency_verification": true,
+  "total_tests": 39,
+  "department_results": {
+    "基礎科目": {
+      "10_questions": {
+        "department": "基礎科目",
+        "question_count": 10,
+        "timestamp": "2025-07-07T23:14:50.286672",
+        "steps": {
+          "start_exam": {
+            "status_code": 200,
+            "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+            "success": true
+          },
+          "exam_question": {
+            "status_code": 200,
+            "success": true
+          }
+        },
+        "complete_success": true,
+        "summary": "完全成功 (200→200)"
+      },
+      "20_questions": {
+        "department": "基礎科目",
+        "question_count": 20,
+        "timestamp": "2025-07-07T23:14:51.618793",
+        "steps": {
+          "start_exam": {
+            "status_code": 200,
+            "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+            "success": true
+          },
+          "exam_question": {
+            "status_code": 200,
+            "success": true
+          }
+        },
+        "complete_success": true,
+        "summary": "完全成功 (200→200)"
+      },
+      "30_questions": {
+        "department": "基礎科目",
+        "question_count": 30,
+        "timestamp": "2025-07-07T23:14:52.827693",
+        "steps": {
+          "start_exam": {
+            "status_code": 200,
+            "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+            "success": true
+          },
+          "exam_question": {
+            "status_code": 200,
+            "success": true
+          }
+        },
+        "complete_success": true,
+        "summary": "完全成功 (200→200)"
+      }
+    },
+    "道路": {
+      "10_questions": {
+        "department": "道路",
+        "question_count": 10,
+        "timestamp": "2025-07-07T23:14:53.776444",
+        "steps": {
+          "start_exam": {
+            "status_code": 200,
+            "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+            "success": true
+          },
+          "exam_question": {
+            "status_code": 200,
+            "success": true
+          }
+        },
+        "complete_success": true,
+        "summary": "完全成功 (200→200)"
+      },
+      "20_questions": {
+        "department": "道路",
+        "question_count": 20,
+        "timestamp": "2025-07-07T23:14:54.923790",
+        "steps": {
+          "start_exam": {
+            "status_code": 200,
+            "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+            "success": true
+          },
+          "exam_question": {
+            "status_code": 200,
+            "success": true
+          }
+        },
+        "complete_success": true,
+        "summary": "完全成功 (200→200)"
+      },
+      "30_questions": {
+        "department": "道路",
+        "question_count": 30,
+        "timestamp": "2025-07-07T23:14:55.887115",
+        "steps": {
+          "start_exam": {
+            "status_code": 200,
+            "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+            "success": true
+          },
+          "exam_question": {
+            "status_code": 502,
+            "success": false
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:True, 問題:False)"
+      }
+    },
+    "河川、砂防及び海岸・海洋": {
+      "10_questions": {
+        "department": "河川、砂防及び海岸・海洋",
+        "question_count": 10,
+        "timestamp": "2025-07-07T23:14:57.380990",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/exam_question",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": 502,
+            "success": false
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "20_questions": {
+        "department": "河川、砂防及び海岸・海洋",
+        "question_count": 20,
+        "timestamp": "2025-07-07T23:14:58.204490",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E6%B2%B3%E5%B7%9D%E3%80%81%E7%A0%82%E9%98%B2%E5%8F%8A%E3%81%B3%E6%B5%B7%E5%B2%B8%E3%83%BB%E6%B5%B7%E6%B4%8B",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "30_questions": {
+        "department": "河川、砂防及び海岸・海洋",
+        "question_count": 30,
+        "timestamp": "2025-07-07T23:14:59.280122",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E6%B2%B3%E5%B7%9D%E3%80%81%E7%A0%82%E9%98%B2%E5%8F%8A%E3%81%B3%E6%B5%B7%E5%B2%B8%E3%83%BB%E6%B5%B7%E6%B4%8B",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      }
+    },
+    "都市計画": {
+      "10_questions": {
+        "department": "都市計画",
+        "question_count": 10,
+        "timestamp": "2025-07-07T23:14:59.636477",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "20_questions": {
+        "department": "都市計画",
+        "question_count": 20,
+        "timestamp": "2025-07-07T23:15:00.000626",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "30_questions": {
+        "department": "都市計画",
+        "question_count": 30,
+        "timestamp": "2025-07-07T23:15:00.322286",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      }
+    },
+    "造園": {
+      "10_questions": {
+        "department": "造園",
+        "question_count": 10,
+        "timestamp": "2025-07-07T23:15:00.664006",
+        "steps": {
+          "start_exam": {
+            "status_code": 200,
+            "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+            "success": true
+          },
+          "exam_question": {
+            "status_code": 502,
+            "success": false
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:True, 問題:False)"
+      },
+      "20_questions": {
+        "department": "造園",
+        "question_count": 20,
+        "timestamp": "2025-07-07T23:15:01.924306",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E9%80%A0%E5%9C%92",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "30_questions": {
+        "department": "造園",
+        "question_count": 30,
+        "timestamp": "2025-07-07T23:15:02.275736",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E9%80%A0%E5%9C%92",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      }
+    },
+    "建設環境": {
+      "10_questions": {
+        "department": "建設環境",
+        "question_count": 10,
+        "timestamp": "2025-07-07T23:15:02.612321",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E5%BB%BA%E8%A8%AD%E7%92%B0%E5%A2%83",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "20_questions": {
+        "department": "建設環境",
+        "question_count": 20,
+        "timestamp": "2025-07-07T23:15:02.988102",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E5%BB%BA%E8%A8%AD%E7%92%B0%E5%A2%83",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "30_questions": {
+        "department": "建設環境",
+        "question_count": 30,
+        "timestamp": "2025-07-07T23:15:03.358770",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E5%BB%BA%E8%A8%AD%E7%92%B0%E5%A2%83",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      }
+    },
+    "鋼構造・コンクリート": {
+      "10_questions": {
+        "department": "鋼構造・コンクリート",
+        "question_count": 10,
+        "timestamp": "2025-07-07T23:15:03.695008",
+        "steps": {
+          "start_exam": {
+            "status_code": 200,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E9%8B%BC%E6%A7%8B%E9%80%A0%E3%83%BB%E3%82%B3%E3%83%B3%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%88",
+            "success": true
+          },
+          "exam_question": {
+            "status_code": 502,
+            "success": false
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:True, 問題:False)"
+      },
+      "20_questions": {
+        "department": "鋼構造・コンクリート",
+        "question_count": 20,
+        "timestamp": "2025-07-07T23:15:04.636263",
+        "steps": {
+          "start_exam": {
+            "status_code": 200,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E9%8B%BC%E6%A7%8B%E9%80%A0%E3%83%BB%E3%82%B3%E3%83%B3%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%88",
+            "success": true
+          },
+          "exam_question": {
+            "status_code": 502,
+            "success": false
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:True, 問題:False)"
+      },
+      "30_questions": {
+        "department": "鋼構造・コンクリート",
+        "question_count": 30,
+        "timestamp": "2025-07-07T23:15:05.832063",
+        "steps": {
+          "start_exam": {
+            "status_code": 200,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E9%8B%BC%E6%A7%8B%E9%80%A0%E3%83%BB%E3%82%B3%E3%83%B3%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%88",
+            "success": true
+          },
+          "exam_question": {
+            "status_code": 200,
+            "success": true
+          }
+        },
+        "complete_success": true,
+        "summary": "完全成功 (200→200)"
+      }
+    },
+    "土質・基礎": {
+      "10_questions": {
+        "department": "土質・基礎",
+        "question_count": 10,
+        "timestamp": "2025-07-07T23:15:06.529977",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E5%9C%9F%E8%B3%AA%E3%83%BB%E5%9F%BA%E7%A4%8E",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "20_questions": {
+        "department": "土質・基礎",
+        "question_count": 20,
+        "timestamp": "2025-07-07T23:15:06.834985",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E5%9C%9F%E8%B3%AA%E3%83%BB%E5%9F%BA%E7%A4%8E",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "30_questions": {
+        "department": "土質・基礎",
+        "question_count": 30,
+        "timestamp": "2025-07-07T23:15:08.926838",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E5%9C%9F%E8%B3%AA%E3%83%BB%E5%9F%BA%E7%A4%8E",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      }
+    },
+    "施工計画": {
+      "10_questions": {
+        "department": "施工計画",
+        "question_count": 10,
+        "timestamp": "2025-07-07T23:15:09.247268",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E6%96%BD%E5%B7%A5%E8%A8%88%E7%94%BB",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "20_questions": {
+        "department": "施工計画",
+        "question_count": 20,
+        "timestamp": "2025-07-07T23:15:09.594147",
+        "steps": {
+          "start_exam": {
+            "status_code": 200,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E6%96%BD%E5%B7%A5%E8%A8%88%E7%94%BB",
+            "success": true
+          },
+          "exam_question": {
+            "status_code": 502,
+            "success": false
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:True, 問題:False)"
+      },
+      "30_questions": {
+        "department": "施工計画",
+        "question_count": 30,
+        "timestamp": "2025-07-07T23:15:10.149948",
+        "steps": {
+          "start_exam": {
+            "status_code": 200,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E6%96%BD%E5%B7%A5%E8%A8%88%E7%94%BB",
+            "success": true
+          },
+          "exam_question": {
+            "status_code": 502,
+            "success": false
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:True, 問題:False)"
+      }
+    },
+    "上下水道": {
+      "10_questions": {
+        "department": "上下水道",
+        "question_count": 10,
+        "timestamp": "2025-07-07T23:15:11.602492",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E4%B8%8A%E4%B8%8B%E6%B0%B4%E9%81%93",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "20_questions": {
+        "department": "上下水道",
+        "question_count": 20,
+        "timestamp": "2025-07-07T23:15:11.912044",
+        "steps": {
+          "start_exam": {
+            "status_code": 200,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E4%B8%8A%E4%B8%8B%E6%B0%B4%E9%81%93",
+            "success": true
+          },
+          "exam_question": {
+            "status_code": 502,
+            "success": false
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:True, 問題:False)"
+      },
+      "30_questions": {
+        "department": "上下水道",
+        "question_count": 30,
+        "timestamp": "2025-07-07T23:15:12.376880",
+        "steps": {
+          "start_exam": {
+            "status_code": 200,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E4%B8%8A%E4%B8%8B%E6%B0%B4%E9%81%93",
+            "success": true
+          },
+          "exam_question": {
+            "status_code": 502,
+            "success": false
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:True, 問題:False)"
+      }
+    },
+    "森林土木": {
+      "10_questions": {
+        "department": "森林土木",
+        "question_count": 10,
+        "timestamp": "2025-07-07T23:15:13.092811",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E6%A3%AE%E6%9E%97%E5%9C%9F%E6%9C%A8",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "20_questions": {
+        "department": "森林土木",
+        "question_count": 20,
+        "timestamp": "2025-07-07T23:15:14.217364",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E6%A3%AE%E6%9E%97%E5%9C%9F%E6%9C%A8",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "30_questions": {
+        "department": "森林土木",
+        "question_count": 30,
+        "timestamp": "2025-07-07T23:15:14.545220",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E6%A3%AE%E6%9E%97%E5%9C%9F%E6%9C%A8",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      }
+    },
+    "農業土木": {
+      "10_questions": {
+        "department": "農業土木",
+        "question_count": 10,
+        "timestamp": "2025-07-07T23:15:14.921422",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/exam_question",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": 502,
+            "success": false
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "20_questions": {
+        "department": "農業土木",
+        "question_count": 20,
+        "timestamp": "2025-07-07T23:15:16.722712",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E8%BE%B2%E6%A5%AD%E5%9C%9F%E6%9C%A8",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "30_questions": {
+        "department": "農業土木",
+        "question_count": 30,
+        "timestamp": "2025-07-07T23:15:17.071868",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E8%BE%B2%E6%A5%AD%E5%9C%9F%E6%9C%A8",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      }
+    },
+    "トンネル": {
+      "10_questions": {
+        "department": "トンネル",
+        "question_count": 10,
+        "timestamp": "2025-07-07T23:15:17.431256",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E3%83%88%E3%83%B3%E3%83%8D%E3%83%AB",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "20_questions": {
+        "department": "トンネル",
+        "question_count": 20,
+        "timestamp": "2025-07-07T23:15:18.515986",
+        "steps": {
+          "start_exam": {
+            "status_code": 502,
+            "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E3%83%88%E3%83%B3%E3%83%8D%E3%83%AB",
+            "success": false
+          },
+          "exam_question": {
+            "status_code": "N/A",
+            "success": false,
+            "error": "start_examでexam_questionに到達できず"
+          }
+        },
+        "complete_success": false,
+        "summary": "失敗 (開始:False, 問題:False)"
+      },
+      "30_questions": {
+        "department": "トンネル",
+        "question_count": 30,
+        "timestamp": "2025-07-07T23:15:19.562557",
+        "steps": {
+          "start_exam": {
+            "status_code": 200,
+            "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+            "success": true
+          },
+          "exam_question": {
+            "status_code": 200,
+            "success": true
+          }
+        },
+        "complete_success": true,
+        "summary": "完全成功 (200→200)"
+      }
+    }
+  },
+  "final_analysis": {
+    "total_tests": 39,
+    "success_count": 7,
+    "failure_count": 32,
+    "success_rate": 17.94871794871795,
+    "critical_failures": [
+      "道路 30_questions",
+      "河川、砂防及び海岸・海洋 10_questions",
+      "河川、砂防及び海岸・海洋 20_questions",
+      "河川、砂防及び海岸・海洋 30_questions",
+      "都市計画 10_questions",
+      "都市計画 20_questions",
+      "都市計画 30_questions",
+      "造園 10_questions",
+      "造園 20_questions",
+      "造園 30_questions",
+      "建設環境 10_questions",
+      "建設環境 20_questions",
+      "建設環境 30_questions",
+      "鋼構造・コンクリート 10_questions",
+      "鋼構造・コンクリート 20_questions",
+      "土質・基礎 10_questions",
+      "土質・基礎 20_questions",
+      "土質・基礎 30_questions",
+      "施工計画 10_questions",
+      "施工計画 20_questions",
+      "施工計画 30_questions",
+      "上下水道 10_questions",
+      "上下水道 20_questions",
+      "上下水道 30_questions",
+      "森林土木 10_questions",
+      "森林土木 20_questions",
+      "森林土木 30_questions",
+      "農業土木 10_questions",
+      "農業土木 20_questions",
+      "農業土木 30_questions",
+      "トンネル 10_questions",
+      "トンネル 20_questions"
+    ],
+    "acceptable_quality": false
+  }
+}

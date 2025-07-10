@@ -1,0 +1,19 @@
+{
+  "main_flow_analysis": {
+    "error": "Invalid URL '/exam_question': No schema supplied. Perhaps you meant http:///exam_question?",
+    "start_exam_status": null
+  },
+  "multi_department_test": [
+    {
+      "department": "土質及び基礎",
+      "status": 302,
+      "redirect": "/exam_question"
+    },
+    {
+      "department": "トンネル",
+      "status": 302,
+      "redirect": "/exam_question"
+    }
+  ],
+  "timestamp": "2025-07-07T17:01:26.173818"
+}

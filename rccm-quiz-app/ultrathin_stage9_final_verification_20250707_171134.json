@@ -1,0 +1,53 @@
+[
+  {
+    "department": "河川、砂防及び海岸・海洋",
+    "status": "failed",
+    "success": false,
+    "get_is_simulator": true,
+    "post_is_simulator": true,
+    "exam_is_question": false,
+    "session_exists": false,
+    "debug_info": {
+      "data_source": "specialist",
+      "exam_type": "河川、砂防及び海岸・海洋",
+      "questions_count": 30,
+      "target_year": 2016,
+      "timestamp": "08:11:18"
+    },
+    "response_time": 0.4625260829925537
+  },
+  {
+    "department": "土質及び基礎",
+    "status": "failed",
+    "success": false,
+    "get_is_simulator": true,
+    "post_is_simulator": true,
+    "exam_is_question": false,
+    "session_exists": false,
+    "debug_info": {
+      "data_source": "specialist",
+      "exam_type": "土質及び基礎",
+      "questions_count": 30,
+      "target_year": 2016,
+      "timestamp": "08:11:24"
+    },
+    "response_time": 0.5485782623291016
+  },
+  {
+    "department": "トンネル",
+    "status": "failed",
+    "success": false,
+    "get_is_simulator": true,
+    "post_is_simulator": true,
+    "exam_is_question": false,
+    "session_exists": false,
+    "debug_info": {
+      "data_source": "specialist",
+      "exam_type": "トンネル",
+      "questions_count": 30,
+      "target_year": 2016,
+      "timestamp": "08:11:29"
+    },
+    "response_time": 0.48203110694885254
+  }
+]

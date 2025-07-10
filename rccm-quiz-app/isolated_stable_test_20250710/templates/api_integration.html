@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API統合・プロフェッショナル機能 - RCCM学習アプリ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .integration-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .integration-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .api-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .certification-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        .reporting-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        .organization-card {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+        }
+        .tab-content {
+            padding: 2rem 0;
+        }
+        .nav-pills .nav-link {
+            border-radius: 25px;
+            margin: 0 5px;
+            font-weight: 500;
+        }
+        .nav-pills .nav-link.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .api-key-display {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .status-active { background-color: #28a745; }
+        .status-inactive { background-color: #dc3545; }
+        .status-pending { background-color: #ffc107; }
+        .progress-chart {
+            height: 200px;
+            margin: 20px 0;
+        }
+        .certification-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 4px;
+        }
+        .cert-completed { background: #d4edda; color: #155724; }
+        .cert-in-progress { background: #d1ecf1; color: #0c5460; }
+        .cert-not-started { background: #f8d7da; color: #721c24; }
+        .integration-step {
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 20px;
+            background: #f8f9fa;
+        }
+        .report-preview {
+            max-height: 400px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .lms-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- ナビゲーション -->
+            <div class="col-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container">
+                        <a class="navbar-brand" href="/">
+                            <i class="fas fa-plug me-2"></i>API統合・プロフェッショナル機能
+                        </a>
+                        <div class="d-flex">
+                            <a href="/" class="btn btn-outline-primary">
+                                <i class="fas fa-arrow-left me-2"></i>メインに戻る
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <div class="container mt-4">
+            <!-- タブナビゲーション -->
+            <ul class="nav nav-pills justify-content-center mb-4">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#api-management" data-bs-toggle="pill">
+                        <i class="fas fa-key me-2"></i>API管理
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#certifications" data-bs-toggle="pill">
+                        <i class="fas fa-certificate me-2"></i>認定追跡
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#reports" data-bs-toggle="pill">
+                        <i class="fas fa-chart-bar me-2"></i>進捗レポート
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#organizations" data-bs-toggle="pill">
+                        <i class="fas fa-building me-2"></i>組織管理
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#integrations" data-bs-toggle="pill">
+                        <i class="fas fa-link me-2"></i>外部連携
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <!-- API管理タブ -->
+                <div class="tab-pane fade show active" id="api-management">
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <h2><i class="fas fa-key me-2"></i>API管理</h2>
+                            <p class="text-muted">外部システム連携用のAPIキーを管理します</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createApiKeyModal">
+                                <i class="fas fa-plus me-2"></i>新規APIキー生成
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- API概要 -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="card integration-card api-card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-code fa-3x mb-3"></i>
+                                    <h4>RESTful API</h4>
+                                    <p>標準的なHTTP APIエンドポイント</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card integration-card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-shield-alt fa-3x mb-3 text-success"></i>
+                                    <h4>認証保護</h4>
+                                    <p>APIキーベースの安全な認証</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card integration-card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-tachometer-alt fa-3x mb-3 text-warning"></i>
+                                    <h4>レート制限</h4>
+                                    <p>1時間あたり1000リクエスト</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card integration-card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-file-code fa-3x mb-3 text-info"></i>
+                                    <h4>JSON形式</h4>
+                                    <p>構造化されたデータ交換</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 既存APIキー一覧 -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>発行済みAPIキー</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>組織名</th>
+                                                    <th>APIキー</th>
+                                                    <th>権限</th>
+                                                    <th>作成日</th>
+                                                    <th>ステータス</th>
+                                                    <th>使用状況</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="api-keys-table">
+                                                {% if api_keys %}
+                                                    {% for key_info in api_keys %}
+                                                    <tr>
+                                                        <td>{{ key_info.organization }}</td>
+                                                        <td>
+                                                            <code class="small">{{ key_info.api_key[:20] }}...</code>
+                                                            <button class="btn btn-sm btn-outline-secondary ms-2" onclick="copyApiKey('{{ key_info.api_key }}')">
+                                                                <i class="fas fa-copy"></i>
+                                                            </button>
+                                                        </td>
+                                                        <td>
+                                                            {% for permission in key_info.permissions %}
+                                                                <span class="badge bg-secondary me-1">{{ permission }}</span>
+                                                            {% endfor %}
+                                                        </td>
+                                                        <td>{{ key_info.created_at[:10] }}</td>
+                                                        <td>
+                                                            <span class="status-indicator status-{{ 'active' if key_info.is_active else 'inactive' }}"></span>
+                                                            {{ 'アクティブ' if key_info.is_active else '無効' }}
+                                                        </td>
+                                                        <td>
+                                                            <small>{{ key_info.usage_stats.total_requests }} リクエスト</small>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-outline-danger" onclick="revokeApiKey('{{ key_info.api_key }}')">
+                                                                <i class="fas fa-ban"></i> 無効化
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <tr>
+                                                        <td colspan="7" class="text-center text-muted">
+                                                            まだAPIキーが発行されていません
+                                                        </td>
+                                                    </tr>
+                                                {% endif %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- API使用例 -->
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>API使用例</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h6>ユーザー進捗取得</h6>
+                                    <pre class="bg-light p-3"><code>curl -X GET "https://your-domain.com/api/users/user123/progress" \
+  -H "X-API-Key: your_api_key_here" \
+  -H "Content-Type: application/json"</code></pre>
+                                    
+                                    <h6 class="mt-4">組織レポート取得</h6>
+                                    <pre class="bg-light p-3"><code>curl -X GET "https://your-domain.com/api/reports/organization/org456" \
+  -H "X-API-Key: your_api_key_here" \
+  -H "Content-Type: application/json"</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 認定追跡タブ -->
+                <div class="tab-pane fade" id="certifications">
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <h2><i class="fas fa-certificate me-2"></i>認定追跡</h2>
+                            <p class="text-muted">学習者の認定プログラム進捗を追跡・管理します</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCertificationModal">
+                                <i class="fas fa-plus me-2"></i>認定プログラム作成
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 認定プログラム概要 -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="card integration-card certification-card">
+                                <div class="card-body text-center">
+                                    <h3>{{ certifications_summary.total_programs | default(0) }}</h3>
+                                    <p>認定プログラム数</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card integration-card">
+                                <div class="card-body text-center">
+                                    <h3>{{ certifications_summary.total_participants | default(0) }}</h3>
+                                    <p>参加者数</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card integration-card">
+                                <div class="card-body text-center">
+                                    <h3>{{ "%.1f"|format(certifications_summary.completion_rate * 100 | default(0)) }}%</h3>
+                                    <p>完了率</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 認定プログラム一覧 -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>認定プログラム一覧</h5>
+                                </div>
+                                <div class="card-body">
+                                    {% if certification_programs %}
+                                        {% for program in certification_programs %}
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-8">
+                                                        <h5 class="card-title">{{ program.name }}</h5>
+                                                        <p class="card-text">{{ program.description }}</p>
+                                                        <div class="mb-2">
+                                                            {% for req_name in program.requirements.keys() %}
+                                                            <span class="badge bg-outline-primary me-1">{{ req_name }}</span>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 text-end">
+                                                        <div class="mb-2">
+                                                            <strong>参加者:</strong> {{ program.statistics.total_participants }}人<br>
+                                                            <strong>完了者:</strong> {{ program.statistics.completed }}人
+                                                        </div>
+                                                        <button class="btn btn-outline-primary btn-sm" onclick="viewCertificationDetails('{{ program.id }}')">
+                                                            詳細表示
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <div class="alert alert-info">
+                                            <i class="fas fa-info-circle me-2"></i>
+                                            まだ認定プログラムが作成されていません。新しいプログラムを作成してください。
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 進捗レポートタブ -->
+                <div class="tab-pane fade" id="reports">
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <h2><i class="fas fa-chart-bar me-2"></i>進捗レポート</h2>
+                            <p class="text-muted">詳細な学習進捗レポートを生成・エクスポートします</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <div class="btn-group">
+                                <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                                    <i class="fas fa-download me-2"></i>レポート生成
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#" onclick="generateReport('individual')">個人レポート</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="generateReport('organization')">組織レポート</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="generateReport('comprehensive')">総合レポート</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- レポート種類 -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="card integration-card reporting-card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-user fa-3x mb-3"></i>
+                                    <h4>個人レポート</h4>
+                                    <p>個別学習者の詳細分析</p>
+                                    <button class="btn btn-light btn-sm" onclick="showReportForm('individual')">
+                                        生成する
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card integration-card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-building fa-3x mb-3 text-info"></i>
+                                    <h4>組織レポート</h4>
+                                    <p>組織全体の学習状況</p>
+                                    <button class="btn btn-outline-info btn-sm" onclick="showReportForm('organization')">
+                                        生成する
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card integration-card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-chart-line fa-3x mb-3 text-success"></i>
+                                    <h4>分析レポート</h4>
+                                    <p>トレンドと改善提案</p>
+                                    <button class="btn btn-outline-success btn-sm" onclick="showReportForm('analytics')">
+                                        生成する
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- レポート履歴 -->
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>生成済みレポート</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>レポート名</th>
+                                                    <th>種類</th>
+                                                    <th>生成日時</th>
+                                                    <th>形式</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% if generated_reports %}
+                                                    {% for report in generated_reports %}
+                                                    <tr>
+                                                        <td>{{ report.name }}</td>
+                                                        <td><span class="badge bg-secondary">{{ report.type }}</span></td>
+                                                        <td>{{ report.generated_at }}</td>
+                                                        <td>{{ report.format }}</td>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-outline-primary" onclick="downloadReport('{{ report.id }}')">
+                                                                <i class="fas fa-download"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <tr>
+                                                        <td colspan="5" class="text-center text-muted">
+                                                            まだレポートが生成されていません
+                                                        </td>
+                                                    </tr>
+                                                {% endif %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>レポート設定</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="reportSettingsForm">
+                                        <div class="mb-3">
+                                            <label class="form-label">期間</label>
+                                            <select class="form-select" name="time_period">
+                                                <option value="week">直近1週間</option>
+                                                <option value="month" selected>直近1ヶ月</option>
+                                                <option value="quarter">直近3ヶ月</option>
+                                                <option value="year">直近1年</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">出力形式</label>
+                                            <select class="form-select" name="format">
+                                                <option value="json">JSON</option>
+                                                <option value="pdf">PDF</option>
+                                                <option value="excel">Excel</option>
+                                                <option value="csv">CSV</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="include_personal_data" aria-label="個人情報を含める">
+                                                <label class="form-check-label">
+                                                    個人データを含める
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 組織管理タブ -->
+                <div class="tab-pane fade" id="organizations">
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <h2><i class="fas fa-building me-2"></i>組織管理</h2>
+                            <p class="text-muted">企業・教育機関の学習管理を行います</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createOrganizationModal">
+                                <i class="fas fa-plus me-2"></i>組織追加
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 組織概要 -->
+                    <div class="row mb-4">
+                        {% if organizations %}
+                            {% for org in organizations %}
+                            <div class="col-md-6 col-lg-4 mb-3">
+                                <div class="card integration-card organization-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ org.name }}</h5>
+                                        <p class="card-text">{{ org.description[:100] }}...</p>
+                                        <div class="row text-center">
+                                            <div class="col-6">
+                                                <h4>{{ org.statistics.total_users }}</h4>
+                                                <small>ユーザー数</small>
+                                            </div>
+                                            <div class="col-6">
+                                                <h4>{{ "%.1f"|format(org.statistics.average_accuracy * 100) }}%</h4>
+                                                <small>平均正答率</small>
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <button class="btn btn-light btn-sm" onclick="viewOrganization('{{ org.id }}')">
+                                                管理画面
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="col-12">
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    まだ組織が登録されていません。新しい組織を追加してください。
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- 外部連携タブ -->
+                <div class="tab-pane fade" id="integrations">
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <h2><i class="fas fa-link me-2"></i>外部システム連携</h2>
+                            <p class="text-muted">LMSや他の学習システムとの連携を設定します</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#setupIntegrationModal">
+                                <i class="fas fa-plus me-2"></i>連携設定
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 利用可能な連携 -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="card integration-card">
+                                <div class="card-body text-center">
+                                    <div class="lms-logo bg-primary d-inline-flex align-items-center justify-content-center">
+                                        <i class="fas fa-graduation-cap text-white fa-2x"></i>
+                                    </div>
+                                    <h5>Moodle</h5>
+                                    <p class="text-muted">オープンソースLMS</p>
+                                    <button class="btn btn-outline-primary btn-sm">連携設定</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card integration-card">
+                                <div class="card-body text-center">
+                                    <div class="lms-logo bg-info d-inline-flex align-items-center justify-content-center">
+                                        <i class="fas fa-paint-brush text-white fa-2x"></i>
+                                    </div>
+                                    <h5>Canvas</h5>
+                                    <p class="text-muted">クラウドベースLMS</p>
+                                    <button class="btn btn-outline-info btn-sm">連携設定</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card integration-card">
+                                <div class="card-body text-center">
+                                    <div class="lms-logo bg-dark d-inline-flex align-items-center justify-content-center">
+                                        <i class="fas fa-chalkboard text-white fa-2x"></i>
+                                    </div>
+                                    <h5>Blackboard</h5>
+                                    <p class="text-muted">エンタープライズLMS</p>
+                                    <button class="btn btn-outline-dark btn-sm">連携設定</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 連携設定手順 -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>連携設定手順</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="integration-step">
+                                        <h6><i class="fas fa-key me-2"></i>ステップ 1: APIキー生成</h6>
+                                        <p>連携したい外部システム用のAPIキーを生成し、適切な権限を設定します。</p>
+                                    </div>
+                                    <div class="integration-step">
+                                        <h6><i class="fas fa-cog me-2"></i>ステップ 2: 連携設定</h6>
+                                        <p>外部システムの接続情報を設定し、データ同期の頻度とタイプを指定します。</p>
+                                    </div>
+                                    <div class="integration-step">
+                                        <h6><i class="fas fa-sync me-2"></i>ステップ 3: 初期同期</h6>
+                                        <p>設定完了後、初期同期を実行してデータの整合性を確認します。</p>
+                                    </div>
+                                    <div class="integration-step">
+                                        <h6><i class="fas fa-check me-2"></i>ステップ 4: 動作確認</h6>
+                                        <p>学習進捗データが正しく同期されることを確認し、運用を開始します。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- APIキー生成モーダル -->
+    <div class="modal fade" id="createApiKeyModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">新規APIキー生成</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="createApiKeyForm">
+                        <div class="mb-3">
+                            <label class="form-label">組織名 *</label>
+                            <input type="text" class="form-control" name="organization" required aria-label="組織名入力欄">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">権限</label>
+                            <div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="permissions" value="read_users" aria-label="ユーザー情報の読み取り権限">
+                                    <label class="form-check-label">ユーザー情報読み取り</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="permissions" value="read_progress" aria-label="学習進捗の読み取り権限">
+                                    <label class="form-check-label">進捗データ読み取り</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="permissions" value="generate_reports" aria-label="レポート生成権限">
+                                    <label class="form-check-label">レポート生成</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="permissions" value="manage_certifications" aria-label="認定管理権限">
+                                    <label class="form-check-label">認定管理</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">有効期限</label>
+                            <select class="form-select" name="expires_in_days">
+                                <option value="30">30日</option>
+                                <option value="90">90日</option>
+                                <option value="365" selected>1年</option>
+                                <option value="730">2年</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+                    <button type="button" class="btn btn-primary" onclick="createApiKey()">生成</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // APIキー生成
+        function createApiKey() {
+            const form = document.getElementById('createApiKeyForm');
+            const formData = new FormData(form);
+            
+            // 権限配列を作成
+            const permissions = [];
+            formData.getAll('permissions').forEach(permission => {
+                permissions.push(permission);
+            });
+            
+            const data = {
+                organization: formData.get('organization'),
+                permissions: permissions,
+                expires_in_days: parseInt(formData.get('expires_in_days'))
+            };
+            
+            fetch('/api/auth/generate_key', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('APIキーが生成されました！');
+                    location.reload();
+                } else {
+                    alert('エラー: ' + data.error);
+                }
+            })
+            .catch(error => {
+                // API error (production mode)
+                alert('APIキー生成に失敗しました');
+            });
+        }
+
+        // APIキーコピー
+        function copyApiKey(apiKey) {
+            navigator.clipboard.writeText(apiKey).then(() => {
+                alert('APIキーがクリップボードにコピーされました');
+            });
+        }
+
+        // APIキー無効化
+        function revokeApiKey(apiKey) {
+            if (confirm('このAPIキーを無効化しますか？')) {
+                fetch('/api/auth/revoke_key', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({api_key: apiKey})
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('APIキーが無効化されました');
+                        location.reload();
+                    } else {
+                        alert('エラー: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    // API error (production mode)
+                    alert('APIキー無効化に失敗しました');
+                });
+            }
+        }
+
+        // レポート生成
+        function generateReport(type) {
+            const settings = new FormData(document.getElementById('reportSettingsForm'));
+            const params = new URLSearchParams();
+            
+            for (let [key, value] of settings.entries()) {
+                params.append(key, value);
+            }
+            
+            fetch(`/api/reports/generate/${type}?${params}`, {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('レポートが生成されました');
+                location.reload();
+            })
+            .catch(error => {
+                // API error (production mode)
+                alert('レポート生成に失敗しました');
+            });
+        }
+
+        // 認定詳細表示
+        function viewCertificationDetails(certId) {
+            window.open(`/api/certifications/${certId}`, '_blank');
+        }
+
+        // 組織表示
+        function viewOrganization(orgId) {
+            window.open(`/api/organizations/${orgId}`, '_blank');
+        }
+
+        // レポートダウンロード
+        function downloadReport(reportId) {
+            window.open(`/api/reports/download/${reportId}`, '_blank');
+        }
+
+        // レポートフォーム表示
+        function showReportForm(type) {
+            // 実装: レポート生成フォームを表示
+        }
+    </script>
+</body>
+</html>

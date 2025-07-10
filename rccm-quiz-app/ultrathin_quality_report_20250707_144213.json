@@ -1,0 +1,15 @@
+{
+  "timestamp": "20250707_144213",
+  "file": "app.py",
+  "metrics": {
+    "imports_score": 7,
+    "comments_score": 76,
+    "separation_score": 90,
+    "error_handling_score": 100,
+    "session_score": 65,
+    "consistency_score": 80,
+    "completeness_score": 65
+  },
+  "issues": {},
+  "total_score": 69.0
+}

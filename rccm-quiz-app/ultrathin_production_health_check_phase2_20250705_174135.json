@@ -1,0 +1,57 @@
+{
+  "timestamp": "2025-07-05T17:41:35.324838",
+  "analysis_duration": 26.837037324905396,
+  "optimization_phase": "PHASE_2_HISTORY_LIMIT_10",
+  "session_optimization": {
+    "session_cookie_size": 81,
+    "estimated_decoded_size": 59,
+    "cookie_header_size": 102,
+    "optimization_status": "IMPROVED",
+    "expected_reduction": "30→10件履歴制限により約30%削減想定"
+  },
+  "department_health": {
+    "healthy_departments": [],
+    "improved_departments": [
+      "基礎科目",
+      "道路",
+      "河川・砂防",
+      "都市計画",
+      "造園",
+      "建設環境",
+      "鋼構造・コンクリート",
+      "土質・基礎",
+      "施工計画",
+      "上下水道",
+      "森林土木",
+      "農業土木",
+      "トンネル"
+    ],
+    "still_failing_departments": [],
+    "total_healthy": 13,
+    "total_departments": 13,
+    "health_percentage": 100.0
+  },
+  "impact_analysis": {
+    "baseline_status": {
+      "healthy_count": 1,
+      "failing_count": 12
+    },
+    "current_status": {
+      "healthy_count": 13,
+      "failing_count": 0
+    },
+    "improvement": {
+      "departments_improved": 12,
+      "improvement_rate_percentage": 100.0,
+      "status": "SIGNIFICANT_IMPROVEMENT"
+    },
+    "session_optimization": {
+      "estimated_size_reduction": "履歴制限 30→10件により約30%削減",
+      "expected_cookie_size": "50-60KB想定（75.5KB→50KB程度）",
+      "optimization_success": "IMPROVED"
+    }
+  },
+  "recommendations": [
+    "✅ 全部門正常化完了 - 最適化成功"
+  ]
+}

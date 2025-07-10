@@ -1,0 +1,48 @@
+{
+  "timestamp": "2025-07-06T12:35:18.739158",
+  "verification_type": "PRODUCTION_API_VERIFICATION",
+  "tests": [
+    {
+      "test_name": "土質・基礎2016年専門科目（ユーザー報告）",
+      "exam_type": "specialist",
+      "category": "soil_foundation",
+      "year": "2016",
+      "expected_type": "specialist",
+      "success": true,
+      "data": {
+        "questions": [],
+        "categories": [],
+        "years": [],
+        "raw_text_sample": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n    <title>試験シミュレーター - RCCM試験問題集</title>\n    \n    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->\n    <meta http-equiv=\"Cache-Control\" content=\"no-store, no-cache, must-revalidate, max-age=0\">\n    <meta http-equiv=\"Pragma\" content=\"no-cache\">\n    <meta http-equiv=\"Expires\" content=\"-1\">\n    <script>\n        // 🔥 ページ読み込み時のキャッシュ強制クリア（ユーザー要求による）\n        (function() {\n            if (window.performance && window.performance.navigation.type === 2) {\n                // 戻るボタンでアクセスされた場合は強制リロード\n                window.location.reload(true);\n            }\n            // セッションストレージの問題関連データもクリア\n            if (typeof(Storage) !== \"undefined\") {\n                sessionStorage.removeItem('exam_data');\n                sessionStorage.removeItem('current_question');\n                sessionStorage.removeItem('qu"
+      }
+    },
+    {
+      "test_name": "基礎科目（4-1）",
+      "exam_type": "basic",
+      "category": null,
+      "year": null,
+      "expected_type": "basic",
+      "success": true,
+      "data": {
+        "questions": [],
+        "categories": [],
+        "years": [],
+        "raw_text_sample": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n    <title>エラー | RCCM試験問題集</title>\n    \n    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->\n    <meta http-equiv=\"Cache-Control\" content=\"no-store, no-cache, must-revalidate, max-age=0\">\n    <meta http-equiv=\"Pragma\" content=\"no-cache\">\n    <meta http-equiv=\"Expires\" content=\"-1\">\n    <script>\n        // 🔥 ページ読み込み時のキャッシュ強制クリア（ユーザー要求による）\n        (function() {\n            if (window.performance && window.performance.navigation.type === 2) {\n                // 戻るボタンでアクセスされた場合は強制リロード\n                window.location.reload(true);\n            }\n            // セッションストレージの問題関連データもクリア\n            if (typeof(Storage) !== \"undefined\") {\n                sessionStorage.removeItem('exam_data');\n                sessionStorage.removeItem('current_question');\n                sessionStorage.removeItem('question"
+      }
+    },
+    {
+      "test_name": "道路部門2019年専門科目",
+      "exam_type": "specialist",
+      "category": "road",
+      "year": "2019",
+      "expected_type": "specialist",
+      "success": true,
+      "data": {
+        "questions": [],
+        "categories": [],
+        "years": [],
+        "raw_text_sample": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n    <title>試験シミュレーター - RCCM試験問題集</title>\n    \n    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->\n    <meta http-equiv=\"Cache-Control\" content=\"no-store, no-cache, must-revalidate, max-age=0\">\n    <meta http-equiv=\"Pragma\" content=\"no-cache\">\n    <meta http-equiv=\"Expires\" content=\"-1\">\n    <script>\n        // 🔥 ページ読み込み時のキャッシュ強制クリア（ユーザー要求による）\n        (function() {\n            if (window.performance && window.performance.navigation.type === 2) {\n                // 戻るボタンでアクセスされた場合は強制リロード\n                window.location.reload(true);\n            }\n            // セッションストレージの問題関連データもクリア\n            if (typeof(Storage) !== \"undefined\") {\n                sessionStorage.removeItem('exam_data');\n                sessionStorage.removeItem('current_question');\n                sessionStorage.removeItem('qu"
+      }
+    }
+  ]
+}

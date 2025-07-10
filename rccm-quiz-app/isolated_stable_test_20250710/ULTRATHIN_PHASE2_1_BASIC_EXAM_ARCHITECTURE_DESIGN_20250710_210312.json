@@ -1,0 +1,330 @@
+{
+  "design_timestamp": "2025-07-10T21:03:12.913994",
+  "design_phase": "ULTRATHIN区 PHASE 2-1",
+  "safety_status": "confirmed",
+  "phase1_data_loaded": true,
+  "design_components": {
+    "blueprint_architecture": {
+      "basic_exam_blueprint_architecture": {
+        "design_timestamp": "2025-07-10T21:03:12.965874",
+        "design_phase": "ULTRATHIN区 PHASE 2-1",
+        "design_scope": "基礎科目専用システム（専門科目は一切含まない）",
+        "safety_guarantee": "既存システム影響ゼロ・新ファイル作成のみ",
+        "architecture_overview": {
+          "pattern": "Flask Blueprint + 分離アーキテクチャ",
+          "separation_principle": "基礎科目完全分離・専門科目非依存",
+          "deployment_strategy": "並行動作・A/Bテスト対応",
+          "migration_safety": "即座ロールバック可能"
+        },
+        "blueprint_structure": {
+          "basic_exam_blueprint": {
+            "file_name": "basic_exam_blueprint.py",
+            "url_prefix": "/v2/basic_exam",
+            "description": "基礎科目専用ルートハンドラー",
+            "routes": [
+              {
+                "path": "/",
+                "function": "basic_exam_index",
+                "methods": [
+                  "GET"
+                ],
+                "description": "基礎科目専用トップページ"
+              },
+              {
+                "path": "/start",
+                "function": "basic_exam_start",
+                "methods": [
+                  "GET",
+                  "POST"
+                ],
+                "description": "基礎科目試験開始"
+              },
+              {
+                "path": "/question/<int:question_no>",
+                "function": "basic_exam_question",
+                "methods": [
+                  "GET"
+                ],
+                "description": "基礎科目問題表示"
+              },
+              {
+                "path": "/submit",
+                "function": "basic_exam_submit",
+                "methods": [
+                  "POST"
+                ],
+                "description": "基礎科目回答送信"
+              },
+              {
+                "path": "/result",
+                "function": "basic_exam_result",
+                "methods": [
+                  "GET"
+                ],
+                "description": "基礎科目結果表示"
+              }
+            ]
+          }
+        },
+        "service_layer_design": {
+          "basic_session_manager": {
+            "file_name": "basic_session_manager.py",
+            "description": "基礎科目専用セッション管理",
+            "responsibilities": [
+              "基礎科目セッション初期化",
+              "問題進行状態管理",
+              "回答データ保存",
+              "セッション有効性確認"
+            ],
+            "session_keys": [
+              "basic_exam_session_id",
+              "basic_exam_questions",
+              "basic_exam_current",
+              "basic_exam_answers",
+              "basic_exam_start_time"
+            ]
+          },
+          "basic_data_service": {
+            "file_name": "basic_data_service.py",
+            "description": "基礎科目データアクセス専用サービス",
+            "responsibilities": [
+              "基礎科目データ読み込み（data/4-1.csv）",
+              "問題ランダム選択",
+              "データ検証・整合性確認",
+              "エラーハンドリング"
+            ],
+            "data_sources": [
+              "data/4-1.csv（基礎科目202問）"
+            ],
+            "data_isolation": "専門科目データには一切アクセスしない"
+          },
+          "basic_exam_logic": {
+            "file_name": "basic_exam_logic.py",
+            "description": "基礎科目試験ロジック専用",
+            "responsibilities": [
+              "10問選択ロジック",
+              "回答検証・採点",
+              "進捗計算",
+              "結果生成"
+            ],
+            "business_rules": [
+              "基礎科目10問固定",
+              "ランダム選択（重複なし）",
+              "即座エラー停止対応",
+              "100%完走保証"
+            ]
+          }
+        },
+        "template_structure": {
+          "template_directory": "templates/v2/basic_exam/",
+          "templates": [
+            {
+              "file": "basic_exam_index.html",
+              "description": "基礎科目専用トップページ"
+            },
+            {
+              "file": "basic_exam_question.html",
+              "description": "基礎科目問題表示ページ"
+            },
+            {
+              "file": "basic_exam_result.html",
+              "description": "基礎科目結果表示ページ"
+            }
+          ],
+          "template_inheritance": "既存テンプレートとは完全分離"
+        }
+      }
+    },
+    "session_management": {
+      "session_management_separation_design": {
+        "design_timestamp": "2025-07-10T21:03:12.965900",
+        "separation_principle": "基礎科目セッション完全分離",
+        "isolation_guarantee": "既存セッションとの非干渉",
+        "session_architecture": {
+          "namespace_separation": {
+            "basic_exam_namespace": "basic_exam_*",
+            "isolation_method": "セッションキープレフィックス分離",
+            "conflict_prevention": "既存キーとの重複回避"
+          },
+          "session_lifecycle": {
+            "initialization": {
+              "trigger": "基礎科目試験開始時",
+              "action": "basic_exam_session作成",
+              "data": "問題ID、開始時刻、進行状況"
+            },
+            "maintenance": {
+              "trigger": "各問題回答時",
+              "action": "進行状況・回答データ更新",
+              "validation": "データ整合性確認"
+            },
+            "termination": {
+              "trigger": "試験完了・結果表示時",
+              "action": "セッションクリーンアップ",
+              "preservation": "結果データ保存"
+            }
+          },
+          "data_structure": {
+            "basic_exam_session": {
+              "session_id": "UUID形式一意識別子",
+              "question_ids": "選択された10問のIDリスト",
+              "current_question": "現在問題番号（0-9）",
+              "answers": "回答データ辞書",
+              "start_time": "試験開始時刻",
+              "last_activity": "最終活動時刻"
+            }
+          }
+        },
+        "safety_measures": {
+          "session_isolation": [
+            "既存セッションキーとの非干渉",
+            "基礎科目専用プレフィックス使用",
+            "専門科目データへの非アクセス",
+            "既存セッション構造の非改変"
+          ],
+          "error_handling": [
+            "セッション初期化失敗時の即座停止",
+            "データ不整合検出時の緊急停止",
+            "セッションタイムアウト適切処理",
+            "エラー発生時の安全復帰"
+          ],
+          "rollback_capability": [
+            "セッション作成の即座取り消し",
+            "部分データの安全削除",
+            "既存システムへの復帰保証",
+            "データ整合性維持"
+          ]
+        }
+      }
+    },
+    "data_access_layer": {
+      "data_access_layer_separation_design": {
+        "design_timestamp": "2025-07-10T21:03:12.965909",
+        "separation_principle": "基礎科目データ完全分離アクセス",
+        "data_isolation": "専門科目データへの非アクセス保証",
+        "data_architecture": {
+          "basic_data_service": {
+            "file_responsibility": "基礎科目データ専用アクセス",
+            "allowed_files": [
+              "data/4-1.csv（基礎科目202問）"
+            ],
+            "forbidden_files": [
+              "data/4-2_*.csv（専門科目ファイル）",
+              "その他の専門科目関連データ"
+            ],
+            "access_methods": [
+              "load_basic_questions() - 基礎科目読み込み専用",
+              "validate_basic_data() - 基礎科目データ検証",
+              "select_random_basic_questions() - 10問選択",
+              "get_basic_question_by_id() - 問題取得"
+            ]
+          },
+          "data_validation": {
+            "file_existence_check": "data/4-1.csv存在確認",
+            "data_integrity_check": "202問データ整合性確認",
+            "encoding_validation": "UTF-8エンコーディング確認",
+            "structure_validation": "CSVヘッダー・列構造確認"
+          },
+          "caching_strategy": {
+            "cache_scope": "基礎科目データのみ",
+            "cache_key": "basic_questions_cache",
+            "cache_timeout": "1時間",
+            "invalidation": "データ変更検出時"
+          }
+        },
+        "error_handling": {
+          "file_not_found": {
+            "action": "即座停止・エラー報告",
+            "fallback": "なし（安全停止）",
+            "user_message": "基礎科目データファイルが見つかりません"
+          },
+          "data_corruption": {
+            "action": "データ検証・即座停止",
+            "fallback": "なし（安全停止）",
+            "user_message": "基礎科目データに問題があります"
+          },
+          "insufficient_questions": {
+            "action": "問題数確認・即座停止",
+            "fallback": "なし（安全停止）",
+            "user_message": "基礎科目問題数が不足しています"
+          }
+        },
+        "performance_optimization": {
+          "lazy_loading": "必要時のみデータ読み込み",
+          "memory_management": "使用後のデータクリーンアップ",
+          "connection_pooling": "ファイルアクセス効率化",
+          "batch_processing": "複数問題の効率的処理"
+        }
+      }
+    },
+    "integration_design": {
+      "integration_parallel_operation_design": {
+        "design_timestamp": "2025-07-10T21:03:12.965921",
+        "integration_strategy": "新旧システム並行動作",
+        "safety_priority": "既存システム完全保護",
+        "parallel_operation": {
+          "routing_strategy": {
+            "legacy_routes": "既存ルート（/exam, /quiz等）",
+            "new_routes": "/v2/basic_exam/*",
+            "separation_guarantee": "ルート空間完全分離",
+            "conflict_prevention": "URL衝突回避"
+          },
+          "session_coexistence": {
+            "legacy_sessions": "既存セッション構造維持",
+            "new_sessions": "basic_exam_*プレフィックス",
+            "isolation_method": "キー空間分離",
+            "data_sharing": "なし（完全分離）"
+          },
+          "data_isolation": {
+            "legacy_data_access": "既存データアクセス保持",
+            "new_data_access": "基礎科目専用アクセス",
+            "shared_resources": "data/4-1.csvのみ（読み取り専用）",
+            "write_isolation": "書き込み操作分離"
+          }
+        },
+        "deployment_strategy": {
+          "phase_deployment": {
+            "phase_1": "新システム開発・テスト（並行動作なし）",
+            "phase_2": "新システム並行動作開始",
+            "phase_3": "A/Bテスト実行",
+            "phase_4": "品質確認・移行判定"
+          },
+          "rollback_mechanism": {
+            "instant_rollback": "新システム即座無効化",
+            "data_preservation": "既存データ完全保護",
+            "service_continuity": "既存システム継続動作",
+            "emergency_stop": "緊急停止手順"
+          },
+          "monitoring": {
+            "performance_monitoring": "新旧システム性能比較",
+            "error_monitoring": "エラー率・種類監視",
+            "user_experience": "UX品質測定",
+            "system_health": "全体システム健全性確認"
+          }
+        },
+        "quality_assurance": {
+          "testing_strategy": [
+            "新システム単独テスト",
+            "並行動作統合テスト",
+            "データ整合性テスト",
+            "性能・負荷テスト",
+            "セキュリティテスト"
+          ],
+          "success_criteria": [
+            "基礎科目10問完走100%成功",
+            "既存システム影響ゼロ",
+            "新システム性能既存同等以上",
+            "データ整合性100%維持",
+            "エラー率既存以下"
+          ]
+        }
+      }
+    }
+  },
+  "overall_success": false,
+  "safety_details": {
+    "isolation_environment": true,
+    "phase1_artifacts_intact": true,
+    "current_system_protection": true,
+    "baseline_unchanged": true
+  }
+}

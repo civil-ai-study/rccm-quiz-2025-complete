@@ -1,0 +1,26 @@
+{
+  "timestamp": "2025-07-08T13:43:08.289273",
+  "total_traces": 4,
+  "trace_results": [
+    {
+      "step": "リダイレクト無し分析",
+      "details": "ステータス履歴: ['< HTTP/2 302'], Location: [], 最終情報: {'status': '302', 'size': '215', 'redirects': '0', 'final_url': 'https://rccm-quiz-2025.onrender.com/start_exam/basic'}",
+      "timestamp": "2025-07-08T13:43:06.844005"
+    },
+    {
+      "step": "セッション作成",
+      "details": "完了",
+      "timestamp": "2025-07-08T13:43:07.134125"
+    },
+    {
+      "step": "ステップ1分析",
+      "details": "ステップ1結果: {'status': '302', 'size': '215', 'url': 'https://rccm-quiz-2025.onrender.com/start_exam/basic'}, リダイレクト先: None",
+      "timestamp": "2025-07-08T13:43:07.690306"
+    },
+    {
+      "step": "自動リダイレクト分析",
+      "details": "HTTP履歴: ['< HTTP/2 302', '< HTTP/2 302', '< HTTP/2 405'], リダイレクト先: [], 最終: {'status': '405', 'size': '153', 'redirects': '2', 'final_url': 'https://rccm-quiz-2025.onrender.com/exam_simulator'}, 405エラー: True",
+      "timestamp": "2025-07-08T13:43:08.286460"
+    }
+  ]
+}

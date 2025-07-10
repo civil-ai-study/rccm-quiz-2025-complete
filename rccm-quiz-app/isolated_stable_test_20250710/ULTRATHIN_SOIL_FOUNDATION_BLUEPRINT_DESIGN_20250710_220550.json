@@ -1,0 +1,314 @@
+{
+  "design_timestamp": "2025-07-10T22:05:50.333302",
+  "design_type": "ultrathin_soil_foundation_blueprint_design",
+  "design_components": {
+    "blueprint": {
+      "blueprint_name": "specialist_soil_foundation_blueprint",
+      "url_prefix": "/v2/specialist/soil_foundation",
+      "session_prefix": "specialist_soil_foundation_",
+      "target_data": "data/4-2_2010.csv（土質及び基礎部門のみ）",
+      "estimated_questions": 20,
+      "complete_isolation": true,
+      "routes": {
+        "index": {
+          "path": "/",
+          "methods": [
+            "GET"
+          ],
+          "function": "specialist_soil_foundation_index",
+          "description": "土質基礎専門科目インデックス画面",
+          "template": "templates/v2/specialist/soil_foundation/index.html"
+        },
+        "start": {
+          "path": "/start",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "function": "specialist_soil_foundation_start",
+          "description": "土質基礎試験開始",
+          "template": "templates/v2/specialist/soil_foundation/start.html"
+        },
+        "question": {
+          "path": "/question",
+          "methods": [
+            "GET"
+          ],
+          "function": "specialist_soil_foundation_question",
+          "description": "土質基礎問題表示",
+          "template": "templates/v2/specialist/soil_foundation/question.html"
+        },
+        "submit": {
+          "path": "/submit",
+          "methods": [
+            "POST"
+          ],
+          "function": "specialist_soil_foundation_submit",
+          "description": "土質基礎回答送信",
+          "template": "templates/v2/specialist/soil_foundation/feedback.html"
+        },
+        "result": {
+          "path": "/result",
+          "methods": [
+            "GET"
+          ],
+          "function": "specialist_soil_foundation_result",
+          "description": "土質基礎結果表示",
+          "template": "templates/v2/specialist/soil_foundation/result.html"
+        }
+      },
+      "session_management": {
+        "session_manager_class": "SpecialistSoilFoundationSessionManager",
+        "session_key_prefix": "specialist_soil_foundation_",
+        "isolation_from_basic": true,
+        "isolation_from_other_specialists": true,
+        "session_keys": [
+          "specialist_soil_foundation_active",
+          "specialist_soil_foundation_session_id",
+          "specialist_soil_foundation_questions",
+          "specialist_soil_foundation_current",
+          "specialist_soil_foundation_answers",
+          "specialist_soil_foundation_start_time",
+          "specialist_soil_foundation_score"
+        ]
+      },
+      "data_service": {
+        "service_class": "SpecialistSoilFoundationDataService",
+        "target_file": "data/4-2_2010.csv",
+        "category_filter": "土質",
+        "forbidden_files": [
+          "data/4-1.csv",
+          "data/4-2_2008.csv",
+          "data/4-2_2009.csv",
+          "data/4-2_2011.csv",
+          "data/4-2_2012.csv",
+          "data/4-2_2013.csv",
+          "data/4-2_2014.csv",
+          "data/4-2_2015.csv",
+          "data/4-2_2016.csv",
+          "data/4-2_2017.csv",
+          "data/4-2_2018.csv",
+          "data/4-2_2019.csv"
+        ],
+        "question_limit": 20,
+        "data_validation": true
+      },
+      "templates": {
+        "base_directory": "templates/v2/specialist/soil_foundation/",
+        "template_files": [
+          "index.html",
+          "start.html",
+          "question.html",
+          "feedback.html",
+          "result.html",
+          "error.html"
+        ],
+        "inheritance": "templates/v2/specialist/base_specialist.html",
+        "styling": "specialist_soil_foundation_theme",
+        "complete_separation": true
+      },
+      "safety_guarantees": {
+        "no_basic_exam_interference": true,
+        "no_other_specialist_interference": true,
+        "no_existing_app_modification": true,
+        "session_namespace_isolation": true,
+        "data_access_restrictions": true,
+        "error_containment": true
+      }
+    },
+    "session_management": {
+      "extension_approach": "inheritance_based",
+      "base_class": "BasicExamSessionManager",
+      "new_class": "SpecialistSoilFoundationSessionManager",
+      "namespace_separation": "specialist_soil_foundation_",
+      "key_methods": {
+        "create_specialist_soil_foundation_session": {
+          "purpose": "土質基礎専用セッション作成",
+          "parameters": [
+            "questions",
+            "session_config"
+          ],
+          "returns": "session_id",
+          "isolation": "complete"
+        },
+        "get_specialist_soil_foundation_session": {
+          "purpose": "土質基礎セッション取得",
+          "parameters": [],
+          "returns": "session_data",
+          "validation": "strict"
+        },
+        "update_specialist_soil_foundation_progress": {
+          "purpose": "土質基礎進捗更新",
+          "parameters": [
+            "question_index",
+            "answer"
+          ],
+          "returns": "success_status",
+          "safety": "validated"
+        },
+        "clear_specialist_soil_foundation_session": {
+          "purpose": "土質基礎セッションクリア",
+          "parameters": [],
+          "returns": "cleanup_status",
+          "guarantee": "complete_cleanup"
+        }
+      },
+      "isolation_guarantees": {
+        "no_basic_exam_conflicts": true,
+        "no_other_specialist_conflicts": true,
+        "session_key_uniqueness": true,
+        "data_encapsulation": true
+      }
+    },
+    "data_service": {
+      "extension_approach": "composition_based",
+      "base_service": "BasicDataService",
+      "new_service": "SpecialistSoilFoundationDataService",
+      "data_scope": "soil_foundation_only",
+      "key_methods": {
+        "load_soil_foundation_questions": {
+          "purpose": "土質基礎問題読み込み",
+          "source": "data/4-2_2010.csv",
+          "filter": "category == 土質",
+          "validation": "strict",
+          "error_handling": "comprehensive"
+        },
+        "get_soil_foundation_questions_for_session": {
+          "purpose": "セッション用問題選択",
+          "parameters": [
+            "question_count"
+          ],
+          "selection": "random_balanced",
+          "max_questions": 20
+        },
+        "validate_soil_foundation_answer": {
+          "purpose": "土質基礎回答検証",
+          "parameters": [
+            "answer"
+          ],
+          "validation": "A|B|C|D",
+          "case_handling": "normalized"
+        },
+        "get_soil_foundation_statistics": {
+          "purpose": "土質基礎統計情報",
+          "returns": "question_count, difficulty_distribution",
+          "scope": "soil_foundation_only"
+        }
+      },
+      "data_protection": {
+        "forbidden_access": [
+          "data/4-1.csv",
+          "data/4-2_2008.csv through data/4-2_2019.csv except 2010"
+        ],
+        "category_filtering": "soil_foundation_only",
+        "year_filtering": "2010_only",
+        "question_limit": 20,
+        "encoding_handling": "utf-8_primary"
+      }
+    },
+    "integration_plan": {
+      "implementation_phases": [
+        {
+          "phase": "1. Blueprint実装",
+          "duration": "1-2時間",
+          "deliverable": "specialist_soil_foundation_blueprint.py",
+          "risk": "low",
+          "validation": "syntax_check"
+        },
+        {
+          "phase": "2. セッション管理拡張",
+          "duration": "1時間",
+          "deliverable": "specialist_soil_foundation_session_manager.py",
+          "risk": "medium",
+          "validation": "isolation_test"
+        },
+        {
+          "phase": "3. データサービス拡張",
+          "duration": "1時間",
+          "deliverable": "specialist_soil_foundation_data_service.py",
+          "risk": "medium",
+          "validation": "data_access_test"
+        },
+        {
+          "phase": "4. テンプレート作成",
+          "duration": "1-2時間",
+          "deliverable": "templates/v2/specialist/soil_foundation/",
+          "risk": "low",
+          "validation": "render_test"
+        },
+        {
+          "phase": "5. app.py統合",
+          "duration": "30分",
+          "deliverable": "Blueprint registration",
+          "risk": "high",
+          "validation": "comprehensive_test"
+        },
+        {
+          "phase": "6. システムテスト",
+          "duration": "1時間",
+          "deliverable": "test_reports",
+          "risk": "low",
+          "validation": "end_to_end_test"
+        }
+      ],
+      "total_estimated_time": "5-7時間",
+      "success_criteria": [
+        "土質基礎問題20問表示可能",
+        "完全セッション分離確認",
+        "基礎科目システム非干渉確認",
+        "既存app.py安全性保持",
+        "エラー処理完全性確認"
+      ],
+      "rollback_plan": {
+        "checkpoints": "each_phase_completion",
+        "rollback_trigger": "any_safety_issue",
+        "rollback_method": "file_deletion_only",
+        "recovery_time": "< 5分",
+        "data_protection": "既存システム完全保護"
+      }
+    },
+    "risk_assessment": {
+      "technical_risks": {
+        "session_conflicts": {
+          "probability": "low",
+          "impact": "medium",
+          "mitigation": "unique_namespace_prefix",
+          "detection": "automated_tests"
+        },
+        "data_access_conflicts": {
+          "probability": "low",
+          "impact": "high",
+          "mitigation": "strict_file_filtering",
+          "detection": "data_access_validation"
+        },
+        "blueprint_registration_failure": {
+          "probability": "medium",
+          "impact": "low",
+          "mitigation": "error_handling_wrapper",
+          "detection": "import_testing"
+        }
+      },
+      "safety_risks": {
+        "basic_exam_interference": {
+          "probability": "very_low",
+          "impact": "critical",
+          "mitigation": "complete_namespace_separation",
+          "monitoring": "continuous"
+        },
+        "existing_app_modification": {
+          "probability": "very_low",
+          "impact": "critical",
+          "mitigation": "read_only_approach",
+          "guarantee": "no_modification"
+        }
+      },
+      "overall_risk_level": "low_to_medium",
+      "risk_mitigation_coverage": "95%"
+    }
+  },
+  "implementation_ready": true,
+  "safety_guaranteed": true,
+  "readiness_score": 100.0,
+  "readiness_criteria_passed": 5,
+  "readiness_criteria_total": 5
+}

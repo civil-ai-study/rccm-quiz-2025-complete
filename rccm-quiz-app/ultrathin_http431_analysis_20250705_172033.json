@@ -1,0 +1,97 @@
+{
+  "timestamp": "2025-07-05T17:20:33.438963",
+  "analysis_duration": 0.8332784175872803,
+  "basic_headers": {
+    "request_headers": {
+      "User-Agent": "ULTRATHIN-Analyzer/1.0",
+      "Accept-Encoding": "gzip, deflate",
+      "Accept": "text/html",
+      "Connection": "keep-alive"
+    },
+    "request_header_size": 111,
+    "response_headers": {
+      "Date": "Sat, 05 Jul 2025 08:20:32 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "access-control-allow-credentials": "true",
+      "access-control-allow-headers": "Content-Type",
+      "access-control-allow-methods": "GET, POST, OPTIONS",
+      "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0, private",
+      "expires": "-1",
+      "permissions-policy": "geolocation=(), microphone=(), camera=()",
+      "pragma": "no-cache",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "rndr-id": "e314880b-ec0a-49bb",
+      "Set-Cookie": "rccm_session=eyJjYXRlZ29yeV9zdGF0cyI6e30sImhpc3RvcnkiOltdfQ.aGjgUA.KpsZg8Pp-b3Qrt9ouBXDSygq9j0; HttpOnly; Path=/; SameSite=Lax",
+      "strict-transport-security": "max-age=31536000; includeSubDomains",
+      "vary": "Cookie, Accept-Encoding",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY",
+      "x-render-origin-server": "gunicorn",
+      "x-xss-protection": "1; mode=block",
+      "cf-cache-status": "DYNAMIC",
+      "Server": "cloudflare",
+      "CF-RAY": "95a57197ccf783c1-NRT",
+      "Content-Encoding": "gzip",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "response_header_size": 995,
+    "cookies": {
+      "rccm_session": "eyJjYXRlZ29yeV9zdGF0cyI6e30sImhpc3RvcnkiOltdfQ.aGjgUA.KpsZg8Pp-b3Qrt9ouBXDSygq9j0"
+    },
+    "cookie_size": 113,
+    "status_code": 200,
+    "content_length": 38733
+  },
+  "department_headers": {
+    "exam_response_status": 302,
+    "predicted_431_error": false,
+    "home_cookies_count": 1,
+    "dept_cookies_count": 1,
+    "final_cookies_count": 1,
+    "cookie_header_size": 94,
+    "total_header_size": 367,
+    "individual_headers": {
+      "User-Agent": 60,
+      "Accept-Encoding": 13,
+      "Accept": 63,
+      "Connection": 10,
+      "Accept-Language": 11,
+      "Upgrade-Insecure-Requests": 1,
+      "Cookie": 94
+    },
+    "cookies_detail": {
+      "rccm_session": 15962
+    }
+  },
+  "session_data": {
+    "estimated_session_keys": [
+      "exam_current",
+      "exam_question_ids",
+      "exam_type",
+      "exam_start_time",
+      "user_answers",
+      "exam_session",
+      "quiz_current",
+      "quiz_question_ids"
+    ],
+    "estimated_sizes": {
+      "exam_question_ids": "配列30要素 x 平均50文字 = ~1500 bytes",
+      "user_answers": "辞書30項目 x 平均100文字 = ~3000 bytes",
+      "exam_session": "辞書構造 x メタデータ = ~2000 bytes",
+      "その他": "基本データ = ~500 bytes"
+    },
+    "total_estimated_bytes": 7000,
+    "risk_level": "HIGH",
+    "risk_reason": "セッションデータが大きすぎる可能性"
+  },
+  "diagnosis": {
+    "likely_cause": "SESSION_DATA_TOO_LARGE",
+    "confidence": "MEDIUM",
+    "recommendations": [
+      "セッションデータ構造の最適化が必要"
+    ],
+    "severity": "MEDIUM"
+  }
+}

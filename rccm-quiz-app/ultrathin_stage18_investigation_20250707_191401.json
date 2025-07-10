@@ -1,0 +1,112 @@
+{
+  "timestamp": "2025-07-07T19:13:53.173766",
+  "root_cause_analysis": {
+    "session_analysis_tests": [
+      {
+        "timing": "immediate",
+        "session_elements_count": 0,
+        "exam_session_exists": false,
+        "session_keys": [],
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "河川、砂防及び海岸・海洋",
+        "restoration_working": true
+      },
+      {
+        "timing": "delayed",
+        "session_elements_count": 0,
+        "exam_session_exists": false,
+        "session_keys": [],
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "河川、砂防及び海岸・海洋",
+        "restoration_working": true
+      },
+      {
+        "timing": "immediate",
+        "session_elements_count": 0,
+        "exam_session_exists": false,
+        "session_keys": [],
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "河川、砂防及び海岸・海洋",
+        "restoration_working": true
+      },
+      {
+        "timing": "delayed",
+        "session_elements_count": 0,
+        "exam_session_exists": false,
+        "session_keys": [],
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "河川、砂防及び海岸・海洋",
+        "restoration_working": true
+      }
+    ],
+    "consistent_session_behavior": true,
+    "consistent_restoration": true
+  },
+  "redirect_flow_investigation": {
+    "error": "Invalid URL '/exam_question': No schema supplied. Perhaps you meant http:///exam_question?"
+  },
+  "alternative_factor_identification": {
+    "potential_factors": [
+      {
+        "factor": "no_exam_question_redirect",
+        "description": "リダイレクトチェーンでexam_questionを経由しない",
+        "likelihood": "high",
+        "investigation_needed": "start_exam関数のリダイレクト判定ロジック"
+      },
+      {
+        "factor": "restoration_working_but_session_missing",
+        "description": "段階14復元機能は動作するがexam_sessionが不在",
+        "likelihood": "high",
+        "investigation_needed": "exam_question関数のセッション確認条件"
+      },
+      {
+        "factor": "session_timing_mismatch",
+        "description": "セッション保存とexam_question関数実行のタイミング不一致",
+        "likelihood": "medium",
+        "investigation_needed": "セッション保存タイミングの最適化"
+      },
+      {
+        "factor": "exam_question_condition_logic",
+        "description": "exam_question関数内の条件判定が厳格すぎる",
+        "likelihood": "high",
+        "investigation_needed": "exam_question関数の条件緩和検討"
+      }
+    ],
+    "high_likelihood_factors": [
+      {
+        "factor": "no_exam_question_redirect",
+        "description": "リダイレクトチェーンでexam_questionを経由しない",
+        "likelihood": "high",
+        "investigation_needed": "start_exam関数のリダイレクト判定ロジック"
+      },
+      {
+        "factor": "restoration_working_but_session_missing",
+        "description": "段階14復元機能は動作するがexam_sessionが不在",
+        "likelihood": "high",
+        "investigation_needed": "exam_question関数のセッション確認条件"
+      },
+      {
+        "factor": "exam_question_condition_logic",
+        "description": "exam_question関数内の条件判定が厳格すぎる",
+        "likelihood": "high",
+        "investigation_needed": "exam_question関数の条件緩和検討"
+      }
+    ],
+    "primary_suspect": {
+      "factor": "no_exam_question_redirect",
+      "description": "リダイレクトチェーンでexam_questionを経由しない",
+      "likelihood": "high",
+      "investigation_needed": "start_exam関数のリダイレクト判定ロジック"
+    },
+    "recommended_investigation_order": [
+      "no_exam_question_redirect",
+      "restoration_working_but_session_missing",
+      "exam_question_condition_logic",
+      "session_timing_mismatch"
+    ]
+  }
+}

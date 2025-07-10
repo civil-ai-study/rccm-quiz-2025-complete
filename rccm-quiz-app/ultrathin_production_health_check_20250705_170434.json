@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-07-05T17:04:34.750893",
+  "duration_seconds": 3.6541504859924316,
+  "total_tests": 16,
+  "passed_tests": 3,
+  "success_rate": 18.75,
+  "basic_pages": {
+    "homepage": true,
+    "departments": true
+  },
+  "departments": {
+    "基礎科目": false,
+    "道路": false,
+    "河川・砂防": false,
+    "都市計画": false,
+    "造園": false,
+    "建設環境": false,
+    "鋼構造・コンクリート": false,
+    "土質・基礎": false,
+    "施工計画": false,
+    "上下水道": false,
+    "森林土木": false,
+    "農業土木": false,
+    "トンネル": false
+  },
+  "question_display": {
+    "success": true,
+    "has_question_content": true,
+    "has_choices": true,
+    "has_progress": false,
+    "url": "https://rccm-quiz-2025.onrender.com/start_exam/%E5%9F%BA%E7%A4%8E%E7%A7%91%E7%9B%AE?questions=10"
+  }
+}

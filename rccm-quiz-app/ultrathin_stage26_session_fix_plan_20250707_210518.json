@@ -1,0 +1,76 @@
+{
+  "timestamp": "2025-07-07T21:05:18.112122",
+  "stage": "ULTRATHIN区段階26",
+  "root_cause": "Flaskセッション保存タイミングと検証ロジックの競合",
+  "problem_location": "app.py lines 7306-7327",
+  "fix_strategy": {
+    "approach": "複雑な検証ループの簡素化",
+    "principle": "make_responseによる確実なセッション保存",
+    "safety": "既存のsession['exam_session']設定は維持"
+  },
+  "detailed_plan": {
+    "target_code_block": {
+      "start_line": 7306,
+      "end_line": 7327,
+      "description": "セッション保存検証ループ",
+      "current_logic": "5回のループでsession.get('exam_session')を確認",
+      "problem": "Flask内部処理の遅延により即座検証が失敗"
+    },
+    "proposed_fix": {
+      "method": "検証ループの削除と信頼ベース設定",
+      "new_code": "\n            # 🛡️ ULTRATHIN区段階26: セッション保存の確実化（検証ループ削除）\n            # 複雑な検証ループを削除し、make_responseで確実に保存\n            session['exam_session'] = lightweight_session\n            session.modified = True\n            \n            # 🛡️ ULTRATHIN区段階26: メモリ保存確認\n            store_exam_data_in_memory(exam_id, exam_session)\n            logger.info(f\"🛡️ ULTRATHIN段階26: セッション設定完了 - exam_id: {exam_id}\")\n",
+      "benefits": [
+        "Flaskセッション管理の標準的な使用",
+        "タイミング競合の回避",
+        "コードの簡素化",
+        "段階20のmake_responseとの組み合わせ効果"
+      ]
+    }
+  },
+  "safety_measures": {
+    "existing_protection": [
+      "session['exam_session']の設定は維持",
+      "メモリ保存（store_exam_data_in_memory）は維持",
+      "段階14復元機能は完全保護",
+      "4-1/4-2分離機能は完全保護"
+    ],
+    "risk_mitigation": {
+      "rollback_plan": "該当行のコメントアウトで即座復元可能",
+      "testing_approach": "段階20+21実装と組み合わせテスト",
+      "monitoring": "POST→exam_question到達率の確認"
+    }
+  },
+  "implementation_steps": [
+    {
+      "step": 1,
+      "action": "対象コードブロック（7306-7327行）の特定",
+      "safety": "現在のコードのバックアップ"
+    },
+    {
+      "step": 2,
+      "action": "複雑な検証ループのコメントアウト",
+      "safety": "段階的な無効化"
+    },
+    {
+      "step": 3,
+      "action": "簡素化されたセッション設定の実装",
+      "safety": "最小限の変更"
+    },
+    {
+      "step": 4,
+      "action": "段階20のmake_responseとの相乗効果確認",
+      "safety": "統合テスト"
+    }
+  ],
+  "expected_outcome": {
+    "immediate": "セッション作成の確実化",
+    "user_facing": "POST→exam_question到達率の大幅改善",
+    "performance": "不要な検証ループ削除による高速化",
+    "reliability": "Flaskセッション管理の標準化"
+  },
+  "integration_with_previous_stages": {
+    "stage20_synergy": "make_responseがセッション保存を確実化",
+    "stage21_synergy": "after_requestハンドラーが追加保証",
+    "combined_effect": "3層の安全網による完璧なセッション管理"
+  }
+}

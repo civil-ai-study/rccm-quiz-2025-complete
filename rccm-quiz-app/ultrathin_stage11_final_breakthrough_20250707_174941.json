@@ -1,0 +1,30 @@
+{
+  "breakthrough_result": {
+    "emergency_session_found": false,
+    "main_session_exists": false,
+    "response_contains_error": false,
+    "found_errors": [],
+    "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+    "response_time": 0.6095442771911621,
+    "debug_data": {
+      "current_time": "2025-07-07 08:49:41",
+      "debug_info": {
+        "data_source": "specialist",
+        "exam_type": "河川、砂防及び海岸・海洋",
+        "questions_count": 30,
+        "target_year": 2016,
+        "timestamp": "08:49:40"
+      },
+      "session_keys": [
+        "debug_info",
+        "exam_session",
+        "selected_department",
+        "selected_question_type",
+        "selected_year"
+      ],
+      "specialist_error": {}
+    }
+  },
+  "analysis_result": "flask_session_fundamental_issue",
+  "timestamp": "2025-07-07T17:49:41.351263"
+}

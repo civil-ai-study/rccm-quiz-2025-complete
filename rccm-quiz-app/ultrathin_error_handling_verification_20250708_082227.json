@@ -1,0 +1,115 @@
+{
+  "timestamp": "2025-07-08T08:22:19.592050",
+  "stage": "ULTRATHIN区段階48",
+  "functionality": "エラーハンドリング完全性確認",
+  "error_scenarios": {
+    "invalid_department": {
+      "scenario": "invalid_department",
+      "description": "存在しない部門での試験開始",
+      "handled_gracefully": true,
+      "response_status": 200,
+      "has_error_page": true,
+      "has_user_guidance": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E5%AD%98%E5%9C%A8%E3%81%97%E3%81%AA%E3%81%84%E9%83%A8%E9%96%80",
+        "content_length": 16903
+      }
+    },
+    "invalid_year": {
+      "scenario": "invalid_year",
+      "description": "存在しない年度での試験開始",
+      "handled_gracefully": true,
+      "response_status": 200,
+      "has_error_page": true,
+      "has_user_guidance": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E9%81%93%E8%B7%AF",
+        "content_length": 16903
+      }
+    },
+    "invalid_questions_count": {
+      "scenario": "invalid_questions_count",
+      "description": "無効な問題数での試験開始",
+      "handled_gracefully": false,
+      "response_status": 200,
+      "has_error_page": false,
+      "has_user_guidance": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "handling_issue": "エラー状況で正常レスポンス"
+    },
+    "malformed_request": {
+      "scenario": "malformed_request",
+      "description": "不正なパラメータでの試験開始",
+      "handled_gracefully": false,
+      "response_status": 200,
+      "has_error_page": false,
+      "has_user_guidance": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "handling_issue": "エラー状況で正常レスポンス"
+    },
+    "missing_parameters": {
+      "scenario": "missing_parameters",
+      "description": "必須パラメータ欠如での試験開始",
+      "handled_gracefully": false,
+      "response_status": 200,
+      "has_error_page": false,
+      "has_user_guidance": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "handling_issue": "エラー状況で正常レスポンス"
+    },
+    "invalid_exam_access": {
+      "scenario": "invalid_exam_access",
+      "description": "セッション未初期化での試験ページアクセス",
+      "handled_gracefully": false,
+      "response_status": 200,
+      "has_error_page": false,
+      "has_user_guidance": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "handling_issue": "エラー状況で正常レスポンス"
+    },
+    "large_payload": {
+      "scenario": "large_payload",
+      "description": "異常に大きなペイロードでの試験開始",
+      "handled_gracefully": false,
+      "response_status": 200,
+      "has_error_page": false,
+      "has_user_guidance": true,
+      "response_details": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999
+      },
+      "handling_issue": "エラー状況で正常レスポンス"
+    }
+  },
+  "error_handling_analysis": {
+    "total_scenarios": 7,
+    "successful_handling": 2,
+    "success_rate": 0.2857142857142857,
+    "error_page_rate": 0.2857142857142857,
+    "user_guidance_rate": 1.0,
+    "handling_quality": "critical",
+    "improvement_recommendations": [
+      "エラーページ表示の改善",
+      "エラーハンドリングロジックの見直し"
+    ]
+  }
+}

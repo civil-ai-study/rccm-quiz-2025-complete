@@ -1,0 +1,37 @@
+{
+  "timestamp": "2025-07-07T15:21:39.757901",
+  "checks": [
+    {
+      "check": "Pythonシンタックス",
+      "status": "PASS",
+      "details": "app.py, utils.py syntax OK",
+      "critical": true
+    },
+    {
+      "check": "インポート整合性",
+      "status": "PASS",
+      "details": "",
+      "critical": true
+    },
+    {
+      "check": "重要関数存在確認",
+      "status": "PASS",
+      "details": "",
+      "critical": true
+    },
+    {
+      "check": "CSVファイル確認",
+      "status": "PASS",
+      "details": "",
+      "critical": true
+    },
+    {
+      "check": "Git状態確認",
+      "status": "FAIL",
+      "details": "123 files changed, Important uncommitted: ['app.py']",
+      "critical": false
+    }
+  ],
+  "safe_to_push": true,
+  "critical_issues": []
+}

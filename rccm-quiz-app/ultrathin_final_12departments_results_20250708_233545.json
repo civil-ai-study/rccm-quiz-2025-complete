@@ -1,0 +1,19 @@
+{
+  "timestamp": "2025-07-08 23:35:28",
+  "success_departments": [],
+  "failed_departments": [
+    "road (完走失敗)",
+    "tunnel (完走失敗)",
+    "civil_planning (完走失敗)",
+    "urban_planning (完走失敗)",
+    "landscape (完走失敗)",
+    "construction_env (完走失敗)",
+    "steel_concrete (完走失敗)",
+    "soil_foundation (完走失敗)",
+    "construction_planning (完走失敗)",
+    "water_supply (完走失敗)",
+    "forestry (完走失敗)",
+    "agriculture (完走失敗)"
+  ],
+  "total_tested": 12
+}

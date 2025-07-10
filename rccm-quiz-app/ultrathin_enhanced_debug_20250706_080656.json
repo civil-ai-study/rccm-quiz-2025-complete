@@ -1,0 +1,145 @@
+{
+  "timestamp": "2025-07-06T08:06:56.227837",
+  "debug_info": {
+    "total_length": 36999,
+    "lines_count": 1027,
+    "japanese_chars_count": 1705,
+    "html_tags_count": 636,
+    "javascript_blocks": [
+      {
+        "length": 554,
+        "sample": "\n        // 🔥 ページ読み込み時のキャッシュ強制クリア（ユーザー要求による）\n        (function() {\n            if (window.performance && window.performance.navigation.type === 2) {\n                // 戻るボタンでアクセスされた場合は強制リロード\n         "
+      },
+      {
+        "length": 291,
+        "sample": "\n      if ('serviceWorker' in navigator) {\n        window.addEventListener('load', function() {\n          navigator.serviceWorker.register('/static/sw.js')\n            .then(function(registration) {\n "
+      },
+      {
+        "length": 2055,
+        "sample": "\nlet selectedExamType = '';\nlet selectedExamName = '';\nlet selectedTimeLimit = 0;\n\nfunction startExam(examType, examName, timeLimit) {\n    selectedExamType = examType;\n    selectedExamName = examName;"
+      },
+      {
+        "length": 0,
+        "sample": ""
+      },
+      {
+        "length": 0,
+        "sample": ""
+      },
+      {
+        "length": 0,
+        "sample": ""
+      },
+      {
+        "length": 0,
+        "sample": ""
+      },
+      {
+        "length": 0,
+        "sample": ""
+      }
+    ],
+    "form_elements": [],
+    "text_samples": {
+      "full_text_sample": "試験シミュレーター - RCCM試験問題集 // 🔥 ページ読み込み時のキャッシュ強制クリア（ユーザー要求による） (function() { if (window.performance && window.performance.navigation.type === 2) { // 戻るボタンでアクセスされた場合は強制リロード window.location.reload(true); } // セッションストレージの問題関連データもクリア if (typeof(Storage) !== \"undefined\") { sessionStorage.removeItem('exam_data'); sessionStorage.removeItem('current_question'); sessionStorage.removeItem('question_answers'); } })(); :root { --bg-color: #ffffff; --text-color: #1e293b; --card-bg: #f8fafc; --border-color: #e2e8f0; /* モダン・シック・インテリジェンスなカラーパレット */ --primary-color: #334155; /* プロフェッショナルスレートグレー */ --secondary-color: #475569; /* エレガントグレー */ --success-color: #059669; /* 洗練されたエメラルド */ --danger-color: #dc2626; /* 控えめなレッド */ --warning-color: #d97706; /* インテリジェントアンバー */ --info-color: #0284c7; /* 知的ブルー */ --dark-color: #0f172a; /* ディープネイビー */ --light-color: #f1f5f9; /* ソフトグレー */ --text-muted-color: #64748b; /* 上品なミュート */ --accent-color: #6366f1; /* 知性のインディゴ */ --surface-color: #ffffff; } [data-theme=\"dark\"] { --b",
+      "japanese_sample": "試験シミュレーター 試験問題集 ページ読み込み時のキャッシュ強制クリア ユーザー要求による 戻るボタンでアクセスされた場合は強制リロード セッションストレージの問題関連データもクリア モダン・シック・インテリジェンスなカラーパレット プロフェッショナルスレートグレー エレガントグレー 洗練されたエメラルド 控えめなレッド インテリジェントアンバー 知的ブルー ディープネイビー ソフトグレー 上品なミュート 知性のインディゴ ダークモード エレガント プロフェッショナル"
+    },
+    "pattern_testing": {
+      "問題\\s*\\d+": {
+        "count": 0,
+        "samples": []
+      },
+      "問\\s*\\d+": {
+        "count": 0,
+        "samples": []
+      },
+      "Question\\s*\\d+": {
+        "count": 0,
+        "samples": []
+      },
+      "\\d+\\s*[．.:：]\\s*": {
+        "count": 49,
+        "samples": [
+          "1.",
+          "3.",
+          "32.",
+          "16.",
+          "5."
+        ]
+      },
+      "第\\d+問": {
+        "count": 0,
+        "samples": []
+      },
+      "問題文": {
+        "count": 0,
+        "samples": []
+      },
+      "[①②③④⑤]": {
+        "count": 0,
+        "samples": []
+      },
+      "[(（][1-5][)）]": {
+        "count": 2,
+        "samples": [
+          "(1)",
+          "(1)"
+        ]
+      },
+      "選択肢": {
+        "count": 2,
+        "samples": [
+          "選択肢",
+          "選択肢"
+        ]
+      },
+      "次の.*について": {
+        "count": 0,
+        "samples": []
+      },
+      ".*ものはどれか": {
+        "count": 0,
+        "samples": []
+      },
+      "正しい.*は": {
+        "count": 0,
+        "samples": []
+      },
+      "適切.*は": {
+        "count": 0,
+        "samples": []
+      }
+    }
+  },
+  "extraction_results": {
+    "strategy_results": {
+      "basic_patterns": {
+        "questions": [],
+        "method": "basic_patterns"
+      },
+      "javascript_data": {
+        "questions": [],
+        "method": "javascript_data"
+      },
+      "json_data": {
+        "questions": [],
+        "method": "json_data"
+      },
+      "form_values": {
+        "questions": [],
+        "method": "form_values"
+      },
+      "hidden_data": {
+        "questions": [],
+        "method": "hidden_data"
+      }
+    },
+    "best_strategy": null,
+    "total_questions_found": 0
+  },
+  "test_data": {
+    "questions": "10",
+    "category": "建設環境",
+    "year": "2019"
+  }
+}

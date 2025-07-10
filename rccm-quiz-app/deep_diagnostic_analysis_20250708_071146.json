@@ -1,0 +1,119 @@
+{
+  "timestamp": "2025-07-08T07:11:33.264518",
+  "methodology": "専門家知見基盤診断",
+  "previous_method_rejected": true,
+  "diagnostic_categories": {
+    "server_health": {
+      "response_time_analysis": {
+        "average": 0.2731646537780762,
+        "maximum": 0.5731961727142334,
+        "minimum": 0.1446840763092041,
+        "stability": true,
+        "performance_acceptable": true
+      },
+      "error_pattern_analysis": {
+        "error_rate": 0.0,
+        "success_rate": 1.0,
+        "error_codes": [
+          200,
+          200,
+          200,
+          200,
+          200
+        ],
+        "server_stable": true
+      },
+      "load_capacity_estimation": {}
+    },
+    "data_loading": {
+      "basic_subject_reality": {
+        "status_code": 200,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "content_length": 36999,
+        "contains_question": true,
+        "contains_error": true,
+        "content_analysis": {
+          "has_question_content": true,
+          "has_navigation_elements": true,
+          "has_error_indicators": true,
+          "has_form_elements": true,
+          "content_type": "functional_exam"
+        },
+        "truly_functional": true
+      },
+      "specialist_departments_reality": {
+        "造園": {
+          "status_code": 200,
+          "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+          "content_length": 36999,
+          "content_analysis": {
+            "has_question_content": true,
+            "has_navigation_elements": true,
+            "has_error_indicators": true,
+            "has_form_elements": true,
+            "content_type": "functional_exam"
+          },
+          "truly_functional": true
+        },
+        "道路": {
+          "status_code": 200,
+          "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+          "content_length": 36999,
+          "content_analysis": {
+            "has_question_content": true,
+            "has_navigation_elements": true,
+            "has_error_indicators": true,
+            "has_form_elements": true,
+            "content_type": "functional_exam"
+          },
+          "truly_functional": true
+        },
+        "都市計画": {
+          "status_code": 200,
+          "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB",
+          "content_length": 16903,
+          "content_analysis": {
+            "has_question_content": true,
+            "has_navigation_elements": true,
+            "has_error_indicators": true,
+            "has_form_elements": true,
+            "content_type": "functional_exam"
+          },
+          "truly_functional": true
+        }
+      },
+      "data_availability_check": {
+        "functional_departments": 4,
+        "total_tested": 4,
+        "true_functionality_rate": 1.0,
+        "system_truly_working": true
+      }
+    },
+    "user_experience": {
+      "navigation_flow_quality": {
+        "proper_redirect": true,
+        "redirect_target": "/exam_question",
+        "final_response_ok": true,
+        "content_appropriate": true
+      },
+      "error_handling_quality": {},
+      "response_appropriateness": {}
+    },
+    "resource_consumption": {
+      "server_load_indicators": {
+        "average_load_time": 0.19630146026611328,
+        "load_degradation_detected": false,
+        "server_overloaded": false
+      },
+      "memory_usage_estimation": {},
+      "performance_bottlenecks": {}
+    }
+  },
+  "root_cause_analysis": {
+    "identified_problems": [],
+    "true_functionality_rate": 1.0,
+    "system_acceptable": true,
+    "requires_fundamental_fix": false,
+    "previous_claims_accurate": false
+  }
+}

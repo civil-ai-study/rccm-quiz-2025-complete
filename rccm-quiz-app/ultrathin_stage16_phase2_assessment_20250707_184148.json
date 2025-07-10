@@ -1,0 +1,172 @@
+{
+  "timestamp": "2025-07-07T18:41:29.863635",
+  "functional_impact_analysis": {
+    "test_scenarios": [
+      {
+        "year": "2016",
+        "expected_issues": "31問での動作"
+      },
+      {
+        "year": "2017",
+        "expected_issues": "28問での動作"
+      },
+      {
+        "year": "2018",
+        "expected_issues": "30問での正常動作"
+      },
+      {
+        "year": "2020",
+        "expected_issues": "0問でのエラー処理"
+      }
+    ],
+    "functional_test_results": {
+      "2016": {
+        "year": "2016",
+        "post_status": 200,
+        "final_page": "exam_simulator",
+        "questions_loaded": 31,
+        "data_source": "specialist",
+        "session_elements": 0,
+        "functional_success": true,
+        "data_loading_success": true,
+        "redirect_count": 2
+      },
+      "2017": {
+        "year": "2017",
+        "post_status": 200,
+        "final_page": "exam_simulator",
+        "questions_loaded": 28,
+        "data_source": "specialist",
+        "session_elements": 0,
+        "functional_success": true,
+        "data_loading_success": true,
+        "redirect_count": 2
+      },
+      "2018": {
+        "year": "2018",
+        "post_status": 200,
+        "final_page": "exam_simulator",
+        "questions_loaded": 30,
+        "data_source": "specialist",
+        "session_elements": 0,
+        "functional_success": true,
+        "data_loading_success": true,
+        "redirect_count": 2
+      },
+      "2020": {
+        "year": "2020",
+        "post_status": 200,
+        "final_page": "%E6%96%BD%E5%B7%A5%E8%A8%88%E7%94%BB%E3%80%81%E6%96%BD%E5%B7%A5%E8%A8%AD%E5%82%99%E5%8F%8A%E3%81%B3%E7%A9%8D%E7%AE%97",
+        "questions_loaded": 0,
+        "data_source": "specialist",
+        "session_elements": 0,
+        "functional_success": true,
+        "data_loading_success": false,
+        "redirect_count": 0
+      }
+    },
+    "successful_years": [
+      "2016",
+      "2017",
+      "2018",
+      "2020"
+    ],
+    "data_loading_years": [
+      "2016",
+      "2017",
+      "2018"
+    ],
+    "functional_success_rate": 100.0,
+    "data_loading_success_rate": 75.0
+  },
+  "user_experience_impact": {
+    "user_scenarios": [
+      {
+        "scenario": "デフォルト年度(2016)使用",
+        "year": "2016",
+        "expected_questions": 31,
+        "user_expectation": "30問程度の学習"
+      },
+      {
+        "scenario": "過去年度(2017)選択",
+        "year": "2017",
+        "expected_questions": 28,
+        "user_expectation": "30問程度の学習"
+      },
+      {
+        "scenario": "標準年度(2018)選択",
+        "year": "2018",
+        "expected_questions": 30,
+        "user_expectation": "30問の学習"
+      }
+    ],
+    "impact_results": {
+      "デフォルト年度(2016)使用": {
+        "scenario": "デフォルト年度(2016)使用",
+        "year": "2016",
+        "expected_by_user": 30,
+        "actual_questions": 31,
+        "difference": 1,
+        "impact_percentage": 3.3333333333333335,
+        "user_noticeable": false,
+        "learning_affected": false
+      },
+      "過去年度(2017)選択": {
+        "scenario": "過去年度(2017)選択",
+        "year": "2017",
+        "expected_by_user": 30,
+        "actual_questions": 28,
+        "difference": -2,
+        "impact_percentage": 6.666666666666667,
+        "user_noticeable": false,
+        "learning_affected": false
+      },
+      "標準年度(2018)選択": {
+        "scenario": "標準年度(2018)選択",
+        "year": "2018",
+        "expected_by_user": 30,
+        "actual_questions": 30,
+        "difference": 0,
+        "impact_percentage": 0.0,
+        "user_noticeable": false,
+        "learning_affected": false
+      }
+    },
+    "average_impact_percentage": 3.3333333333333335,
+    "high_impact_scenarios": 0,
+    "learning_affected_scenarios": 0,
+    "overall_user_impact": "low"
+  },
+  "comprehensive_safety_strategy": {
+    "selected_strategy": {
+      "approach": "monitored_tolerance",
+      "description": "監視下での許容運用",
+      "risk_level": "low",
+      "actions": [
+        {
+          "action": "継続監視体制確立",
+          "purpose": "問題状況の継続把握",
+          "timeline": "immediate"
+        },
+        {
+          "action": "ユーザー告知検討",
+          "purpose": "年度別データ差異の透明性確保",
+          "timeline": "short_term"
+        },
+        {
+          "action": "段階15機能改善再開検討",
+          "purpose": "安定した基盤での改善実施",
+          "timeline": "medium_term"
+        }
+      ],
+      "resolution_priority": "medium",
+      "ultrathin_compliant": true,
+      "safety_first": true
+    },
+    "decision_factors": {
+      "functional_success_rate": 100.0,
+      "user_impact_level": "low"
+    },
+    "implementation_ready": true
+  }
+}

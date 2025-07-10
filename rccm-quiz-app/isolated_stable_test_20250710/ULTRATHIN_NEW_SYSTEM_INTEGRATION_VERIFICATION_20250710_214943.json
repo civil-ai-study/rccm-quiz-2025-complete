@@ -1,0 +1,109 @@
+{
+  "verification_timestamp": "2025-07-10T21:49:43.290357",
+  "verification_type": "ultrathin_new_system_integration_verification",
+  "verification_phases": {
+    "app_integration": {
+      "blueprint_import_added": true,
+      "blueprint_registered": true,
+      "ultrathin_section_present": true,
+      "error_handling_present": true,
+      "total_lines": 6133,
+      "integration_lines_added": 5,
+      "flask_app_line": 83,
+      "blueprint_register_line": 6091,
+      "proper_order": true
+    },
+    "blueprint_integrity": {
+      "blueprint_file_exists": true,
+      "blueprint_defines_bp": true,
+      "url_prefix_correct": true,
+      "template_folder_set": true,
+      "routes_defined": 5,
+      "sufficient_routes": true,
+      "imports_session_manager": false,
+      "imports_data_service": true
+    },
+    "supporting_files": {
+      "file_status": {
+        "basic_session_manager.py": {
+          "exists": true,
+          "description": "セッション管理",
+          "size": 19047
+        },
+        "basic_data_service.py": {
+          "exists": true,
+          "description": "データサービス",
+          "size": 22244
+        },
+        "templates/v2/basic_exam/basic_exam_index.html": {
+          "exists": true,
+          "description": "インデックステンプレート",
+          "size": 5831
+        },
+        "templates/v2/basic_exam/basic_exam_start.html": {
+          "exists": true,
+          "description": "スタートテンプレート",
+          "size": 6146
+        },
+        "templates/v2/basic_exam/basic_exam_question.html": {
+          "exists": true,
+          "description": "問題テンプレート",
+          "size": 10651
+        },
+        "templates/v2/basic_exam/basic_exam_result.html": {
+          "exists": true,
+          "description": "結果テンプレート",
+          "size": 11715
+        },
+        "templates/v2/basic_exam/basic_exam_error.html": {
+          "exists": true,
+          "description": "エラーテンプレート",
+          "size": 6778
+        }
+      },
+      "total_files_expected": 7,
+      "total_files_exist": 7,
+      "all_files_present": true,
+      "v2_directory_exists": true,
+      "basic_exam_directory_exists": true
+    },
+    "existing_protection": {
+      "existing_file_status": {
+        "data/4-1.csv": {
+          "exists": true,
+          "description": "基礎科目データ",
+          "size": 35989,
+          "ultrathin_modifications": false
+        },
+        "templates/index.html": {
+          "exists": true,
+          "description": "メインインデックス",
+          "size": 20511,
+          "ultrathin_modifications": false
+        },
+        "templates/quiz_question.html": {
+          "exists": false,
+          "description": "既存問題テンプレート"
+        }
+      },
+      "critical_files_intact": false,
+      "no_unwanted_modifications": true,
+      "existing_functions_preserved": false,
+      "app_py_size": 6133
+    },
+    "workflow_simulation": {
+      "data_service_operational": true,
+      "questions_loaded": 202,
+      "session_data_prepared": true,
+      "answer_validation_working": true,
+      "session_creation_simulated": true,
+      "mock_session_id": "mock_session_20250710_214943",
+      "statistics_available": true
+    }
+  },
+  "overall_success": false,
+  "integration_quality": "good",
+  "verification_score": 88.88888888888889,
+  "verification_criteria_passed": 8,
+  "verification_criteria_total": 9
+}

@@ -1,0 +1,75 @@
+{
+  "timestamp": "2025-07-06T08:43:29.227807",
+  "measurement_type": "ULTRATHIN_PERFORMANCE_SAFETY_MEASUREMENT",
+  "target_url": "https://rccm-quiz-2025.onrender.com",
+  "response_time_measurements": {
+    "measurement_count": 15,
+    "successful_requests": 15,
+    "failed_requests": 0,
+    "response_times": [
+      0.3669857978820801,
+      0.5565886497497559,
+      0.17809224128723145,
+      0.17503619194030762,
+      0.1658473014831543,
+      0.15811944007873535,
+      0.15605640411376953,
+      0.15143442153930664,
+      0.18156886100769043,
+      0.1614975929260254,
+      0.17569732666015625,
+      0.17342662811279297,
+      0.15958905220031738,
+      0.19399261474609375,
+      0.18245720863342285
+    ],
+    "statistics": {
+      "mean": 0.20909264882405598,
+      "median": 0.17503619194030762,
+      "min": 0.15143442153930664,
+      "max": 0.5565886497497559,
+      "std_dev": 0.10928617472497536,
+      "percentile_95": 0.5565886497497559
+    },
+    "performance_rating": "EXCELLENT"
+  },
+  "availability_measurements": {
+    "availability_checks": 10,
+    "successful_checks": 10,
+    "failed_checks": 0,
+    "availability_percentage": 100.0,
+    "consecutive_failures": 0,
+    "max_consecutive_failures": 0,
+    "stability_rating": "EXCELLENT",
+    "error_patterns": []
+  },
+  "load_capacity_assessment": {
+    "concurrent_requests_tested": 2,
+    "successful_concurrent": 2,
+    "failed_concurrent": 0,
+    "concurrent_response_times": [
+      0.2975890636444092,
+      0.3133280277252197
+    ],
+    "load_impact_detected": false,
+    "safe_concurrency_level": 2,
+    "load_rating": "EXCELLENT"
+  },
+  "stability_analysis": {},
+  "performance_metrics": {
+    "overall_rating": "EXCELLENT",
+    "response_time_score": 95,
+    "availability_score": 100,
+    "load_capacity_score": 95,
+    "combined_score": 97.0,
+    "strengths": [
+      "優秀なレスポンス時間",
+      "高い可用性",
+      "良好な負荷耐性"
+    ],
+    "areas_for_improvement": [],
+    "recommendation": "現在のパフォーマンスレベルを維持し、継続的な監視を実施"
+  },
+  "safety_compliance": true,
+  "load_impact_detected": false
+}

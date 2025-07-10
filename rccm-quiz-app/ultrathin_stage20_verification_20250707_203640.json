@@ -1,0 +1,129 @@
+{
+  "timestamp": "2025-07-07T20:36:30.777507",
+  "stage": "ULTRATHIN区段階20",
+  "objective": "セッション同期確実化検証",
+  "implementation": "make_response使用",
+  "test_results": [
+    {
+      "department": "河川、砂防及び海岸・海洋",
+      "tests": [
+        {
+          "round": 1,
+          "post_status": 200,
+          "response_time": 1.9162065982818604,
+          "final_page": "unknown",
+          "session_elements": 0,
+          "exam_session_exists": false,
+          "questions_loaded": 0,
+          "reaches_exam_question": false,
+          "session_sync_success": false
+        },
+        {
+          "round": 2,
+          "post_status": 200,
+          "response_time": 1.1325855255126953,
+          "final_page": "unknown",
+          "session_elements": 0,
+          "exam_session_exists": false,
+          "questions_loaded": 0,
+          "reaches_exam_question": false,
+          "session_sync_success": false
+        },
+        {
+          "round": 3,
+          "post_status": 200,
+          "response_time": 0.1739511489868164,
+          "final_page": "unknown",
+          "session_elements": 0,
+          "exam_session_exists": false,
+          "questions_loaded": 0,
+          "reaches_exam_question": false,
+          "session_sync_success": false
+        }
+      ]
+    },
+    {
+      "department": "トンネル",
+      "tests": [
+        {
+          "round": 1,
+          "post_status": 200,
+          "response_time": 0.16997623443603516,
+          "final_page": "unknown",
+          "session_elements": 0,
+          "exam_session_exists": false,
+          "questions_loaded": 0,
+          "reaches_exam_question": false,
+          "session_sync_success": false
+        },
+        {
+          "round": 2,
+          "post_status": 200,
+          "response_time": 0.16098570823669434,
+          "final_page": "unknown",
+          "session_elements": 0,
+          "exam_session_exists": false,
+          "questions_loaded": 0,
+          "reaches_exam_question": false,
+          "session_sync_success": false
+        },
+        {
+          "round": 3,
+          "post_status": 200,
+          "response_time": 0.1860349178314209,
+          "final_page": "unknown",
+          "session_elements": 0,
+          "exam_session_exists": false,
+          "questions_loaded": 0,
+          "reaches_exam_question": false,
+          "session_sync_success": false
+        }
+      ]
+    },
+    {
+      "department": "道路",
+      "tests": [
+        {
+          "round": 1,
+          "post_status": 200,
+          "response_time": 0.17244958877563477,
+          "final_page": "unknown",
+          "session_elements": 0,
+          "exam_session_exists": false,
+          "questions_loaded": 0,
+          "reaches_exam_question": false,
+          "session_sync_success": false
+        },
+        {
+          "round": 2,
+          "post_status": 200,
+          "response_time": 0.13480114936828613,
+          "final_page": "unknown",
+          "session_elements": 0,
+          "exam_session_exists": false,
+          "questions_loaded": 0,
+          "reaches_exam_question": false,
+          "session_sync_success": false
+        },
+        {
+          "round": 3,
+          "post_status": 200,
+          "response_time": 0.14297890663146973,
+          "final_page": "unknown",
+          "session_elements": 0,
+          "exam_session_exists": false,
+          "questions_loaded": 0,
+          "reaches_exam_question": false,
+          "session_sync_success": false
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "total_tests": 9,
+    "session_sync_success_rate": 0.0,
+    "exam_question_reach_rate": 0.0,
+    "implementation_effective": false,
+    "stage14_restoration_bypassed": false
+  }
+}

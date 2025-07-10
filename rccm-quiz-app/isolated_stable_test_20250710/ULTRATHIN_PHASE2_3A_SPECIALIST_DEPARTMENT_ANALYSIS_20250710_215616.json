@@ -1,0 +1,3482 @@
+{
+  "analysis_timestamp": "2025-07-10T21:56:16.328857",
+  "total_files_analyzed": 12,
+  "total_questions_analyzed": 4057,
+  "summary": {
+    "files_by_year": {
+      "2008": {
+        "questions": 360,
+        "departments": 12,
+        "complexity_score": 1.0,
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ]
+      },
+      "2009": {
+        "questions": 359,
+        "departments": 12,
+        "complexity_score": 1.0,
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ]
+      },
+      "2010": {
+        "questions": 239,
+        "departments": 12,
+        "complexity_score": 1.0,
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ]
+      },
+      "2011": {
+        "questions": 360,
+        "departments": 12,
+        "complexity_score": 1.0,
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ]
+      },
+      "2012": {
+        "questions": 307,
+        "departments": 12,
+        "complexity_score": 1.0,
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ]
+      },
+      "2013": {
+        "questions": 320,
+        "departments": 11,
+        "complexity_score": 0.990625,
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ]
+      },
+      "2014": {
+        "questions": 240,
+        "departments": 12,
+        "complexity_score": 1.0,
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ]
+      },
+      "2015": {
+        "questions": 358,
+        "departments": 12,
+        "complexity_score": 1.0,
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ]
+      },
+      "2016": {
+        "questions": 361,
+        "departments": 12,
+        "complexity_score": 1.0,
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ]
+      },
+      "2017": {
+        "questions": 440,
+        "departments": 12,
+        "complexity_score": 1.0,
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ]
+      },
+      "2018": {
+        "questions": 357,
+        "departments": 12,
+        "complexity_score": 1.0,
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ]
+      },
+      "2019": {
+        "questions": 356,
+        "departments": 12,
+        "complexity_score": 1.0,
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ]
+      }
+    },
+    "departments_summary": {
+      "道路": 12,
+      "土質及び基礎": 11,
+      "河川、砂防及び海岸・海洋": 12,
+      "鋼構造及びコンクリート": 12,
+      "農業土木": 12,
+      "施工計画、施工設備及び積算": 12,
+      "森林土木": 12,
+      "トンネル": 12,
+      "建設環境": 12,
+      "都市計画及び地方計画": 12,
+      "上水道及び工業用水道": 12,
+      "造園": 12
+    },
+    "overall_quality": {
+      "completion_rate": 0.0,
+      "missing_data_rate": 1.0,
+      "average_complexity": 0.9992187499999999
+    }
+  },
+  "detailed_analysis": {
+    "2008": {
+      "year": 2008,
+      "filename": "4-2_2008.csv",
+      "total_questions": 360,
+      "departments": {
+        "道路": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "土質及び基礎": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "河川、砂防及び海岸・海洋": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "鋼構造及びコンクリート": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "農業土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "施工計画、施工設備及び積算": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "森林土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "トンネル": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "建設環境": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "都市計画及び地方計画": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "上水道及び工業用水道": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "造園": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        }
+      },
+      "data_quality": {
+        "complete_records": 0,
+        "missing_fields": 360,
+        "encoding_issues": 0,
+        "format_issues": 360
+      },
+      "complexity_score": 1.0,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    "2009": {
+      "year": 2009,
+      "filename": "4-2_2009.csv",
+      "total_questions": 359,
+      "departments": {
+        "道路": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "土質及び基礎": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "河川、砂防及び海岸・海洋": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "鋼構造及びコンクリート": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "農業土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "施工計画、施工設備及び積算": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "森林土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "トンネル": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "建設環境": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "都市計画及び地方計画": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "上水道及び工業用水道": {
+          "question_count": 29,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 29,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "造園": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        }
+      },
+      "data_quality": {
+        "complete_records": 0,
+        "missing_fields": 359,
+        "encoding_issues": 0,
+        "format_issues": 359
+      },
+      "complexity_score": 1.0,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    "2010": {
+      "year": 2010,
+      "filename": "4-2_2010.csv",
+      "total_questions": 239,
+      "departments": {
+        "道路": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "土質及び基礎": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "上水道及び工業用水道": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "建設環境": {
+          "question_count": 19,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 19,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "河川、砂防及び海岸・海洋": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "鋼構造及びコンクリート": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "農業土木": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "施工計画、施工設備及び積算": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "森林土木": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "トンネル": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "都市計画及び地方計画": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "造園": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        }
+      },
+      "data_quality": {
+        "complete_records": 0,
+        "missing_fields": 239,
+        "encoding_issues": 0,
+        "format_issues": 239
+      },
+      "complexity_score": 1.0,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    "2011": {
+      "year": 2011,
+      "filename": "4-2_2011.csv",
+      "total_questions": 360,
+      "departments": {
+        "道路": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "土質及び基礎": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "河川、砂防及び海岸・海洋": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "鋼構造及びコンクリート": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "農業土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "施工計画、施工設備及び積算": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "森林土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "トンネル": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "建設環境": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "都市計画及び地方計画": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "上水道及び工業用水道": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "造園": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        }
+      },
+      "data_quality": {
+        "complete_records": 0,
+        "missing_fields": 360,
+        "encoding_issues": 0,
+        "format_issues": 360
+      },
+      "complexity_score": 1.0,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    "2012": {
+      "year": 2012,
+      "filename": "4-2_2012.csv",
+      "total_questions": 307,
+      "departments": {
+        "道路": {
+          "question_count": 18,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 18,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "土質及び基礎": {
+          "question_count": 21,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 21,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "上水道及び工業用水道": {
+          "question_count": 19,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 19,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "建設環境": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "河川、砂防及び海岸・海洋": {
+          "question_count": 19,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 19,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "鋼構造及びコンクリート": {
+          "question_count": 31,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 31,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "農業土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "施工計画、施工設備及び積算": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "森林土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "トンネル": {
+          "question_count": 29,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 29,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "都市計画及び地方計画": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "造園": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        }
+      },
+      "data_quality": {
+        "complete_records": 0,
+        "missing_fields": 307,
+        "encoding_issues": 0,
+        "format_issues": 307
+      },
+      "complexity_score": 1.0,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    "2013": {
+      "year": 2013,
+      "filename": "4-2_2013.csv",
+      "total_questions": 320,
+      "departments": {
+        "道路": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "河川、砂防及び海岸・海洋": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "農業土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "施工計画、施工設備及び積算": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "森林土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "トンネル": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "建設環境": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "都市計画及び地方計画": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 28,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "上水道及び工業用水道": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 29,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "造園": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "鋼構造及びコンクリート": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        }
+      },
+      "data_quality": {
+        "complete_records": 0,
+        "missing_fields": 320,
+        "encoding_issues": 0,
+        "format_issues": 320
+      },
+      "complexity_score": 0.990625,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    "2014": {
+      "year": 2014,
+      "filename": "4-2_2014.csv",
+      "total_questions": 240,
+      "departments": {
+        "道路": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "土質及び基礎": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "河川、砂防及び海岸・海洋": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "トンネル": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "鋼構造及びコンクリート": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "上水道及び工業用水道": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "建設環境": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "農業土木": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "施工計画、施工設備及び積算": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "森林土木": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "都市計画及び地方計画": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "造園": {
+          "question_count": 20,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 20,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        }
+      },
+      "data_quality": {
+        "complete_records": 0,
+        "missing_fields": 240,
+        "encoding_issues": 0,
+        "format_issues": 240
+      },
+      "complexity_score": 1.0,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    "2015": {
+      "year": 2015,
+      "filename": "4-2_2015.csv",
+      "total_questions": 358,
+      "departments": {
+        "道路": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "土質及び基礎": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "鋼構造及びコンクリート": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "農業土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "施工計画、施工設備及び積算": {
+          "question_count": 29,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 29,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "森林土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "トンネル": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "建設環境": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "都市計画及び地方計画": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "上水道及び工業用水道": {
+          "question_count": 29,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 29,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "造園": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "河川、砂防及び海岸・海洋": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        }
+      },
+      "data_quality": {
+        "complete_records": 0,
+        "missing_fields": 358,
+        "encoding_issues": 0,
+        "format_issues": 358
+      },
+      "complexity_score": 1.0,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    "2016": {
+      "year": 2016,
+      "filename": "4-2_2016.csv",
+      "total_questions": 361,
+      "departments": {
+        "道路": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "土質及び基礎": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "河川、砂防及び海岸・海洋": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "鋼構造及びコンクリート": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "農業土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "施工計画、施工設備及び積算": {
+          "question_count": 31,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 31,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "森林土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "トンネル": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "建設環境": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "都市計画及び地方計画": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "上水道及び工業用水道": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "造園": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        }
+      },
+      "data_quality": {
+        "complete_records": 0,
+        "missing_fields": 361,
+        "encoding_issues": 0,
+        "format_issues": 361
+      },
+      "complexity_score": 1.0,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    "2017": {
+      "year": 2017,
+      "filename": "4-2_2017.csv",
+      "total_questions": 440,
+      "departments": {
+        "道路": {
+          "question_count": 42,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 42,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "土質及び基礎": {
+          "question_count": 57,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 57,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "河川、砂防及び海岸・海洋": {
+          "question_count": 53,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 53,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "鋼構造及びコンクリート": {
+          "question_count": 21,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 21,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "農業土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "施工計画、施工設備及び積算": {
+          "question_count": 28,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 28,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "森林土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "トンネル": {
+          "question_count": 31,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 31,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "建設環境": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "都市計画及び地方計画": {
+          "question_count": 37,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 37,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "上水道及び工業用水道": {
+          "question_count": 51,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 51,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "造園": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        }
+      },
+      "data_quality": {
+        "complete_records": 0,
+        "missing_fields": 440,
+        "encoding_issues": 0,
+        "format_issues": 440
+      },
+      "complexity_score": 1.0,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    "2018": {
+      "year": 2018,
+      "filename": "4-2_2018.csv",
+      "total_questions": 357,
+      "departments": {
+        "道路": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "土質及び基礎": {
+          "question_count": 29,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 29,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "河川、砂防及び海岸・海洋": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "鋼構造及びコンクリート": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "農業土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "トンネル": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "都市計画及び地方計画": {
+          "question_count": 28,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 28,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "造園": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "森林土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "施工計画、施工設備及び積算": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "上水道及び工業用水道": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "建設環境": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        }
+      },
+      "data_quality": {
+        "complete_records": 0,
+        "missing_fields": 357,
+        "encoding_issues": 0,
+        "format_issues": 357
+      },
+      "complexity_score": 1.0,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    "2019": {
+      "year": 2019,
+      "filename": "4-2_2019.csv",
+      "total_questions": 356,
+      "departments": {
+        "道路": {
+          "question_count": 29,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 29,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "河川、砂防及び海岸・海洋": {
+          "question_count": 29,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 29,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "土質及び基礎": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "鋼構造及びコンクリート": {
+          "question_count": 31,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 31,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "トンネル": {
+          "question_count": 29,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 29,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "施工計画、施工設備及び積算": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "建設環境": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "上水道及び工業用水道": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "農業土木": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "森林土木": {
+          "question_count": 29,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 29,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "都市計画及び地方計画": {
+          "question_count": 29,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 29,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        },
+        "造園": {
+          "question_count": 30,
+          "complexity_indicators": {
+            "long_explanations": 0,
+            "special_characters": 30,
+            "multiple_correct": 0,
+            "image_references": 0
+          }
+        }
+      },
+      "data_quality": {
+        "complete_records": 0,
+        "missing_fields": 356,
+        "encoding_issues": 0,
+        "format_issues": 356
+      },
+      "complexity_score": 1.0,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    }
+  },
+  "migration_priorities": [
+    {
+      "year": 2010,
+      "department": "道路",
+      "question_count": 20,
+      "complexity_score": 20,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2010,
+      "department": "土質及び基礎",
+      "question_count": 20,
+      "complexity_score": 20,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2010,
+      "department": "上水道及び工業用水道",
+      "question_count": 20,
+      "complexity_score": 20,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2010,
+      "department": "建設環境",
+      "question_count": 19,
+      "complexity_score": 19,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2010,
+      "department": "河川、砂防及び海岸・海洋",
+      "question_count": 20,
+      "complexity_score": 20,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2010,
+      "department": "鋼構造及びコンクリート",
+      "question_count": 20,
+      "complexity_score": 20,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2010,
+      "department": "農業土木",
+      "question_count": 20,
+      "complexity_score": 20,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2010,
+      "department": "施工計画、施工設備及び積算",
+      "question_count": 20,
+      "complexity_score": 20,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2010,
+      "department": "森林土木",
+      "question_count": 20,
+      "complexity_score": 20,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2010,
+      "department": "トンネル",
+      "question_count": 20,
+      "complexity_score": 20,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2010,
+      "department": "都市計画及び地方計画",
+      "question_count": 20,
+      "complexity_score": 20,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2010,
+      "department": "造園",
+      "question_count": 20,
+      "complexity_score": 20,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2012,
+      "department": "道路",
+      "question_count": 18,
+      "complexity_score": 18,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2012,
+      "department": "上水道及び工業用水道",
+      "question_count": 19,
+      "complexity_score": 19,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2012,
+      "department": "建設環境",
+      "question_count": 20,
+      "complexity_score": 20,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    }
+  ],
+  "recommended_first_phase": [
+    {
+      "year": 2010,
+      "department": "道路",
+      "question_count": 20,
+      "complexity_score": 20,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2010,
+      "department": "土質及び基礎",
+      "question_count": 20,
+      "complexity_score": 20,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    },
+    {
+      "year": 2010,
+      "department": "上水道及び工業用水道",
+      "question_count": 20,
+      "complexity_score": 20,
+      "quality_ratio": 0.0,
+      "priority_score": 35,
+      "risk_factors": [
+        "missing_data",
+        "format_inconsistency",
+        "many_departments"
+      ]
+    }
+  ],
+  "risk_assessment": {
+    "low_risk_departments": [],
+    "medium_risk_departments": [],
+    "high_risk_departments": [
+      {
+        "key": "2010-道路",
+        "year": 2010,
+        "department": "道路",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2010-土質及び基礎",
+        "year": 2010,
+        "department": "土質及び基礎",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2010-上水道及び工業用水道",
+        "year": 2010,
+        "department": "上水道及び工業用水道",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2010-建設環境",
+        "year": 2010,
+        "department": "建設環境",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2010-河川、砂防及び海岸・海洋",
+        "year": 2010,
+        "department": "河川、砂防及び海岸・海洋",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2010-鋼構造及びコンクリート",
+        "year": 2010,
+        "department": "鋼構造及びコンクリート",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2010-農業土木",
+        "year": 2010,
+        "department": "農業土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2010-施工計画、施工設備及び積算",
+        "year": 2010,
+        "department": "施工計画、施工設備及び積算",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2010-森林土木",
+        "year": 2010,
+        "department": "森林土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2010-トンネル",
+        "year": 2010,
+        "department": "トンネル",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2010-都市計画及び地方計画",
+        "year": 2010,
+        "department": "都市計画及び地方計画",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2010-造園",
+        "year": 2010,
+        "department": "造園",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2012-道路",
+        "year": 2012,
+        "department": "道路",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2012-上水道及び工業用水道",
+        "year": 2012,
+        "department": "上水道及び工業用水道",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2012-建設環境",
+        "year": 2012,
+        "department": "建設環境",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2012-河川、砂防及び海岸・海洋",
+        "year": 2012,
+        "department": "河川、砂防及び海岸・海洋",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2013-鋼構造及びコンクリート",
+        "year": 2013,
+        "department": "鋼構造及びコンクリート",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2014-道路",
+        "year": 2014,
+        "department": "道路",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2014-土質及び基礎",
+        "year": 2014,
+        "department": "土質及び基礎",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2014-河川、砂防及び海岸・海洋",
+        "year": 2014,
+        "department": "河川、砂防及び海岸・海洋",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2014-トンネル",
+        "year": 2014,
+        "department": "トンネル",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2014-鋼構造及びコンクリート",
+        "year": 2014,
+        "department": "鋼構造及びコンクリート",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2014-上水道及び工業用水道",
+        "year": 2014,
+        "department": "上水道及び工業用水道",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2014-建設環境",
+        "year": 2014,
+        "department": "建設環境",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2014-農業土木",
+        "year": 2014,
+        "department": "農業土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2014-施工計画、施工設備及び積算",
+        "year": 2014,
+        "department": "施工計画、施工設備及び積算",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2014-森林土木",
+        "year": 2014,
+        "department": "森林土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2014-都市計画及び地方計画",
+        "year": 2014,
+        "department": "都市計画及び地方計画",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2014-造園",
+        "year": 2014,
+        "department": "造園",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 35
+      },
+      {
+        "key": "2008-道路",
+        "year": 2008,
+        "department": "道路",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2008-土質及び基礎",
+        "year": 2008,
+        "department": "土質及び基礎",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2008-河川、砂防及び海岸・海洋",
+        "year": 2008,
+        "department": "河川、砂防及び海岸・海洋",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2008-鋼構造及びコンクリート",
+        "year": 2008,
+        "department": "鋼構造及びコンクリート",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2008-農業土木",
+        "year": 2008,
+        "department": "農業土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2008-施工計画、施工設備及び積算",
+        "year": 2008,
+        "department": "施工計画、施工設備及び積算",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2008-森林土木",
+        "year": 2008,
+        "department": "森林土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2008-トンネル",
+        "year": 2008,
+        "department": "トンネル",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2008-建設環境",
+        "year": 2008,
+        "department": "建設環境",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2008-都市計画及び地方計画",
+        "year": 2008,
+        "department": "都市計画及び地方計画",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2008-上水道及び工業用水道",
+        "year": 2008,
+        "department": "上水道及び工業用水道",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2008-造園",
+        "year": 2008,
+        "department": "造園",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2009-道路",
+        "year": 2009,
+        "department": "道路",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2009-土質及び基礎",
+        "year": 2009,
+        "department": "土質及び基礎",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2009-河川、砂防及び海岸・海洋",
+        "year": 2009,
+        "department": "河川、砂防及び海岸・海洋",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2009-鋼構造及びコンクリート",
+        "year": 2009,
+        "department": "鋼構造及びコンクリート",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2009-農業土木",
+        "year": 2009,
+        "department": "農業土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2009-施工計画、施工設備及び積算",
+        "year": 2009,
+        "department": "施工計画、施工設備及び積算",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2009-森林土木",
+        "year": 2009,
+        "department": "森林土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2009-トンネル",
+        "year": 2009,
+        "department": "トンネル",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2009-建設環境",
+        "year": 2009,
+        "department": "建設環境",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2009-都市計画及び地方計画",
+        "year": 2009,
+        "department": "都市計画及び地方計画",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2009-上水道及び工業用水道",
+        "year": 2009,
+        "department": "上水道及び工業用水道",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2009-造園",
+        "year": 2009,
+        "department": "造園",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2011-道路",
+        "year": 2011,
+        "department": "道路",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2011-土質及び基礎",
+        "year": 2011,
+        "department": "土質及び基礎",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2011-河川、砂防及び海岸・海洋",
+        "year": 2011,
+        "department": "河川、砂防及び海岸・海洋",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2011-鋼構造及びコンクリート",
+        "year": 2011,
+        "department": "鋼構造及びコンクリート",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2011-農業土木",
+        "year": 2011,
+        "department": "農業土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2011-施工計画、施工設備及び積算",
+        "year": 2011,
+        "department": "施工計画、施工設備及び積算",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2011-森林土木",
+        "year": 2011,
+        "department": "森林土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2011-トンネル",
+        "year": 2011,
+        "department": "トンネル",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2011-建設環境",
+        "year": 2011,
+        "department": "建設環境",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2011-都市計画及び地方計画",
+        "year": 2011,
+        "department": "都市計画及び地方計画",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2011-上水道及び工業用水道",
+        "year": 2011,
+        "department": "上水道及び工業用水道",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2011-造園",
+        "year": 2011,
+        "department": "造園",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2012-土質及び基礎",
+        "year": 2012,
+        "department": "土質及び基礎",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2012-農業土木",
+        "year": 2012,
+        "department": "農業土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2012-施工計画、施工設備及び積算",
+        "year": 2012,
+        "department": "施工計画、施工設備及び積算",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2012-森林土木",
+        "year": 2012,
+        "department": "森林土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2012-トンネル",
+        "year": 2012,
+        "department": "トンネル",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2012-都市計画及び地方計画",
+        "year": 2012,
+        "department": "都市計画及び地方計画",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2012-造園",
+        "year": 2012,
+        "department": "造園",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2013-道路",
+        "year": 2013,
+        "department": "道路",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2013-河川、砂防及び海岸・海洋",
+        "year": 2013,
+        "department": "河川、砂防及び海岸・海洋",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2013-農業土木",
+        "year": 2013,
+        "department": "農業土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2013-施工計画、施工設備及び積算",
+        "year": 2013,
+        "department": "施工計画、施工設備及び積算",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2013-森林土木",
+        "year": 2013,
+        "department": "森林土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2013-トンネル",
+        "year": 2013,
+        "department": "トンネル",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2013-建設環境",
+        "year": 2013,
+        "department": "建設環境",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2013-都市計画及び地方計画",
+        "year": 2013,
+        "department": "都市計画及び地方計画",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2013-上水道及び工業用水道",
+        "year": 2013,
+        "department": "上水道及び工業用水道",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2013-造園",
+        "year": 2013,
+        "department": "造園",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2015-道路",
+        "year": 2015,
+        "department": "道路",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2015-土質及び基礎",
+        "year": 2015,
+        "department": "土質及び基礎",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2015-鋼構造及びコンクリート",
+        "year": 2015,
+        "department": "鋼構造及びコンクリート",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2015-農業土木",
+        "year": 2015,
+        "department": "農業土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2015-施工計画、施工設備及び積算",
+        "year": 2015,
+        "department": "施工計画、施工設備及び積算",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2015-森林土木",
+        "year": 2015,
+        "department": "森林土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2015-トンネル",
+        "year": 2015,
+        "department": "トンネル",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2015-建設環境",
+        "year": 2015,
+        "department": "建設環境",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2015-都市計画及び地方計画",
+        "year": 2015,
+        "department": "都市計画及び地方計画",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2015-上水道及び工業用水道",
+        "year": 2015,
+        "department": "上水道及び工業用水道",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2015-造園",
+        "year": 2015,
+        "department": "造園",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2015-河川、砂防及び海岸・海洋",
+        "year": 2015,
+        "department": "河川、砂防及び海岸・海洋",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2016-道路",
+        "year": 2016,
+        "department": "道路",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2016-土質及び基礎",
+        "year": 2016,
+        "department": "土質及び基礎",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2016-河川、砂防及び海岸・海洋",
+        "year": 2016,
+        "department": "河川、砂防及び海岸・海洋",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2016-鋼構造及びコンクリート",
+        "year": 2016,
+        "department": "鋼構造及びコンクリート",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2016-農業土木",
+        "year": 2016,
+        "department": "農業土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2016-森林土木",
+        "year": 2016,
+        "department": "森林土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2016-トンネル",
+        "year": 2016,
+        "department": "トンネル",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2016-建設環境",
+        "year": 2016,
+        "department": "建設環境",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2016-都市計画及び地方計画",
+        "year": 2016,
+        "department": "都市計画及び地方計画",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2016-上水道及び工業用水道",
+        "year": 2016,
+        "department": "上水道及び工業用水道",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2016-造園",
+        "year": 2016,
+        "department": "造園",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2017-鋼構造及びコンクリート",
+        "year": 2017,
+        "department": "鋼構造及びコンクリート",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2017-農業土木",
+        "year": 2017,
+        "department": "農業土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2017-施工計画、施工設備及び積算",
+        "year": 2017,
+        "department": "施工計画、施工設備及び積算",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2017-森林土木",
+        "year": 2017,
+        "department": "森林土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2017-建設環境",
+        "year": 2017,
+        "department": "建設環境",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2017-造園",
+        "year": 2017,
+        "department": "造園",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2018-道路",
+        "year": 2018,
+        "department": "道路",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2018-土質及び基礎",
+        "year": 2018,
+        "department": "土質及び基礎",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2018-河川、砂防及び海岸・海洋",
+        "year": 2018,
+        "department": "河川、砂防及び海岸・海洋",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2018-鋼構造及びコンクリート",
+        "year": 2018,
+        "department": "鋼構造及びコンクリート",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2018-農業土木",
+        "year": 2018,
+        "department": "農業土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2018-トンネル",
+        "year": 2018,
+        "department": "トンネル",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2018-都市計画及び地方計画",
+        "year": 2018,
+        "department": "都市計画及び地方計画",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2018-造園",
+        "year": 2018,
+        "department": "造園",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2018-森林土木",
+        "year": 2018,
+        "department": "森林土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2018-施工計画、施工設備及び積算",
+        "year": 2018,
+        "department": "施工計画、施工設備及び積算",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2018-上水道及び工業用水道",
+        "year": 2018,
+        "department": "上水道及び工業用水道",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2018-建設環境",
+        "year": 2018,
+        "department": "建設環境",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2019-道路",
+        "year": 2019,
+        "department": "道路",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2019-河川、砂防及び海岸・海洋",
+        "year": 2019,
+        "department": "河川、砂防及び海岸・海洋",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2019-土質及び基礎",
+        "year": 2019,
+        "department": "土質及び基礎",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2019-トンネル",
+        "year": 2019,
+        "department": "トンネル",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2019-施工計画、施工設備及び積算",
+        "year": 2019,
+        "department": "施工計画、施工設備及び積算",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2019-建設環境",
+        "year": 2019,
+        "department": "建設環境",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2019-上水道及び工業用水道",
+        "year": 2019,
+        "department": "上水道及び工業用水道",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2019-農業土木",
+        "year": 2019,
+        "department": "農業土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2019-森林土木",
+        "year": 2019,
+        "department": "森林土木",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2019-都市計画及び地方計画",
+        "year": 2019,
+        "department": "都市計画及び地方計画",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2019-造園",
+        "year": 2019,
+        "department": "造園",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 20
+      },
+      {
+        "key": "2012-鋼構造及びコンクリート",
+        "year": 2012,
+        "department": "鋼構造及びコンクリート",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 5
+      },
+      {
+        "key": "2016-施工計画、施工設備及び積算",
+        "year": 2016,
+        "department": "施工計画、施工設備及び積算",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 5
+      },
+      {
+        "key": "2017-道路",
+        "year": 2017,
+        "department": "道路",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 5
+      },
+      {
+        "key": "2017-土質及び基礎",
+        "year": 2017,
+        "department": "土質及び基礎",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 5
+      },
+      {
+        "key": "2017-河川、砂防及び海岸・海洋",
+        "year": 2017,
+        "department": "河川、砂防及び海岸・海洋",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 5
+      },
+      {
+        "key": "2017-トンネル",
+        "year": 2017,
+        "department": "トンネル",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 5
+      },
+      {
+        "key": "2017-都市計画及び地方計画",
+        "year": 2017,
+        "department": "都市計画及び地方計画",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 5
+      },
+      {
+        "key": "2017-上水道及び工業用水道",
+        "year": 2017,
+        "department": "上水道及び工業用水道",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 5
+      },
+      {
+        "key": "2019-鋼構造及びコンクリート",
+        "year": 2019,
+        "department": "鋼構造及びコンクリート",
+        "risk_factors": [
+          "missing_data",
+          "format_inconsistency",
+          "many_departments"
+        ],
+        "priority_score": 5
+      }
+    ]
+  }
+}

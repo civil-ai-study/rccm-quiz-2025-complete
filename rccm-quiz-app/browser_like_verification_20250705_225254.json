@@ -1,0 +1,1540 @@
+{
+  "timestamp": "2025-07-05T22:51:59.027630",
+  "verification_mode": "BROWSER_LIKE_VERIFICATION",
+  "target_url": "https://rccm-quiz-2025.onrender.com",
+  "years_tested": [
+    "2022年度",
+    "2023年度",
+    "2024年度"
+  ],
+  "departments_tested": [
+    "道路",
+    "河川・砂防",
+    "都市計画",
+    "造園",
+    "建設環境",
+    "鋼構造・コンクリート",
+    "土質・基礎",
+    "施工計画",
+    "上下水道",
+    "森林土木",
+    "農業土木",
+    "トンネル"
+  ],
+  "question_counts_tested": [
+    "10問",
+    "20問",
+    "30問"
+  ],
+  "detailed_results": {
+    "道路": {
+      "2022年度": {
+        "10問": {
+          "department": "道路",
+          "year": "2022年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "道路",
+          "year": "2022年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "道路",
+          "year": "2022年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2023年度": {
+        "10問": {
+          "department": "道路",
+          "year": "2023年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "道路",
+          "year": "2023年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "道路",
+          "year": "2023年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2024年度": {
+        "10問": {
+          "department": "道路",
+          "year": "2024年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "道路",
+          "year": "2024年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "道路",
+          "year": "2024年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      }
+    },
+    "河川・砂防": {
+      "2022年度": {
+        "10問": {
+          "department": "河川・砂防",
+          "year": "2022年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "河川・砂防",
+          "year": "2022年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "河川・砂防",
+          "year": "2022年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2023年度": {
+        "10問": {
+          "department": "河川・砂防",
+          "year": "2023年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "河川・砂防",
+          "year": "2023年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "河川・砂防",
+          "year": "2023年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2024年度": {
+        "10問": {
+          "department": "河川・砂防",
+          "year": "2024年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "河川・砂防",
+          "year": "2024年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "河川・砂防",
+          "year": "2024年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      }
+    },
+    "都市計画": {
+      "2022年度": {
+        "10問": {
+          "department": "都市計画",
+          "year": "2022年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "都市計画",
+          "year": "2022年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "都市計画",
+          "year": "2022年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2023年度": {
+        "10問": {
+          "department": "都市計画",
+          "year": "2023年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "都市計画",
+          "year": "2023年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "都市計画",
+          "year": "2023年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2024年度": {
+        "10問": {
+          "department": "都市計画",
+          "year": "2024年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "都市計画",
+          "year": "2024年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "都市計画",
+          "year": "2024年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      }
+    },
+    "造園": {
+      "2022年度": {
+        "10問": {
+          "department": "造園",
+          "year": "2022年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "造園",
+          "year": "2022年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "造園",
+          "year": "2022年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2023年度": {
+        "10問": {
+          "department": "造園",
+          "year": "2023年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "造園",
+          "year": "2023年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "造園",
+          "year": "2023年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2024年度": {
+        "10問": {
+          "department": "造園",
+          "year": "2024年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "造園",
+          "year": "2024年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "造園",
+          "year": "2024年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      }
+    },
+    "建設環境": {
+      "2022年度": {
+        "10問": {
+          "department": "建設環境",
+          "year": "2022年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "建設環境",
+          "year": "2022年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "建設環境",
+          "year": "2022年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2023年度": {
+        "10問": {
+          "department": "建設環境",
+          "year": "2023年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "建設環境",
+          "year": "2023年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "建設環境",
+          "year": "2023年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2024年度": {
+        "10問": {
+          "department": "建設環境",
+          "year": "2024年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "建設環境",
+          "year": "2024年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "建設環境",
+          "year": "2024年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      }
+    },
+    "鋼構造・コンクリート": {
+      "2022年度": {
+        "10問": {
+          "department": "鋼構造・コンクリート",
+          "year": "2022年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "鋼構造・コンクリート",
+          "year": "2022年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "鋼構造・コンクリート",
+          "year": "2022年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2023年度": {
+        "10問": {
+          "department": "鋼構造・コンクリート",
+          "year": "2023年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "鋼構造・コンクリート",
+          "year": "2023年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "鋼構造・コンクリート",
+          "year": "2023年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2024年度": {
+        "10問": {
+          "department": "鋼構造・コンクリート",
+          "year": "2024年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "鋼構造・コンクリート",
+          "year": "2024年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "鋼構造・コンクリート",
+          "year": "2024年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      }
+    },
+    "土質・基礎": {
+      "2022年度": {
+        "10問": {
+          "department": "土質・基礎",
+          "year": "2022年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "土質・基礎",
+          "year": "2022年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "土質・基礎",
+          "year": "2022年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2023年度": {
+        "10問": {
+          "department": "土質・基礎",
+          "year": "2023年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "土質・基礎",
+          "year": "2023年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "土質・基礎",
+          "year": "2023年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2024年度": {
+        "10問": {
+          "department": "土質・基礎",
+          "year": "2024年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "土質・基礎",
+          "year": "2024年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "土質・基礎",
+          "year": "2024年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      }
+    },
+    "施工計画": {
+      "2022年度": {
+        "10問": {
+          "department": "施工計画",
+          "year": "2022年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "施工計画",
+          "year": "2022年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "施工計画",
+          "year": "2022年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2023年度": {
+        "10問": {
+          "department": "施工計画",
+          "year": "2023年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "施工計画",
+          "year": "2023年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "施工計画",
+          "year": "2023年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2024年度": {
+        "10問": {
+          "department": "施工計画",
+          "year": "2024年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "施工計画",
+          "year": "2024年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "施工計画",
+          "year": "2024年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      }
+    },
+    "上下水道": {
+      "2022年度": {
+        "10問": {
+          "department": "上下水道",
+          "year": "2022年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "上下水道",
+          "year": "2022年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "上下水道",
+          "year": "2022年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2023年度": {
+        "10問": {
+          "department": "上下水道",
+          "year": "2023年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "上下水道",
+          "year": "2023年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "上下水道",
+          "year": "2023年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2024年度": {
+        "10問": {
+          "department": "上下水道",
+          "year": "2024年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "上下水道",
+          "year": "2024年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "上下水道",
+          "year": "2024年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      }
+    },
+    "森林土木": {
+      "2022年度": {
+        "10問": {
+          "department": "森林土木",
+          "year": "2022年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "森林土木",
+          "year": "2022年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "森林土木",
+          "year": "2022年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2023年度": {
+        "10問": {
+          "department": "森林土木",
+          "year": "2023年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "森林土木",
+          "year": "2023年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "森林土木",
+          "year": "2023年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2024年度": {
+        "10問": {
+          "department": "森林土木",
+          "year": "2024年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "森林土木",
+          "year": "2024年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "森林土木",
+          "year": "2024年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      }
+    },
+    "農業土木": {
+      "2022年度": {
+        "10問": {
+          "department": "農業土木",
+          "year": "2022年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "農業土木",
+          "year": "2022年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "農業土木",
+          "year": "2022年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2023年度": {
+        "10問": {
+          "department": "農業土木",
+          "year": "2023年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "農業土木",
+          "year": "2023年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "農業土木",
+          "year": "2023年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2024年度": {
+        "10問": {
+          "department": "農業土木",
+          "year": "2024年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "農業土木",
+          "year": "2024年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "農業土木",
+          "year": "2024年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      }
+    },
+    "トンネル": {
+      "2022年度": {
+        "10問": {
+          "department": "トンネル",
+          "year": "2022年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "トンネル",
+          "year": "2022年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "トンネル",
+          "year": "2022年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2023年度": {
+        "10問": {
+          "department": "トンネル",
+          "year": "2023年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "トンネル",
+          "year": "2023年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "トンネル",
+          "year": "2023年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      },
+      "2024年度": {
+        "10問": {
+          "department": "トンネル",
+          "year": "2024年度",
+          "count": "10問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "20問": {
+          "department": "トンネル",
+          "year": "2024年度",
+          "count": "20問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        },
+        "30問": {
+          "department": "トンネル",
+          "year": "2024年度",
+          "count": "30問",
+          "url_access_success": false,
+          "contains_questions": false,
+          "specialist_content_found": false,
+          "basic_contamination_found": false,
+          "content_quality_score": 0.0,
+          "errors": [
+            "URL access failed: No response"
+          ]
+        }
+      }
+    }
+  },
+  "errors": [],
+  "success_statistics": {
+    "total_tests": 108,
+    "successful_tests": 0,
+    "high_quality_tests": 0,
+    "success_rate": 0.0,
+    "quality_rate": 0.0,
+    "verification_duration": 55.22016167640686
+  }
+}

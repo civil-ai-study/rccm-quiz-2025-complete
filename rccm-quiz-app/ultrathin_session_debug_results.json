@@ -1,0 +1,47 @@
+{
+  "timestamp": "2025-07-08T13:40:05.460957",
+  "summary": {
+    "total": 6,
+    "successful": 4,
+    "failed": 2,
+    "success_rate": 66.66666666666666
+  },
+  "debug_results": [
+    {
+      "test_name": "basic_セッションなし_10問",
+      "success": true,
+      "details": "ステータス: 302, サイズ: 215, タイプ: text/html; charset=utf-8",
+      "timestamp": "2025-07-08T13:39:50.565221"
+    },
+    {
+      "test_name": "foundation_セッションなし_20問",
+      "success": true,
+      "details": "ステータス: 302, サイズ: 215, タイプ: text/html; charset=utf-8",
+      "timestamp": "2025-07-08T13:39:52.935540"
+    },
+    {
+      "test_name": "basic_フレッシュセッション_10問",
+      "success": true,
+      "details": "ステータス: 302, サイズ: 215, タイプ: text/html; charset=utf-8",
+      "timestamp": "2025-07-08T13:39:55.518615"
+    },
+    {
+      "test_name": "foundation_フレッシュセッション_20問",
+      "success": true,
+      "details": "ステータス: 302, サイズ: 215, タイプ: text/html; charset=utf-8",
+      "timestamp": "2025-07-08T13:39:57.812496"
+    },
+    {
+      "test_name": "basic_リダイレクト付き_10問",
+      "success": false,
+      "details": "ステータス: 405, サイズ: 153, リダイレクト: 2, 405エラー: あり",
+      "timestamp": "2025-07-08T13:40:00.495615"
+    },
+    {
+      "test_name": "foundation_リダイレクト付き_20問",
+      "success": false,
+      "details": "ステータス: 405, サイズ: 153, リダイレクト: 2, 405エラー: あり",
+      "timestamp": "2025-07-08T13:40:03.165255"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "timestamp": "2025-07-08T07:44:13.873409",
+  "stage": "ULTRATHIN区段階42",
+  "functionality": "部門名マッピング修正",
+  "failed_departments_test": {
+    "都市計画": {
+      "department_url": "都市計画",
+      "department_data": "都市計画及び地方計画",
+      "redirect_successful": false,
+      "status_code": 200,
+      "response_details": {
+        "location": "",
+        "content_length": 16903,
+        "has_redirect_header": false
+      },
+      "error_content": "不明なエラー"
+    },
+    "鋼構造・コンクリート": {
+      "department_url": "鋼構造・コンクリート",
+      "department_data": "鋼構造及びコンクリート",
+      "redirect_successful": false,
+      "status_code": 200,
+      "response_details": {
+        "location": "",
+        "content_length": 16903,
+        "has_redirect_header": false
+      },
+      "error_content": "不明なエラー"
+    },
+    "土質・基礎": {
+      "department_url": "土質・基礎",
+      "department_data": "土質及び基礎",
+      "redirect_successful": false,
+      "status_code": 200,
+      "response_details": {
+        "location": "",
+        "content_length": 16903,
+        "has_redirect_header": false
+      },
+      "error_content": "不明なエラー"
+    },
+    "施工計画": {
+      "department_url": "施工計画",
+      "department_data": "施工計画、施工設備及び積算",
+      "redirect_successful": false,
+      "status_code": 200,
+      "response_details": {
+        "location": "",
+        "content_length": 16903,
+        "has_redirect_header": false
+      },
+      "error_content": "不明なエラー"
+    },
+    "上下水道": {
+      "department_url": "上下水道",
+      "department_data": "上水道及び工業用水道",
+      "redirect_successful": false,
+      "status_code": 200,
+      "response_details": {
+        "location": "",
+        "content_length": 16903,
+        "has_redirect_header": false
+      },
+      "error_content": "不明なエラー"
+    }
+  },
+  "working_departments_test": {
+    "基礎科目": {
+      "department_url": "基礎科目",
+      "department_data": "基礎科目",
+      "redirect_successful": true,
+      "status_code": 302,
+      "response_details": {
+        "location": "/exam_question",
+        "content_length": 215,
+        "has_redirect_header": true
+      }
+    },
+    "道路": {
+      "department_url": "道路",
+      "department_data": "道路",
+      "redirect_successful": true,
+      "status_code": 302,
+      "response_details": {
+        "location": "/exam_question",
+        "content_length": 215,
+        "has_redirect_header": true
+      }
+    },
+    "河川、砂防及び海岸・海洋": {
+      "department_url": "河川、砂防及び海岸・海洋",
+      "department_data": "河川、砂防及び海岸・海洋",
+      "redirect_successful": true,
+      "status_code": 302,
+      "response_details": {
+        "location": "/exam_question",
+        "content_length": 215,
+        "has_redirect_header": true
+      }
+    }
+  },
+  "mapping_analysis": {
+    "failed_departments_count": 5,
+    "failed_fixed_count": 0,
+    "working_departments_tested": 3,
+    "working_stable_count": 3,
+    "fix_success_rate": 0.0,
+    "mapping_issue_identified": true,
+    "requires_code_fix": true
+  }
+}

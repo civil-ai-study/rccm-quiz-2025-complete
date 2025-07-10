@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover">
+    <title>試験シミュレーター - RCCM試験問題集</title>
+    
+    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <script>
+        // 🔥 ページ読み込み時のキャッシュ強制クリア（ユーザー要求による）
+        (function() {
+            if (window.performance && window.performance.navigation.type === 2) {
+                // 戻るボタンでアクセスされた場合は強制リロード
+                window.location.reload(true);
+            }
+            // セッションストレージの問題関連データもクリア
+            if (typeof(Storage) !== "undefined") {
+                sessionStorage.removeItem('exam_data');
+                sessionStorage.removeItem('current_question');
+                sessionStorage.removeItem('question_answers');
+            }
+        })();
+    </script>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- アクセシビリティ改善 -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="RCCM試験問題集">
+    <meta name="application-name" content="RCCM問題集">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon-16x16.png">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          onerror="this.onerror=null;this.href='/static/fallback/bootstrap.min.css';">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          onerror="this.onerror=null;this.href='/static/fallback/font-awesome.min.css';"  >
+    
+    <!-- ダークモード対応CSS -->
+    <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #1e293b;
+      --card-bg: #f8fafc;
+      --border-color: #e2e8f0;
+      /* モダン・シック・インテリジェンスなカラーパレット */
+      --primary-color: #334155; /* プロフェッショナルスレートグレー */
+      --secondary-color: #475569; /* エレガントグレー */
+      --success-color: #059669; /* 洗練されたエメラルド */
+      --danger-color: #dc2626; /* 控えめなレッド */
+      --warning-color: #d97706; /* インテリジェントアンバー */
+      --info-color: #0284c7; /* 知的ブルー */
+      --dark-color: #0f172a; /* ディープネイビー */
+      --light-color: #f1f5f9; /* ソフトグレー */
+      --text-muted-color: #64748b; /* 上品なミュート */
+      --accent-color: #6366f1; /* 知性のインディゴ */
+      --surface-color: #ffffff;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #0f172a;
+      --text-color: #e2e8f0;
+      --card-bg: #1e293b;
+      --border-color: #334155;
+      /* ダークモード - エレガント&プロフェッショナル */
+      --primary-color: #64748b; /* ソフトスレート */
+      --secondary-color: #94a3b8; /* ライトグレー */
+      --success-color: #10b981; /* エメラルド */
+      --danger-color: #ef4444; /* 洗練されたレッド */
+      --warning-color: #f59e0b; /* ゴールド */
+      --info-color: #3b82f6; /* ブライトブルー */
+      --dark-color: #f1f5f9; /* ライトテキスト */
+      --light-color: #1e293b; /* ダークサーフェス */
+      --text-muted-color: #94a3b8; /* エレガントミュート */
+      --accent-color: #818cf8; /* ライトインディゴ */
+      --surface-color: #1e293b;
+    }
+
+    body { 
+      background-color: var(--bg-color) !important; 
+      color: var(--text-color) !important; 
+    }
+
+    /* モダン&プロフェッショナルBootstrapカラー変数の上書き */
+    .btn-primary {
+        --bs-btn-bg: var(--primary-color);
+        --bs-btn-border-color: var(--primary-color);
+        --bs-btn-hover-bg: #1e293b;
+        --bs-btn-hover-border-color: #0f172a;
+        --bs-btn-active-bg: #0f172a;
+        --bs-btn-active-border-color: #020617;
+        color: white;
+        font-weight: 500;
+        border-radius: 0.5rem;
+    }
+    .btn-secondary {
+        --bs-btn-bg: var(--secondary-color);
+        --bs-btn-border-color: var(--secondary-color);
+        --bs-btn-hover-bg: #334155;
+        --bs-btn-hover-border-color: #1e293b;
+        --bs-btn-active-bg: #1e293b;
+        --bs-btn-active-border-color: #0f172a;
+        color: white;
+        font-weight: 500;
+        border-radius: 0.5rem;
+    }
+    .btn-success {
+        --bs-btn-bg: var(--success-color);
+        --bs-btn-border-color: var(--success-color);
+        --bs-btn-hover-bg: #047857;
+        --bs-btn-hover-border-color: #065f46;
+        --bs-btn-active-bg: #558b2f;
+        --bs-btn-active-border-color: #33691e;
+    }
+    .btn-danger {
+        --bs-btn-bg: var(--danger-color);
+        --bs-btn-border-color: var(--danger-color);
+        --bs-btn-hover-bg: #ff1744;
+        --bs-btn-hover-border-color: #d50000;
+        --bs-btn-active-bg: #c62828;
+        --bs-btn-active-border-color: #b71c1c;
+    }
+    .btn-warning {
+        --bs-btn-bg: var(--warning-color);
+        --bs-btn-border-color: var(--warning-color);
+        --bs-btn-hover-bg: #ffb300;
+        --bs-btn-hover-border-color: #ffa000;
+        --bs-btn-active-bg: #ff8f00;
+        --bs-btn-active-border-color: #ff6f00;
+        --bs-btn-color: #212529; /* 文字色を黒に */
+    }
+     .btn-info {
+        --bs-btn-bg: var(--info-color);
+        --bs-btn-border-color: var(--info-color);
+        --bs-btn-hover-bg: #1e88e5;
+        --bs-btn-hover-border-color: #1976d2;
+        --bs-btn-active-bg: #1565c0;
+        --bs-btn-active-border-color: #0d47a1;
+    }
+    .btn-dark {
+        --bs-btn-bg: var(--dark-color);
+        --bs-btn-border-color: var(--dark-color);
+        --bs-btn-hover-bg: #212529;
+        --bs-btn-hover-border-color: #1a1d20;
+        --bs-btn-active-bg: #1a1d20;
+        --bs-btn-active-border-color: #131619;
+    }
+
+    .card { 
+      background-color: var(--card-bg) !important; 
+      color: var(--text-color) !important;
+      border-color: var(--border-color) !important;
+    }
+
+    /* ナビゲーションバーの色 */
+    .navbar-custom {
+        background-color: var(--primary-color) !important;
+    }
+    .navbar-custom .nav-link, .navbar-custom .navbar-brand {
+        color: var(--light-color) !important;
+    }
+
+    [data-theme="dark"] .card { 
+      background-color: var(--card-bg) !important; 
+      color: var(--text-color) !important;
+      border-color: var(--border-color) !important;
+    }
+    [data-theme="dark"] .navbar-custom {
+      background-color: #0d1117 !important; /* ダークモード用ナビゲーションバー */
+    }
+    [data-theme="dark"] .alert { 
+      background-color: var(--card-bg) !important;
+      border-color: var(--border-color) !important;
+      color: var(--text-color) !important;
+    }
+    [data-theme="dark"] .table { 
+      color: var(--text-color) !important; 
+    }
+    [data-theme="dark"] .table td, [data-theme="dark"] .table th { 
+      border-color: var(--border-color) !important; 
+    }
+
+    /* 今後開発予定の項目をグレーアウト */
+    .future-feature {
+        color: var(--text-muted-color) !important;
+        font-style: italic;
+    }
+    
+    /* 学習ストリーク表示スタイル */
+    .streak-display {
+      background: linear-gradient(45deg, #FF6B35, #F7931E);
+      color: white;
+      border-radius: 25px;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      display: inline-block;
+      margin: 0.5rem 0;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from { box-shadow: 0 0 5px rgba(255, 107, 53, 0.3); }
+      to { box-shadow: 0 0 20px rgba(255, 107, 53, 0.6); }
+    }
+    
+    [data-theme="dark"] .streak-display {
+      background: linear-gradient(45deg, #FF6B35, #F7931E);
+    }
+    
+    /* SRS用バッジ */
+    .badge.bg-gold {
+      background-color: #ffd700 !important;
+      color: #000 !important;
+    }
+
+    /* 解答結果画面のスタイル */
+    .card-correct {
+      border-color: var(--success-color) !important;
+      background-color: #d4edda !important; /* 淡い緑 */
+    }
+    .card-incorrect {
+      border-color: var(--danger-color) !important;
+      background-color: #f8d7da !important; /* 淡い赤 */
+    }
+    [data-theme="dark"] .card-correct {
+      border-color: var(--success-color) !important;
+      background-color: #1e3c2f !important; /* ダークモード用の緑 */
+    }
+    [data-theme="dark"] .card-incorrect {
+      border-color: var(--danger-color) !important;
+      background-color: #4e2b31 !important; /* ダークモード用の赤 */
+    }
+    
+    /* アクセシビリティ改善：大きなボタンクラス */
+    .btn-accessibility-lg {
+      min-height: 48px !important;
+      padding: 12px 24px !important;
+      font-size: 1.1rem !important;
+      font-weight: 500 !important;
+      border-radius: 8px !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    .btn-accessibility-xl {
+      min-height: 56px !important;
+      padding: 16px 32px !important;
+      font-size: 1.25rem !important;
+      font-weight: 600 !important;
+      border-radius: 10px !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    /* タッチターゲットサイズの確保（WCAG基準） */
+    .touch-target {
+      min-width: 44px !important;
+      min-height: 44px !important;
+    }
+    
+    /* フォーカスインジケーターの強化 */
+    button:focus,
+    input:focus,
+    select:focus,
+    textarea:focus,
+    a:focus {
+      outline: 3px solid var(--accent-color) !important;
+      outline-offset: 2px !important;
+    }
+    
+    /* シニアユーザー向けの読みやすいフォントサイズ */
+    @media (min-width: 768px) {
+      .senior-friendly {
+        font-size: 1.125rem !important;
+        line-height: 1.75 !important;
+      }
+    }
+    
+    /* 🔥 ULTRA SYNC MOBILE OPTIMIZATION: モバイル最適化強化 */
+    /* タッチデバイス向け最適化 */
+    @media (hover: none) and (pointer: coarse) {
+      /* タッチレスポンス向上 */
+      * {
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+      }
+      
+      /* ボタンタッチ時のフィードバック */
+      .btn:active {
+        transform: scale(0.95) !important;
+        transition: transform 0.1s ease !important;
+      }
+      
+      /* 選択肢タッチ時のフィードバック */
+      .option-item:active {
+        background-color: #e3f2fd !important;
+        transform: scale(0.98) !important;
+        transition: all 0.1s ease !important;
+      }
+      
+      /* タッチターゲットサイズ強制拡大 */
+      .btn, .option-item, .nav-link, .card, input, select, textarea {
+        min-height: 44px !important;
+        min-width: 44px !important;
+      }
+    }
+    
+    /* 極小画面（320px以下）対応 */
+    @media (max-width: 320px) {
+      .container {
+        padding: 0.25rem !important;
+      }
+      
+      .btn {
+        font-size: 0.85rem !important;
+        padding: 0.5rem 0.75rem !important;
+      }
+      
+      .card {
+        margin-bottom: 0.75rem !important;
+      }
+      
+      .card-body {
+        padding: 0.75rem !important;
+      }
+      
+      h1 { font-size: 1.5rem !important; }
+      h2 { font-size: 1.25rem !important; }
+      h3 { font-size: 1.125rem !important; }
+    }
+    
+    /* 横向き時の最適化 */
+    @media (orientation: landscape) and (max-height: 500px) {
+      .navbar {
+        padding: 0.25rem 0 !important;
+      }
+      
+      .container {
+        padding-top: 0.5rem !important;
+      }
+      
+      .card {
+        margin-bottom: 0.5rem !important;
+      }
+    }
+    
+    /* iOS Safari対応 */
+    @supports (-webkit-touch-callout: none) {
+      /* iOS Safari特有の問題対応 */
+      input, textarea, select {
+        font-size: 16px !important; /* ズーム防止 */
+      }
+      
+      /* Safe Area対応 */
+      .container {
+        padding-left: max(1rem, env(safe-area-inset-left)) !important;
+        padding-right: max(1rem, env(safe-area-inset-right)) !important;
+        padding-bottom: max(1rem, env(safe-area-inset-bottom)) !important;
+      }
+    }
+    </style>
+
+    <!-- Service Worker & PWA 登録 -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/static/sw.js')
+            .then(function(registration) {
+            })
+            .catch(function(error) {
+            });
+        });
+      }
+    </script>
+    
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-custom mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/" style="color: white !important;">RCCM試験問題集</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="/statistics" style="color: white !important;">解答結果分析</a></li>
+        <li class="nav-item"><a class="nav-link" href="/categories" style="color: white !important;">部門別</a></li>
+        <li class="nav-item"><a class="nav-link" href="/review" style="color: white !important;">復習リスト</a></li>
+        <li class="nav-item"><a class="nav-link" href="/reset" style="color: white !important;">リセット</a></li>
+        <li class="nav-item"><a class="nav-link" href="/settings" style="color: white !important;"><i class="fas fa-cog me-1"></i>設定</a></li>
+        <li class="nav-item"><a class="nav-link" href="/help" style="color: white !important;">ヘルプ</a></li>
+        <li class="nav-item ms-2">
+          <button class="btn btn-outline-light btn-sm" onclick="toggleTheme()" id="themeToggle" title="ダークモード切替">
+            🌙
+          </button>
+        </li>
+        <li class="nav-item ms-2">
+          <span class="navbar-text text-light small" id="sessionStatus" title="セッション状態">
+            <i class="fas fa-clock me-1"></i>セッション確認中...
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  
+    
+  
+  
+<div class="container-fluid">
+    <!-- ヘッダー -->
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-graduation-cap text-primary"></i> 試験シミュレーター</h2>
+                <a href="/" class="btn btn-outline-primary">
+                    <i class="fas fa-home"></i> ホームに戻る
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 試験シミュレーターの説明 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <div class="row align-items-center">
+                    <div class="col-md-2 text-center">
+                        <i class="fas fa-clock fa-3x text-info"></i>
+                    </div>
+                    <div class="col-md-10">
+                        <h5 class="alert-heading">本格的な試験環境を体験</h5>
+                        <p class="mb-2">実際の試験と同じ制限時間・問題数で、本番さながらの環境で学習できます。</p>
+                        <ul class="mb-0">
+                            <li>実際の試験と同じ時間制限</li>
+                            <li>問題・選択肢のランダム配置</li>
+                            <li>詳細な結果分析と弱点診断</li>
+                            <li>見直し機能と問題フラグ機能</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 試験モード選択 -->
+    <div class="row">
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card exam-card h-100 border-warning">
+                <div class="card-header bg-warning text-white text-center">
+                    <h4 class="mb-0">
+                        
+                            <i class="fas fa-trophy"></i>
+                        
+                        標準模擬試験
+                    </h4>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <!-- 試験情報 -->
+                    <div class="exam-info mb-3">
+                        <div class="info-item">
+                            <i class="fas fa-question-circle text-primary"></i>
+                            <span><strong>問題数:</strong> 40問</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock text-warning"></i>
+                            <span><strong>制限時間:</strong> 150分</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-percentage text-success"></i>
+                            <span><strong>合格ライン:</strong> 60%</span>
+                        </div>
+                    </div>
+
+                    <!-- カテゴリ分布 -->
+                    <div class="category-distribution mb-3">
+                        <h6><i class="fas fa-chart-pie"></i> 出題分野</h6>
+                        
+                        <div class="category-item">
+                            <span class="category-name">コンクリート</span>
+                            <span class="badge badge-secondary">12問</span>
+                        </div>
+                        
+                        <div class="category-item">
+                            <span class="category-name">構造</span>
+                            <span class="badge badge-secondary">10問</span>
+                        </div>
+                        
+                        <div class="category-item">
+                            <span class="category-name">施工</span>
+                            <span class="badge badge-secondary">10問</span>
+                        </div>
+                        
+                        <div class="category-item">
+                            <span class="category-name">維持管理</span>
+                            <span class="badge badge-secondary">8問</span>
+                        </div>
+                        
+                    </div>
+
+                    <!-- 難易度分布 -->
+                    <div class="difficulty-distribution mb-4">
+                        <h6><i class="fas fa-layer-group"></i> 難易度分布</h6>
+                        <div class="progress" style="height: 20px;">
+                            
+                            
+                            
+                            
+                            <div class="progress-bar bg-success" style="width: 30%" title="基本: 30%">
+                                基本
+                            </div>
+                            <div class="progress-bar bg-warning" style="width: 50%" title="標準: 50%">
+                                標準
+                            </div>
+                            <div class="progress-bar bg-danger" style="width: 20%" title="応用: 20%">
+                                応用
+                            </div>
+                        </div>
+                        <small class="text-muted mt-1">
+                            基本30% / 標準50% / 応用20%
+                        </small>
+                    </div>
+
+                    <!-- 推奨レベル -->
+                    <div class="recommended-level mb-3">
+                        
+                        <div class="alert alert-warning py-2">
+                            <i class="fas fa-user-graduate"></i> <strong>中級者・本格練習向け</strong><br>
+                            <small>本試験に近い環境での実践的な訓練</small>
+                        </div>
+                        
+                    </div>
+
+                    <!-- 開始ボタン -->
+                    <div class="mt-auto text-center">
+                        <button class="btn btn-warning btn-lg w-100" 
+                                onclick="startExam('standard', '標準模擬試験', 150)">
+                            <i class="fas fa-play-circle"></i> 試験開始
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card exam-card h-100 border-danger">
+                <div class="card-header bg-danger text-white text-center">
+                    <h4 class="mb-0">
+                        
+                            <i class="fas fa-crown"></i>
+                        
+                        本試験完全再現
+                    </h4>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <!-- 試験情報 -->
+                    <div class="exam-info mb-3">
+                        <div class="info-item">
+                            <i class="fas fa-question-circle text-primary"></i>
+                            <span><strong>問題数:</strong> 60問</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock text-warning"></i>
+                            <span><strong>制限時間:</strong> 180分</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-percentage text-success"></i>
+                            <span><strong>合格ライン:</strong> 65%</span>
+                        </div>
+                    </div>
+
+                    <!-- カテゴリ分布 -->
+                    <div class="category-distribution mb-3">
+                        <h6><i class="fas fa-chart-pie"></i> 出題分野</h6>
+                        
+                        <div class="category-item">
+                            <span class="category-name">コンクリート</span>
+                            <span class="badge badge-secondary">18問</span>
+                        </div>
+                        
+                        <div class="category-item">
+                            <span class="category-name">構造</span>
+                            <span class="badge badge-secondary">15問</span>
+                        </div>
+                        
+                        <div class="category-item">
+                            <span class="category-name">施工</span>
+                            <span class="badge badge-secondary">15問</span>
+                        </div>
+                        
+                        <div class="category-item">
+                            <span class="category-name">維持管理</span>
+                            <span class="badge badge-secondary">12問</span>
+                        </div>
+                        
+                    </div>
+
+                    <!-- 難易度分布 -->
+                    <div class="difficulty-distribution mb-4">
+                        <h6><i class="fas fa-layer-group"></i> 難易度分布</h6>
+                        <div class="progress" style="height: 20px;">
+                            
+                            
+                            
+                            
+                            <div class="progress-bar bg-success" style="width: 25%" title="基本: 25%">
+                                基本
+                            </div>
+                            <div class="progress-bar bg-warning" style="width: 50%" title="標準: 50%">
+                                標準
+                            </div>
+                            <div class="progress-bar bg-danger" style="width: 25%" title="応用: 25%">
+                                応用
+                            </div>
+                        </div>
+                        <small class="text-muted mt-1">
+                            基本25% / 標準50% / 応用25%
+                        </small>
+                    </div>
+
+                    <!-- 推奨レベル -->
+                    <div class="recommended-level mb-3">
+                        
+                        <div class="alert alert-danger py-2">
+                            <i class="fas fa-user-ninja"></i> <strong>上級者・本試験完全再現</strong><br>
+                            <small>実際の試験と同じ条件での最終確認</small>
+                        </div>
+                        
+                    </div>
+
+                    <!-- 開始ボタン -->
+                    <div class="mt-auto text-center">
+                        <button class="btn btn-danger btn-lg w-100" 
+                                onclick="startExam('full', '本試験完全再現', 180)">
+                            <i class="fas fa-play-circle"></i> 試験開始
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card exam-card h-100 border-success">
+                <div class="card-header bg-success text-white text-center">
+                    <h4 class="mb-0">
+                        
+                            <i class="fas fa-bolt"></i>
+                        
+                        クイック模擬試験
+                    </h4>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <!-- 試験情報 -->
+                    <div class="exam-info mb-3">
+                        <div class="info-item">
+                            <i class="fas fa-question-circle text-primary"></i>
+                            <span><strong>問題数:</strong> 20問</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock text-warning"></i>
+                            <span><strong>制限時間:</strong> 60分</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-percentage text-success"></i>
+                            <span><strong>合格ライン:</strong> 60%</span>
+                        </div>
+                    </div>
+
+                    <!-- カテゴリ分布 -->
+                    <div class="category-distribution mb-3">
+                        <h6><i class="fas fa-chart-pie"></i> 出題分野</h6>
+                        
+                        <div class="category-item">
+                            <span class="category-name">コンクリート</span>
+                            <span class="badge badge-secondary">6問</span>
+                        </div>
+                        
+                        <div class="category-item">
+                            <span class="category-name">構造</span>
+                            <span class="badge badge-secondary">5問</span>
+                        </div>
+                        
+                        <div class="category-item">
+                            <span class="category-name">施工</span>
+                            <span class="badge badge-secondary">5問</span>
+                        </div>
+                        
+                        <div class="category-item">
+                            <span class="category-name">維持管理</span>
+                            <span class="badge badge-secondary">4問</span>
+                        </div>
+                        
+                    </div>
+
+                    <!-- 難易度分布 -->
+                    <div class="difficulty-distribution mb-4">
+                        <h6><i class="fas fa-layer-group"></i> 難易度分布</h6>
+                        <div class="progress" style="height: 20px;">
+                            
+                            
+                            
+                            
+                            <div class="progress-bar bg-success" style="width: 40%" title="基本: 40%">
+                                基本
+                            </div>
+                            <div class="progress-bar bg-warning" style="width: 40%" title="標準: 40%">
+                                標準
+                            </div>
+                            <div class="progress-bar bg-danger" style="width: 20%" title="応用: 20%">
+                                応用
+                            </div>
+                        </div>
+                        <small class="text-muted mt-1">
+                            基本40% / 標準40% / 応用20%
+                        </small>
+                    </div>
+
+                    <!-- 推奨レベル -->
+                    <div class="recommended-level mb-3">
+                        
+                        <div class="alert alert-success py-2">
+                            <i class="fas fa-user-check"></i> <strong>初心者・復習向け</strong><br>
+                            <small>基礎力確認や短時間での実力チェックに最適</small>
+                        </div>
+                        
+                    </div>
+
+                    <!-- 開始ボタン -->
+                    <div class="mt-auto text-center">
+                        <button class="btn btn-success btn-lg w-100" 
+                                onclick="startExam('quick', 'クイック模擬試験', 60)">
+                            <i class="fas fa-play-circle"></i> 試験開始
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- 注意事項 -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0"><i class="fas fa-exclamation-triangle"></i> 試験開始前の注意事項</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-clock text-warning"></i> 時間管理</h6>
+                            <ul>
+                                <li>制限時間を超過すると自動提出されます</li>
+                                <li>残り時間は常に画面上部に表示されます</li>
+                                <li>時間の30分前、10分前に警告が表示されます</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-mouse-pointer text-info"></i> 操作方法</h6>
+                            <ul>
+                                <li>見直したい問題にはフラグを設定できます</li>
+                                <li>ナビゲーション画面で回答状況を確認できます</li>
+                                <li>試験中はブラウザの戻るボタンは使用できません</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-chart-bar text-success"></i> 結果分析</h6>
+                            <ul>
+                                <li>詳細な正答率と時間分析を提供</li>
+                                <li>カテゴリ別・難易度別の成績表示</li>
+                                <li>弱点分野の特定と学習推奨</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-save text-primary"></i> データ保存</h6>
+                            <ul>
+                                <li>試験結果は自動的に保存されます</li>
+                                <li>過去の試験結果と比較分析可能</li>
+                                <li>学習進捗に反映されます</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 試験開始確認モーダル -->
+<div class="modal fade" id="startExamModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-graduation-cap"></i> 試験開始確認
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>注意：</strong>試験を開始すると制限時間のカウントが始まります。
+                </div>
+                
+                <div id="examDetailsInModal">
+                    <!-- JavaScriptで動的に設定 -->
+                </div>
+                
+                <div class="mt-3">
+                    <p><strong>準備はよろしいですか？</strong></p>
+                    <ul class="text-muted">
+                        <li>静かな環境で集中できる状態にしてください</li>
+                        <li>途中で中断しないよう時間を確保してください</li>
+                        <li>必要に応じて筆記用具を準備してください</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i> キャンセル
+                </button>
+                <button type="button" class="btn btn-danger" id="confirmStartExam">
+                    <i class="fas fa-play-circle"></i> 試験を開始する
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let selectedExamType = '';
+let selectedExamName = '';
+let selectedTimeLimit = 0;
+
+function startExam(examType, examName, timeLimit) {
+    selectedExamType = examType;
+    selectedExamName = examName;
+    selectedTimeLimit = timeLimit;
+    
+    // モーダルの詳細情報を更新
+    document.getElementById('examDetailsInModal').innerHTML = `
+        <div class="exam-details">
+            <h6><i class="fas fa-info-circle"></i> 試験詳細</h6>
+            <ul class="list-unstyled">
+                <li><strong>試験名:</strong> ${examName}</li>
+                <li><strong>制限時間:</strong> ${timeLimit}分</li>
+                <li><strong>問題数:</strong> ${getQuestionCount(examType)}問</li>
+                <li><strong>合格ライン:</strong> ${getPassingScore(examType)}%</li>
+            </ul>
+        </div>
+    `;
+    
+    // モーダルを表示
+    const modal = new bootstrap.Modal(document.getElementById('startExamModal'));
+    modal.show();
+}
+
+function getQuestionCount(examType) {
+    const counts = {'quick': 20, 'standard': 40, 'full': 60};
+    return counts[examType] || 40;
+}
+
+function getPassingScore(examType) {
+    const scores = {'quick': 60, 'standard': 60, 'full': 65};
+    return scores[examType] || 60;
+}
+
+// 試験開始確認ボタンのイベント
+document.getElementById('confirmStartExam').addEventListener('click', function() {
+    // ローディング表示
+    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 開始中...';
+    this.disabled = true;
+    
+    // 試験開始
+    window.location.href = `/start_exam/${selectedExamType}`;
+});
+
+// ページ読み込み時の設定
+document.addEventListener('DOMContentLoaded', function() {
+    // カードホバー効果
+    const examCards = document.querySelectorAll('.exam-card');
+    examCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+        });
+    });
+});
+</script>
+
+<style>
+.exam-card {
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.info-item i {
+    width: 20px;
+    margin-right: 8px;
+}
+
+.category-item {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.category-name {
+    flex-grow: 1;
+}
+
+.exam-info, .category-distribution, .difficulty-distribution {
+    border-left: 3px solid #17a2b8;
+    padding-left: 15px;
+}
+
+.recommended-level .alert {
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .exam-card {
+        margin-bottom: 1rem;
+    }
+    
+    .progress {
+        height: 15px !important;
+    }
+    
+    .progress-bar {
+        font-size: 0.75rem;
+    }
+}
+
+/* アニメーション */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.exam-card:hover .card-header {
+    animation: pulse 2s infinite;
+}
+
+/* 進捗バーのスタイル */
+.progress-bar {
+    transition: width 0.6s ease;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* モーダルのスタイル */
+.modal-content {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px 15px 0 0;
+}
+
+.exam-details {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+}
+</style>
+
+</div>
+<footer class="text-center mt-4 mb-2 text-muted">
+  RCCM試験問題集 &copy; 2025
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+        onerror="this.onerror=null; var s=document.createElement('script'); s.src='/static/fallback/bootstrap.bundle.min.js'; document.head.appendChild(s);"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"
+        onerror="this.onerror=null; var s=document.createElement('script'); s.src='/static/fallback/chart.min.js'; document.head.appendChild(s);"></script>
+
+<!-- メインJavaScript（分離版） -->
+<script src="/static/js/main.js"></script>
+
+<!-- モバイル機能JavaScript -->
+<script src="/static/js/mobile-features.js"></script>
+
+<!-- セッションタイムアウト管理JavaScript -->
+<script src="/static/js/session-timeout.js"></script>
+
+
+</body>
+</html> 

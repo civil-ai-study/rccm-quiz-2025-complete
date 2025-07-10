@@ -1,0 +1,270 @@
+{
+  "timestamp": "2025-07-07T18:36:42.648109",
+  "root_cause_analysis": {
+    "detailed_tests": [
+      {
+        "test_round": 1,
+        "year_results": {
+          "2016": {
+            "year": "2016",
+            "questions_count": 31,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2016,
+            "post_status": 200,
+            "final_url": "exam_simulator"
+          },
+          "2017": {
+            "year": "2017",
+            "questions_count": 28,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2017,
+            "post_status": 200,
+            "final_url": "exam_simulator"
+          },
+          "2018": {
+            "year": "2018",
+            "questions_count": 30,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2018,
+            "post_status": 200,
+            "final_url": "exam_simulator"
+          }
+        },
+        "timestamp": "18:36:51"
+      },
+      {
+        "test_round": 2,
+        "year_results": {
+          "2016": {
+            "year": "2016",
+            "questions_count": 31,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2016,
+            "post_status": 200,
+            "final_url": "exam_simulator"
+          },
+          "2017": {
+            "year": "2017",
+            "questions_count": 28,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2017,
+            "post_status": 200,
+            "final_url": "exam_simulator"
+          },
+          "2018": {
+            "year": "2018",
+            "questions_count": 30,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2018,
+            "post_status": 200,
+            "final_url": "exam_simulator"
+          }
+        },
+        "timestamp": "18:37:01"
+      },
+      {
+        "test_round": 3,
+        "year_results": {
+          "2016": {
+            "year": "2016",
+            "questions_count": 31,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2016,
+            "post_status": 200,
+            "final_url": "exam_simulator"
+          },
+          "2017": {
+            "year": "2017",
+            "questions_count": 28,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2017,
+            "post_status": 200,
+            "final_url": "exam_simulator"
+          },
+          "2018": {
+            "year": "2018",
+            "questions_count": 30,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2018,
+            "post_status": 200,
+            "final_url": "exam_simulator"
+          }
+        },
+        "timestamp": "18:37:11"
+      },
+      {
+        "test_round": 4,
+        "year_results": {
+          "2016": {
+            "year": "2016",
+            "questions_count": 31,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2016,
+            "post_status": 200,
+            "final_url": "exam_simulator"
+          },
+          "2017": {
+            "year": "2017",
+            "questions_count": 28,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2017,
+            "post_status": 200,
+            "final_url": "exam_simulator"
+          },
+          "2018": {
+            "year": "2018",
+            "questions_count": 30,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2018,
+            "post_status": 200,
+            "final_url": "exam_simulator"
+          }
+        },
+        "timestamp": "18:37:21"
+      },
+      {
+        "test_round": 5,
+        "year_results": {
+          "2016": {
+            "year": "2016",
+            "questions_count": 31,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2016,
+            "post_status": 200,
+            "final_url": "exam_simulator"
+          },
+          "2017": {
+            "year": "2017",
+            "questions_count": 28,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2017,
+            "post_status": 200,
+            "final_url": "exam_simulator"
+          },
+          "2018": {
+            "year": "2018",
+            "questions_count": 30,
+            "data_source": "specialist",
+            "exam_type": "施工計画、施工設備及び積算",
+            "target_year": 2018,
+            "post_status": 200,
+            "final_url": "exam_simulator"
+          }
+        },
+        "timestamp": "18:37:31"
+      }
+    ],
+    "all_question_counts": [
+      31,
+      28,
+      30,
+      31,
+      28,
+      30,
+      31,
+      28,
+      30,
+      31,
+      28,
+      30,
+      31,
+      28,
+      30
+    ],
+    "unique_counts": [
+      28,
+      30,
+      31
+    ],
+    "most_common_count": 28,
+    "deviation_from_expected": -2,
+    "pattern_consistent": false
+  },
+  "data_integrity_verification": {
+    "comparison_departments": {
+      "河川、砂防及び海岸・海洋": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "河川、砂防及び海岸・海洋",
+        "normal": true
+      },
+      "トンネル": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "トンネル",
+        "normal": true
+      },
+      "道路": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "道路",
+        "normal": true
+      },
+      "土質及び基礎": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "土質及び基礎",
+        "normal": true
+      },
+      "鋼構造及びコンクリート": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "鋼構造及びコンクリート",
+        "normal": true
+      }
+    },
+    "basic_subject_status": {
+      "questions_count": 202,
+      "data_source": "basic",
+      "normal": true
+    },
+    "normal_specialist_count": 5,
+    "total_specialist_departments": 5,
+    "basic_subject_normal": true,
+    "data_integrity_score": 100.0,
+    "isolated_issue_confirmed": true
+  },
+  "safe_resolution_plan": {
+    "selected_plan": {
+      "strategy": "cautious_isolated_resolution",
+      "approach": "慎重な単一部門問題対応",
+      "risk_level": "low",
+      "actions": [
+        {
+          "phase": 1,
+          "action": "詳細データ分析",
+          "description": "31問の内容詳細確認",
+          "safety_impact": "minimal",
+          "rollback_needed": false
+        },
+        {
+          "phase": 2,
+          "action": "安全性影響評価",
+          "description": "機能への実際の影響確認",
+          "safety_impact": "investigative",
+          "rollback_needed": false
+        }
+      ],
+      "expected_outcome": "問題の安全な理解と対応",
+      "system_changes_required": false,
+      "ultrathin_compliant": true
+    },
+    "recommended_approach": "慎重な問題分析",
+    "safety_priority": "maximum",
+    "ultrathin_principles_maintained": true
+  }
+}

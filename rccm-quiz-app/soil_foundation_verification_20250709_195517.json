@@ -1,0 +1,18 @@
+{
+  "timestamp": "20250709_195517",
+  "verification_results": [
+    {
+      "test_name": "マッピング検証",
+      "result": false
+    },
+    {
+      "test_name": "データ可用性検証",
+      "result": false
+    },
+    {
+      "test_name": "ローカルアプリテスト",
+      "result": false
+    }
+  ],
+  "overall_success": false
+}

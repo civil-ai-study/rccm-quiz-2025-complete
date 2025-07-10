@@ -1,0 +1,927 @@
+{
+  "route_structure_complete_analysis": {
+    "creation_timestamp": "2025-07-10T20:30:31.749517",
+    "analysis_version": "100_percent_complete",
+    "total_routes_discovered": 108,
+    "detailed_route_categories": {
+      "core_exam_routes": {
+        "description": "試験実行の中核ルート",
+        "routes": [
+          {
+            "path": "/exam",
+            "function": "exam",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_2_1"
+          },
+          {
+            "path": "/exam/next",
+            "function": "exam_next",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_2_1"
+          },
+          {
+            "path": "/result",
+            "function": "result",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_2_1"
+          },
+          {
+            "path": "/api/review/questions",
+            "function": "get_review_questions",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_2_1"
+          },
+          {
+            "path": "/exam/review",
+            "function": "review_questions",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_2_1"
+          },
+          {
+            "path": "/exam_simulator",
+            "function": "exam_simulator_page",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_2_1"
+          },
+          {
+            "path": "/start_exam/<exam_type>",
+            "function": "start_exam",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_2_1"
+          },
+          {
+            "path": "/exam_question",
+            "function": "exam_question",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_2_1"
+          },
+          {
+            "path": "/exam_navigation",
+            "function": "exam_navigation",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_2_1"
+          },
+          {
+            "path": "/exam_results",
+            "function": "exam_results",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_2_1"
+          },
+          {
+            "path": "/api/exam_status",
+            "function": "api_exam_status",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_2_1"
+          },
+          {
+            "path": "/api/mobile/question/<int:question_id>",
+            "function": "mobile_optimized_question",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_2_1"
+          },
+          {
+            "path": "/api/mobile/cache/questions",
+            "function": "mobile_cache_questions",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_2_1"
+          }
+        ],
+        "priority": "最高"
+      },
+      "basic_subject_routes": {
+        "description": "基礎科目専用ルート",
+        "routes": [
+          {
+            "path": "/api/enterprise/users",
+            "function": "study_basic",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_2_1"
+          }
+        ],
+        "priority": "高"
+      },
+      "specialist_subject_routes": {
+        "description": "専門科目関連ルート",
+        "routes": [
+          {
+            "path": "/study/specialist/<department>",
+            "function": "study_specialist",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_2_3"
+          }
+        ],
+        "priority": "高"
+      },
+      "api_routes": {
+        "description": "API・統合機能ルート",
+        "routes": [
+          {
+            "path": "/api/review/count",
+            "function": "api_review_count",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/review/remove",
+            "function": "remove_from_review",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/review/bulk_remove",
+            "function": "bulk_remove_from_review",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/data/export",
+            "function": "clear_cache",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/bookmark",
+            "function": "bookmark_question",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/bookmarks",
+            "function": "get_bookmarks",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/bookmark",
+            "function": "remove_bookmark",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/gamification/status",
+            "function": "gamification_status",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/difficulty/status",
+            "function": "api_difficulty_status",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/learning/realtime_tracking",
+            "function": "api_realtime_learning_tracking",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/learning/biorhythm",
+            "function": "api_biorhythm_calculation",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/learning/optimal_schedule",
+            "function": "api_optimal_schedule",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/ai_analysis",
+            "function": "api_ai_analysis",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/mobile/manifest",
+            "function": "mobile_manifest",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/mobile/offline/save",
+            "function": "save_offline_data",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/mobile/offline/sync",
+            "function": "sync_offline_data",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/mobile/voice/settings",
+            "function": "voice_settings",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/mobile/touch/settings",
+            "function": "touch_settings",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/mobile/performance",
+            "function": "mobile_performance_metrics",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/auth/generate_key",
+            "function": "generate_api_key",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/auth/validate_key",
+            "function": "validate_api_key",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/auth/revoke_key",
+            "function": "revoke_api_key",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/users",
+            "function": "api_users_list",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/users/<user_id>/progress",
+            "function": "api_user_progress",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/users/<user_id>/certifications",
+            "function": "api_user_certifications",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/reports/progress",
+            "function": "api_progress_reports",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/reports/organization/<org_id>",
+            "function": "api_organization_report",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/reports/export/<format>",
+            "function": "api_export_analytics",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/certifications",
+            "function": "api_certifications",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/certifications/<cert_id>/progress",
+            "function": "api_certification_progress",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/organizations",
+            "function": "api_organizations",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/organizations/<org_id>/users",
+            "function": "api_organization_users",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/personalization/profile/<user_id>",
+            "function": "api_personalization_profile",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/personalization/recommendations/<user_id>",
+            "function": "api_personalization_recommendations",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/api/personalization/ui/<user_id>",
+            "function": "api_personalization_ui",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          }
+        ],
+        "priority": "中"
+      },
+      "admin_routes": {
+        "description": "管理機能ルート",
+        "routes": [
+          {
+            "path": "/ai_dashboard",
+            "function": "ai_dashboard",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/admin",
+            "function": "admin_api_refresh",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          },
+          {
+            "path": "/enterprise_dashboard",
+            "function": "enterprise_dashboard_redirect",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_1"
+          }
+        ],
+        "priority": "中"
+      },
+      "utility_routes": {
+        "description": "ユーティリティ・補助ルート",
+        "routes": [
+          {
+            "path": "/",
+            "function": "index",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/set_user",
+            "function": "set_user",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/change_user",
+            "function": "change_user",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/force_refresh",
+            "function": "force_refresh",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/statistics",
+            "function": "statistics",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/department_statistics",
+            "function": "department_statistics",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/departments",
+            "function": "departments",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/departments/<department_id>",
+            "function": "select_department",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/departments/<department_id>/types",
+            "function": "question_types",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/departments/<department_id>/types/<question_type>/categories",
+            "function": "department_categories",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/department_study/<department>",
+            "function": "department_study",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/categories",
+            "function": "categories",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/review",
+            "function": "review_list",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/srs_stats",
+            "function": "srs_statistics",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/reset",
+            "function": "reset",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/force_reset",
+            "function": "force_reset",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/help",
+            "function": "help_page",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/debug",
+            "function": "debug_page",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/bookmark",
+            "function": "add_bookmark",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/bookmarks",
+            "function": "bookmarks_page",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/debug/create_review_data",
+            "function": "create_review_test_data",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/debug/clear_session",
+            "function": "clear_session_debug",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/achievements",
+            "function": "achievements",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/study_calendar",
+            "function": "study_calendar",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/ai_analysis",
+            "function": "ai_analysis",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/adaptive_questions",
+            "function": "adaptive_questions",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/integrated_learning",
+            "function": "integrated_learning",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/integrated_learning_selection",
+            "function": "integrated_learning_selection",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/learner_insights",
+            "function": "learner_insights",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/learning_optimization",
+            "function": "learning_optimization",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/learning_plan",
+            "function": "learning_plan",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/submit_exam_answer",
+            "function": "submit_exam_answer",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/flag_exam_question",
+            "function": "flag_exam_question",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/finish_exam",
+            "function": "finish_exam",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/advanced_statistics",
+            "function": "advanced_statistics",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/mobile_settings",
+            "function": "mobile_settings",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/manifest.json",
+            "function": "pwa_manifest",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/sw.js",
+            "function": "service_worker",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/favicon.ico",
+            "function": "favicon",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/icon-<size>.png",
+            "function": "app_icon",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/social_learning",
+            "function": "social_learning_redirect",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/leaderboard",
+            "function": "leaderboard_redirect",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/health_check",
+            "function": "health_check",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/advanced_analytics",
+            "function": "advanced_analytics_view",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/social",
+            "function": "social_learning_page",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/social/create_group",
+            "function": "create_study_group",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/social/join_group",
+            "function": "join_study_group",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/social/leave_group",
+            "function": "leave_study_group",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/social/create_discussion",
+            "function": "create_discussion",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/social/discussion/<discussion_id>",
+            "function": "discussion_detail",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/social/peer_comparison",
+            "function": "peer_comparison",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/social/leaderboard",
+            "function": "leaderboard",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/social/study_partners",
+            "function": "study_partners",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/api_integration",
+            "function": "api_integration_dashboard",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          },
+          {
+            "path": "/health",
+            "function": "health_status",
+            "http_methods": "GET,POST",
+            "estimated_complexity": "medium",
+            "migration_priority": "phase_3_2"
+          }
+        ],
+        "priority": "低"
+      }
+    },
+    "route_dependency_analysis": {
+      "high_priority_core_routes": 14,
+      "medium_priority_routes": 1,
+      "low_priority_routes": 93,
+      "total_migration_phases": 4,
+      "estimated_migration_timeline": "16-20週間"
+    },
+    "strangler_fig_migration_priority": {
+      "phase_2_1_immediate": [
+        "/exam -> exam",
+        "/exam/next -> exam_next",
+        "/result -> result",
+        "/api/review/questions -> get_review_questions",
+        "/exam/review -> review_questions",
+        "/exam_simulator -> exam_simulator_page",
+        "/start_exam/<exam_type> -> start_exam",
+        "/exam_question -> exam_question",
+        "/exam_navigation -> exam_navigation",
+        "/exam_results -> exam_results",
+        "/api/exam_status -> api_exam_status",
+        "/api/mobile/question/<int:question_id> -> mobile_optimized_question",
+        "/api/mobile/cache/questions -> mobile_cache_questions",
+        "/api/enterprise/users -> study_basic"
+      ],
+      "phase_2_2_standard": [],
+      "phase_2_3_gradual": [
+        "/study/specialist/<department> -> study_specialist"
+      ],
+      "phase_3_1_deferred": [
+        "/api/review/count -> api_review_count",
+        "/api/review/remove -> remove_from_review",
+        "/api/review/bulk_remove -> bulk_remove_from_review",
+        "/api/data/export -> clear_cache",
+        "/api/bookmark -> bookmark_question",
+        "/api/bookmarks -> get_bookmarks",
+        "/api/bookmark -> remove_bookmark",
+        "/api/gamification/status -> gamification_status",
+        "/api/difficulty/status -> api_difficulty_status",
+        "/api/learning/realtime_tracking -> api_realtime_learning_tracking",
+        "/api/learning/biorhythm -> api_biorhythm_calculation",
+        "/api/learning/optimal_schedule -> api_optimal_schedule",
+        "/api/ai_analysis -> api_ai_analysis",
+        "/api/mobile/manifest -> mobile_manifest",
+        "/api/mobile/offline/save -> save_offline_data",
+        "/api/mobile/offline/sync -> sync_offline_data",
+        "/api/mobile/voice/settings -> voice_settings",
+        "/api/mobile/touch/settings -> touch_settings",
+        "/api/mobile/performance -> mobile_performance_metrics",
+        "/api/auth/generate_key -> generate_api_key",
+        "/api/auth/validate_key -> validate_api_key",
+        "/api/auth/revoke_key -> revoke_api_key",
+        "/api/users -> api_users_list",
+        "/api/users/<user_id>/progress -> api_user_progress",
+        "/api/users/<user_id>/certifications -> api_user_certifications",
+        "/api/reports/progress -> api_progress_reports",
+        "/api/reports/organization/<org_id> -> api_organization_report",
+        "/api/reports/export/<format> -> api_export_analytics",
+        "/api/certifications -> api_certifications",
+        "/api/certifications/<cert_id>/progress -> api_certification_progress",
+        "/api/organizations -> api_organizations",
+        "/api/organizations/<org_id>/users -> api_organization_users",
+        "/api/personalization/profile/<user_id> -> api_personalization_profile",
+        "/api/personalization/recommendations/<user_id> -> api_personalization_recommendations",
+        "/api/personalization/ui/<user_id> -> api_personalization_ui",
+        "/ai_dashboard -> ai_dashboard",
+        "/admin -> admin_api_refresh",
+        "/enterprise_dashboard -> enterprise_dashboard_redirect"
+      ],
+      "phase_3_2_eventual": [
+        "/ -> index",
+        "/set_user -> set_user",
+        "/change_user -> change_user",
+        "/force_refresh -> force_refresh",
+        "/statistics -> statistics",
+        "/department_statistics -> department_statistics",
+        "/departments -> departments",
+        "/departments/<department_id> -> select_department",
+        "/departments/<department_id>/types -> question_types",
+        "/departments/<department_id>/types/<question_type>/categories -> department_categories",
+        "/department_study/<department> -> department_study",
+        "/categories -> categories",
+        "/review -> review_list",
+        "/srs_stats -> srs_statistics",
+        "/reset -> reset",
+        "/force_reset -> force_reset",
+        "/help -> help_page",
+        "/debug -> debug_page",
+        "/bookmark -> add_bookmark",
+        "/bookmarks -> bookmarks_page",
+        "/debug/create_review_data -> create_review_test_data",
+        "/debug/clear_session -> clear_session_debug",
+        "/achievements -> achievements",
+        "/study_calendar -> study_calendar",
+        "/ai_analysis -> ai_analysis",
+        "/adaptive_questions -> adaptive_questions",
+        "/integrated_learning -> integrated_learning",
+        "/integrated_learning_selection -> integrated_learning_selection",
+        "/learner_insights -> learner_insights",
+        "/learning_optimization -> learning_optimization",
+        "/learning_plan -> learning_plan",
+        "/submit_exam_answer -> submit_exam_answer",
+        "/flag_exam_question -> flag_exam_question",
+        "/finish_exam -> finish_exam",
+        "/advanced_statistics -> advanced_statistics",
+        "/mobile_settings -> mobile_settings",
+        "/manifest.json -> pwa_manifest",
+        "/sw.js -> service_worker",
+        "/favicon.ico -> favicon",
+        "/icon-<size>.png -> app_icon",
+        "/social_learning -> social_learning_redirect",
+        "/leaderboard -> leaderboard_redirect",
+        "/health_check -> health_check",
+        "/advanced_analytics -> advanced_analytics_view",
+        "/social -> social_learning_page",
+        "/social/create_group -> create_study_group",
+        "/social/join_group -> join_study_group",
+        "/social/leave_group -> leave_study_group",
+        "/social/create_discussion -> create_discussion",
+        "/social/discussion/<discussion_id> -> discussion_detail",
+        "/social/peer_comparison -> peer_comparison",
+        "/social/leaderboard -> leaderboard",
+        "/social/study_partners -> study_partners",
+        "/api_integration -> api_integration_dashboard",
+        "/health -> health_status"
+      ]
+    }
+  }
+}

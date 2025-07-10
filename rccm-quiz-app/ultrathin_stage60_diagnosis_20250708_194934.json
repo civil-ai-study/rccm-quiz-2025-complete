@@ -1,0 +1,54 @@
+{
+  "timestamp": "2025-07-08T19:49:34.149218",
+  "stage": "ultrathin_stage60_deep_diagnosis",
+  "diagnosis_results": {
+    "server_response_analysis": {
+      "http_code": "</html> 200",
+      "response_time_seconds": "0.530947",
+      "content_size_bytes": "38733",
+      "stage59_modification_detected": false,
+      "server_operational": false,
+      "content_summary": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n..."
+    },
+    "load_questions_execution_status": "unknown",
+    "data_loading_stage_analysis": {},
+    "error_pattern_detection": {
+      "cache_clear_response_size": 153,
+      "detected_error_patterns": [],
+      "stage59_execution_confirmed": false,
+      "critical_errors_present": false
+    },
+    "basic_loading_analysis": {
+      "response_size": 34098,
+      "stage59_logs_detected": [],
+      "stage59_logging_active": false,
+      "question_content_present": false,
+      "form_options_present": false,
+      "form_structure_present": true,
+      "data_loading_status": "failed"
+    },
+    "specialist_loading_analysis": {
+      "road": {
+        "department": "road",
+        "specialist_question_count": 0,
+        "error_message_present": true,
+        "stage59_specialist_logs": [],
+        "response_size": 19931
+      },
+      "river_erosion": {
+        "department": "river_erosion",
+        "specialist_question_count": 0,
+        "error_message_present": false,
+        "stage59_specialist_logs": [],
+        "response_size": 16906
+      },
+      "urban_planning": {
+        "department": "urban_planning",
+        "specialist_question_count": 0,
+        "error_message_present": true,
+        "stage59_specialist_logs": [],
+        "response_size": 20012
+      }
+    }
+  }
+}

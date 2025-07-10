@@ -1,0 +1,129 @@
+{
+  "timestamp": "2025-07-10T00:24:53.315077",
+  "test_name": "ultrasync_critical_session_diagnosis",
+  "issue_description": "基礎科目試験開始後、exam_simulatorページが正常に表示されるが、実際の試験フォームが空でCSRFトークンも存在しない",
+  "critical_findings": [
+    {
+      "finding": "start_exam関数内の基礎科目処理",
+      "details": "基礎科目関連処理行数: 26",
+      "sample_lines": [
+        "            if exam_type == '基礎科目':",
+        "                category_param = '基礎科目'",
+        "        if exam_type == '基礎科目':",
+        "            # 基礎科目の場合は基礎問題のみ",
+        "            all_questions = load_questions()  # 基礎科目のみ読み込み",
+        "            logger.info(f\"🔥 EXAM START: 基礎科目データ読み込み完了 - {len(all_questions)}問\")",
+        "                # エラー時は基礎科目にフォールバック",
+        "                logger.warning(f\"🔄 専門科目読み込み失敗、基礎科目にフォールバック - 基礎科目数:{len(all_questions)}問\")",
+        "            \"target_year\": target_year if exam_type != '基礎科目' else 'N/A',",
+        "            \"data_source\": \"specialist\" if exam_type != '基礎科目' else \"basic\","
+      ]
+    },
+    {
+      "finding": "exam_simulator_page関数の実装",
+      "details": "exam_simulator_page関数行数: 15",
+      "content": [
+        "    \"\"\"試験シミュレーター画面\"\"\"",
+        "    try:",
+        "        return render_template(",
+        "            'exam_simulator.html',",
+        "            exam_configs=exam_simulator.exam_configs",
+        "        )",
+        "",
+        "    except Exception as e:",
+        "        logger.error(f\"試験シミュレーター画面エラー: {e}\")",
+        "        return render_template('error.html', error=\"試験シミュレーター画面の表示中にエラーが発生しました。\")",
+        "",
+        "# 🛡️ ULTRATHIN修復: 基礎科目専用ルート（405エラー回避）",
+        "@app.route('/start_exam/basic', methods=['GET', 'POST'])",
+        "@app.route('/start_exam/foundation', methods=['GET', 'POST'])",
+        "@memory_monitoring_decorator(_memory_leak_monitor)"
+      ]
+    },
+    {
+      "finding": "exam_question関数の実装",
+      "details": "exam_question関数行数: 132",
+      "first_20_lines": [
+        "    \"\"\"試験問題表示\"\"\"",
+        "    try:",
+        "        # 🔥 ULTRA SYNC FIX: 詳細ログ追加",
+        "        logger.info(f\"🔥 EXAM QUESTION: 試験問題表示処理開始\")",
+        "        ",
+        "        exam_session = session.get('exam_session')",
+        "        logger.info(f\"🛡️ ULTRATHIN段階6: EXAM QUESTION処理開始 - セッション存在: {exam_session is not None}\")",
+        "        ",
+        "        if not exam_session:",
+        "            # 🛡️ ULTRATHIN区段階14: 暫定的セッション復元（最安全修正）",
+        "            logger.warning(f\"🛡️ ULTRATHIN段階14: セッション不存在 - デバッグ情報からの復元を試行\")",
+        "            ",
+        "            try:",
+        "                # 専門科目データが正常に読み込まれているかを確認",
+        "                from flask import current_app",
+        "                with current_app.test_request_context():",
+        "                    # デバッグ情報取得（専門科目分離機能は完全保護）",
+        "                    debug_response = requests.get(f\"{request.url_root}debug/session_info\")",
+        "                    if debug_response.status_code == 200:",
+        "                        debug_data = debug_response.json()"
+      ]
+    },
+    {
+      "finding": "セッション管理の問題",
+      "details": "exam_session関連行数: 103",
+      "session_creation_lines": [
+        "        exam_session = {",
+        "        session['exam_session'] = lightweight_session",
+        "            session['exam_session'] = lightweight_session",
+        "                session['exam_session'] = lightweight_session",
+        "                            session['exam_session'] = restored_session"
+      ]
+    },
+    {
+      "finding": "exam_simulator.htmlテンプレート分析",
+      "details": {
+        "template_exists": true,
+        "has_form_elements": false,
+        "has_csrf_token": false,
+        "template_size": 14369
+      }
+    },
+    {
+      "finding": "根本原因分析",
+      "details": {
+        "redirect_count": 2,
+        "redirect_lines": [
+          "                response = make_response(redirect(url_for('exam_question')))",
+          "            return redirect(url_for('exam_question'))"
+        ],
+        "probable_issue": "start_exam関数が正常に実行されているが、リダイレクト先での処理に問題がある可能性"
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "issue": "セッション初期化問題",
+      "solution": "start_exam関数内でのexam_session作成直後にセッション状態を確認し、正常に保存されているかを検証する"
+    },
+    {
+      "priority": "HIGH",
+      "issue": "exam_simulator_page関数の問題",
+      "solution": "exam_simulator_page関数がセッション状態を正しく読み取れているかを確認し、必要に応じて修正する"
+    },
+    {
+      "priority": "MEDIUM",
+      "issue": "テンプレート側の問題",
+      "solution": "exam_simulator.htmlテンプレートが正しくセッション情報を受け取り、フォーム要素を生成しているかを確認する"
+    },
+    {
+      "priority": "MEDIUM",
+      "issue": "CSRFトークンの問題",
+      "solution": "CSRFトークンが正しく生成・配置されているかを確認し、必要に応じて修正する"
+    }
+  ],
+  "emergency_actions": [
+    "1. start_exam関数内でのセッション保存処理を強化する",
+    "2. exam_simulator_page関数でのセッション読み取り処理を修正する",
+    "3. exam_question関数へのリダイレクトを直接的に修正する",
+    "4. セッション状態のデバッグ情報を追加する"
+  ]
+}

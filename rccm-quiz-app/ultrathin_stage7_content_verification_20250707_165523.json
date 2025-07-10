@@ -1,0 +1,48 @@
+{
+  "detailed_analysis": {
+    "response_code": 200,
+    "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+    "content_length": 36999,
+    "page_title": "試験シミュレーター - RCCM試験問題集",
+    "elements_check": {
+      "exam_simulator": false,
+      "exam_question": false,
+      "question_text": false,
+      "answer_options": false,
+      "form_check": false,
+      "problem_number": false,
+      "multiple_choice": true,
+      "submit_form": false
+    },
+    "found_questions": [
+      "集\n    \n    \n    \n    \n    \n    \n        // 🔥 ページ読み込み時のキャッシュ強制クリア（ユーザー要求による）\n        (function() {\n  ",
+      "対応 */\n      input, textarea, select {\n        font-size: 16px !important; /* ズーム防止 */\n      }\n      "
+    ],
+    "page_type": "actual_question_page",
+    "question_count": 2
+  },
+  "multi_department_results": [
+    {
+      "department": "土質及び基礎",
+      "url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+      "has_question_elements": true,
+      "is_simulator_page": true,
+      "content_length": 36999
+    },
+    {
+      "department": "トンネル",
+      "url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+      "has_question_elements": true,
+      "is_simulator_page": true,
+      "content_length": 36999
+    },
+    {
+      "department": "道路",
+      "url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+      "has_question_elements": true,
+      "is_simulator_page": true,
+      "content_length": 36999
+    }
+  ],
+  "timestamp": "2025-07-07T16:55:23.857435"
+}

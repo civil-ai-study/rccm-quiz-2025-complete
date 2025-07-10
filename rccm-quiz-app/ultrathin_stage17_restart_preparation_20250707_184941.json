@@ -1,0 +1,154 @@
+{
+  "timestamp": "2025-07-07T18:49:23.579779",
+  "baseline_safety_verification": {
+    "department_safety_results": {
+      "基礎科目": {
+        "department": "基礎科目",
+        "expected_count": 202,
+        "actual_count": 202,
+        "expected_source": "basic",
+        "actual_source": "basic",
+        "count_match": true,
+        "source_match": true,
+        "fully_safe": true
+      },
+      "河川、砂防及び海岸・海洋": {
+        "department": "河川、砂防及び海岸・海洋",
+        "expected_count": 30,
+        "actual_count": 30,
+        "expected_source": "specialist",
+        "actual_source": "specialist",
+        "count_match": true,
+        "source_match": true,
+        "fully_safe": true
+      },
+      "トンネル": {
+        "department": "トンネル",
+        "expected_count": 30,
+        "actual_count": 30,
+        "expected_source": "specialist",
+        "actual_source": "specialist",
+        "count_match": true,
+        "source_match": true,
+        "fully_safe": true
+      },
+      "道路": {
+        "department": "道路",
+        "expected_count": 30,
+        "actual_count": 30,
+        "expected_source": "specialist",
+        "actual_source": "specialist",
+        "count_match": true,
+        "source_match": true,
+        "fully_safe": true
+      },
+      "土質及び基礎": {
+        "department": "土質及び基礎",
+        "expected_count": 30,
+        "actual_count": 30,
+        "expected_source": "specialist",
+        "actual_source": "specialist",
+        "count_match": true,
+        "source_match": true,
+        "fully_safe": true
+      }
+    },
+    "safe_departments": [
+      "基礎科目",
+      "河川、砂防及び海岸・海洋",
+      "トンネル",
+      "道路",
+      "土質及び基礎"
+    ],
+    "total_departments": 5,
+    "baseline_safety_score": 100.0,
+    "restoration_function_working": true,
+    "ready_for_improvement": true
+  },
+  "stage15_readiness_assessment": {
+    "target_improvement": "セッション保持最適化",
+    "current_post_status": {
+      "河川、砂防及び海岸・海洋": {
+        "department": "河川、砂防及び海岸・海洋",
+        "post_status_code": 200,
+        "response_time": 0.5688047409057617,
+        "final_page": "exam_simulator",
+        "redirect_count": 2,
+        "reaches_exam_question": false,
+        "reaches_exam_simulator": true
+      },
+      "トンネル": {
+        "department": "トンネル",
+        "post_status_code": 200,
+        "response_time": 0.5475914478302002,
+        "final_page": "exam_simulator",
+        "redirect_count": 2,
+        "reaches_exam_question": false,
+        "reaches_exam_simulator": true
+      },
+      "道路": {
+        "department": "道路",
+        "post_status_code": 200,
+        "response_time": 0.5176613330841064,
+        "final_page": "exam_simulator",
+        "redirect_count": 2,
+        "reaches_exam_question": false,
+        "reaches_exam_simulator": true
+      }
+    },
+    "current_success_rate": 0.0,
+    "improvement_potential": 100.0,
+    "improvement_worthwhile": true,
+    "risk_assessment": {
+      "implementation_risk": "minimal",
+      "rollback_readiness": "immediate",
+      "safety_net_available": true
+    }
+  },
+  "safe_restart_plan": {
+    "restart_decision": {
+      "restart_approved": true,
+      "restart_strategy": "gradual_safe_implementation",
+      "approach": "ULTRATHIN段階15改善の安全再開",
+      "phases": [
+        {
+          "phase": 1,
+          "name": "最終安全確認",
+          "description": "改善実装直前の最終安全チェック",
+          "safety_level": "maximum"
+        },
+        {
+          "phase": 2,
+          "name": "セッション保持最適化実装",
+          "description": "段階15で計画されたminimal_risk_enhancement実装",
+          "safety_level": "high"
+        },
+        {
+          "phase": 3,
+          "name": "効果測定と安全性確認",
+          "description": "改善効果の測定と副作用ゼロ確認",
+          "safety_level": "comprehensive"
+        }
+      ],
+      "safety_measures": [
+        "段階14復元機能の完全保護",
+        "専門科目分離機能の絶対保護",
+        "基礎科目機能の完全保護",
+        "即座ロールバック準備"
+      ],
+      "success_criteria": [
+        "POST→exam_question到達率向上",
+        "既存機能100%保護",
+        "副作用ゼロ",
+        "システム安定性維持"
+      ]
+    },
+    "recommended_action": "段階15改善の安全再開実行",
+    "decision_factors": {
+      "baseline_safety_ready": true,
+      "improvement_worthwhile": true,
+      "baseline_score": 100.0
+    },
+    "ultrathin_compliance": true
+  }
+}

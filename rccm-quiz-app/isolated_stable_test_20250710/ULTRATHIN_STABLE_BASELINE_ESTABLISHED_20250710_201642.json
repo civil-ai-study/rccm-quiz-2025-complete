@@ -1,0 +1,1070 @@
+{
+  "ultrathin_stable_baseline": {
+    "establishment_info": {
+      "timestamp": "2025-07-10T20:16:42.729418",
+      "phase": "ULTRATHIN区 PHASE 1-3",
+      "status": "正式確立完了"
+    },
+    "baseline_confirmation": {
+      "confirmed": true,
+      "source_file": "app.py.backup_20250625_090058",
+      "line_count": 6121,
+      "test_results": "基礎科目10問完走100%成功"
+    },
+    "detailed_analysis": {
+      "routes": {
+        "total_routes": 108,
+        "route_categories": {
+          "core_exam_routes": 12,
+          "basic_subject_routes": 0,
+          "specialist_subject_routes": 1,
+          "api_routes": 36,
+          "admin_routes": 3,
+          "utility_routes": 56
+        },
+        "detailed_routes": {
+          "core_exam_routes": [
+            [
+              "/exam",
+              "exam"
+            ],
+            [
+              "/exam/next",
+              "exam_next"
+            ],
+            [
+              "/result",
+              "result"
+            ],
+            [
+              "/api/review/questions",
+              "get_review_questions"
+            ],
+            [
+              "/exam/review",
+              "review_questions"
+            ],
+            [
+              "/exam_simulator",
+              "exam_simulator_page"
+            ],
+            [
+              "/exam_question",
+              "exam_question"
+            ],
+            [
+              "/exam_navigation",
+              "exam_navigation"
+            ],
+            [
+              "/exam_results",
+              "exam_results"
+            ],
+            [
+              "/api/exam_status",
+              "api_exam_status"
+            ],
+            [
+              "/api/mobile/question/<int:question_id>",
+              "mobile_optimized_question"
+            ],
+            [
+              "/api/mobile/cache/questions",
+              "mobile_cache_questions"
+            ]
+          ],
+          "basic_subject_routes": [],
+          "specialist_subject_routes": [
+            [
+              "/study/specialist/<department>",
+              "study_specialist"
+            ]
+          ],
+          "api_routes": [
+            [
+              "/api/review/count",
+              "api_review_count"
+            ],
+            [
+              "/api/review/remove",
+              "remove_from_review"
+            ],
+            [
+              "/api/review/bulk_remove",
+              "bulk_remove_from_review"
+            ],
+            [
+              "/api/data/export",
+              "clear_cache"
+            ],
+            [
+              "/api/bookmark",
+              "bookmark_question"
+            ],
+            [
+              "/api/bookmarks",
+              "get_bookmarks"
+            ],
+            [
+              "/api/bookmark",
+              "remove_bookmark"
+            ],
+            [
+              "/api/gamification/status",
+              "gamification_status"
+            ],
+            [
+              "/api/difficulty/status",
+              "api_difficulty_status"
+            ],
+            [
+              "/api/learning/realtime_tracking",
+              "api_realtime_learning_tracking"
+            ],
+            [
+              "/api/learning/biorhythm",
+              "api_biorhythm_calculation"
+            ],
+            [
+              "/api/learning/optimal_schedule",
+              "api_optimal_schedule"
+            ],
+            [
+              "/api/ai_analysis",
+              "api_ai_analysis"
+            ],
+            [
+              "/api/mobile/manifest",
+              "mobile_manifest"
+            ],
+            [
+              "/api/mobile/offline/save",
+              "save_offline_data"
+            ],
+            [
+              "/api/mobile/offline/sync",
+              "sync_offline_data"
+            ],
+            [
+              "/api/mobile/voice/settings",
+              "voice_settings"
+            ],
+            [
+              "/api/mobile/touch/settings",
+              "touch_settings"
+            ],
+            [
+              "/api/mobile/performance",
+              "mobile_performance_metrics"
+            ],
+            [
+              "/api/auth/generate_key",
+              "generate_api_key"
+            ],
+            [
+              "/api/auth/validate_key",
+              "validate_api_key"
+            ],
+            [
+              "/api/auth/revoke_key",
+              "revoke_api_key"
+            ],
+            [
+              "/api/users",
+              "api_users_list"
+            ],
+            [
+              "/api/users/<user_id>/progress",
+              "api_user_progress"
+            ],
+            [
+              "/api/users/<user_id>/certifications",
+              "api_user_certifications"
+            ],
+            [
+              "/api/reports/progress",
+              "api_progress_reports"
+            ],
+            [
+              "/api/reports/organization/<org_id>",
+              "api_organization_report"
+            ],
+            [
+              "/api/reports/export/<format>",
+              "api_export_analytics"
+            ],
+            [
+              "/api/certifications",
+              "api_certifications"
+            ],
+            [
+              "/api/certifications/<cert_id>/progress",
+              "api_certification_progress"
+            ],
+            [
+              "/api/organizations",
+              "api_organizations"
+            ],
+            [
+              "/api/organizations/<org_id>/users",
+              "api_organization_users"
+            ],
+            [
+              "/api/personalization/profile/<user_id>",
+              "api_personalization_profile"
+            ],
+            [
+              "/api/personalization/recommendations/<user_id>",
+              "api_personalization_recommendations"
+            ],
+            [
+              "/api/personalization/ui/<user_id>",
+              "api_personalization_ui"
+            ],
+            [
+              "/api/enterprise/users",
+              "study_basic"
+            ]
+          ],
+          "admin_routes": [
+            [
+              "/ai_dashboard",
+              "ai_dashboard"
+            ],
+            [
+              "/admin",
+              "admin_api_refresh"
+            ],
+            [
+              "/enterprise_dashboard",
+              "enterprise_dashboard_redirect"
+            ]
+          ],
+          "utility_routes": [
+            [
+              "/",
+              "index"
+            ],
+            [
+              "/set_user",
+              "set_user"
+            ],
+            [
+              "/change_user",
+              "change_user"
+            ],
+            [
+              "/force_refresh",
+              "force_refresh"
+            ],
+            [
+              "/statistics",
+              "statistics"
+            ],
+            [
+              "/department_statistics",
+              "department_statistics"
+            ],
+            [
+              "/departments",
+              "departments"
+            ],
+            [
+              "/departments/<department_id>",
+              "select_department"
+            ],
+            [
+              "/departments/<department_id>/types",
+              "question_types"
+            ],
+            [
+              "/departments/<department_id>/types/<question_type>/categories",
+              "department_categories"
+            ],
+            [
+              "/department_study/<department>",
+              "department_study"
+            ],
+            [
+              "/categories",
+              "categories"
+            ],
+            [
+              "/review",
+              "review_list"
+            ],
+            [
+              "/srs_stats",
+              "srs_statistics"
+            ],
+            [
+              "/reset",
+              "reset"
+            ],
+            [
+              "/force_reset",
+              "force_reset"
+            ],
+            [
+              "/help",
+              "help_page"
+            ],
+            [
+              "/debug",
+              "debug_page"
+            ],
+            [
+              "/bookmark",
+              "add_bookmark"
+            ],
+            [
+              "/bookmarks",
+              "bookmarks_page"
+            ],
+            [
+              "/debug/create_review_data",
+              "create_review_test_data"
+            ],
+            [
+              "/debug/clear_session",
+              "clear_session_debug"
+            ],
+            [
+              "/achievements",
+              "achievements"
+            ],
+            [
+              "/study_calendar",
+              "study_calendar"
+            ],
+            [
+              "/ai_analysis",
+              "ai_analysis"
+            ],
+            [
+              "/adaptive_questions",
+              "adaptive_questions"
+            ],
+            [
+              "/integrated_learning",
+              "integrated_learning"
+            ],
+            [
+              "/integrated_learning_selection",
+              "integrated_learning_selection"
+            ],
+            [
+              "/learner_insights",
+              "learner_insights"
+            ],
+            [
+              "/learning_optimization",
+              "learning_optimization"
+            ],
+            [
+              "/learning_plan",
+              "learning_plan"
+            ],
+            [
+              "/start_exam/<exam_type>",
+              "start_exam"
+            ],
+            [
+              "/submit_exam_answer",
+              "submit_exam_answer"
+            ],
+            [
+              "/flag_exam_question",
+              "flag_exam_question"
+            ],
+            [
+              "/finish_exam",
+              "finish_exam"
+            ],
+            [
+              "/advanced_statistics",
+              "advanced_statistics"
+            ],
+            [
+              "/mobile_settings",
+              "mobile_settings"
+            ],
+            [
+              "/manifest.json",
+              "pwa_manifest"
+            ],
+            [
+              "/sw.js",
+              "service_worker"
+            ],
+            [
+              "/favicon.ico",
+              "favicon"
+            ],
+            [
+              "/icon-<size>.png",
+              "app_icon"
+            ],
+            [
+              "/social_learning",
+              "social_learning_redirect"
+            ],
+            [
+              "/leaderboard",
+              "leaderboard_redirect"
+            ],
+            [
+              "/health_check",
+              "health_check"
+            ],
+            [
+              "/advanced_analytics",
+              "advanced_analytics_view"
+            ],
+            [
+              "/social",
+              "social_learning_page"
+            ],
+            [
+              "/social/create_group",
+              "create_study_group"
+            ],
+            [
+              "/social/join_group",
+              "join_study_group"
+            ],
+            [
+              "/social/leave_group",
+              "leave_study_group"
+            ],
+            [
+              "/social/create_discussion",
+              "create_discussion"
+            ],
+            [
+              "/social/discussion/<discussion_id>",
+              "discussion_detail"
+            ],
+            [
+              "/social/peer_comparison",
+              "peer_comparison"
+            ],
+            [
+              "/social/leaderboard",
+              "leaderboard"
+            ],
+            [
+              "/social/study_partners",
+              "study_partners"
+            ],
+            [
+              "/api_integration",
+              "api_integration_dashboard"
+            ],
+            [
+              "/health",
+              "health_status"
+            ]
+          ]
+        }
+      },
+      "functions": {
+        "total_functions": 162,
+        "function_categories": {
+          "route_handlers": 14,
+          "data_processing": 9,
+          "session_management": 13,
+          "exam_logic": 13,
+          "utility_functions": 113
+        },
+        "detailed_functions": {
+          "route_handlers": [
+            "validate_exam_parameters",
+            "index",
+            "exam",
+            "exam_next",
+            "result",
+            "exam_simulator_page",
+            "start_exam",
+            "exam_question",
+            "submit_exam_answer",
+            "flag_exam_question",
+            "exam_navigation",
+            "finish_exam",
+            "exam_results",
+            "api_exam_status"
+          ],
+          "data_processing": [
+            "update_advanced_srs_data",
+            "validate_question_data_integrity",
+            "load_questions",
+            "after_request_data_save",
+            "export_data",
+            "create_review_test_data",
+            "save_offline_data",
+            "sync_offline_data",
+            "api_enterprise_data_integrity"
+          ],
+          "session_management": [
+            "get_session_lock",
+            "generate_unique_session_id",
+            "_validate_session_integrity",
+            "safe_session_operation",
+            "safe_session_update",
+            "safe_session_get",
+            "clear_questions_cache",
+            "validate_review_session_integrity",
+            "create_robust_review_session",
+            "safe_update_review_session",
+            "clear_cache",
+            "clear_session_debug",
+            "api_enterprise_cache_clear"
+          ],
+          "exam_logic": [
+            "calculate_next_review_date",
+            "get_due_review_questions",
+            "cleanup_mastered_questions",
+            "get_due_questions",
+            "get_mixed_questions",
+            "question_types",
+            "get_review_questions",
+            "bookmark_question",
+            "review_questions",
+            "adaptive_questions",
+            "mobile_optimized_question",
+            "mobile_cache_questions",
+            "admin_api_questions"
+          ],
+          "utility_functions": [
+            "require_admin_auth",
+            "decorated_function",
+            "require_api_key",
+            "decorated_function",
+            "cleanup_old_locks",
+            "update_operation",
+            "get_operation",
+            "after_request",
+            "sanitize_input",
+            "get_adaptive_review_list",
+            "rate_limit_check",
+            "before_request",
+            "set_user",
+            "change_user",
+            "force_refresh",
+            "statistics",
+            "department_statistics",
+            "departments",
+            "select_department",
+            "department_categories",
+            "department_study",
+            "categories",
+            "review_list",
+            "api_review_count",
+            "remove_from_review",
+            "bulk_remove_from_review",
+            "srs_statistics",
+            "reset",
+            "force_reset",
+            "help_page",
+            "debug_page",
+            "get_bookmarks",
+            "add_bookmark",
+            "bookmarks_page",
+            "remove_bookmark",
+            "achievements",
+            "study_calendar",
+            "gamification_status",
+            "ai_analysis",
+            "integrated_learning",
+            "integrated_learning_selection",
+            "learner_insights",
+            "api_difficulty_status",
+            "learning_optimization",
+            "api_realtime_learning_tracking",
+            "api_biorhythm_calculation",
+            "api_optimal_schedule",
+            "api_ai_analysis",
+            "learning_plan",
+            "advanced_statistics",
+            "mobile_manifest",
+            "voice_settings",
+            "touch_settings",
+            "mobile_performance_metrics",
+            "mobile_settings",
+            "pwa_manifest",
+            "service_worker",
+            "favicon",
+            "app_icon",
+            "social_learning_redirect",
+            "leaderboard_redirect",
+            "health_check",
+            "page_not_found",
+            "internal_error",
+            "forbidden",
+            "bad_request",
+            "ai_dashboard",
+            "advanced_analytics_view",
+            "admin_dashboard_page",
+            "admin_api_overview",
+            "admin_api_users",
+            "admin_api_user_detail",
+            "admin_api_content",
+            "admin_api_performance",
+            "admin_api_reports",
+            "admin_api_refresh",
+            "social_learning_page",
+            "create_study_group",
+            "join_study_group",
+            "leave_study_group",
+            "create_discussion",
+            "discussion_detail",
+            "peer_comparison",
+            "leaderboard",
+            "study_partners",
+            "api_integration_dashboard",
+            "generate_api_key",
+            "validate_api_key",
+            "revoke_api_key",
+            "api_users_list",
+            "api_user_progress",
+            "api_user_certifications",
+            "api_progress_reports",
+            "api_organization_report",
+            "api_export_analytics",
+            "api_certifications",
+            "api_certification_progress",
+            "api_organizations",
+            "api_organization_users",
+            "api_personalization_profile",
+            "api_personalization_recommendations",
+            "api_personalization_ui",
+            "api_enterprise_users",
+            "api_enterprise_user_report",
+            "enterprise_dashboard",
+            "api_enterprise_cache_stats",
+            "study_basic",
+            "study_specialist",
+            "enterprise_dashboard_redirect",
+            "health_status",
+            "not_found_error",
+            "internal_error",
+            "handle_exception"
+          ]
+        }
+      },
+      "session_management": {
+        "session_usage_patterns": {},
+        "session_keys": [
+          "is_admin",
+          "exam_question_ids",
+          "exam_current",
+          "user_id",
+          "user_id",
+          "bookmarks",
+          "request_history",
+          "advanced_srs",
+          "bookmarks",
+          "history",
+          "history",
+          "user_name",
+          "session_id",
+          "history",
+          "user_name",
+          "user_name",
+          "user_name",
+          "exam_question_ids",
+          "exam_current",
+          "exam_question_ids",
+          "exam_current",
+          "exam_category",
+          "selected_question_type",
+          "selected_department",
+          "session_id",
+          "data_loaded",
+          "bookmarks",
+          "bookmarks",
+          "selected_department",
+          "selected_question_type",
+          "history",
+          "history",
+          "exam_current",
+          "exam_question_ids",
+          "selected_question_type",
+          "selected_department",
+          "exam_question_ids",
+          "advanced_srs",
+          "bookmarks",
+          "selected_question_type",
+          "selected_question_type",
+          "exam_category",
+          "history",
+          "exam_current",
+          "exam_category",
+          "exam_category",
+          "selected_department",
+          "selected_question_type",
+          "selected_year",
+          "selected_department",
+          "selected_question_type",
+          "exam_question_ids",
+          "exam_current",
+          "exam_current",
+          "exam_category",
+          "exam_current",
+          "selected_question_type",
+          "srs_data",
+          "selected_question_type",
+          "selected_department",
+          "selected_year",
+          "selected_question_type",
+          "exam_category",
+          "exam_question_ids",
+          "exam_question_ids",
+          "selected_question_type",
+          "srs_data",
+          "exam_current",
+          "exam_question_ids",
+          "exam_category",
+          "history",
+          "exam_question_ids",
+          "history",
+          "selected_department",
+          "history",
+          "history",
+          "category_stats",
+          "history",
+          "history",
+          "history",
+          "history",
+          "category_stats",
+          "selected_department",
+          "advanced_srs",
+          "bookmarks",
+          "srs_data",
+          "bookmarks",
+          "bookmarks",
+          "srs_data",
+          "session_id",
+          "history",
+          "bookmarks",
+          "bookmarks",
+          "bookmarks",
+          "advanced_srs",
+          "bookmarks",
+          "advanced_srs",
+          "exam_question_ids",
+          "exam_current",
+          "exam_category",
+          "selected_question_type",
+          "earned_badges",
+          "earned_badges",
+          "history",
+          "selected_department",
+          "selected_department",
+          "selected_department",
+          "selected_department",
+          "history",
+          "dynamic_session_config",
+          "exam_session",
+          "exam_session",
+          "exam_session",
+          "exam_session",
+          "exam_session",
+          "exam_session",
+          "exam_history",
+          "exam_session",
+          "session_id",
+          "history",
+          "srs_data",
+          "history",
+          "srs_data",
+          "user_id",
+          "user_id",
+          "user_id",
+          "user_id",
+          "user_id",
+          "user_id",
+          "user_id",
+          "user_id",
+          "exam_question_ids",
+          "exam_current",
+          "history",
+          "exam_current",
+          "advanced_srs",
+          "advanced_srs",
+          "request_history",
+          "last_activity",
+          "session_id",
+          "data_loaded",
+          "exam_question_ids",
+          "history",
+          "category_stats",
+          "user_name",
+          "user_id",
+          "base_user_id",
+          "session_id",
+          "login_time",
+          "bookmarks",
+          "bookmarks",
+          "bookmarks",
+          "history",
+          "category_stats",
+          "exam_current",
+          "exam_question_ids",
+          "exam_current",
+          "selected_question_type",
+          "exam_category",
+          "review_session_restored",
+          "exam_question_ids",
+          "exam_current",
+          "selected_question_type",
+          "exam_category",
+          "review_session_minimal",
+          "exam_question_ids",
+          "exam_current",
+          "selected_question_type",
+          "exam_category",
+          "exam_question_ids",
+          "exam_current",
+          "selected_question_type",
+          "exam_category",
+          "exam_question_ids",
+          "exam_current",
+          "selected_question_type",
+          "exam_category",
+          "exam_question_ids",
+          "exam_current",
+          "selected_question_type",
+          "exam_category",
+          "exam_question_ids",
+          "exam_current",
+          "selected_question_type",
+          "exam_category",
+          "exam_question_ids",
+          "exam_current",
+          "selected_question_type",
+          "exam_category",
+          "exam_question_ids",
+          "exam_current",
+          "selected_question_type",
+          "exam_category",
+          "exam_question_ids",
+          "exam_current",
+          "exam_question_ids",
+          "exam_current",
+          "exam_category",
+          "exam_question_ids",
+          "exam_current",
+          "exam_category",
+          "selected_question_type",
+          "selected_year",
+          "review_completed",
+          "selected_department",
+          "selected_department",
+          "selected_question_type",
+          "selected_department",
+          "bookmarks",
+          "bookmarks",
+          "bookmarks",
+          "bookmarks",
+          "bookmarks",
+          "exam_question_ids",
+          "exam_current",
+          "exam_category",
+          "selected_question_type",
+          "department",
+          "selected_department",
+          "exam_question_ids",
+          "exam_current",
+          "exam_category",
+          "selected_question_type",
+          "advanced_srs",
+          "bookmarks",
+          "exam_question_ids",
+          "exam_current",
+          "exam_category",
+          "adaptive_mode",
+          "selected_department",
+          "exam_question_ids",
+          "exam_current",
+          "exam_category",
+          "adaptive_mode",
+          "foundation_mastery",
+          "selected_department",
+          "birth_date",
+          "exam_session",
+          "exam_session",
+          "exam_session",
+          "exam_session",
+          "exam_session",
+          "exam_history",
+          "status",
+          "user_name",
+          "user_id",
+          "login_time",
+          "exam_question_ids",
+          "exam_current",
+          "exam_category",
+          "exam_question_ids",
+          "exam_current",
+          "exam_category",
+          "selected_question_type",
+          "exam_question_ids",
+          "exam_current",
+          "exam_category",
+          "selected_question_type",
+          "department",
+          "selected_department",
+          "advanced_srs",
+          "bookmarks",
+          "exam_question_ids",
+          "exam_current",
+          "exam_category"
+        ],
+        "session_operations": {
+          "session_get": 131,
+          "session_set": 113,
+          "session_pop": 21,
+          "session_clear": 3
+        },
+        "unique_session_keys": [
+          "adaptive_mode",
+          "srs_data",
+          "review_session_restored",
+          "login_time",
+          "review_session_minimal",
+          "session_id",
+          "exam_session",
+          "bookmarks",
+          "selected_question_type",
+          "data_loaded",
+          "is_admin",
+          "category_stats",
+          "exam_history",
+          "dynamic_session_config",
+          "history",
+          "birth_date",
+          "status",
+          "base_user_id",
+          "department",
+          "selected_year",
+          "user_id",
+          "exam_current",
+          "review_completed",
+          "earned_badges",
+          "exam_category",
+          "foundation_mastery",
+          "user_name",
+          "last_activity",
+          "exam_question_ids",
+          "advanced_srs",
+          "selected_department",
+          "request_history"
+        ]
+      },
+      "data_layer": {
+        "csv_file_references": [],
+        "data_loading_functions": [
+          "get_due_review_questions",
+          "load_questions",
+          "get_due_questions",
+          "get_mixed_questions",
+          "get_review_questions"
+        ],
+        "file_operations": {
+          "open_operations": 0,
+          "csv_reader_usage": 0,
+          "json_operations": 1
+        }
+      }
+    },
+    "strangler_fig_design": {
+      "strangler_fig_design": {
+        "strangler_fig_pattern_design": {
+          "metadata": {
+            "creation_date": "2025-07-10T20:16:42.748394",
+            "baseline_version": "app.py.backup_20250625_090058 (6,121行)",
+            "design_phase": "ULTRATHIN区 PHASE 1-3",
+            "status": "初期設計開始"
+          },
+          "current_system_analysis": {
+            "architecture": "モノリシック Flask アプリケーション",
+            "complexity_metrics": {
+              "total_lines": 6121,
+              "estimated_routes": 108,
+              "estimated_functions": 163,
+              "monolithic_score": "高 (要改善)"
+            },
+            "strengths": [
+              "基礎科目機能完全動作確認済み",
+              "202問データ正常処理",
+              "10問完走テスト100%成功",
+              "セッション管理基本機能実装済み"
+            ],
+            "technical_debt": [
+              "11,107行から6,121行への削減必要",
+              "ルート分散・Blueprint化必要",
+              "基礎科目/専門科目分離必要",
+              "テスト自動化インフラ不足"
+            ]
+          },
+          "migration_strategy": {
+            "phase_1_foundation": {
+              "title": "基礎科目専用新システム構築",
+              "timeline": "4-6週間",
+              "priority": "最高",
+              "components": [
+                "基礎科目専用Blueprint (/v2/basic_exam/)",
+                "セッション管理サービス分離",
+                "基礎科目データアクセス層",
+                "新システム/旧システム並行動作機構"
+              ]
+            },
+            "phase_2_gradual_migration": {
+              "title": "専門科目段階的移行",
+              "timeline": "12-16週間",
+              "priority": "高",
+              "approach": "1部門ずつ慎重移行"
+            },
+            "phase_3_legacy_cleanup": {
+              "title": "レガシーコード段階的削減",
+              "timeline": "8-10週間",
+              "priority": "中",
+              "target": "6,121行 → 3,000行以下"
+            }
+          },
+          "risk_mitigation": {
+            "zero_downtime_requirement": true,
+            "rollback_capability": "各段階で即座復帰可能",
+            "testing_strategy": "A/Bテスト + 並行動作",
+            "data_integrity": "既存データ完全保護"
+          }
+        }
+      }
+    },
+    "no_regression_protection": {
+      "establishment_date": "2025-07-10T20:16:42.748417",
+      "baseline_version": "app.py.backup_20250625_090058",
+      "baseline_metrics": {
+        "line_count": 6121,
+        "route_count": 108,
+        "function_count": 162,
+        "basic_subject_test": "10問完走100%成功",
+        "data_integrity": "202問データ正常"
+      },
+      "prohibited_regressions": [
+        "基礎科目10問完走テスト成功率低下",
+        "基礎科目データ読み込み失敗",
+        "セッション管理機能劣化",
+        "現在システムへの副作用発生",
+        "データ整合性破綻"
+      ],
+      "monitoring_requirements": [
+        "各段階でのリグレッションテスト必須",
+        "基礎科目機能継続動作確認必須",
+        "現在システム影響ゼロ確認必須",
+        "ロールバック手順常時準備必須"
+      ]
+    }
+  }
+}

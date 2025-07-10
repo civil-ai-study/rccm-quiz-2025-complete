@@ -1,0 +1,66 @@
+{
+  "timestamp": "2025-07-08T07:57:17.347920",
+  "stage": "ULTRATHIN区段階43",
+  "functionality": "データファイル内カテゴリ名検証",
+  "file_analysis": {
+    "file_exists": true,
+    "file_path": "data/4-2_2016.csv",
+    "file_size": 291783,
+    "read_success": true,
+    "used_encoding": "utf-8-sig",
+    "total_rows": 361
+  },
+  "category_mapping_analysis": {
+    "total_questions": 361,
+    "unique_categories_count": 12,
+    "categories": {
+      "道路": 30,
+      "土質及び基礎": 30,
+      "河川、砂防及び海岸・海洋": 30,
+      "鋼構造及びコンクリート": 30,
+      "農業土木": 30,
+      "施工計画、施工設備及び積算": 31,
+      "森林土木": 30,
+      "トンネル": 30,
+      "建設環境": 30,
+      "都市計画及び地方計画": 30,
+      "上水道及び工業用水道": 30,
+      "造園": 30
+    },
+    "department_mapping": {
+      "都市計画": "都市計画及び地方計画",
+      "鋼構造・コンクリート": "鋼構造及びコンクリート",
+      "土質・基礎": "土質及び基礎",
+      "施工計画": "施工計画、施工設備及び積算",
+      "上下水道": "上水道及び工業用水道"
+    },
+    "mapping_verification": {
+      "都市計画": {
+        "mapped_name": "都市計画及び地方計画",
+        "found_in_data": true,
+        "question_count": 30
+      },
+      "鋼構造・コンクリート": {
+        "mapped_name": "鋼構造及びコンクリート",
+        "found_in_data": true,
+        "question_count": 30
+      },
+      "土質・基礎": {
+        "mapped_name": "土質及び基礎",
+        "found_in_data": true,
+        "question_count": 30
+      },
+      "施工計画": {
+        "mapped_name": "施工計画、施工設備及び積算",
+        "found_in_data": true,
+        "question_count": 31
+      },
+      "上下水道": {
+        "mapped_name": "上水道及び工業用水道",
+        "found_in_data": true,
+        "question_count": 30
+      }
+    },
+    "similar_categories": {}
+  }
+}

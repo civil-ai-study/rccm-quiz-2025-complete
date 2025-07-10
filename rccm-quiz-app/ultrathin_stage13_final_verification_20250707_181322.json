@@ -1,0 +1,93 @@
+{
+  "verification_results": {
+    "timestamp": "2025-07-07T18:13:12.427771",
+    "data_loading_verification": {
+      "河川、砂防及び海岸・海洋": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "河川、砂防及び海岸・海洋",
+        "loading_success": true,
+        "expected_count": 30
+      },
+      "トンネル": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "トンネル",
+        "loading_success": true,
+        "expected_count": 30
+      },
+      "道路": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "道路",
+        "loading_success": true,
+        "expected_count": 30
+      },
+      "土質及び基礎": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "土質及び基礎",
+        "loading_success": true,
+        "expected_count": 30
+      },
+      "基礎科目": {
+        "questions_count": 202,
+        "data_source": "basic",
+        "exam_type": "基礎科目",
+        "loading_success": true,
+        "expected_count": 202
+      }
+    },
+    "post_processing_verification": {
+      "河川、砂防及び海岸・海洋": {
+        "status_code": 200,
+        "response_time": 0.4743211269378662,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "redirect_count": 2,
+        "reaches_exam_question": false,
+        "reaches_exam_simulator": true,
+        "post_debug_questions": 30,
+        "session_elements": 0
+      },
+      "基礎科目": {
+        "status_code": 200,
+        "response_time": 0.4989500045776367,
+        "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "redirect_count": 2,
+        "reaches_exam_question": false,
+        "reaches_exam_simulator": true,
+        "post_debug_questions": 202,
+        "session_elements": 0
+      }
+    },
+    "session_functionality_verification": {},
+    "third_party_review_reconciliation": {
+      "contradictions": [
+        {
+          "type": "データ読み込み vs セッション保存",
+          "current": "データ読み込み100.0%成功",
+          "third_party": "セッション保存失敗",
+          "possible_cause": "測定タイミングまたは測定方法の違い"
+        }
+      ],
+      "current_data_loading_rate": 100.0,
+      "current_post_success_rate": 0.0,
+      "third_party_claims": {
+        "specialist_separation_success": true,
+        "post_processing_success_rate": 0.0,
+        "session_save_success": false,
+        "overall_assessment": "部分成功"
+      }
+    },
+    "final_assessment": {}
+  },
+  "final_assessment": {
+    "overall_status": "部分的良好",
+    "assessment": "データ読み込みは正常、POST処理に問題",
+    "data_loading_success_rate": 100.0,
+    "post_processing_success_rate": 0.0,
+    "contradiction_count": 1,
+    "ultrathin_methodology_success": true
+  },
+  "timestamp": "2025-07-07T18:13:22.284950"
+}

@@ -1,0 +1,81 @@
+{
+  "investigation_results": {
+    "timestamp": "2025-07-07T18:06:09.577792",
+    "data_file_status": {
+      "4-1.csv": {
+        "exists": true,
+        "size": 92424,
+        "path": "data/4-1.csv",
+        "header": "id,category,year,question,option_a,option_b,option_c,option_d,correct_answer,explanation,reference,difficulty",
+        "line_count": 203
+      },
+      "4-2_2016.csv": {
+        "exists": true,
+        "size": 291783,
+        "path": "data/4-2_2016.csv",
+        "header": "﻿id,category,year,question,option_a,option_b,option_c,option_d,correct_answer,explanation,reference,difficulty",
+        "line_count": 362
+      }
+    },
+    "server_data_loading": {
+      "河川、砂防及び海岸・海洋": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "河川、砂防及び海岸・海洋",
+        "loading_successful": true
+      },
+      "トンネル": {
+        "questions_count": 30,
+        "data_source": "specialist",
+        "exam_type": "トンネル",
+        "loading_successful": true
+      },
+      "基礎科目": {
+        "questions_count": 202,
+        "data_source": "basic",
+        "exam_type": "基礎科目",
+        "loading_successful": true
+      }
+    },
+    "potential_causes": [],
+    "safety_analysis": {},
+    "recent_changes": {
+      "stage11_changes": [
+        "start_exam関数のセッション保存強化",
+        "exam_question関数のログ追加",
+        "セッション保存検証条件の緩和",
+        "緊急フォールバック処理の追加"
+      ],
+      "stage12_changes": [
+        "exam_question関数の暫定修正（取り消し済み）"
+      ],
+      "data_affecting_changes": [
+        {
+          "stage": 11,
+          "change": "start_exam関数のセッション保存強化",
+          "risk_level": "medium"
+        },
+        {
+          "stage": 11,
+          "change": "セッション保存検証条件の緩和",
+          "risk_level": "medium"
+        }
+      ]
+    }
+  },
+  "analysis_results": {
+    "root_cause_assessment": "サーバーサイド読み込み問題",
+    "confidence_level": "medium",
+    "recommended_actions": [
+      "より詳細な調査が必要",
+      "ファイル内容の詳細確認",
+      "サーバーログの確認"
+    ],
+    "safety_considerations": [
+      "既存データの完全バックアップ",
+      "修復作業の段階的実施",
+      "各ステップでの検証"
+    ]
+  },
+  "timestamp": "2025-07-07T18:06:14.645726"
+}

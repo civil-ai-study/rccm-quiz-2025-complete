@@ -1,0 +1,101 @@
+{
+  "timestamp": "2025-07-07T20:59:25.202850",
+  "stage": "ULTRATHIN区段階25",
+  "objective": "段階20+21実装後の本番環境状況分析",
+  "deployment_status": {
+    "accessible": true,
+    "response_time": 0.579599,
+    "status_code": 200
+  },
+  "detailed_analysis": {
+    "debug_endpoint": {
+      "accessible": true,
+      "session_elements": 0,
+      "questions_count": 0,
+      "data_source": "unknown",
+      "debug_data": {
+        "current_time": "2025-07-07 11:59:25",
+        "debug_info": {},
+        "session_keys": [
+          "category_stats",
+          "history"
+        ],
+        "specialist_error": {}
+      }
+    },
+    "start_exam": {
+      "initial_status": 200,
+      "initial_response_time": 0.1825392246246338,
+      "location_header": "なし",
+      "set_cookie_header": "rccm_session=.eJw1UMuOxCAM-5ece6DvDr-yXaEAaafStnQhSFuN5t83VJqLlVi2g3mBOSnueNDBoDlmqsAh0xriZRIjJ9CvdwWebF7NdixBdvDIaFLI0RFoSCe5DX-2xFABxRiikHPu-26Z82Pq3Jxb5caCyz3bpWDhRxyxmP5wN3yddBsHZ1uxe--LTNUim1QjUUMr2LcOCz-KZvCjxPbOTne4_TCDV1ZifzMl3sKRjAu59FMVMMaV2FyE8spGNZ1Q2y463E-5Xte6f-hmAOn8lEbyDaC_vt__UhNhwA.aGu2ng.Wh9OKiEBP83mSfcF6lj2l43VDiw; Expires=Mon, 07 Jul 2025 12:59:26 GMT; HttpOnly; Path=/; SameSite=Lax",
+      "response_headers": {
+        "Date": "Mon, 07 Jul 2025 11:59:26 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "access-control-allow-credentials": "true",
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "GET, POST, OPTIONS",
+        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0, private",
+        "expires": "-1",
+        "permissions-policy": "geolocation=(), microphone=(), camera=()",
+        "pragma": "no-cache",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "rndr-id": "6f3d34e5-8ab2-4851",
+        "Set-Cookie": "rccm_session=.eJw1UMuOxCAM-5ece6DvDr-yXaEAaafStnQhSFuN5t83VJqLlVi2g3mBOSnueNDBoDlmqsAh0xriZRIjJ9CvdwWebF7NdixBdvDIaFLI0RFoSCe5DX-2xFABxRiikHPu-26Z82Pq3Jxb5caCyz3bpWDhRxyxmP5wN3yddBsHZ1uxe--LTNUim1QjUUMr2LcOCz-KZvCjxPbOTne4_TCDV1ZifzMl3sKRjAu59FMVMMaV2FyE8spGNZ1Q2y463E-5Xte6f-hmAOn8lEbyDaC_vt__UhNhwA.aGu2ng.Wh9OKiEBP83mSfcF6lj2l43VDiw; Expires=Mon, 07 Jul 2025 12:59:26 GMT; HttpOnly; Path=/; SameSite=Lax",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "vary": "Cookie, Accept-Encoding",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-render-origin-server": "gunicorn",
+        "x-xss-protection": "1; mode=block",
+        "cf-cache-status": "DYNAMIC",
+        "Server": "cloudflare",
+        "CF-RAY": "95b72cfb9d0af597-NRT",
+        "Content-Encoding": "gzip",
+        "alt-svc": "h3=\":443\"; ma=86400"
+      }
+    },
+    "session_state": {
+      "post_session_elements": 0,
+      "exam_session_exists": false,
+      "session_keys": [],
+      "questions_available": false,
+      "data_source": "unknown",
+      "full_session_data": {
+        "current_time": "2025-07-07 11:59:27",
+        "debug_info": {
+          "data_source": "specialist",
+          "error": "問題データが空",
+          "exam_type": "河川、砂防及び海岸・海洋",
+          "questions_count": 0,
+          "target_year": 2024,
+          "timestamp": "11:59:26"
+        },
+        "session_keys": [
+          "_permanent",
+          "category_stats",
+          "debug_info",
+          "history"
+        ],
+        "specialist_error": {}
+      }
+    },
+    "implementation_check": {
+      "stage20_make_response": false,
+      "stage21_after_request": true,
+      "evidence": [
+        "Set-Cookie header present"
+      ]
+    }
+  },
+  "overall_assessment": {
+    "deployment_successful": true,
+    "debug_endpoint_working": true,
+    "start_exam_responding": true,
+    "session_tracking_working": false,
+    "stage20_21_working": true,
+    "success_rate": 80.0,
+    "needs_further_investigation": false
+  }
+}

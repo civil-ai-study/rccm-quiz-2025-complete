@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-07-08T19:16:57.359348",
+  "stage": "ultrathin_stage57_zero_questions_investigation",
+  "investigation_results": {
+    "basic_questions_count": 0,
+    "specialist_questions_count": 0,
+    "total_questions_loaded": 0,
+    "data_loading_status": "unknown",
+    "basic_status": "no_data",
+    "statistics_status": "no_numbers",
+    "department_specialist_count": 0,
+    "department_error_message": false
+  },
+  "analysis": {
+    "issue_type": "complete_data_failure",
+    "likely_cause": "load_questions_function_failure",
+    "severity": "critical",
+    "recommendation": "load_questions関数の完全な見直しが必要"
+  }
+}

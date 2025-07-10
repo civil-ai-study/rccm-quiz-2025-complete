@@ -1,0 +1,82 @@
+{
+  "timestamp": "2025-07-08T13:15:06.001363",
+  "summary": {
+    "total": 9,
+    "successful": 6,
+    "failed": 3,
+    "success_rate": 66.66666666666666,
+    "critical_success_rate": 50.0
+  },
+  "stage_results": {
+    "basic_connectivity": true,
+    "deployment_stability": true,
+    "year_2024_fix": false,
+    "no_side_effects": true
+  },
+  "overall_success": false,
+  "verification_results": [
+    {
+      "step": "基本接続性",
+      "success": true,
+      "details": "HTTP 200, 応答時間: 0.74秒",
+      "critical": true,
+      "timestamp": "2025-07-08T13:14:43.823397"
+    },
+    {
+      "step": "デプロイ安定性",
+      "success": true,
+      "details": "3/3 チェック成功",
+      "critical": true,
+      "timestamp": "2025-07-08T13:14:51.169709"
+    },
+    {
+      "step": "セッション初期化",
+      "success": true,
+      "details": "Cookie保存完了",
+      "critical": false,
+      "timestamp": "2025-07-08T13:14:51.449482"
+    },
+    {
+      "step": "2024年度_基礎科目_10問",
+      "success": false,
+      "details": "エラーページ: いいえ, 年度エラー: いいえ, コンテンツ: 153文字",
+      "critical": true,
+      "timestamp": "2025-07-08T13:14:53.618468"
+    },
+    {
+      "step": "2024年度_道路_5問",
+      "success": false,
+      "details": "エラーページ: はい, 年度エラー: いいえ, コンテンツ: 16903文字",
+      "critical": true,
+      "timestamp": "2025-07-08T13:14:57.180261"
+    },
+    {
+      "step": "2024年度修復総合",
+      "success": false,
+      "details": "0/2 成功",
+      "critical": true,
+      "timestamp": "2025-07-08T13:15:00.183487"
+    },
+    {
+      "step": "副作用確認_基礎科目_2019年",
+      "success": true,
+      "details": "HTTP 302",
+      "critical": false,
+      "timestamp": "2025-07-08T13:15:01.718528"
+    },
+    {
+      "step": "副作用確認_道路_2018年",
+      "success": true,
+      "details": "HTTP 302",
+      "critical": false,
+      "timestamp": "2025-07-08T13:15:03.995750"
+    },
+    {
+      "step": "副作用なし総合",
+      "success": true,
+      "details": "2/2 成功",
+      "critical": true,
+      "timestamp": "2025-07-08T13:15:05.998017"
+    }
+  ]
+}

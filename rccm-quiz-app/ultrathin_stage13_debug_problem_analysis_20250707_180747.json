@@ -1,0 +1,64 @@
+{
+  "analysis_results": {
+    "timestamp": "2025-07-07T18:07:43.325464",
+    "get_vs_post_comparison": {
+      "GET": {
+        "debug_info": {
+          "data_source": "specialist",
+          "exam_type": "河川、砂防及び海岸・海洋",
+          "questions_count": 30,
+          "target_year": 2016,
+          "timestamp": "09:07:43"
+        },
+        "questions_count": 30,
+        "data_source": "specialist",
+        "success": true
+      },
+      "POST": {
+        "debug_attempts": [
+          {
+            "attempt": 1,
+            "wait_time": 0.5,
+            "questions_count": 30,
+            "data_source": "specialist",
+            "timestamp": "09:07:44",
+            "success": true
+          },
+          {
+            "attempt": 2,
+            "wait_time": 1.0,
+            "questions_count": 30,
+            "data_source": "specialist",
+            "timestamp": "09:07:44",
+            "success": true
+          },
+          {
+            "attempt": 3,
+            "wait_time": 1.5,
+            "questions_count": 30,
+            "data_source": "specialist",
+            "timestamp": "09:07:44",
+            "success": true
+          }
+        ],
+        "consistent_failure": false,
+        "timing_dependent": false
+      }
+    },
+    "debug_info_timing": {
+      "pre_post": 30,
+      "immediate_post": 30,
+      "data_cleared_by_post": false
+    },
+    "potential_race_conditions": [],
+    "fix_strategies": []
+  },
+  "root_cause_analysis": {
+    "identified_cause": "複合的な問題",
+    "confidence": "low",
+    "fix_strategy": "より詳細な調査が必要",
+    "implementation_risk": "unknown",
+    "expected_outcome": "追加分析後に決定"
+  },
+  "timestamp": "2025-07-07T18:07:47.414827"
+}

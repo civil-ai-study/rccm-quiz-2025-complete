@@ -137,7 +137,19 @@
       "Bash(ping:*)",
       "Bash(git push:*)",
       "Bash(git checkout:*)",
-      "Bash(git branch:*)"
+      "Bash(git branch:*)",
+      "Bash(code:*)",
+      "Bash(node:*)",
+      "WebFetch(domain:rccm-quiz-2025.onrender.com)",
+      "Bash(diff:*)",
+      "Bash(heroku logs:*)",
+      "WebFetch(domain:rccm-quiz-app-42e2a82fb9be.herokuapp.com)",
+      "Bash(time curl:*)",
+      "Bash(time:*)",
+      "Bash(wget:*)",
+      "WebFetch(domain:pypi.org)",
+      "Bash(PYTHONPATH=./lib/python3.12/site-packages:$PYTHONPATH python3 test_stable_baseline.py)",
+      "Bash(PYTHONPATH=../lib/python3.12/site-packages:$PYTHONPATH python3 setup_flask_safe.py)"
     ],
     "deny": []
   }

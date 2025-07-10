@@ -1,0 +1,175 @@
+{
+  "verification_timestamp": "2025-07-10T22:01:51.088093",
+  "verification_type": "ultrathin_soil_foundation_pre_migration_safety",
+  "safety_checks": {
+    "soil_foundation_data": {
+      "error": "'shift_jis' codec can't decode byte 0xa0 in position 138: illegal multibyte sequence",
+      "analysis_success": false
+    },
+    "basic_system_integrity": {
+      "file_status": {
+        "basic_exam_blueprint.py": {
+          "exists": true,
+          "description": "Blueprint実装",
+          "size": 14953,
+          "hash": "d7da9677d075aa93149a5ec1466ffe3021a3d1fc1be874da2456a130cc91c21a",
+          "last_modified": 1752149639.345877
+        },
+        "basic_session_manager.py": {
+          "exists": true,
+          "description": "セッション管理",
+          "size": 19047,
+          "hash": "f03f76b63265de6e65651144b0465fac7e4a26d3c97cf9656ea3c358ae8f24a4",
+          "last_modified": 1752150021.4736109
+        },
+        "basic_data_service.py": {
+          "exists": true,
+          "description": "データサービス",
+          "size": 22244,
+          "hash": "4cc094a0039a87fcd11583baabf24097a0fd4c7170ac3f4a1cd6aa7d28047ceb",
+          "last_modified": 1752150880.8271625
+        },
+        "templates/v2/basic_exam/basic_exam_index.html": {
+          "exists": true,
+          "description": "インデックステンプレート",
+          "size": 5831,
+          "hash": "7b723d06bc90c54591ed823ec1f2d4680ac575c7e05f18b16371602c10ef15e1",
+          "last_modified": 1752149677.0608714
+        },
+        "templates/v2/basic_exam/basic_exam_question.html": {
+          "exists": true,
+          "description": "問題テンプレート",
+          "size": 10651,
+          "hash": "30f44274dbd397d289efe11c01cc8fde47bb0e3d86930dd23e694feeb09eea51",
+          "last_modified": 1752149750.0690122
+        }
+      },
+      "all_files_exist": true,
+      "basic_data_file": {
+        "exists": true,
+        "size": 92424,
+        "hash": "11c3de359595f08943ba94366175b6f6699174f9d4a098ba465112f6d90c51ba"
+      },
+      "session_prefix_isolated": true,
+      "no_specialist_conflicts": true
+    },
+    "specialist_system_protection": {
+      "existing_specialist_routes": {
+        "/start_exam/specialist": false,
+        "/quiz_question/specialist": false,
+        "/submit_answer/specialist": false
+      },
+      "specialist_routes_preserved": false,
+      "data_files_protection": {
+        "data/4-2_2008.csv": {
+          "exists": true,
+          "size": 201176,
+          "hash": "2a95f37e4bb774c456ad47f3cf9ad41a8d1a571337b4117c72516bd84de56547",
+          "protected": true
+        },
+        "data/4-2_2009.csv": {
+          "exists": true,
+          "size": 207651,
+          "hash": "224469cc88047a7c89accde1e186e88fc7155ca4cf8b25fb690206a69049126a",
+          "protected": true
+        },
+        "data/4-2_2010.csv": {
+          "exists": true,
+          "size": 157895,
+          "hash": "4660afd39447ffdece77e6a61c5160696492d3de3eda515b9e327989fee8b99e",
+          "protected": true
+        },
+        "data/4-2_2011.csv": {
+          "exists": true,
+          "size": 237300,
+          "hash": "032a12139a27cbbfabdedfc49525e83ab37347969c82f45649d9f6e5c4cda904",
+          "protected": true
+        },
+        "data/4-2_2012.csv": {
+          "exists": true,
+          "size": 199154,
+          "hash": "bf03f06288f7374fab6dfd820c2270ab1cb5fa65a448cae7d74da3de91686b10",
+          "protected": true
+        },
+        "data/4-2_2013.csv": {
+          "exists": true,
+          "size": 194057,
+          "hash": "f046c9514d8cba3f226c1e839c213b40e9c402bd42eb96362e19f37ea2b124ad",
+          "protected": true
+        },
+        "data/4-2_2014.csv": {
+          "exists": true,
+          "size": 153257,
+          "hash": "c4d5bdf2677ab895779ca2c45f23c4c5979c2847b84eb8144b3b63591a7e22d9",
+          "protected": true
+        },
+        "data/4-2_2015.csv": {
+          "exists": true,
+          "size": 273998,
+          "hash": "d0b41b24c320755a1308bc9da0f33a3e7b7de384d08bdc159041ec287b884578",
+          "protected": true
+        },
+        "data/4-2_2016.csv": {
+          "exists": true,
+          "size": 291783,
+          "hash": "ae19d3c316d0043323a05cb7e0b5c907065c7966d9a43ce4648087f809a9d82c",
+          "protected": true
+        },
+        "data/4-2_2017.csv": {
+          "exists": true,
+          "size": 382964,
+          "hash": "cb08baa2ba600e34fffc1828e29f8d12634f66277b66411087bf2a30824b11e3",
+          "protected": true
+        },
+        "data/4-2_2018.csv": {
+          "exists": true,
+          "size": 309809,
+          "hash": "da4fc0ecfbecc7afaccd07464eb14b2f4026b351f08199795dc37f729762f9ab",
+          "protected": true
+        },
+        "data/4-2_2019.csv": {
+          "exists": true,
+          "size": 216806,
+          "hash": "2232015a931c500e376cd64f72bf93c50ac3f696bdea6a5400e1da4128d177ae",
+          "protected": true
+        }
+      },
+      "all_data_files_protected": true
+    },
+    "isolation_environment": {
+      "in_isolated_environment": true,
+      "current_directory": "/mnt/c/Users/ABC/Desktop/rccm-quiz-app/rccm-quiz-app/isolated_stable_test_20250710",
+      "no_production_risk": false,
+      "isolation_confirmed": false
+    },
+    "migration_readiness": {
+      "required_components": {
+        "blueprint_template": false,
+        "session_manager_extension": false,
+        "data_service_extension": false,
+        "specialist_templates": false,
+        "migration_scripts": false
+      },
+      "components_ready": 0,
+      "total_components": 5,
+      "design_documents": {
+        "architecture_design": false,
+        "session_separation_plan": false,
+        "data_access_pattern": false,
+        "url_routing_design": false,
+        "testing_strategy": false
+      },
+      "design_readiness": 0,
+      "risk_factors": [
+        "Components not ready",
+        "Design documents not ready"
+      ],
+      "migration_safe": false
+    }
+  },
+  "overall_safety": false,
+  "migration_ready": false,
+  "safety_score": 60.0,
+  "safety_criteria_passed": 3,
+  "safety_criteria_total": 5
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "department": "河川、砂防及び海岸・海洋",
+    "status": "redirect_to_simulator",
+    "success": false,
+    "start_response_code": 200,
+    "exam_response_code": 200,
+    "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+    "page_title": "試験シミュレーター - RCCM試験問題集",
+    "session_exists": false,
+    "debug_info": {
+      "data_source": "specialist",
+      "exam_type": "河川、砂防及び海岸・海洋",
+      "questions_count": 30,
+      "target_year": 2016,
+      "timestamp": "08:03:10"
+    },
+    "response_time": 0.8597643375396729
+  },
+  {
+    "department": "土質及び基礎",
+    "status": "redirect_to_simulator",
+    "success": false,
+    "start_response_code": 200,
+    "exam_response_code": 200,
+    "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+    "page_title": "試験シミュレーター - RCCM試験問題集",
+    "session_exists": false,
+    "debug_info": {
+      "data_source": "specialist",
+      "exam_type": "土質及び基礎",
+      "questions_count": 30,
+      "target_year": 2016,
+      "timestamp": "08:03:15"
+    },
+    "response_time": 0.6314482688903809
+  },
+  {
+    "department": "トンネル",
+    "status": "redirect_to_simulator",
+    "success": false,
+    "start_response_code": 200,
+    "exam_response_code": 200,
+    "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+    "page_title": "試験シミュレーター - RCCM試験問題集",
+    "session_exists": false,
+    "debug_info": {
+      "data_source": "specialist",
+      "exam_type": "トンネル",
+      "questions_count": 30,
+      "target_year": 2016,
+      "timestamp": "08:03:20"
+    },
+    "response_time": 0.6267857551574707
+  },
+  {
+    "department": "道路",
+    "status": "redirect_to_simulator",
+    "success": false,
+    "start_response_code": 200,
+    "exam_response_code": 200,
+    "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+    "page_title": "試験シミュレーター - RCCM試験問題集",
+    "session_exists": false,
+    "debug_info": {
+      "data_source": "specialist",
+      "exam_type": "道路",
+      "questions_count": 30,
+      "target_year": 2016,
+      "timestamp": "08:03:25"
+    },
+    "response_time": 0.6017827987670898
+  }
+]

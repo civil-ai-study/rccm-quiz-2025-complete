@@ -1,0 +1,39 @@
+{
+  "analysis_results": {
+    "methods_results": {
+      "GET": {
+        "status": 200,
+        "url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "title": "exam_simulator"
+      },
+      "POST": {
+        "status": 200,
+        "url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+        "title": "exam_simulator"
+      }
+    },
+    "consistency_results": [
+      {
+        "department": "土質及び基礎",
+        "status": 200,
+        "final_page": "exam_simulator",
+        "response_length": 36999
+      },
+      {
+        "department": "トンネル",
+        "status": 200,
+        "final_page": "exam_simulator",
+        "response_length": 36999
+      },
+      {
+        "department": "基礎科目",
+        "status": 200,
+        "final_page": "exam_simulator",
+        "response_length": 36999
+      }
+    ],
+    "timestamp": "2025-07-07T17:24:31.571501"
+  },
+  "root_cause_pattern": "consistent_simulator_return",
+  "timestamp": "2025-07-07T17:24:31.571799"
+}

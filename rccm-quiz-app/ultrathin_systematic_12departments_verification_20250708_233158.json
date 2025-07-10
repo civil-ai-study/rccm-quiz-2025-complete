@@ -1,0 +1,71 @@
+{
+  "test_timestamp": "2025-07-08 23:30:54",
+  "systematic_approach": "根本的システム統一検証",
+  "departments_tested": [],
+  "success_departments": [],
+  "failed_departments": [
+    {
+      "department": "road",
+      "issue": "データファイル不存在",
+      "working_year": null
+    },
+    {
+      "department": "tunnel",
+      "issue": "データファイル不存在",
+      "working_year": null
+    },
+    {
+      "department": "civil_planning",
+      "issue": "データファイル不存在",
+      "working_year": null
+    },
+    {
+      "department": "urban_planning",
+      "issue": "データファイル不存在",
+      "working_year": null
+    },
+    {
+      "department": "landscape",
+      "issue": "データファイル不存在",
+      "working_year": null
+    },
+    {
+      "department": "construction_env",
+      "issue": "データファイル不存在",
+      "working_year": null
+    },
+    {
+      "department": "steel_concrete",
+      "issue": "データファイル不存在",
+      "working_year": null
+    },
+    {
+      "department": "soil_foundation",
+      "issue": "データファイル不存在",
+      "working_year": null
+    },
+    {
+      "department": "construction_planning",
+      "issue": "データファイル不存在",
+      "working_year": null
+    },
+    {
+      "department": "water_supply",
+      "issue": "データファイル不存在",
+      "working_year": null
+    },
+    {
+      "department": "forestry",
+      "issue": "データファイル不存在",
+      "working_year": null
+    },
+    {
+      "department": "agriculture",
+      "issue": "データファイル不存在",
+      "working_year": null
+    }
+  ],
+  "root_issues": [],
+  "systematic_success": false,
+  "success_rate": 0.0
+}

@@ -1,0 +1,251 @@
+{
+  "blueprint_files": [
+    {
+      "path": "/mnt/c/Users/ABC/Desktop/rccm-quiz-app/rccm-quiz-app/blueprints/static_bp.py",
+      "filename": "static_bp.py",
+      "size": 7241,
+      "exists": true,
+      "blueprints": [
+        {
+          "variable_name": "static_bp",
+          "blueprint_name": "static_content",
+          "url_prefix": "",
+          "routes": [
+            {
+              "rule": "/favicon.ico",
+              "function": "<function favicon at 0x7f2e872d1a80>",
+              "options": {},
+              "endpoint": "favicon"
+            },
+            {
+              "rule": "/manifest.json",
+              "function": "<function manifest at 0x7f2e873374c0>",
+              "options": {},
+              "endpoint": "manifest"
+            },
+            {
+              "rule": "/sw.js",
+              "function": "<function service_worker at 0x7f2e87337560>",
+              "options": {},
+              "endpoint": "service_worker"
+            },
+            {
+              "rule": "/icon-<int:size>.png",
+              "function": "<function app_icon at 0x7f2e87337600>",
+              "options": {},
+              "endpoint": "app_icon"
+            },
+            {
+              "rule": "/robots.txt",
+              "function": "<function robots at 0x7f2e873376a0>",
+              "options": {},
+              "endpoint": "robots"
+            },
+            {
+              "rule": "/sitemap.xml",
+              "function": "<function sitemap at 0x7f2e87337740>",
+              "options": {},
+              "endpoint": "sitemap"
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "app_icon",
+          "args": [
+            "size"
+          ],
+          "docstring": "アプリアイコン配信（サイズ対応）",
+          "source_lines": 38
+        },
+        {
+          "name": "favicon",
+          "args": [],
+          "docstring": "ファビコン配信",
+          "source_lines": 17
+        },
+        {
+          "name": "get_static_blueprint_info",
+          "args": [],
+          "docstring": "静的コンテンツBlueprint情報",
+          "source_lines": 20
+        },
+        {
+          "name": "manifest",
+          "args": [],
+          "docstring": "PWA Manifest配信",
+          "source_lines": 33
+        },
+        {
+          "name": "robots",
+          "args": [],
+          "docstring": "robots.txt配信",
+          "source_lines": 24
+        },
+        {
+          "name": "service_worker",
+          "args": [],
+          "docstring": "Service Worker配信",
+          "source_lines": 37
+        },
+        {
+          "name": "sitemap",
+          "args": [],
+          "docstring": "サイトマップ配信",
+          "source_lines": 36
+        }
+      ],
+      "imports": [
+        "from flask import Blueprint, send_from_directory, jsonify",
+        "import os",
+        "import logging",
+        "from flask import Response",
+        "from flask import Response",
+        "import base64",
+        "from flask import Response",
+        "from flask import Response, request"
+      ]
+    },
+    {
+      "path": "/mnt/c/Users/ABC/Desktop/rccm-quiz-app/rccm-quiz-app/blueprints/health_bp.py",
+      "filename": "health_bp.py",
+      "size": 9237,
+      "exists": true
+    }
+  ],
+  "route_analysis": [
+    {
+      "blueprint": "static_content",
+      "route": "/favicon.ico",
+      "function": "favicon",
+      "endpoint": "favicon",
+      "source_lines": 17,
+      "has_try_except": true,
+      "has_return": true,
+      "has_jsonify": false,
+      "complexity": 2
+    },
+    {
+      "blueprint": "static_content",
+      "route": "/manifest.json",
+      "function": "manifest",
+      "endpoint": "manifest",
+      "source_lines": 33,
+      "has_try_except": true,
+      "has_return": true,
+      "has_jsonify": true,
+      "complexity": 5
+    },
+    {
+      "blueprint": "static_content",
+      "route": "/sw.js",
+      "function": "service_worker",
+      "endpoint": "service_worker",
+      "source_lines": 37,
+      "has_try_except": true,
+      "has_return": true,
+      "has_jsonify": false,
+      "complexity": 0
+    },
+    {
+      "blueprint": "static_content",
+      "route": "/icon-<int:size>.png",
+      "function": "app_icon",
+      "endpoint": "app_icon",
+      "source_lines": 38,
+      "has_try_except": true,
+      "has_return": true,
+      "has_jsonify": false,
+      "complexity": 1
+    },
+    {
+      "blueprint": "static_content",
+      "route": "/robots.txt",
+      "function": "robots",
+      "endpoint": "robots",
+      "source_lines": 24,
+      "has_try_except": true,
+      "has_return": true,
+      "has_jsonify": false,
+      "complexity": 0
+    },
+    {
+      "blueprint": "static_content",
+      "route": "/sitemap.xml",
+      "function": "sitemap",
+      "endpoint": "sitemap",
+      "source_lines": 36,
+      "has_try_except": true,
+      "has_return": true,
+      "has_jsonify": false,
+      "complexity": 0
+    }
+  ],
+  "import_dependencies": [],
+  "function_analysis": [
+    {
+      "function": "favicon",
+      "route": "/favicon.ico",
+      "executable": true,
+      "error": null,
+      "result_type": "str",
+      "result_preview": "FILE: /mnt/c/Users/ABC/Desktop/rccm-quiz-app/rccm-quiz-app/blueprints/../static/favicon.ico"
+    },
+    {
+      "function": "manifest",
+      "route": "/manifest.json",
+      "executable": true,
+      "error": null,
+      "result_type": "str",
+      "result_preview": "FILE: /mnt/c/Users/ABC/Desktop/rccm-quiz-app/rccm-quiz-app/blueprints/../static/manifest.json"
+    },
+    {
+      "function": "service_worker",
+      "route": "/sw.js",
+      "executable": true,
+      "error": null,
+      "result_type": "str",
+      "result_preview": "FILE: /mnt/c/Users/ABC/Desktop/rccm-quiz-app/rccm-quiz-app/blueprints/../static/sw.js"
+    },
+    {
+      "function": "app_icon",
+      "route": "/icon-<int:size>.png",
+      "executable": false,
+      "error": null,
+      "skip_reason": "requires_arguments"
+    },
+    {
+      "function": "robots",
+      "route": "/robots.txt",
+      "executable": true,
+      "error": null,
+      "result_type": "str",
+      "result_preview": "FILE: /mnt/c/Users/ABC/Desktop/rccm-quiz-app/rccm-quiz-app/blueprints/../static/robots.txt"
+    },
+    {
+      "function": "sitemap",
+      "route": "/sitemap.xml",
+      "executable": true,
+      "error": null,
+      "result_type": "str",
+      "result_preview": "FILE: /mnt/c/Users/ABC/Desktop/rccm-quiz-app/rccm-quiz-app/blueprints/../static/sitemap.xml"
+    }
+  ],
+  "errors": [
+    {
+      "file": "/mnt/c/Users/ABC/Desktop/rccm-quiz-app/rccm-quiz-app/blueprints/health_bp.py",
+      "error": "cannot import name 'request' from '<unknown module name>' (unknown location)",
+      "type": "module_load_error"
+    }
+  ],
+  "warnings": [],
+  "summary": {
+    "total_files": 2,
+    "total_blueprints": 1,
+    "total_routes": 6,
+    "executable_functions": 5,
+    "error_count": 1,
+    "warning_count": 0
+  }
+}

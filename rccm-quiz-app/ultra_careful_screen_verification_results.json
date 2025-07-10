@@ -1,0 +1,64 @@
+{
+  "timestamp": "2025-07-08T12:56:50.345475",
+  "summary": {
+    "total": 7,
+    "successful": 2,
+    "failed": 5,
+    "success_rate": 28.57142857142857
+  },
+  "verification_results": {
+    "homepage_success": true,
+    "critical_screens_success": false
+  },
+  "results": [
+    {
+      "test_name": "ホームページ内容確認",
+      "success": true,
+      "details": "発見要素: ['タイトル', '部門選択', 'フォーム', 'ボタン', 'リンク'], コンテンツサイズ: 35120文字",
+      "content_sample": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n",
+      "timestamp": "2025-07-08T12:56:37.876131"
+    },
+    {
+      "test_name": "セッション初期化_ホームページ取得",
+      "success": true,
+      "details": "コンテンツサイズ: 35120文字",
+      "content_sample": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n",
+      "timestamp": "2025-07-08T12:56:38.562310"
+    },
+    {
+      "test_name": "画面内容検証_基礎科目_10問_2024年度",
+      "success": false,
+      "details": "問題内容: 有, 選択肢: 無, ナビゲーション: 有, 部門一致: 無",
+      "content_sample": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n",
+      "timestamp": "2025-07-08T12:56:38.874744"
+    },
+    {
+      "test_name": "画面内容検証_道路_10問_2024年度",
+      "success": false,
+      "details": "問題内容: 有, 選択肢: 無, ナビゲーション: 有, 部門一致: 無",
+      "content_sample": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n",
+      "timestamp": "2025-07-08T12:56:41.162194"
+    },
+    {
+      "test_name": "画面内容検証_河川・砂防_10問_2019年度",
+      "success": false,
+      "details": "問題内容: 有, 選択肢: 無, ナビゲーション: 有, 部門一致: 無",
+      "content_sample": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n",
+      "timestamp": "2025-07-08T12:56:43.480397"
+    },
+    {
+      "test_name": "画面内容検証_都市計画_20問_2024年度",
+      "success": false,
+      "details": "問題内容: 有, 選択肢: 無, ナビゲーション: 有, 部門一致: 無",
+      "content_sample": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n",
+      "timestamp": "2025-07-08T12:56:45.763336"
+    },
+    {
+      "test_name": "画面内容検証_造園_30問_2024年度",
+      "success": false,
+      "details": "問題内容: 有, 選択肢: 無, ナビゲーション: 有, 部門一致: 無",
+      "content_sample": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n",
+      "timestamp": "2025-07-08T12:56:48.338311"
+    }
+  ]
+}

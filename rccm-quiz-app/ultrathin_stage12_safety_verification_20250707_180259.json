@@ -1,0 +1,25 @@
+{
+  "verification_results": {
+    "timestamp": "2025-07-07T18:02:57.140678",
+    "specialist_separation_protected": false,
+    "post_processing_improved": false,
+    "safety_violations": [
+      {
+        "function": "専門科目分離",
+        "issue": "問題数0、ソース",
+        "severity": "critical"
+      }
+    ],
+    "improvements_detected": [],
+    "post_improvement_rate": 0.0
+  },
+  "safety_assessment": {
+    "safety_level": "要注意",
+    "specialist_separation_protected": false,
+    "post_processing_improved": false,
+    "safety_violation_count": 1,
+    "improvement_count": 0,
+    "overall_success": false
+  },
+  "timestamp": "2025-07-07T18:02:59.042993"
+}

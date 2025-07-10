@@ -1,0 +1,202 @@
+{
+  "timestamp": "2025-07-08T18:57:39.298413",
+  "verification_method": "production_equivalent_browser_simulation",
+  "summary": {
+    "total_departments": 12,
+    "successful_departments": 0,
+    "failed_departments": 12,
+    "success_rate": 0.0
+  },
+  "failed_departments": [
+    {
+      "url": "/department_study/road",
+      "issues": [
+        "専門問題数が0",
+        "部門コンテンツが存在しない"
+      ]
+    },
+    {
+      "url": "/department_study/civil_planning",
+      "issues": [
+        "専門問題数が0",
+        "部門コンテンツが存在しない"
+      ]
+    },
+    {
+      "url": "/department_study/tunnel",
+      "issues": [
+        "専門問題数が0",
+        "部門コンテンツが存在しない"
+      ]
+    },
+    {
+      "url": "/department_study/urban_planning",
+      "issues": [
+        "専門問題数が0",
+        "部門コンテンツが存在しない"
+      ]
+    },
+    {
+      "url": "/department_study/landscape",
+      "issues": [
+        "専門問題数が0",
+        "部門コンテンツが存在しない"
+      ]
+    },
+    {
+      "url": "/department_study/construction_env",
+      "issues": [
+        "専門問題数が0",
+        "部門コンテンツが存在しない"
+      ]
+    },
+    {
+      "url": "/department_study/steel_concrete",
+      "issues": [
+        "専門問題数が0",
+        "部門コンテンツが存在しない"
+      ]
+    },
+    {
+      "url": "/department_study/soil_foundation",
+      "issues": [
+        "専門問題数が0",
+        "部門コンテンツが存在しない"
+      ]
+    },
+    {
+      "url": "/department_study/construction_planning",
+      "issues": [
+        "専門問題数が0",
+        "部門コンテンツが存在しない"
+      ]
+    },
+    {
+      "url": "/department_study/water_supply",
+      "issues": [
+        "専門問題数が0",
+        "部門コンテンツが存在しない"
+      ]
+    },
+    {
+      "url": "/department_study/forestry",
+      "issues": [
+        "専門問題数が0",
+        "部門コンテンツが存在しない"
+      ]
+    },
+    {
+      "url": "/department_study/agriculture",
+      "issues": [
+        "専門問題数が0",
+        "部門コンテンツが存在しない"
+      ]
+    }
+  ],
+  "verification_results": [
+    {
+      "test_name": "セッション初期化",
+      "success": true,
+      "details": "ホームページアクセス成功",
+      "response_size": 10777,
+      "response_time": 0.33439064025878906,
+      "timestamp": "2025-07-08T18:57:10.947841"
+    },
+    {
+      "test_name": "road部門_完全検証",
+      "success": false,
+      "details": "問題数: 0, 正答率: 0.0%, エラー: 無 | 問題: 専門問題数が0; 部門コンテンツが存在しない",
+      "response_size": 6772,
+      "response_time": 0.3334677219390869,
+      "timestamp": "2025-07-08T18:57:11.289031"
+    },
+    {
+      "test_name": "civil_planning部門_完全検証",
+      "success": false,
+      "details": "問題数: 0, 正答率: 0.0%, エラー: 無 | 問題: 専門問題数が0; 部門コンテンツが存在しない",
+      "response_size": 6865,
+      "response_time": 0.284588098526001,
+      "timestamp": "2025-07-08T18:57:13.576582"
+    },
+    {
+      "test_name": "tunnel部門_完全検証",
+      "success": false,
+      "details": "問題数: 0, 正答率: 0.0%, エラー: 無 | 問題: 専門問題数が0; 部門コンテンツが存在しない",
+      "response_size": 6825,
+      "response_time": 0.27506351470947266,
+      "timestamp": "2025-07-08T18:57:15.853803"
+    },
+    {
+      "test_name": "urban_planning部門_完全検証",
+      "success": false,
+      "details": "問題数: 0, 正答率: 0.0%, エラー: 無 | 問題: 専門問題数が0; 部門コンテンツが存在しない",
+      "response_size": 6773,
+      "response_time": 0.650109052658081,
+      "timestamp": "2025-07-08T18:57:18.506715"
+    },
+    {
+      "test_name": "landscape部門_完全検証",
+      "success": false,
+      "details": "問題数: 0, 正答率: 0.0%, エラー: 無 | 問題: 専門問題数が0; 部門コンテンツが存在しない",
+      "response_size": 6769,
+      "response_time": 0.2897472381591797,
+      "timestamp": "2025-07-08T18:57:20.796991"
+    },
+    {
+      "test_name": "construction_env部門_完全検証",
+      "success": false,
+      "details": "問題数: 0, 正答率: 0.0%, エラー: 無 | 問題: 専門問題数が0; 部門コンテンツが存在しない",
+      "response_size": 6818,
+      "response_time": 0.2888791561126709,
+      "timestamp": "2025-07-08T18:57:23.089058"
+    },
+    {
+      "test_name": "steel_concrete部門_完全検証",
+      "success": false,
+      "details": "問題数: 0, 正答率: 0.0%, エラー: 無 | 問題: 専門問題数が0; 部門コンテンツが存在しない",
+      "response_size": 6824,
+      "response_time": 0.6582794189453125,
+      "timestamp": "2025-07-08T18:57:25.750207"
+    },
+    {
+      "test_name": "soil_foundation部門_完全検証",
+      "success": false,
+      "details": "問題数: 0, 正答率: 0.0%, エラー: 無 | 問題: 専門問題数が0; 部門コンテンツが存在しない",
+      "response_size": 6801,
+      "response_time": 0.30676865577697754,
+      "timestamp": "2025-07-08T18:57:28.060639"
+    },
+    {
+      "test_name": "construction_planning部門_完全検証",
+      "success": false,
+      "details": "問題数: 0, 正答率: 0.0%, エラー: 無 | 問題: 専門問題数が0; 部門コンテンツが存在しない",
+      "response_size": 6842,
+      "response_time": 0.3287539482116699,
+      "timestamp": "2025-07-08T18:57:30.392493"
+    },
+    {
+      "test_name": "water_supply部門_完全検証",
+      "success": false,
+      "details": "問題数: 0, 正答率: 0.0%, エラー: 無 | 問題: 専門問題数が0; 部門コンテンツが存在しない",
+      "response_size": 6813,
+      "response_time": 0.30826401710510254,
+      "timestamp": "2025-07-08T18:57:32.703731"
+    },
+    {
+      "test_name": "forestry部門_完全検証",
+      "success": false,
+      "details": "問題数: 0, 正答率: 0.0%, エラー: 無 | 問題: 専門問題数が0; 部門コンテンツが存在しない",
+      "response_size": 6828,
+      "response_time": 0.3190925121307373,
+      "timestamp": "2025-07-08T18:57:35.026088"
+    },
+    {
+      "test_name": "agriculture部門_完全検証",
+      "success": false,
+      "details": "問題数: 0, 正答率: 0.0%, エラー: 無 | 問題: 専門問題数が0; 部門コンテンツが存在しない",
+      "response_size": 6812,
+      "response_time": 0.26674795150756836,
+      "timestamp": "2025-07-08T18:57:37.295472"
+    }
+  ]
+}

@@ -1,0 +1,301 @@
+[
+  {
+    "test": "session_logic_analysis",
+    "timestamp": "2025-07-07T08:53:49.850628",
+    "analysis": {
+      "session_pattern_findings": {
+        "session['exam_session']": 10,
+        "session['exam_session']_contexts": [
+          {
+            "line_number": 7243,
+            "context": [
+              "        store_exam_data_in_memory(exam_id, exam_session)",
+              "        ",
+              "        session['exam_session'] = lightweight_session",
+              "        session.modified = True",
+              "        "
+            ]
+          },
+          {
+            "line_number": 7376,
+            "context": [
+              "            result = exam_simulator.finish_exam(exam_session)",
+              "            # HTTP 431対策: 軽量セッション更新",
+              "            session['exam_session'].update({",
+              "                'status': 'completed',",
+              "                'current_question': exam_session.get('current_question', 0),"
+            ]
+          },
+          {
+            "line_number": 7400,
+            "context": [
+              "",
+              "        # HTTP 431対策: 軽量セッション更新",
+              "        session['exam_session'].update({",
+              "            'current_question': exam_session.get('current_question', 0),",
+              "            'answers': exam_session.get('answers', {})"
+            ]
+          }
+        ],
+        "session.get('exam_session'": 13,
+        "session.get('exam_session'_contexts": [
+          {
+            "line_number": 76,
+            "context": [
+              "    \"\"\"",
+              "    try:",
+              "        exam_session = session.get('exam_session', {})",
+              "        question_ids = exam_session.get('question_ids', [])",
+              "        "
+            ]
+          },
+          {
+            "line_number": 108,
+            "context": [
+              "    \"\"\"",
+              "    try:",
+              "        exam_session = session.get('exam_session', {})",
+              "        current_question_index = exam_session.get('current_question', 0)",
+              "        question_ids = exam_session.get('question_ids', [])"
+            ]
+          },
+          {
+            "line_number": 184,
+            "context": [
+              "    \"\"\"軽量化されたセッションから問題データを動的ロード\"\"\"",
+              "    try:",
+              "        exam_session = session.get('exam_session', {})",
+              "        question_ids = exam_session.get('question_ids', [])",
+              "        "
+            ]
+          }
+        ],
+        "4-1/4-2完全分離": 1,
+        "4-1/4-2完全分離_contexts": [
+          {
+            "line_number": 7224,
+            "context": [
+              "        }",
+              "        ",
+              "        logger.info(f\"🛡️ 4-1/4-2完全分離: {question_type_check}で{len(selected_questions)}問選択完了\")",
+              "        logger.info(f\"🔥 EXAM START: 試験セッション生成完了 - ID: {exam_session.get('exam_id', 'UNKNOWN')}\")",
+              ""
+            ]
+          }
+        ],
+        "question_type_check": 4,
+        "question_type_check_contexts": [
+          {
+            "line_number": 7195,
+            "context": [
+              "        ",
+              "        # 4-1と4-2の混在を防ぐ最終チェック",
+              "        question_type_check = session.get('selected_question_type', '')",
+              "        if question_type_check == 'basic':",
+              "            # 基礎科目の場合：専門科目が混入していないかチェック"
+            ]
+          },
+          {
+            "line_number": 7196,
+            "context": [
+              "        # 4-1と4-2の混在を防ぐ最終チェック",
+              "        question_type_check = session.get('selected_question_type', '')",
+              "        if question_type_check == 'basic':",
+              "            # 基礎科目の場合：専門科目が混入していないかチェック",
+              "            contaminated = [q for q in selected_questions if q.get('question_type') != 'basic']"
+            ]
+          },
+          {
+            "line_number": 7202,
+            "context": [
+              "                logger.error(f\"🚨 基礎科目に専門科目混入検出: {len(contaminated)}問 - 除去します\")",
+              "                selected_questions = [q for q in selected_questions if q.get('question_type') == 'basic']",
+              "        elif question_type_check == 'specialist':",
+              "            # 専門科目の場合：基礎科目が混入していないかチェック",
+              "            contaminated = [q for q in selected_questions if q.get('question_type') != 'specialist']"
+            ]
+          }
+        ],
+        "基礎科目に専門科目混入検出": 2,
+        "基礎科目に専門科目混入検出_contexts": [
+          {
+            "line_number": 2164,
+            "context": [
+              "                                      if q.get('question_type') == 'specialist' and int(q.get('id', 0)) in [int(aq.get('id', 0)) for aq in available_questions]]",
+              "            if specialist_contamination:",
+              "                logger.error(f\"🚨 基礎科目に専門科目混入検出: {len(specialist_contamination)}問\")",
+              "                available_questions = [q for q in available_questions if q not in specialist_contamination]",
+              ""
+            ]
+          },
+          {
+            "line_number": 7200,
+            "context": [
+              "            contaminated = [q for q in selected_questions if q.get('question_type') != 'basic']",
+              "            if contaminated:",
+              "                logger.error(f\"🚨 基礎科目に専門科目混入検出: {len(contaminated)}問 - 除去します\")",
+              "                selected_questions = [q for q in selected_questions if q.get('question_type') == 'basic']",
+              "        elif question_type_check == 'specialist':"
+            ]
+          }
+        ],
+        "専門科目に基礎科目混入検出": 2,
+        "専門科目に基礎科目混入検出_contexts": [
+          {
+            "line_number": 2179,
+            "context": [
+              "                                 if q.get('question_type') == 'basic' and int(q.get('id', 0)) in [int(aq.get('id', 0)) for aq in available_questions]]",
+              "            if basic_contamination:",
+              "                logger.error(f\"🚨 専門科目に基礎科目混入検出: {len(basic_contamination)}問\")",
+              "                available_questions = [q for q in available_questions if q not in basic_contamination]",
+              ""
+            ]
+          },
+          {
+            "line_number": 7206,
+            "context": [
+              "            contaminated = [q for q in selected_questions if q.get('question_type') != 'specialist']",
+              "            if contaminated:",
+              "                logger.error(f\"🚨 専門科目に基礎科目混入検出: {len(contaminated)}問 - 除去します\")",
+              "                selected_questions = [q for q in selected_questions if q.get('question_type') == 'specialist']",
+              "        "
+            ]
+          }
+        ],
+        "lightweight_session": 6,
+        "lightweight_session_contexts": [
+          {
+            "line_number": 71,
+            "context": [
+              "",
+              "# 🛡️ HTTP 431対策: 軽量セッション用問題データロード機能",
+              "def load_questions_from_lightweight_session(session, data_manager=None):",
+              "    \"\"\"",
+              "    軽量化されたセッションから完全な問題データを復元"
+            ]
+          },
+          {
+            "line_number": 103,
+            "context": [
+              "        return []",
+              "",
+              "def get_current_question_from_lightweight_session(session, data_manager=None):",
+              "    \"\"\"",
+              "    軽量化されたセッションから現在の問題データを取得"
+            ]
+          },
+          {
+            "line_number": 181,
+            "context": [
+              "",
+              "# 🛡️ HTTP 431対策: 軽量セッション用問題データ復元機能",
+              "def load_question_from_lightweight_session(session, question_index=None):",
+              "    \"\"\"軽量化されたセッションから問題データを動的ロード\"\"\"",
+              "    try:"
+            ]
+          }
+        ],
+        "store_exam_data_in_memory": 2,
+        "store_exam_data_in_memory_contexts": [
+          {
+            "line_number": 160,
+            "context": [
+              "EXAM_DATA_CACHE = {}",
+              "",
+              "def store_exam_data_in_memory(exam_id, exam_session):",
+              "    \"\"\"試験データをメモリに一時保存\"\"\"",
+              "    global EXAM_DATA_CACHE"
+            ]
+          },
+          {
+            "line_number": 7241,
+            "context": [
+              "        # メモリに試験データ保存（セッション外）",
+              "        exam_id = exam_session.get('exam_id', '')",
+              "        store_exam_data_in_memory(exam_id, exam_session)",
+              "        ",
+              "        session['exam_session'] = lightweight_session"
+            ]
+          }
+        ]
+      },
+      "separation_logic": {
+        "contamination_detection": {
+          "basic_contamination": true,
+          "specialist_contamination": true,
+          "automatic_removal": true
+        },
+        "question_type_check": {
+          "has_type_check": true,
+          "basic_check": true,
+          "specialist_check": true
+        },
+        "session_isolation": {
+          "lightweight_session": true,
+          "memory_storage": true,
+          "session_modification": true
+        }
+      },
+      "potential_issues": [
+        "セッション状態の直接変更が検出されました",
+        "複数のセッションキーが使用されています: ['exam_session', 'exam_question_ids', 'exam_current', 'exam_category']"
+      ]
+    }
+  },
+  {
+    "test": "csv_separation_verification",
+    "status": "PASSED",
+    "4_1_analysis": {
+      "question_count": 202,
+      "id_range": "1-202",
+      "categories": [
+        "共通"
+      ],
+      "is_basic_only": true
+    },
+    "4_2_analysis": {
+      "question_count": 361,
+      "id_range": "203-563",
+      "categories": [
+        "都市計画及び地方計画",
+        "河川、砂防及び海岸・海洋",
+        "道路",
+        "造園",
+        "トンネル",
+        "農業土木",
+        "土質及び基礎",
+        "森林土木",
+        "鋼構造及びコンクリート",
+        "建設環境",
+        "施工計画、施工設備及び積算",
+        "上水道及び工業用水道"
+      ],
+      "is_specialist_only": true
+    },
+    "separation_quality": {
+      "no_id_overlap": true,
+      "no_category_overlap": true,
+      "clear_boundaries": true
+    }
+  },
+  {
+    "test": "data_loading_logic_verification",
+    "status": "PASSED",
+    "bom_handling": {
+      "bom_detection": true,
+      "bom_removal": true,
+      "encoding_fallback": true
+    },
+    "error_handling": {
+      "unicode_decode_error": true,
+      "file_not_found_error": true,
+      "data_validation_error": true,
+      "multiple_encoding_attempts": true
+    },
+    "cache_features": {
+      "has_cache": true,
+      "redis_cache": true,
+      "memory_cache": false
+    }
+  }
+]

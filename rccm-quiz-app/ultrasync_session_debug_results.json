@@ -1,0 +1,9 @@
+{
+  "session_cookies": 1,
+  "exam_question_redirect": 302,
+  "final_url": "https://rccm-quiz-2025.onrender.com/exam",
+  "final_status": 200,
+  "form_count": 0,
+  "has_csrf_token": true,
+  "timestamp": "2025-07-10T06:56:20.901442"
+}

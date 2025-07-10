@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% block title %}回答結果分析 | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">総合回答結果分析</h2>
+    <!-- 全体進捗プログレスバー -->
+    <div class="mb-4">
+        <label for="progressBar" class="form-label">全体正答率</label>
+        <div class="progress" style="height: 30px;">
+            <div id="progressBar" class="progress-bar" role="progressbar" style="width: {{ '%.1f' % (overall_stats.total_accuracy|default(0.0)) }}%;" aria-valuenow="{{ '%.1f' % (overall_stats.total_accuracy|default(0.0)) }}" aria-valuemin="0" aria-valuemax="100">
+                {{ '%.1f' % (overall_stats.total_accuracy|default(0.0)) }}%
+            </div>
+        </div>
+    </div>
+    <!-- 共通・専門別正答率 横棒グラフ（コンパクト化） -->
+    <div class="card mb-3">
+        <div class="card-header">共通・専門別回答結果</div>
+        <div class="card-body">
+            <canvas id="basicSpecialtyChart" height="120"></canvas>
+            <p class="text-muted mt-2 mb-0">4-1基礎科目（共通）と4-2専門科目の正答率を表示します。</p>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="card-header">全体サマリー</div>
+        <div class="card-body">
+            <p><strong>実施した問題数:</strong> {{ overall_stats.total_questions | default('データなし') }}</p>
+            <p><strong>全問題の累計正答率:</strong> {{ '%.1f' % (overall_stats.total_accuracy|default(0.0)) }}%</p>
+            <p><strong>平均解答時間:</strong> {{ overall_stats.average_time_per_question | default('データなし') }} 秒/問</p>
+            {% set accuracy = overall_stats.total_accuracy|default(0.0) %}
+            <div class="mt-2">
+                {% if accuracy >= 90 %}
+                    <span class="badge bg-success">素晴らしい成績です！この調子で頑張りましょう！</span>
+                {% elif accuracy >= 80 %}
+                    <span class="badge bg-primary">あと少しで90%達成！引き続き頑張りましょう！</span>
+                {% elif accuracy >= 60 %}
+                    <span class="badge bg-warning text-dark">苦手分野を重点的に復習しましょう。</span>
+                {% else %}
+                    <span class="badge bg-danger">まずは基礎をしっかり固めましょう！</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="card-header">共通・専門別詳細回答結果</div>
+        <div class="card-body p-0">
+            {% if basic_specialty_details %}
+            <div class="table-responsive">
+                <table class="table table-sm table-striped table-bordered mb-0" style="font-size:0.92em;">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 150px;">科目区分</th>
+                            <th style="width: 60px;">解答数</th>
+                            <th style="width: 60px;">正答数</th>
+                            <th style="width: 70px;">正答率(%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>4-1 基礎科目（共通）</td>
+                            <td>{{ basic_specialty_details.basic.total_answered }}</td>
+                            <td>{{ basic_specialty_details.basic.correct_count }}</td>
+                            <td>{{ '%.1f' % (basic_specialty_details.basic.accuracy|default(0.0)) }}</td>
+                        </tr>
+                        <tr>
+                            <td>4-2 専門科目</td>
+                            <td>{{ basic_specialty_details.specialty.total_answered }}</td>
+                            <td>{{ basic_specialty_details.specialty.correct_count }}</td>
+                            <td>{{ '%.1f' % (basic_specialty_details.specialty.accuracy|default(0.0)) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+                <p class="m-3">共通・専門別統計データがありません。</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header">正答率推移（日ごと）</div>
+        <div class="card-body">
+            <canvas id="accuracyTrendChart" height="120"></canvas>
+            <p class="text-muted mt-2 mb-0">日ごとの正答率推移を縦棒グラフで表示します。</p>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">直近の問題履歴</div>
+        <div class="card-body">
+            {% if quiz_history %}
+                <ul class="list-group">
+                {% for quiz in quiz_history %}
+                    <li class="list-group-item">
+                        実施日時: {{ quiz.date }}, 分野: {{ quiz.category | default('全体') }},
+                        正答: {{ '○' if quiz.is_correct else '×' }},
+                        解答時間: {{ quiz.elapsed | default('-') }} 秒
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>問題履歴がありません。</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <form method="post" action="/reset" onsubmit="return confirm('本当に学習履歴をリセットしますか？この操作は元に戻せません。');">
+      <button type="submit" class="btn btn-danger mt-3">全学習履歴をリセット</button>
+    </form>
+
+    <div class="mt-4">
+        <a href="{{ url_for('department_statistics') }}" class="btn btn-primary mr-3">
+            <i class="fas fa-chart-line"></i> 部門別詳細統計
+        </a>
+        <a href="/" class="btn btn-secondary">ホームに戻る</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// 共通・専門別正答率データ
+const basicSpecialtyData = {{ basic_specialty_details | tojson | safe }};
+// 横棒グラフ
+const ctxBar = document.getElementById('basicSpecialtyChart').getContext('2d');
+const barChart = new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+        labels: ['4-1 基礎科目（共通）', '4-2 専門科目'],
+        datasets: [{
+            label: '正答率（%）',
+            data: basicSpecialtyData ? [
+                basicSpecialtyData.basic ? basicSpecialtyData.basic.accuracy : 0,
+                basicSpecialtyData.specialty ? basicSpecialtyData.specialty.accuracy : 0
+            ] : [0, 0],
+            backgroundColor: ['#2196F3', '#4CAF50'],
+            borderWidth: 1,
+            barThickness: 18
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            title: { display: false },
+            tooltip: {
+                enabled: true,
+                callbacks: {
+                    label: function(context) {
+                        return context.parsed.x + '%';
+                    }
+                }
+            }
+        },
+        scales: {
+            x: {
+                min: 0,
+                max: 100,
+                title: { display: true, text: '正答率（%）' },
+                ticks: { stepSize: 10, font: { size: 10 } }
+            },
+            y: {
+                title: { display: false },
+                ticks: { font: { size: 12 } }
+            }
+        },
+        animation: {
+            duration: 600,
+            easing: 'easeOutQuart'
+        }
+    }
+});
+
+// 成績推移グラフ（日ごとの正答率%）
+const dailyAccuracyList = {{ daily_accuracy_list|tojson|safe }};
+const trendLabels = dailyAccuracyList.map(d => d.date);
+const trendData = dailyAccuracyList.map(d => d.accuracy);
+const ctxTrend = document.getElementById('accuracyTrendChart').getContext('2d');
+const trendChart = new Chart(ctxTrend, {
+    type: 'bar',
+    data: {
+        labels: trendLabels,
+        datasets: [{
+            label: '正答率（%）',
+            data: trendData,
+            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            title: { display: false }
+        },
+        scales: {
+            y: {
+                min: 0,
+                max: 100,
+                title: { display: true, text: '正答率（%）' },
+                ticks: { stepSize: 20 }
+            }
+        },
+        animation: {
+            duration: 600,
+            easing: 'easeOutQuart'
+        }
+    }
+});
+</script>
+{% endblock %} 

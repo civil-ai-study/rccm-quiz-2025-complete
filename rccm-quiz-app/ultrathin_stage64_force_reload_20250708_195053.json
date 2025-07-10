@@ -1,0 +1,60 @@
+{
+  "timestamp": "2025-07-08T19:50:53.191239",
+  "stage": "ultrathin_stage64_force_reload",
+  "reload_results": {
+    "cache_clear_attempts": [
+      {
+        "success": false,
+        "response_size": 197,
+        "response_preview": "{\"message\":\"\\u30ad\\u30e3\\u30c3\\u30b7\\u30e5\\u3092\\u30af\\u30ea\\u30a2\\u3057\\u307e\\u3057\\u305f\\uff08Redis + \\u30e1\\u30e2\\u30ea\\u30ad\\u30e3\\u30c3\\u30b7\\u30e5\\uff09\",\"redis_enabled\":true,\"success\":true}\n"
+      }
+    ],
+    "force_reload_attempts": [
+      {
+        "endpoint": "/exam?question_type=basic&force_reload=1",
+        "result": {
+          "response_size": 34062,
+          "ultrathin_logs_detected": 0,
+          "question_content_found": false,
+          "logs_detail": []
+        }
+      },
+      {
+        "endpoint": "/department_study/road?refresh=1",
+        "result": {
+          "response_size": 19931,
+          "ultrathin_logs_detected": 0,
+          "question_content_found": false,
+          "logs_detail": []
+        }
+      },
+      {
+        "endpoint": "/statistics?reload=1",
+        "result": {
+          "response_size": 21265,
+          "ultrathin_logs_detected": 0,
+          "question_content_found": false,
+          "logs_detail": []
+        }
+      },
+      {
+        "endpoint": "/?clear_cache=1",
+        "result": {
+          "response_size": 35120,
+          "ultrathin_logs_detected": 0,
+          "question_content_found": false,
+          "logs_detail": []
+        }
+      }
+    ],
+    "final_verification": {
+      "questions_loaded": false,
+      "options_present": false,
+      "no_error_messages": true,
+      "ultrathin_modifications_active": false,
+      "improvement_score": 1,
+      "response_size": 34081,
+      "overall_success": false
+    }
+  }
+}

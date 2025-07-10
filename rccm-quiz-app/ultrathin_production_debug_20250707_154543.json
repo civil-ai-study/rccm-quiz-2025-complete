@@ -1,0 +1,45 @@
+[
+  {
+    "department": "基礎科目",
+    "year": 2024,
+    "status_code": 200,
+    "response_time": 0.8885617256164551,
+    "content_length": 36999,
+    "found_keywords": [
+      "基礎"
+    ],
+    "found_errors": [
+      "error"
+    ],
+    "found_logs": [],
+    "seems_correct": false
+  },
+  {
+    "department": "河川、砂防及び海岸・海洋",
+    "year": 2016,
+    "status_code": 200,
+    "response_time": 0.8926973342895508,
+    "content_length": 36999,
+    "found_keywords": [],
+    "found_errors": [
+      "error"
+    ],
+    "found_logs": [],
+    "seems_correct": false
+  },
+  {
+    "department": "土質及び基礎",
+    "year": 2016,
+    "status_code": 200,
+    "response_time": 0.8735475540161133,
+    "content_length": 36999,
+    "found_keywords": [
+      "基礎"
+    ],
+    "found_errors": [
+      "error"
+    ],
+    "found_logs": [],
+    "seems_correct": true
+  }
+]

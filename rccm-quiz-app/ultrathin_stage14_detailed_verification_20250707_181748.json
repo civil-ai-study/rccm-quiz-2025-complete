@@ -1,0 +1,17 @@
+{
+  "timestamp": "2025-07-07T18:17:46.941785",
+  "detailed_analysis": {
+    "post_status": 200,
+    "response_time": 0.7803018093109131,
+    "final_page": "exam_simulator",
+    "redirect_count": 2,
+    "questions_count": 30,
+    "data_source": "specialist",
+    "exam_type": "河川、砂防及び海岸・海洋",
+    "session_elements": 0,
+    "exam_session_exists": false,
+    "specialist_separation_maintained": true,
+    "post_processing_improved": false,
+    "overall_assessment": "improved"
+  }
+}

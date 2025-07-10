@@ -1,0 +1,518 @@
+{% extends "base.html" %}
+
+{% block title %}試験ナビゲーション - {{ exam_session.exam_type|upper }} - RCCM試験問題集{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- ヘッダー -->
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4>
+                    <i class="fas fa-compass text-primary"></i> 
+                    試験ナビゲーション
+                </h4>
+                <div>
+                    <span class="badge bg-primary fs-6">{{ exam_session.exam_type|upper }}</span>
+                    <button class="btn btn-sm btn-outline-secondary ms-2" onclick="window.close()">
+                        <i class="fas fa-times"></i> 閉じる
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 試験進捗概要 -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card progress-summary-card">
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <div class="progress-item">
+                                <div class="progress-number text-primary">{{ summary.progress.current_question }}</div>
+                                <div class="progress-label">現在の問題</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="progress-item">
+                                <div class="progress-number text-success">{{ summary.progress.answered_questions }}</div>
+                                <div class="progress-label">回答済み</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="progress-item">
+                                <div class="progress-number text-warning">{{ summary.progress.flagged_questions }}</div>
+                                <div class="progress-label">フラグ設定</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="progress-item">
+                                <div class="progress-number text-info">{{ summary.time_info.remaining_minutes }}</div>
+                                <div class="progress-label">残り時間（分）</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 全体進捗バー -->
+                    <div class="mt-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>全体進捗</span>
+                            <span>{{ summary.progress.answered_questions }}/{{ summary.progress.total_questions }}</span>
+                        </div>
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar bg-success" 
+                                 style="width: {{ (summary.progress.answered_questions / summary.progress.total_questions * 100)|round(1) }}%"></div>
+                        </div>
+                        <small class="text-muted">{{ ((summary.progress.answered_questions / summary.progress.total_questions * 100)|round(1)) }}% 完了</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 問題一覧グリッド -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card questions-grid-card">
+                <div class="card-header bg-secondary text-white">
+                    <h6 class="mb-0">
+                        <i class="fas fa-th"></i> 問題一覧
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="questions-grid">
+                        {% for i in range(summary.progress.total_questions) %}
+                        {% set question_index = i %}
+                        {% set question_number = i + 1 %}
+                        {% set is_current = question_index == summary.progress.current_question %}
+                        {% set is_answered = question_index in exam_session.answers %}
+                        {% set is_flagged = question_index in exam_session.flagged_questions %}
+                        
+                        <div class="question-grid-item 
+                                    {% if is_current %}current{% endif %}
+                                    {% if is_answered %}answered{% endif %}
+                                    {% if is_flagged %}flagged{% endif %}"
+                             onclick="navigateToQuestion({{ question_index }})">
+                            <div class="question-number">{{ question_number }}</div>
+                            <div class="question-status">
+                                {% if is_flagged %}
+                                    <i class="fas fa-flag text-warning"></i>
+                                {% endif %}
+                                {% if is_answered %}
+                                    <i class="fas fa-check text-success"></i>
+                                {% elif is_current %}
+                                    <i class="fas fa-arrow-right text-primary"></i>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <!-- 凡例 -->
+                    <div class="legend mt-4">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="legend-item">
+                                    <div class="legend-box current"></div>
+                                    <span>現在の問題</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="legend-item">
+                                    <div class="legend-box answered"></div>
+                                    <span>回答済み</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="legend-item">
+                                    <div class="legend-box flagged"></div>
+                                    <span>フラグ設定</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="legend-item">
+                                    <div class="legend-box unanswered"></div>
+                                    <span>未回答</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 操作ボタン -->
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <div class="navigation-actions">
+                <button class="btn btn-success btn-lg me-3" onclick="returnToCurrentQuestion()">
+                    <i class="fas fa-play"></i> 現在の問題に戻る
+                </button>
+                <button class="btn btn-warning btn-lg me-3" onclick="showFlaggedQuestions()">
+                    <i class="fas fa-flag"></i> フラグ問題のみ表示
+                </button>
+                <button class="btn btn-danger btn-lg" onclick="confirmFinishExam()">
+                    <i class="fas fa-flag-checkered"></i> 試験を終了
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- フラグ問題フィルター -->
+    <div class="row mt-4" id="flaggedQuestionsFilter" style="display: none;">
+        <div class="col-12">
+            <div class="card border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <h6 class="mb-0">
+                        <i class="fas fa-flag"></i> フラグ設定済み問題
+                        <button class="btn btn-sm btn-outline-dark float-end" onclick="hideFlaggedQuestions()">
+                            <i class="fas fa-times"></i> 閉じる
+                        </button>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="flagged-questions-list">
+                        {% for question_index in exam_session.flagged_questions %}
+                        <div class="flagged-question-item" onclick="navigateToQuestion({{ question_index }})">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>
+                                    <i class="fas fa-flag text-warning me-2"></i>
+                                    問題 {{ question_index + 1 }}
+                                </span>
+                                <span>
+                                    {% if question_index in exam_session.answers %}
+                                        <span class="badge bg-success">回答済み</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">未回答</span>
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                        {% if not exam_session.flagged_questions %}
+                        <div class="text-center text-muted py-3">
+                            <i class="fas fa-info-circle"></i> フラグ設定された問題はありません
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 試験終了確認モーダル -->
+<div class="modal fade" id="finishExamModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-flag-checkered"></i> 試験終了確認
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>注意：</strong>試験を終了すると、回答の変更はできません。
+                </div>
+                
+                <div class="exam-final-summary">
+                    <h6>最終確認</h6>
+                    <ul>
+                        <li>回答済み問題: <strong>{{ summary.progress.answered_questions }}/{{ summary.progress.total_questions }}</strong></li>
+                        <li>未回答問題: <strong>{{ summary.progress.total_questions - summary.progress.answered_questions }}</strong></li>
+                        <li>フラグ設定: <strong>{{ summary.progress.flagged_questions }}問</strong></li>
+                        <li>残り時間: <strong>{{ summary.time_info.remaining_minutes }}分</strong></li>
+                    </ul>
+                </div>
+                
+                <p><strong>本当に試験を終了しますか？</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i> キャンセル
+                </button>
+                <button type="button" class="btn btn-danger" onclick="finishExam()">
+                    <i class="fas fa-flag-checkered"></i> 試験を終了する
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function navigateToQuestion(questionIndex) {
+    // 親ウィンドウの問題に移動
+    if (window.opener && !window.opener.closed) {
+        window.opener.location.href = `/exam_question?goto=${questionIndex}`;
+        window.close();
+    } else {
+        // 親ウィンドウが閉じている場合は新しいタブで開く
+        window.open(`/exam_question?goto=${questionIndex}`, '_blank');
+        window.close();
+    }
+}
+
+function returnToCurrentQuestion() {
+    if (window.opener && !window.opener.closed) {
+        window.opener.focus();
+        window.close();
+    } else {
+        window.open('/exam_question', '_blank');
+        window.close();
+    }
+}
+
+function showFlaggedQuestions() {
+    const filter = document.getElementById('flaggedQuestionsFilter');
+    filter.style.display = 'block';
+    filter.scrollIntoView({ behavior: 'smooth' });
+}
+
+function hideFlaggedQuestions() {
+    document.getElementById('flaggedQuestionsFilter').style.display = 'none';
+}
+
+function confirmFinishExam() {
+    const modal = new bootstrap.Modal(document.getElementById('finishExamModal'));
+    modal.show();
+}
+
+function finishExam() {
+    fetch('/finish_exam', {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            if (window.opener && !window.opener.closed) {
+                window.opener.location.href = data.redirect;
+            } else {
+                window.open(data.redirect, '_blank');
+            }
+            window.close();
+        } else {
+            alert('エラー: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('通信エラーが発生しました。');
+    });
+}
+
+// ページ読み込み時の処理
+document.addEventListener('DOMContentLoaded', function() {
+    // 現在の問題にスクロール
+    const currentQuestion = document.querySelector('.question-grid-item.current');
+    if (currentQuestion) {
+        currentQuestion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+});
+</script>
+
+<style>
+.progress-summary-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.progress-item {
+    padding: 20px;
+}
+
+.progress-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.progress-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-top: 5px;
+}
+
+.questions-grid-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.questions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    padding: 20px 0;
+}
+
+.question-grid-item {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #fff;
+    position: relative;
+}
+
+.question-grid-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.question-grid-item.current {
+    border-color: #007bff;
+    background: #e3f2fd;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.question-grid-item.answered {
+    border-color: #28a745;
+    background: #e8f5e8;
+}
+
+.question-grid-item.flagged {
+    border-color: #ffc107;
+    background: #fff9e6;
+}
+
+.question-grid-item.answered.flagged {
+    background: linear-gradient(45deg, #e8f5e8 50%, #fff9e6 50%);
+}
+
+.question-number {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #495057;
+}
+
+.question-status {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 0.8rem;
+}
+
+.legend {
+    border-top: 1px solid #e9ecef;
+    padding-top: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.legend-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    margin-right: 10px;
+    border: 2px solid;
+}
+
+.legend-box.current {
+    background: #e3f2fd;
+    border-color: #007bff;
+}
+
+.legend-box.answered {
+    background: #e8f5e8;
+    border-color: #28a745;
+}
+
+.legend-box.flagged {
+    background: #fff9e6;
+    border-color: #ffc107;
+}
+
+.legend-box.unanswered {
+    background: #fff;
+    border-color: #e9ecef;
+}
+
+.navigation-actions {
+    margin: 20px 0;
+}
+
+.navigation-actions .btn {
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-weight: 600;
+}
+
+.flagged-question-item {
+    padding: 15px;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.flagged-question-item:hover {
+    background: #f8f9fa;
+    border-color: #ffc107;
+    transform: translateX(5px);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .questions-grid {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 8px;
+    }
+    
+    .question-grid-item {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .question-number {
+        font-size: 1rem;
+    }
+    
+    .progress-number {
+        font-size: 2rem;
+    }
+    
+    .navigation-actions .btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+/* アニメーション */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.question-grid-item.current {
+    animation: pulse 2s infinite;
+}
+
+.flagged-question-item {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+{% endblock %}

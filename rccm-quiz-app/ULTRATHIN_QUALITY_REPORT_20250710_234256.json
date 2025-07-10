@@ -1,0 +1,412 @@
+{
+  "timestamp": "2025-07-10T23:42:56.238985",
+  "execution_time_seconds": 0.0,
+  "quality_score": 94,
+  "max_score": 100,
+  "quality_percentage": 94.0,
+  "test_results": {
+    "file_structure": {
+      "required_files": {
+        "app.py": true,
+        "utils.py": true,
+        "config.py": true,
+        "requirements.txt": true,
+        "CLAUDE.md": true,
+        "data/4-1.csv": true
+      },
+      "blueprint_files": {
+        "blueprints/static_bp.py": true,
+        "blueprints/health_bp.py": true
+      },
+      "file_sizes": {
+        "app.py": 541623,
+        "utils.py": 50345,
+        "config.py": 13313,
+        "requirements.txt": 303,
+        "CLAUDE.md": 33085,
+        "data/4-1.csv": 92424,
+        "blueprints/static_bp.py": 7241,
+        "blueprints/health_bp.py": 9237
+      },
+      "file_counts": {
+        "data": 35,
+        "templates": 51,
+        "static": 4,
+        "blueprints": 2,
+        "tests": 2
+      },
+      "directories": {
+        "data": true,
+        "templates": true,
+        "static": true,
+        "blueprints": true,
+        "tests": true
+      }
+    },
+    "code_quality": {
+      "syntax_check": {
+        "app.py": "valid",
+        "utils.py": "valid",
+        "config.py": "valid",
+        "blueprints/static_bp.py": "valid",
+        "blueprints/health_bp.py": "valid"
+      },
+      "import_check": {},
+      "line_counts": {
+        "app.py": 11136,
+        "utils.py": 1168,
+        "config.py": 362,
+        "blueprints/static_bp.py": 232,
+        "blueprints/health_bp.py": 261
+      },
+      "complexity_metrics": {
+        "app.py": {
+          "functions": 239,
+          "classes": 2,
+          "conditions": 913,
+          "complexity_score": 699.5
+        },
+        "utils.py": {
+          "functions": 37,
+          "classes": 6,
+          "conditions": 87,
+          "complexity_score": 92.5
+        },
+        "config.py": {
+          "functions": 0,
+          "classes": 12,
+          "conditions": 2,
+          "complexity_score": 25.0
+        },
+        "blueprints/static_bp.py": {
+          "functions": 7,
+          "classes": 0,
+          "conditions": 2,
+          "complexity_score": 8.0
+        },
+        "blueprints/health_bp.py": {
+          "functions": 6,
+          "classes": 0,
+          "conditions": 15,
+          "complexity_score": 13.5
+        }
+      }
+    },
+    "data_integrity": {
+      "csv_files": {
+        "4-1.csv": {
+          "row_count": 202,
+          "columns": [
+            "id",
+            "category",
+            "year",
+            "question",
+            "option_a",
+            "option_b",
+            "option_c",
+            "option_d",
+            "correct_answer",
+            "explanation",
+            "reference",
+            "difficulty"
+          ],
+          "has_required_fields": true
+        },
+        "4-2_2008.csv": {
+          "row_count": 360,
+          "columns": [
+            "id",
+            "category",
+            "year",
+            "question",
+            "option_a",
+            "option_b",
+            "option_c",
+            "option_d",
+            "correct_answer",
+            "explanation",
+            "reference",
+            "difficulty"
+          ],
+          "has_required_fields": true
+        },
+        "4-2_2009.csv": {
+          "row_count": 359,
+          "columns": [
+            "id",
+            "category",
+            "year",
+            "question",
+            "option_a",
+            "option_b",
+            "option_c",
+            "option_d",
+            "correct_answer",
+            "explanation",
+            "reference",
+            "difficulty"
+          ],
+          "has_required_fields": true
+        },
+        "4-2_2010.csv": {
+          "row_count": 239,
+          "columns": [
+            "id",
+            "category",
+            "year",
+            "question",
+            "option_a",
+            "option_b",
+            "option_c",
+            "option_d",
+            "correct_answer",
+            "explanation",
+            "reference",
+            "difficulty"
+          ],
+          "has_required_fields": true
+        },
+        "4-2_2011.csv": {
+          "row_count": 360,
+          "columns": [
+            "id",
+            "category",
+            "year",
+            "question",
+            "option_a",
+            "option_b",
+            "option_c",
+            "option_d",
+            "correct_answer",
+            "explanation",
+            "reference",
+            "difficulty"
+          ],
+          "has_required_fields": true
+        },
+        "4-2_2012.csv": {
+          "row_count": 307,
+          "columns": [
+            "id",
+            "category",
+            "year",
+            "question",
+            "option_a",
+            "option_b",
+            "option_c",
+            "option_d",
+            "correct_answer",
+            "explanation",
+            "reference",
+            "difficulty"
+          ],
+          "has_required_fields": true
+        },
+        "4-2_2013.csv": {
+          "row_count": 320,
+          "columns": [
+            "id",
+            "category",
+            "year",
+            "question",
+            "option_a",
+            "option_b",
+            "option_c",
+            "option_d",
+            "correct_answer",
+            "explanation",
+            "reference",
+            "difficulty"
+          ],
+          "has_required_fields": true
+        },
+        "4-2_2014.csv": {
+          "row_count": 240,
+          "columns": [
+            "id",
+            "category",
+            "year",
+            "question",
+            "option_a",
+            "option_b",
+            "option_c",
+            "option_d",
+            "correct_answer",
+            "explanation",
+            "reference",
+            "difficulty"
+          ],
+          "has_required_fields": true
+        },
+        "4-2_2015.csv": {
+          "row_count": 358,
+          "columns": [
+            "id",
+            "category",
+            "year",
+            "question",
+            "option_a",
+            "option_b",
+            "option_c",
+            "option_d",
+            "correct_answer",
+            "explanation",
+            "reference",
+            "difficulty"
+          ],
+          "has_required_fields": true
+        },
+        "4-2_2016.csv": {
+          "row_count": 361,
+          "columns": [
+            "﻿id",
+            "category",
+            "year",
+            "question",
+            "option_a",
+            "option_b",
+            "option_c",
+            "option_d",
+            "correct_answer",
+            "explanation",
+            "reference",
+            "difficulty"
+          ],
+          "has_required_fields": false
+        },
+        "4-2_2017.csv": {
+          "row_count": 440,
+          "columns": [
+            "id",
+            "category",
+            "year",
+            "question",
+            "option_a",
+            "option_b",
+            "option_c",
+            "option_d",
+            "correct_answer",
+            "explanation",
+            "reference",
+            "difficulty"
+          ],
+          "has_required_fields": true
+        },
+        "4-2_2018.csv": {
+          "row_count": 357,
+          "columns": [
+            "id",
+            "category",
+            "year",
+            "question",
+            "option_a",
+            "option_b",
+            "option_c",
+            "option_d",
+            "correct_answer",
+            "explanation",
+            "reference",
+            "difficulty"
+          ],
+          "has_required_fields": true
+        },
+        "4-2_2019.csv": {
+          "row_count": 356,
+          "columns": [
+            "id",
+            "category",
+            "year",
+            "question",
+            "option_a",
+            "option_b",
+            "option_c",
+            "option_d",
+            "correct_answer",
+            "explanation",
+            "reference",
+            "difficulty"
+          ],
+          "has_required_fields": true
+        }
+      },
+      "data_quality": {},
+      "encoding_check": {
+        "4-1.csv": "utf-8",
+        "4-2_2008.csv": "utf-8",
+        "4-2_2009.csv": "utf-8",
+        "4-2_2010.csv": "utf-8",
+        "4-2_2011.csv": "utf-8",
+        "4-2_2012.csv": "utf-8",
+        "4-2_2013.csv": "utf-8",
+        "4-2_2014.csv": "utf-8",
+        "4-2_2015.csv": "utf-8",
+        "4-2_2016.csv": "utf-8",
+        "4-2_2017.csv": "utf-8",
+        "4-2_2018.csv": "utf-8",
+        "4-2_2019.csv": "utf-8"
+      }
+    },
+    "architecture_improvement": {
+      "monolithic_app_analysis": {
+        "total_lines": 11136,
+        "route_count": 156,
+        "function_count": 239,
+        "class_count": 2,
+        "import_count": 110,
+        "is_monolithic": true
+      },
+      "blueprint_separation": {
+        "blueprint_count": 2,
+        "blueprint_files": [
+          "health_bp.py",
+          "static_bp.py"
+        ],
+        "separation_progress": 20
+      },
+      "code_organization": {}
+    },
+    "conditional_logic_fixes": {
+      "fixed_conditions": [
+        {
+          "line_number": 7796,
+          "pattern": "if exam_type == '基礎科目' or exam_type == 'basic':",
+          "content": "if exam_type == '基礎科目' or exam_type == 'basic':"
+        },
+        {
+          "line_number": 7935,
+          "pattern": "elif exam_type == '基礎科目' or exam_type == 'basic':",
+          "content": "elif exam_type == '基礎科目' or exam_type == 'basic':"
+        },
+        {
+          "line_number": 7935,
+          "pattern": "if exam_type == '基礎科目' or exam_type == 'basic':",
+          "content": "elif exam_type == '基礎科目' or exam_type == 'basic':"
+        },
+        {
+          "line_number": 7956,
+          "pattern": "exam_type.lower() == 'basic' or exam_type == '基礎科目'",
+          "content": "if exam_type.lower() == 'basic' or exam_type == '基礎科目' or exam_type == '共通':"
+        }
+      ],
+      "remaining_issues": [
+        {
+          "line_number": 4568,
+          "pattern": "exam_type == 'basic'",
+          "content": "if exam_type == 'basic':"
+        }
+      ],
+      "fix_verification": {
+        "total_fixes": 4,
+        "remaining_issues": 1,
+        "fix_success_rate": 80.0
+      }
+    }
+  },
+  "quality_metrics": {
+    "file_structure_score": 20,
+    "code_quality_score": 30,
+    "data_integrity_score": 20,
+    "architecture_score": 20,
+    "conditional_fixes_score": 4
+  }
+}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}データリセット確認 - RCCM問題集{% endblock %}
+
+{% block content %}
+<div class="card text-center" style="max-width: 600px; margin: 0 auto;">
+    <div style="padding: 2rem;">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">🔄</div>
+        <h2 style="color: #2D3748; margin-bottom: 1.5rem;">学習データをリセットしますか？</h2>
+        
+        <!-- 現在のデータサマリー -->
+        <div style="background: #F7FAFC; padding: 1.5rem; border-radius: 15px; margin-bottom: 2rem;">
+            <h3 style="color: #4A5568; margin-bottom: 1rem;">現在の学習データ</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                <div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #667eea;">
+                        {{ analytics.total_questions }}問
+                    </div>
+                    <div style="color: #718096; font-size: 0.9rem;">総学習数</div>
+                </div>
+                <div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #667eea;">
+                        {{ analytics.accuracy }}%
+                    </div>
+                    <div style="color: #718096; font-size: 0.9rem;">正答率</div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: #FFF5F5; border: 2px solid #FEB2B2; padding: 1.5rem; border-radius: 15px; margin-bottom: 2rem;">
+            <p style="color: #C53030; font-weight: 600; margin-bottom: 0.5rem;">
+                ⚠️ この操作は取り消せません
+            </p>
+            <p style="color: #742A2A;">
+                すべての学習履歴、統計データ、進捗状況が削除されます。
+            </p>
+        </div>
+        
+        <form method="POST" action="{{ url_for('reset') }}">
+            <button type="submit" class="btn btn-danger btn-large">
+                はい、リセットします
+            </button>
+            <a href="{{ url_for('index') }}" class="btn btn-large" style="margin-left: 1rem;">
+                キャンセル
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ソーシャル学習 - RCCM学習アプリ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .social-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .social-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .group-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .discussion-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        .peer-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        .leaderboard-card {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+        }
+        .tab-content {
+            padding: 2rem 0;
+        }
+        .nav-pills .nav-link {
+            border-radius: 25px;
+            margin: 0 5px;
+            font-weight: 500;
+        }
+        .nav-pills .nav-link.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .group-member {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #667eea;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            margin: 2px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .discussion-meta {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        .vote-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .vote-btn {
+            border: none;
+            background: none;
+            color: #6c757d;
+            font-size: 1.2rem;
+            padding: 0.25rem;
+        }
+        .vote-btn:hover {
+            color: #495057;
+        }
+        .vote-btn.voted {
+            color: #007bff;
+        }
+        .match-score {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .ranking-badge {
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+        .rank-1 { background: #ffd700; color: #333; }
+        .rank-2 { background: #c0c0c0; color: #333; }
+        .rank-3 { background: #cd7f32; color: white; }
+        .rank-other { background: #6c757d; }
+        .progress-ring {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: conic-gradient(#667eea 0deg, #667eea var(--progress-angle, 0deg), #e9ecef var(--progress-angle, 0deg));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .progress-ring::before {
+            content: '';
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            position: absolute;
+        }
+        .progress-text {
+            position: relative;
+            z-index: 1;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .activity-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 8px;
+        }
+        .activity-high { background: #28a745; }
+        .activity-medium { background: #ffc107; }
+        .activity-low { background: #dc3545; }
+        .tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- ナビゲーション -->
+            <div class="col-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container">
+                        <a class="navbar-brand" href="/">
+                            <i class="fas fa-users me-2"></i>ソーシャル学習
+                        </a>
+                        <div class="d-flex">
+                            <a href="/" class="btn btn-outline-primary">
+                                <i class="fas fa-arrow-left me-2"></i>メインに戻る
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <div class="container mt-4">
+            <!-- タブナビゲーション -->
+            <ul class="nav nav-pills justify-content-center mb-4">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#groups" data-bs-toggle="pill">
+                        <i class="fas fa-users me-2"></i>学習グループ
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#discussions" data-bs-toggle="pill">
+                        <i class="fas fa-comments me-2"></i>ディスカッション
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#peers" data-bs-toggle="pill">
+                        <i class="fas fa-chart-line me-2"></i>ピア比較
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#leaderboard" data-bs-toggle="pill">
+                        <i class="fas fa-trophy me-2"></i>リーダーボード
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <!-- 学習グループタブ -->
+                <div class="tab-pane fade show active" id="groups">
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <h2><i class="fas fa-users me-2"></i>学習グループ</h2>
+                            <p class="text-muted">同じ目標を持つ仲間と一緒に学習しましょう</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createGroupModal">
+                                <i class="fas fa-plus me-2"></i>グループ作成
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 参加中のグループ -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h4>参加中のグループ</h4>
+                            <div class="row" id="user-groups">
+                                {% if user_groups %}
+                                    {% for group in user_groups %}
+                                    <div class="col-md-6 col-lg-4 mb-3">
+                                        <div class="card social-card group-card">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ group.name }}</h5>
+                                                <p class="card-text">{{ group.description[:100] }}...</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <small>
+                                                        <i class="fas fa-users me-1"></i>{{ group.member_count }}人
+                                                        {% if group.is_creator %}
+                                                            <i class="fas fa-crown ms-2" title="作成者"></i>
+                                                        {% elif group.is_moderator %}
+                                                            <i class="fas fa-shield-alt ms-2" title="モデレーター"></i>
+                                                        {% endif %}
+                                                    </small>
+                                                    <button class="btn btn-light btn-sm" onclick="viewGroup('{{ group.id }}')">
+                                                        詳細
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="col-12">
+                                        <div class="alert alert-info">
+                                            <i class="fas fa-info-circle me-2"></i>
+                                            まだグループに参加していません。下のおすすめグループから参加してみましょう！
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- おすすめグループ -->
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>おすすめグループ</h4>
+                            <div class="row" id="recommended-groups">
+                                {% if recommended_groups %}
+                                    {% for rec in recommended_groups %}
+                                    <div class="col-md-6 col-lg-4 mb-3">
+                                        <div class="card social-card position-relative">
+                                            <div class="match-score">{{ "%.0f"|format(rec.match_score * 100) }}%</div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ rec.group.name }}</h5>
+                                                <p class="card-text">{{ rec.group.description[:100] }}...</p>
+                                                <div class="mb-2">
+                                                    {% for reason in rec.reasons %}
+                                                    <span class="badge bg-secondary me-1">{{ reason }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <small class="text-muted">
+                                                        <i class="fas fa-users me-1"></i>{{ rec.group.member_count }}人
+                                                        <br>{{ rec.group.department or '全部門' }}
+                                                    </small>
+                                                    <button class="btn btn-outline-primary btn-sm" onclick="joinGroup('{{ rec.group.id }}')">
+                                                        参加
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="col-12">
+                                        <div class="alert alert-warning">
+                                            <i class="fas fa-exclamation-triangle me-2"></i>
+                                            現在おすすめできるグループがありません。新しいグループを作成してみませんか？
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ディスカッションタブ -->
+                <div class="tab-pane fade" id="discussions">
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <h2><i class="fas fa-comments me-2"></i>ディスカッション</h2>
+                            <p class="text-muted">疑問を解決し、知識を共有しましょう</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createDiscussionModal">
+                                <i class="fas fa-plus me-2"></i>新しい話題
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- カテゴリフィルタ -->
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-outline-secondary active" onclick="filterDiscussions('all')">全て</button>
+                                <button class="btn btn-outline-secondary" onclick="filterDiscussions('general')">一般</button>
+                                <button class="btn btn-outline-secondary" onclick="filterDiscussions('question')">問題解説</button>
+                                <button class="btn btn-outline-secondary" onclick="filterDiscussions('study_tips')">学習のコツ</button>
+                                <button class="btn btn-outline-secondary" onclick="filterDiscussions('exam_info')">試験情報</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ディスカッション一覧 -->
+                    <div class="row" id="discussions-list">
+                        {% if discussions %}
+                            {% for discussion in discussions %}
+                            <div class="col-12 mb-3">
+                                <div class="card social-card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-1 text-center">
+                                                <div class="vote-buttons">
+                                                    <button class="vote-btn" onclick="voteDiscussion('{{ discussion.id }}', 'up')">
+                                                        <i class="fas fa-chevron-up"></i>
+                                                    </button>
+                                                    <div class="fw-bold">{{ discussion.vote_score }}</div>
+                                                    <button class="vote-btn" onclick="voteDiscussion('{{ discussion.id }}', 'down')">
+                                                        <i class="fas fa-chevron-down"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <div class="d-flex justify-content-between align-items-start">
+                                                    <h5 class="card-title mb-1">
+                                                        {% if discussion.is_pinned %}
+                                                            <i class="fas fa-thumbtack text-warning me-2"></i>
+                                                        {% endif %}
+                                                        <a href="#" onclick="viewDiscussion('{{ discussion.id }}')" class="text-decoration-none">
+                                                            {{ discussion.title }}
+                                                        </a>
+                                                        {% if discussion.is_solved %}
+                                                            <span class="badge bg-success ms-2">解決済み</span>
+                                                        {% endif %}
+                                                    </h5>
+                                                    <span class="badge bg-primary">{{ discussion.category }}</span>
+                                                </div>
+                                                <div class="discussion-meta mb-2">
+                                                    <i class="fas fa-user me-1"></i>{{ discussion.author_id }}
+                                                    <i class="fas fa-clock ms-3 me-1"></i>{{ discussion.created_at[:10] }}
+                                                    <i class="fas fa-eye ms-3 me-1"></i>{{ discussion.view_count }}
+                                                    <i class="fas fa-comment ms-3 me-1"></i>{{ discussion.reply_count }}
+                                                </div>
+                                                <div class="tags">
+                                                    {% for tag in discussion.tags %}
+                                                    <span class="tag">{{ tag }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="col-12">
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    まだディスカッションがありません。最初の話題を投稿してみませんか？
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- ピア比較タブ -->
+                <div class="tab-pane fade" id="peers">
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <h2><i class="fas fa-chart-line me-2"></i>ピア比較</h2>
+                            <p class="text-muted">同レベルの学習者と自分の実力を比較しましょう</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <div class="btn-group">
+                                <button class="btn btn-outline-primary active" onclick="loadPeerComparison('department')">
+                                    部門別比較
+                                </button>
+                                <button class="btn btn-outline-primary" onclick="loadPeerComparison('level')">
+                                    レベル別比較
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 比較結果 -->
+                    <div id="peer-comparison-results">
+                        {% if peer_comparison and peer_comparison.user_stats %}
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="card social-card peer-card">
+                                    <div class="card-body text-center">
+                                        <h4>あなたの成績</h4>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="progress-ring" style="--progress-angle: {{ (peer_comparison.user_stats.accuracy | default(0)) * 360 }}deg">
+                                                    <div class="progress-text">{{ "%.1f"|format((peer_comparison.user_stats.accuracy | default(0)) * 100) }}%</div>
+                                                </div>
+                                                <div class="mt-2">正答率</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <h3>{{ peer_comparison.user_stats.total_questions | default(0) }}</h3>
+                                                <div>回答数</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card social-card">
+                                    <div class="card-body">
+                                        <h5>ピア平均との比較</h5>
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between">
+                                                <span>正答率</span>
+                                                <span class="fw-bold">
+                                                    {{ "%.1f"|format(peer_comparison.user_stats.accuracy * 100) }}% 
+                                                    vs 
+                                                    {{ "%.1f"|format(peer_comparison.peer_stats.avg_accuracy * 100) }}%
+                                                </span>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar" 
+                                                     style="width: {{ (peer_comparison.user_stats.accuracy / (peer_comparison.peer_stats.avg_accuracy or 1) * 100) | min(100) }}%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between">
+                                                <span>学習量</span>
+                                                <span class="fw-bold">
+                                                    {{ peer_comparison.user_stats.total_questions }} 
+                                                    vs 
+                                                    {{ "%.0f"|format(peer_comparison.peer_stats.avg_total_questions) }}
+                                                </span>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" 
+                                                     style="width: {{ (peer_comparison.user_stats.total_questions / (peer_comparison.peer_stats.avg_total_questions or 1) * 100) | min(100) }}%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="alert alert-info">
+                                            <strong>ランキング:</strong> {{ peer_comparison.rankings.user_rank }}位 / {{ peer_comparison.rankings.total_peers }}人中
+                                            (上位{{ "%.1f"|format(peer_comparison.rankings.percentile) }}%)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 改善提案 -->
+                        {% if peer_comparison.improvement_suggestions %}
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5><i class="fas fa-lightbulb me-2"></i>改善提案</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        {% for suggestion in peer_comparison.improvement_suggestions %}
+                                        <div class="alert alert-warning">
+                                            <i class="fas fa-exclamation-triangle me-2"></i>{{ suggestion }}
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% else %}
+                        <div class="text-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">読み込み中...</span>
+                            </div>
+                            <p class="mt-3">比較データを分析中...</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- リーダーボードタブ -->
+                <div class="tab-pane fade" id="leaderboard">
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <h2><i class="fas fa-trophy me-2"></i>リーダーボード</h2>
+                            <p class="text-muted">学習者ランキングで競い合いましょう</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <div class="btn-group">
+                                <button class="btn btn-outline-success active" onclick="loadLeaderboard('month')">
+                                    月間
+                                </button>
+                                <button class="btn btn-outline-success" onclick="loadLeaderboard('week')">
+                                    週間
+                                </button>
+                                <button class="btn btn-outline-success" onclick="loadLeaderboard('all')">
+                                    全期間
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- リーダーボード -->
+                    <div id="leaderboard-content">
+                        {% if leaderboard %}
+                        <div class="row">
+                            {% for user in leaderboard[:10] %}
+                            <div class="col-12 mb-2">
+                                <div class="card social-card leaderboard-card">
+                                    <div class="card-body py-3">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-1 text-center">
+                                                <div class="ranking-badge rank-{{ '1' if user.rank == 1 else '2' if user.rank == 2 else '3' if user.rank == 3 else 'other' }}">
+                                                    {{ user.rank }}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h6 class="mb-1">{{ user.user_id }}</h6>
+                                                <small>{{ user.department_focus or '全部門' }}</small>
+                                            </div>
+                                            <div class="col-md-2 text-center">
+                                                <div class="fw-bold">{{ "%.1f"|format(user.score) }}</div>
+                                                <small>スコア</small>
+                                            </div>
+                                            <div class="col-md-2 text-center">
+                                                <div class="fw-bold">{{ "%.1f"|format(user.accuracy * 100) }}%</div>
+                                                <small>正答率</small>
+                                            </div>
+                                            <div class="col-md-2 text-center">
+                                                <div class="fw-bold">{{ user.total_questions }}</div>
+                                                <small>問題数</small>
+                                            </div>
+                                            <div class="col-md-2 text-center">
+                                                <div class="fw-bold">{{ user.study_streak }}</div>
+                                                <small>連続日数</small>
+                                                <div class="activity-indicator activity-{{ 'high' if user.total_questions > 50 else 'medium' if user.total_questions > 20 else 'low' }}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            まだランキングデータがありません。
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- グループ作成モーダル -->
+    <div class="modal fade" id="createGroupModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">新しい学習グループを作成</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="createGroupForm">
+                        <div class="mb-3">
+                            <label class="form-label">グループ名 *</label>
+                            <input type="text" class="form-control" name="group_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">説明</label>
+                            <textarea class="form-control" name="description" rows="3" placeholder="グループの目的や活動内容を説明してください"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">専門分野</label>
+                            <select class="form-select" name="department">
+                                <option value="">全部門</option>
+                                <option value="road">道路</option>
+                                <option value="civil_planning">河川・砂防</option>
+                                <option value="construction_env">建設環境</option>
+                                <option value="urban_planning">都市計画</option>
+                                <option value="agriculture">農業土木</option>
+                                <option value="forestry">森林土木</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">目標試験日</label>
+                            <input type="date" class="form-control" name="target_exam_date">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+                    <button type="button" class="btn btn-primary" onclick="createGroup()">作成</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ディスカッション作成モーダル -->
+    <div class="modal fade" id="createDiscussionModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">新しいディスカッションを作成</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="createDiscussionForm">
+                        <div class="mb-3">
+                            <label class="form-label">タイトル *</label>
+                            <input type="text" class="form-control" name="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">カテゴリ</label>
+                            <select class="form-select" name="category">
+                                <option value="general">一般</option>
+                                <option value="question">問題解説</option>
+                                <option value="study_tips">学習のコツ</option>
+                                <option value="exam_info">試験情報</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">内容 *</label>
+                            <textarea class="form-control" name="content" rows="5" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">関連問題ID（任意）</label>
+                            <input type="number" class="form-control" name="question_id">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+                    <button type="button" class="btn btn-primary" onclick="createDiscussion()">投稿</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // グループ作成
+        function createGroup() {
+            const form = document.getElementById('createGroupForm');
+            const formData = new FormData(form);
+            
+            fetch('/social/create_group', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('グループが作成されました！');
+                    location.reload();
+                } else {
+                    alert('エラー: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('グループ作成に失敗しました');
+            });
+        }
+
+        // グループ参加
+        function joinGroup(groupId) {
+            if (confirm('このグループに参加しますか？')) {
+                fetch('/social/join_group', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `group_id=${groupId}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('グループに参加しました！');
+                        location.reload();
+                    } else {
+                        alert('エラー: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('グループ参加に失敗しました');
+                });
+            }
+        }
+
+        // ディスカッション作成
+        function createDiscussion() {
+            const form = document.getElementById('createDiscussionForm');
+            const formData = new FormData(form);
+            
+            fetch('/social/create_discussion', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('ディスカッションが作成されました！');
+                    location.reload();
+                } else {
+                    alert('エラー: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('ディスカッション作成に失敗しました');
+            });
+        }
+
+        // ピア比較読み込み
+        function loadPeerComparison(type) {
+            document.getElementById('peer-comparison-results').innerHTML = `
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">読み込み中...</span>
+                    </div>
+                    <p class="mt-3">比較データを分析中...</p>
+                </div>
+            `;
+            
+            fetch(`/social/peer_comparison?type=${type}`)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('peer-comparison-results').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('peer-comparison-results').innerHTML = `
+                    <div class="alert alert-danger">
+                        データの読み込みに失敗しました
+                    </div>
+                `;
+            });
+        }
+
+        // リーダーボード読み込み
+        function loadLeaderboard(period) {
+            document.getElementById('leaderboard-content').innerHTML = `
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">読み込み中...</span>
+                    </div>
+                    <p class="mt-3">ランキングを更新中...</p>
+                </div>
+            `;
+            
+            fetch(`/social/leaderboard?period=${period}`)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('leaderboard-content').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('leaderboard-content').innerHTML = `
+                    <div class="alert alert-danger">
+                        データの読み込みに失敗しました
+                    </div>
+                `;
+            });
+        }
+
+        // その他の関数
+        function viewGroup(groupId) {
+            window.open(`/social/group/${groupId}`, '_blank');
+        }
+
+        function viewDiscussion(discussionId) {
+            window.open(`/social/discussion/${discussionId}`, '_blank');
+        }
+
+        function voteDiscussion(discussionId, voteType) {
+            fetch('/social/vote_discussion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `discussion_id=${discussionId}&vote_type=${voteType}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function filterDiscussions(category) {
+            // フィルタボタンのアクティブ状態切り替え
+            document.querySelectorAll('.btn-group button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // フィルタ処理（簡略化）
+            const discussions = document.querySelectorAll('#discussions-list .col-12');
+            discussions.forEach(discussion => {
+                if (category === 'all') {
+                    discussion.style.display = 'block';
+                } else {
+                    const badge = discussion.querySelector('.badge');
+                    if (badge && badge.textContent === category) {
+                        discussion.style.display = 'block';
+                    } else {
+                        discussion.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            // タブ切り替え時の処理
+            document.querySelectorAll('a[data-bs-toggle="pill"]').forEach(tab => {
+                tab.addEventListener('shown.bs.tab', function(event) {
+                    const target = event.target.getAttribute('href');
+                    if (target === '#peers' && !document.querySelector('#peer-comparison-results .card')) {
+                        loadPeerComparison('department');
+                    }
+                    if (target === '#leaderboard' && !document.querySelector('#leaderboard-content .card')) {
+                        loadLeaderboard('month');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

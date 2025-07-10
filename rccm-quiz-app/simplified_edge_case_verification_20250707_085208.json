@@ -1,0 +1,131 @@
+[
+  {
+    "test": "file_existence",
+    "status": "PASSED",
+    "results": [
+      {
+        "file": "4-1.csv",
+        "exists": true,
+        "size": 92424,
+        "modified": "2025-07-03T13:57:54.852953"
+      },
+      {
+        "file": "4-2_2016.csv",
+        "exists": true,
+        "size": 291783,
+        "modified": "2025-07-06T21:40:13.410750"
+      }
+    ]
+  },
+  {
+    "test": "csv_structure",
+    "status": "PASSED",
+    "results": [
+      {
+        "file": "4-1.csv",
+        "has_bom": false,
+        "headers": [
+          "id",
+          "category",
+          "year",
+          "question",
+          "option_a",
+          "option_b",
+          "option_c",
+          "option_d",
+          "correct_answer",
+          "explanation",
+          "reference",
+          "difficulty"
+        ],
+        "row_count": 202,
+        "status": "OK"
+      },
+      {
+        "file": "4-2_2016.csv",
+        "has_bom": true,
+        "headers": [
+          "id",
+          "category",
+          "year",
+          "question",
+          "option_a",
+          "option_b",
+          "option_c",
+          "option_d",
+          "correct_answer",
+          "explanation",
+          "reference",
+          "difficulty"
+        ],
+        "row_count": 361,
+        "status": "OK"
+      }
+    ]
+  },
+  {
+    "test": "id_ranges_and_duplicates",
+    "status": "PASSED",
+    "4_1_range": "1-202",
+    "4_2_range": "203-563",
+    "4_1_count": 202,
+    "4_2_count": 361,
+    "cross_duplicates": 0,
+    "internal_duplicates_4_1": 0,
+    "internal_duplicates_4_2": 0,
+    "duplicate_ids": []
+  },
+  {
+    "test": "content_integrity",
+    "status": "PASSED",
+    "4_1_categories": [
+      "共通"
+    ],
+    "4_2_categories": [
+      "土質及び基礎",
+      "トンネル",
+      "造園",
+      "都市計画及び地方計画",
+      "道路",
+      "森林土木",
+      "鋼構造及びコンクリート",
+      "農業土木",
+      "上水道及び工業用水道",
+      "建設環境",
+      "施工計画、施工設備及び積算",
+      "河川、砂防及び海岸・海洋"
+    ],
+    "4_1_years": [],
+    "4_2_years": [
+      "2016"
+    ],
+    "4_1_missing_fields": [],
+    "4_2_missing_fields": [],
+    "4_1_total_missing": 0,
+    "4_2_total_missing": 0
+  },
+  {
+    "test": "category_separation",
+    "status": "PASSED",
+    "4_1_categories": [
+      "共通"
+    ],
+    "4_2_categories": [
+      "土質及び基礎",
+      "トンネル",
+      "造園",
+      "都市計画及び地方計画",
+      "道路",
+      "森林土木",
+      "鋼構造及びコンクリート",
+      "農業土木",
+      "上水道及び工業用水道",
+      "建設環境",
+      "施工計画、施工設備及び積算",
+      "河川、砂防及び海岸・海洋"
+    ],
+    "overlapping_categories": [],
+    "4_1_is_basic_only": true,
+    "4_2_has_specialties": true
+  }
+]

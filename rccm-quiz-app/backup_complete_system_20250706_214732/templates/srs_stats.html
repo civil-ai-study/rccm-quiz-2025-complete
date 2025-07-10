@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block title %}学習進捗 | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-4">📊 学習進捗（SRS統計）</h2>
+            
+            <!-- 進捗サマリー -->
+            <div class="row mb-4">
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card text-center bg-primary text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ stats.learning }}</h5>
+                            <p class="card-text">学習中</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card text-center bg-warning text-dark">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ stats.review }}</h5>
+                            <p class="card-text">復習中</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card text-center bg-success text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ stats.mastered }}</h5>
+                            <p class="card-text">マスター</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card text-center bg-info text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ stats.total }}</h5>
+                            <p class="card-text">総問題数</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 詳細データテーブル -->
+            {% if srs_data %}
+            <div class="card">
+                <div class="card-header">
+                    <h5>詳細進捗データ</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>問題ID</th>
+                                    <th>レベル</th>
+                                    <th>総回答回数</th>
+                                    <th>正答回数</th>
+                                    <th>正答率</th>
+                                    <th>次回復習日</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for question_id, data in srs_data.items() %}
+                                <tr>
+                                    <td>{{ question_id }}</td>
+                                    <td>
+                                        {% if data.level == 0 %}
+                                            <span class="badge bg-danger">初級</span>
+                                        {% elif data.level <= 2 %}
+                                            <span class="badge bg-warning">中級</span>
+                                        {% elif data.level <= 4 %}
+                                            <span class="badge bg-primary">上級</span>
+                                        {% else %}
+                                            <span class="badge bg-success">マスター</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ data.total_attempts }}</td>
+                                    <td>{{ data.correct_attempts }}</td>
+                                    <td>
+                                        {% if data.total_attempts > 0 %}
+                                            {{ "%.1f"|format((data.correct_attempts / data.total_attempts) * 100) }}%
+                                        {% else %}
+                                            0%
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if data.next_review %}
+                                            {{ data.next_review[:10] }}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="alert alert-info text-center">
+                <h5>まだ学習データがありません</h5>
+                <p>問題を解くと、こちらに学習進捗が表示されます。</p>
+                <a href="/exam" class="btn btn-primary">問題を始める</a>
+            </div>
+            {% endif %}
+
+            <!-- ナビゲーション -->
+            <div class="text-center mt-4">
+                <a href="/" class="btn btn-outline-secondary me-2">🏠 ホーム</a>
+                <a href="/exam" class="btn btn-primary">📝 問題を解く</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

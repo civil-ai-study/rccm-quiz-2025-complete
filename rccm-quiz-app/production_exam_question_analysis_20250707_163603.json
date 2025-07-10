@@ -1,0 +1,65 @@
+{
+  "timestamp": "2025-07-07 16:36:01",
+  "analysis": {
+    "basic_info": {
+      "status": 200,
+      "title": "試験シミュレーター - RCCM試験問題集",
+      "html_length": 36999,
+      "is_template": false
+    },
+    "question_analysis": {
+      "found_questions": [],
+      "question_count": 0
+    },
+    "options_analysis": {
+      "found_options": [],
+      "option_count": 0
+    },
+    "jinja_analysis": {
+      "found_variables": [],
+      "variable_count": 0
+    },
+    "structure_analysis": {
+      "has_exam_container": false,
+      "has_exam_header": false,
+      "has_question_card": false,
+      "has_question_text": false,
+      "has_answer_options": false,
+      "has_form_check": false,
+      "has_option_text": false,
+      "has_submit_button": false,
+      "has_exam_answer_form": false,
+      "has_jinja_templates": false,
+      "has_exam_info": false,
+      "has_question_object": false,
+      "has_progress_bar": true
+    },
+    "html_samples": {
+      "first_1000_chars": "<!DOCTYPE html>\n<html lang=\"ja\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover\">\n    <title>試験シミュレーター - RCCM試験問題集</title>\n    \n    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->\n    <meta http-equiv=\"Cache-Control\" content=\"no-store, no-cache, must-revalidate, max-age=0\">\n    <meta http-equiv=\"Pragma\" content=\"no-cache\">\n    <meta http-equiv=\"Expires\" content=\"-1\">\n    <script>\n        // 🔥 ページ読み込み時のキャッシュ強制クリア（ユーザー要求による）\n        (function() {\n            if (window.performance && window.performance.navigation.type === 2) {\n                // 戻るボタンでアクセスされた場合は強制リロード\n                window.location.reload(true);\n            }\n            // セッションストレージの問題関連データもクリア\n            if (typeof(Storage) !== \"undefined\") {\n                sessionStorage.removeItem('exam_data');\n                sessionStorage.removeItem('current_question');\n                sessionStorage.removeItem('qu",
+      "question_area": "",
+      "form_area": ""
+    }
+  },
+  "steps": [
+    {
+      "step": 1,
+      "url": "https://rccm-quiz-2025.onrender.com",
+      "status": 200,
+      "cookies": 1
+    },
+    {
+      "step": 2,
+      "url": "https://rccm-quiz-2025.onrender.com/start_exam/%E6%B2%B3%E5%B7%9D%E3%80%81%E7%A0%82%E9%98%B2%E5%8F%8A%E3%81%B3%E6%B5%B7%E5%B2%B8%E3%83%BB%E6%B5%B7%E6%B4%8B",
+      "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+      "status": 200,
+      "cookies": 1
+    },
+    {
+      "step": 3,
+      "url": "https://rccm-quiz-2025.onrender.com/exam_question",
+      "status": 200,
+      "cookies": 1,
+      "html_length": 36999
+    }
+  ]
+}

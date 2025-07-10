@@ -1,0 +1,1303 @@
+{
+  "timestamp": "2025-07-05T17:24:56.988630",
+  "file_analyzed": "app.py",
+  "session_usage": {
+    "assignments": [
+      [
+        "history",
+        "history[-100:]  # 最新100件のみ"
+      ],
+      [
+        "exam_question_ids",
+        "[]"
+      ],
+      [
+        "exam_current",
+        "0"
+      ],
+      [
+        "history",
+        "[]"
+      ],
+      [
+        "exam_current",
+        "max(0, len(exam_ids) - 1)"
+      ],
+      [
+        "advanced_srs",
+        "{}"
+      ],
+      [
+        "advanced_srs",
+        "srs_data"
+      ],
+      [
+        "request_history",
+        "request_history"
+      ],
+      [
+        "history",
+        "[]"
+      ],
+      [
+        "category_stats",
+        "{}"
+      ],
+      [
+        "user_name",
+        "user_name"
+      ],
+      [
+        "user_id",
+        "session_aware_user_id  # セッション固有の一意ID"
+      ],
+      [
+        "base_user_id",
+        "base_user_id      # データ永続化用の基本ID"
+      ],
+      [
+        "session_id",
+        "unique_session_id   # セッション識別用"
+      ],
+      [
+        "login_time",
+        "get_utc_now().isoformat()"
+      ],
+      [
+        "exam_question_ids",
+        "[q['id'] for q in selected]"
+      ],
+      [
+        "exam_current",
+        "0"
+      ],
+      [
+        "exam_category",
+        "'基礎科目'"
+      ],
+      [
+        "selected_question_type",
+        "'basic'"
+      ],
+      [
+        "exam_question_ids",
+        "[q['id'] for q in selected]"
+      ],
+      [
+        "exam_current",
+        "0"
+      ],
+      [
+        "exam_category",
+        "target_category if department else '専門科目'"
+      ],
+      [
+        "selected_question_type",
+        "'specialist'"
+      ],
+      [
+        "selected_department",
+        "department"
+      ],
+      [
+        "exam_question_ids",
+        "[q['id'] for q in selected]"
+      ],
+      [
+        "exam_current",
+        "0"
+      ],
+      [
+        "exam_category",
+        "'専門科目（混合）'"
+      ],
+      [
+        "selected_question_type",
+        "'specialist'"
+      ],
+      [
+        "exam_question_ids",
+        "[q['id'] for q in selected]"
+      ],
+      [
+        "exam_current",
+        "0"
+      ],
+      [
+        "exam_category",
+        "'基礎科目'"
+      ],
+      [
+        "selected_question_type",
+        "'basic'"
+      ],
+      [
+        "exam_question_ids",
+        "question_ids"
+      ],
+      [
+        "exam_current",
+        "0  # 現在の問題は0番目"
+      ],
+      [
+        "exam_category",
+        "q_dept if q_dept else '基礎科目'"
+      ],
+      [
+        "selected_question_type",
+        "q_type"
+      ],
+      [
+        "quiz_answered",
+        "session.get('quiz_answered', [])"
+      ],
+      [
+        "history",
+        "session.get('history', [])"
+      ],
+      [
+        "bookmarks",
+        "bookmarks"
+      ],
+      [
+        "bookmarks",
+        "bookmarks"
+      ],
+      [
+        "bookmarks",
+        "bookmarks"
+      ],
+      [
+        "history",
+        "[]"
+      ],
+      [
+        "category_stats",
+        "{}"
+      ],
+      [
+        "exam_current",
+        "current_index"
+      ],
+      [
+        "exam_question_ids",
+        "review_question_ids"
+      ],
+      [
+        "exam_current",
+        "current_index"
+      ],
+      [
+        "selected_question_type",
+        "'review'"
+      ],
+      [
+        "exam_category",
+        "f'復習問題（再構築{len(review_question_ids)}問）'"
+      ],
+      [
+        "review_session_restored",
+        "True  # 復習セッション復旧フラグ"
+      ],
+      [
+        "exam_question_ids",
+        "minimal_review"
+      ],
+      [
+        "exam_current",
+        "0"
+      ],
+      [
+        "selected_question_type",
+        "'review'"
+      ],
+      [
+        "exam_category",
+        "'復習問題（最小セッション）'"
+      ],
+      [
+        "review_session_minimal",
+        "True"
+      ],
+      [
+        "exam_question_ids",
+        "question_ids"
+      ],
+      [
+        "exam_current",
+        "current_index"
+      ],
+      [
+        "selected_question_type",
+        "'basic'"
+      ],
+      [
+        "exam_category",
+        "'基礎科目'"
+      ],
+      [
+        "exam_question_ids",
+        "question_ids"
+      ],
+      [
+        "exam_current",
+        "current_index"
+      ],
+      [
+        "selected_question_type",
+        "'specialist'"
+      ],
+      [
+        "exam_category",
+        "actual_category"
+      ],
+      [
+        "exam_question_ids",
+        "question_ids"
+      ],
+      [
+        "exam_current",
+        "current_index"
+      ],
+      [
+        "selected_question_type",
+        "'basic'"
+      ],
+      [
+        "exam_category",
+        "'基礎科目'"
+      ],
+      [
+        "exam_question_ids",
+        "question_ids"
+      ],
+      [
+        "exam_current",
+        "current_index"
+      ],
+      [
+        "selected_question_type",
+        "'specialist'"
+      ],
+      [
+        "exam_category",
+        "actual_category"
+      ],
+      [
+        "exam_question_ids",
+        "question_ids"
+      ],
+      [
+        "exam_current",
+        "current_index"
+      ],
+      [
+        "selected_question_type",
+        "actual_question_type or 'mixed'"
+      ],
+      [
+        "exam_category",
+        "actual_category or '混合'"
+      ],
+      [
+        "exam_question_ids",
+        "[q['id'] for q in emergency_questions[:10]]"
+      ],
+      [
+        "exam_question_ids",
+        "available_ids"
+      ],
+      [
+        "exam_current",
+        "0"
+      ],
+      [
+        "selected_question_type",
+        "'emergency'"
+      ],
+      [
+        "exam_category",
+        "'緊急復旧'"
+      ],
+      [
+        "exam_question_ids",
+        "exam_question_ids"
+      ],
+      [
+        "exam_question_ids",
+        "exam_question_ids"
+      ],
+      [
+        "exam_current",
+        "current_no"
+      ],
+      [
+        "selected_question_type",
+        "'minimal'"
+      ],
+      [
+        "exam_category",
+        "'最小復旧'"
+      ],
+      [
+        "exam_question_ids",
+        "exam_question_ids"
+      ],
+      [
+        "exam_question_ids",
+        "exam_question_ids"
+      ],
+      [
+        "exam_question_ids",
+        "exam_question_ids"
+      ],
+      [
+        "progress_tracking",
+        "{"
+      ],
+      [
+        "exam_current",
+        "expected_exam_current"
+      ],
+      [
+        "progress_repair_count",
+        "session.get('progress_repair_count', 0) + 1"
+      ],
+      [
+        "exam_current",
+        "safe_index"
+      ],
+      [
+        "exam_index_repair",
+        "True"
+      ],
+      [
+        "exam_progress_timestamp",
+        "get_utc_now().isoformat()"
+      ],
+      [
+        "last_answered_question_id",
+        "qid"
+      ],
+      [
+        "total_questions_in_session",
+        "len(exam_question_ids)"
+      ],
+      [
+        "quiz_settings",
+        "{}"
+      ],
+      [
+        "quiz_settings']['questions_per_session",
+        "count_value"
+      ],
+      [
+        "exam_current",
+        "current_no"
+      ],
+      [
+        "exam_current",
+        "0"
+      ],
+      [
+        "exam_current",
+        "current_no"
+      ],
+      [
+        "exam_question_ids",
+        "[int(q.get('id', 0)) for q in mixed_questions[:10]]"
+      ],
+      [
+        "exam_question_ids",
+        "[int(q.get('id', 0)) for q in available_questions]"
+      ],
+      [
+        "exam_current",
+        "specific_index"
+      ],
+      [
+        "exam_current",
+        "0"
+      ],
+      [
+        "exam_category",
+        "question.get('category', '全体')"
+      ],
+      [
+        "exam_question_ids",
+        "question_ids"
+      ],
+      [
+        "exam_current",
+        "0"
+      ],
+      [
+        "exam_category",
+        "requested_category"
+      ],
+      [
+        "selected_question_type",
+        "requested_question_type"
+      ],
+      [
+        "selected_year",
+        "requested_year"
+      ],
+      [
+        "exam_question_ids",
+        "recovered_question_ids"
+      ],
+      [
+        "exam_current",
+        "len(recovered_question_ids) - 1  # 最後の問題位置"
+      ],
+      [
+        "exam_category",
+        "recent_history[-1].get('category', '全体')"
+      ],
+      [
+        "selected_question_type",
+        "recent_history[-1].get('question_type', 'basic')"
+      ],
+      [
+        "selected_department",
+        "recent_history[-1].get('department', '')"
+      ],
+      [
+        "review_completed",
+        "True"
+      ],
+      [
+        "selected_department",
+        "department_id"
+      ],
+      [
+        "selected_department",
+        "department_id"
+      ],
+      [
+        "selected_question_type",
+        "question_type"
+      ],
+      [
+        "selected_department",
+        "department_key"
+      ],
+      [
+        "advanced_srs",
+        "{}"
+      ],
+      [
+        "bookmarks",
+        "[]  # 互換性維持"
+      ],
+      [
+        "bookmarks",
+        "bookmarks"
+      ],
+      [
+        "bookmarks",
+        "bookmarks"
+      ],
+      [
+        "quiz_settings",
+        "{}"
+      ],
+      [
+        "quiz_settings']['questions_per_session",
+        "questions_per_session"
+      ],
+      [
+        "bookmarks",
+        "[]"
+      ],
+      [
+        "bookmarks",
+        "[]"
+      ],
+      [
+        "bookmarks",
+        "bookmarks"
+      ],
+      [
+        "exam_question_ids",
+        "question_ids"
+      ],
+      [
+        "exam_current",
+        "0"
+      ],
+      [
+        "exam_category",
+        "category_name"
+      ],
+      [
+        "selected_question_type",
+        "'review'  # 復習専用タイプ"
+      ],
+      [
+        "department",
+        "''  # 復習では部門指定なし"
+      ],
+      [
+        "selected_department",
+        "''  # セッション再構築用（復習では部門なし）"
+      ],
+      [
+        "exam_question_ids",
+        "question_ids"
+      ],
+      [
+        "exam_current",
+        "0"
+      ],
+      [
+        "exam_category",
+        "category_name"
+      ],
+      [
+        "selected_question_type",
+        "'review'"
+      ],
+      [
+        "advanced_srs",
+        "srs_data"
+      ],
+      [
+        "bookmarks",
+        "bookmarks"
+      ],
+      [
+        "exam_current",
+        "new_current"
+      ],
+      [
+        "exam_question_ids",
+        "question_ids"
+      ],
+      [
+        "exam_current",
+        "0"
+      ],
+      [
+        "exam_category",
+        "category_name"
+      ],
+      [
+        "adaptive_mode",
+        "learning_mode"
+      ],
+      [
+        "selected_department",
+        "department"
+      ],
+      [
+        "exam_question_ids",
+        "question_ids"
+      ],
+      [
+        "exam_current",
+        "0"
+      ],
+      [
+        "exam_category",
+        "category_name"
+      ],
+      [
+        "adaptive_mode",
+        "learning_mode"
+      ],
+      [
+        "foundation_mastery",
+        "foundation_mastery"
+      ],
+      [
+        "selected_department",
+        "department"
+      ],
+      [
+        "birth_date",
+        "birth_date"
+      ],
+      [
+        "exam_session",
+        "exam_session"
+      ],
+      [
+        "exam_session",
+        "exam_session"
+      ],
+      [
+        "exam_session",
+        "exam_session"
+      ],
+      [
+        "_initialized",
+        "True"
+      ],
+      [
+        "exam_session",
+        "exam_session"
+      ],
+      [
+        "exam_session",
+        "exam_session"
+      ],
+      [
+        "exam_history",
+        "[]"
+      ],
+      [
+        "status",
+        "= 'in_progress',"
+      ],
+      [
+        "last_activity",
+        "format_utc_to_iso()"
+      ]
+    ],
+    "reads": [
+      "admin_authenticated_at",
+      "admin_authenticated_at",
+      "user_id",
+      "user_id",
+      "history",
+      "user_name",
+      "user_name', '不明",
+      "exam_current",
+      "exam_question_ids', []))}",
+      "exam_question_ids",
+      "exam_question_ids', 'MISSING",
+      "exam_question_ids', []))}",
+      "exam_current', 'MISSING",
+      "exam_category', 'MISSING",
+      "selected_question_type', 'MISSING",
+      "selected_department', 'MISSING",
+      "session_id",
+      "data_loaded', 'MISSING",
+      "exam_current",
+      "exam_question_ids",
+      "exam_question_ids",
+      "selected_department', '",
+      "selected_question_type', 'basic",
+      "selected_question_type', 'basic",
+      "selected_department', '",
+      "selected_question_type', '",
+      "selected_question_type",
+      "exam_category', '",
+      "exam_current",
+      "exam_current",
+      "exam_current",
+      "exam_current",
+      "progress_tracking",
+      "exam_category', '全体",
+      "exam_current",
+      "exam_category', '全体",
+      "selected_department', '",
+      "selected_question_type', '",
+      "selected_year",
+      "selected_department', '",
+      "selected_question_type', '",
+      "exam_category', '全体",
+      "selected_question_type",
+      "selected_department",
+      "selected_year",
+      "selected_question_type",
+      "exam_category', '",
+      "exam_current",
+      "progress_tracking",
+      "last_update",
+      "progress_tracking",
+      "exam_current",
+      "exam_question_ids",
+      "selected_question_type",
+      "exam_category', '",
+      "exam_question_ids",
+      "exam_current",
+      "exam_category",
+      "selected_question_type",
+      "selected_department",
+      "exam_category', '全体",
+      "user_id",
+      "selected_question_type",
+      "history', []) if h.get('question_type",
+      "selected_department', request.args.get('department",
+      "session_id",
+      "selected_question_type",
+      "exam_category', '",
+      "selected_question_type', '",
+      "exam_current",
+      "exam_category",
+      "selected_question_type",
+      "selected_department",
+      "selected_year",
+      "selected_department', '",
+      "selected_department', '",
+      "selected_department', '",
+      "selected_department', '",
+      "exam_id', 'UNKNOWN",
+      "exam_session",
+      "status",
+      "current_question', 'UNKNOWN",
+      "exam_session",
+      "status', 'UNKNOWN",
+      "exam_session",
+      "status', 'UNKNOWN",
+      "current_question', 'UNKNOWN",
+      "current_question', 'UNKNOWN",
+      "exam_session', {}).get('current_question', 'UNKNOWN",
+      "exam_session",
+      "exam_session",
+      "exam_session",
+      "exam_session",
+      "exam_session",
+      "exam_session",
+      "exam_question_ids",
+      "exam_current",
+      "exam_category",
+      "selected_question_type",
+      "session_id",
+      "user_id', 'anonymous",
+      "user_id', 'anonymous",
+      "user_id', 'anonymous",
+      "user_id', 'anonymous",
+      "user_id', 'anonymous",
+      "user_id', 'anonymous",
+      "user_id', 'anonymous",
+      "user_id', 'anonymous",
+      "session_id', 'anonymous",
+      "user_id",
+      "exam_question_ids",
+      "selected_department', '",
+      "exam_category', '",
+      "session_id', 'anonymous",
+      "user_id"
+    ],
+    "direct_accesses": [
+      "history",
+      "exam_question_ids",
+      "exam_question_ids",
+      "exam_current",
+      "exam_current",
+      "history",
+      "history",
+      "exam_current",
+      "exam_current",
+      "advanced_srs",
+      "advanced_srs",
+      "advanced_srs",
+      "advanced_srs",
+      "advanced_srs",
+      "advanced_srs",
+      "request_history",
+      "srs_data",
+      "history",
+      "category_stats",
+      "user_name",
+      "user_id",
+      "base_user_id",
+      "session_id",
+      "login_time",
+      "exam_question_ids",
+      "exam_current",
+      "exam_category",
+      "selected_question_type",
+      "exam_question_ids",
+      "exam_current",
+      "exam_category",
+      "selected_question_type",
+      "selected_department",
+      "exam_question_ids",
+      "exam_current",
+      "exam_category",
+      "selected_question_type",
+      "exam_question_ids",
+      "exam_current",
+      "exam_category",
+      "selected_question_type",
+      "exam_question_ids",
+      "exam_current",
+      "exam_category",
+      "selected_question_type",
+      "quiz_answered",
+      "history",
+      "bookmarks",
+      "bookmarks",
+      "bookmarks",
+      "history",
+      "category_stats",
+      "category_stats",
+      "category_stats",
+      "category_stats",
+      "category_stats",
+      "exam_current",
+      "exam_question_ids",
+      "exam_current",
+      "selected_question_type",
+      "exam_category",
+      "review_session_restored",
+      "exam_question_ids",
+      "exam_current",
+      "selected_question_type",
+      "exam_category",
+      "review_session_minimal",
+      "exam_question_ids",
+      "exam_current",
+      "selected_question_type",
+      "exam_category",
+      "exam_question_ids",
+      "exam_current",
+      "selected_question_type",
+      "exam_category",
+      "exam_question_ids",
+      "exam_current",
+      "selected_question_type",
+      "exam_category",
+      "exam_question_ids",
+      "exam_current",
+      "selected_question_type",
+      "exam_category",
+      "exam_question_ids",
+      "exam_current",
+      "selected_question_type",
+      "exam_category",
+      "exam_question_ids",
+      "exam_question_ids",
+      "exam_current",
+      "selected_question_type",
+      "exam_category",
+      "exam_question_ids",
+      "exam_question_ids",
+      "exam_question_ids",
+      "exam_current",
+      "selected_question_type",
+      "exam_category",
+      "exam_question_ids",
+      "exam_question_ids",
+      "exam_question_ids",
+      "progress_tracking",
+      "exam_current",
+      "progress_repair_count",
+      "exam_current",
+      "exam_index_repair",
+      "exam_progress_timestamp",
+      "last_answered_question_id",
+      "total_questions_in_session",
+      "quiz_settings",
+      "quiz_settings",
+      "exam_current",
+      "exam_current",
+      "exam_current",
+      "exam_question_ids",
+      "exam_question_ids",
+      "exam_question_ids",
+      "exam_question_ids",
+      "exam_current",
+      "exam_current",
+      "exam_category",
+      "exam_question_ids",
+      "exam_current",
+      "exam_question_ids",
+      "exam_current",
+      "exam_category",
+      "selected_question_type",
+      "selected_year",
+      "exam_question_ids",
+      "exam_current",
+      "exam_category",
+      "selected_question_type",
+      "selected_department",
+      "review_completed",
+      "selected_department",
+      "selected_department",
+      "selected_question_type",
+      "selected_department",
+      "advanced_srs",
+      "bookmarks",
+      "bookmarks",
+      "bookmarks",
+      "session_id",
+      "quiz_settings",
+      "quiz_settings",
+      "bookmarks",
+      "bookmarks",
+      "bookmarks",
+      "bookmarks",
+      "bookmarks",
+      "bookmarks",
+      "bookmarks",
+      "exam_question_ids",
+      "exam_current",
+      "exam_category",
+      "selected_question_type",
+      "department",
+      "selected_department",
+      "exam_question_ids",
+      "exam_current",
+      "exam_category",
+      "selected_question_type",
+      "advanced_srs",
+      "bookmarks",
+      "exam_current",
+      "exam_question_ids",
+      "exam_current",
+      "exam_category",
+      "adaptive_mode",
+      "selected_department",
+      "exam_question_ids",
+      "exam_current",
+      "exam_category",
+      "adaptive_mode",
+      "foundation_mastery",
+      "selected_department",
+      "birth_date",
+      "exam_session",
+      "exam_id",
+      "current_question",
+      "questions",
+      "exam_type",
+      "config",
+      "flagged_questions",
+      "answers",
+      "current_question",
+      "exam_session",
+      "exam_session",
+      "_initialized",
+      "exam_session",
+      "exam_session",
+      "results",
+      "exam_history",
+      "exam_history",
+      "exam_id",
+      "exam_type",
+      "start_time",
+      "status",
+      "current_question",
+      "questions",
+      "last_activity"
+    ],
+    "assignment_count": 163,
+    "read_count": 115,
+    "direct_access_count": 201
+  },
+  "variable_categories": {
+    "large_data": [
+      "history",
+      "request_history",
+      "exam_question_ids",
+      "flagged_questions",
+      "exam_session', {}).get('current_question', 'UNKNOWN",
+      "quiz_settings']['questions_per_session",
+      "questions",
+      "exam_history",
+      "exam_question_ids', 'MISSING",
+      "history', []) if h.get('question_type",
+      "total_questions_in_session",
+      "exam_session",
+      "exam_question_ids', []))}"
+    ],
+    "moderate_data": [
+      "exam_progress_timestamp",
+      "progress_tracking",
+      "category_stats",
+      "bookmarks",
+      "results",
+      "progress_repair_count"
+    ],
+    "small_data": [
+      "status",
+      "selected_question_type', 'MISSING",
+      "current_question",
+      "start_time",
+      "selected_question_type', '",
+      "status', 'UNKNOWN",
+      "exam_type",
+      "login_time",
+      "exam_current",
+      "selected_question_type",
+      "current_question', 'UNKNOWN",
+      "exam_current', 'MISSING",
+      "selected_question_type', 'basic"
+    ],
+    "unknown_size": [
+      "user_name",
+      "review_completed",
+      "last_activity",
+      "quiz_settings",
+      "exam_category', '全体",
+      "config",
+      "session_id', 'anonymous",
+      "exam_category",
+      "selected_year",
+      "_initialized",
+      "user_id', 'anonymous",
+      "review_session_minimal",
+      "department",
+      "foundation_mastery",
+      "selected_department",
+      "data_loaded', 'MISSING",
+      "answers",
+      "exam_id",
+      "user_id",
+      "birth_date",
+      "last_answered_question_id",
+      "adaptive_mode",
+      "review_session_restored",
+      "last_update",
+      "selected_department', '",
+      "base_user_id",
+      "user_name', '不明",
+      "selected_department', 'MISSING",
+      "exam_category', 'MISSING",
+      "selected_department', request.args.get('department",
+      "session_id",
+      "admin_authenticated_at",
+      "advanced_srs",
+      "exam_category', '",
+      "exam_id', 'UNKNOWN",
+      "quiz_answered",
+      "srs_data",
+      "exam_index_repair"
+    ]
+  },
+  "size_analysis": {
+    "size_estimates": {
+      "large_data": {
+        "history": 5000,
+        "request_history": 5000,
+        "exam_question_ids": 1500,
+        "flagged_questions": 10000,
+        "exam_session', {}).get('current_question', 'UNKNOWN": 2000,
+        "quiz_settings']['questions_per_session": 10000,
+        "questions": 10000,
+        "exam_history": 5000,
+        "exam_question_ids', 'MISSING": 1500,
+        "history', []) if h.get('question_type": 5000,
+        "total_questions_in_session": 10000,
+        "exam_session": 2000,
+        "exam_question_ids', []))}": 1500
+      },
+      "moderate_data": {
+        "exam_progress_timestamp": 500,
+        "progress_tracking": 500,
+        "category_stats": 500,
+        "bookmarks": 500,
+        "results": 500,
+        "progress_repair_count": 500
+      },
+      "small_data": {
+        "status": 50,
+        "selected_question_type', 'MISSING": 50,
+        "current_question": 50,
+        "start_time": 50,
+        "selected_question_type', '": 50,
+        "status', 'UNKNOWN": 50,
+        "exam_type": 50,
+        "login_time": 50,
+        "exam_current": 50,
+        "selected_question_type": 50,
+        "current_question', 'UNKNOWN": 50,
+        "exam_current', 'MISSING": 50,
+        "selected_question_type', 'basic": 50
+      },
+      "unknown_size": {
+        "user_name": 200,
+        "review_completed": 200,
+        "last_activity": 200,
+        "quiz_settings": 200,
+        "exam_category', '全体": 200,
+        "config": 200,
+        "session_id', 'anonymous": 200,
+        "exam_category": 200,
+        "selected_year": 200,
+        "_initialized": 200,
+        "user_id', 'anonymous": 200,
+        "review_session_minimal": 200,
+        "department": 200,
+        "foundation_mastery": 200,
+        "selected_department": 200,
+        "data_loaded', 'MISSING": 200,
+        "answers": 200,
+        "exam_id": 200,
+        "user_id": 200,
+        "birth_date": 200,
+        "last_answered_question_id": 200,
+        "adaptive_mode": 200,
+        "review_session_restored": 200,
+        "last_update": 200,
+        "selected_department', '": 200,
+        "base_user_id": 200,
+        "user_name', '不明": 200,
+        "selected_department', 'MISSING": 200,
+        "exam_category', 'MISSING": 200,
+        "selected_department', request.args.get('department": 200,
+        "session_id": 200,
+        "admin_authenticated_at": 200,
+        "advanced_srs": 200,
+        "exam_category', '": 200,
+        "exam_id', 'UNKNOWN": 200,
+        "quiz_answered": 200,
+        "srs_data": 200,
+        "exam_index_repair": 200
+      }
+    },
+    "risk_assessment": {
+      "total_estimated_bytes": 79750,
+      "cookie_estimated_bytes": 106067,
+      "risk_level": "CRITICAL",
+      "risk_factors": [
+        "セッションサイズが8KB超過"
+      ]
+    }
+  },
+  "optimization_targets": [
+    {
+      "variable": "flagged_questions",
+      "estimated_size": 10000,
+      "priority": "HIGH",
+      "optimization_suggestions": []
+    },
+    {
+      "variable": "quiz_settings']['questions_per_session",
+      "estimated_size": 10000,
+      "priority": "HIGH",
+      "optimization_suggestions": []
+    },
+    {
+      "variable": "questions",
+      "estimated_size": 10000,
+      "priority": "HIGH",
+      "optimization_suggestions": []
+    },
+    {
+      "variable": "total_questions_in_session",
+      "estimated_size": 10000,
+      "priority": "HIGH",
+      "optimization_suggestions": []
+    },
+    {
+      "variable": "history",
+      "estimated_size": 5000,
+      "priority": "HIGH",
+      "optimization_suggestions": [
+        "履歴件数を100件から50件に削減",
+        "古い履歴の自動削除機能",
+        "履歴データの圧縮"
+      ]
+    },
+    {
+      "variable": "request_history",
+      "estimated_size": 5000,
+      "priority": "HIGH",
+      "optimization_suggestions": [
+        "履歴件数を100件から50件に削減",
+        "古い履歴の自動削除機能",
+        "履歴データの圧縮"
+      ]
+    },
+    {
+      "variable": "exam_history",
+      "estimated_size": 5000,
+      "priority": "HIGH",
+      "optimization_suggestions": [
+        "履歴件数を100件から50件に削減",
+        "古い履歴の自動削除機能",
+        "履歴データの圧縮"
+      ]
+    },
+    {
+      "variable": "history', []) if h.get('question_type",
+      "estimated_size": 5000,
+      "priority": "HIGH",
+      "optimization_suggestions": [
+        "履歴件数を100件から50件に削減",
+        "古い履歴の自動削除機能",
+        "履歴データの圧縮"
+      ]
+    },
+    {
+      "variable": "exam_session', {}).get('current_question', 'UNKNOWN",
+      "estimated_size": 2000,
+      "priority": "MEDIUM",
+      "optimization_suggestions": [
+        "セッションメタデータの最小化",
+        "不要なフィールドの削除",
+        "データ構造の最適化"
+      ]
+    },
+    {
+      "variable": "exam_session",
+      "estimated_size": 2000,
+      "priority": "MEDIUM",
+      "optimization_suggestions": [
+        "セッションメタデータの最小化",
+        "不要なフィールドの削除",
+        "データ構造の最適化"
+      ]
+    },
+    {
+      "variable": "exam_question_ids",
+      "estimated_size": 1500,
+      "priority": "MEDIUM",
+      "optimization_suggestions": [
+        "問題IDの短縮化",
+        "不要な問題IDの削除",
+        "セッション分割"
+      ]
+    },
+    {
+      "variable": "exam_question_ids', 'MISSING",
+      "estimated_size": 1500,
+      "priority": "MEDIUM",
+      "optimization_suggestions": [
+        "問題IDの短縮化",
+        "不要な問題IDの削除",
+        "セッション分割"
+      ]
+    },
+    {
+      "variable": "exam_question_ids', []))}",
+      "estimated_size": 1500,
+      "priority": "MEDIUM",
+      "optimization_suggestions": [
+        "問題IDの短縮化",
+        "不要な問題IDの削除",
+        "セッション分割"
+      ]
+    }
+  ],
+  "ultrathin_recommendations": {
+    "immediate_actions": [
+      "セッション履歴の件数制限強化 (100→30件)",
+      "不要なセッションキーの削除",
+      "セッションデータの定期クリーンアップ"
+    ],
+    "safe_optimizations": [
+      {
+        "target": "flagged_questions",
+        "current_size": 10000,
+        "suggested_actions": [],
+        "estimated_reduction": 3000
+      },
+      {
+        "target": "quiz_settings']['questions_per_session",
+        "current_size": 10000,
+        "suggested_actions": [],
+        "estimated_reduction": 3000
+      },
+      {
+        "target": "questions",
+        "current_size": 10000,
+        "suggested_actions": [],
+        "estimated_reduction": 3000
+      }
+    ],
+    "risk_level": "CRITICAL",
+    "estimated_impact": {
+      "current_size": 79750,
+      "estimated_reduction": 9000,
+      "target_size": 70750,
+      "reduction_percentage": 11.285266457680251
+    }
+  }
+}

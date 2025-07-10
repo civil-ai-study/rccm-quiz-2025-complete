@@ -1,0 +1,77 @@
+{
+  "timestamp": "2025-07-07T20:45:39.116168",
+  "stage": "ULTRATHIN区段階21",
+  "objective": "after_requestハンドラーによるセッション保存確実化",
+  "current_situation": {
+    "stage20_implementation": "make_response使用済み",
+    "session_modified_usage": "適切に設定",
+    "remaining_issue": "リダイレクト時のセッション同期",
+    "after_request_handlers": 2
+  },
+  "additional_improvement": {
+    "approach": "after_requestハンドラー追加",
+    "implementation_code": "\n@app.after_request\ndef ensure_session_persistence_ultrathin(response):\n    \"\"\"🛡️ ULTRATHIN区段階21: クリティカルルートでのセッション永続化確保\"\"\"\n    critical_routes = ['/start_exam', '/exam_question', '/exam_simulator']\n    \n    # クリティカルルートの場合、セッション保存を確実化\n    if any(route in request.path for route in critical_routes):\n        session.permanent = True\n        session.modified = True\n        \n        # 🛡️ デバッグ情報\n        if 'exam_session' in session:\n            logger.info(f\"🛡️ ULTRATHIN段階21: セッション保存確実化 - {request.path}\")\n    \n    return response\n",
+    "insertion_location": "after existing after_request handlers (around line 1290)",
+    "benefits": [
+      "リダイレクト前のセッション保存確実化",
+      "クリティカルルートのみ対象で効率的",
+      "既存処理への影響最小限",
+      "デバッグ情報の追加"
+    ]
+  },
+  "safety_measures": {
+    "impact_analysis": {
+      "existing_handlers": "影響なし（追加のみ）",
+      "performance": "最小限（条件分岐のみ）",
+      "session_structure": "変更なし",
+      "stage14_restoration": "完全保護",
+      "data_separation": "完全保護"
+    },
+    "rollback_plan": {
+      "method": "ハンドラー削除",
+      "time_required": "即座",
+      "risk_level": "極小"
+    }
+  },
+  "implementation_steps": [
+    {
+      "step": 1,
+      "action": "既存のafter_requestハンドラー位置確認",
+      "command": "grep -n '@app.after_request' app.py"
+    },
+    {
+      "step": 2,
+      "action": "新しいafter_requestハンドラー追加",
+      "location": "既存ハンドラーの後（1290行付近）"
+    },
+    {
+      "step": 3,
+      "action": "インポート確認",
+      "required": "request (from flask import request)"
+    },
+    {
+      "step": 4,
+      "action": "動作検証",
+      "test": "セッション永続化テスト"
+    }
+  ],
+  "expected_outcome": {
+    "immediate": "クリティカルルートでのセッション保存100%確実化",
+    "user_facing": "段階14復元不要、スムーズな画面遷移",
+    "debugging": "セッション保存タイミングの可視化",
+    "reliability": "セッション失失問題の完全解決"
+  },
+  "verification_method": {
+    "test_script": "ultrathin_stage21_verification.py",
+    "test_targets": [
+      "POST /start_exam/<department>",
+      "GET /exam_question",
+      "セッション永続化確認"
+    ],
+    "success_criteria": {
+      "session_persistence": "100%",
+      "exam_question_reach": ">90%",
+      "stage14_bypass": ">90%"
+    }
+  }
+}

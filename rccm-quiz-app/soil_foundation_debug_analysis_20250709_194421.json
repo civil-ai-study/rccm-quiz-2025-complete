@@ -1,0 +1,179 @@
+{
+  "csv_files": {
+    "2008": {
+      "file": "data/4-2_2008.csv",
+      "exists": true,
+      "size": 201176
+    },
+    "2009": {
+      "file": "data/4-2_2009.csv",
+      "exists": true,
+      "size": 207651
+    },
+    "2010": {
+      "file": "data/4-2_2010.csv",
+      "exists": true,
+      "size": 157895
+    },
+    "2011": {
+      "file": "data/4-2_2011.csv",
+      "exists": true,
+      "size": 237300
+    },
+    "2012": {
+      "file": "data/4-2_2012.csv",
+      "exists": true,
+      "size": 199154
+    },
+    "2013": {
+      "file": "data/4-2_2013.csv",
+      "exists": true,
+      "size": 194057
+    },
+    "2014": {
+      "file": "data/4-2_2014.csv",
+      "exists": true,
+      "size": 153257
+    },
+    "2015": {
+      "file": "data/4-2_2015.csv",
+      "exists": true,
+      "size": 273998
+    },
+    "2016": {
+      "file": "data/4-2_2016.csv",
+      "exists": true,
+      "size": 291783
+    },
+    "2017": {
+      "file": "data/4-2_2017.csv",
+      "exists": true,
+      "size": 382964
+    },
+    "2018": {
+      "file": "data/4-2_2018.csv",
+      "exists": true,
+      "size": 309809
+    },
+    "2019": {
+      "file": "data/4-2_2019.csv",
+      "exists": true,
+      "size": 216806
+    }
+  },
+  "2019_data_direct": {
+    "total_soil_foundation_questions": 30,
+    "all_categories": [
+      "トンネル",
+      "上水道及び工業用水道",
+      "土質及び基礎",
+      "建設環境",
+      "施工計画、施工設備及び積算",
+      "森林土木",
+      "河川、砂防及び海岸・海洋",
+      "農業土木",
+      "造園",
+      "道路",
+      "都市計画及び地方計画",
+      "鋼構造及びコンクリート"
+    ],
+    "sample_questions": [
+      {
+        "id": "59",
+        "category": "土質及び基礎",
+        "question": "軟弱地盤対策工に関する記述として誤っているものはどれか"
+      },
+      {
+        "id": "60",
+        "category": "土質及び基礎",
+        "question": "軟弱地盤対策工法に関する記述として誤っているものはどれか"
+      },
+      {
+        "id": "61",
+        "category": "土質及び基礎",
+        "question": "軟弱地盤上道路の維持管理に関する記述として誤っているものはどれか"
+      },
+      {
+        "id": "62",
+        "category": "土質及び基礎",
+        "question": "土質試験に関する記述として誤っているものはどれか"
+      },
+      {
+        "id": "63",
+        "category": "土質及び基礎",
+        "question": "静的力学試験に関する記述として誤っているものはどれか"
+      }
+    ],
+    "category_contains_soil": true
+  },
+  "category_mapping": {
+    "error": "No module named 'flask'"
+  },
+  "load_specialist_function": {
+    "department_arg": "土質及び基礎",
+    "year_arg": 2019,
+    "result_count": 30,
+    "sample_questions": [
+      {
+        "id": 59,
+        "category": "土質及び基礎",
+        "question": "軟弱地盤対策工に関する記述として誤っているものはどれか",
+        "option_a": "石灰パイル工法は粘性土地盤の含水比低下効果を期待するもので砂質土地盤には適用できない",
+        "option_b": "掘削置換工法は必要な置換土が容易に得られかつ短期間に軟弱層を処理しようとする場合に適する",
+        "option_c": "サンドコンパクションパイル工法は砂質土地盤と粘性土地盤の両方に適用できる",
+        "option_d": "バイブロフロテーション工法は砂質土地盤の支持力増大および液状化防止を目的として用いられる",
+        "correct_answer": "A",
+        "explanation": "石灰パイル工法は主に粘性土地盤に適用されるが砂質土地盤でも地下水のpH調整等の目的で適用される場合がある",
+        "reference": "道路土工軟弱地盤対策工指針",
+        "difficulty": "標準",
+        "keywords": "",
+        "practical_tip": "",
+        "question_type": "specialist",
+        "department": "soil_foundation",
+        "year": 2019,
+        "source_file": "4-2_2019.csv"
+      },
+      {
+        "id": 60,
+        "category": "土質及び基礎",
+        "question": "軟弱地盤対策工法に関する記述として誤っているものはどれか",
+        "option_a": "サンドドレーン工法を袋詰め式で施工する場合1本毎に打設するのが一般的である",
+        "option_b": "緩速載荷工法の適用に当たっては圧密層の厚さや圧密および強度特性を十分に検討する必要がある",
+        "option_c": "バイブロフロテーション工法の補給材には砕石・砂利および鉱さい等が多く使われている",
+        "option_d": "サンドコンパクションパイル工法の場合応力分担比は砂杭の場合は3砕石杭の場合は4を採用することが多い",
+        "correct_answer": "A",
+        "explanation": "サンドドレーン工法では施工効率向上のため複数本を同時に打設することが一般的。誤りの選択肢を特定することが重要です。",
+        "reference": "道路土工軟弱地盤対策工指針",
+        "difficulty": "標準",
+        "keywords": "",
+        "practical_tip": "",
+        "question_type": "specialist",
+        "department": "soil_foundation",
+        "year": 2019,
+        "source_file": "4-2_2019.csv"
+      },
+      {
+        "id": 61,
+        "category": "土質及び基礎",
+        "question": "軟弱地盤上道路の維持管理に関する記述として誤っているものはどれか",
+        "option_a": "軟弱地盤上における道路の日常点検は舗装及び土工構造物の変状を早期に発見し適切な処置及び補修等の要否を判断するために実施する",
+        "option_b": "地震等の災害発生時に行う緊急点検はできるだけ短時間に実施する必要があるため路面のクラックやひび割れのみを確認し土工構造物及び近接した周辺地盤や構造物の変状は対象外とするのが一般的である",
+        "option_c": "杭で支持された構造物と盛土との取付部の路面は供用後に継続する沈下量の大きさの違いから特に段差が生じやすいので点検の際に注意すると良い",
+        "option_d": "道路面の不同沈下により段差が発生した場合程度によってはパッチングやオーバーレイ等の路面補修が必要となる",
+        "correct_answer": "B",
+        "explanation": "緊急点検では路面変状に加え土工構造物や周辺地盤・構造物の変状確認も重要。誤りの選択肢を特定することが重要です。",
+        "reference": "道路土工軟弱地盤対策工指針",
+        "difficulty": "標準",
+        "keywords": "",
+        "practical_tip": "",
+        "question_type": "specialist",
+        "department": "soil_foundation",
+        "year": 2019,
+        "source_file": "4-2_2019.csv"
+      }
+    ]
+  },
+  "empty_year_handling": {
+    "error": "No module named 'flask'"
+  }
+}

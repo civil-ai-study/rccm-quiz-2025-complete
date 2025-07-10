@@ -1,0 +1,262 @@
+{
+  "timestamp": "2025-07-08T08:02:59.185332",
+  "stage": "ULTRATHIN区段階41",
+  "functionality": "修正済み問題表示",
+  "department_results": {
+    "基礎科目": {
+      "department": "基礎科目",
+      "redirect_chain": {
+        "start_exam_response": {
+          "status_code": 502,
+          "location": "",
+          "has_redirect": false
+        },
+        "exam_question_response": {},
+        "exam_simulator_response": {},
+        "complete_chain": false
+      },
+      "final_status": {
+        "access_successful": false,
+        "has_simulator_content": false,
+        "has_question_elements": false
+      }
+    },
+    "道路": {
+      "department": "道路",
+      "redirect_chain": {
+        "start_exam_response": {
+          "status_code": 502,
+          "location": "",
+          "has_redirect": false
+        },
+        "exam_question_response": {},
+        "exam_simulator_response": {},
+        "complete_chain": false
+      },
+      "final_status": {
+        "access_successful": false,
+        "has_simulator_content": false,
+        "has_question_elements": false
+      }
+    },
+    "河川、砂防及び海岸・海洋": {
+      "department": "河川、砂防及び海岸・海洋",
+      "redirect_chain": {
+        "start_exam_response": {
+          "status_code": 502,
+          "location": "",
+          "has_redirect": false
+        },
+        "exam_question_response": {},
+        "exam_simulator_response": {},
+        "complete_chain": false
+      },
+      "final_status": {
+        "access_successful": false,
+        "has_simulator_content": false,
+        "has_question_elements": false
+      }
+    },
+    "都市計画": {
+      "department": "都市計画",
+      "redirect_chain": {
+        "start_exam_response": {
+          "status_code": 502,
+          "location": "",
+          "has_redirect": false
+        },
+        "exam_question_response": {},
+        "exam_simulator_response": {},
+        "complete_chain": false
+      },
+      "final_status": {
+        "access_successful": false,
+        "has_simulator_content": false,
+        "has_question_elements": false
+      }
+    },
+    "造園": {
+      "department": "造園",
+      "redirect_chain": {
+        "start_exam_response": {
+          "status_code": 502,
+          "location": "",
+          "has_redirect": false
+        },
+        "exam_question_response": {},
+        "exam_simulator_response": {},
+        "complete_chain": false
+      },
+      "final_status": {
+        "access_successful": false,
+        "has_simulator_content": false,
+        "has_question_elements": false
+      }
+    },
+    "建設環境": {
+      "department": "建設環境",
+      "redirect_chain": {
+        "start_exam_response": {
+          "status_code": 502,
+          "location": "",
+          "has_redirect": false
+        },
+        "exam_question_response": {},
+        "exam_simulator_response": {},
+        "complete_chain": false
+      },
+      "final_status": {
+        "access_successful": false,
+        "has_simulator_content": false,
+        "has_question_elements": false
+      }
+    },
+    "鋼構造・コンクリート": {
+      "department": "鋼構造・コンクリート",
+      "redirect_chain": {
+        "start_exam_response": {
+          "status_code": 502,
+          "location": "",
+          "has_redirect": false
+        },
+        "exam_question_response": {},
+        "exam_simulator_response": {},
+        "complete_chain": false
+      },
+      "final_status": {
+        "access_successful": false,
+        "has_simulator_content": false,
+        "has_question_elements": false
+      }
+    },
+    "土質・基礎": {
+      "department": "土質・基礎",
+      "redirect_chain": {
+        "start_exam_response": {
+          "status_code": 502,
+          "location": "",
+          "has_redirect": false
+        },
+        "exam_question_response": {},
+        "exam_simulator_response": {},
+        "complete_chain": false
+      },
+      "final_status": {
+        "access_successful": false,
+        "has_simulator_content": false,
+        "has_question_elements": false
+      }
+    },
+    "施工計画": {
+      "department": "施工計画",
+      "redirect_chain": {
+        "start_exam_response": {
+          "status_code": 200,
+          "location": "",
+          "has_redirect": false
+        },
+        "exam_question_response": {},
+        "exam_simulator_response": {},
+        "complete_chain": false
+      },
+      "final_status": {
+        "access_successful": false,
+        "has_simulator_content": false,
+        "has_question_elements": false
+      }
+    },
+    "上下水道": {
+      "department": "上下水道",
+      "redirect_chain": {
+        "start_exam_response": {
+          "status_code": 502,
+          "location": "",
+          "has_redirect": false
+        },
+        "exam_question_response": {},
+        "exam_simulator_response": {},
+        "complete_chain": false
+      },
+      "final_status": {
+        "access_successful": false,
+        "has_simulator_content": false,
+        "has_question_elements": false
+      }
+    },
+    "森林土木": {
+      "department": "森林土木",
+      "redirect_chain": {
+        "start_exam_response": {
+          "status_code": 502,
+          "location": "",
+          "has_redirect": false
+        },
+        "exam_question_response": {},
+        "exam_simulator_response": {},
+        "complete_chain": false
+      },
+      "final_status": {
+        "access_successful": false,
+        "has_simulator_content": false,
+        "has_question_elements": false
+      }
+    },
+    "農業土木": {
+      "department": "農業土木",
+      "redirect_chain": {
+        "start_exam_response": {
+          "status_code": 302,
+          "location": "/exam_question",
+          "has_redirect": true
+        },
+        "exam_question_response": {
+          "status_code": 502,
+          "location": "",
+          "has_redirect": false
+        },
+        "exam_simulator_response": {},
+        "complete_chain": false
+      },
+      "final_status": {
+        "access_successful": false,
+        "has_simulator_content": false,
+        "has_question_elements": false
+      }
+    },
+    "トンネル": {
+      "department": "トンネル",
+      "redirect_chain": {
+        "start_exam_response": {
+          "status_code": 302,
+          "location": "/exam_question",
+          "has_redirect": true
+        },
+        "exam_question_response": {
+          "status_code": 302,
+          "location": "/exam_simulator",
+          "has_redirect": true
+        },
+        "exam_simulator_response": {
+          "status_code": 200,
+          "final_url": "https://rccm-quiz-2025.onrender.com/exam_simulator",
+          "content_length": 36999
+        },
+        "complete_chain": true
+      },
+      "final_status": {
+        "access_successful": true,
+        "has_simulator_content": true,
+        "has_question_elements": true
+      }
+    }
+  },
+  "overall_assessment": {
+    "total_departments": 13,
+    "simulator_success_count": 1,
+    "redirect_success_count": 1,
+    "failed_count": 12,
+    "simulator_success_rate": 7.6923076923076925,
+    "redirect_success_rate": 7.6923076923076925,
+    "system_status": "needs_improvement"
+  }
+}
