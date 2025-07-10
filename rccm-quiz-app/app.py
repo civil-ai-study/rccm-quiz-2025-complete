@@ -2815,15 +2815,32 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
             else:
                 logger.error(f"❌ 部門統一性: 失敗 - 混在カテゴリ: {unique_categories}")
         
-        # 問題ID重複チェック
+        # 🚨 根本修正: 4-1と4-2の完全ID分離処理
         if selected_questions:
+            # ID重複解決：4-1基礎科目と4-2専門科目の完全分離
+            for question in selected_questions:
+                original_id = int(question.get('id', 0))
+                category = question.get('category', '')
+                
+                # 基礎科目（4-1）: ID範囲 10000番台に変更
+                if category == '共通':
+                    question['id'] = 10000 + original_id
+                    question['question_type'] = 'basic'
+                    question['file_source'] = '4-1'
+                # 専門科目（4-2）: ID範囲 20000番台に変更  
+                else:
+                    question['id'] = 20000 + original_id
+                    question['question_type'] = 'specialist'
+                    question['file_source'] = '4-2'
+            
+            # 変更後のID重複チェック
             question_ids = [str(q.get('id', '')) for q in selected_questions]
             unique_ids = list(set(question_ids))
             if len(question_ids) == len(unique_ids):
-                logger.info(f"✅ 問題ID重複: なし - {len(unique_ids)}問すべて一意")
+                logger.info(f"✅ 4-1/4-2分離ID: 成功 - {len(unique_ids)}問すべて一意")
             else:
                 duplicated_count = len(question_ids) - len(unique_ids)
-                logger.error(f"❌ 問題ID重複: 検出 - {duplicated_count}個の重複")
+                logger.error(f"❌ 4-1/4-2分離ID: 失敗 - {duplicated_count}個の重複")
         
         # パフォーマンス最適化効果確認
         if _performance_optimizer and _performance_optimizer.data_loaded:
@@ -7901,10 +7918,10 @@ def start_exam(exam_type):
         logger.info(f"🛡️ 4-1/4-2完全分離: {question_type_check}で{len(selected_questions)}問選択完了")
         logger.info(f"🔥 EXAM START: 試験セッション生成完了 - ID: {exam_session.get('exam_id', 'UNKNOWN')}")
 
-        # 🛡️ HTTP 431緊急対策: exam_session完全軽量化
-        # 300-600KBのexam_sessionを10KB以下に削減
-        # 🛡️ ULTRATHIN最終対策: 超軽量セッション（必須データのみ）
-        lightweight_session = {
+        # 🚨 根本修正: セッション管理統一化
+        # 軽量セッション廃止、必要データを確実に保持
+        # 4-1/4-2分離IDでセッション管理を統一
+        unified_session = {
             'exam_id': exam_session.get('exam_id', '')[:8],  # ID短縮
             'exam_type': exam_session.get('exam_type', '')[:10],  # タイプ短縮
             'q_count': len(exam_session.get('questions', [])),  # 問題数のみ
@@ -7917,17 +7934,16 @@ def start_exam(exam_type):
         exam_id = exam_session.get('exam_id', '')
         store_exam_data_in_memory(exam_id, exam_session)
         
-        session['exam_session'] = lightweight_session
+        # 🚨 根本修正: 統一セッションで確実なデータ保持
+        session['exam_session'] = unified_session
+        session['exam_question_ids'] = [q['id'] for q in selected_questions]
+        session['exam_current'] = 0
         session.modified = True
         
-        # 🛡️ ULTRATHIN区段階6: セッション保存強制実行・検証強化
+        # セッション保存強制実行
         try:
-            # セッション保存の強制実行（Flask内部処理）
-            session.permanent = True  # セッション永続化フラグ
-            
-            # 🛡️ ULTRATHIN区段階26: セッション保存の確実化（検証ループ削除）
-            # 複雑な検証ループを削除し、make_responseで確実に保存
-            session['exam_session'] = lightweight_session
+            session.permanent = True
+            session['exam_session'] = unified_session
             session.modified = True
             
             # 🛡️ ULTRATHIN区段階26: メモリ保存確認
@@ -8036,51 +8052,35 @@ def exam_question():
             
             try:
                 # 専門科目データが正常に読み込まれているかを確認
-                from flask import current_app
-                with current_app.test_request_context():
-                    # デバッグ情報取得（専門科目分離機能は完全保護）
-                    debug_response = requests.get(f"{request.url_root}debug/session_info")
-                    if debug_response.status_code == 200:
-                        debug_data = debug_response.json()
-                        debug_info = debug_data.get('debug_info', {})
-                        
-                        questions_count = debug_info.get('questions_count', 0)
-                        data_source = debug_info.get('data_source', '')
-                        exam_type = debug_info.get('exam_type', '')
-                        
-                        logger.info(f"🛡️ ULTRATHIN段階14: デバッグ情報確認 - 問題数: {questions_count}, ソース: {data_source}")
-                        
-                        if questions_count > 0 and data_source:
-                            # 専門科目データが正常に読み込まれている場合のみ復元
-                            logger.info(f"🛡️ ULTRATHIN段階14: 専門科目データ正常 - セッション復元実行")
+                # 🚨 根本修正: セッション復元処理を大幅簡素化
+                # 複雑なデバッグ情報取得を廃止、直接セッション確認
+                if session.get('exam_question_ids') and session.get('exam_current') is not None:
+                    # セッションデータが存在する場合は復元
+                    logger.info(f"✅ セッション復元: exam_question_ids={len(session.get('exam_question_ids', []))}問")
+                    
+                    # 最小限のセッション復元
+                    restored_session = {
+                        'exam_id': f"restored_{int(time.time())}",
+                        'status': 'in_progress',
+                        'current': session.get('exam_current', 0),
+                        'q_count': len(session.get('exam_question_ids', [])),
+                        'restored': True
+                    }
+                    
+                    session['exam_session'] = restored_session
+                    session.modified = True
+                    logger.info(f"✅ セッション復元完了: {restored_session}")
+                else:
+                    # セッションデータ不足、トップページにリダイレクト
+                    logger.error(f"❌ セッション復元失敗: 必要データなし")
+                    return redirect('/')
                             
-                            # 暫定的なセッション復元（最小限の情報のみ）
-                            restored_session = {
-                                'exam_id': f"restored_{int(time.time())}",
-                                'status': 'in_progress',
-                                'exam_type': exam_type,
-                                'questions_count': questions_count,
-                                'data_source': data_source,
-                                'restored': True
-                            }
-                            
-                            session['exam_session'] = restored_session
-                            session.modified = True
-                            
-                            logger.info(f"🛡️ ULTRATHIN段階14: セッション復元成功 - 試験継続可能")
-                            
-                            # 復元されたセッションで処理継続
-                            exam_session = restored_session
-                        else:
-                            logger.error(f"🛡️ ULTRASYNC段階14: 専門科目データ未読み込み - 復元不可")
-                            return render_template('error.html', error="専門科目データが見つかりません。部門を再選択してください。", error_type="specialist_data_missing")
-                    else:
-                        logger.error(f"🛡️ ULTRASYNC段階14: デバッグ情報取得失敗")
-                        return render_template('error.html', error="セッション情報の復元に失敗しました。", error_type="session_restore_error")
-                        
-            except Exception as restore_error:
-                logger.error(f"🛡️ ULTRASYNC段階14: セッション復元エラー - {restore_error}")
-                return render_template('error.html', error="セッション復元中にエラーが発生しました。", error_type="session_restore_exception")
+            except Exception as e:
+                logger.error(f"❌ セッション復元エラー: {e}")
+                return redirect('/')
+                
+                # 復元されたセッションで処理継続
+                exam_session = session.get('exam_session', {})
         
         # 復元されたセッションまたは元のセッションで処理継続
         if not exam_session:
