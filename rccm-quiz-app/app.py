@@ -702,6 +702,23 @@ else:
     csrf = None
     logger.warning("⚠️ CSRF保護が無効です - Flask-WTFをインストールしてください")
 
+# 🛡️ UltraSync CSRF Token Template Context Processor (副作用ゼロ修正)
+@app.context_processor
+def inject_csrf_token():
+    """テンプレートにCSRFトークンを提供（Flask-WTF未使用時のフォールバック）"""
+    if CSRF_AVAILABLE and csrf:
+        try:
+            from flask_wtf.csrf import generate_csrf
+            return dict(csrf_token=generate_csrf)
+        except ImportError:
+            pass
+    
+    # フォールバック: 空のトークン関数を提供
+    def empty_csrf_token():
+        return ""
+    
+    return dict(csrf_token=empty_csrf_token)
+
 # 🛡️ セキュリティヘッダー追加
 @app.after_request
 def add_security_headers(response):
@@ -7802,14 +7819,29 @@ def start_exam(exam_type):
             session['selected_year'] = None
             logger.info(f"🛡️ ULTRATHIN区: 基礎科目セッション設定完了 - type=basic")
         else:
-            # フォールバック: exam_typeから推定
-            if 'specialist' in exam_type or 'department' in exam_type:
-                session['selected_question_type'] = 'specialist'
+            # フォールバック: exam_typeから推定（修正版 - DEPARTMENT_TO_CATEGORY_MAPPINGを使用）
+            if exam_type in DEPARTMENT_TO_CATEGORY_MAPPING:
+                # マッピングに存在する場合、基礎科目かどうか判定
+                if exam_type == 'basic' or DEPARTMENT_TO_CATEGORY_MAPPING[exam_type] == '共通':
+                    session['selected_question_type'] = 'basic'
+                else:
+                    session['selected_question_type'] = 'specialist'
+            elif exam_type in DEPARTMENT_TO_CATEGORY_MAPPING.values():
+                # 日本語部門名の場合、基礎科目かどうか判定
+                if exam_type == '共通' or exam_type == '基礎科目':
+                    session['selected_question_type'] = 'basic'
+                else:
+                    session['selected_question_type'] = 'specialist'
             else:
-                session['selected_question_type'] = 'basic'
+                # 最終フォールバック: 文字列チェック
+                if 'basic' in exam_type.lower() or '基礎' in exam_type or '共通' in exam_type:
+                    session['selected_question_type'] = 'basic'
+                else:
+                    session['selected_question_type'] = 'specialist'
+            
             session['selected_department'] = category_param or ''
             session['selected_year'] = year_param
-            logger.warning(f"🛡️ ULTRATHIN区: フォールバック設定 - exam_type={exam_type}, inferred_type={session['selected_question_type']}")
+            logger.warning(f"🛡️ ULTRATHIN区: フォールバック設定修正 - exam_type={exam_type}, inferred_type={session['selected_question_type']}")
         
         session.modified = True
         
