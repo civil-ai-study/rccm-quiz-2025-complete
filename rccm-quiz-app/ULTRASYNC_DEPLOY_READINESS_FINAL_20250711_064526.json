@@ -1,0 +1,43 @@
+{
+  "timestamp": "2025-07-11T06:45:26.980032",
+  "go_decision": true,
+  "categories": {
+    "SECRET_KEY準備": true,
+    "Render.com設定": true,
+    "アプリケーション整合性": true,
+    "安全性スコア": true,
+    "緊急時準備": true
+  },
+  "checks": {
+    "preparation": {
+      "secret_key": true,
+      "render_config": {
+        "render_yaml": true,
+        "wsgi_py": true,
+        "gunicorn_conf": true,
+        "requirements": true
+      }
+    },
+    "safety": {
+      "application": {
+        "app_py_syntax": true,
+        "blueprint_integration": true,
+        "data_files": true,
+        "template_files": true
+      },
+      "score": {
+        "success_rate": 95.5,
+        "risk_level": "MINIMAL",
+        "deploy_recommended": true
+      }
+    },
+    "execution_ready": {},
+    "emergency_ready": {
+      "deployment_checklist": true,
+      "execution_plan": true,
+      "backup_files": true,
+      "rollback_ready": true
+    }
+  },
+  "next_action": "DEPLOY"
+}
