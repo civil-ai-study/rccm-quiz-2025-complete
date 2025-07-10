@@ -1,0 +1,151 @@
+{
+  "timestamp": "2025-07-11T06:51:24.645868",
+  "base_url": "http://localhost:5000",
+  "connectivity_tests": {
+    "homepage_access": false,
+    "health_check": false,
+    "static_resources": false,
+    "response_time": 0.0
+  },
+  "functional_tests": {
+    "health_endpoints": {
+      "/health/simple": "ERROR_HTTPConnectionPool(host='localhost', port=5000): M",
+      "/health/status": "ERROR_HTTPConnectionPool(host='localhost', port=5000): M",
+      "/health/check": "ERROR_HTTPConnectionPool(host='localhost', port=5000): M",
+      "/health/ready": "ERROR_HTTPConnectionPool(host='localhost', port=5000): M",
+      "/health/live": "ERROR_HTTPConnectionPool(host='localhost', port=5000): M"
+    },
+    "static_endpoints": {
+      "/favicon.ico": "ERROR_HTTPConnectionPool(host='localhost', port=5000): M",
+      "/manifest.json": "ERROR_HTTPConnectionPool(host='localhost', port=5000): M",
+      "/robots.txt": "ERROR_HTTPConnectionPool(host='localhost', port=5000): M"
+    },
+    "overall_success": false
+  },
+  "performance_tests": {
+    "response_times": [],
+    "average_response_time": 0.0,
+    "max_response_time": 0.0,
+    "min_response_time": 0.0,
+    "performance_grade": "UNKNOWN"
+  },
+  "security_tests": {
+    "headers_present": {},
+    "security_score": 0,
+    "recommendations": []
+  },
+  "department_tests": {
+    "total_departments": 13,
+    "success_count": 0,
+    "failed_departments": [
+      "基礎科目",
+      "道路",
+      "河川・砂防",
+      "都市計画",
+      "造園",
+      "建設環境",
+      "鋼構造・コンクリート",
+      "土質・基礎",
+      "施工計画",
+      "上下水道",
+      "森林土木",
+      "農業土木",
+      "トンネル"
+    ],
+    "department_details": {
+      "基礎科目": {
+        "access_success": false,
+        "response_time": 0.0,
+        "content_validation": false,
+        "error_details": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /start_exam/%E5%9F%BA%E7%A4%8E%E7%A7%91%E7%9B%AE (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f269ea9fda0>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "道路": {
+        "access_success": false,
+        "response_time": 0.0,
+        "content_validation": false,
+        "error_details": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /start_exam/%E9%81%93%E8%B7%AF (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f269ea9d940>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "河川・砂防": {
+        "access_success": false,
+        "response_time": 0.0,
+        "content_validation": false,
+        "error_details": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /start_exam/%E6%B2%B3%E5%B7%9D%E3%83%BB%E7%A0%82%E9%98%B2 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f269ead86b0>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "都市計画": {
+        "access_success": false,
+        "response_time": 0.0,
+        "content_validation": false,
+        "error_details": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /start_exam/%E9%83%BD%E5%B8%82%E8%A8%88%E7%94%BB (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f269ead8d70>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "造園": {
+        "access_success": false,
+        "response_time": 0.0,
+        "content_validation": false,
+        "error_details": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /start_exam/%E9%80%A0%E5%9C%92 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f269ead95b0>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "建設環境": {
+        "access_success": false,
+        "response_time": 0.0,
+        "content_validation": false,
+        "error_details": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /start_exam/%E5%BB%BA%E8%A8%AD%E7%92%B0%E5%A2%83 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f269ead9e20>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "鋼構造・コンクリート": {
+        "access_success": false,
+        "response_time": 0.0,
+        "content_validation": false,
+        "error_details": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /start_exam/%E9%8B%BC%E6%A7%8B%E9%80%A0%E3%83%BB%E3%82%B3%E3%83%B3%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%88 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f269ea9f950>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "土質・基礎": {
+        "access_success": false,
+        "response_time": 0.0,
+        "content_validation": false,
+        "error_details": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /start_exam/%E5%9C%9F%E8%B3%AA%E3%83%BB%E5%9F%BA%E7%A4%8E (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f269ead9550>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "施工計画": {
+        "access_success": false,
+        "response_time": 0.0,
+        "content_validation": false,
+        "error_details": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /start_exam/%E6%96%BD%E5%B7%A5%E8%A8%88%E7%94%BB (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f269ead8aa0>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "上下水道": {
+        "access_success": false,
+        "response_time": 0.0,
+        "content_validation": false,
+        "error_details": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /start_exam/%E4%B8%8A%E4%B8%8B%E6%B0%B4%E9%81%93 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f269ead9ee0>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "森林土木": {
+        "access_success": false,
+        "response_time": 0.0,
+        "content_validation": false,
+        "error_details": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /start_exam/%E6%A3%AE%E6%9E%97%E5%9C%9F%E6%9C%A8 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f269eada7b0>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "農業土木": {
+        "access_success": false,
+        "response_time": 0.0,
+        "content_validation": false,
+        "error_details": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /start_exam/%E8%BE%B2%E6%A5%AD%E5%9C%9F%E6%9C%A8 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f269ea715b0>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      },
+      "トンネル": {
+        "access_success": false,
+        "response_time": 0.0,
+        "content_validation": false,
+        "error_details": "HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /start_exam/%E3%83%88%E3%83%B3%E3%83%8D%E3%83%AB (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f269ea9f9b0>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+      }
+    }
+  },
+  "user_experience_tests": {},
+  "overall_health": {
+    "connectivity_score": 0.0,
+    "functionality_score": 0.0,
+    "performance_score": 100,
+    "security_score": 0,
+    "overall_score": 20.0,
+    "health_grade": "CRITICAL",
+    "critical_issues": [
+      "基本接続に問題あり",
+      "部門機能障害: 基礎科目, 道路, 河川・砂防"
+    ],
+    "recommendations": []
+  },
+  "execution_time_seconds": 0.02
+}
