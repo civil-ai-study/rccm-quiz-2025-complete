@@ -840,48 +840,50 @@ enterprise_data_manager = None
 # 🚀 ULTRA SYNC ROOT FIX: 一意部門マッピング（重複排除・根本修正）
 # 重大な設計欠陥修正：同一カテゴリへの重複マッピングを完全排除
 DEPARTMENT_TO_CATEGORY_MAPPING = {
-    # 🔥 ULTRA SYNC FIX: config.pyのDEPARTMENTSキーと完全一致させる
-    # 4-2専門科目：12部門すべて対応（一意マッピング）
-    'road': '道路',
-    'tunnel': 'トンネル', 
-    'civil_planning': '河川、砂防及び海岸・海洋',
-    'urban_planning': '都市計画及び地方計画',
-    'landscape': '造園',
-    'construction_env': '建設環境',
-    'steel_concrete': '鋼構造及びコンクリート',
-    'soil_foundation': '土質及び基礎',  # 🔥 FIX: 'soil' → 'soil_foundation'
-    'construction_planning': '施工計画、施工設備及び積算',
-    'water_supply': '上水道及び工業用水道',
-    'forestry': '森林土木',
-    'agriculture': '農業土木',
+    # CSVファイルの日本語カテゴリ名を直接使用（英語変換を廃止）
+    # URLパラメータ（日本語部門名）→ CSVカテゴリ名のマッピング
+    '道路': '道路',
+    'トンネル': 'トンネル', 
+    '河川、砂防及び海岸・海洋': '河川、砂防及び海岸・海洋',
+    '都市計画及び地方計画': '都市計画及び地方計画',
+    '造園': '造園',
+    '建設環境': '建設環境',
+    '鋼構造及びコンクリート': '鋼構造及びコンクリート',
+    '土質及び基礎': '土質及び基礎',
+    '施工計画、施工設備及び積算': '施工計画、施工設備及び積算',
+    '上水道及び工業用水道': '上水道及び工業用水道',
+    '森林土木': '森林土木',
+    '農業土木': '農業土木',
     # 4-1基礎科目
-    'basic': '共通'
+    '基礎科目': '共通',
+    '共通': '共通'
 }
 
 # 🚀 ULTRA SYNC: 旧名称互換マッピング（config.pyキーと一致）
 # 🔥 FIX: LEGACY_DEPARTMENT_ALIASESを削除し、すべてconfig.pyキーに統一
 # 不要な変換処理を排除してシンプル化
 LEGACY_DEPARTMENT_ALIASES = {
-    # 実際に使用される旧URLパラメータのエイリアスのみ保持
-    'river_sabo': 'civil_planning',              # 河川・砂防
-    'river': 'civil_planning',                   # 🔥 ULTRA SYNC FIX: river → civil_planning エイリアス追加
-    'construction_environment': 'construction_env',  # 建設環境
-    'construction_management': 'construction_planning',  # 施工計画
-    'water_supply_sewerage': 'water_supply',     # 上下水道
-    'forest_civil': 'forestry',                  # 森林土木
-    'agricultural_civil': 'agriculture',         # 農業土木
-    'common': 'basic',                           # 基礎科目
-    # 🔥 ULTRA SYNC FIX: 不足していた土質・都市計画エイリアス追加
-    'soil': 'soil_foundation',                   # 土質及び基礎部門の短縮形
-    'urban': 'urban_planning',                   # 都市計画部門の短縮形
-    'foundation': 'soil_foundation',             # 土質及び基礎部門の別名
-    'planning': 'urban_planning',                # 都市計画部門の別名
-    # 🚨 CRITICAL FIX: 日本語部門名マッピング追加（回帰バグ修正）
-    '土質・基礎': 'soil_foundation',             # 土質・基礎 → soil_foundation
-    '都市計画': 'urban_planning',                # 都市計画 → urban_planning
-    '鋼構造・コンクリート': 'steel_concrete',    # 鋼構造・コンクリート → steel_concrete
-    '施工計画': 'construction_planning',         # 施工計画 → construction_planning
-    '上下水道': 'water_supply'                   # 上下水道 → water_supply
+    # 日本語部門名の別名・短縮形対応（英語キー廃止）
+    '河川・砂防': '河川、砂防及び海岸・海洋',
+    '河川砂防': '河川、砂防及び海岸・海洋',
+    '河川': '河川、砂防及び海岸・海洋',
+    '砂防': '河川、砂防及び海岸・海洋',
+    '海岸': '河川、砂防及び海岸・海洋',
+    '都市計画': '都市計画及び地方計画',
+    '地方計画': '都市計画及び地方計画',
+    '鋼構造': '鋼構造及びコンクリート',
+    'コンクリート': '鋼構造及びコンクリート',
+    '土質': '土質及び基礎',
+    '基礎': '土質及び基礎',
+    '施工計画': '施工計画、施工設備及び積算',
+    '施工設備': '施工計画、施工設備及び積算',
+    '積算': '施工計画、施工設備及び積算',
+    '上水道': '上水道及び工業用水道',
+    '工業用水道': '上水道及び工業用水道',
+    '上下水道': '上水道及び工業用水道',
+    # 基礎科目
+    'basic': '共通',
+    'common': '共通'
 }
 
 # 🚀 ULTRA SYNC: 正規化された一意逆マッピング
@@ -8621,7 +8623,29 @@ def mobile_settings():
 def pwa_manifest():
     """PWAマニフェストの配信"""
     try:
-        manifest = mobile_manager.get_pwa_manifest()
+        # mobile_manager依存を除去してシンプルなマニフェストを直接配信
+        manifest = {
+            "name": "RCCM試験対策アプリ",
+            "short_name": "RCCM試験",
+            "description": "RCCM試験対策・過去問題練習アプリ",
+            "start_url": "/",
+            "display": "standalone",
+            "background_color": "#ffffff",
+            "theme_color": "#007bff",
+            "orientation": "portrait",
+            "icons": [
+                {
+                    "src": "/static/icon-192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "src": "/static/icon-512.png", 
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ]
+        }
         response = jsonify(manifest)
         response.headers['Content-Type'] = 'application/manifest+json'
         return response
