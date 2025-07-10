@@ -1,0 +1,199 @@
+{
+  "timestamp": "2025-07-11T07:36:52.510779",
+  "deployment_phases": {
+    "pre_deployment": {
+      "git_sync_status": false,
+      "file_integrity": true,
+      "secret_key_ready": true,
+      "render_config_ready": true,
+      "overall_readiness": false
+    }
+  },
+  "secret_key_setup": {
+    "render_url": "https://dashboard.render.com/",
+    "service_name": "rccm-quiz-app-2025",
+    "environment_variables": {
+      "SECRET_KEY": {
+        "value": "5c6a24f89ee18a557e840517c79b3beaf487d3df55e76f85504ea8d6b1c58bdf",
+        "sensitive": true,
+        "description": "Flask session security key"
+      },
+      "FLASK_ENV": {
+        "value": "production",
+        "sensitive": false,
+        "description": "Flask environment setting"
+      },
+      "PORT": {
+        "value": "10000",
+        "sensitive": false,
+        "description": "Application port"
+      },
+      "RENDER": {
+        "value": "true",
+        "sensitive": false,
+        "description": "Render platform flag"
+      }
+    },
+    "setup_steps": [
+      {
+        "step": 1,
+        "action": "Render.comダッシュボードアクセス",
+        "url": "https://dashboard.render.com/",
+        "description": "ブラウザでRender.comにログイン"
+      },
+      {
+        "step": 2,
+        "action": "サービス選択",
+        "target": "rccm-quiz-app-2025",
+        "description": "Web Serviceリストから対象サービスを選択"
+      },
+      {
+        "step": 3,
+        "action": "環境変数設定画面アクセス",
+        "navigation": "Settings > Environment Variables",
+        "description": "左メニューまたは設定タブから環境変数設定へ"
+      },
+      {
+        "step": 4,
+        "action": "環境変数追加・設定",
+        "variables": [
+          "SECRET_KEY",
+          "FLASK_ENV",
+          "PORT",
+          "RENDER"
+        ],
+        "description": "各環境変数を順次設定（SECRET_KEYは必ずSensitiveチェック）"
+      },
+      {
+        "step": 5,
+        "action": "設定保存・確認",
+        "validation": "SECRET_KEY設定済み確認",
+        "description": "全ての環境変数が正しく設定されていることを確認"
+      }
+    ],
+    "critical_notes": [
+      "SECRET_KEYは必ず「Sensitive」としてマーク",
+      "64文字の完全な文字列をコピー&ペースト",
+      "設定後はサービスが自動的に再起動",
+      "既存セッションは無効化（正常動作）"
+    ]
+  },
+  "deployment_monitoring": {
+    "monitoring_phases": {
+      "build_phase": {
+        "duration": "3-5分",
+        "key_indicators": [
+          "Dependencies installation success",
+          "Flask application detection",
+          "Gunicorn configuration loaded",
+          "No critical build errors"
+        ],
+        "success_criteria": "Build completed successfully"
+      },
+      "deployment_phase": {
+        "duration": "2-3分",
+        "key_indicators": [
+          "Service startup success",
+          "Health check endpoint responding",
+          "No runtime errors",
+          "Service marked as active"
+        ],
+        "success_criteria": "Service running and responding"
+      },
+      "initial_verification": {
+        "duration": "5-10分",
+        "key_indicators": [
+          "Homepage accessibility",
+          "Basic navigation working",
+          "Database connections stable",
+          "Error logs minimal"
+        ],
+        "success_criteria": "Application fully functional"
+      }
+    },
+    "monitoring_urls": {
+      "production_url": "https://rccm-quiz-2025.onrender.com",
+      "health_check": "https://rccm-quiz-2025.onrender.com/health/simple",
+      "basic_test": "https://rccm-quiz-2025.onrender.com/start_exam/基礎科目"
+    },
+    "success_validation": {
+      "http_status": 200,
+      "response_time_max": 10,
+      "health_check_response": {
+        "status": "healthy"
+      },
+      "basic_functionality": "Question display working"
+    },
+    "failure_indicators": [
+      "HTTP 500/502/503 errors",
+      "Application crash logs",
+      "Database connection failures",
+      "Import/dependency errors",
+      "SECRET_KEY related errors"
+    ]
+  },
+  "post_deployment_verification": {
+    "immediate_checks": [
+      {
+        "item": "ホームページアクセス確認",
+        "url": "https://rccm-quiz-2025.onrender.com/",
+        "expected": "HTTP 200, ページ正常表示",
+        "priority": "CRITICAL"
+      },
+      {
+        "item": "ヘルスチェック確認",
+        "url": "https://rccm-quiz-2025.onrender.com/health/simple",
+        "expected": "{\"status\": \"healthy\"}",
+        "priority": "CRITICAL"
+      },
+      {
+        "item": "基礎科目アクセス確認",
+        "url": "https://rccm-quiz-2025.onrender.com/start_exam/基礎科目",
+        "expected": "問題表示画面",
+        "priority": "HIGH"
+      }
+    ],
+    "functional_verification": [
+      {
+        "category": "13部門アクセス",
+        "description": "全部門の問題表示確認",
+        "automated_tool": "ultrasync_post_deploy_verification.py",
+        "duration": "30分"
+      },
+      {
+        "category": "パフォーマンス測定",
+        "description": "応答時間・負荷テスト",
+        "target": "平均応答時間3秒以内",
+        "duration": "15分"
+      },
+      {
+        "category": "セキュリティ確認",
+        "description": "HTTPS・ヘッダー・認証確認",
+        "automated_tool": "セキュリティスキャン",
+        "duration": "10分"
+      }
+    ],
+    "success_criteria": {
+      "immediate_checks_pass_rate": "100%",
+      "functional_verification_pass_rate": "90%以上",
+      "critical_errors": "0件",
+      "performance_acceptable": "応答時間基準内"
+    },
+    "emergency_procedures": {
+      "rollback_trigger": [
+        "Critical functionality broken",
+        "Security vulnerabilities detected",
+        "Performance severely degraded",
+        "Data integrity issues"
+      ],
+      "rollback_steps": [
+        "Render.com previous deployment restore",
+        "Git revert to stable commit",
+        "Environment variables backup restore",
+        "DNS/traffic routing adjustment"
+      ]
+    }
+  },
+  "execution_status": "GUIDANCE_COMPLETE",
+  "execution_time_seconds": 1.46
+}
