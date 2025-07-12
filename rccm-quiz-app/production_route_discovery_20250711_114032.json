@@ -1,0 +1,214 @@
+{
+  "timestamp": "2025-07-11T11:40:25.747153",
+  "base_url": "https://rccm-quiz-2025.onrender.com",
+  "route_discovery": {
+    "/": {
+      "route": "/",
+      "status_code": 200,
+      "content_length": 35120,
+      "content_type": "text/html; charset=utf-8",
+      "working": true,
+      "contains_rccm": true
+    },
+    "/exam": {
+      "route": "/exam",
+      "status_code": 200,
+      "content_length": 34172,
+      "content_type": "text/html; charset=utf-8",
+      "working": true,
+      "contains_rccm": true
+    },
+    "/help": {
+      "route": "/help",
+      "status_code": 200,
+      "content_length": 47812,
+      "content_type": "text/html; charset=utf-8",
+      "working": true,
+      "contains_rccm": true
+    },
+    "/statistics": {
+      "route": "/statistics",
+      "status_code": 200,
+      "content_length": 21265,
+      "content_type": "text/html; charset=utf-8",
+      "working": true,
+      "contains_rccm": true
+    },
+    "/categories": {
+      "route": "/categories",
+      "status_code": 200,
+      "content_length": 60266,
+      "content_type": "text/html; charset=utf-8",
+      "working": true,
+      "contains_rccm": true,
+      "has_department": true
+    },
+    "/review": {
+      "route": "/review",
+      "status_code": 200,
+      "content_length": 17932,
+      "content_type": "text/html; charset=utf-8",
+      "working": true,
+      "contains_rccm": true
+    },
+    "/reset": {
+      "route": "/reset",
+      "status_code": 200,
+      "content_length": 16919,
+      "content_type": "text/html; charset=utf-8",
+      "working": true,
+      "contains_rccm": true
+    },
+    "/settings": {
+      "route": "/settings",
+      "status_code": 200,
+      "content_length": 22887,
+      "content_type": "text/html; charset=utf-8",
+      "working": true,
+      "contains_rccm": true
+    },
+    "/quiz": {
+      "route": "/quiz",
+      "status_code": 404,
+      "content_length": 11,
+      "content_type": "text/html; charset=utf-8",
+      "working": false
+    },
+    "/start_exam": {
+      "route": "/start_exam",
+      "status_code": 404,
+      "content_length": 11,
+      "content_type": "text/html; charset=utf-8",
+      "working": false
+    },
+    "/start_exam/基礎科目": {
+      "route": "/start_exam/基礎科目",
+      "status_code": 200,
+      "content_length": 34150,
+      "content_type": "text/html; charset=utf-8",
+      "working": true,
+      "contains_rccm": true
+    },
+    "/exam/基礎科目": {
+      "route": "/exam/基礎科目",
+      "status_code": 404,
+      "content_length": 11,
+      "content_type": "text/html; charset=utf-8",
+      "working": false
+    },
+    "/exam/道路": {
+      "route": "/exam/道路",
+      "status_code": 404,
+      "content_length": 11,
+      "content_type": "text/html; charset=utf-8",
+      "working": false
+    },
+    "/quiz/start": {
+      "route": "/quiz/start",
+      "status_code": 404,
+      "content_length": 11,
+      "content_type": "text/html; charset=utf-8",
+      "working": false
+    },
+    "/begin_exam": {
+      "route": "/begin_exam",
+      "status_code": 404,
+      "content_length": 11,
+      "content_type": "text/html; charset=utf-8",
+      "working": false
+    },
+    "/select_department": {
+      "route": "/select_department",
+      "status_code": 404,
+      "content_length": 11,
+      "content_type": "text/html; charset=utf-8",
+      "working": false
+    },
+    "/departments": {
+      "route": "/departments",
+      "status_code": 200,
+      "content_length": 48690,
+      "content_type": "text/html; charset=utf-8",
+      "working": true,
+      "contains_rccm": true,
+      "has_department": true
+    },
+    "/departments/基礎科目": {
+      "route": "/departments/基礎科目",
+      "status_code": 200,
+      "content_length": 16906,
+      "content_type": "text/html; charset=utf-8",
+      "working": true,
+      "contains_rccm": true
+    },
+    "/api/health": {
+      "route": "/api/health",
+      "status_code": 404,
+      "content_length": 11,
+      "content_type": "text/html; charset=utf-8",
+      "working": false
+    },
+    "/health": {
+      "route": "/health",
+      "status_code": 200,
+      "content_length": 104,
+      "content_type": "application/json",
+      "working": true
+    },
+    "/health/simple": {
+      "route": "/health/simple",
+      "status_code": 200,
+      "content_length": 88,
+      "content_type": "application/json",
+      "working": true
+    },
+    "/manifest.json": {
+      "route": "/manifest.json",
+      "status_code": 200,
+      "content_length": 1948,
+      "content_type": "application/json",
+      "working": true
+    },
+    "/static/js/app.js": {
+      "route": "/static/js/app.js",
+      "status_code": 404,
+      "content_length": 11,
+      "content_type": "text/html; charset=utf-8",
+      "working": false
+    }
+  },
+  "working_routes": [
+    "/",
+    "/exam",
+    "/help",
+    "/statistics",
+    "/categories",
+    "/review",
+    "/reset",
+    "/settings",
+    "/start_exam/基礎科目",
+    "/departments",
+    "/departments/基礎科目",
+    "/health",
+    "/health/simple",
+    "/manifest.json"
+  ],
+  "failed_routes": [
+    "/quiz",
+    "/start_exam",
+    "/exam/基礎科目",
+    "/exam/道路",
+    "/quiz/start",
+    "/begin_exam",
+    "/select_department",
+    "/api/health",
+    "/static/js/app.js"
+  ],
+  "potential_endpoints": [
+    "/exam"
+  ],
+  "exam_submission_test": {
+    "success": false,
+    "timestamp": "2025-07-11T11:40:32.336440"
+  }
+}

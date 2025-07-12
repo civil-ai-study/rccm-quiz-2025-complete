@@ -1,0 +1,74 @@
+{
+  "timestamp": "2025-07-12T09:22:35.089005",
+  "test_name": "ULTRASYNC修正版全12部門包括検証",
+  "total_departments": 13,
+  "successful_departments": 0,
+  "success_rate": 0.0,
+  "department_results": [
+    {
+      "success": false,
+      "error": "error_page",
+      "error_detail": "詳細不明"
+    },
+    {
+      "success": false,
+      "error": "error_page",
+      "error_detail": "詳細不明"
+    },
+    {
+      "success": false,
+      "error": "error_page",
+      "error_detail": "詳細不明"
+    },
+    {
+      "success": false,
+      "error": "error_page",
+      "error_detail": "詳細不明"
+    },
+    {
+      "success": false,
+      "error": "error_page",
+      "error_detail": "詳細不明"
+    },
+    {
+      "success": false,
+      "error": "error_page",
+      "error_detail": "詳細不明"
+    },
+    {
+      "success": false,
+      "error": "error_page",
+      "error_detail": "詳細不明"
+    },
+    {
+      "success": false,
+      "error": "error_page",
+      "error_detail": "詳細不明"
+    },
+    {
+      "success": false,
+      "error": "error_page",
+      "error_detail": "詳細不明"
+    },
+    {
+      "success": false,
+      "error": "error_page",
+      "error_detail": "詳細不明"
+    },
+    {
+      "success": false,
+      "error": "error_page",
+      "error_detail": "詳細不明"
+    },
+    {
+      "success": false,
+      "error": "error_page",
+      "error_detail": "詳細不明"
+    },
+    {
+      "success": false,
+      "error": "error_page",
+      "error_detail": "詳細不明"
+    }
+  ]
+}

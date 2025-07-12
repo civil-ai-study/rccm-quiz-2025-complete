@@ -1,0 +1,79 @@
+{
+  "timestamp": "2025-07-12T09:06:18.251946",
+  "questions_completed": 10,
+  "all_questions_success": true,
+  "result_screen_success": true,
+  "overall_success": true,
+  "completion_log": [
+    {
+      "question_num": 1,
+      "qid": "137",
+      "answer": "A",
+      "status": 200,
+      "success": true
+    },
+    {
+      "question_num": 2,
+      "qid": "166",
+      "answer": "B",
+      "status": 200,
+      "success": true
+    },
+    {
+      "question_num": 3,
+      "qid": "121",
+      "answer": "C",
+      "status": 200,
+      "success": true
+    },
+    {
+      "question_num": 4,
+      "qid": "106",
+      "answer": "D",
+      "status": 200,
+      "success": true
+    },
+    {
+      "question_num": 5,
+      "qid": "20",
+      "answer": "A",
+      "status": 200,
+      "success": true
+    },
+    {
+      "question_num": 6,
+      "qid": "14",
+      "answer": "B",
+      "status": 200,
+      "success": true
+    },
+    {
+      "question_num": 7,
+      "qid": "104",
+      "answer": "C",
+      "status": 200,
+      "success": true
+    },
+    {
+      "question_num": 8,
+      "qid": "42",
+      "answer": "D",
+      "status": 200,
+      "success": true
+    },
+    {
+      "question_num": 9,
+      "qid": "161",
+      "answer": "A",
+      "status": 200,
+      "success": true
+    },
+    {
+      "question_num": 10,
+      "qid": "24",
+      "answer": "B",
+      "status": 200,
+      "success": true
+    }
+  ]
+}

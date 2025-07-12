@@ -1,0 +1,132 @@
+{
+  "timestamp": "2025-07-12T08:53:32.369487",
+  "test_name": "ULTRASYNC緊急修正10問完全完走検証",
+  "success_rate": 92.3076923076923,
+  "total_steps": 13,
+  "successful_steps": 12,
+  "complete_10questions": true,
+  "result_screen_confirmed": false,
+  "test_log": [
+    {
+      "step": 1,
+      "action": "ホームページ",
+      "status": 200,
+      "success": true
+    },
+    {
+      "step": 2,
+      "action": "試験開始",
+      "status": 200,
+      "success": true,
+      "qid": "132"
+    },
+    {
+      "step": "Q1",
+      "action": "回答1処理",
+      "status": 200,
+      "success": true,
+      "qid": "132",
+      "answer": "A"
+    },
+    {
+      "step": "Q2",
+      "action": "回答2処理",
+      "status": 200,
+      "success": true,
+      "qid": "119",
+      "answer": "B"
+    },
+    {
+      "step": "Q3",
+      "action": "回答3処理",
+      "status": 200,
+      "success": true,
+      "qid": "164",
+      "answer": "C"
+    },
+    {
+      "step": "Q4",
+      "action": "回答4処理",
+      "status": 200,
+      "success": true,
+      "qid": "34",
+      "answer": "D"
+    },
+    {
+      "step": "Q5",
+      "action": "回答5処理",
+      "status": 200,
+      "success": true,
+      "qid": "124",
+      "answer": "A"
+    },
+    {
+      "step": "Q6",
+      "action": "回答6処理",
+      "status": 200,
+      "success": true,
+      "qid": "142",
+      "answer": "B"
+    },
+    {
+      "step": "Q7",
+      "action": "回答7処理",
+      "status": 200,
+      "success": true,
+      "qid": "185",
+      "answer": "C"
+    },
+    {
+      "step": "Q8",
+      "action": "回答8処理",
+      "status": 200,
+      "success": true,
+      "qid": "83",
+      "answer": "D"
+    },
+    {
+      "step": "Q9",
+      "action": "回答9処理",
+      "status": 200,
+      "success": true,
+      "qid": "87",
+      "answer": "A"
+    },
+    {
+      "step": "Q10",
+      "action": "回答10処理",
+      "status": 200,
+      "success": true,
+      "qid": "96",
+      "answer": "B"
+    },
+    {
+      "step": 13,
+      "action": "結果画面確認",
+      "status": 200,
+      "success": false,
+      "content_checks": [
+        [
+          "試験結果",
+          false
+        ],
+        [
+          "スコア",
+          false
+        ],
+        [
+          "正解数",
+          false
+        ],
+        [
+          "10問中",
+          true
+        ],
+        [
+          "結果詳細",
+          true
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "timestamp": "2025-07-12T11:07:19.134161",
+  "test_name": "ULTRASYNC部門別分離機能確認",
+  "total_departments": 13,
+  "successful_departments": 0,
+  "success_rate": 0.0,
+  "department_results": [
+    {
+      "success": false,
+      "error": "status_404"
+    },
+    {
+      "success": false,
+      "error": "status_404"
+    },
+    {
+      "success": false,
+      "error": "status_404"
+    },
+    {
+      "success": false,
+      "error": "status_404"
+    },
+    {
+      "success": false,
+      "error": "status_404"
+    },
+    {
+      "success": false,
+      "error": "status_404"
+    },
+    {
+      "success": false,
+      "error": "status_404"
+    },
+    {
+      "success": false,
+      "error": "status_404"
+    },
+    {
+      "success": false,
+      "error": "status_404"
+    },
+    {
+      "success": false,
+      "error": "status_404"
+    },
+    {
+      "success": false,
+      "error": "status_404"
+    },
+    {
+      "success": false,
+      "error": "status_404"
+    },
+    {
+      "success": false,
+      "error": "status_404"
+    }
+  ]
+}

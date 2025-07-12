@@ -1,0 +1,57 @@
+{
+  "timestamp": "2025-07-12T10:08:39.058101",
+  "test_name": "ULTRASYNC段階13専門科目11部門包括検証",
+  "total_departments": 12,
+  "successful_departments": 0,
+  "success_rate": 0.0,
+  "department_results": [
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "no_exam_link_found"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "no_exam_link_found"
+    },
+    {
+      "success": false,
+      "error": "no_exam_link_found"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    }
+  ]
+}
