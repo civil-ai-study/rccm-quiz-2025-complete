@@ -4929,7 +4929,7 @@ def exam():
 
         # セッション管理
         # 🔥 ULTRASYNC専門家推奨: 軽量セッション検証と復旧
-        LightweightSessionManager.validate_and_recover_session()
+        # LightweightSessionManager.validate_and_recover_session()
         
         exam_question_ids = session.get('exam_question_ids', [])
         # ✅ FIXED: Simplified session state handling with next request support
@@ -5180,6 +5180,30 @@ def exam():
                     if q:
                         selected_questions.append(q)
             else:
+                # 🔥 ULTRASYNC段階33: 問題数パラメータ処理修正（根本原因修正）
+                # questionsパラメータからsession_sizeを設定
+                questions_param = request.form.get('questions') or request.args.get('questions')
+                if questions_param:
+                    try:
+                        # JSON形式チェックをスキップして数値として処理
+                        if not (questions_param.strip().startswith('[') or questions_param.strip().startswith('{')):
+                            requested_questions_count = int(questions_param.strip())
+                            if requested_questions_count in [10, 20, 30]:
+                                session_size = requested_questions_count
+                                logger.info(f"✅ ULTRASYNC段階33: questionsパラメータ適用 - {session_size}問")
+                            else:
+                                session_size = get_user_session_size(session)
+                                logger.warning(f"⚠️ ULTRASYNC段階33: 無効な問題数 {requested_questions_count} - デフォルト {session_size}問使用")
+                        else:
+                            session_size = get_user_session_size(session)
+                            logger.info(f"🛡️ ULTRASYNC段階33: JSON形式検出 - デフォルト {session_size}問使用")
+                    except (ValueError, TypeError) as e:
+                        session_size = get_user_session_size(session)
+                        logger.warning(f"⚠️ ULTRASYNC段階33: questionsパラメータ処理エラー {e} - デフォルト {session_size}問使用")
+                else:
+                    session_size = get_user_session_size(session)
+                    logger.info(f"🛡️ ULTRASYNC段階33: questionsパラメータなし - デフォルト {session_size}問使用")
+                
                 # 🛡️ ULTRATHIN区緊急修正: SRSを考慮した問題選択（RCCM部門対応・カテゴリー混在完全防止）
                 # 🚨 CRITICAL FIX: requested_question_typeが空の場合の安全な推定
                 safe_requested_question_type = requested_question_type
@@ -5195,7 +5219,7 @@ def exam():
                     safe_requested_question_type = session.get('selected_question_type', 'basic')
                     logger.warning(f"🛡️ ULTRATHIN区: セッションから推定 - {safe_requested_question_type}")
                 
-                logger.info(f"🛡️ ULTRATHIN区 get_mixed_questions呼び出し前: dept={requested_department}, type={safe_requested_question_type} (元:{requested_question_type}), category={requested_category}")
+                logger.info(f"🛡️ ULTRATHIN区 get_mixed_questions呼び出し前: dept={requested_department}, type={safe_requested_question_type} (元:{requested_question_type}), category={requested_category}, session_size={session_size}")
                 selected_questions = get_mixed_questions(session, all_questions, requested_category, session_size, requested_department, safe_requested_question_type, requested_year)
                 
                 # 🛡️ ULTRATHIN区追加: 空リスト安全チェック
@@ -7947,6 +7971,7 @@ def exam_simulator_page():
         return render_template('error.html', error="試験シミュレーター画面の表示中にエラーが発生しました。")
 
 # 🛡️ ULTRATHIN修復: 基礎科目専用ルート（405エラー回避）
+@app.route('/start_exam', methods=['GET', 'POST'])
 @app.route('/start_exam/basic', methods=['GET', 'POST'])
 @app.route('/start_exam/foundation', methods=['GET', 'POST'])
 @memory_monitoring_decorator(_memory_leak_monitor)
@@ -11094,88 +11119,88 @@ except Exception as e:
 
 # 🔥 ウルトラシンク修復: 不足ルート追加（副作用なし）
 
-# 🔥 ULTRASYNC部門別ルート実装 - ルート競合解決版
-@app.route('/quiz_department/<department_name>', methods=['GET', 'POST'])
-@memory_monitoring_decorator(_memory_leak_monitor)
-def exam_department_ultrasync(department_name):
-    """
-    ULTRASYNC部門別10問練習モード
-    副作用ゼロ・既存機能完全保護・CSVの日本語カテゴリー名使用
-    ルート競合回避: /exam_department -> /quiz_department
-    """
-    try:
-        logger.info(f"🎯 ULTRASYNC部門別試験開始: {department_name}")
-        
-        # 対応部門チェック
-        if department_name not in CSV_JAPANESE_CATEGORIES:
-            logger.error(f"❌ 未対応部門: {department_name}")
-            available_depts = list(CSV_JAPANESE_CATEGORIES.keys())
-            return render_template('error.html', 
-                error=f"部門'{department_name}'は対応していません。対応部門: {available_depts}")
-        
-        # 問題数の取得（デフォルト10問）
-        question_count = 10
-        if request.method == 'POST':
-            question_count = int(request.form.get('questions', 10))
-        else:
-            question_count = int(request.args.get('questions', 10))
-        
-        # ULTRASYNC部門別問題取得（既存関数活用）
-        questions = get_department_questions_ultrasync(department_name, question_count)
-        
-        if not questions:
-            return render_template('error.html', 
-                error=f"{department_name}の問題データが見つかりません。管理者にお問い合わせください。")
-        
-        # 既存のセッション管理システムを活用（副作用ゼロ）
-        question_ids = [str(q['id']) for q in questions]
-        
-        # 軽量セッション管理（既存システム活用）
-        question_type = 'basic' if CSV_JAPANESE_CATEGORIES[department_name] == '共通' else 'specialist'
-        LightweightSessionManager.save_minimal_session(
-            question_type=question_type,
-            department=department_name,
-            current_index=0
-        )
-        
-        # 既存のメモリ管理システム活用
-        exam_id = str(uuid.uuid4())
-        store_exam_data_in_memory(exam_id, {
-            'questions': questions,
-            'question_ids': question_ids,
-            'current_index': 0,
-            'department': department_name,
-            'csv_category': CSV_JAPANESE_CATEGORIES[department_name]
-        })
-        
-        # 既存のセッション変数設定（既存コードとの互換性保持）
-        session['exam_id'] = exam_id
-        session['exam_question_ids'] = question_ids
-        session['exam_current'] = 0
-        session['department_name'] = department_name  # 部門情報追加
-        session.modified = True
-        
-        logger.info(f"✅ ULTRASYNC {department_name}試験開始成功: {len(questions)}問")
-        
-        # 既存のexamルートにリダイレクト（副作用ゼロ）
-        return redirect(url_for('exam'))
-        
-    except Exception as e:
-        logger.error(f"❌ ULTRASYNC部門別試験開始エラー: {e}")
-        return render_template('error.html', 
-            error=f"部門別試験の開始に失敗しました: {str(e)}")
+# 🔥 ULTRASYNC部門別ルート実装 - 重複削除（第一定義のみ残存）
+# @app.route('/quiz_department/<department_name>', methods=['GET', 'POST'])
+# @memory_monitoring_decorator(_memory_leak_monitor)
+# def exam_department_ultrasync(department_name):
+#     """
+#     ULTRASYNC部門別10問練習モード
+#     副作用ゼロ・既存機能完全保護・CSVの日本語カテゴリー名使用
+#     ルート競合回避: /exam_department -> /quiz_department - 重複削除
+#     """
+#     try:
+#         logger.info(f"🎯 ULTRASYNC部門別試験開始: {department_name}")
+#         
+#         # 対応部門チェック
+#         if department_name not in CSV_JAPANESE_CATEGORIES:
+#             logger.error(f"❌ 未対応部門: {department_name}")
+#             available_depts = list(CSV_JAPANESE_CATEGORIES.keys())
+#             return render_template('error.html', 
+#                 error=f"部門'{department_name}'は対応していません。対応部門: {available_depts}")
+#         
+#         # 問題数の取得（デフォルト10問）
+#         question_count = 10
+#         if request.method == 'POST':
+#             question_count = int(request.form.get('questions', 10))
+#         else:
+#             question_count = int(request.args.get('questions', 10))
+#         
+#         # ULTRASYNC部門別問題取得（既存関数活用）
+#         questions = get_department_questions_ultrasync(department_name, question_count)
+#         
+#         if not questions:
+#             return render_template('error.html', 
+#                 error=f"{department_name}の問題データが見つかりません。管理者にお問い合わせください。")
+#         
+#         # 既存のセッション管理システムを活用（副作用ゼロ）
+#         question_ids = [str(q['id']) for q in questions]
+#         
+#         # 軽量セッション管理（既存システム活用）
+#         question_type = 'basic' if CSV_JAPANESE_CATEGORIES[department_name] == '共通' else 'specialist'
+#         LightweightSessionManager.save_minimal_session(
+#             question_type=question_type,
+#             department=department_name,
+#             current_index=0
+#         )
+#         
+#         # 既存のメモリ管理システム活用
+#         exam_id = str(uuid.uuid4())
+#         store_exam_data_in_memory(exam_id, {
+#             'questions': questions,
+#             'question_ids': question_ids,
+#             'current_index': 0,
+#             'department': department_name,
+#             'csv_category': CSV_JAPANESE_CATEGORIES[department_name]
+#         })
+#         
+#         # 既存のセッション変数設定（既存コードとの互換性保持）
+#         session['exam_id'] = exam_id
+#         session['exam_question_ids'] = question_ids
+#         session['exam_current'] = 0
+#         session['department_name'] = department_name  # 部門情報追加
+#         session.modified = True
+#         
+#         logger.info(f"✅ ULTRASYNC {department_name}試験開始成功: {len(questions)}問")
+#         
+#         # 既存のexamルートにリダイレクト（副作用ゼロ）
+#         return redirect(url_for('exam'))
+#         
+#     except Exception as e:
+#         logger.error(f"❌ ULTRASYNC部門別試験開始エラー: {e}")
+#         return render_template('error.html', 
+#             error=f"部門別試験の開始に失敗しました: {str(e)}")
 
 
-# 🔥 部門一覧取得関数（管理用）
-@app.route('/departments_list')
-def departments_list_ultrasync():
-    """ULTRASYNC部門一覧表示"""
-    try:
-        return render_template('departments_list.html', 
-            departments=CSV_JAPANESE_CATEGORIES)
-    except Exception as e:
-        logger.error(f"❌ 部門一覧表示エラー: {e}")
-        return render_template('error.html', error="部門一覧の表示に失敗しました。")
+# 🔥 部門一覧取得関数（管理用） - 重複削除（第二定義のみ残存）
+# @app.route('/departments_list')
+# def departments_list_ultrasync():
+#     """ULTRASYNC部門一覧表示"""
+#     try:
+#         return render_template('departments_list.html', 
+#             departments=CSV_JAPANESE_CATEGORIES)
+#     except Exception as e:
+#         logger.error(f"❌ 部門一覧表示エラー: {e}")
+#         return render_template('error.html', error="部門一覧の表示に失敗しました。")
 
 
 @app.route('/study/basic')
