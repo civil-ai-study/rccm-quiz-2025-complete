@@ -3,7 +3,7 @@ services:
     name: rccm-quiz-app-2025
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    startCommand: gunicorn simple_test:app
     envVars:
       - key: FLASK_ENV
         value: production
