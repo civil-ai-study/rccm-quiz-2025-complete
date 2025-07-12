@@ -1,0 +1,243 @@
+{
+  "test_start_time": "2025-07-12T14:23:18.105002",
+  "basic_subject_tests": {
+    "10_questions": {
+      "exam_type": "基礎科目",
+      "num_questions": 10,
+      "success": false,
+      "steps": {
+        "session_clear": true,
+        "homepage_access": true,
+        "exam_start": true,
+        "session_setup": true,
+        "first_question_display": true,
+        "csrf_token_ok": true,
+        "question_form_ok": false,
+        "options_complete": false,
+        "answer_processing": true,
+        "result_display": true
+      },
+      "errors": []
+    },
+    "20_questions": {
+      "exam_type": "基礎科目",
+      "num_questions": 20,
+      "success": false,
+      "steps": {
+        "session_clear": true,
+        "homepage_access": true,
+        "exam_start": true,
+        "session_setup": false,
+        "first_question_display": true,
+        "csrf_token_ok": true,
+        "question_form_ok": false,
+        "options_complete": false,
+        "answer_processing": true,
+        "result_display": true
+      },
+      "errors": [
+        "期待される問題数: 20, 実際: 10"
+      ]
+    },
+    "30_questions": {
+      "exam_type": "基礎科目",
+      "num_questions": 30,
+      "success": false,
+      "steps": {
+        "session_clear": true,
+        "homepage_access": true,
+        "exam_start": true,
+        "session_setup": false,
+        "first_question_display": true,
+        "csrf_token_ok": true,
+        "question_form_ok": false,
+        "options_complete": false,
+        "answer_processing": true,
+        "result_display": true
+      },
+      "errors": [
+        "期待される問題数: 30, 実際: 10"
+      ]
+    },
+    "session_isolation": true
+  },
+  "specialist_subject_tests": {
+    "道路": {
+      "10_questions": {
+        "exam_type": "道路",
+        "num_questions": 10,
+        "success": false,
+        "steps": {
+          "session_clear": true,
+          "homepage_access": true,
+          "exam_start": true,
+          "session_setup": false,
+          "first_question_display": true,
+          "csrf_token_ok": true,
+          "question_form_ok": false,
+          "options_complete": false,
+          "result_display": true
+        },
+        "errors": [
+          "期待される問題数: 10, 実際: 0"
+        ]
+      },
+      "20_questions": {
+        "exam_type": "道路",
+        "num_questions": 20,
+        "success": false,
+        "steps": {
+          "session_clear": true,
+          "homepage_access": true,
+          "exam_start": true,
+          "session_setup": false,
+          "first_question_display": true,
+          "csrf_token_ok": true,
+          "question_form_ok": false,
+          "options_complete": false,
+          "result_display": true
+        },
+        "errors": [
+          "期待される問題数: 20, 実際: 0"
+        ]
+      },
+      "30_questions": {
+        "exam_type": "道路",
+        "num_questions": 30,
+        "success": false,
+        "steps": {
+          "session_clear": true,
+          "homepage_access": true,
+          "exam_start": true,
+          "session_setup": false,
+          "first_question_display": true,
+          "csrf_token_ok": true,
+          "question_form_ok": false,
+          "options_complete": false,
+          "result_display": true
+        },
+        "errors": [
+          "期待される問題数: 30, 実際: 0"
+        ]
+      },
+      "data_verification": {
+        "data_files_found": 12,
+        "data_files_expected": 12,
+        "verification_success": true
+      }
+    },
+    "河川・砂防": {
+      "10_questions": {
+        "exam_type": "河川・砂防",
+        "num_questions": 10,
+        "success": false,
+        "steps": {
+          "session_clear": true,
+          "homepage_access": true,
+          "exam_start": true,
+          "session_setup": false,
+          "first_question_display": true,
+          "csrf_token_ok": true,
+          "question_form_ok": false,
+          "options_complete": false,
+          "result_display": true
+        },
+        "errors": [
+          "期待される問題数: 10, 実際: 0"
+        ]
+      },
+      "20_questions": {
+        "exam_type": "河川・砂防",
+        "num_questions": 20,
+        "success": false,
+        "steps": {
+          "session_clear": true,
+          "homepage_access": true,
+          "exam_start": true,
+          "session_setup": false,
+          "first_question_display": true,
+          "csrf_token_ok": true,
+          "question_form_ok": false,
+          "options_complete": false,
+          "result_display": true
+        },
+        "errors": [
+          "期待される問題数: 20, 実際: 0"
+        ]
+      },
+      "30_questions": {
+        "exam_type": "河川・砂防",
+        "num_questions": 30,
+        "success": false,
+        "steps": {
+          "session_clear": true,
+          "homepage_access": true,
+          "exam_start": true,
+          "session_setup": false,
+          "first_question_display": true,
+          "csrf_token_ok": true,
+          "question_form_ok": false,
+          "options_complete": false,
+          "result_display": true
+        },
+        "errors": [
+          "期待される問題数: 30, 実際: 0"
+        ]
+      },
+      "data_verification": {
+        "data_files_found": 12,
+        "data_files_expected": 12,
+        "verification_success": true
+      }
+    }
+  },
+  "data_integrity_tests": {
+    "basic_file_exists": true,
+    "basic_file_size": 92424,
+    "basic_file_size_ok": true,
+    "specialist_files_count": 12,
+    "specialist_files_ok": true,
+    "id_ranges_separated": true
+  },
+  "csrf_tests": {
+    "csrf_undefined_error_absent": true,
+    "csrf_token_field_present": false,
+    "result_csrf_ok": true
+  },
+  "separation_tests": {
+    "basic_session_isolated": true,
+    "basic_id_range_correct": true,
+    "specialist_session_isolated": false,
+    "specialist_id_range_correct": true,
+    "no_id_overlap": true
+  },
+  "overall_success": false,
+  "test_summary": {
+    "total_tests_run": 12,
+    "total_tests_passed": 0,
+    "categories": {
+      "basic_subject": {
+        "total": 3,
+        "passed": 0
+      },
+      "specialist_subject": {
+        "total": 6,
+        "passed": 0
+      },
+      "data_integrity": {
+        "total": 1,
+        "passed": 0
+      },
+      "csrf_protection": {
+        "total": 1,
+        "passed": 0
+      },
+      "separation": {
+        "total": 1,
+        "passed": 0
+      }
+    },
+    "success_rate": 0.0
+  },
+  "test_end_time": "2025-07-12T14:23:25.221946"
+}

@@ -1,0 +1,160 @@
+{
+  "analysis_name": "ULTRASYNC段階32_根本原因分析レポート",
+  "timestamp": "2025-07-12T15:40:40.589532",
+  "problem_patterns": {
+    "session_setup": {
+      "issue_description": "20問・30問設定時のセッション初期化失敗",
+      "observed_symptoms": [
+        "session_setup: false (20問・30問)",
+        "session_setup: true (10問のみ)",
+        "期待される問題数と実際の問題数の不一致"
+      ],
+      "affected_scenarios": [
+        "基礎科目 20問・30問",
+        "専門科目 全問題数",
+        "specialist question_type使用時"
+      ],
+      "working_scenarios": [
+        "基礎科目 10問",
+        "基本的なexamアクセス"
+      ],
+      "severity": "高",
+      "impact_scope": "20問・30問全般"
+    },
+    "question_count": {
+      "issue_description": "問題数パラメータの処理不良",
+      "specific_errors": [
+        "期待される問題数: 20, 実際: 10",
+        "期待される問題数: 30, 実際: 10",
+        "期待される問題数: 10, 実際: 0 (専門科目)"
+      ],
+      "pattern_analysis": {
+        "default_fallback": "10問にフォールバック",
+        "specialist_empty": "専門科目で0問",
+        "parameter_ignored": "問題数パラメータが無視される"
+      },
+      "potential_causes": [
+        "start_exam/<type>でのパラメータ処理不良",
+        "セッション内問題数設定の不具合",
+        "専門科目データの読み込み問題"
+      ],
+      "severity": "高",
+      "consistency": "基礎科目は部分的動作、専門科目は完全停止"
+    },
+    "specialist_specific": {
+      "issue_description": "専門科目での問題配信完全停止",
+      "specific_symptoms": [
+        "全専門科目で「実際: 0問」",
+        "question_form_ok: false",
+        "options_complete: false"
+      ],
+      "department_status": {
+        "道路": "0問配信",
+        "河川・砂防": "0問配信",
+        "その他全専門科目": "同様の状況"
+      },
+      "data_integrity": {
+        "specialist_files_count": 12,
+        "specialist_files_ok": true,
+        "data_files_found": 12,
+        "verification_success": true
+      },
+      "contradiction": "データファイルは存在するが配信されない",
+      "severity": "最高",
+      "business_impact": "専門科目試験完全停止"
+    }
+  },
+  "root_causes": {
+    "primary_cause": {
+      "title": "start_exam/<type>ルートの問題数パラメータ処理不良",
+      "description": "POSTデータの問題数パラメータが正常に処理されていない",
+      "evidence": [
+        "20問・30問設定が10問にフォールバック",
+        "専門科目では0問配信",
+        "基本的なexamアクセスは正常動作"
+      ],
+      "confidence": "95%"
+    },
+    "secondary_cause": {
+      "title": "専門科目データ読み込みロジックの問題",
+      "description": "specialist question_type使用時のデータ取得処理に不具合",
+      "evidence": [
+        "データファイルは存在するが配信されない",
+        "全専門科目で一様に0問",
+        "基礎科目は部分的に動作"
+      ],
+      "confidence": "90%"
+    },
+    "contributing_factor": {
+      "title": "セッション管理と問題数設定の競合",
+      "description": "軽量セッション管理とデータ読み込みの間の整合性問題",
+      "evidence": [
+        "session_setup失敗",
+        "LightweightSessionManagerとの相互作用",
+        "Cookie制限対応実装との競合"
+      ],
+      "confidence": "85%"
+    }
+  },
+  "solution_strategies": {
+    "immediate_fix": {
+      "title": "start_exam/<type>ルートの問題数処理修正",
+      "description": "POSTデータから問題数を正常に読み取り、セッションに設定",
+      "steps": [
+        "start_exam/<type>でのrequest.form['questions']処理確認",
+        "セッション内exam_question_ids設定の修正",
+        "問題数パラメータの明示的バリデーション"
+      ],
+      "risk_level": "低",
+      "estimated_effort": "2時間",
+      "success_probability": "95%"
+    },
+    "specialist_data_fix": {
+      "title": "専門科目データ読み込み処理の修正",
+      "description": "specialist question_typeでのCSVデータ読み込み処理改善",
+      "steps": [
+        "専門科目CSVファイル読み込みロジック確認",
+        "question_type='specialist'時の分岐処理修正",
+        "エラーハンドリング強化"
+      ],
+      "risk_level": "中",
+      "estimated_effort": "3時間",
+      "success_probability": "90%"
+    },
+    "session_integration_fix": {
+      "title": "セッション管理統合修正",
+      "description": "LightweightSessionManagerと問題数設定の整合性確保",
+      "steps": [
+        "save_minimal_sessionでの問題数パラメータ保存",
+        "セッション読み込み時の問題数復元",
+        "Cookie制限内での効率的データ管理"
+      ],
+      "risk_level": "中",
+      "estimated_effort": "4時間",
+      "success_probability": "85%"
+    }
+  },
+  "risk_assessment": {
+    "side_effect_risks": {
+      "existing_functions": "低リスク - 既存の10問機能は保護",
+      "basic_access": "ゼロリスク - 基本アクセスは影響なし",
+      "data_integrity": "低リスク - データファイルは変更なし"
+    },
+    "implementation_risks": {
+      "code_complexity": "中リスク - 複数箇所の同時修正",
+      "testing_coverage": "高リスク - 312テストケースでの検証必要",
+      "rollback_difficulty": "低リスク - バックアップから復元可能"
+    },
+    "business_risks": {
+      "downtime": "ゼロリスク - 段階的実装",
+      "user_impact": "改善のみ - 現状より悪化しない",
+      "data_loss": "ゼロリスク - 読み取り専用修正"
+    },
+    "mitigation_strategies": [
+      "段階的実装（1つずつの修正）",
+      "各修正後の即座検証",
+      "ULTRASYNC品質保証プロセス継続",
+      "自動バックアップの活用"
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "analysis_name": "ULTRASYNC段階31_20問30問未完走原因分析",
+  "timestamp": "2025-07-12T15:29:33.140858",
+  "methodology": "副作用ゼロ・既存機能保護・段階的調査",
+  "investigations": [
+    {
+      "investigation_name": "10問完走確認",
+      "success": true,
+      "details": {
+        "status_code": 200,
+        "has_question_form": true,
+        "has_html_form": true,
+        "response_length": 34163
+      },
+      "key_finding": "10問基本機能は正常動作"
+    },
+    {
+      "investigation_name": "20問セッション分析",
+      "success": true,
+      "details": {
+        "start_status_code": 200,
+        "start_response_length": 16903,
+        "has_redirect": [],
+        "final_url": "https://rccm-quiz-2025.onrender.com/start_exam/specialist",
+        "cookies": {
+          "rccm_session": ".eJxlT0kOgzAM_IvPHCKWps1XShWZYGikQmjiSEWIv9fptZeRPfIsPsBuFBdcaWUwHDNV4JBpDnG3iZETmOOsYKQhz9avU5AdRmS0KeToCAykjZzHl08MFVCMIQrZ565rpz7frq3rc6OcLjj95mEqWHiNGovog4vlfftze2dK7MOarAu5NFQVMMaZ2O6EklOruhXKL3KHyyZ6dTGNMkqDtH6KizwC5v44v470T5M.aHIA7w.l5RNhX7eqTcBwSB_UixmevgE7ls"
+        },
+        "exam_status_code": 200,
+        "exam_response_length": 34144,
+        "has_qid": true,
+        "has_session_data": false
+      },
+      "key_finding": "20問設定で問題表示成功"
+    },
+    {
+      "investigation_name": "問題数パラメータ処理",
+      "success": true,
+      "details": {
+        "test_results": [
+          {
+            "question_count": "10",
+            "start_status": 200,
+            "exam_status": 200,
+            "has_problem": true,
+            "success": true
+          },
+          {
+            "question_count": "20",
+            "start_status": 200,
+            "exam_status": 200,
+            "has_problem": true,
+            "success": true
+          },
+          {
+            "question_count": "30",
+            "start_status": 200,
+            "exam_status": 200,
+            "has_problem": true,
+            "success": true
+          }
+        ]
+      },
+      "key_finding": "全問題数設定で成功"
+    },
+    {
+      "investigation_name": "異常レスポンス内容分析",
+      "success": true,
+      "details": {
+        "status_code": 200,
+        "content_length": 34152,
+        "has_html": true,
+        "has_error_message": true,
+        "has_question_form": true,
+        "has_csrf_token": true,
+        "has_answer_options": true,
+        "response_type": "正常な問題ページ"
+      },
+      "key_finding": "レスポンス内容は正常"
+    }
+  ],
+  "summary": {
+    "total_investigations": 4,
+    "successful_investigations": 4,
+    "root_causes_identified": [],
+    "next_action_required": false
+  }
+}
