@@ -1,0 +1,2 @@
+[start]
+cmd = "gunicorn simple_test:app"
