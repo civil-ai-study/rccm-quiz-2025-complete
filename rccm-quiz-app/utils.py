@@ -70,8 +70,9 @@ def validate_file_path(path: str, allowed_dir: str = None) -> str:
     
     # 🔧 ULTRA SYNC修正: データディレクトリの絶対パスを許可
     # プロジェクト内のdataディレクトリへのアクセスを安全に許可
-    current_dir = os.getcwd()
-    project_data_dir = os.path.join(current_dir, 'data')
+    # 実行ディレクトリではなく、このファイルの場所基準でパスを解決
+    utils_dir = os.path.dirname(os.path.abspath(__file__))
+    project_data_dir = os.path.join(utils_dir, 'data')
     
     # 絶対パスの場合、プロジェクト内のdataディレクトリかチェック
     if os.path.isabs(normalized_path):

@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: rccm-quiz-app
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn wsgi_optimized:application
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHONPATH
+        value: /opt/render/project/src
+    healthCheckPath: /health
+    disk:
+      name: rccm-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
