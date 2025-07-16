@@ -1164,6 +1164,12 @@ def load_specialist_questions_only(department: str, year: int, data_dir: str = '
         
     except Exception as e:
         logger.error(f"🚨 専門科目読み込みエラー: {e}")
+        logger.error(f"🔍 エラー詳細: type={type(e).__name__}, file={validated_specialist_file}, department={department}, year={year}")
+        logger.error(f"🔍 ファイル存在確認: {os.path.exists(validated_specialist_file)}")
+        if os.path.exists(validated_specialist_file):
+            logger.error(f"🔍 ファイルサイズ: {os.path.getsize(validated_specialist_file)} bytes")
+        import traceback
+        logger.error(f"🔍 スタックトレース:\n{traceback.format_exc()}")
         return []
     
     return specialist_questions 
