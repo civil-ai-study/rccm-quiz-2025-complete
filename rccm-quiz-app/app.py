@@ -285,9 +285,39 @@ def safe_post_processing(request, session, all_questions):
         # if expected_id != qid:
         #     logger.warning(f"⚠️ 問題ID不整合: expected={expected_id}, actual={qid}")
         #     # 不整合の場合は受信したIDで問題を検索
+        # 🔥 SUPER ULTRASYNC修正: ID検索の柔軟性を向上
         current_question = next((q for q in all_questions if int(q.get('id', 0)) == qid), None)
+        
+        # 🛡️ ID変換前の元IDでも検索を試行
+        if not current_question and qid >= 10000:
+            original_qid = qid - 10000 if qid < 20000 else qid - 20000
+            current_question = next((q for q in all_questions if int(q.get('id', 0)) == original_qid), None)
+            if current_question:
+                logger.warning(f"✅ 元ID検索成功: {qid} → {original_qid}")
+        
+        # 🔥 ULTRATHIN修正: 問題が見つからない場合は全データから再検索
         if not current_question:
-            return None, f"問題が見つかりません (ID: {qid})"
+            logger.warning(f"🔍 ULTRATHIN段階1: 制限データ内でID {qid}が見つかりません。全データから検索します。")
+            try:
+                from utils import load_questions_data
+                all_questions_full = load_questions_data()
+                current_question = next((q for q in all_questions_full if int(q.get('id', 0)) == qid), None)
+                
+                if not current_question and qid >= 10000:
+                    original_qid = qid - 10000 if qid < 20000 else qid - 20000
+                    current_question = next((q for q in all_questions_full if int(q.get('id', 0)) == original_qid), None)
+                    if current_question:
+                        logger.warning(f"✅ ULTRATHIN全データ検索成功: {qid} → {original_qid}")
+                
+                if current_question:
+                    logger.info(f"✅ ULTRATHIN段階2: 全データ検索でID {qid}を発見しました。")
+                else:
+                    logger.error(f"❌ ULTRATHIN段階3: 全データ検索でもID {qid}が見つかりません。")
+            except Exception as e:
+                logger.error(f"❌ ULTRATHIN全データ検索エラー: {e}")
+        
+        if not current_question:
+            return None, f"問題データの取得に失敗しました。(ID: {qid})"
         
         # 正誤判定
         correct_answer = str(current_question.get('correct_answer', '')).strip().upper()
@@ -3226,12 +3256,16 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
             else:
                 logger.error(f"❌ 部門統一性: 失敗 - 混在カテゴリ: {unique_categories}")
         
-        # 🚨 根本修正: 4-1と4-2の完全ID分離処理
+        # 🔥 SUPER ULTRASYNC修正: ID変換の重複実行を防止
         if selected_questions:
-            # ID重複解決：4-1基礎科目と4-2専門科目の完全分離
             for question in selected_questions:
                 original_id = int(question.get('id', 0))
                 category = question.get('category', '')
+                
+                # 🛡️ ID変換済みチェック（重複実行防止）
+                if original_id >= 10000:
+                    logger.warning(f"⚠️ ID変換済み検出: {original_id} - スキップ")
+                    continue
                 
                 # 基礎科目（4-1）: ID範囲 10000番台に変更
                 if category == '共通':
@@ -5565,7 +5599,16 @@ def exam():
         # 現在の問題を取得
         current_question_id = exam_question_ids[current_no]
         logger.info(f"問題ID取得: current_no={current_no}, question_id={current_question_id}")
+        
+        # 🔥 SUPER ULTRASYNC修正: 問題検索の柔軟性を向上
         question = next((q for q in all_questions if int(q.get('id', 0)) == current_question_id), None)
+        
+        # 🛡️ ID変換前の元IDでも検索を試行
+        if not question and current_question_id >= 10000:
+            original_id = current_question_id - 10000 if current_question_id < 20000 else current_question_id - 20000
+            question = next((q for q in all_questions if int(q.get('id', 0)) == original_id), None)
+            if question:
+                logger.warning(f"✅ 元ID検索成功: {current_question_id} → {original_id}")
 
         if not question:
             logger.error(f"問題データ取得失敗: ID {current_question_id}, available_ids={[q.get('id') for q in all_questions[:5]]}")
@@ -6060,8 +6103,9 @@ def department_study(department):
             specialist_questions = basic_questions  # 基礎科目では基礎問題と専門問題は同じ
             specialist_history = basic_history
         else:
-            # 部門キーを日本語カテゴリに変換（グローバル定数使用）
-            target_category = DEPARTMENT_TO_CATEGORY_MAPPING.get(department_key, department_key)
+            # 🛡️ ULTRASYNC 副作用なし修正: config.pyから直接日本語カテゴリ名を取得
+            department_info = RCCMConfig.DEPARTMENTS[department_key]
+            target_category = department_info['name']  # '土質及び基礎' 等の正確な日本語名
 
             specialist_questions = [q for q in questions
                                     if q.get('question_type') == 'specialist' and q.get('category') == target_category]
@@ -8213,6 +8257,78 @@ def exam_simulator_page():
     except Exception as e:
         logger.error(f"試験シミュレーター画面エラー: {e}")
         return render_template('error.html', error="試験シミュレーター画面の表示中にエラーが発生しました。")
+
+# 🛡️ ULTRASYNC 副作用なし復旧: 基本的な /quiz ルートの復活
+@app.route('/quiz', methods=['GET', 'POST'])
+@memory_monitoring_decorator(_memory_leak_monitor)
+def quiz_simple():
+    """シンプルな問題表示ルート - 以前の動作を復活"""
+    try:
+        # 基本的な問題データ読み込み
+        questions = load_questions()
+        if not questions:
+            return render_template('error.html', error="問題データが読み込めませんでした。")
+        
+        # 10問をランダム選択（CLAUDE.md準拠）
+        basic_questions = [q for q in questions if q.get('question_type') == 'basic']
+        if len(basic_questions) >= 10:
+            selected = random.sample(basic_questions, 10)
+        else:
+            selected = basic_questions[:10] if basic_questions else questions[:10]
+        
+        # セッションに保存
+        session['quiz_question_ids'] = [q['id'] for q in selected]
+        session['quiz_current'] = 0
+        session['quiz_category'] = '基礎科目'
+        session.modified = True
+        
+        return redirect(url_for('quiz_question'))
+        
+    except Exception as e:
+        logger.error(f"❌ quiz_simple エラー: {e}")
+        return render_template('error.html', error="問題表示でエラーが発生しました。")
+
+@app.route('/quiz_question')
+@memory_monitoring_decorator(_memory_leak_monitor)
+def quiz_question():
+    """基本的な問題表示ルート - 以前の動作を復活"""
+    try:
+        # セッションから問題IDと現在位置を取得
+        question_ids = session.get('quiz_question_ids', [])
+        current_index = session.get('quiz_current', 0)
+        
+        if not question_ids or current_index >= len(question_ids):
+            return render_template('error.html', error="問題データが見つかりません。")
+        
+        # 問題データを読み込み
+        questions = load_questions()
+        current_question_id = question_ids[current_index]
+        
+        # 現在の問題を検索
+        current_question = None
+        for q in questions:
+            if str(q.get('id')) == str(current_question_id):
+                current_question = q
+                break
+        
+        if not current_question:
+            return render_template('error.html', error="問題が見つかりません。")
+        
+        # 進捗情報
+        progress = {
+            'current': current_index + 1,
+            'total': len(question_ids),
+            'percentage': int((current_index + 1) / len(question_ids) * 100)
+        }
+        
+        return render_template('exam_question.html', 
+                             question=current_question,
+                             progress=progress,
+                             category=session.get('quiz_category', '基礎科目'))
+        
+    except Exception as e:
+        logger.error(f"❌ quiz_question エラー: {e}")
+        return render_template('error.html', error="問題表示でエラーが発生しました。")
 
 # 🛡️ ULTRATHIN修復: 基礎科目専用ルート（405エラー回避）
 @app.route('/start_exam', methods=['GET', 'POST'])
