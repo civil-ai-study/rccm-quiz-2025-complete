@@ -8647,6 +8647,10 @@ def start_exam(exam_type):
         logger.info(f"🔍 条件分岐確認: exam_type=='基礎科目' → {exam_type == '基礎科目'}")
         logger.info(f"🔍 文字比較: '【{exam_type}】' vs '【基礎科目】'")
         
+        # 🔥 ULTRA SYNC最終修正: 明示的な専門科目判定
+        専門科目リスト = ['道路', '河川・砂防', '都市計画', '造園', '建設環境', '鋼構造・コンクリート', '土質・基礎', '施工計画', '上下水道', '森林土木', '農業土木', 'トンネル']
+        logger.info(f"🔍 専門科目判定: exam_type='{exam_type}' in 専門科目リスト → {exam_type in 専門科目リスト}")
+        
         if exam_type == '基礎科目':
             # 基礎科目の場合は基礎問題のみ
             logger.info(f"🔥 ULTRA SYNC: 基礎科目パス実行中")
@@ -8656,6 +8660,25 @@ def start_exam(exam_type):
             if all_questions:
                 sample_basic = all_questions[0]
                 logger.info(f"🔍 基礎科目サンプル - カテゴリ:{sample_basic.get('category')}, タイプ:{sample_basic.get('question_type')}")
+        elif exam_type in 専門科目リスト:
+            # 🔥 ULTRA SYNC最終修正: 明示的専門科目処理
+            logger.info(f"🔥 ULTRA SYNC: 明示的専門科目パス実行中 - 部門: {exam_type}")
+            # 専門科目データを強制的に読み込み
+            実際のカテゴリ名 = CSV_JAPANESE_CATEGORIES.get(exam_type, exam_type)
+            logger.info(f"🔍 CSVカテゴリマッピング: {exam_type} -> {実際のカテゴリ名}")
+            
+            # 専門科目データの強制読み込み
+            全問題データ = load_questions()
+            専門科目のみ = [問題 for 問題 in 全問題データ 
+                         if 問題.get('category') == 実際のカテゴリ名 
+                         and 問題.get('question_type') == 'specialist']
+            
+            if 専門科目のみ:
+                all_questions = 専門科目のみ
+                logger.info(f"✅ 明示的専門科目読み込み成功: {len(専門科目のみ)}問")
+            else:
+                logger.warning(f"⚠️ 専門科目データが見つからない: {実際のカテゴリ名}")
+                all_questions = load_questions()  # フォールバック
         else:
             logger.info(f"🔥 ULTRA SYNC: 専門科目パス実行中 - 部門: {exam_type}")
             # 専門科目の場合は該当部門のみ動的読み込み
