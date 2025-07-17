@@ -8659,10 +8659,14 @@ def start_exam(exam_type):
         
         # 🔥 ULTRA SYNC最終修正: 明示的な専門科目判定
         専門科目リスト = ['道路', '河川・砂防', '都市計画', '造園', '建設環境', '鋼構造・コンクリート', '土質・基礎', '施工計画', '上下水道', '森林土木', '農業土木', 'トンネル']
-        logger.info(f"🔍 専門科目判定: exam_type='{exam_type}' in 専門科目リスト → {exam_type in 専門科目リスト}")
+        logger.warning(f"🔍 段階68専門科目判定: exam_type='{exam_type}' in 専門科目リスト → {exam_type in 専門科目リスト}")
+        
+        # 🔍 ULTRA SYNC段階68: 条件分岐実行確認
+        session['ultra_sync_stage68_condition_check'] = f"道路判定開始: exam_type='{exam_type}'"
         
         # 🔥 ULTRA SYNC根本修正: 道路が必ず専門科目として処理されるよう強制
         if exam_type == '道路':
+            session['ultra_sync_stage68_path'] = "道路専門科目強制パス実行"
             logger.warning(f"🔥 ULTRA SYNC段階67: 道路専門科目強制パス実行中")
             実際のカテゴリ名 = "道路"
             全問題データ = load_questions()
@@ -8687,8 +8691,9 @@ def start_exam(exam_type):
             all_questions = 専門科目のみ if 専門科目のみ else 全問題データ
             logger.warning(f"✅ 道路専門科目強制読み込み結果: {len(all_questions)}問")
         elif exam_type == '基礎科目':
+            session['ultra_sync_stage68_path'] = "基礎科目パス実行"
             # 基礎科目の場合は基礎問題のみ
-            logger.info(f"🔥 ULTRA SYNC: 基礎科目パス実行中")
+            logger.warning(f"🔥 ULTRA SYNC: 基礎科目パス実行中")
             all_questions = load_questions()  # 基礎科目のみ読み込み
             logger.info(f"🔥 EXAM START: 基礎科目データ読み込み完了 - {len(all_questions)}問")
             # 🔥 ULTRA SYNC診断: 基礎科目問題の構成確認
@@ -8696,7 +8701,8 @@ def start_exam(exam_type):
                 sample_basic = all_questions[0]
                 logger.info(f"🔍 基礎科目サンプル - カテゴリ:{sample_basic.get('category')}, タイプ:{sample_basic.get('question_type')}")
         elif exam_type in 専門科目リスト:
-            logger.info(f"🔥 ULTRA SYNC段階59: 専門科目パス確実実行 - {exam_type}")
+            session['ultra_sync_stage68_path'] = f"一般専門科目パス実行: {exam_type}"
+            logger.warning(f"🔥 ULTRA SYNC段階59: 専門科目パス確実実行 - {exam_type}")
             # 🔥 ULTRA SYNC最終修正: 明示的専門科目処理
             logger.info(f"🔥 ULTRA SYNC: 明示的専門科目パス実行中 - 部門: {exam_type}")
             # 専門科目データを強制的に読み込み
