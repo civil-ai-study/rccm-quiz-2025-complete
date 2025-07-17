@@ -8508,6 +8508,13 @@ def start_exam_basic():
     """基礎科目専用試験開始（日本語パス405エラー回避）"""
     return start_exam('基礎科目')
 
+# 🔥 ULTRA SYNC段階70: 道路専門科目用安全英語ルート追加
+@app.route('/start_exam/road', methods=['GET', 'POST'])
+@memory_monitoring_decorator(_memory_leak_monitor)
+def start_exam_road():
+    """道路専門科目専用試験開始（日本語パス問題回避）"""
+    return start_exam('道路')
+
 @app.route('/start_exam/<exam_type>', methods=['GET', 'POST'])
 # 🔥 ULTRA SYNC: 統合セッション管理システムで自動処理
 @memory_monitoring_decorator(_memory_leak_monitor)
