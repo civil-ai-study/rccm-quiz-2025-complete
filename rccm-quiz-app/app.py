@@ -8513,7 +8513,17 @@ def start_exam_basic():
 @memory_monitoring_decorator(_memory_leak_monitor)
 def start_exam_road():
     """道路専門科目専用試験開始（日本語パス問題回避）"""
-    return start_exam('道路')
+    try:
+        logger.warning(f"🔥 ULTRA SYNC段階71: 道路専門科目ルート開始")
+        result = start_exam('道路')
+        logger.warning(f"🔥 ULTRA SYNC段階71: 道路専門科目ルート正常完了")
+        return result
+    except Exception as e:
+        logger.error(f"🚨 ULTRA SYNC段階71: 道路専門科目ルートエラー - {str(e)}")
+        logger.error(f"🚨 エラー詳細: {type(e).__name__}: {e}")
+        import traceback
+        logger.error(f"🚨 トレースバック: {traceback.format_exc()}")
+        return render_template('error.html', error=f"道路専門科目でエラーが発生しました: {str(e)}")
 
 @app.route('/start_exam/<exam_type>', methods=['GET', 'POST'])
 # 🔥 ULTRA SYNC: 統合セッション管理システムで自動処理
