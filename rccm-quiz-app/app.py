@@ -8679,6 +8679,21 @@ def start_exam(exam_type):
                 all_questions = specialist_questions
                 logger.info(f"🔥 EXAM START: 専門科目データ読み込み完了 - 部門:{exam_type}, 年度:{target_year}, {len(all_questions)}問")
                 
+                # 🔥 ULTRA SYNC緊急修正: 専門科目データが空の場合の完全日本語対応強制読み込み
+                if not all_questions or len(all_questions) == 0:
+                    logger.warning(f"🚨 専門科目データが空 - 完全日本語対応強制読み込み実行: {mapped_department}")
+                    # 完全日本語対応: 実際のCSVカテゴリ名で直接検索
+                    実際のカテゴリ名 = CSV_JAPANESE_CATEGORIES.get(exam_type)
+                    if 実際のカテゴリ名:
+                        logger.info(f"🔄 実際のCSV日本語カテゴリで検索: {exam_type} -> {実際のカテゴリ名}")
+                        全問題データ = load_questions()  # 全データ読み込み
+                        専門科目のみ = [問題 for 問題 in 全問題データ 
+                                     if 問題.get('category') == 実際のカテゴリ名 
+                                     and 問題.get('question_type') == 'specialist']
+                        if 専門科目のみ:
+                            all_questions = 専門科目のみ
+                            logger.info(f"✅ 完全日本語対応成功: {len(専門科目のみ)}問")
+                
                 # 成功時のデバッグ情報
                 if all_questions:
                     sample_q = all_questions[0]
