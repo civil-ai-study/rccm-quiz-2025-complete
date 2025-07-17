@@ -8662,14 +8662,29 @@ def start_exam(exam_type):
         
         # 🔥 ULTRA SYNC根本修正: 道路が必ず専門科目として処理されるよう強制
         if exam_type == '道路':
-            logger.info(f"🔥 ULTRA SYNC: 道路専門科目強制パス実行中")
+            logger.warning(f"🔥 ULTRA SYNC段階67: 道路専門科目強制パス実行中")
             実際のカテゴリ名 = "道路"
             全問題データ = load_questions()
+            logger.warning(f"🔍 段階67: 全問題データ総数 - {len(全問題データ)}問")
+            
+            # 🔍 診断: カテゴリ別問題数の確認
+            カテゴリ別統計 = {}
+            for 問題 in 全問題データ:
+                cat = 問題.get('category', 'なし')
+                type_val = 問題.get('question_type', 'なし')
+                key = f"{cat}_{type_val}"
+                カテゴリ別統計[key] = カテゴリ別統計.get(key, 0) + 1
+            
+            logger.warning(f"🔍 段階67: カテゴリ別統計 - {カテゴリ別統計}")
+            
             専門科目のみ = [問題 for 問題 in 全問題データ 
                          if 問題.get('category') == 実際のカテゴリ名 
                          and 問題.get('question_type') == 'specialist']
-            all_questions = 専門科目のみ if 専門科目のみ else load_questions()
-            logger.info(f"✅ 道路専門科目強制読み込み: {len(専門科目のみ)}問")
+            
+            logger.warning(f"🔍 段階67: 道路+specialist問題数 - {len(専門科目のみ)}問")
+            
+            all_questions = 専門科目のみ if 専門科目のみ else 全問題データ
+            logger.warning(f"✅ 道路専門科目強制読み込み結果: {len(all_questions)}問")
         elif exam_type == '基礎科目':
             # 基礎科目の場合は基礎問題のみ
             logger.info(f"🔥 ULTRA SYNC: 基礎科目パス実行中")
