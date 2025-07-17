@@ -8829,9 +8829,15 @@ def start_exam(exam_type):
                 # カスタム試験設定の解析に失敗した場合は通常の設定を使用
         
         # 🛡️ ULTRATHIN区 段階3: デバッグ情報をセッションに保存（副作用なし）
+        # 🔥 ULTRA SYNC段階38修正: target_year未定義エラー解決
+        try:
+            年度情報 = target_year if 'target_year' in locals() else 'N/A'
+        except:
+            年度情報 = 'N/A'
+            
         debug_info = {
             "exam_type": exam_type,
-            "target_year": target_year if exam_type != '基礎科目' else 'N/A',
+            "target_year": 年度情報,
             "questions_count": len(all_questions) if all_questions else 0,
             "data_source": "specialist" if exam_type != '基礎科目' else "basic",
             "timestamp": datetime.now().strftime('%H:%M:%S')
