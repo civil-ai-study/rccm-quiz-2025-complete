@@ -178,7 +178,22 @@ CSV_JAPANESE_CATEGORIES = {
     "上下水道": "上水道及び工業用水道",
     "森林土木": "森林土木", 
     "農業土木": "農業土木",
-    "トンネル": "トンネル"
+    "トンネル": "トンネル",
+    # 英語URLパラメータ対応
+    "road": "道路",
+    "tunnel": "トンネル",
+    "river_sabo": "河川、砂防及び海岸・海洋",
+    "civil_planning": "都市計画及び地方計画",
+    "urban_planning": "都市計画及び地方計画",
+    "landscape": "造園",
+    "construction_environment": "建設環境",
+    "steel_concrete": "鋼構造及びコンクリート",
+    "soil_foundation": "土質及び基礎",
+    "construction_management": "施工計画、施工設備及び積算",
+    "water_supply": "上水道及び工業用水道",
+    "forest_engineering": "森林土木",
+    "agricultural_engineering": "農業土木",
+    "basic": "共通"
 }
 
 def get_department_questions_ultrasync(department_name, question_count=10):
@@ -1364,7 +1379,22 @@ DEPARTMENT_TO_CATEGORY_MAPPING = {
     '農業土木': '農業土木',
     # 4-1基礎科目
     '基礎科目': '共通',
-    '共通': '共通'
+    '共通': '共通',
+    # 英語URLパラメータ対応
+    'road': '道路',
+    'tunnel': 'トンネル',
+    'river_sabo': '河川、砂防及び海岸・海洋',
+    'civil_planning': '都市計画及び地方計画',
+    'urban_planning': '都市計画及び地方計画',
+    'landscape': '造園',
+    'construction_environment': '建設環境',
+    'steel_concrete': '鋼構造及びコンクリート',
+    'soil_foundation': '土質及び基礎',
+    'construction_management': '施工計画、施工設備及び積算',
+    'water_supply': '上水道及び工業用水道',
+    'forest_engineering': '森林土木',
+    'agricultural_engineering': '農業土木',
+    'basic': '共通'
 }
 
 # 🚀 ULTRA SYNC: 旧名称互換マッピング（config.pyキーと一致）
@@ -12139,7 +12169,22 @@ CSV_JAPANESE_CATEGORIES = {
     "上下水道": "上水道及び工業用水道",
     "森林土木": "森林土木", 
     "農業土木": "農業土木",
-    "トンネル": "トンネル"
+    "トンネル": "トンネル",
+    # 英語URLパラメータ対応
+    "road": "道路",
+    "tunnel": "トンネル",
+    "river_sabo": "河川、砂防及び海岸・海洋",
+    "civil_planning": "都市計画及び地方計画",
+    "urban_planning": "都市計画及び地方計画",
+    "landscape": "造園",
+    "construction_environment": "建設環境",
+    "steel_concrete": "鋼構造及びコンクリート",
+    "soil_foundation": "土質及び基礎",
+    "construction_management": "施工計画、施工設備及び積算",
+    "water_supply": "上水道及び工業用水道",
+    "forest_engineering": "森林土木",
+    "agricultural_engineering": "農業土木",
+    "basic": "共通"
 }
 
 @app.route('/quiz_department/<department_name>', methods=['GET', 'POST'])
