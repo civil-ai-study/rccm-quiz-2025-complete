@@ -2628,17 +2628,70 @@ def load_questions():
         basic_file = os.path.join(data_dir, '4-1.csv')
         logger.warning(f"🛡️ ULTRATHIN段階75: 基礎科目ファイル確認 - {basic_file} (存在: {os.path.exists(basic_file)})")
         
-        # 🔥 ULTRA SYNC段階65: 4-1基礎科目と4-2専門科目の統合読み込み
-        from utils import load_rccm_data_files
+        # 🔥 緊急修正: 基本的な問題データ読み込み確保
+        logger.warning(f"🚨 緊急修正: 基本的な問題データ読み込み開始")
         
-        # 🔥 ULTRA SYNC段階65: 基礎科目と専門科目の統合読み込み
-        logger.warning(f"🔥 ULTRA SYNC段階65: 4-1基礎科目+4-2専門科目統合読み込み開始")
-        統合問題データ = load_rccm_data_files(data_dir)
-        logger.warning(f"🔥 ULTRA SYNC段階65: 統合読み込み完了 - {len(統合問題データ)}問")
+        # まず基礎科目データを確実に読み込み
+        basic_questions = []
+        basic_file = os.path.join(data_dir, '4-1.csv')
+        if os.path.exists(basic_file):
+            try:
+                import csv
+                with open(basic_file, 'r', encoding='utf-8') as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        question = {
+                            'id': row.get('id', ''),
+                            'category': row.get('category', '共通'),
+                            'question': row.get('question', ''),
+                            'option_a': row.get('option_a', ''),
+                            'option_b': row.get('option_b', ''),
+                            'option_c': row.get('option_c', ''),
+                            'option_d': row.get('option_d', ''),
+                            'correct_answer': row.get('correct_answer', ''),
+                            'explanation': row.get('explanation', ''),
+                            'question_type': 'basic'
+                        }
+                        basic_questions.append(question)
+                logger.warning(f"✅ 基礎科目読み込み成功: {len(basic_questions)}問")
+            except Exception as e:
+                logger.error(f"🚨 基礎科目読み込みエラー: {e}")
         
-        # 🔥 ULTRA SYNC段階65: 統合データを返却して基礎科目のみの読み込みから変更
-        logger.warning(f"🔥 ULTRA SYNC段階65: 統合問題データを返却 - 基礎+専門合計{len(統合問題データ)}問")
-        return 統合問題データ
+        # 専門科目データも読み込み
+        specialist_questions = []
+        specialist_files = ['4-2_2019.csv', '4-2_2018.csv', '4-2_2017.csv']
+        for filename in specialist_files:
+            filepath = os.path.join(data_dir, filename)
+            if os.path.exists(filepath):
+                try:
+                    import csv
+                    with open(filepath, 'r', encoding='utf-8') as f:
+                        reader = csv.DictReader(f)
+                        year = int(filename.split('_')[1].split('.')[0])
+                        for row in reader:
+                            question = {
+                                'id': row.get('id', ''),
+                                'category': row.get('category', ''),
+                                'year': year,
+                                'question': row.get('question', ''),
+                                'option_a': row.get('option_a', ''),
+                                'option_b': row.get('option_b', ''),
+                                'option_c': row.get('option_c', ''),
+                                'option_d': row.get('option_d', ''),
+                                'correct_answer': row.get('correct_answer', ''),
+                                'explanation': row.get('explanation', ''),
+                                'question_type': 'specialist'
+                            }
+                            specialist_questions.append(question)
+                except Exception as e:
+                    logger.error(f"🚨 専門科目読み込みエラー {filename}: {e}")
+        
+        logger.warning(f"✅ 専門科目読み込み成功: {len(specialist_questions)}問")
+        
+        # 統合データを返却
+        all_questions = basic_questions + specialist_questions
+        logger.warning(f"🔥 緊急修正: 統合問題データ返却 - 基礎{len(basic_questions)}+専門{len(specialist_questions)}=合計{len(all_questions)}問")
+        return all_questions
         
         # 専門科目も読み込み（全年度・全部門）
         specialist_questions = []
