@@ -8666,6 +8666,7 @@ def start_exam(exam_type):
                 sample_basic = all_questions[0]
                 logger.info(f"🔍 基礎科目サンプル - カテゴリ:{sample_basic.get('category')}, タイプ:{sample_basic.get('question_type')}")
         elif exam_type in 専門科目リスト:
+            logger.info(f"🔥 ULTRA SYNC段階59: 専門科目パス確実実行 - {exam_type}")
             # 🔥 ULTRA SYNC最終修正: 明示的専門科目処理
             logger.info(f"🔥 ULTRA SYNC: 明示的専門科目パス実行中 - 部門: {exam_type}")
             # 専門科目データを強制的に読み込み
@@ -8677,6 +8678,13 @@ def start_exam(exam_type):
             専門科目のみ = [問題 for 問題 in 全問題データ 
                          if 問題.get('category') == 実際のカテゴリ名 
                          and 問題.get('question_type') == 'specialist']
+            
+            # 🔥 ULTRA SYNC完全日本語対応: 英語表記を日本語に強制変換
+            for 問題 in 専門科目のみ:
+                if 問題.get('question_type') == 'specialist':
+                    問題['question_type'] = '専門科目'
+                elif 問題.get('question_type') == 'basic':
+                    問題['question_type'] = '基礎科目'
             
             if 専門科目のみ:
                 all_questions = 専門科目のみ
