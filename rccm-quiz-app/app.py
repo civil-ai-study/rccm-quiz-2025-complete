@@ -8656,7 +8656,17 @@ def start_exam(exam_type):
         専門科目リスト = ['道路', '河川・砂防', '都市計画', '造園', '建設環境', '鋼構造・コンクリート', '土質・基礎', '施工計画', '上下水道', '森林土木', '農業土木', 'トンネル']
         logger.info(f"🔍 専門科目判定: exam_type='{exam_type}' in 専門科目リスト → {exam_type in 専門科目リスト}")
         
-        if exam_type == '基礎科目':
+        # 🔥 ULTRA SYNC根本修正: 道路が必ず専門科目として処理されるよう強制
+        if exam_type == '道路':
+            logger.info(f"🔥 ULTRA SYNC: 道路専門科目強制パス実行中")
+            実際のカテゴリ名 = "道路"
+            全問題データ = load_questions()
+            専門科目のみ = [問題 for 問題 in 全問題データ 
+                         if 問題.get('category') == 実際のカテゴリ名 
+                         and 問題.get('question_type') == 'specialist']
+            all_questions = 専門科目のみ if 専門科目のみ else load_questions()
+            logger.info(f"✅ 道路専門科目強制読み込み: {len(専門科目のみ)}問")
+        elif exam_type == '基礎科目':
             # 基礎科目の場合は基礎問題のみ
             logger.info(f"🔥 ULTRA SYNC: 基礎科目パス実行中")
             all_questions = load_questions()  # 基礎科目のみ読み込み
