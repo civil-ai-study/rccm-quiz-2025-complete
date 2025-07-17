@@ -70,7 +70,7 @@
             {% if (department.id == 'basic' and basic_stats.total_questions > 0) or (department.id != 'basic' and specialist_stats.total_questions > 0) %}
               <div class="col-md-6">
                 <!-- ランダム出題ボタン -->
-                <a href="/exam?department={{ department_key }}&type=specialist" 
+                <a href="/exam?department={{ department.name }}&type=specialist" 
                    class="btn btn-success btn-lg w-100">
                   <i class="fas fa-random me-2"></i>ランダム学習（2011-2019年全問題）
                 </a>
@@ -93,7 +93,7 @@
                     <div class="row g-2">
                       {% for year in range(2019, 2007, -1) %}
                       <div class="col-md-3 col-6">
-                        <a href="/exam?department={{ department_key }}&type=specialist&year={{ year }}" 
+                        <a href="/exam?department={{ department.name }}&type=specialist&year={{ year }}" 
                            class="btn btn-sm btn-outline-primary w-100">
                           <i class="fas fa-file-alt me-1"></i>{{ year }}年度
                         </a>
@@ -128,7 +128,7 @@
         <div class="card-body">
           <div class="row g-3">
             <div class="col-md-4">
-              <a href="/review?department={{ department_key }}" 
+              <a href="/review?department={{ department.name }}" 
                  class="btn btn-info w-100">
                 <i class="fas fa-bookmark me-2"></i>
                 <div><strong>復習リスト</strong></div>
@@ -136,7 +136,7 @@
               </a>
             </div>
             <div class="col-md-4">
-              <a href="/adaptive_quiz?department={{ department_key }}" 
+              <a href="/adaptive_quiz?department={{ department.name }}" 
                  class="btn btn-outline-info w-100">
                 <i class="fas fa-brain me-2"></i>
                 <div><strong>AI適応学習</strong></div>
@@ -144,7 +144,7 @@
               </a>
             </div>
             <div class="col-md-4">
-              <a href="/statistics?department={{ department_key }}" 
+              <a href="/statistics?department={{ department.name }}" 
                  class="btn btn-outline-info w-100">
                 <i class="fas fa-chart-line me-2"></i>
                 <div><strong>詳細統計</strong></div>

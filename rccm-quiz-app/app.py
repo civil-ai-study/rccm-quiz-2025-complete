@@ -3308,8 +3308,14 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
             target_category = DEPARTMENT_TO_CATEGORY_MAPPING[requested_category]
             logger.info(f"🔧 ULTRA SYNC: 英語→日本語マッピング適用 {requested_category} → {target_category}")
         
+        # 🛡️ ウルトラシンク緊急デバッグ: カテゴリフィルタリング詳細ログ
+        logger.warning(f"🔍 カテゴリフィルタ実行: requested='{requested_category}' → target='{target_category}'")
+        pre_filter_count = len(available_questions)
+        
         # 正確な文字列マッチング（日本語カテゴリ名で）
         available_questions = [q for q in available_questions if q.get('category') == target_category]
+        
+        logger.warning(f"🔍 カテゴリフィルタ結果: {pre_filter_count} → {len(available_questions)}問 (target='{target_category}')")
 
         # 文字化けしている場合のフォールバック（部分マッチ）
         if len(available_questions) == 0 and target_category:
@@ -5726,6 +5732,8 @@ def exam():
                     logger.warning(f"🛡️ ULTRATHIN区: セッションから推定 - {safe_requested_question_type}")
                 
                 logger.info(f"🛡️ ULTRATHIN区 get_mixed_questions呼び出し前: dept={requested_department}, type={safe_requested_question_type} (元:{requested_question_type}), category={requested_category}, session_size={session_size}")
+                # 🛡️ ウルトラシンク緊急デバッグ: get_mixed_questions呼び出しパラメータ詳細ログ
+                logger.warning(f"🔥 get_mixed_questions呼び出し: requested_category='{requested_category}', department='{requested_department}', question_type='{safe_requested_question_type}'")
                 selected_questions = get_mixed_questions(session, all_questions, requested_category, session_size, requested_department, safe_requested_question_type, requested_year)
                 
                 # 🛡️ ULTRATHIN区追加: 空リスト安全チェック
