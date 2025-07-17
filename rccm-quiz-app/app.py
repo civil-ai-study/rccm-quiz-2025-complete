@@ -8774,221 +8774,49 @@ def start_exam(exam_type):
         session['ultra_sync_stage69_forced_display'] = f"強制表示: exam_type='{exam_type}', 関数実行確認"
         session['ultra_sync_stage68_condition_check'] = f"道路判定開始: exam_type='{exam_type}'"
         
-        # 🔥 ULTRA SYNC根本修正: 道路が必ず専門科目として処理されるよう強制
+        # 🔥 第三者修正: 重複処理を排除し、統一的なデータ読み込み
+        session['ultra_sync_stage68_path'] = f"統一データ処理パス: {exam_type}"
+        logger.warning(f"🔥 第三者修正: 統一的データ処理実行中 - {exam_type}")
+        
+        # load_questions関数で統一的にデータを読み込み
+        all_questions = load_questions()
+        
+        # 道路専門科目の場合、道路カテゴリのみを抽出
         if exam_type == '道路':
             session['ultra_sync_stage68_path'] = "道路専門科目強制パス実行"
             logger.warning(f"🔥 最終修正: 道路専門科目強制パス実行中")
             
-            # 🚨 最終修正: 道路専門科目データを直接確保
-            all_questions = []
-            data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
-            
-            # 道路専門科目データを直接読み込み
-            import csv
-            specialist_files = ['4-2_2019.csv', '4-2_2018.csv', '4-2_2017.csv']
-            for filename in specialist_files:
-                filepath = os.path.join(data_dir, filename)
-                if os.path.exists(filepath):
-                    try:
-                        with open(filepath, 'r', encoding='utf-8') as f:
-                            reader = csv.DictReader(f)
-                            year = int(filename.split('_')[1].split('.')[0])
-                            for row in reader:
-                                if row.get('category') == '道路':
-                                    question = {
-                                        'id': row.get('id', ''),
-                                        'category': '道路',
-                                        'year': year,
-                                        'question': row.get('question', ''),
-                                        'option_a': row.get('option_a', ''),
-                                        'option_b': row.get('option_b', ''),
-                                        'option_c': row.get('option_c', ''),
-                                        'option_d': row.get('option_d', ''),
-                                        'correct_answer': row.get('correct_answer', ''),
-                                        'explanation': row.get('explanation', ''),
-                                        'question_type': 'specialist'
-                                    }
-                                    all_questions.append(question)
-                    except Exception as e:
-                        logger.error(f"🚨 道路専門科目読み込みエラー {filename}: {e}")
-            
-            logger.warning(f"🔥 最終修正: 道路専門科目データ確保 - {len(all_questions)}問")
-            
-            # フォールバック: 最低限の問題データ確保
-            if len(all_questions) == 0:
-                logger.warning(f"🚨 フォールバック: 基礎科目で代替")
-                basic_file = os.path.join(data_dir, '4-1.csv')
-                if os.path.exists(basic_file):
-                    with open(basic_file, 'r', encoding='utf-8') as f:
-                        reader = csv.DictReader(f)
-                        for row in reader:
-                            question = {
-                                'id': row.get('id', ''),
-                                'category': '共通',
-                                'question': row.get('question', ''),
-                                'option_a': row.get('option_a', ''),
-                                'option_b': row.get('option_b', ''),
-                                'option_c': row.get('option_c', ''),
-                                'option_d': row.get('option_d', ''),
-                                'correct_answer': row.get('correct_answer', ''),
-                                'explanation': row.get('explanation', ''),
-                                'question_type': 'basic'
-                            }
-                            all_questions.append(question)
-            
-            logger.warning(f"✅ 道路専門科目最終確保: {len(all_questions)}問")
+            道路問題 = [q for q in all_questions if q.get('category') == '道路' and q.get('question_type') == 'specialist']
+            if 道路問題:
+                all_questions = 道路問題
+                logger.info(f"✅ 道路専門科目データ抽出: {len(道路問題)}問")
+            else:
+                logger.warning(f"⚠️ 道路専門科目データが見つからない")
         elif exam_type == '基礎科目':
-            session['ultra_sync_stage68_path'] = "基礎科目パス実行"
-            # 基礎科目の場合は基礎問題のみ
-            logger.warning(f"🔥 ULTRA SYNC: 基礎科目パス実行中")
-            all_questions = load_questions()  # 基礎科目のみ読み込み
-            logger.info(f"🔥 EXAM START: 基礎科目データ読み込み完了 - {len(all_questions)}問")
-            # 🔥 ULTRA SYNC診断: 基礎科目問題の構成確認
-            if all_questions:
-                sample_basic = all_questions[0]
-                logger.info(f"🔍 基礎科目サンプル - カテゴリ:{sample_basic.get('category')}, タイプ:{sample_basic.get('question_type')}")
+            # 基礎科目の場合は基礎問題のみを抽出
+            基礎問題 = [q for q in all_questions if q.get('question_type') == 'basic']
+            if 基礎問題:
+                all_questions = 基礎問題
+                logger.info(f"✅ 基礎科目データ抽出: {len(基礎問題)}問")
+            else:
+                logger.warning(f"⚠️ 基礎科目データが見つからない")
         elif exam_type in 専門科目リスト:
-            session['ultra_sync_stage68_path'] = f"一般専門科目パス実行: {exam_type}"
-            logger.warning(f"🔥 ULTRA SYNC段階59: 専門科目パス確実実行 - {exam_type}")
-            # 🔥 ULTRA SYNC最終修正: 明示的専門科目処理
-            logger.info(f"🔥 ULTRA SYNC: 明示的専門科目パス実行中 - 部門: {exam_type}")
-            # 専門科目データを強制的に読み込み
+            # 専門科目の場合は該当部門のみを抽出
             実際のカテゴリ名 = CSV_JAPANESE_CATEGORIES.get(exam_type, exam_type)
             logger.info(f"🔍 CSVカテゴリマッピング: {exam_type} -> {実際のカテゴリ名}")
             
-            # 専門科目データの強制読み込み
-            全問題データ = load_questions()
-            専門科目のみ = [問題 for 問題 in 全問題データ 
+            専門科目のみ = [問題 for 問題 in all_questions 
                          if 問題.get('category') == 実際のカテゴリ名 
                          and 問題.get('question_type') == 'specialist']
             
-            # 🔥 ULTRA SYNC完全日本語対応: 英語表記を日本語に強制変換
-            for 問題 in 専門科目のみ:
-                if 問題.get('question_type') == 'specialist':
-                    問題['question_type'] = '専門科目'
-                elif 問題.get('question_type') == 'basic':
-                    問題['question_type'] = '基礎科目'
-            
             if 専門科目のみ:
                 all_questions = 専門科目のみ
-                logger.info(f"✅ 明示的専門科目読み込み成功: {len(専門科目のみ)}問")
+                logger.info(f"✅ 専門科目データ抽出: {len(専門科目のみ)}問")
             else:
                 logger.warning(f"⚠️ 専門科目データが見つからない: {実際のカテゴリ名}")
-                all_questions = load_questions()  # フォールバック
         else:
-            logger.info(f"🔥 ULTRA SYNC: 専門科目パス実行中 - 部門: {exam_type}")
-            # 専門科目の場合は該当部門のみ動的読み込み
-            from utils import load_specialist_questions_only
-            # 🚨 ULTRATHIN区段階46緊急修正: 本番環境パス問題解決
-            # 絶対パス確保でRender.com環境対応
-            data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
-            if not data_dir or not os.path.exists(data_dir):
-                # フォールバック: カレントディレクトリからの相対パス
-                data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
-                logger.warning(f"🚨 ULTRATHIN区段階46: data_dirフォールバック適用 - {data_dir}")
-            logger.info(f"🛡️ ULTRATHIN区段階46: data_dir確定 - {data_dir} (exists: {os.path.exists(data_dir)})")
-            
-            # 年度パラメータの取得（デフォルト2019）
-            # 🔥 ULTRA SYNC FIX: 専門科目データが豊富で安定した2019年をデフォルトに変更
-            target_year = int(year_param) if year_param and year_param.isdigit() else 2019
-            
-            try:
-                # 🛡️ ULTRATHIN段階72: グローバル部門マッピングシステム使用
-                # URL部門名をデータファイル内部門名に統一的に変換
-                mapped_department = get_department_category(exam_type)
-                if not mapped_department:
-                    # フォールバック: 元の名前をそのまま使用
-                    mapped_department = exam_type
-                    logger.warning(f"🚨 ULTRATHIN段階72: 未知の部門名 - {exam_type}, フォールバック適用")
-                
-                # 🛡️ ULTRATHIN区 段階3: 詳細診断情報追加
-                logger.info(f"🔥 EXAM START: 専門科目読み込み開始 - URL部門:{exam_type}, マップ部門:{mapped_department}, 年度:{target_year}, data_dir:{data_dir}")
-                
-                # 指定された部門・年度のみ読み込み（混在防止）
-                specialist_questions = load_specialist_questions_only(mapped_department, target_year, data_dir)
-                all_questions = specialist_questions
-                logger.info(f"🔥 EXAM START: 専門科目データ読み込み完了 - 部門:{exam_type}, 年度:{target_year}, {len(all_questions)}問")
-                
-                # 🔥 ULTRA SYNC緊急修正: 専門科目データが空の場合の完全日本語対応強制読み込み
-                if not all_questions or len(all_questions) == 0:
-                    logger.warning(f"🚨 専門科目データが空 - 完全日本語対応強制読み込み実行: {mapped_department}")
-                    # 完全日本語対応: 実際のCSVカテゴリ名で直接検索
-                    実際のカテゴリ名 = CSV_JAPANESE_CATEGORIES.get(exam_type)
-                    if 実際のカテゴリ名:
-                        logger.info(f"🔄 実際のCSV日本語カテゴリで検索: {exam_type} -> {実際のカテゴリ名}")
-                        全問題データ = load_questions()  # 全データ読み込み
-                        専門科目のみ = [問題 for 問題 in 全問題データ 
-                                     if 問題.get('category') == 実際のカテゴリ名 
-                                     and 問題.get('question_type') == 'specialist']
-                        if 専門科目のみ:
-                            all_questions = 専門科目のみ
-                            logger.info(f"✅ 完全日本語対応成功: {len(専門科目のみ)}問")
-                
-                # 成功時のデバッグ情報
-                if all_questions:
-                    sample_q = all_questions[0]
-                    logger.info(f"🔥 EXAM START: サンプル問題 - カテゴリ:{sample_q.get('category')}, ID:{sample_q.get('id')}")
-                    # 🔥 ULTRA SYNC診断: 専門科目の種別確認
-                    specialist_count = sum(1 for q in all_questions if q.get('question_type') == 'specialist')
-                    basic_count = sum(1 for q in all_questions if q.get('question_type') != 'specialist')
-                    logger.info(f"🔍 専門科目内訳 - 専門:{specialist_count}問, 基礎:{basic_count}問")
-                
-            except Exception as e:
-                # 🛡️ ULTRATHIN区 段階3: 詳細エラー情報
-                import traceback
-                error_detail = traceback.format_exc()
-                logger.error(f"🚨 専門科目読み込み例外詳細: {exam_type}/{target_year}")
-                logger.error(f"🚨 例外タイプ: {type(e).__name__}")
-                logger.error(f"🚨 例外メッセージ: {str(e)}")
-                logger.error(f"🚨 スタックトレース: {error_detail}")
-                logger.error(f"🚨 data_dir値: {data_dir}")
-                
-                # エラー情報をセッションに保存（デバッグ用）
-                session['specialist_error'] = {
-                    "type": type(e).__name__,
-                    "message": str(e),
-                    "department": exam_type,
-                    "year": target_year,
-                    "data_dir": data_dir,
-                    "timestamp": datetime.now().strftime('%H:%M:%S')
-                }
-                
-                # 🔥 ULTRA SYNC FINAL FIX: 条件付きフォールバック
-                # 重大エラーのみフォールバック、軽微なエラーは代替手段を試行
-                if "プロジェクト外" in str(e) or "パス" in str(e):
-                    # パス関連エラー: 代替パスで再試行
-                    logger.warning(f"🔄 パス関連エラー - 代替手段を試行: {e}")
-                    try:
-                        # 代替手段: 従来のload_questions()で全データを読み込み、専門科目をフィルタ
-                        all_questions_temp = load_questions()
-                        mapped_department = get_department_category(exam_type) or exam_type
-                        specialist_only = [q for q in all_questions_temp 
-                                         if q.get('question_type') == 'specialist' 
-                                         and q.get('category') == mapped_department
-                                         and q.get('year') == target_year]
-                        if specialist_only:
-                            all_questions = specialist_only
-                            logger.info(f"✅ 代替手段成功: {mapped_department}部門{target_year}年度 {len(specialist_only)}問")
-                        else:
-                            # 年度制限を緩和して再試行
-                            specialist_any_year = [q for q in all_questions_temp 
-                                                 if q.get('question_type') == 'specialist' 
-                                                 and q.get('category') == mapped_department]
-                            if specialist_any_year:
-                                all_questions = specialist_any_year
-                                logger.info(f"✅ 年度制限緩和成功: {mapped_department}部門 {len(specialist_any_year)}問")
-                            else:
-                                # 最終フォールバック
-                                all_questions = load_questions()
-                                logger.warning(f"⚠️ 最終フォールバック: 基礎科目 {len(all_questions)}問")
-                    except Exception as fallback_error:
-                        logger.error(f"🚨 代替手段も失敗: {fallback_error}")
-                        all_questions = load_questions()
-                        logger.warning(f"🔄 最終フォールバック実行: 基礎科目 {len(all_questions)}問")
-                else:
-                    # その他のエラー: 即座にフォールバック
-                    all_questions = load_questions()
-                    logger.warning(f"🔄 専門科目読み込み失敗、基礎科目にフォールバック - 基礎科目数:{len(all_questions)}問")
+            # その他の場合はすべての問題データを保持
+            logger.info(f"✅ 全問題データ保持: {len(all_questions)}問")
         
         # 🛡️ HTTP 431対策: questions parameterが提供された場合の処理
         if questions_param:
