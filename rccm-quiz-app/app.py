@@ -3565,7 +3565,7 @@ except ImportError as e:
     pass
 except Exception as e:
     # 予期しないエラーの安全な処理
-    print(f"🛡️ ULTRATHIN区: Blueprint登録エラー回避 - {e}")
+    print(f"ULTRATHIN区: Blueprint登録エラー回避 - {e}")
     pass
 
 # 従来システム継続動作保証
@@ -8638,8 +8638,9 @@ def start_exam(exam_type):
                 logger.warning(f"🚨 ULTRATHIN区段階46: data_dirフォールバック適用 - {data_dir}")
             logger.info(f"🛡️ ULTRATHIN区段階46: data_dir確定 - {data_dir} (exists: {os.path.exists(data_dir)})")
             
-            # 年度パラメータの取得（デフォルト2016）
-            target_year = int(year_param) if year_param and year_param.isdigit() else 2016
+            # 年度パラメータの取得（デフォルト2019）
+            # 🔥 ULTRA SYNC FIX: 専門科目データが豊富で安定した2019年をデフォルトに変更
+            target_year = int(year_param) if year_param and year_param.isdigit() else 2019
             
             try:
                 # 🛡️ ULTRATHIN段階72: グローバル部門マッピングシステム使用
