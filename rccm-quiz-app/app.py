@@ -5750,7 +5750,19 @@ def exam():
         logger.info(f"  - session_modified: {session.modified}")
         logger.info("====================================")
         
-        return render_template('exam.html', **template_vars)
+        # 🔍 ULTRA SYNC段階33: 診断情報をHTMLレスポンスに直接埋め込み
+        from flask import Markup
+        問題データ = template_vars.get('question', {})
+        診断情報 = f"<!-- 🔍 ULTRA SYNC診断33: カテゴリ={問題データ.get('category', '不明')}, タイプ={問題データ.get('question_type', '不明')}, ID={問題データ.get('id', '不明')} -->"
+        
+        # レスポンス生成
+        html_response = render_template('exam.html', **template_vars)
+        
+        # 診断情報を追加
+        html_with_debug = 診断情報 + "\n" + html_response
+        
+        from flask import Response
+        return Response(html_with_debug, content_type='text/html; charset=utf-8')
     except Exception as e:
         import traceback
         error_details = traceback.format_exc()
