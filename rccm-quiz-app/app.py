@@ -8687,9 +8687,42 @@ def start_exam(exam_type):
                     "timestamp": datetime.now().strftime('%H:%M:%S')
                 }
                 
-                # エラー時は基礎科目にフォールバック
-                all_questions = load_questions()
-                logger.warning(f"🔄 専門科目読み込み失敗、基礎科目にフォールバック - 基礎科目数:{len(all_questions)}問")
+                # 🔥 ULTRA SYNC FINAL FIX: 条件付きフォールバック
+                # 重大エラーのみフォールバック、軽微なエラーは代替手段を試行
+                if "プロジェクト外" in str(e) or "パス" in str(e):
+                    # パス関連エラー: 代替パスで再試行
+                    logger.warning(f"🔄 パス関連エラー - 代替手段を試行: {e}")
+                    try:
+                        # 代替手段: 従来のload_questions()で全データを読み込み、専門科目をフィルタ
+                        all_questions_temp = load_questions()
+                        mapped_department = get_department_category(exam_type) or exam_type
+                        specialist_only = [q for q in all_questions_temp 
+                                         if q.get('question_type') == 'specialist' 
+                                         and q.get('category') == mapped_department
+                                         and q.get('year') == target_year]
+                        if specialist_only:
+                            all_questions = specialist_only
+                            logger.info(f"✅ 代替手段成功: {mapped_department}部門{target_year}年度 {len(specialist_only)}問")
+                        else:
+                            # 年度制限を緩和して再試行
+                            specialist_any_year = [q for q in all_questions_temp 
+                                                 if q.get('question_type') == 'specialist' 
+                                                 and q.get('category') == mapped_department]
+                            if specialist_any_year:
+                                all_questions = specialist_any_year
+                                logger.info(f"✅ 年度制限緩和成功: {mapped_department}部門 {len(specialist_any_year)}問")
+                            else:
+                                # 最終フォールバック
+                                all_questions = load_questions()
+                                logger.warning(f"⚠️ 最終フォールバック: 基礎科目 {len(all_questions)}問")
+                    except Exception as fallback_error:
+                        logger.error(f"🚨 代替手段も失敗: {fallback_error}")
+                        all_questions = load_questions()
+                        logger.warning(f"🔄 最終フォールバック実行: 基礎科目 {len(all_questions)}問")
+                else:
+                    # その他のエラー: 即座にフォールバック
+                    all_questions = load_questions()
+                    logger.warning(f"🔄 専門科目読み込み失敗、基礎科目にフォールバック - 基礎科目数:{len(all_questions)}問")
         
         # 🛡️ HTTP 431対策: questions parameterが提供された場合の処理
         if questions_param:
