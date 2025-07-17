@@ -8597,6 +8597,9 @@ def start_exam(exam_type):
             questions_param = '10'  # デフォルト10問
             if exam_type == '基礎科目' or exam_type == 'basic':
                 category_param = '基礎科目'
+            else:
+                # 🔥 ULTRA SYNC FIX: 専門科目の場合はexam_typeをそのまま使用
+                category_param = exam_type
             logger.info(f"🛡️ ULTRASYNC: デフォルト設定適用 - questions: {questions_param}, category: {category_param}")
         
         # 🚨 ULTRATHIN区段階52緊急修正: 必須パラメータ欠如エラーハンドリング追加
