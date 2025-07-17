@@ -8642,6 +8642,10 @@ def start_exam(exam_type):
             # 基礎科目の場合は基礎問題のみ
             all_questions = load_questions()  # 基礎科目のみ読み込み
             logger.info(f"🔥 EXAM START: 基礎科目データ読み込み完了 - {len(all_questions)}問")
+            # 🔥 ULTRA SYNC診断: 基礎科目問題の構成確認
+            if all_questions:
+                sample_basic = all_questions[0]
+                logger.info(f"🔍 基礎科目サンプル - カテゴリ:{sample_basic.get('category')}, タイプ:{sample_basic.get('question_type')}")
         else:
             # 専門科目の場合は該当部門のみ動的読み込み
             from utils import load_specialist_questions_only
@@ -8679,6 +8683,10 @@ def start_exam(exam_type):
                 if all_questions:
                     sample_q = all_questions[0]
                     logger.info(f"🔥 EXAM START: サンプル問題 - カテゴリ:{sample_q.get('category')}, ID:{sample_q.get('id')}")
+                    # 🔥 ULTRA SYNC診断: 専門科目の種別確認
+                    specialist_count = sum(1 for q in all_questions if q.get('question_type') == 'specialist')
+                    basic_count = sum(1 for q in all_questions if q.get('question_type') != 'specialist')
+                    logger.info(f"🔍 専門科目内訳 - 専門:{specialist_count}問, 基礎:{basic_count}問")
                 
             except Exception as e:
                 # 🛡️ ULTRATHIN区 段階3: 詳細エラー情報
