@@ -42,10 +42,15 @@
   <div class="card-body p-2">
             <!-- 問題内容 - 圧縮版 -->
             <div class="question-container p-1 mb-1" role="article">
-                <!-- 🔍 ULTRA SYNC段階68緊急診断: セッション診断情報表示 -->
+                <!-- 🔍 ULTRA SYNC段階69緊急診断: 関数実行確認 -->
                 <div style="background: #ff0000; color: white; padding: 5px; margin-bottom: 10px; font-size: 0.8rem;">
-                    🔍 段階68診断: カテゴリ={{ question.category }}、タイプ={{ question.question_type }}、ID={{ question.id }}
+                    🔍 段階69診断: カテゴリ={{ question.category }}、タイプ={{ question.question_type }}、ID={{ question.id }}
                 </div>
+                {% if session.ultra_sync_stage69_forced_display %}
+                <div style="background: #ffaa00; color: white; padding: 5px; margin-bottom: 10px; font-size: 0.8rem;">
+                    🔍 段階69強制表示: {{ session.ultra_sync_stage69_forced_display }}
+                </div>
+                {% endif %}
                 {% if session.ultra_sync_stage68_exam_type_check %}
                 <div style="background: #0066cc; color: white; padding: 5px; margin-bottom: 10px; font-size: 0.8rem;">
                     🔍 段階68: {{ session.ultra_sync_stage68_exam_type_check }}

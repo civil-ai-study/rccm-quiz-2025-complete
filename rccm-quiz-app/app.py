@@ -8661,7 +8661,8 @@ def start_exam(exam_type):
         専門科目リスト = ['道路', '河川・砂防', '都市計画', '造園', '建設環境', '鋼構造・コンクリート', '土質・基礎', '施工計画', '上下水道', '森林土木', '農業土木', 'トンネル']
         logger.warning(f"🔍 段階68専門科目判定: exam_type='{exam_type}' in 専門科目リスト → {exam_type in 専門科目リスト}")
         
-        # 🔍 ULTRA SYNC段階68: 条件分岐実行確認
+        # 🔍 ULTRA SYNC段階69: 強制的なセッション変数設定（必ず表示される）
+        session['ultra_sync_stage69_forced_display'] = f"強制表示: exam_type='{exam_type}', 関数実行確認"
         session['ultra_sync_stage68_condition_check'] = f"道路判定開始: exam_type='{exam_type}'"
         
         # 🔥 ULTRA SYNC根本修正: 道路が必ず専門科目として処理されるよう強制
