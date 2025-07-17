@@ -2628,13 +2628,17 @@ def load_questions():
         basic_file = os.path.join(data_dir, '4-1.csv')
         logger.warning(f"🛡️ ULTRATHIN段階75: 基礎科目ファイル確認 - {basic_file} (存在: {os.path.exists(basic_file)})")
         
-        # 🚨 CRITICAL FIX: 全問題データを読み込み（基礎科目+専門科目）
-        from utils import load_basic_questions_only
+        # 🔥 ULTRA SYNC段階65: 4-1基礎科目と4-2専門科目の統合読み込み
+        from utils import load_rccm_data_files
         
-        # 🛡️ ULTRATHIN段階75: 基礎科目を確実に読み込み
-        logger.warning(f"🛡️ ULTRATHIN段階75: 基礎科目読み込み開始")
-        basic_questions = load_basic_questions_only(data_dir)
-        logger.warning(f"🛡️ ULTRATHIN段階59: 基礎科目読み込み完了 - {len(basic_questions)}問")
+        # 🔥 ULTRA SYNC段階65: 基礎科目と専門科目の統合読み込み
+        logger.warning(f"🔥 ULTRA SYNC段階65: 4-1基礎科目+4-2専門科目統合読み込み開始")
+        統合問題データ = load_rccm_data_files(data_dir)
+        logger.warning(f"🔥 ULTRA SYNC段階65: 統合読み込み完了 - {len(統合問題データ)}問")
+        
+        # 🔥 ULTRA SYNC段階65: 統合データを返却して基礎科目のみの読み込みから変更
+        logger.warning(f"🔥 ULTRA SYNC段階65: 統合問題データを返却 - 基礎+専門合計{len(統合問題データ)}問")
+        return 統合問題データ
         
         # 専門科目も読み込み（全年度・全部門）
         specialist_questions = []
