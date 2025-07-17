@@ -22,10 +22,9 @@
                     {% elif question.question_type == 'basic' %}
                     <span class="badge bg-secondary text-white" style="font-size: 0.7rem;">4-1 基礎</span>
                     {% endif %}
-                    <!-- 🔍 ULTRA SYNC診断情報表示 -->
-                    {% if session.get('ultra_sync_debug') %}
-                    <span class="badge bg-danger text-white" style="font-size: 0.6rem;">🔍 カテゴリ: {{ question.category }}</span>
-                    {% endif %}
+                    <!-- 🔍 ULTRA SYNC診断情報表示 - 常時表示版 -->
+                    <span class="badge bg-danger text-white" style="font-size: 0.6rem;">🔍 カテゴリ: {{ question.category | default('不明') }}</span>
+                    <span class="badge bg-warning text-dark" style="font-size: 0.6rem;">🔍 タイプ: {{ question.question_type | default('不明') }}</span>
                 </div>
             </div>
         </div>
