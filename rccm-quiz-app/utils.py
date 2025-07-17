@@ -15,7 +15,6 @@ from typing import List, Dict, Optional, Any, Callable, Tuple
 from collections import OrderedDict
 # 🔥 ULTRA SYNC FILE SAFETY: ファイル処理安全性強化インポート
 from contextlib import contextmanager
-import resource
 from concurrent.futures import ThreadPoolExecutor
 
 # ⚡ Redis Cache Integration
@@ -76,7 +75,23 @@ def validate_file_path(path: str, allowed_dir: str = None) -> str:
     
     # 絶対パスの場合、プロジェクト内のdataディレクトリかチェック
     if os.path.isabs(normalized_path):
+        # 🔥 ULTRA SYNC本番環境対応: 複数の安全パターンをチェック
+        is_safe_path = False
+        
+        # パターン1: 開発環境（従来通り）
         if normalized_path.startswith(project_data_dir):
+            is_safe_path = True
+            
+        # パターン2: 本番環境（dataファイル名チェック）
+        # 4-2_YYYY.csvやquestions.csvなど安全なファイル名のみ許可
+        safe_file_patterns = ['4-1.csv', '4-2_', 'questions.csv']
+        filename = os.path.basename(normalized_path)
+        if any(pattern in filename for pattern in safe_file_patterns):
+            # 追加: dataディレクトリ名が含まれているかチェック
+            if 'data' in normalized_path and not '..' in normalized_path:
+                is_safe_path = True
+        
+        if is_safe_path:
             # プロジェクト内dataディレクトリへのアクセスは許可
             return normalized_path
         else:
@@ -302,7 +317,7 @@ class FileHandleMonitor:
         """ファイルハンドル取得（制限チェック付き）"""
         with self._lock:
             if len(self._active_files) >= self._max_concurrent:
-                raise ResourceWarning(f"同時ファイル制限超過: {len(self._active_files)}/{self._max_concurrent}")
+                raise RuntimeError(f"同時ファイル制限超過: {len(self._active_files)}/{self._max_concurrent}")
             self._active_files.add(filepath)
             
     def release_handle(self, filepath):
