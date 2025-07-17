@@ -1,0 +1,65 @@
+{
+  "timestamp": "2025-07-12T13:24:37.308041",
+  "test_name": "ULTRASYNC段階20_全13部門分離アクセステスト",
+  "method": "既存examルート活用",
+  "total_departments": 13,
+  "successful_departments": 1,
+  "success_rate": 7.6923076923076925,
+  "department_results": [
+    {
+      "success": true,
+      "department": "基礎科目",
+      "qid": "1000066",
+      "url": "https://rccm-quiz-2025.onrender.com/exam?question_type=basic&count=10",
+      "csv_category": "共通"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    },
+    {
+      "success": false,
+      "error": "not_question_page"
+    }
+  ]
+}

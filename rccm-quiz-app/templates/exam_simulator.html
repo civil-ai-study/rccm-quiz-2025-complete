@@ -275,8 +275,17 @@ document.getElementById('confirmStartExam').addEventListener('click', function()
     this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 開始中...';
     this.disabled = true;
     
+    // 🔥 英語パラメータを日本語に変換
+    const examTypeMapping = {
+        'quick': '短時間',
+        'standard': '標準',
+        'full': '完全'
+    };
+    
+    const japaneseExamType = examTypeMapping[selectedExamType] || selectedExamType;
+    
     // 試験開始
-    window.location.href = `/start_exam/${selectedExamType}`;
+    window.location.href = `/start_exam/${japaneseExamType}`;
 });
 
 // ページ読み込み時の設定

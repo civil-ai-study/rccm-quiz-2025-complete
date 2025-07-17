@@ -1,0 +1,22 @@
+{
+  "timestamp": "20250712_161349",
+  "tests": {
+    "10_questions": {
+      "success": false,
+      "error": "ホームページアクセス失敗: 404"
+    },
+    "20_questions": {
+      "success": false,
+      "error": "ホームページアクセス失敗: 404"
+    },
+    "30_questions": {
+      "success": false,
+      "error": "ホームページアクセス失敗: 404"
+    }
+  },
+  "summary": {
+    "all_success": false,
+    "success_count": 0,
+    "total_count": 3
+  }
+}
