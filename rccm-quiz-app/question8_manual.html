@@ -433,7 +433,7 @@
         <div class="card-body p-1">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="progress-info d-flex align-items-center gap-2" role="status" aria-live="polite">
-                    <span class="badge bg-primary" style="font-size: 0.8rem;" aria-label="進捗">2/10</span>
+                    <span class="badge bg-primary" style="font-size: 0.8rem;" aria-label="進捗">8/10</span>
                     <!-- 年度表示を左上に配置（4-2専門科目の場合） -->
                     
                 </div>
@@ -459,14 +459,14 @@
             <!-- 問題内容 - 圧縮版 -->
             <div class="question-container p-1 mb-1" role="article">
                 <h3 class="question-text fw-bold" id="question-title" style="font-size: 0.95rem; line-height: 1.3;">
-                    開水路の径深の値として正しいものをa～dのなかから選びなさい。
+                    次の文章で誤っているものをa～dのなかから選びなさい。
                 </h3>
             </div>
 
             <!-- 選択肢フォーム - アクセシビリティ強化 -->
             <form method="POST" action="/exam" id="questionForm" role="form" aria-labelledby="question-title" onsubmit="return validateQuizForm()">
                 <input type="hidden" name="csrf_token" value=""/>
-                <input type="hidden" name="qid" value="186">
+                <input type="hidden" name="qid" value="3">
                 <input type="hidden" name="elapsed" value="0" id="elapsedTime">
                 <!-- Session initialization indicators for test validation -->
                 <input type="hidden" name="session_initialized" value="true" class="session-indicator">
@@ -486,7 +486,7 @@
                         <label class="form-check-label w-100" for="optionA" style="cursor: pointer;">
                             <div class="d-flex align-items-start">
                                 <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">A</span>
-                                <span class="option-text" style="font-size: 0.9rem;">1m</span>
+                                <span class="option-text" style="font-size: 0.9rem;">鋼材の弾性領域内において応力度σはひずみεに比例する。そのときの比例定数Ｅをヤング係数または弾性係数という。</span>
                             </div>
                         </label>
                     </div>
@@ -498,7 +498,7 @@
                         <label class="form-check-label w-100" for="optionB" style="cursor: pointer;">
                             <div class="d-flex align-items-start">
                                 <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">B</span>
-                                <span class="option-text" style="font-size: 0.9rem;">2m</span>
+                                <span class="option-text" style="font-size: 0.9rem;">弾性限度内において横ひずみ度と縦ひずみ度の比をポアソン比という。</span>
                             </div>
                         </label>
                     </div>
@@ -510,7 +510,7 @@
                         <label class="form-check-label w-100" for="optionC" style="cursor: pointer;">
                             <div class="d-flex align-items-start">
                                 <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">C</span>
-                                <span class="option-text" style="font-size: 0.9rem;">3m</span>
+                                <span class="option-text" style="font-size: 0.9rem;">ポアソン比は金属材料で3～4コンクリートでは6～12である。</span>
                             </div>
                         </label>
                     </div>
@@ -522,7 +522,7 @@
                         <label class="form-check-label w-100" for="optionD" style="cursor: pointer;">
                             <div class="d-flex align-items-start">
                                 <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">D</span>
-                                <span class="option-text" style="font-size: 0.9rem;">4m</span>
+                                <span class="option-text" style="font-size: 0.9rem;">一定の荷重のもとで時間とともにひずみが増加する現象をクリープという。</span>
                             </div>
                         </label>
                     </div>
@@ -545,7 +545,7 @@
         <a href="/" class="btn btn-outline-secondary btn-sm me-1 touch-target" style="font-size: 0.8rem; min-height: 44px; display: inline-flex; align-items: center;">ホーム</a>
         <a href="/categories" class="btn btn-outline-primary btn-sm me-1 touch-target" style="font-size: 0.8rem; min-height: 44px; display: inline-flex; align-items: center;">分野選択</a>
         <!-- CLAUDE.md準拠改善: 問題表示中にも復習登録可能 -->
-        <button class="btn btn-warning btn-sm touch-target" onclick="bookmarkQuestion('186')" style="font-size: 0.8rem; min-height: 44px; display: inline-flex; align-items: center;">
+        <button class="btn btn-warning btn-sm touch-target" onclick="bookmarkQuestion('3')" style="font-size: 0.8rem; min-height: 44px; display: inline-flex; align-items: center;">
             <i class="fas fa-bookmark me-1"></i>復習登録
         </button>
   </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover">
-    <title>エラー | RCCM試験問題集</title>
+    <title>解答結果 | RCCM試験問題集</title>
     
     <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
@@ -428,45 +428,436 @@
   
   
 <div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card border-danger">
-                <div class="card-header bg-danger text-white">
-                    <h4 class="mb-0">
-                        <i class="fas fa-exclamation-triangle me-2"></i>処理中に問題が発生しました
-                    </h4>
+    <!-- モバイルコントロール -->
+    <div class="text-end mb-3">
+        <div class="mobile-controls">
+            <button type="button" id="voiceBtn" class="btn btn-sm btn-outline-primary me-2" title="音声読み上げ (Space)">
+                <i class="fas fa-volume-up"></i>
+            </button>
+            <button type="button" id="mobileMenuBtn" class="btn btn-sm btn-outline-secondary" title="モバイルメニュー">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- 🔥 ULTRA SYNC IMPROVEMENT 5: 学習記録 -->
+    
+    
+    <!-- 正解・不正解表示（センタリング） - エラーメッセージと区別するため改善 -->
+    <div class="text-center mb-4">
+        
+            <h1 class="display-3 fw-bold result-title" style="color: #6f42c1;">△ 惜しい！</h1>
+            <p class="lead" style="color: #6f42c1;">次回はきっと正解できます！</p>
+        
+    </div>
+
+    <div class="card mb-3 card-incorrect feedback-card">
+        <div class="card-header">
+            問題 1 / 10
+        </div>
+        <div class="card-body">
+            <h5 class="card-title question-text">地震時に発生する液状化現象に関連する用語として誤っているものをa～dのなかから選びなさい。</h5>
+            <div class="answer-summary">
+                <p class="card-text">
+                    <span class="answer-label">あなたの解答:</span> <strong class="user-answer">D ()</strong><br>
+                    
+                        <span class="answer-label">正解:</span> <strong class="correct-answer">A ()</strong>
+                    
+                </p>
+            </div>
+            
+                <div class="explanation-section">
+                    <p class="card-text">
+                        <strong>解説:</strong> <span class="explanation-text">液状化は、飽和した緩い砂質地盤が地震時に過剰間隙水圧の上昇により有効応力を失い、支持力が著しく低下する現象です。</span>
+                    </p>
                 </div>
-                <div class="card-body">
-                    <div class="alert alert-danger border-0" style="background-color: #f8d7da;">
-                        <p class="mb-0"><strong>問題データの取得に失敗しました。(ID: 186)</strong></p>
-                    </div>
+            
+        </div>
+    </div>
+
+    <!-- バッジ獲得通知 -->
+    
+
+
+    <!-- メインナビゲーション -->
+    <div class="mt-4 text-center">
+        
+        <div class="main-navigation-section" style="min-height: 80px; display: flex; align-items: center; justify-content: center;">
+            <!-- 確実な次問題ボタン表示（複数のフォールバック仕組み） -->
+            
+            
+            
+            
+            
+                <!-- 次の問題へボタン（確実に表示される） - 視認性強化 -->
+                <!-- 🔥 ULTRA SYNC 根本修正: URL生成を完全修正 -->
+                
+                
+                <!-- 🔥 ULTRA SYNC 根本修正: 表示番号ベースURL生成 -->
+                <a href="/exam?next=1&current=" 
+                   class="btn btn-primary btn-lg px-5 py-3 main-nav-btn"
+                   style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; position: relative !important; z-index: 1000 !important; background-color: #0d6efd !important; border: 3px solid #0d6efd !important; box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3) !important;"
+                   onclick="return true;">
+                    <i class="fas fa-arrow-right me-2"></i>次の問題へ (2/10)
+                </a>
+            
+        </div>
+        
+        <!-- ストリーク表示（ボタンの下） -->
+        
+        
+        
+        <!-- サブアクション -->
+        <div class="mt-4 sub-actions">
+            <div class="row g-2 justify-content-center">
+                <!-- 復習登録ボタン（正解・不正解問わず表示） - CLAUDE.md準拠改善 -->
+                <div class="col-auto">
                     
-                    <div class="mt-3">
-                        <h6>よくある対処方法：</h6>
-                        <ul class="mb-3">
-                            <li>ページを再読み込みしてください</li>
-                            <li>ブラウザの戻るボタンで前のページに戻ってください</li>
-                            <li>問題が続く場合は、ホームページから改めてお試しください</li>
-                            <li>復習機能をお使いの場合、先に問題を解いて復習登録してください</li>
-                        </ul>
-                    </div>
+                    <button class="btn btn-danger btn-lg bookmark-btn" onclick="bookmarkQuestion('80')">
+                        <i class="fas fa-bookmark me-2"></i>復習必須
+                    </button>
                     
-                    <div class="d-flex gap-2 flex-wrap">
-                        <a href="/" class="btn btn-primary">
-                            <i class="fas fa-home me-2"></i>ホームページ
-                        </a>
-                        <button onclick="history.back()" class="btn btn-outline-secondary">
-                            <i class="fas fa-arrow-left me-2"></i>前のページに戻る
-                        </button>
-                        <button onclick="location.reload()" class="btn btn-outline-info">
-                            <i class="fas fa-sync-alt me-2"></i>ページを再読み込み
-                        </button>
-                    </div>
+                </div>
+                <div class="col-auto">
+                    <a href="/exam?qid=80" class="btn btn-info btn-lg">
+                        <i class="fas fa-redo me-2"></i>この問題をもう一度
+                    </a>
+                </div>
+                <div class="col-auto">
+                    <a href="/" class="btn btn-outline-secondary">
+                        <i class="fas fa-home me-1"></i>ホーム
+                    </a>
                 </div>
             </div>
         </div>
+        
     </div>
 </div>
+<style>
+.badge-notification {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 5px;
+    text-align: center;
+    animation: none;
+    box-shadow: none;
+    min-width: 120px;
+}
+
+.badge-icon {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.badge-name {
+    font-weight: normal;
+    color: #6c757d;
+    margin-bottom: 3px;
+    font-size: 0.85rem;
+}
+
+.badge-desc {
+    font-size: 0.75rem;
+    color: #adb5bd;
+}
+
+.streak-display {
+    display: inline-block;
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+}
+
+.streak-icon {
+    font-size: 1.2rem;
+    margin-right: 5px;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+    }
+}
+
+.card-correct {
+    border-left: 5px solid #28a745;
+}
+
+.card-incorrect {
+    border-left: 5px solid #dc3545;
+}
+
+/* 結果表示スタイル */
+.result-title {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    animation: result-bounce 0.6s ease-out;
+}
+
+@keyframes result-bounce {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.mobile-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.feedback-card {
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.main-navigation-section {
+    margin: 30px 0;
+}
+
+.streak-display-compact {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
+}
+
+.sub-actions {
+    padding-top: 20px;
+    border-top: 1px solid #dee2e6;
+}
+
+.answer-summary {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.explanation-section {
+    background-color: #e3f2fd;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #2196f3;
+}
+
+.main-nav-btn {
+    transition: transform 0.2s ease;
+}
+
+.main-nav-btn:hover {
+    transform: translateY(-2px);
+}
+
+.bookmark-btn {
+    transition: all 0.3s ease;
+}
+
+.bookmark-btn:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+}
+
+/* スマホ最適化レスポンシブ対応 */
+@media (max-width: 768px) {
+    .container {
+        padding: 0.75rem !important;
+    }
+    
+    .mobile-controls button {
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.9rem !important;
+        min-height: 44px !important;
+    }
+    
+    .main-nav-btn {
+        width: 100% !important;
+        padding: 1rem 2rem !important;
+        font-size: 1.1rem !important;
+        min-height: 55px !important;
+        border-radius: 10px !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .result-title {
+        font-size: 2.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .feedback-card {
+        border-radius: 12px !important;
+        margin-bottom: 1.25rem !important;
+    }
+    
+    .card-body {
+        padding: 1.25rem !important;
+    }
+    
+    .question-text {
+        font-size: 1.1rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .answer-summary {
+        font-size: 1rem !important;
+        padding: 1rem !important;
+        border-radius: 10px !important;
+        margin: 1rem 0 !important;
+    }
+    
+    .explanation-section {
+        font-size: 1rem !important;
+        padding: 1rem !important;
+        border-radius: 10px !important;
+        margin: 1rem 0 !important;
+    }
+    
+    .sub-actions {
+        padding-top: 1.5rem !important;
+    }
+    
+    .sub-actions .btn {
+        width: 100% !important;
+        margin-bottom: 0.75rem !important;
+        padding: 0.875rem 1.5rem !important;
+        font-size: 0.95rem !important;
+        min-height: 48px !important;
+        border-radius: 8px !important;
+    }
+    
+    .badge-notification {
+        margin: 0.25rem !important;
+        padding: 0.75rem !important;
+        min-width: 100px !important;
+    }
+    
+    .badge-icon {
+        font-size: 1.5rem !important;
+    }
+    
+    .badge-name {
+        font-size: 0.9rem !important;
+    }
+    
+    .streak-display-compact {
+        padding: 0.75rem 1.25rem !important;
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0.5rem !important;
+    }
+    
+    .result-title {
+        font-size: 2rem !important;
+    }
+    
+    .main-nav-btn {
+        padding: 0.875rem 1.5rem !important;
+        font-size: 1rem !important;
+        min-height: 50px !important;
+    }
+    
+    .sub-actions .btn {
+        padding: 0.75rem 1.25rem !important;
+        font-size: 0.9rem !important;
+        min-height: 44px !important;
+    }
+    
+    .card-body {
+        padding: 1rem !important;
+    }
+    
+    .answer-summary,
+    .explanation-section {
+        padding: 0.875rem !important;
+        font-size: 0.95rem !important;
+    }
+    
+    .question-text {
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 0.25rem !important;
+    }
+    
+    .result-title {
+        font-size: 1.75rem !important;
+    }
+    
+    .main-nav-btn {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.95rem !important;
+        min-height: 48px !important;
+    }
+    
+    .card-body {
+        padding: 0.75rem !important;
+    }
+    
+    .question-text {
+        font-size: 0.95rem !important;
+    }
+    
+    .answer-summary,
+    .explanation-section {
+        padding: 0.75rem !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* タッチ操作の改善 */
+@media (hover: none) and (pointer: coarse) {
+    .btn {
+        -webkit-tap-highlight-color: rgba(0,0,0,0.1) !important;
+    }
+    
+    .btn:active {
+        transform: scale(0.95) !important;
+    }
+    
+    .bookmark-btn:active {
+        transform: scale(0.95) !important;
+    }
+}
+</style>
 
 </div>
 <footer class="text-center mt-4 mb-2 text-muted">
@@ -485,6 +876,55 @@
 
 <!-- セッションタイムアウト管理JavaScript -->
 <script src="/static/js/session-timeout.js"></script>
+
+
+<script>
+    function bookmarkQuestion(questionId) {
+        fetch('/api/bookmark', { // 仮のAPIエンドポイント
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ question_id: questionId }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showBookmarkSuccessModal();
+            } else {
+                alert('登録に失敗しました: ' + (data.error || '不明なエラー'));
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('復習リストへの登録に失敗しました。ネットワーク接続を確認してください。');
+        });
+    }
+
+    function showBookmarkSuccessModal() {
+        const myModal = new bootstrap.Modal(document.getElementById('bookmarkSuccessModal'));
+        myModal.show();
+        
+        // 2秒後に自動的に閉じる
+        setTimeout(() => {
+            myModal.hide();
+        }, 2000);
+    }
+</script>
+
+<div class="modal fade" id="bookmarkSuccessModal" tabindex="-1" aria-labelledby="bookmarkSuccessModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bookmarkSuccessModalLabel">登録完了</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        この問題を復習リストに登録しました！
+      </div>
+    </div>
+  </div>
+</div>
 
 
 </body>

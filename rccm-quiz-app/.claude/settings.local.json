@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:rccm-quiz-2025.onrender.com)",
+      "Bash(python test:*)",
+      "Bash(python3 test:*)",
+      "Bash(py test_production_basic_flow.py https://rccm-quiz-2025.onrender.com)",
+      "Bash(/c/Users/ABC/AppData/Local/Microsoft/WindowsApps/python test_production_basic_flow.py https://rccm-quiz-2025.onrender.com)",
+      "Bash(python:*)",
+      "Bash(py manual_10question_test.py)",
+      "Bash(ls:*)",
+      "Bash(/c/Users/ABC/AppData/Local/Microsoft/WindowsApps/python manual_10question_test.py)",
+      "Bash(/c/Users/ABC/AppData/Local/Microsoft/WindowsApps/python -c \"import requests; print(''requests available'')\")",
+      "Bash(/c/Users/ABC/AppData/Local/Microsoft/WindowsApps/python -m pip install requests)",
+      "Bash(curl:*)",
+      "Bash(chmod:*)",
+      "Bash(./curl_10question_test.sh)",
+      "Bash(./improved_10question_test.sh:*)",
+      "Bash(grep:*)",
+      "Bash(sed:*)",
+      "Bash(where python)",
+      "Bash(C:UsersABCAppDataLocalMicrosoftWindowsAppspython.exe --version)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
+    ],
+    "deny": []
+  }
+}
