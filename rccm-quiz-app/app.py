@@ -8602,6 +8602,8 @@ def start_exam(exam_type):
         
         # 🔥 ULTRA SYNC FIX: 詳細エラーログ追加
         logger.info(f"🔥 EXAM START: 試験開始処理開始 - exam_type: {exam_type}, method: {request.method}")
+        # 🔥 ULTRA SYNC段階診断: exam_typeの詳細確認
+        logger.info(f"🔍 ULTRA SYNC診断: exam_type値='【{exam_type}】', 型={type(exam_type)}, 長さ={len(str(exam_type))}")
         
         # 🛡️ ULTRASYNC緊急修正: GETリクエスト時のデフォルト試験開始
         if request.method == 'GET' and not any([questions_param, exam_config_param, category_param]):
@@ -8638,8 +8640,13 @@ def start_exam(exam_type):
             logger.info(f"🔥 EXAM START: year parameter received: {year_param}")
         
         # 🛡️ ULTRATHIN区 段階2: 部門別動的読み込み実装
+        # 🔥 ULTRA SYNC段階診断: 条件分岐の詳細確認
+        logger.info(f"🔍 条件分岐確認: exam_type=='基礎科目' → {exam_type == '基礎科目'}")
+        logger.info(f"🔍 文字比較: '【{exam_type}】' vs '【基礎科目】'")
+        
         if exam_type == '基礎科目':
             # 基礎科目の場合は基礎問題のみ
+            logger.info(f"🔥 ULTRA SYNC: 基礎科目パス実行中")
             all_questions = load_questions()  # 基礎科目のみ読み込み
             logger.info(f"🔥 EXAM START: 基礎科目データ読み込み完了 - {len(all_questions)}問")
             # 🔥 ULTRA SYNC診断: 基礎科目問題の構成確認
@@ -8647,6 +8654,7 @@ def start_exam(exam_type):
                 sample_basic = all_questions[0]
                 logger.info(f"🔍 基礎科目サンプル - カテゴリ:{sample_basic.get('category')}, タイプ:{sample_basic.get('question_type')}")
         else:
+            logger.info(f"🔥 ULTRA SYNC: 専門科目パス実行中 - 部門: {exam_type}")
             # 専門科目の場合は該当部門のみ動的読み込み
             from utils import load_specialist_questions_only
             # 🚨 ULTRATHIN区段階46緊急修正: 本番環境パス問題解決
