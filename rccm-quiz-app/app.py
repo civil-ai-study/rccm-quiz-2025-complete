@@ -8742,29 +8742,66 @@ def start_exam(exam_type):
         # 🔥 ULTRA SYNC根本修正: 道路が必ず専門科目として処理されるよう強制
         if exam_type == '道路':
             session['ultra_sync_stage68_path'] = "道路専門科目強制パス実行"
-            logger.warning(f"🔥 ULTRA SYNC段階67: 道路専門科目強制パス実行中")
-            実際のカテゴリ名 = "道路"
-            全問題データ = load_questions()
-            logger.warning(f"🔍 段階67: 全問題データ総数 - {len(全問題データ)}問")
+            logger.warning(f"🔥 最終修正: 道路専門科目強制パス実行中")
             
-            # 🔍 診断: カテゴリ別問題数の確認
-            カテゴリ別統計 = {}
-            for 問題 in 全問題データ:
-                cat = 問題.get('category', 'なし')
-                type_val = 問題.get('question_type', 'なし')
-                key = f"{cat}_{type_val}"
-                カテゴリ別統計[key] = カテゴリ別統計.get(key, 0) + 1
+            # 🚨 最終修正: 道路専門科目データを直接確保
+            all_questions = []
+            data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
             
-            logger.warning(f"🔍 段階67: カテゴリ別統計 - {カテゴリ別統計}")
+            # 道路専門科目データを直接読み込み
+            import csv
+            specialist_files = ['4-2_2019.csv', '4-2_2018.csv', '4-2_2017.csv']
+            for filename in specialist_files:
+                filepath = os.path.join(data_dir, filename)
+                if os.path.exists(filepath):
+                    try:
+                        with open(filepath, 'r', encoding='utf-8') as f:
+                            reader = csv.DictReader(f)
+                            year = int(filename.split('_')[1].split('.')[0])
+                            for row in reader:
+                                if row.get('category') == '道路':
+                                    question = {
+                                        'id': row.get('id', ''),
+                                        'category': '道路',
+                                        'year': year,
+                                        'question': row.get('question', ''),
+                                        'option_a': row.get('option_a', ''),
+                                        'option_b': row.get('option_b', ''),
+                                        'option_c': row.get('option_c', ''),
+                                        'option_d': row.get('option_d', ''),
+                                        'correct_answer': row.get('correct_answer', ''),
+                                        'explanation': row.get('explanation', ''),
+                                        'question_type': 'specialist'
+                                    }
+                                    all_questions.append(question)
+                    except Exception as e:
+                        logger.error(f"🚨 道路専門科目読み込みエラー {filename}: {e}")
             
-            専門科目のみ = [問題 for 問題 in 全問題データ 
-                         if 問題.get('category') == 実際のカテゴリ名 
-                         and 問題.get('question_type') == 'specialist']
+            logger.warning(f"🔥 最終修正: 道路専門科目データ確保 - {len(all_questions)}問")
             
-            logger.warning(f"🔍 段階67: 道路+specialist問題数 - {len(専門科目のみ)}問")
+            # フォールバック: 最低限の問題データ確保
+            if len(all_questions) == 0:
+                logger.warning(f"🚨 フォールバック: 基礎科目で代替")
+                basic_file = os.path.join(data_dir, '4-1.csv')
+                if os.path.exists(basic_file):
+                    with open(basic_file, 'r', encoding='utf-8') as f:
+                        reader = csv.DictReader(f)
+                        for row in reader:
+                            question = {
+                                'id': row.get('id', ''),
+                                'category': '共通',
+                                'question': row.get('question', ''),
+                                'option_a': row.get('option_a', ''),
+                                'option_b': row.get('option_b', ''),
+                                'option_c': row.get('option_c', ''),
+                                'option_d': row.get('option_d', ''),
+                                'correct_answer': row.get('correct_answer', ''),
+                                'explanation': row.get('explanation', ''),
+                                'question_type': 'basic'
+                            }
+                            all_questions.append(question)
             
-            all_questions = 専門科目のみ if 専門科目のみ else 全問題データ
-            logger.warning(f"✅ 道路専門科目強制読み込み結果: {len(all_questions)}問")
+            logger.warning(f"✅ 道路専門科目最終確保: {len(all_questions)}問")
         elif exam_type == '基礎科目':
             session['ultra_sync_stage68_path'] = "基礎科目パス実行"
             # 基礎科目の場合は基礎問題のみ
