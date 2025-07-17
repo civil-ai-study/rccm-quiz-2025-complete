@@ -212,19 +212,32 @@ def get_department_questions_ultrasync(department_name, question_count=10):
         else:
             specialist_questions = []
             
-            # 年度別CSVから対象カテゴリーの問題を収集
-            for year in range(2008, 2020):  # 2008-2019年度
-                try:
-                    # 既存の安全な専門科目読み込み関数を使用
-                    year_questions = load_specialist_questions_only("all", year)
-                    
-                    # CSVの正確な日本語カテゴリー名でフィルタリング
-                    category_questions = [q for q in year_questions if q.get('category') == csv_category]
-                    specialist_questions.extend(category_questions)
-                    
-                except Exception as e:
-                    logger.warning(f"⚠️ {year}年度読み込みエラー: {e}")
-                    continue
+            # 🔥 ULTRA SYNC修正: 安全な専門科目読み込み実装
+            try:
+                # 基本的な全問題読み込み後、専門科目をフィルタ
+                all_questions = load_questions()
+                
+                # CSVの正確な日本語カテゴリー名と専門科目でフィルタリング
+                category_questions = [q for q in all_questions 
+                                    if q.get('category') == csv_category 
+                                    and q.get('question_type') == 'specialist']
+                specialist_questions.extend(category_questions)
+                
+                logger.info(f"🎯 {department_name}専門科目読み込み: {len(category_questions)}問取得 (カテゴリ: {csv_category})")
+                
+            except Exception as e:
+                logger.warning(f"⚠️ 専門科目読み込みエラー: {e}")
+                # フォールバック: 年度別読み込みを試行
+                for year in [2019, 2018, 2017, 2016]:  # 最新年度から優先
+                    try:
+                        # 年度・部門指定で読み込み
+                        year_questions = load_specialist_questions_only(csv_category, year)
+                        specialist_questions.extend(year_questions)
+                        if len(specialist_questions) >= question_count:
+                            break
+                    except Exception as year_error:
+                        logger.warning(f"⚠️ {year}年度{csv_category}読み込みエラー: {year_error}")
+                        continue
             
             if len(specialist_questions) >= question_count:
                 # 🔥 ID依存を排除: カテゴリから直接ランダム選択
