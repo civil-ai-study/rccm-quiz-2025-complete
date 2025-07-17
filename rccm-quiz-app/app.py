@@ -2619,14 +2619,14 @@ def load_questions():
     logger.info("🛡️ ULTRATHIN段階75: RCCM統合問題データの読み込み開始")
 
     try:
-        # 🛡️ ULTRATHIN段階75: 本番環境用データディレクトリ検出強化
-        data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
-        logger.warning(f"🛡️ ULTRATHIN段階75: データディレクトリ確認 - {data_dir}")
-        logger.warning(f"🛡️ ULTRATHIN段階75: ディレクトリ存在確認 - {os.path.exists(data_dir)}")
+        # 🚨 緊急修正: 確実なdata_dirパス設定
+        data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+        logger.warning(f"🚨 緊急修正: 確実なデータディレクトリ - {data_dir}")
+        logger.warning(f"🚨 緊急修正: ディレクトリ存在確認 - {os.path.exists(data_dir)}")
         
         # 基礎科目ファイル存在確認
         basic_file = os.path.join(data_dir, '4-1.csv')
-        logger.warning(f"🛡️ ULTRATHIN段階75: 基礎科目ファイル確認 - {basic_file} (存在: {os.path.exists(basic_file)})")
+        logger.warning(f"🚨 緊急修正: 基礎科目ファイル確認 - {basic_file} (存在: {os.path.exists(basic_file)})")
         
         # 🔥 緊急修正: 基本的な問題データ読み込み確保
         logger.warning(f"🚨 緊急修正: 基本的な問題データ読み込み開始")
@@ -2657,9 +2657,13 @@ def load_questions():
             except Exception as e:
                 logger.error(f"🚨 基礎科目読み込みエラー: {e}")
         
-        # 専門科目データも読み込み
+        # 専門科目データも読み込み（全年度対応）
         specialist_questions = []
-        specialist_files = ['4-2_2019.csv', '4-2_2018.csv', '4-2_2017.csv']
+        specialist_files = [
+            '4-2_2008.csv', '4-2_2009.csv', '4-2_2010.csv', '4-2_2011.csv',
+            '4-2_2012.csv', '4-2_2013.csv', '4-2_2014.csv', '4-2_2015.csv',
+            '4-2_2016.csv', '4-2_2017.csv', '4-2_2018.csv', '4-2_2019.csv'
+        ]
         for filename in specialist_files:
             filepath = os.path.join(data_dir, filename)
             if os.path.exists(filepath):
