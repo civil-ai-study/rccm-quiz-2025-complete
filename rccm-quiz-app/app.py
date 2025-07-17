@@ -8604,6 +8604,9 @@ def start_exam(exam_type):
         logger.info(f"🔥 EXAM START: 試験開始処理開始 - exam_type: {exam_type}, method: {request.method}")
         # 🔥 ULTRA SYNC段階診断: exam_typeの詳細確認
         logger.info(f"🔍 ULTRA SYNC診断: exam_type値='【{exam_type}】', 型={type(exam_type)}, 長さ={len(str(exam_type))}")
+        # 🔍 ULTRA SYNC診断: セッションに診断情報を設定
+        session['ultra_sync_debug'] = True
+        session['debug_exam_type'] = exam_type
         
         # 🛡️ ULTRASYNC緊急修正: GETリクエスト時のデフォルト試験開始
         if request.method == 'GET' and not any([questions_param, exam_config_param, category_param]):
