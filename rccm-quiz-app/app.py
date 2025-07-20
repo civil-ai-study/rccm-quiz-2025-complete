@@ -356,11 +356,31 @@ def safe_post_processing(request, session, all_questions):
         if not answer or answer not in ['A', 'B', 'C', 'D']:
             return None, "無効な回答が選択されました"
         
+        # 🛡️ ULTRA SYNC HOTFIX: 詳細デバッグ情報付きデータ変換
         try:
+            # 詳細ログ出力でデバッグ支援
+            logger.info(f"🔍 POST データ検証: qid='{qid}' (type: {type(qid)}), elapsed='{elapsed}' (type: {type(elapsed)})")
+            
+            # qid の安全な変換
+            if not qid or qid == '':
+                logger.error(f"❌ 問題ID が空です: qid='{qid}'")
+                return None, "問題IDが設定されていません。ページを再読み込みしてください。"
+            
             qid = int(qid)
-            elapsed = int(elapsed)
-        except (ValueError, TypeError):
-            return None, "無効なデータ形式です"
+            
+            # elapsed の安全な変換（デフォルト値でフォールバック）
+            if not elapsed or elapsed == '':
+                logger.warning(f"⚠️ 経過時間が空のためデフォルト値使用: elapsed='{elapsed}'")
+                elapsed = 0
+            else:
+                elapsed = int(elapsed)
+            
+            logger.info(f"✅ データ変換成功: qid={qid}, elapsed={elapsed}")
+            
+        except (ValueError, TypeError) as e:
+            # 詳細なエラー情報をログに記録
+            logger.error(f"❌ データ変換エラー: qid='{qid}', elapsed='{elapsed}', error={e}")
+            return None, f"データ形式エラーが発生しました。ページを再読み込みしてください。(デバッグ: qid='{qid}', elapsed='{elapsed}')"
         
         # 🛡️ ULTRATHIN-001: セッション検証機能復旧（副作用絶対禁止）
         # ベストプラクティス: Flask専門家Miguel Grinberg推奨パターン適用
