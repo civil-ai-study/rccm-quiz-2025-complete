@@ -1137,11 +1137,12 @@ def inject_csrf_token():
         except ImportError:
             pass
     
-    # フォールバック: 空のトークン関数を提供
-    def empty_csrf_token():
-        return ""
+    # 🛡️ ULTRA SYNC HOTFIX: フォールバック時に実際の値を返す（関数ではなく）
+    # セッションベースの簡易CSRFトークン生成
+    if '_csrf_token' not in session:
+        session['_csrf_token'] = str(uuid.uuid4())
     
-    return dict(csrf_token=empty_csrf_token)
+    return dict(csrf_token=lambda: session.get('_csrf_token', ''))
 
 # 🛡️ セキュリティヘッダー追加
 @app.after_request
