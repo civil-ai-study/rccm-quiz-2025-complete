@@ -566,7 +566,8 @@ class AILearningAnalyzer:
                 hour_errors[hour]['total'] += 1
                 if not entry.get('is_correct', False):
                     hour_errors[hour]['errors'] += 1
-            except:
+            except Exception as e:
+                logger.debug(f"時間帯分析エラー: {e}")
                 continue
         
         worst_hours = []

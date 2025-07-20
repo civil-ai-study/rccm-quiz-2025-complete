@@ -1436,7 +1436,8 @@ class AdaptiveLearningEngine:
                 
                 additional = random.sample(basic_questions, min(count - len(basic_due), len(basic_questions)))
                 return basic_due + additional
-        except:
+        except Exception as e:
+            logger.warning(f"適応学習選択エラー: {e}")
             # フォールバック
             basic_questions = [q for q in all_questions if q.get('question_type') == 'basic']
             if department:

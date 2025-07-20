@@ -409,7 +409,8 @@ class AdminDashboard:
         except (ValueError, TypeError, KeyError) as e:
             logger.warning(f"日付パースエラー: {e}")
             return None
-        except:
+        except Exception as e:
+            logger.warning(f"予期しない日付パースエラー: {e}")
             return None
     
     def _analyze_user_learning_pattern(self, history: List[Dict]) -> str:
@@ -428,7 +429,8 @@ class AdminDashboard:
                 last_date = datetime.fromisoformat(dates[-1])
                 study_period = (last_date - first_date).days
                 frequency = len(history) / max(study_period, 1)
-            except:
+            except Exception as e:
+                logger.warning(f"学習頻度計算エラー: {e}")
                 frequency = 0
         else:
             frequency = 0
@@ -790,7 +792,8 @@ class AdminDashboard:
                     filepath = os.path.join(self.data_dir, filename)
                     size = os.path.getsize(filepath)
                     sizes[filename] = f"{size / 1024:.1f} KB"
-        except:
+        except Exception as e:
+            logger.warning(f"ファイルサイズ取得エラー: {e}")
             pass
         return sizes
     
