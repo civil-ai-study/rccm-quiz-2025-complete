@@ -5607,9 +5607,9 @@ def exam():
                 srs_data = session.get('srs_data', {})
                 question_srs = srs_data.get(str(specific_qid), {})
 
-                # Calculate consistent display values
-                session_total = len(session['exam_question_ids'])
-                display_current = max(1, session['exam_current'] + 1)
+                # 🛡️ ULTRA SYNC: KeyError回避の安全なセッションアクセス
+                session_total = len(session.get('exam_question_ids', []))
+                display_current = max(1, session.get('exam_current', 0) + 1)
                 display_total = get_user_session_size(session)  # 🔥 FIX: ユーザー設定問題数を使用
                 
                 return render_template(
