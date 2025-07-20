@@ -1838,7 +1838,9 @@ def _validate_session_integrity():
 
         if exam_ids and current >= len(exam_ids):
             session['exam_current'] = max(0, len(exam_ids) - 1)
-            logger.warning(f"exam_currentの範囲修正: {current} -> {session['exam_current']}")
+            # 🛡️ ULTRA SYNC HOTFIX: KeyError防止 - session.get()使用
+            new_current = session.get('exam_current', 0)
+            logger.warning(f"exam_currentの範囲修正: {current} -> {new_current}")
 
     except Exception as e:
         logger.error(f"セッション整合性チェックエラー: {e}")
