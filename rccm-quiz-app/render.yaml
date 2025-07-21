@@ -12,7 +12,7 @@ services:
         generateValue: true
       - key: PYTHONPATH
         value: /opt/render/project/src
-    healthCheckPath: /health
+    healthCheckPath: /render-health
     disk:
       name: rccm-data
       mountPath: /opt/render/project/src/data

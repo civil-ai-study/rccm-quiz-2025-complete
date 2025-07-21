@@ -36,6 +36,11 @@ try:
     logger.info(f"🎯 ULTRASYNC: 登録ルート数: {route_count}")
     logger.info(f"🎯 ULTRASYNC: アプリ名: {app.name}")
     
+    # Render.com対応: ヘルスチェック高速化
+    @app.route('/render-health')
+    def render_health():
+        return {'status': 'healthy', 'timestamp': '2025-07-21'}
+    
     # Gunicorn用のアプリケーションオブジェクト
     application = app
     
