@@ -168,6 +168,7 @@ class MobileFeatures {
                     console.log(`Page load time: ${loadTime}ms`);
                 } else {
                     console.log('Page load time: measurement unavailable (navigation timing not ready)');
+                }
             }
         });
 
