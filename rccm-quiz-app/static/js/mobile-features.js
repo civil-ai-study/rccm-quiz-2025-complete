@@ -162,8 +162,12 @@ class MobileFeatures {
         window.addEventListener('load', () => {
             if ('performance' in window) {
                 const navigation = performance.getEntriesByType('navigation')[0];
-                const loadTime = navigation.loadEventEnd - navigation.loadEventStart;
-                console.log(`Page load time: ${loadTime}ms`);
+                // Performance API測定値の安全性チェック追加
+                if (navigation && navigation.loadEventEnd && navigation.loadEventStart) {
+                    const loadTime = Math.max(0, navigation.loadEventEnd - navigation.loadEventStart);
+                    console.log(`Page load time: ${loadTime}ms`);
+                } else {
+                    console.log('Page load time: measurement unavailable (navigation timing not ready)');
             }
         });
 

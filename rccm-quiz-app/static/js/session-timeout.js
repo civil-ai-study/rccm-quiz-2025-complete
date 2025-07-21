@@ -90,11 +90,11 @@ class SessionTimeoutManager {
             const result = await response.json();
             
             if (result.success && result.session) {
-                // セッション状態を正規化
+                // セッション状態を正規化（安全な値取得）
                 const sessionData = result.session;
                 const normalizedStatus = {
                     status: sessionData.active ? 'active' : 'inactive',
-                    remaining_time: sessionData.has_quiz ? 1800 : 3600, // 仮の値
+                    remaining_time: this.calculateRemainingTime(sessionData),
                     warning: false,
                     expired: false
                 };
@@ -566,3 +566,23 @@ window.addEventListener('beforeunload', function() {
         window.sessionTimeoutManager.destroy();
     }
 });
+
+// セッション残り時間の安全な計算メソッドをクラス外で定義
+SessionTimeoutManager.prototype.calculateRemainingTime = function(sessionData) {
+    try {
+        // 実際のセッションデータから安全に計算
+        if (sessionData.remaining_time && typeof sessionData.remaining_time === 'number') {
+            return Math.max(0, sessionData.remaining_time);
+        }
+        
+        // フォールバック: セッションタイプに基づく推定値
+        if (sessionData.has_quiz) {
+            return 1800; // 30分（クイズセッション）
+        }
+        
+        return 3600; // 60分（通常セッション）
+    } catch (error) {
+        console.warn('セッション残り時間計算エラー:', error);
+        return 3600; // セーフティ値
+    }
+};

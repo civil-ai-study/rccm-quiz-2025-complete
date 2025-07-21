@@ -575,17 +575,17 @@ def safe_exam_session_reset():
 # 🛡️ ULTRATHIN最終対策: インメモリ試験データストレージ
 EXAM_DATA_CACHE = {}
 
-# 🛡️ ULTRA SYNC: メモリリーク防止システム統合
-try:
-    from ultrasync_memory_protector import ultrasync_protect_memory, ultrasync_cleanup_check
-    # EXAM_DATA_CACHEのメモリ保護登録（副作用なし）
-    ultrasync_protect_memory('EXAM_DATA_CACHE', EXAM_DATA_CACHE, 100)
-    logger.info("ULTRA SYNC: メモリ保護システム有効化")
-except ImportError:
-    # メモリ保護システムが利用できない場合のフォールバック
-    def ultrasync_cleanup_check(var_name):
-        return False
-    logger.info("ULTRA SYNC: メモリ保護システム未適用（通常動作継続）")
+# 🛡️ ULTRA SYNC: メモリリーク防止システム統合 - 高速化のため無効化
+# try:
+#     from ultrasync_memory_protector import ultrasync_protect_memory, ultrasync_cleanup_check
+#     # EXAM_DATA_CACHEのメモリ保護登録（副作用なし）
+#     ultrasync_protect_memory('EXAM_DATA_CACHE', EXAM_DATA_CACHE, 100)
+#     # logger.info("ULTRA SYNC: メモリ保護システム有効化")  # logger未定義のためコメントアウト
+# except ImportError:
+#     # メモリ保護システムが利用できない場合のフォールバック
+def ultrasync_cleanup_check(var_name):
+    return False
+    # logger.info("ULTRA SYNC: メモリ保護システム未適用（通常動作継続）")  # logger未定義のためコメントアウト
 
 def store_exam_data_in_memory(exam_id, exam_session):
     """試験データをメモリに一時保存"""
@@ -969,9 +969,9 @@ rotating_handler.setFormatter(log_formatter)
 console_handler = logging.StreamHandler()
 console_handler.setFormatter(log_formatter)
 
-# ルートロガー設定
+# ルートロガー設定 - ULTRA SYNC 高速化: ログレベルをWARNINGに
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.WARNING,  # INFOからWARNINGに変更で高速化
     handlers=[rotating_handler, console_handler]
 )
 
@@ -1098,8 +1098,8 @@ app = Flask(__name__)
 # 🛡️ セキュリティ強化設定適用
 app.config.from_object(Config)
 
-# ⚡ ULTRA SYNC CRITICAL FIX: Redis Cache初期化強化
-if REDIS_CACHE_INTEGRATION:
+# ⚡ ULTRA SYNC CRITICAL FIX: Redis Cache初期化強化 - 高速化のため無効化
+if False:  # REDIS_CACHE_INTEGRATION を強制無効化
     try:
         redis_config = {
             'CACHE_TYPE': 'redis',
@@ -1125,14 +1125,14 @@ if REDIS_CACHE_INTEGRATION:
         except Exception as fallback_error:
             logger.error(f"❌ フォールバック初期化も失敗: {fallback_error}")
 else:
-    logger.info("💾 Redis Cache無効 - メモリキャッシュを使用")
-    # 🔥 ULTRA SYNC FIX: Redis無効時もキャッシュマネージャーを初期化
-    try:
-        cache_manager = init_cache(app, {})  # メモリキャッシュ使用
-        logger.info("💾 メモリキャッシュマネージャー初期化完了")
-    except Exception as e:
-        logger.error(f"❌ メモリキャッシュ初期化失敗: {e}")
-        cache_manager = None
+    # logger.info("💾 Redis Cache無効 - メモリキャッシュを使用")  # 高速化のためログ無効化
+    # 🔥 ULTRA SYNC FIX: 高速化のためキャッシュマネージャー無効化
+    # try:
+    #     cache_manager = init_cache(app, {})  # メモリキャッシュ使用
+    #     logger.info("💾 メモリキャッシュマネージャー初期化完了")
+    # except Exception as e:
+    #     logger.error(f"❌ メモリキャッシュ初期化失敗: {e}")
+    cache_manager = None  # 高速化のため無効化
 
 # 🛡️ CSRF保護初期化
 if CSRF_AVAILABLE and app.config.get('WTF_CSRF_ENABLED', True):
@@ -2699,8 +2699,8 @@ def load_questions():
     """
     global _questions_cache, _cache_timestamp
 
-    # 🛡️ ULTRATHIN段階75: 本番環境デバッグ強化実装
-    logger.warning("🛡️ ULTRATHIN段階75: 本番環境対応強化版データ読み込み")
+    # 🛡️ ULTRA SYNC 高速化: ログ出力を最小化
+    # logger.warning("🛡️ ULTRATHIN段階75: 本番環境対応強化版データ読み込み")
     
     # 🔥 ULTRA SYNC 緊急最適化: 効率的キャッシュシステム実装
     current_time = datetime.now()
@@ -7835,9 +7835,18 @@ def review_questions():
 
             if not review_questions:
                 logger.error("最終的に有効な復習問題が0問になりました")
+                # より具体的なエラーメッセージとデバッグ情報を提供
+                debug_info = {
+                    'selected_review_items_count': len(selected_review_items) if selected_review_items else 0,
+                    'department': department,
+                    'user_data_available': 'user_data' in session,
+                    'timestamp': datetime.now().isoformat()
+                }
+                logger.error(f"復習問題準備エラー詳細: {debug_info}")
                 return render_template('error.html',
-                                       error="復習問題の準備中に問題が発生しました。しばらく待ってから再度お試しください。",
-                                       error_type="final_question_preparation_error")
+                                       error="復習問題の準備中に問題が発生しました。選択した部門に十分な問題データが存在しない可能性があります。他の部門をお試しいただくか、しばらく待ってから再度お試しください。",
+                                       error_type="final_question_preparation_error",
+                                       debug_info=debug_info if app.debug else None)
 
             logger.info(f"復習問題最終選択: 全{len(review_questions_with_score)}問中{len(review_questions)}問を弱点スコア順で選択")
 
@@ -9528,14 +9537,29 @@ def handle_quiz_simple_answer():
         # セッションデータ取得
         question_ids = session.get('quiz_question_ids', [])
         current_index = session.get('quiz_current', 0)
-        answer = request.form.get('answer')
+        
+        # 🛡️ ULTRA SYNC: JSON/フォーム両方対応
+        if request.is_json:
+            answer = request.json.get('answer')
+            logger.info(f"🔥 QUIZ SIMPLE: JSON送信 - request.json={request.json}")
+        else:
+            answer = request.form.get('answer')
+            logger.info(f"🔥 QUIZ SIMPLE: フォーム送信 - request.form={dict(request.form)}")
         
         logger.info(f"🔥 QUIZ SIMPLE: current_index={current_index}, total={len(question_ids)}, answer={answer}")
+        logger.info(f"🔥 QUIZ SIMPLE: question_ids={question_ids}")
         
         if not question_ids or current_index >= len(question_ids):
+            logger.error(f"🔥 QUIZ SIMPLE: セッション状態エラー - question_ids={len(question_ids)}, current_index={current_index}")
             return jsonify({'success': False, 'error': '無効なセッション状態です'})
         
         if not answer:
+            logger.error(f"🔥 QUIZ SIMPLE: 回答未選択エラー - answer='{answer}', is_json={request.is_json}")
+            # デバッグ用：リクエスト内容全体をログ出力
+            if request.is_json:
+                logger.error(f"🔥 QUIZ SIMPLE: JSON詳細 - headers={dict(request.headers)}, data={request.get_json()}")
+            else:
+                logger.error(f"🔥 QUIZ SIMPLE: フォーム詳細 - headers={dict(request.headers)}, form={dict(request.form)}, values={dict(request.values)}")
             return jsonify({'success': False, 'error': '回答が選択されていません'})
         
         # 次の問題に進む
@@ -9549,7 +9573,7 @@ def handle_quiz_simple_answer():
             return jsonify({
                 'success': True, 
                 'exam_finished': True,
-                'redirect': '/exam_result'
+                'redirect': '/result'
             })
         else:
             logger.info(f"🔥 QUIZ SIMPLE: 次問題へ進行 ({current_index + 1}/{len(question_ids)})")
