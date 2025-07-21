@@ -1,1 +1,1 @@
-web: gunicorn wsgi_optimized:application --workers 1 --timeout 600 --worker-class gthread --log-level debug
+web: python app.py
