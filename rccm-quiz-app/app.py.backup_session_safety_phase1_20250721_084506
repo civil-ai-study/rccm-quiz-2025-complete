@@ -575,25 +575,9 @@ def safe_exam_session_reset():
 # 🛡️ ULTRATHIN最終対策: インメモリ試験データストレージ
 EXAM_DATA_CACHE = {}
 
-# 🛡️ ULTRA SYNC: メモリリーク防止システム統合 - 高速化のため無効化
-# try:
-#     from ultrasync_memory_protector import ultrasync_protect_memory, ultrasync_cleanup_check
-#     # EXAM_DATA_CACHEのメモリ保護登録（副作用なし）
-#     ultrasync_protect_memory('EXAM_DATA_CACHE', EXAM_DATA_CACHE, 100)
-#     # logger.info("ULTRA SYNC: メモリ保護システム有効化")  # logger未定義のためコメントアウト
-# except ImportError:
-#     # メモリ保護システムが利用できない場合のフォールバック
-def ultrasync_cleanup_check(var_name):
-    return False
-    # logger.info("ULTRA SYNC: メモリ保護システム未適用（通常動作継続）")  # logger未定義のためコメントアウト
-
 def store_exam_data_in_memory(exam_id, exam_session):
     """試験データをメモリに一時保存"""
     global EXAM_DATA_CACHE
-    
-    # 🛡️ ULTRA SYNC: メモリクリーンアップチェック（副作用なし）
-    ultrasync_cleanup_check('EXAM_DATA_CACHE')
-    
     EXAM_DATA_CACHE[exam_id] = {
         'questions': exam_session.get('questions', []),
         'current_question': exam_session.get('current_question', 0),  # 🛡️ ULTRATHIN区段階5: current_question追加
@@ -969,9 +953,9 @@ rotating_handler.setFormatter(log_formatter)
 console_handler = logging.StreamHandler()
 console_handler.setFormatter(log_formatter)
 
-# ルートロガー設定 - ULTRA SYNC 高速化: ログレベルをWARNINGに
+# ルートロガー設定
 logging.basicConfig(
-    level=logging.WARNING,  # INFOからWARNINGに変更で高速化
+    level=logging.INFO,
     handlers=[rotating_handler, console_handler]
 )
 
@@ -1098,8 +1082,8 @@ app = Flask(__name__)
 # 🛡️ セキュリティ強化設定適用
 app.config.from_object(Config)
 
-# ⚡ ULTRA SYNC CRITICAL FIX: Redis Cache初期化強化 - 高速化のため無効化
-if False:  # REDIS_CACHE_INTEGRATION を強制無効化
+# ⚡ ULTRA SYNC CRITICAL FIX: Redis Cache初期化強化
+if REDIS_CACHE_INTEGRATION:
     try:
         redis_config = {
             'CACHE_TYPE': 'redis',
@@ -1125,14 +1109,14 @@ if False:  # REDIS_CACHE_INTEGRATION を強制無効化
         except Exception as fallback_error:
             logger.error(f"❌ フォールバック初期化も失敗: {fallback_error}")
 else:
-    # logger.info("💾 Redis Cache無効 - メモリキャッシュを使用")  # 高速化のためログ無効化
-    # 🔥 ULTRA SYNC FIX: 高速化のためキャッシュマネージャー無効化
-    # try:
-    #     cache_manager = init_cache(app, {})  # メモリキャッシュ使用
-    #     logger.info("💾 メモリキャッシュマネージャー初期化完了")
-    # except Exception as e:
-    #     logger.error(f"❌ メモリキャッシュ初期化失敗: {e}")
-    cache_manager = None  # 高速化のため無効化
+    logger.info("💾 Redis Cache無効 - メモリキャッシュを使用")
+    # 🔥 ULTRA SYNC FIX: Redis無効時もキャッシュマネージャーを初期化
+    try:
+        cache_manager = init_cache(app, {})  # メモリキャッシュ使用
+        logger.info("💾 メモリキャッシュマネージャー初期化完了")
+    except Exception as e:
+        logger.error(f"❌ メモリキャッシュ初期化失敗: {e}")
+        cache_manager = None
 
 # 🛡️ CSRF保護初期化
 if CSRF_AVAILABLE and app.config.get('WTF_CSRF_ENABLED', True):
@@ -2699,8 +2683,8 @@ def load_questions():
     """
     global _questions_cache, _cache_timestamp
 
-    # 🛡️ ULTRA SYNC 高速化: ログ出力を最小化
-    # logger.warning("🛡️ ULTRATHIN段階75: 本番環境対応強化版データ読み込み")
+    # 🛡️ ULTRATHIN段階75: 本番環境デバッグ強化実装
+    logger.warning("🛡️ ULTRATHIN段階75: 本番環境対応強化版データ読み込み")
     
     # 🔥 ULTRA SYNC 緊急最適化: 効率的キャッシュシステム実装
     current_time = datetime.now()
@@ -4554,21 +4538,16 @@ def exam():
             logger.info(f"履歴保存: 問題{qid}, 合計履歴{saved_history_count}件, 直後確認{len(current_history)}件")
 
             # カテゴリ統計更新
-            # 🛡️ ULTRA SYNC Phase 1: セッション安全アクセス（KeyError防止）
             if 'category_stats' not in session:
                 session['category_stats'] = {}
 
             cat = question.get('category', '不明')
-            
-            if cat not in session.get('category_stats', {}):
+            if cat not in session['category_stats']:
                 session['category_stats'][cat] = {'total': 0, 'correct': 0}
 
-            # 安全な統計更新
-            category_data = session.get('category_stats', {}).get(cat, {'total': 0, 'correct': 0})
-            category_data['total'] += 1
+            session['category_stats'][cat]['total'] += 1
             if is_correct:
-                category_data['correct'] += 1
-            session['category_stats'][cat] = category_data
+                session['category_stats'][cat]['correct'] += 1
             session.modified = True  # カテゴリ統計変更も保存
 
             # モジュールの遅延読み込み（必要時のみ）
@@ -7835,18 +7814,9 @@ def review_questions():
 
             if not review_questions:
                 logger.error("最終的に有効な復習問題が0問になりました")
-                # より具体的なエラーメッセージとデバッグ情報を提供
-                debug_info = {
-                    'selected_review_items_count': len(selected_review_items) if selected_review_items else 0,
-                    'department': department,
-                    'user_data_available': 'user_data' in session,
-                    'timestamp': datetime.now().isoformat()
-                }
-                logger.error(f"復習問題準備エラー詳細: {debug_info}")
                 return render_template('error.html',
-                                       error="復習問題の準備中に問題が発生しました。選択した部門に十分な問題データが存在しない可能性があります。他の部門をお試しいただくか、しばらく待ってから再度お試しください。",
-                                       error_type="final_question_preparation_error",
-                                       debug_info=debug_info if app.debug else None)
+                                       error="復習問題の準備中に問題が発生しました。しばらく待ってから再度お試しください。",
+                                       error_type="final_question_preparation_error")
 
             logger.info(f"復習問題最終選択: 全{len(review_questions_with_score)}問中{len(review_questions)}問を弱点スコア順で選択")
 
@@ -8753,46 +8723,6 @@ def quiz_simple():
         logger.error(f"❌ quiz_simple エラー: {e}")
         return render_template('error.html', error="問題表示でエラーが発生しました。")
 
-# 🚨 緊急追加: 専門科目部門別ランダム問題機能
-@app.route('/quiz_department/<department>')
-@memory_monitoring_decorator(_memory_leak_monitor)
-def quiz_department(department):
-    """専門科目部門別ランダム問題表示"""
-    try:
-        logger.info(f"🎯 部門別問題開始: {department}")
-        
-        # 問題データを読み込み
-        questions = load_questions()
-        if not questions:
-            return render_template('error.html', error="問題データが読み込めませんでした。")
-        
-        # 指定部門の問題を抽出
-        dept_questions = [q for q in questions if q.get('category') == department]
-        
-        if not dept_questions:
-            return render_template('error.html', error=f"{department}部門の問題が見つかりません。")
-        
-        # 10問をランダム選択
-        if len(dept_questions) >= 10:
-            selected = random.sample(dept_questions, 10)
-        else:
-            selected = dept_questions
-        
-        # セッションに保存
-        session['quiz_question_ids'] = [q['id'] for q in selected]
-        session['quiz_current'] = 0
-        session['quiz_category'] = f"{department}部門"
-        session['quiz_department'] = department
-        session.modified = True
-        
-        logger.info(f"✅ {department}部門: {len(selected)}問選択完了")
-        
-        return redirect(url_for('quiz_question'))
-        
-    except Exception as e:
-        logger.error(f"❌ quiz_department エラー ({department}): {e}")
-        return render_template('error.html', error=f"{department}部門の問題表示でエラーが発生しました。")
-
 @app.route('/quiz_question')
 @memory_monitoring_decorator(_memory_leak_monitor)
 def quiz_question():
@@ -9577,29 +9507,14 @@ def handle_quiz_simple_answer():
         # セッションデータ取得
         question_ids = session.get('quiz_question_ids', [])
         current_index = session.get('quiz_current', 0)
-        
-        # 🛡️ ULTRA SYNC: JSON/フォーム両方対応
-        if request.is_json:
-            answer = request.json.get('answer')
-            logger.info(f"🔥 QUIZ SIMPLE: JSON送信 - request.json={request.json}")
-        else:
-            answer = request.form.get('answer')
-            logger.info(f"🔥 QUIZ SIMPLE: フォーム送信 - request.form={dict(request.form)}")
+        answer = request.form.get('answer')
         
         logger.info(f"🔥 QUIZ SIMPLE: current_index={current_index}, total={len(question_ids)}, answer={answer}")
-        logger.info(f"🔥 QUIZ SIMPLE: question_ids={question_ids}")
         
         if not question_ids or current_index >= len(question_ids):
-            logger.error(f"🔥 QUIZ SIMPLE: セッション状態エラー - question_ids={len(question_ids)}, current_index={current_index}")
             return jsonify({'success': False, 'error': '無効なセッション状態です'})
         
         if not answer:
-            logger.error(f"🔥 QUIZ SIMPLE: 回答未選択エラー - answer='{answer}', is_json={request.is_json}")
-            # デバッグ用：リクエスト内容全体をログ出力
-            if request.is_json:
-                logger.error(f"🔥 QUIZ SIMPLE: JSON詳細 - headers={dict(request.headers)}, data={request.get_json()}")
-            else:
-                logger.error(f"🔥 QUIZ SIMPLE: フォーム詳細 - headers={dict(request.headers)}, form={dict(request.form)}, values={dict(request.values)}")
             return jsonify({'success': False, 'error': '回答が選択されていません'})
         
         # 次の問題に進む
@@ -9613,7 +9528,7 @@ def handle_quiz_simple_answer():
             return jsonify({
                 'success': True, 
                 'exam_finished': True,
-                'redirect': '/result'
+                'redirect': '/exam_result'
             })
         else:
             logger.info(f"🔥 QUIZ SIMPLE: 次問題へ進行 ({current_index + 1}/{len(question_ids)})")
@@ -9665,21 +9580,16 @@ def flag_exam_question():
         else:
             success = exam_simulator.unflag_question(exam_session, question_index)
 
-        # 🛡️ ULTRA SYNC Phase 1: exam_sessionネストアクセス安全化
-        exam_session_data = session.get('exam_session', {})
-        flagged_ids = exam_session_data.get('flagged_ids', [])
+        # HTTP 431対策: フラグ情報のみ軽量更新
+        if 'flagged_ids' not in session['exam_session']:
+            session['exam_session']['flagged_ids'] = []
         
         if success:
             flag_id = str(question_index)
-            if action == 'flag' and flag_id not in flagged_ids:
-                flagged_ids.append(flag_id)
-            elif action == 'unflag' and flag_id in flagged_ids:
-                flagged_ids.remove(flag_id)
-            
-            # 安全な更新
-            if 'exam_session' not in session:
-                session['exam_session'] = {}
-            session['exam_session']['flagged_ids'] = flagged_ids
+            if action == 'flag' and flag_id not in session['exam_session']['flagged_ids']:
+                session['exam_session']['flagged_ids'].append(flag_id)
+            elif action == 'unflag' and flag_id in session['exam_session']['flagged_ids']:
+                session['exam_session']['flagged_ids'].remove(flag_id)
         
         session.modified = True
 
@@ -12775,8 +12685,3 @@ def debug_session_info():
             "error": str(e),
             "message": "Debug info unavailable"
         })
-
-# 🚀 Production deployment entry point
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=False)
