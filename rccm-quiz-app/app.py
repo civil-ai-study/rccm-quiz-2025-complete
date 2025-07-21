@@ -8753,6 +8753,46 @@ def quiz_simple():
         logger.error(f"❌ quiz_simple エラー: {e}")
         return render_template('error.html', error="問題表示でエラーが発生しました。")
 
+# 🚨 緊急追加: 専門科目部門別ランダム問題機能
+@app.route('/quiz_department/<department>')
+@memory_monitoring_decorator(_memory_leak_monitor)
+def quiz_department(department):
+    """専門科目部門別ランダム問題表示"""
+    try:
+        logger.info(f"🎯 部門別問題開始: {department}")
+        
+        # 問題データを読み込み
+        questions = load_questions()
+        if not questions:
+            return render_template('error.html', error="問題データが読み込めませんでした。")
+        
+        # 指定部門の問題を抽出
+        dept_questions = [q for q in questions if q.get('category') == department]
+        
+        if not dept_questions:
+            return render_template('error.html', error=f"{department}部門の問題が見つかりません。")
+        
+        # 10問をランダム選択
+        if len(dept_questions) >= 10:
+            selected = random.sample(dept_questions, 10)
+        else:
+            selected = dept_questions
+        
+        # セッションに保存
+        session['quiz_question_ids'] = [q['id'] for q in selected]
+        session['quiz_current'] = 0
+        session['quiz_category'] = f"{department}部門"
+        session['quiz_department'] = department
+        session.modified = True
+        
+        logger.info(f"✅ {department}部門: {len(selected)}問選択完了")
+        
+        return redirect(url_for('quiz_question'))
+        
+    except Exception as e:
+        logger.error(f"❌ quiz_department エラー ({department}): {e}")
+        return render_template('error.html', error=f"{department}部門の問題表示でエラーが発生しました。")
+
 @app.route('/quiz_question')
 @memory_monitoring_decorator(_memory_leak_monitor)
 def quiz_question():

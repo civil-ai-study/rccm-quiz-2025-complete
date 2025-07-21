@@ -175,15 +175,15 @@
         
         <!-- 主要3部門 -->
         <div class="dept-main">
-          <a href="/department_study/道路" class="dept-btn road">
+          <a href="#" onclick="goToDepartment('道路')" class="dept-btn road">
             <i class="fas fa-road"></i>
             <span>道路</span>
           </a>
-          <a href="/department_study/河川・砂防" class="dept-btn river">
+          <a href="#" onclick="goToDepartment('河川・砂防')" class="dept-btn river">
             <i class="fas fa-water"></i>
             <span>河川・砂防</span>
           </a>
-          <a href="/department_study/トンネル" class="dept-btn tunnel">
+          <a href="#" onclick="goToDepartment('トンネル')" class="dept-btn tunnel">
             <i class="fas fa-mountain"></i>
             <span>トンネル</span>
           </a>
@@ -191,15 +191,15 @@
         
         <!-- その他の部門（コンパクト配置） -->
         <div class="dept-others">
-          <a href="/department_study/都市計画" class="dept-btn-small">都市計画</a>
-          <a href="/department_study/造園" class="dept-btn-small">造園</a>
-          <a href="/department_study/建設環境" class="dept-btn-small">建設環境</a>
-          <a href="/department_study/鋼構造・コンクリート" class="dept-btn-small">鋼構造</a>
-          <a href="/department_study/土質・基礎" class="dept-btn-small">土質基礎</a>
-          <a href="/department_study/施工計画" class="dept-btn-small">施工計画</a>
-          <a href="/department_study/上下水道" class="dept-btn-small">上水道</a>
-          <a href="/department_study/森林土木" class="dept-btn-small">森林土木</a>
-          <a href="/department_study/農業土木" class="dept-btn-small">農業土木</a>
+          <a href="#" onclick="goToDepartment('都市計画')" class="dept-btn-small">都市計画</a>
+          <a href="#" onclick="goToDepartment('造園')" class="dept-btn-small">造園</a>
+          <a href="#" onclick="goToDepartment('建設環境')" class="dept-btn-small">建設環境</a>
+          <a href="#" onclick="goToDepartment('鋼構造・コンクリート')" class="dept-btn-small">鋼構造</a>
+          <a href="#" onclick="goToDepartment('土質・基礎')" class="dept-btn-small">土質基礎</a>
+          <a href="#" onclick="goToDepartment('施工計画')" class="dept-btn-small">施工計画</a>
+          <a href="#" onclick="goToDepartment('上下水道')" class="dept-btn-small">上水道</a>
+          <a href="#" onclick="goToDepartment('森林土木')" class="dept-btn-small">森林土木</a>
+          <a href="#" onclick="goToDepartment('農業土木')" class="dept-btn-small">農業土木</a>
         </div>
       </div>
       
@@ -761,6 +761,12 @@ function validateUserName() {
     }
     
     return true;
+}
+
+// 🚨 緊急追加: 部門選択のURLエンコーディング対応
+function goToDepartment(department) {
+    const encodedDept = encodeURIComponent(department);
+    window.location.href = '/quiz_department/' + encodedDept;
 }
 </script>
 {% endblock %} 
