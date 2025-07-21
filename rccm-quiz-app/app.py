@@ -575,9 +575,25 @@ def safe_exam_session_reset():
 # 🛡️ ULTRATHIN最終対策: インメモリ試験データストレージ
 EXAM_DATA_CACHE = {}
 
+# 🛡️ ULTRA SYNC: メモリリーク防止システム統合
+try:
+    from ultrasync_memory_protector import ultrasync_protect_memory, ultrasync_cleanup_check
+    # EXAM_DATA_CACHEのメモリ保護登録（副作用なし）
+    ultrasync_protect_memory('EXAM_DATA_CACHE', EXAM_DATA_CACHE, 100)
+    logger.info("ULTRA SYNC: メモリ保護システム有効化")
+except ImportError:
+    # メモリ保護システムが利用できない場合のフォールバック
+    def ultrasync_cleanup_check(var_name):
+        return False
+    logger.info("ULTRA SYNC: メモリ保護システム未適用（通常動作継続）")
+
 def store_exam_data_in_memory(exam_id, exam_session):
     """試験データをメモリに一時保存"""
     global EXAM_DATA_CACHE
+    
+    # 🛡️ ULTRA SYNC: メモリクリーンアップチェック（副作用なし）
+    ultrasync_cleanup_check('EXAM_DATA_CACHE')
+    
     EXAM_DATA_CACHE[exam_id] = {
         'questions': exam_session.get('questions', []),
         'current_question': exam_session.get('current_question', 0),  # 🛡️ ULTRATHIN区段階5: current_question追加
@@ -4538,16 +4554,21 @@ def exam():
             logger.info(f"履歴保存: 問題{qid}, 合計履歴{saved_history_count}件, 直後確認{len(current_history)}件")
 
             # カテゴリ統計更新
+            # 🛡️ ULTRA SYNC Phase 1: セッション安全アクセス（KeyError防止）
             if 'category_stats' not in session:
                 session['category_stats'] = {}
 
             cat = question.get('category', '不明')
-            if cat not in session['category_stats']:
+            
+            if cat not in session.get('category_stats', {}):
                 session['category_stats'][cat] = {'total': 0, 'correct': 0}
 
-            session['category_stats'][cat]['total'] += 1
+            # 安全な統計更新
+            category_data = session.get('category_stats', {}).get(cat, {'total': 0, 'correct': 0})
+            category_data['total'] += 1
             if is_correct:
-                session['category_stats'][cat]['correct'] += 1
+                category_data['correct'] += 1
+            session['category_stats'][cat] = category_data
             session.modified = True  # カテゴリ統計変更も保存
 
             # モジュールの遅延読み込み（必要時のみ）
@@ -9580,16 +9601,21 @@ def flag_exam_question():
         else:
             success = exam_simulator.unflag_question(exam_session, question_index)
 
-        # HTTP 431対策: フラグ情報のみ軽量更新
-        if 'flagged_ids' not in session['exam_session']:
-            session['exam_session']['flagged_ids'] = []
+        # 🛡️ ULTRA SYNC Phase 1: exam_sessionネストアクセス安全化
+        exam_session_data = session.get('exam_session', {})
+        flagged_ids = exam_session_data.get('flagged_ids', [])
         
         if success:
             flag_id = str(question_index)
-            if action == 'flag' and flag_id not in session['exam_session']['flagged_ids']:
-                session['exam_session']['flagged_ids'].append(flag_id)
-            elif action == 'unflag' and flag_id in session['exam_session']['flagged_ids']:
-                session['exam_session']['flagged_ids'].remove(flag_id)
+            if action == 'flag' and flag_id not in flagged_ids:
+                flagged_ids.append(flag_id)
+            elif action == 'unflag' and flag_id in flagged_ids:
+                flagged_ids.remove(flag_id)
+            
+            # 安全な更新
+            if 'exam_session' not in session:
+                session['exam_session'] = {}
+            session['exam_session']['flagged_ids'] = flagged_ids
         
         session.modified = True
 
