@@ -8741,8 +8741,12 @@ def quiz_simple():
         else:
             selected = basic_questions[:10] if basic_questions else questions[:10]
         
-        # セッションに保存
-        session['quiz_question_ids'] = [q['id'] for q in selected]
+        # セッションに保存（空IDをフィルタリング）
+        valid_ids = [q['id'] for q in selected if q.get('id') and str(q['id']).strip()]
+        if len(valid_ids) < len(selected):
+            logger.warning(f"⚠️ 空のIDを{len(selected) - len(valid_ids)}個除外しました")
+            
+        session['quiz_question_ids'] = valid_ids
         session['quiz_current'] = 0
         session['quiz_category'] = '基礎科目'
         session.modified = True
@@ -8778,8 +8782,12 @@ def quiz_department(department):
         else:
             selected = dept_questions
         
-        # セッションに保存
-        session['quiz_question_ids'] = [q['id'] for q in selected]
+        # セッションに保存（空IDをフィルタリング）
+        valid_ids = [q['id'] for q in selected if q.get('id') and str(q['id']).strip()]
+        if len(valid_ids) < len(selected):
+            logger.warning(f"⚠️ 空のIDを{len(selected) - len(valid_ids)}個除外しました")
+            
+        session['quiz_question_ids'] = valid_ids
         session['quiz_current'] = 0
         session['quiz_category'] = f"{department}部門"
         session['quiz_department'] = department

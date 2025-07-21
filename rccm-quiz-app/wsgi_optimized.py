@@ -31,6 +31,11 @@ try:
     
     logger.info("✅ ULTRASYNC: WSGIアプリケーション起動完了")
     
+    # ルート確認（デバッグ用）
+    route_count = len(list(app.url_map.iter_rules()))
+    logger.info(f"🎯 ULTRASYNC: 登録ルート数: {route_count}")
+    logger.info(f"🎯 ULTRASYNC: アプリ名: {app.name}")
+    
     # Gunicorn用のアプリケーションオブジェクト
     application = app
     
