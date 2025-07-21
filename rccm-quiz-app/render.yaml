@@ -4,15 +4,15 @@ services:
     env: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: python app.py
+    startCommand: gunicorn wsgi_optimized:application
     envVars:
       - key: FLASK_ENV
         value: production
       - key: SECRET_KEY
         generateValue: true
-      - key: PORT
-        value: 5000
-    healthCheckPath: /render-health
+      - key: PYTHONPATH
+        value: /opt/render/project/src
+    healthCheckPath: /health
     disk:
       name: rccm-data
       mountPath: /opt/render/project/src/data
