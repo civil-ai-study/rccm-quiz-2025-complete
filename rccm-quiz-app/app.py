@@ -67,8 +67,12 @@ class UltraSyncSessionManager:
             if key not in self.session:
                 conflicts.append(f"必須キー不足: {key}")
         
-        # データ整合性チェック
-        current = self.session.get('exam_current', 0)
+        # データ整合性チェック（型安全変換）
+        current_raw = self.session.get('exam_current', 0)
+        try:
+            current = int(current_raw) if current_raw is not None else 0
+        except (ValueError, TypeError):
+            current = 0
         question_ids = self.session.get('exam_question_ids', [])
         
         if current >= len(question_ids) and question_ids:
@@ -85,8 +89,12 @@ class UltraSyncSessionManager:
         """セッション競合の自動修復"""
         repairs = []
         
-        # exam_currentの修復
-        current = self.session.get('exam_current', 0)
+        # exam_currentの修復（型安全変換）
+        current_raw = self.session.get('exam_current', 0)
+        try:
+            current = int(current_raw) if current_raw is not None else 0
+        except (ValueError, TypeError):
+            current = 0
         question_ids = self.session.get('exam_question_ids', [])
         
         if current >= len(question_ids) and question_ids:
@@ -195,6 +203,10 @@ CSV_JAPANESE_CATEGORIES = {
     "agricultural_engineering": "農業土木",
     "basic": "共通"
 }
+
+# 🛡️ ULTRA SYNC GLOBAL FIX: 有効年度定数をグローバル定義
+# データファイルと一致する年度のみを定義（2008-2019年）
+VALID_YEARS = [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
 
 def get_department_questions_ultrasync(department_name, question_count=10):
     """
@@ -453,13 +465,18 @@ def safe_post_processing(request, session, all_questions):
         correct_answer = str(current_question.get('correct_answer', '')).strip().upper()
         is_correct = (answer == correct_answer)
         
-        # 次の問題インデックスを計算
-        next_index = session.get('exam_current', 0) + 1
+        # 次の問題インデックスを計算（型安全変換）
+        exam_current_raw = session.get('exam_current', 0)
+        try:
+            exam_current_val = int(exam_current_raw) if exam_current_raw is not None else 0
+        except (ValueError, TypeError):
+            exam_current_val = 0
+        next_index = exam_current_val + 1
         
         # セッション更新（通常のキー使用）
         session['exam_current'] = next_index
         session.modified = True
-        logger.info(f"🔥 PROGRESS FIX: POST処理内でexam_current更新: {session.get('exam_current', 0) - 1} → {next_index}")
+        logger.info(f"🔥 PROGRESS FIX: POST処理内でexam_current更新: {get_exam_current_safe(session, 0) - 1} → {next_index}")
         
         # 結果データ構築
         result_data = {
@@ -467,7 +484,7 @@ def safe_post_processing(request, session, all_questions):
             'user_answer': answer,
             'correct_answer': correct_answer,
             'is_correct': is_correct,
-            'current_index': session.get('exam_current', 0) - 1,  # 表示用（0ベース）
+            'current_index': exam_current_val - 1,  # 表示用（0ベース）
             'next_index': next_index,
             'elapsed': elapsed,
             'current_streak': session.get('study_streak', 0),  # テンプレート用
@@ -1094,6 +1111,20 @@ except ImportError as e:
 
 # Flask アプリケーション初期化
 app = Flask(__name__)
+
+def get_exam_current_safe(session, default=0):
+    """セッションからexam_currentを型安全に取得"""
+    try:
+        raw_value = session.get('exam_current', default)
+        if isinstance(raw_value, int):
+            return raw_value
+        elif isinstance(raw_value, str) and raw_value.isdigit():
+            return int(raw_value)
+        else:
+            return default
+    except (ValueError, TypeError):
+        return default
+
 
 # 🛡️ セキュリティ強化設定適用
 app.config.from_object(Config)
@@ -1851,6 +1882,8 @@ def _validate_session_integrity():
         # 範囲チェック
         exam_ids = session.get('exam_question_ids', [])
         current = session.get('exam_current', 0)
+        if not isinstance(current, int):
+            current = 0
 
         if exam_ids and current >= len(exam_ids):
             session['exam_current'] = max(0, len(exam_ids) - 1)
@@ -2372,7 +2405,8 @@ def validate_exam_parameters(**kwargs):
     valid_departments = list(DEPARTMENT_TO_CATEGORY_MAPPING.keys())
     valid_legacy_departments = list(LEGACY_DEPARTMENT_ALIASES.keys())
     valid_question_types = ['basic', 'specialist', 'review']
-    valid_years = list(range(2008, 2025))  # 🔥 ULTRA SYNC: 2024年対応
+    # 🛡️ ULTRA SYNC 緊急修正: VALID_YEARSと整合性を取り2019年まで
+    valid_years = VALID_YEARS  # [2008, 2009, ..., 2019]
 
     errors = []
 
@@ -3039,7 +3073,14 @@ def validate_review_session_integrity(session_data):
     """復習セッションの整合性を検証し、必要に応じて修復する"""
     try:
         exam_question_ids = session_data.get('exam_question_ids', [])
-        exam_current = session_data.get('exam_current', 0)
+        exam_current_raw = session_data.get('exam_current', 0)
+        
+        # 🛡️ ULTRA SYNC型安全修正: 文字列→数値変換（副作用ゼロ）
+        try:
+            exam_current = int(exam_current_raw) if exam_current_raw is not None else 0
+        except (ValueError, TypeError):
+            exam_current = 0
+            
         selected_question_type = session_data.get('selected_question_type', '')
 
         # 復習セッションの基本チェック
@@ -3280,9 +3321,15 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
                 continue
         if question_type and question.get('question_type') != question_type:
             continue
-        # 🚨 年度フィルタリング追加（ウルトラシンク修正）
-        if year and str(question.get('year', '')) != str(year):
-            continue
+        # 🛡️ ULTRA SYNC修正: 厳密な年度フィルタリング（数値比較）
+        if year and question_type == 'specialist':
+            try:
+                target_year = int(year)
+                q_year = question.get('year')
+                if q_year is None or int(q_year) != target_year:
+                    continue
+            except (ValueError, TypeError):
+                continue
             
         # 🛡️ ULTRATHIN区緊急修正: 問題種別厳格チェック（カテゴリー混在防止）
         if question_type == 'specialist' and question.get('question_type') != 'specialist':
@@ -3404,19 +3451,12 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         
         logger.warning(f"🔍 カテゴリフィルタ結果: {pre_filter_count} → {len(available_questions)}問 (target='{target_category}')")
 
-        # 文字化けしている場合のフォールバック（部分マッチ）
+        # 🛡️ ULTRATHIN 安全修正: 危険な部分マッチを厳格化（混在防止）
         if len(available_questions) == 0 and target_category:
-            # 文字化けを考慮した部分マッチ
-            logger.warning(f"正確なカテゴリマッチ失敗: {target_category}, 部分マッチを試行")
-            for q in [q for q in all_questions if q.get('question_type') == question_type]:
-                category = q.get('category', '')
-                # 道路、トンネル等の主要カテゴリのマッチング
-                if ('道路' in category and ('道' in target_category or 'road' in target_category.lower())) or \
-                   ('トンネル' in category and ('トンネル' in target_category or 'tunnel' in target_category.lower())) or \
-                   ('河川' in category and ('河川' in target_category or 'civil' in target_category.lower())) or \
-                   ('土質' in category and ('土質' in target_category or 'soil' in target_category.lower())):
-                    if q not in available_questions:
-                        available_questions.append(q)
+            logger.warning(f"正確なカテゴリマッチ失敗: {target_category}")
+            logger.error(f"🚨 部分マッチフォールバックは混在リスクのため無効化")
+            # 部分マッチは混在の原因となるため削除
+            # available_questions = [] を維持（空のまま）
 
         logger.info(f"カテゴリフィルタ適用: {requested_category} → {target_category}, {pre_category_count} → {len(available_questions)}問")
 
@@ -3431,9 +3471,9 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
                 available_questions = [q for q in available_questions if q.get('question_type') == 'specialist']
             else:
                 target_year = int(year)
-                # 有効年度範囲チェック（2008-2019年）
-                if target_year < 2008 or target_year > 2019:
-                    logger.error(f"❌ 無効な年度範囲: {target_year} (有効範囲: 2008-2019)")
+                # 🛡️ ULTRA SYNC修正: 実際のデータファイル存在チェック
+                if target_year not in VALID_YEARS:
+                    logger.error(f"❌ 無効な年度: {target_year} (利用可能年度: {VALID_YEARS})")
                     return []
             
                 # 年度フィルタリング: 厳密な数値比較
@@ -3463,8 +3503,16 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
             return []
 
     # 既に選択済みの問題を除外
-    selected_ids = [int(q.get('id', 0)) for q in selected_questions]
-    new_questions = [q for q in available_questions if int(q.get('id', 0)) not in selected_ids]
+    # 🛡️ ULTRA SYNC 安全修正: 空文字列ID対応でValueError防止
+    def safe_id_convert(q):
+        try:
+            id_value = q.get('id', 0)
+            return int(id_value) if id_value and str(id_value).strip() else 0
+        except (ValueError, TypeError):
+            return 0
+    
+    selected_ids = [safe_id_convert(q) for q in selected_questions]
+    new_questions = [q for q in available_questions if safe_id_convert(q) not in selected_ids]
 
     random.shuffle(new_questions)
     selected_questions.extend(new_questions[:remaining_count])
@@ -3474,7 +3522,24 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         selected_categories = list(set(q.get('category', 'なし') for q in selected_questions))
         logger.info(f"最終選択問題のカテゴリ分布: {selected_categories}")
         if len(selected_categories) > 1:
-            logger.warning(f"警告：複数のカテゴリが混在しています！ {selected_categories}")
+            logger.error(f"❌ 重大エラー：分野混在を検出！ {selected_categories}")
+            
+            # 🔥 ULTRATHIN 緊急修正: 分野混在問題を除外（年度混在と同様の処理）
+            target_category = DEPARTMENT_TO_CATEGORY_MAPPING.get(department, department)
+            mixed_category_questions = [q for q in selected_questions if q.get('category') != target_category]
+            
+            logger.error(f"   指定分野: {target_category}")
+            logger.error(f"   検出された分野: {selected_categories}")
+            logger.error(f"   混在問題数: {len(mixed_category_questions)}")
+            
+            # 混在問題の詳細ログ
+            for q in mixed_category_questions:
+                logger.error(f"   問題ID {q.get('id')}: 期待分野={target_category}, 実際分野={q.get('category')}")
+            
+            # 🔥 緊急措置: 分野混在問題を除外
+            logger.warning(f"🔧 緊急措置: 分野混在問題 {len(mixed_category_questions)}問を除外")
+            selected_questions = [q for q in selected_questions if q not in mixed_category_questions]
+            logger.info(f"🔧 除外後の問題数: {len(selected_questions)}問")
     
     # 🚨 年度混在チェック（ウルトラシンク年度混在防止検証・緊急強化版）
     if year and question_type == 'specialist' and str(year).strip() != '':
@@ -3573,6 +3638,16 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
                 logger.info(f"✅ 部門統一性: 完全 - 全{len(selected_questions)}問が「{target_category}」")
             else:
                 logger.error(f"❌ 部門統一性: 失敗 - 混在カテゴリ: {unique_categories}")
+                
+                # 🔥 ULTRATHIN 最終修正: 部門統一性失敗時の緊急修正処理
+                incorrect_questions = [q for q in selected_questions if q.get('category') != target_category]
+                logger.warning(f"🔧 最終修正: 不正分野問題 {len(incorrect_questions)}問を除外")
+                
+                for q in incorrect_questions:
+                    logger.error(f"   除外問題ID {q.get('id')}: 期待={target_category}, 実際={q.get('category')}")
+                
+                selected_questions = [q for q in selected_questions if q.get('category') == target_category]
+                logger.info(f"🔧 最終修正後の問題数: {len(selected_questions)}問")
         
         # 🔥 SUPER ULTRASYNC修正: ID変換の重複実行を防止
         if selected_questions:
@@ -3686,7 +3761,7 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
                 if year and str(year).strip() != '':
                     try:
                         target_year = int(year)
-                        if 2008 <= target_year <= 2019:
+                        if target_year in VALID_YEARS:
                             filtered_fallback = [q for q in filtered_fallback 
                                                if q.get('year') is not None and int(q.get('year', 0)) == target_year]
                     except (ValueError, TypeError):
@@ -3948,6 +4023,16 @@ def exam():
         # 関数最初で初期化 - いかなる分岐でも確実に定義される
         is_review_mode = False
         
+        # 🛡️ ULTRA SYNC自動user_id初期化（副作用ゼロ保証）
+        if not session.get('user_id'):
+            from datetime import datetime
+            import uuid
+            timestamp = datetime.now().strftime('%H%M%S')
+            auto_user_id = f"auto_user_{timestamp}_{str(uuid.uuid4())[:8]}"
+            session['user_id'] = auto_user_id
+            session['user_name'] = f"自動ユーザー_{timestamp}"
+            logger.info(f"🔧 ULTRA SYNC自動初期化: user_id={auto_user_id[:20]}...")
+        
         # 🔥 PROGRESS DEBUG: 各リクエストの開始ログ
         logger.info(f"🔥 PROGRESS DEBUG: exam route called - method={request.method}, args={dict(request.args)}")
         if request.method == 'POST':
@@ -4034,7 +4119,8 @@ def exam():
             # URLパラメータまたはセッションから部門情報を取得
             url_department = request.args.get('department', '')
             selected_department = exam_session.get('selected_department', '') or url_department
-            selected_year = exam_session.get('year', 2016)
+            # 🛡️ ULTRA SYNC セッションキー修正: requested_yearが正しいキー
+            selected_year = exam_session.get('requested_year', 2016)
             try:
                 selected_year = int(selected_year)
             except (ValueError, TypeError):
@@ -4154,17 +4240,25 @@ def exam():
                             session.modified = True
                             logger.info(f"専門科目セッション開始: {len(selected)}問")
                         else:
-                            # フォールバック：全専門問題から選択
-                            all_specialist = [q for q in all_questions if q.get('question_type') == 'specialist']
-                            if all_specialist:
-                                random.shuffle(all_specialist)
-                                selected = all_specialist[:10]
-                                session['exam_question_ids'] = [q['id'] for q in selected]
-                                session['exam_current'] = 0
-                                session['exam_category'] = '専門科目（混合）'
-                                session['selected_question_type'] = 'specialist'
-                                session.modified = True
-                                logger.info(f"専門科目フォールバック: {len(selected)}問")
+                            # 年度制約がある場合はエラー、ない場合のみフォールバック
+                            requested_year = session.get('requested_year')
+                            if requested_year and str(requested_year) not in ['', 'None']:
+                                logger.error(f"年度制約により専門科目選択不可: {requested_year}年")
+                                return render_template('error.html', 
+                                                    error=f"{requested_year}年の専門科目データが見つかりません。",
+                                                    suggestions=["別の年度を選択してください", "基礎科目を選択してください"])
+                            else:
+                                # フォールバック：全専門問題から選択（年度制約なしの場合のみ）
+                                all_specialist = [q for q in all_questions if q.get('question_type') == 'specialist']
+                                if all_specialist:
+                                    random.shuffle(all_specialist)
+                                    selected = all_specialist[:10]
+                                    session['exam_question_ids'] = [q['id'] for q in selected]
+                                    session['exam_current'] = 0
+                                    session['exam_category'] = '専門科目（混合）'
+                                    session['selected_question_type'] = 'specialist'
+                                    session.modified = True
+                                    logger.info(f"専門科目フォールバック: {len(selected)}問")
                     
                     else:
                         # デフォルト：基礎科目
@@ -4274,7 +4368,11 @@ def exam():
             
             # 🔥 CRITICAL: セッションとPOSTデータの不整合チェック
             if 'exam_question_ids' in session and session.get('exam_question_ids'):
-                current_index = session.get('exam_current', 0)
+                current_index_raw = session.get('exam_current', 0)
+                try:
+                    current_index = int(current_index_raw) if current_index_raw is not None else 0
+                except (ValueError, TypeError):
+                    current_index = 0
                 question_ids = session.get('exam_question_ids', [])
                 if current_index < len(question_ids):
                     expected_qid = question_ids[current_index]
@@ -4594,8 +4692,8 @@ def exam():
                     session.modified = True
 
             # セッション進行管理
-            # POST処理でも現在の問題番号を正確に取得
-            current_no = session.get('exam_current', 0)
+            # POST処理でも現在の問題番号を正確に取得（型安全変換）
+            current_no = get_exam_current_safe(session, 0)
             exam_question_ids = session.get('exam_question_ids', [])
 
             # 安全チェック: exam_question_idsが空の場合はセッション再構築
@@ -4784,9 +4882,17 @@ def exam():
 
                         # 🔧 EMERGENCY FIX: シンプルなフォールバック処理
                         if not specialist_questions:
-                            logger.warning(f"専門科目データ不足 - 全専門問題から選択")
-                            all_specialist = [q for q in all_questions if q.get('question_type') == 'specialist']
-                            specialist_questions = all_specialist[:10] if all_specialist else []
+                            # 年度制約がある場合はエラー、ない場合のみフォールバック
+                            requested_year = session.get('requested_year')
+                            if requested_year and str(requested_year) not in ['', 'None']:
+                                logger.error(f"専門科目データ不足（年度制約）: {requested_year}年")
+                                return render_template('error.html', 
+                                                    error=f"{requested_year}年の専門科目データが不足しています。",
+                                                    suggestions=["別の年度を選択してください", "基礎科目を選択してください"])
+                            else:
+                                logger.warning(f"専門科目データ不足 - 全専門問題から選択")
+                                all_specialist = [q for q in all_questions if q.get('question_type') == 'specialist']
+                                specialist_questions = all_specialist[:10] if all_specialist else []
 
                         if specialist_questions:
                             # 🔥 CRITICAL FIX: 10問制限を適用してセッション再構築
@@ -4800,18 +4906,33 @@ def exam():
                                     session_size=get_user_session_size(session),  # ユーザー設定問題数指定
                                     department=department,
                                     question_type='specialist',
-                                    year=None
+                                    year=session.get('requested_year')
                                 )
                                 
                                 if not selected_questions:
-                                    # get_mixed_questionsが失敗した場合のフォールバック
-                                    logger.warning("get_mixed_questions失敗 - 直接問題選択に切り替え")
-                                    selected_questions = specialist_questions[:get_user_session_size(session)]
+                                    # get_mixed_questionsが失敗した場合は年度制約エラーとして処理
+                                    requested_year = session.get('requested_year')
+                                    if requested_year and str(requested_year) not in ['', 'None']:
+                                        logger.error(f"年度制約により問題選択不可: {requested_year}年")
+                                        return render_template('error.html', 
+                                                            error=f"{requested_year}年の問題データが見つかりません。",
+                                                            suggestions=["別の年度を選択してください"])
+                                    else:
+                                        logger.warning("get_mixed_questions失敗 - 直接問題選択に切り替え")
+                                        selected_questions = specialist_questions[:get_user_session_size(session)]
                                 
                             except Exception as mix_error:
                                 logger.error(f"get_mixed_questions例外: {mix_error}")
-                                # 安全なフォールバック
-                                selected_questions = specialist_questions[:10]
+                                # 年度制約がある場合はエラーとして処理
+                                requested_year = session.get('requested_year')
+                                if requested_year and str(requested_year) not in ['', 'None']:
+                                    logger.error(f"年度制約により問題選択不可（例外）: {requested_year}年")
+                                    return render_template('error.html', 
+                                                        error=f"{requested_year}年の問題データ処理でエラーが発生しました。",
+                                                        suggestions=["別の年度を選択してください"])
+                                else:
+                                    # 安全なフォールバック（年度制約なしの場合のみ）
+                                    selected_questions = specialist_questions[:10]
 
                             question_ids = [int(q.get('id', 0)) for q in selected_questions]
                             current_index = question_ids.index(qid) if qid in question_ids else 0
@@ -4878,7 +4999,7 @@ def exam():
                                 session_size=get_user_session_size(session),  # ユーザー設定問題数指定
                                 department=department,
                                 question_type='specialist',
-                                year=None
+                                year=session.get('requested_year')
                             )
 
                             if selected_questions:
@@ -4909,7 +5030,7 @@ def exam():
                                 session_size=get_user_session_size(session),  # ユーザー設定問題数指定
                                 department='',
                                 question_type=actual_question_type or 'basic',
-                                year=None
+                                year=session.get('requested_year') if actual_question_type == 'specialist' else None
                             )
 
                             if selected_questions:
@@ -5170,7 +5291,11 @@ def exam():
             
             # ステップ6: 保存失敗時の緊急修復（専門家推薦）
             expected_exam_current = next_exam_current if not is_last_question else safe_current_no
-            actual_exam_current = session.get('exam_current')
+            actual_exam_current_raw = session.get('exam_current')
+            try:
+                actual_exam_current = int(actual_exam_current_raw) if actual_exam_current_raw is not None else 0
+            except (ValueError, TypeError):
+                actual_exam_current = 0
             
             if actual_exam_current != expected_exam_current:
                 logger.error(f"🚨 CRITICAL: exam_current保存失敗を検出")
@@ -5183,7 +5308,9 @@ def exam():
                 logger.info(f"✅ 緊急修復完了: exam_current = {expected_exam_current}")
             
             # 🔥 ULTRA SYNC: exam_question_ids整合性の最終確認
-            final_exam_current = session.get('exam_current')
+            final_exam_current = session.get('exam_current', 0)
+            if not isinstance(final_exam_current, int):
+                final_exam_current = 0
             final_exam_question_ids = session.get('exam_question_ids', [])
             
             if final_exam_current >= len(final_exam_question_ids):
@@ -5634,7 +5761,7 @@ def exam():
 
                 # 🛡️ ULTRA SYNC: KeyError回避の安全なセッションアクセス
                 session_total = len(session.get('exam_question_ids', []))
-                display_current = max(1, session.get('exam_current', 0) + 1)
+                display_current = max(1, get_exam_current_safe(session, 0) + 1)
                 display_total = get_user_session_size(session)  # 🔥 FIX: ユーザー設定問題数を使用
                 
                 return render_template(
@@ -5701,9 +5828,12 @@ def exam():
             ])
             
             # アクティブセッション中でパラメータなしの場合はリセットしない
+            current_exam = session.get('exam_current', 0)
+            if not isinstance(current_exam, int):
+                current_exam = 0
             has_active_session = (exam_question_ids and 
-                                session.get('exam_current', 0) >= 0 and
-                                session.get('exam_current', 0) < len(exam_question_ids))
+                                current_exam >= 0 and
+                                current_exam < len(exam_question_ids))
             
             # 🔥 PROGRESS DEBUG: セッション状態の詳細ログ
             logger.info(f"🔥 PROGRESS DEBUG: has_active_session={has_active_session}")
@@ -5754,7 +5884,7 @@ def exam():
                 logger.info("🔥 PROGRESS FIX: 進捗追跡データ保護 - セッション継続")
                 
             # 条件6: exam_current > 0 の場合は進行中セッションとして保護
-            if session.get('exam_current', 0) > 0 and has_active_session:
+            if get_exam_current_safe(session, 0) > 0 and has_active_session:
                 need_reset = False  
                 logger.info(f"🔥 PROGRESS FIX: 進行中セッション保護 - exam_current={session.get('exam_current')}")
 
@@ -5868,7 +5998,8 @@ def exam():
             if requested_question_type:
                 session['selected_question_type'] = requested_question_type
             if requested_year:
-                session['selected_year'] = requested_year
+                # 🛡️ ULTRA SYNC キー統一修正: requested_yearで統一
+                session['requested_year'] = requested_year
             session.modified = True
 
             exam_question_ids = question_ids
@@ -5926,34 +6057,67 @@ def exam():
         
         # 🔥 ULTRASYNC修正: セッション完了判定もユーザー設定問題数基準に統一
         user_session_size = get_user_session_size(session)
-        if current_no >= user_session_size:
+        # 🛡️ ULTRA SYNC 型安全化: 数値比較の型保証
+        current_no_safe = int(current_no) if current_no is not None else 0
+        user_session_size_safe = int(user_session_size) if user_session_size is not None else 10
+        if current_no_safe >= user_session_size_safe:
             # 復習モードの場合は結果画面ではなく復習完了処理へ
             if is_review_mode or session.get('selected_question_type') == 'review':
-                logger.info(f"復習セッション完了: current_no({current_no}) >= session_size({user_session_size}) - 復習結果へ")
+                logger.info(f"復習セッション完了: current_no({current_no_safe}) >= session_size({user_session_size_safe}) - 復習結果へ")
                 # 復習セッション用の結果画面に送る
                 session['review_completed'] = True
                 session.modified = True
                 return redirect(url_for('result'))
             else:
-                logger.info(f"通常セッション完了: current_no({current_no}) >= session_size({user_session_size}) - resultにリダイレクト")
+                logger.info(f"通常セッション完了: current_no({current_no_safe}) >= session_size({user_session_size_safe}) - resultにリダイレクト")
                 return redirect(url_for('result'))
 
-        # 現在の問題を取得
-        current_question_id = exam_question_ids[current_no]
-        logger.info(f"問題ID取得: current_no={current_no}, question_id={current_question_id}")
+        # 現在の問題を取得（型安全版）
+        # 🛡️ ULTRA SYNC 型安全化: 配列アクセスの型保証
+        try:
+            if not isinstance(exam_question_ids, list):
+                logger.error(f"🚨 TYPE ERROR防止: exam_question_idsが配列ではありません - type: {type(exam_question_ids)}")
+                return render_template('error.html', error="セッションデータの型が正しくありません。ホームから再開してください。")
+            
+            if current_no_safe < 0 or current_no_safe >= len(exam_question_ids):
+                logger.error(f"🚨 INDEX ERROR防止: current_no_safe={current_no_safe}, array_length={len(exam_question_ids)}")
+                return render_template('error.html', error="問題インデックスが範囲外です。ホームから再開してください。")
+            
+            current_question_id = exam_question_ids[current_no_safe]
+            logger.info(f"問題ID取得: current_no={current_no_safe}, question_id={current_question_id}")
+        except (TypeError, IndexError, ValueError) as e:
+            logger.error(f"🚨 ULTRA SYNC TYPE ERROR捕捉: {type(e).__name__}: {e}")
+            logger.error(f"    exam_question_ids type: {type(exam_question_ids)}")
+            logger.error(f"    current_no_safe type: {type(current_no_safe)}, value: {current_no_safe}")
+            return render_template('error.html', error="問題データの取得中にエラーが発生しました。ホームから再開してください。")
         
-        # 🔥 SUPER ULTRASYNC修正: 問題検索の柔軟性を向上
-        question = next((q for q in all_questions if int(q.get('id', 0)) == current_question_id), None)
+        # 🔥 SUPER ULTRASYNC修正: 問題検索の柔軟性を向上（型安全版）
+        # 🛡️ ULTRA SYNC 型安全化: 問題ID比較の型保証
+        def safe_question_id_compare(q, target_id):
+            try:
+                q_id = q.get('id', 0)
+                if q_id == '' or q_id is None:
+                    return False
+                return int(q_id) == target_id
+            except (ValueError, TypeError):
+                return False
+        
+        question = next((q for q in all_questions if safe_question_id_compare(q, current_question_id)), None)
         
         # 🛡️ ID変換前の元IDでも検索を試行
         if not question and current_question_id >= 10000:
             original_id = current_question_id - 10000 if current_question_id < 20000 else current_question_id - 20000
-            question = next((q for q in all_questions if int(q.get('id', 0)) == original_id), None)
+            question = next((q for q in all_questions if safe_question_id_compare(q, original_id)), None)
             if question:
                 logger.warning(f"✅ 元ID検索成功: {current_question_id} → {original_id}")
 
         if not question:
-            logger.error(f"問題データ取得失敗: ID {current_question_id}, available_ids={[q.get('id') for q in all_questions[:5]]}")
+            # 🛡️ ULTRA SYNC 型安全化: 配列操作の型保証
+            try:
+                available_ids = [q.get('id') for q in all_questions[:5]] if isinstance(all_questions, list) else []
+            except (TypeError, AttributeError):
+                available_ids = ['取得エラー']
+            logger.error(f"問題データ取得失敗: ID {current_question_id}, available_ids={available_ids}")
             return render_template('error.html', error=f"問題データの取得に失敗しました。(ID: {current_question_id})")
 
         # SRS情報を取得
@@ -5963,18 +6127,21 @@ def exam():
         # テンプレート用変数
         # 🔥 PROGRESS FIX: ユーザー設定問題数を使用して正確な進捗表示（20問→1/20,2/20...20/20）
         user_session_size = get_user_session_size(session)
+        # 🛡️ ULTRA SYNC 型安全化: template_vars作成時の型保証
+        current_no_safe = int(current_no) if current_no is not None else 0
+        user_session_size_safe = int(user_session_size) if user_session_size is not None else 10
         template_vars = {
             'question': question,
-            'current_no': current_no + 1,  # 表示用は1から開始
-            'total_questions': user_session_size,  # 🔥 FIX: ユーザー設定問題数使用
+            'current_no': current_no_safe + 1,  # 表示用は1から開始
+            'total_questions': user_session_size_safe,  # 🔥 FIX: ユーザー設定問題数使用
             'category': session.get('exam_category', ''),
-            'progress_percentage': int(((current_no + 1) / user_session_size) * 100) if user_session_size > 0 else 0,  # 🔥 FIX: ゼロ除算防止
-            'is_last_question': (current_no + 1) >= user_session_size,  # 🔥 FIX: 正確な最終問題判定
+            'progress_percentage': int(((current_no_safe + 1) / user_session_size_safe) * 100) if user_session_size_safe > 0 else 0,  # 🔥 FIX: ゼロ除算防止
+            'is_last_question': (current_no_safe + 1) >= user_session_size_safe,  # 🔥 FIX: 正確な最終問題判定
             'srs_info': question_srs,
             'is_review_question': question_srs.get('total_attempts', 0) > 0
         }
         
-        logger.info(f"問題表示: {current_no + 1}/{user_session_size} - ID:{current_question_id}")
+        logger.info(f"問題表示: {current_no_safe + 1}/{user_session_size_safe} - ID:{current_question_id}")
         logger.info(f"🔥 PROGRESS DEBUG: template_vars = {template_vars}")
         
         # 🔥 CRITICAL: 完全なレスポンス追跡ログ
@@ -6008,7 +6175,7 @@ def exam():
 @app.route('/exam/next')
 def exam_next():
     """次の問題に進む"""
-    current_no = session.get('exam_current', 0)
+    current_no = get_exam_current_safe(session, 0)
     exam_question_ids = session.get('exam_question_ids', [])
 
     # 🔥 ULTRASYNC修正: exam_next関数も ユーザー設定問題数基準に統一
@@ -8954,8 +9121,8 @@ def start_exam(exam_type):
         
         # 🚨 ULTRATHIN区段階51緊急修正: year_param バリデーション追加
         # 不正な年度パラメータでのエラーハンドリング改善
-        # 🛡️ ULTRATHIN修復: 2024年度を有効年度に追加
-        VALID_YEARS = [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2024]
+        # 🛡️ ULTRA SYNC修正: 実際のデータファイルと一致する年度のみ
+        # VALID_YEARSはグローバル定数として定義済み（200行目参照）
         
         if year_param:
             try:
@@ -9373,17 +9540,18 @@ def exam_question():
             
             try:
                 # 専門科目データが正常に読み込まれているかを確認
-                # 🚨 根本修正: セッション復元処理を大幅簡素化
+                # 🚨 根本修正: セッション復元処理を大幅簡素化（型安全変換追加）
                 # 複雑なデバッグ情報取得を廃止、直接セッション確認
-                if session.get('exam_question_ids') and session.get('exam_current') is not None:
+                exam_current_safe = get_exam_current_safe(session, None)
+                if session.get('exam_question_ids') and exam_current_safe is not None:
                     # セッションデータが存在する場合は復元
                     logger.info(f"✅ セッション復元: exam_question_ids={len(session.get('exam_question_ids', []))}問")
                     
-                    # 最小限のセッション復元
+                    # 最小限のセッション復元（型安全変換）
                     restored_session = {
                         'exam_id': f"restored_{int(time.time())}",
                         'status': 'in_progress',
-                        'current': session.get('exam_current', 0),
+                        'current': exam_current_safe,  # 既に型チェック済み
                         'q_count': len(session.get('exam_question_ids', [])),
                         'restored': True
                     }
