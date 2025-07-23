@@ -4037,7 +4037,7 @@ def exam():
         logger.info(f"🔥 PROGRESS DEBUG: exam route called - method={request.method}, args={dict(request.args)}")
         if request.method == 'POST':
             logger.info(f"🔥 PROGRESS DEBUG: POST data={dict(request.form)}")
-        logger.info(f"🔥 PROGRESS DEBUG: Current session exam_current={session.get('exam_current')}, question_ids={len(session.get('exam_question_ids', []))}")
+        logger.info(f"🔥 PROGRESS DEBUG: Current session exam_current={get_exam_current_safe(session, 0)}, question_ids={len(session.get('exam_question_ids', []))}")
         
         # 🔥 CRITICAL FIX: 完了セッションチェック（GET処理での11問目表示バグ解決）
         if request.method == 'GET' and session.get('quiz_completed'):
@@ -4364,7 +4364,7 @@ def exam():
             from datetime import datetime as dt
             timestamp = dt.now().strftime("%Y-%m-%d %H:%M:%S.%f")
             logger.info(f"🔍 Timestamp: {timestamp}")
-            logger.info(f"🔍 Current Question Check: qid={form_data.get('qid')}, exam_current={session.get('exam_current')}")
+            logger.info(f"🔍 Current Question Check: qid={form_data.get('qid')}, exam_current={get_exam_current_safe(session, 0)}")
             
             # 🔥 CRITICAL: セッションとPOSTデータの不整合チェック
             if 'exam_question_ids' in session and session.get('exam_question_ids'):
@@ -5327,7 +5327,7 @@ def exam():
             session.modified = True
             
             # ステップ8: 最終的な検証（POST完了直前）
-            final_exam_current = session.get('exam_current')
+            final_exam_current = get_exam_current_safe(session, 0)
             logger.info(f"🔥 POST完了直前の最終確認: exam_current = {final_exam_current}")
             logger.info("=== PROGRESS FIX: セッション状態更新完了 ===")
             
@@ -5342,7 +5342,7 @@ def exam():
             
             # 🔥 CRITICAL: 最終的なセッション保存状態の確認
             final_verification = {
-                'exam_current': session.get('exam_current'),
+                'exam_current': get_exam_current_safe(session, 0),
                 'exam_question_ids_length': len(session.get('exam_question_ids', [])),
                 'progress_tracking_present': bool(session.get('progress_tracking')),
                 'session_modified': True
@@ -5425,7 +5425,7 @@ def exam():
         is_next_request = (next_param == '1')  # シンプルで確実な判定
         
         # 🔥 PROGRESS DEBUG: GET処理開始時のセッション状態
-        logger.info(f"🔥 PROGRESS DEBUG: GET処理開始 - exam_current={session.get('exam_current')}, is_next_request={is_next_request}")
+        logger.info(f"🔥 PROGRESS DEBUG: GET処理開始 - exam_current={get_exam_current_safe(session, 0)}, is_next_request={is_next_request}")
         logger.info(f"🔥 PROGRESS DEBUG: セッションキー存在確認 - exam_question_ids={'exam_question_ids' in session}, exam_current={'exam_current' in session}")
         if is_next_request:
             requested_category = session.get('exam_category', '全体')
@@ -5838,7 +5838,7 @@ def exam():
             # 🔥 PROGRESS DEBUG: セッション状態の詳細ログ
             logger.info(f"🔥 PROGRESS DEBUG: has_active_session={has_active_session}")
             logger.info(f"🔥 PROGRESS DEBUG: exam_question_ids={bool(exam_question_ids)}, length={len(exam_question_ids) if exam_question_ids else 0}")
-            logger.info(f"🔥 PROGRESS DEBUG: exam_current={session.get('exam_current')}")
+            logger.info(f"🔥 PROGRESS DEBUG: exam_current={get_exam_current_safe(session, 0)}")
             logger.info(f"🔥 PROGRESS DEBUG: has_url_params={has_url_params}")
             logger.info(f"🔥 PROGRESS DEBUG: is_next_request={is_next_request}")
             logger.info(f"🔥 PROGRESS DEBUG: progress_tracking={bool(session.get('progress_tracking'))}")
@@ -5886,7 +5886,7 @@ def exam():
             # 条件6: exam_current > 0 の場合は進行中セッションとして保護
             if get_exam_current_safe(session, 0) > 0 and has_active_session:
                 need_reset = False  
-                logger.info(f"🔥 PROGRESS FIX: 進行中セッション保護 - exam_current={session.get('exam_current')}")
+                logger.info(f"🔥 PROGRESS FIX: 進行中セッション保護 - exam_current={get_exam_current_safe(session, 0)}")
 
         # 🔥 ULTRASYNC修正: next=1リクエストの最終保護
         if is_next_request:
@@ -6153,7 +6153,7 @@ def exam():
         logger.info(f"🔍 Template Variables: {template_vars}")
         logger.info(f"🔍 Session State Before Response:")
         logger.info(f"  - exam_question_ids: {session.get('exam_question_ids')}")
-        logger.info(f"  - exam_current: {session.get('exam_current')}")
+        logger.info(f"  - exam_current: {get_exam_current_safe(session, 0)}")
         logger.info(f"  - exam_category: {session.get('exam_category')}")
         logger.info(f"  - selected_question_type: {session.get('selected_question_type')}")
         logger.info(f"  - selected_department: {session.get('selected_department')}")
@@ -8248,7 +8248,7 @@ def debug_session():
     try:
         session_info = {
             'exam_question_ids': session.get('exam_question_ids', []),
-            'exam_current': session.get('exam_current'),
+            'exam_current': get_exam_current_safe(session, 0),
             'exam_category': session.get('exam_category'),
             'selected_question_type': session.get('selected_question_type'),
             'selected_department': session.get('selected_department'),
@@ -10018,7 +10018,7 @@ def api_log_error():
         # セッション情報もログ
         logger.error(f"🚨 Session State at Error:")
         logger.error(f"  - exam_question_ids: {session.get('exam_question_ids')}")
-        logger.error(f"  - exam_current: {session.get('exam_current')}")
+        logger.error(f"  - exam_current: {get_exam_current_safe(session, 0)}")
         logger.error(f"  - exam_category: {session.get('exam_category')}")
         logger.error(f"  - selected_question_type: {session.get('selected_question_type')}")
         logger.error(f"  - session_keys: {list(session.keys())}")
