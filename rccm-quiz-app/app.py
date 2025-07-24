@@ -3946,8 +3946,7 @@ def index():
             logger.info("ホームページアクセス - 未認証ユーザー")
 
         session.modified = True
-        # 第三者レビュー用: シンプルレスポンステスト
-        return "RCCM Quiz App - Home Page (Simple Response Test)"
+        return render_template('index.html')
 
     except Exception as e:
         logger.error(f"ホームページエラー: {e}")
