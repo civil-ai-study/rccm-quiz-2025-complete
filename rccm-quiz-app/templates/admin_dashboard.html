@@ -632,15 +632,28 @@
             })
             .then(response => response.json())
             .then(data => {
+                // 🛡️ ULTRA SYNC XSS防止: innerHTML変数挿入を安全化
                 const reportItem = document.createElement('div');
                 reportItem.className = 'alert alert-success';
-                reportItem.innerHTML = `
-                    <i class="fas fa-check-circle me-2"></i>
-                    <strong>${type}レポート</strong> - ${timestamp}
-                    <button class="btn btn-sm btn-outline-success float-end" onclick="downloadReport('${type}')">
-                        <i class="fas fa-download"></i> ダウンロード
-                    </button>
-                `;
+                
+                const icon = document.createElement('i');
+                icon.className = 'fas fa-check-circle me-2';
+                
+                const strong = document.createElement('strong');
+                strong.textContent = type + 'レポート'; // XSS安全化
+                
+                const timestamp_span = document.createElement('span');
+                timestamp_span.textContent = ' - ' + timestamp; // XSS安全化
+                
+                const button = document.createElement('button');
+                button.className = 'btn btn-sm btn-outline-success float-end';
+                button.onclick = () => downloadReport(type); // XSS安全化
+                button.innerHTML = '<i class="fas fa-download"></i> ダウンロード';
+                
+                reportItem.appendChild(icon);
+                reportItem.appendChild(strong);
+                reportItem.appendChild(timestamp_span);
+                reportItem.appendChild(button);
                 
                 if (reportList.querySelector('.text-muted')) {
                     reportList.innerHTML = '';

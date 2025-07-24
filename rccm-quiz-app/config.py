@@ -77,7 +77,8 @@ class SRSConfig:
 class DataConfig:
     """データ管理設定"""
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    QUESTIONS_CSV = os.path.join(BASE_DIR, 'data', 'questions.csv')
+    QUESTIONS_CSV = os.path.join(BASE_DIR, 'data', '4-1.csv')
+    QUESTIONS_CSV_BASIC = os.path.join(BASE_DIR, 'data', '4-1.csv')
     
     # データバックアップ設定
     BACKUP_DIR = os.path.join(BASE_DIR, 'backups')
