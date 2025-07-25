@@ -17,53 +17,6 @@
     </div>
 
     <!-- PWA機能 -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="card pwa-card">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">
-                        <i class="fas fa-download"></i> PWA（Progressive Web App）
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <h6>アプリとしてインストール</h6>
-                            <p class="text-muted">このWebアプリをスマートフォンやPCにアプリとしてインストールできます。オフライン学習や高速起動が可能になります。</p>
-                            
-                            <div class="pwa-features mb-3">
-                                <div class="feature-item">
-                                    <i class="fas fa-check text-success"></i>
-                                    <span>オフライン学習対応</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-check text-success"></i>
-                                    <span>高速起動</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-check text-success"></i>
-                                    <span>ホーム画面ショートカット</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-check text-success"></i>
-                                    <span>プッシュ通知（今後対応予定）</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <button id="installPWABtn" class="btn btn-success btn-lg mb-3" style="display: none;">
-                                <i class="fas fa-download"></i> アプリをインストール
-                            </button>
-                            <div id="pwaStatus" class="alert alert-info">
-                                <i class="fas fa-info-circle"></i>
-                                <span id="pwaStatusText">PWA対応ブラウザでアクセスしてください</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- 音声機能設定 -->
     <div class="row mb-4">
@@ -360,47 +313,9 @@ function loadMobileSettings() {
     }
 }
 
+// PWA インストール機能は無効化されました（URL管理のみ使用）
 function setupPWAInstall() {
-    let deferredPrompt;
-    
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        
-        const installBtn = document.getElementById('installPWABtn');
-        const statusDiv = document.getElementById('pwaStatus');
-        const statusText = document.getElementById('pwaStatusText');
-        
-        installBtn.style.display = 'block';
-        statusDiv.className = 'alert alert-success';
-        statusText.textContent = 'インストール準備完了';
-        
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const choiceResult = await deferredPrompt.userChoice;
-                
-                if (choiceResult.outcome === 'accepted') {
-                    statusText.textContent = 'アプリをインストール中...';
-                } else {
-                    statusText.textContent = 'インストールがキャンセルされました';
-                }
-                
-                deferredPrompt = null;
-                installBtn.style.display = 'none';
-            }
-        });
-    });
-    
-    window.addEventListener('appinstalled', () => {
-        const statusDiv = document.getElementById('pwaStatus');
-        const statusText = document.getElementById('pwaStatusText');
-        
-        statusDiv.className = 'alert alert-success';
-        statusText.textContent = 'アプリのインストールが完了しました！';
-        
-        document.getElementById('installPWABtn').style.display = 'none';
-    });
+    // 機能無効化済み
 }
 
 function updateOfflineStatus() {

@@ -26,17 +26,8 @@
         })();
     </script>
     
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json">
-    
     <!-- アクセシビリティ改善 -->
     <meta name="format-detection" content="telephone=no">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="RCCM試験問題集">
-    <meta name="application-name" content="RCCM問題集">
-    <meta name="msapplication-TileColor" content="#667eea">
-    <meta name="theme-color" content="#667eea">
     
     <!-- Apple Touch Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon.png">
@@ -376,18 +367,6 @@
     }
     </style>
 
-    <!-- Service Worker & PWA 登録 -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/static/sw.js')
-            .then(function(registration) {
-            })
-            .catch(function(error) {
-            });
-        });
-      }
-    </script>
     {% block head %}{% endblock %}
 </head>
 <body>

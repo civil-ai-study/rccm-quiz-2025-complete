@@ -1,73 +1,9 @@
 {
-  "name": "RCCM試験問題集 - AI学習アシスタント",
-  "short_name": "RCCM問題集",
-  "description": "AI搭載のRCCM試験対策アプリ - オフライン学習、音声読み上げ対応",
+  "_comment": "PWA manifest disabled per user request - URL management only",
+  "_original_backup": "Original manifest content backed up",
+  "name": "",
+  "short_name": "",
   "start_url": "/",
-  "display": "standalone",
-  "background_color": "#667eea",
-  "theme_color": "#667eea",
-  "orientation": "portrait-primary",
-  "scope": "/",
-  "icons": [
-    {
-      "src": "/static/icons/favicon-16x16.png",
-      "sizes": "16x16",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/static/icons/favicon-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/static/icons/icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/static/icons/favicon.ico",
-      "sizes": "16x16 32x32",
-      "type": "image/x-icon",
-      "purpose": "any"
-    }
-  ],
-  "categories": ["education", "productivity", "utilities"],
-  "lang": "ja",
-  "dir": "ltr",
-  "shortcuts": [
-    {
-      "name": "クイズ開始",
-      "short_name": "クイズ",
-      "description": "すぐにクイズを開始",
-      "url": "/quiz?quick=true",
-      "icons": [{"src": "/static/icons/icon-144x144.png", "sizes": "144x144"}]
-    },
-    {
-      "name": "AI分析",
-      "short_name": "AI分析",
-      "description": "弱点分析を表示",
-      "url": "/ai_analysis",
-      "icons": [{"src": "/static/icons/icon-144x144.png", "sizes": "144x144"}]
-    },
-    {
-      "name": "模擬試験",
-      "short_name": "模擬試験",
-      "description": "試験シミュレーション",
-      "url": "/exam_simulator",
-      "icons": [{"src": "/static/icons/icon-144x144.png", "sizes": "144x144"}]
-    },
-    {
-      "name": "統計",
-      "short_name": "統計",
-      "description": "学習統計を確認",
-      "url": "/statistics",
-      "icons": [{"src": "/static/icons/icon-144x144.png", "sizes": "144x144"}]
-    }
-  ],
-  "screenshots": [],
-  "related_applications": [],
-  "prefer_related_applications": false
+  "display": "browser",
+  "icons": []
 } 

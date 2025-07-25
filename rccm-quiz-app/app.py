@@ -1495,7 +1495,7 @@ DEPARTMENT_TO_CATEGORY_MAPPING = {
 # 🔥 FIX: LEGACY_DEPARTMENT_ALIASESを削除し、すべてconfig.pyキーに統一
 # 不要な変換処理を排除してシンプル化
 LEGACY_DEPARTMENT_ALIASES = {
-    # 日本語部門名の別名・短縮形対応（英語キー廃止）
+    # 🚨 緊急修正: 日本語のみ使用、英語完全排除
     '河川・砂防': '河川、砂防及び海岸・海洋',
     '河川砂防': '河川、砂防及び海岸・海洋',
     '河川': '河川、砂防及び海岸・海洋',
@@ -1512,10 +1512,7 @@ LEGACY_DEPARTMENT_ALIASES = {
     '積算': '施工計画、施工設備及び積算',
     '上水道': '上水道及び工業用水道',
     '工業用水道': '上水道及び工業用水道',
-    '上下水道': '上水道及び工業用水道',
-    # 基礎科目
-    'basic': '共通',
-    'common': '共通'
+    '上下水道': '上水道及び工業用水道'
 }
 
 # 🚀 ULTRA SYNC: 正規化された一意逆マッピング
@@ -3258,6 +3255,88 @@ def get_user_session_size(user_session):
 #@performance_timing_decorator
 def get_mixed_questions(user_session, all_questions, requested_category='全体', session_size=None, department='', question_type='', year=None):
     """新問題と復習問題をミックスした出題（RCCM部門対応版・📊 高性能最適化版）"""
+    
+    # 🚨 CRITICAL MIXING PREVENTION - 混在問題完全根絶
+    def validate_department_category_strict():
+        """部門→カテゴリマッピングの厳格検証"""
+        if question_type != 'specialist' or not department:
+            return True
+            
+        normalized_dept = normalize_department_name(department)
+        if not normalized_dept:
+            logger.critical(f"🚨 CRITICAL: 無効部門名 {department}")
+            return False
+            
+        target_category = DEPARTMENT_TO_CATEGORY_MAPPING.get(normalized_dept)
+        if not target_category:
+            logger.critical(f"🚨 CRITICAL: 部門マッピング不在 {normalized_dept}")
+            return False
+            
+        return True
+    
+    def strict_mixing_prevention_filter(questions, dept, q_type, yr=None):
+        """混在完全防止フィルター - 1問でも混在があれば停止"""
+        if q_type != 'specialist' or not dept:
+            return questions
+            
+        normalized_dept = normalize_department_name(dept)
+        target_category = DEPARTMENT_TO_CATEGORY_MAPPING.get(normalized_dept) if normalized_dept else None
+        
+        if not target_category:
+            logger.critical(f"🚨 MIXING PREVENTION: 無効部門 {dept}")
+            return []
+        
+        pure_questions = []
+        rejected = []
+        
+        for q in questions:
+            q_category = q.get('category', '')
+            q_type_actual = q.get('question_type', '')
+            q_year = q.get('year')
+            
+            # 完全一致チェック
+            is_valid = True
+            rejection_reason = []
+            
+            if q_type_actual != 'specialist':
+                is_valid = False
+                rejection_reason.append(f"type:{q_type_actual}≠specialist")
+                
+            if q_category != target_category:
+                is_valid = False
+                rejection_reason.append(f"category:{q_category}≠{target_category}")
+            
+            if yr:
+                try:
+                    target_year = int(yr)
+                    if not q_year or int(q_year) != target_year:
+                        is_valid = False
+                        rejection_reason.append(f"year:{q_year}≠{target_year}")
+                except (ValueError, TypeError):
+                    is_valid = False
+                    rejection_reason.append(f"invalid_year:{q_year}")
+            
+            if is_valid:
+                pure_questions.append(q)
+            else:
+                rejected.append({
+                    'id': q.get('id'),
+                    'reason': ', '.join(rejection_reason)
+                })
+        
+        if rejected:
+            logger.warning(f"🔍 混在防止フィルター: {len(rejected)}問除外")
+            for r in rejected[:3]:
+                logger.warning(f"  除外ID{r['id']}: {r['reason']}")
+        
+        logger.info(f"✅ 混在防止完了: {dept}→{target_category} = {len(pure_questions)}問純粋")
+        return pure_questions
+    
+    # 事前検証実行
+    if not validate_department_category_strict():
+        logger.critical("🚨 CRITICAL: 事前検証失敗により処理停止")
+        return []
+    
     # ユーザー設定の問題数を取得（デフォルト10問）
     if session_size is None:
         session_size = get_user_session_size(user_session)
@@ -3391,12 +3470,16 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
                                    and q.get('year') is not None]  # 専門科目は年度必須
             logger.info(f"🛡️ ULTRATHIN区: 専門科目フィルタ適用 - {pre_specialist_count} → {len(available_questions)}問")
             
+            # 🚨 CRITICAL MIXING PREVENTION: 厳格フィルタリング適用
+            available_questions = strict_mixing_prevention_filter(available_questions, department, question_type, year)
+            logger.info(f"🚨 混在防止フィルター適用後: {len(available_questions)}問")
+            
             # 🚨 基礎科目混入チェック
             available_ids = [safe_int_id(aq) for aq in available_questions]
             basic_contamination = [q for q in all_questions 
                                  if q.get('question_type') == 'basic' and safe_int_id(q) in available_ids]
             if basic_contamination:
-                logger.error(f"🚨 専門科目に基礎科目混入検出: {len(basic_contamination)}問")
+                logger.error(f"🚨 基礎科目に専門科目混入検出: {len(basic_contamination)}問")
                 available_questions = [q for q in available_questions if q not in basic_contamination]
 
         # その他の場合
@@ -3835,6 +3918,73 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
             if specialist_contamination_final:
                 logger.error(f"🚨 最終選択に専門科目混入検出: {len(specialist_contamination_final)}問 - 除外処理")
                 selected_questions = [q for q in selected_questions if q.get('question_type') != 'specialist']
+    
+    # 🚨 FINAL MIXING VALIDATION - 最終混在検証（完全根絶）
+    def final_mixing_check():
+        """最終段階での混在検証 - 1問でも混在があれば空リスト返却"""
+        if question_type != 'specialist' or not department or not selected_questions:
+            return selected_questions
+            
+        normalized_dept = normalize_department_name(department)
+        target_category = DEPARTMENT_TO_CATEGORY_MAPPING.get(normalized_dept) if normalized_dept else None
+        
+        if not target_category:
+            logger.critical(f"🚨 FINAL CHECK: 無効部門 {department}")
+            return []
+        
+        # 完全一致検証
+        mixing_violations = []
+        valid_questions = []
+        
+        for q in selected_questions:
+            q_category = q.get('category', '')
+            q_type = q.get('question_type', '')
+            q_year = q.get('year')
+            q_id = q.get('id', 'unknown')
+            
+            violations = []
+            
+            # 問題種別チェック
+            if q_type != 'specialist':
+                violations.append(f"type={q_type}≠specialist")
+            
+            # カテゴリチェック    
+            if q_category != target_category:
+                violations.append(f"category={q_category}≠{target_category}")
+            
+            # 年度チェック
+            if year:
+                try:
+                    target_year = int(year)
+                    if not q_year or int(q_year) != target_year:
+                        violations.append(f"year={q_year}≠{target_year}")
+                except (ValueError, TypeError):
+                    violations.append(f"invalid_year={q_year}")
+            
+            if violations:
+                mixing_violations.append({
+                    'id': q_id,
+                    'violations': violations
+                })
+            else:
+                valid_questions.append(q)
+        
+        # 混在検出時の完全停止
+        if mixing_violations:
+            logger.critical(f"🚨 FINAL MIXING DETECTED: {len(mixing_violations)}問で混在検出")
+            logger.critical(f"🚨 期待: 部門={department}→{target_category}, 年度={year}, type=specialist")
+            
+            for violation in mixing_violations[:5]:  # 最初の5件をログ
+                logger.critical(f"🚨 違反ID{violation['id']}: {', '.join(violation['violations'])}")
+            
+            logger.critical("🚨 混在検出により空リストを返却 - 混在完全防止")
+            return []
+        
+        logger.info(f"✅ 最終混在検証完了: 全{len(valid_questions)}問が純粋")
+        return valid_questions
+    
+    # 最終混在検証実行
+    selected_questions = final_mixing_check()
     
     logger.info(f"🔥 ULTRA SYNC: 最終問題数確定 {len(selected_questions)}問（{session_size}問設定に従って切断）")
     return selected_questions
@@ -6187,6 +6337,14 @@ def exam():
                 question = next((q for q in all_questions if safe_question_id_compare(q, original_id)), None)
                 if question:
                     logger.warning(f"✅ 元ID検索成功: {current_question_id} → {original_id}")
+            
+            # 🚨 緊急修正: ID直接検索（土質・基礎部門対応）
+            if not question and question_id_int <= 500:
+                # 専門科目の場合、基礎科目から検索を試行
+                question = next((q for q in all_questions if safe_question_id_compare(q, question_id_int)), None)
+                if question:
+                    logger.warning(f"🔧 緊急修正: 直接ID検索成功 - {current_question_id}")
+                    
         except (ValueError, TypeError):
             logger.warning(f"🛡️ ULTRA SYNC段階111-14: 問題ID型変換エラー回避 - {current_question_id}")
 
@@ -6296,10 +6454,21 @@ def result():
             exam_question_ids = exam_question_ids_raw
         session_size = len(exam_question_ids) if exam_question_ids else ExamConfig.QUESTIONS_PER_SESSION
 
-        # 履歴が空の場合は適切にハンドリング（ダミーデータは削除）
+        # 🔥 ULTRA SYNC FIX: 履歴が空の場合の処理改善
         if not history:
-            logger.info("履歴なしのため/examにリダイレクト")
-            return redirect(url_for('exam'))
+            logger.info("🚨 結果画面: 履歴が空です - デバッグ情報を表示")
+            # デバッグ用の基本情報を提供
+            debug_message = f"試験セッションが見つかりません。セッション状態: exam_current={session.get('exam_current')}, question_ids={len(session.get('exam_question_ids', []))}"
+            logger.warning(f"🔍 結果画面デバッグ: {debug_message}")
+            
+            # 空の履歴でも結果画面を表示（デバッグ情報付き）
+            return render_template('result.html', 
+                                 correct_count=0, 
+                                 total_questions=0, 
+                                 elapsed_time=0,
+                                 basic_specialty_scores={'basic': {'correct': 0, 'total': 0}, 'specialty': {'correct': 0, 'total': 0}},
+                                 is_review_session=False,
+                                 debug_message=debug_message)
 
         # 現在のセッションの履歴のみを取得（最新10問）
         recent_history = history[-session_size:] if len(history) >= session_size else history
