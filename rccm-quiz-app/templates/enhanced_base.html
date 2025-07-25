@@ -19,10 +19,8 @@
     <meta name="twitter:title" content="{% block twitter_title %}RCCM試験問題集 - AI学習アシスタント{% endblock %}">
     <meta name="twitter:description" content="{% block twitter_description %}AI搭載のRCCM試験対策アプリ{% endblock %}">
     
-    <!-- Enhanced PWA Configuration -->
-    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <!-- Enhanced Mobile Configuration -->
     <meta name="theme-color" content="#2563eb">
-    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="RCCM問題集">
     
@@ -248,8 +246,10 @@
     <!-- Enhanced Interactions -->
     <script src="{{ url_for('static', filename='js/enhanced_interactions.js') }}"></script>
     
-    <!-- Service Worker Registration for PWA -->
+    <!-- Disabled: Service Worker removed per user request -->
     <script>
+        // Service Worker registration disabled - URL management only
+        /*
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/static/sw.js')
@@ -261,6 +261,7 @@
                     });
             });
         }
+        */
     </script>
     
     <!-- Performance Monitoring -->
