@@ -3822,8 +3822,26 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         logger.warning(f"問題数不足を検出: {len(selected_questions)}問 (不足: {shortage}問) - フォールバック実行")
 
         # フォールバック1: フィルタを緩和して問題を追加
-        selected_ids = [int(q.get('id', 0)) for q in selected_questions]
-        fallback_questions = [q for q in all_questions if int(q.get('id', 0)) not in selected_ids]
+        # 🛡️ ULTRASYNC修正: 問題ID型安全変換
+        selected_ids = []
+        for q in selected_questions:
+            q_id = q.get('id', 0)
+            try:
+                selected_ids.append(int(q_id) if q_id and str(q_id).strip() else 0)
+            except (ValueError, TypeError):
+                logger.warning(f"⚠️ 無効な問題ID: {q_id}")
+                selected_ids.append(0)
+        
+        fallback_questions = []
+        for q in all_questions:
+            q_id = q.get('id', 0)
+            try:
+                safe_id = int(q_id) if q_id and str(q_id).strip() else 0
+                if safe_id not in selected_ids:
+                    fallback_questions.append(q)
+            except (ValueError, TypeError):
+                logger.warning(f"⚠️ フォールバック時の無効ID: {q_id}")
+                continue
 
         # 🛡️ ULTRATHIN区緊急修正: 問題種別は維持しつつ、他のフィルタを緩和（カテゴリー混在完全防止）
         if question_type:
@@ -3872,23 +3890,52 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         # 🛡️ ULTRATHIN区修正: フォールバック2でも部門・年度制約を厳格維持
         if len(selected_questions) < session_size:
             final_shortage = session_size - len(selected_questions)
-            selected_ids = [int(q.get('id', 0)) for q in selected_questions]
+            # 🛡️ ULTRASYNC修正: 問題ID型安全変換
+            selected_ids = []
+            for q in selected_questions:
+                q_id = q.get('id', 0)
+                try:
+                    selected_ids.append(int(q_id) if q_id and str(q_id).strip() else 0)
+                except (ValueError, TypeError):
+                    logger.warning(f"⚠️ フォールバック2無効ID: {q_id}")
+                    selected_ids.append(0)
             
             # 4-2専門問題では部門・年度制約を絶対に維持
             if question_type == 'specialist' and department:
                 # 部門制約を維持したフォールバック
                 target_category = get_department_category(normalize_department_name(department))
-                filtered_fallback = [q for q in all_questions 
-                                   if int(q.get('id', 0)) not in selected_ids
-                                   and q.get('category') == target_category]
+                # 🛡️ ULTRASYNC修正: 型安全フィルタリング
+                filtered_fallback = []
+                for q in all_questions:
+                    if q.get('category') != target_category:
+                        continue
+                    q_id = q.get('id', 0)
+                    try:
+                        safe_id = int(q_id) if q_id and str(q_id).strip() else 0
+                        if safe_id not in selected_ids:
+                            filtered_fallback.append(q)
+                    except (ValueError, TypeError):
+                        logger.warning(f"⚠️ フィルタリング時無効ID: {q_id}")
+                        continue
                 
                 # 年度制約も維持
                 if year and str(year).strip() != '':
                     try:
                         target_year = int(year)
                         if target_year in VALID_YEARS:
-                            filtered_fallback = [q for q in filtered_fallback 
-                                               if q.get('year') is not None and int(q.get('year', 0)) == target_year]
+                            # 🛡️ ULTRASYNC修正: 年度フィルタリング型安全化
+                            year_filtered = []
+                            for q in filtered_fallback:
+                                q_year = q.get('year')
+                                if q_year is None:
+                                    continue
+                                try:
+                                    if int(q_year) == target_year:
+                                        year_filtered.append(q)
+                                except (ValueError, TypeError):
+                                    logger.warning(f"⚠️ 年度フィルタリング無効値: {q_year}")
+                                    continue
+                            filtered_fallback = year_filtered
                     except (ValueError, TypeError):
                         pass
                 
