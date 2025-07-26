@@ -9259,12 +9259,16 @@ def quiz_simple():
         if not questions:
             return render_template('error.html', error="問題データが読み込めませんでした。")
         
-        # 10問をランダム選択（CLAUDE.md準拠）
+        # 🚨 ULTRA SYNC 緊急修正: ユーザー設定問題数に対応（CLAUDE.md準拠）
+        user_session_size = get_user_session_size(session)
+        logger.info(f"🎯 基礎科目問題数設定確認: {user_session_size}問")
+        
         basic_questions = [q for q in questions if q.get('question_type') == 'basic']
-        if len(basic_questions) >= 10:
-            selected = random.sample(basic_questions, 10)
+        if len(basic_questions) >= user_session_size:
+            selected = random.sample(basic_questions, user_session_size)
         else:
-            selected = basic_questions[:10] if basic_questions else questions[:10]
+            selected = basic_questions[:user_session_size] if basic_questions else questions[:user_session_size]
+            logger.warning(f"⚠️ 基礎科目問題数不足: 要求{user_session_size}問 → 実際{len(selected)}問")
         
         # セッションに保存（空IDをフィルタリング）
         valid_ids = [q['id'] for q in selected if q.get('id') and str(q['id']).strip()]
@@ -9306,11 +9310,16 @@ def quiz_department(department):
         if not dept_questions:
             return render_template('error.html', error=f"{department}部門の問題が見つかりません。")
         
-        # 10問をランダム選択
-        if len(dept_questions) >= 10:
-            selected = random.sample(dept_questions, 10)
+        # 🚨 ULTRA SYNC 緊急修正: ユーザー設定問題数に対応
+        user_session_size = get_user_session_size(session)
+        logger.info(f"🎯 問題数設定確認: {user_session_size}問")
+        
+        # ユーザー設定問題数をランダム選択
+        if len(dept_questions) >= user_session_size:
+            selected = random.sample(dept_questions, user_session_size)
         else:
             selected = dept_questions
+            logger.warning(f"⚠️ 利用可能問題数不足: 要求{user_session_size}問 → 実際{len(dept_questions)}問")
         
         # セッションに保存（空IDをフィルタリング）
         valid_ids = [q['id'] for q in selected if q.get('id') and str(q['id']).strip()]
@@ -9469,6 +9478,13 @@ def start_exam(exam_type):
                         return render_template('error.html', error="問題数は100問以下で指定してください。")
                     
                     logger.info(f"✅ ULTRATHIN段階50: 有効な問題数確認 - {questions_count}問")
+                    
+                    # 🚨 ULTRA SYNC 緊急修正: 問題数をセッション設定に保存
+                    if 'quiz_settings' not in session:
+                        session['quiz_settings'] = {}
+                    session['quiz_settings']['questions_per_session'] = questions_count
+                    session.modified = True
+                    logger.info(f"🔥 問題数設定保存: {questions_count}問をセッションに設定")
             except ValueError:
                 logger.warning(f"🚨 ULTRATHIN段階50: 数値変換エラー - '{questions_param}'")
                 return render_template('error.html', error="問題数は有効な数値で指定してください。")
