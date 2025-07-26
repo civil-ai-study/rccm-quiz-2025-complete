@@ -3344,7 +3344,7 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
                 is_valid = False
                 rejection_reason.append(f"category:{q_category}≠{target_category}")
             
-            if yr:
+            if yr and str(yr).strip():
                 try:
                     target_year = int(yr)
                     if not q_year or int(q_year) != target_year:
@@ -3404,7 +3404,7 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
                 optimized_questions = _performance_optimizer.get_mixed_questions_optimized(
                     department=target_category,
                     question_type=question_type,
-                    year=int(year) if year else None,
+                    year=int(year) if year and str(year).strip() else None,
                     count=session_size,
                     exclude_ids=exclude_ids
                 )
