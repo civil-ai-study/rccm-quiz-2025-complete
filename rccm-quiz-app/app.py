@@ -3443,7 +3443,9 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         # 🛡️ ULTRA SYNC修正: 厳密な年度フィルタリング（数値比較）
         if year and question_type == 'specialist':
             try:
-                target_year = int(year)
+                target_year = int(year) if year and str(year).strip() else None
+                if target_year is None:
+                    continue
                 q_year = question.get('year')
                 if q_year is None or int(q_year) != target_year:
                     continue
@@ -3993,7 +3995,9 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
             # 年度チェック
             if year:
                 try:
-                    target_year = int(year)
+                    target_year = int(year) if year and str(year).strip() else None
+                    if target_year is None:
+                        continue
                     if not q_year or int(q_year) != target_year:
                         violations.append(f"year={q_year}≠{target_year}")
                 except (ValueError, TypeError):
