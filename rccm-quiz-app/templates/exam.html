@@ -87,50 +87,82 @@
                 <fieldset class="mb-2">
                     <legend class="visually-hidden">選択肢一覧</legend>
                     
-                    <!-- 選択肢A -->
+                    <!-- 選択肢A - ウルトラシンク全面クリック強化版 -->
                     <div class="form-check option-item p-1 mb-1 border rounded" 
-                         onclick="selectOption('A', event)" style="cursor: pointer;">
-                        <input class="form-check-input" type="radio" name="answer" value="A" id="optionA">
-                        <label class="form-check-label w-100" for="optionA" style="cursor: pointer;">
-                            <div class="d-flex align-items-start">
-                                <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">A</span>
-                                <span class="option-text" style="font-size: 0.9rem;">{{ question.option_a }}</span>
+                         onclick="selectOption('A', event); event.stopPropagation();" 
+                         style="cursor: pointer; min-height: 60px; display: flex; align-items: center; position: relative;">
+                        <input class="form-check-input" type="radio" name="answer" value="A" id="optionA" 
+                               style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); margin: 0;">
+                        <label class="form-check-label w-100" for="optionA" 
+                               onclick="selectOption('A', event); event.stopPropagation();"
+                               style="cursor: pointer; width: 100%; height: 100%; display: flex; align-items: center; padding-left: 35px;">
+                            <div class="d-flex align-items-center w-100" onclick="selectOption('A', event); event.stopPropagation();">
+                                <span class="badge bg-primary me-2 option-letter" 
+                                      onclick="selectOption('A', event); event.stopPropagation();"
+                                      style="font-size: 0.8rem; cursor: pointer;">A</span>
+                                <span class="option-text" 
+                                      onclick="selectOption('A', event); event.stopPropagation();"
+                                      style="font-size: 0.9rem; cursor: pointer; flex: 1;">{{ question.option_a }}</span>
                             </div>
                         </label>
                     </div>
 
-                    <!-- 選択肢B -->
+                    <!-- 選択肢B - ウルトラシンク全面クリック強化版 -->
                     <div class="form-check option-item p-1 mb-1 border rounded" 
-                         onclick="selectOption('B', event)" style="cursor: pointer;">
-                        <input class="form-check-input" type="radio" name="answer" value="B" id="optionB">
-                        <label class="form-check-label w-100" for="optionB" style="cursor: pointer;">
-                            <div class="d-flex align-items-start">
-                                <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">B</span>
-                                <span class="option-text" style="font-size: 0.9rem;">{{ question.option_b }}</span>
+                         onclick="selectOption('B', event); event.stopPropagation();" 
+                         style="cursor: pointer; min-height: 60px; display: flex; align-items: center; position: relative;">
+                        <input class="form-check-input" type="radio" name="answer" value="B" id="optionB" 
+                               style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); margin: 0;">
+                        <label class="form-check-label w-100" for="optionB" 
+                               onclick="selectOption('B', event); event.stopPropagation();"
+                               style="cursor: pointer; width: 100%; height: 100%; display: flex; align-items: center; padding-left: 35px;">
+                            <div class="d-flex align-items-center w-100" onclick="selectOption('B', event); event.stopPropagation();">
+                                <span class="badge bg-primary me-2 option-letter" 
+                                      onclick="selectOption('B', event); event.stopPropagation();"
+                                      style="font-size: 0.8rem; cursor: pointer;">B</span>
+                                <span class="option-text" 
+                                      onclick="selectOption('B', event); event.stopPropagation();"
+                                      style="font-size: 0.9rem; cursor: pointer; flex: 1;">{{ question.option_b }}</span>
                             </div>
                         </label>
                     </div>
 
-                    <!-- 選択肢C -->
+                    <!-- 選択肢C - ウルトラシンク全面クリック強化版 -->
                     <div class="form-check option-item p-1 mb-1 border rounded" 
-                         onclick="selectOption('C', event)" style="cursor: pointer;">
-                        <input class="form-check-input" type="radio" name="answer" value="C" id="optionC">
-                        <label class="form-check-label w-100" for="optionC" style="cursor: pointer;">
-                            <div class="d-flex align-items-start">
-                                <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">C</span>
-                                <span class="option-text" style="font-size: 0.9rem;">{{ question.option_c }}</span>
+                         onclick="selectOption('C', event); event.stopPropagation();" 
+                         style="cursor: pointer; min-height: 60px; display: flex; align-items: center; position: relative;">
+                        <input class="form-check-input" type="radio" name="answer" value="C" id="optionC" 
+                               style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); margin: 0;">
+                        <label class="form-check-label w-100" for="optionC" 
+                               onclick="selectOption('C', event); event.stopPropagation();"
+                               style="cursor: pointer; width: 100%; height: 100%; display: flex; align-items: center; padding-left: 35px;">
+                            <div class="d-flex align-items-center w-100" onclick="selectOption('C', event); event.stopPropagation();">
+                                <span class="badge bg-primary me-2 option-letter" 
+                                      onclick="selectOption('C', event); event.stopPropagation();"
+                                      style="font-size: 0.8rem; cursor: pointer;">C</span>
+                                <span class="option-text" 
+                                      onclick="selectOption('C', event); event.stopPropagation();"
+                                      style="font-size: 0.9rem; cursor: pointer; flex: 1;">{{ question.option_c }}</span>
                             </div>
                         </label>
                     </div>
 
-                    <!-- 選択肢D -->
+                    <!-- 選択肢D - ウルトラシンク全面クリック強化版 -->
                     <div class="form-check option-item p-1 mb-1 border rounded" 
-                         onclick="selectOption('D', event)" style="cursor: pointer;">
-                        <input class="form-check-input" type="radio" name="answer" value="D" id="optionD">
-                        <label class="form-check-label w-100" for="optionD" style="cursor: pointer;">
-                            <div class="d-flex align-items-start">
-                                <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">D</span>
-                                <span class="option-text" style="font-size: 0.9rem;">{{ question.option_d }}</span>
+                         onclick="selectOption('D', event); event.stopPropagation();" 
+                         style="cursor: pointer; min-height: 60px; display: flex; align-items: center; position: relative;">
+                        <input class="form-check-input" type="radio" name="answer" value="D" id="optionD" 
+                               style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); margin: 0;">
+                        <label class="form-check-label w-100" for="optionD" 
+                               onclick="selectOption('D', event); event.stopPropagation();"
+                               style="cursor: pointer; width: 100%; height: 100%; display: flex; align-items: center; padding-left: 35px;">
+                            <div class="d-flex align-items-center w-100" onclick="selectOption('D', event); event.stopPropagation();">
+                                <span class="badge bg-primary me-2 option-letter" 
+                                      onclick="selectOption('D', event); event.stopPropagation();"
+                                      style="font-size: 0.8rem; cursor: pointer;">D</span>
+                                <span class="option-text" 
+                                      onclick="selectOption('D', event); event.stopPropagation();"
+                                      style="font-size: 0.9rem; cursor: pointer; flex: 1;">{{ question.option_d }}</span>
                             </div>
                         </label>
                     </div>
