@@ -9591,12 +9591,16 @@ def start_exam(exam_type):
             session['ultra_sync_stage68_path'] = "道路専門科目強制パス実行"
             logger.warning(f"🔥 最終修正: 道路専門科目強制パス実行中")
             
+            # 🚨 ULTRA SYNC 緊急修正: 道路フィルタリング失敗時の基礎科目混入防止
             道路問題 = [q for q in all_questions if q.get('category') == '道路' and q.get('question_type') == 'specialist']
             if 道路問題:
                 all_questions = 道路問題
                 logger.info(f"✅ 道路専門科目データ抽出: {len(道路問題)}問")
             else:
-                logger.warning(f"⚠️ 道路専門科目データが見つからない")
+                logger.error(f"🚨 道路専門科目データが見つからない - 基礎科目混入防止のため専門科目のみに制限")
+                # 緊急安全策: 専門科目のみに制限して基礎科目混入を防止
+                all_questions = [q for q in all_questions if q.get('question_type') == 'specialist']
+                logger.warning(f"🛡️ 安全策適用: 専門科目のみ {len(all_questions)}問に制限")
         elif exam_type == '基礎科目':
             # 基礎科目の場合は基礎問題のみを抽出
             基礎問題 = [q for q in all_questions if q.get('question_type') == 'basic']
@@ -9604,7 +9608,10 @@ def start_exam(exam_type):
                 all_questions = 基礎問題
                 logger.info(f"✅ 基礎科目データ抽出: {len(基礎問題)}問")
             else:
-                logger.warning(f"⚠️ 基礎科目データが見つからない")
+                logger.error(f"🚨 基礎科目データが見つからない - 専門科目混入防止のため基礎科目のみに制限")
+                # 緊急安全策: 基礎科目のみに制限して専門科目混入を防止
+                all_questions = [q for q in all_questions if q.get('question_type') == 'basic']
+                logger.warning(f"🛡️ 安全策適用: 基礎科目のみ {len(all_questions)}問に制限")
         elif exam_type in 専門科目リスト:
             # 専門科目の場合は該当部門のみを抽出
             実際のカテゴリ名 = CSV_JAPANESE_CATEGORIES.get(exam_type, exam_type)
@@ -9618,7 +9625,10 @@ def start_exam(exam_type):
                 all_questions = 専門科目のみ
                 logger.info(f"✅ 専門科目データ抽出: {len(専門科目のみ)}問")
             else:
-                logger.warning(f"⚠️ 専門科目データが見つからない: {実際のカテゴリ名}")
+                logger.error(f"🚨 専門科目データが見つからない: {実際のカテゴリ名} - 基礎科目混入防止のため専門科目のみに制限")
+                # 緊急安全策: 専門科目のみに制限して基礎科目混入を防止
+                all_questions = [q for q in all_questions if q.get('question_type') == 'specialist']
+                logger.warning(f"🛡️ 安全策適用: 専門科目のみ {len(all_questions)}問に制限")
         else:
             # その他の場合はすべての問題データを保持
             logger.info(f"✅ 全問題データ保持: {len(all_questions)}問")
