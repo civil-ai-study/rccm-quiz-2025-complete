@@ -9295,8 +9295,13 @@ def quiz_department(department):
         if not questions:
             return render_template('error.html', error="問題データが読み込めませんでした。")
         
-        # 指定部門の問題を抽出
-        dept_questions = [q for q in questions if q.get('category') == department]
+        # 🔥 ULTRA SYNC 全13部門修正: 統一マッピングテーブル適用フィルタリング
+        # URL部門名をCSVカテゴリー名に変換（既存システムと統一）
+        mapped_category = DEPARTMENT_TO_CATEGORY_MAPPING.get(department, department)
+        logger.info(f"🎯 部門マッピング: '{department}' → '{mapped_category}'")
+        
+        # 指定部門の問題を抽出（統一マッピング適用）
+        dept_questions = [q for q in questions if q.get('category') == mapped_category]
         
         if not dept_questions:
             return render_template('error.html', error=f"{department}部門の問題が見つかりません。")
