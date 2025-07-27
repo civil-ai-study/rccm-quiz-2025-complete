@@ -379,14 +379,22 @@ def safe_post_processing(request, session, all_questions):
                 logger.error(f"❌ 問題ID が空です: qid='{qid}'")
                 return None, "問題IDが設定されていません。ページを再読み込みしてください。"
             
-            qid = int(qid)
+            try:
+                qid = int(qid)
+            except (ValueError, TypeError):
+                logger.error(f"❌ 問題ID変換エラー: qid='{qid}' (type: {type(qid)})")
+                return None, "問題IDが無効です。ページを再読み込みしてください。"
             
             # elapsed の安全な変換（デフォルト値でフォールバック）
             if not elapsed or elapsed == '':
                 logger.warning(f"⚠️ 経過時間が空のためデフォルト値使用: elapsed='{elapsed}'")
                 elapsed = 0
             else:
-                elapsed = int(elapsed)
+                try:
+                    elapsed = int(elapsed)
+                except (ValueError, TypeError):
+                    logger.warning(f"⚠️ 経過時間変換エラー、デフォルト値使用: elapsed='{elapsed}'")
+                    elapsed = 0
             
             logger.info(f"✅ データ変換成功: qid={qid}, elapsed={elapsed}")
             
@@ -9509,7 +9517,11 @@ def start_exam(exam_type):
                     logger.warning(f"🚨 ULTRATHIN段階51: 空の年度パラメータ")
                     return render_template('error.html', error="年度が指定されていません。")
                 
-                year_value = int(year_param.strip())
+                try:
+                    year_value = int(year_param.strip())
+                except (ValueError, TypeError):
+                    logger.error(f"❌ 年度変換エラー: year_param='{year_param}'")
+                    return render_template('error.html', error="年度の形式が正しくありません。")
                 if year_value not in VALID_YEARS:
                     logger.warning(f"🚨 ULTRATHIN段階51: 無効な年度 - {year_param}")
                     return render_template('error.html', error=f"指定された年度 {year_param} は利用できません。有効な年度: {', '.join(map(str, VALID_YEARS))}")
@@ -9527,9 +9539,11 @@ def start_exam(exam_type):
         # 🔥 ULTRA SYNC段階診断: exam_typeの詳細確認
         logger.warning(f"🔍 ULTRA SYNC段階68: exam_type値='【{exam_type}】', 型={type(exam_type)}, 長さ={len(str(exam_type))}")
         # 🔍 ULTRA SYNC診断: セッションに診断情報を設定
-        session['ultra_sync_debug'] = True
-        session['debug_exam_type'] = exam_type
-        session['ultra_sync_stage68_exam_type_check'] = f"exam_type='{exam_type}', 道路判定={exam_type == '道路'}"
+        # 🔍 ULTRA SYNC診断情報 - 開発環境のみ（セキュア版）
+        if app.config.get('DEBUG', False):
+            session['ultra_sync_debug'] = True
+            session['debug_exam_type'] = exam_type
+            session['ultra_sync_stage68_exam_type_check'] = f"exam_type='{exam_type}', 道路判定={exam_type == '道路'}"
         
         # 🔥 ウルトラシンク自発的デバッグ: 日本語試験タイプを英語にマッピング
         EXAM_TYPE_MAPPING = {
@@ -9591,12 +9605,11 @@ def start_exam(exam_type):
         専門科目リスト = ['道路', '河川・砂防', '都市計画', '造園', '建設環境', '鋼構造・コンクリート', '土質・基礎', '施工計画', '上下水道', '森林土木', '農業土木', 'トンネル']
         logger.warning(f"🔍 段階68専門科目判定: exam_type='{exam_type}' in 専門科目リスト → {exam_type in 専門科目リスト}")
         
-        # 🔍 ULTRA SYNC段階69: 強制的なセッション変数設定（必ず表示される）
-        session['ultra_sync_stage69_forced_display'] = f"強制表示: exam_type='{exam_type}', 関数実行確認"
-        session['ultra_sync_stage68_condition_check'] = f"道路判定開始: exam_type='{exam_type}'"
-        
-        # 🔥 第三者修正: 重複処理を排除し、統一的なデータ読み込み
-        session['ultra_sync_stage68_path'] = f"統一データ処理パス: {exam_type}"
+        # 🔍 ULTRA SYNC段階69診断情報 - 開発環境のみ設定（セキュア版）
+        if app.config.get('DEBUG', False):
+            session['ultra_sync_stage69_forced_display'] = f"強制表示: exam_type='{exam_type}', 関数実行確認"
+            session['ultra_sync_stage68_condition_check'] = f"道路判定開始: exam_type='{exam_type}'"
+            session['ultra_sync_stage68_path'] = f"統一データ処理パス: {exam_type}"
         logger.warning(f"🔥 第三者修正: 統一的データ処理実行中 - {exam_type}")
         
         # load_questions関数で統一的にデータを読み込み
@@ -9604,7 +9617,8 @@ def start_exam(exam_type):
         
         # 道路専門科目の場合、道路カテゴリのみを抽出
         if exam_type == '道路':
-            session['ultra_sync_stage68_path'] = "道路専門科目強制パス実行"
+            if app.config.get('DEBUG', False):
+                session['ultra_sync_stage68_path'] = "道路専門科目強制パス実行"
             logger.warning(f"🔥 最終修正: 道路専門科目強制パス実行中")
             
             # 🚨 ULTRA SYNC 緊急修正: 道路フィルタリング失敗時の基礎科目混入防止
