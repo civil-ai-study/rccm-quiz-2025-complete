@@ -37,6 +37,7 @@
         </div>
         <div class="card-body">
           <form method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
             <!-- 問題数選択 -->
             <div class="mb-4">
               <label class="form-label"><strong>1セッションあたりの問題数</strong></label>
