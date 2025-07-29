@@ -9995,8 +9995,8 @@ def start_exam(exam_type):
             if exam_type == '基礎科目' or exam_type == 'basic':
                 category_param = '基礎科目'
             else:
-                # 🔥 ULTRA SYNC FIX: 専門科目の場合はexam_typeをそのまま使用
-                category_param = exam_type
+                # 🔥 ULTRA SYNC FIX: 専門科目の場合はexam_typeを正しいCSVカテゴリー名にマッピング
+                category_param = map_department_to_category(exam_type)
             logger.info(f"🛡️ ULTRASYNC: デフォルト設定適用 - questions: {questions_param}, category: {category_param}")
         
         # 🚨 ULTRATHIN区段階52緊急修正: 必須パラメータ欠如エラーハンドリング追加
@@ -13805,24 +13805,122 @@ def debug_session_info():
         })
 
 # 🚀 Production deployment entry point
+def get_department_questions_ultrasync(category_param, user_session_size):
+    """
+    部門別問題取得関数（ULTRA SYNC対応）
+    CSVカテゴリー名から適切な問題データを取得
+    """
+    try:
+        import csv
+        import os
+        import random
+        
+        logger.info(f"🔍 部門別問題取得開始: {category_param}, 要求数: {user_session_size}")
+        
+        data_dir = 'data'
+        all_questions = []
+        
+        # 専門科目CSVファイルから問題を収集
+        for year in range(2008, 2020):
+            filepath = os.path.join(data_dir, f'4-2_{year}.csv')
+            if os.path.exists(filepath):
+                try:
+                    with open(filepath, 'r', encoding='utf-8-sig') as f:
+                        reader = csv.DictReader(f)
+                        for row in reader:
+                            if row.get('category', '').strip() == category_param:
+                                question = {
+                                    'id': row.get('id', ''),
+                                    'category': row.get('category', ''),
+                                    'year': year,
+                                    'question': row.get('question', ''),
+                                    'option_a': row.get('option_a', ''),
+                                    'option_b': row.get('option_b', ''),
+                                    'option_c': row.get('option_c', ''),
+                                    'option_d': row.get('option_d', ''),
+                                    'correct_answer': row.get('correct_answer', ''),
+                                    'explanation': row.get('explanation', ''),
+                                    'reference': row.get('reference', ''),
+                                    'difficulty': row.get('difficulty', 'medium'),
+                                    'question_type': 'specialist'
+                                }
+                                all_questions.append(question)
+                except Exception as e:
+                    logger.warning(f"⚠️ {year}年データ読み込みエラー: {e}")
+        
+        logger.info(f"✅ {category_param}部門問題収集完了: {len(all_questions)}問")
+        
+        if not all_questions:
+            logger.error(f"❌ {category_param}部門の問題が見つかりません")
+            return []
+        
+        # 指定された数だけランダム選択
+        if len(all_questions) > user_session_size:
+            selected = random.sample(all_questions, user_session_size)
+        else:
+            selected = all_questions
+        
+        logger.info(f"🎯 {category_param}部門問題選択完了: {len(selected)}問")
+        return selected
+        
+    except Exception as e:
+        logger.error(f"🚨 get_department_questions_ultrasync エラー: {e}")
+        return []
+
 def map_department_to_category(department):
     """
-    部門名をCSVカテゴリー名にマッピング（上下水道部門修正）
+    部門名をCSVカテゴリー名にマッピング（全13部門完全対応）
     """
     department_mapping = {
-        'water_supply': '上下水道及び工業用水道',
-        'water': '上下水道及び工業用水道',
-        '水道': '上下水道及び工業用水道',
-        '上下水道': '上下水道及び工業用水道',
+        # 基礎科目
+        'basic': '基礎',
+        'foundation': '基礎',
+        
+        # 専門科目12部門（実際のCSVカテゴリー名と完全一致）
+        'water_supply': '上水道及び工業用水道',
+        'water': '上水道及び工業用水道',
+        '水道': '上水道及び工業用水道',
+        '上下水道': '上水道及び工業用水道',
+        
         'road': '道路',
-        'river': '河川・砂防',
+        '道路': '道路',
+        
+        'river': '河川、砂防及び海岸・海洋',
+        'sabo': '河川、砂防及び海岸・海洋', 
+        '河川': '河川、砂防及び海岸・海洋',
+        '砂防': '河川、砂防及び海岸・海洋',
+        
         'urban': '都市計画及び地方計画',
+        '都市計画': '都市計画及び地方計画',
+        
         'landscape': '造園',
+        '造園': '造園',
+        
         'forest': '森林土木',
+        '森林': '森林土木',
+        
         'soil': '土質及び基礎',
+        'foundation_eng': '土質及び基礎',
+        '土質': '土質及び基礎',
+        '基礎': '土質及び基礎',
+        
         'construction': '施工計画、施工設備及び積算',
+        '施工': '施工計画、施工設備及び積算',
+        
         'steel': '鋼構造及びコンクリート',
-        'environment': '建設環境'
+        'concrete': '鋼構造及びコンクリート',
+        '鋼構造': '鋼構造及びコンクリート',
+        
+        'environment': '建設環境',
+        '建設環境': '建設環境',
+        
+        # 不足していた部門を追加
+        'agriculture': '農業土木',
+        '農業': '農業土木',
+        '農業土木': '農業土木',
+        
+        'tunnel': 'トンネル',
+        'トンネル': 'トンネル'
     }
     return department_mapping.get(department, department)
 
