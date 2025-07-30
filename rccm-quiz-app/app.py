@@ -10046,7 +10046,11 @@ def start_exam(exam_type):
         
         # 🛡️ get_department_questions_ultrasync関数使用で部門特化問題のみ取得
         try:
-            all_questions = get_department_questions_ultrasync(exam_type, 50)
+            # 🔥 CRITICAL FIX: 部門名をCSVカテゴリー名にマッピングしてから関数呼び出し
+            mapped_category = map_department_to_category(exam_type)
+            category_param = mapped_category  # 🔥 ULTRA SYNC FIX: mapped_categoryをcategory_paramに代入
+            logger.info(f"🔥 DEPARTMENT MAPPING: {exam_type} -> {mapped_category}")
+            all_questions = get_department_questions_ultrasync(mapped_category, 50)
             if all_questions:
                 logger.info(f"✅ CRITICAL FIX: {exam_type}専用問題取得成功 - {len(all_questions)}問")
             else:
@@ -10183,11 +10187,16 @@ def start_exam(exam_type):
         session_question_type = session.get('selected_question_type', '')
         user_session_size = get_user_session_size(session)
         
+        # 🔥 CRITICAL DEBUG: 条件判定詳細ログ
+        logger.info(f"🔥 CONDITION CHECK: session_question_type='{session_question_type}', category_param='{category_param}'")
+        logger.info(f"🔥 CONDITION CHECK: specialist check={session_question_type == 'specialist'}, category check={category_param and category_param != '基礎科目'}")
+        
         if session_question_type == 'specialist' and category_param and category_param != '基礎科目':
             # 専門科目: 部門特化関数で安全選択
             selected_questions = get_department_questions_ultrasync(category_param, user_session_size)
         else:
             # 基礎科目: 基礎問題のみ安全選択
+            data_dir = 'data'  # 🔥 CRITICAL FIX: data_dir変数定義追加
             selected_questions = load_basic_questions_only(data_dir)[:user_session_size]
         
         # 4-1と4-2の混在を防ぐ最終チェック
@@ -10235,6 +10244,12 @@ def start_exam(exam_type):
             'year': year_param,  # 年度情報追加
             'question_ids': [q['id'] for q in selected_questions]  # 問題IDリスト追加
         }
+        
+        # 🔥 CRITICAL FIX: テスト互換性のためquiz_question_idsキーを追加
+        session['quiz_question_ids'] = [q['id'] for q in selected_questions]
+        session['quiz_current'] = 0
+        session.modified = True
+        logger.info(f"🔥 CRITICAL FIX: quiz_question_ids設定完了 - {len(selected_questions)}問")
         
         # 🚨 【CRITICAL修正】lightweight_session変数を明示的に定義
         lightweight_session = unified_session.copy()
