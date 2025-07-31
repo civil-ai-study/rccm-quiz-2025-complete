@@ -1,11 +1,4 @@
-# 🔥 ULTRA SYNC EMERGENCY GITIGNORE
-# 大容量ファイル除外（プロジェクト軽量化）
-
-# ログファイル（最重要）
-*.log
-*.log.*
-rccm_app.log*
-logs/
+# ウルトラシンク .gitignore - 作業ディレクトリクリーン化
 
 # Python関連
 __pycache__/
@@ -28,53 +21,75 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
-# 仮想環境
-test_env/
-venv/
-ENV/
-env/
-ultrathin_test_env/
+# テスト・デバッグファイル
+test_*.py
+debug_*.py
+*_test.py
+*_debug.py
+*_test_*.py
+*_debug_*.py
+simple_*.py
+minimal_*.py
+quick_*.py
+emergency_*.py
+temporary_*.py
+trace_*.py
+analyze_*.py
+investigate_*.py
+comprehensive_*.py
+ultrasync_*.py
+ultrathin_*.py
+ultra_sync_*.py
+
+# HTMLテストファイル
+*.html
+!templates/*.html
+
+# JSON・ログファイル
+*_results*.json
+*_report*.json
+*_analysis*.json
+*_log*.json
+*_debug*.json
+*_test*.json
+*.log
+*.txt
+!requirements.txt
+!README.txt
 
 # バックアップファイル
-*_backup*
-*_emergency*
+*.backup*
 *.bak
-*.tmp
+*~
+app.py.backup_*
+config.py.backup_*
+utils.py.backup_*
 
-# ULTRA SYNC関連（一時ファイル）
-ultra_sync_*.py
-ultra_sync_*.json
-*_test_*.json
-ultrathin_*.py
-ultrathin_test_env/
-isolated_test_env/
-ultrathin_*.log
-*_fixed.log
-
-# テスト・デバッグファイル（大量クリーンアップ対象）
-*test*.py
-*debug*.py
-*verification*.py
-*analysis*.py
-*_test.html
-*_debug.html
-*test*.html
-*debug*.html
-*test*.json
-*debug*.json
-*verification*.json
-*analysis*.json
-
-# 一時ファイル・ログ類
-*.txt
-!requirements*.txt
-!README*.txt
+# 一時ファイル
 nul
 server.pid
 cookies*.txt
+*.tmp
+*.cache
 
-# IDE関連
+# デバッグ・分析レポート
+*_REPORT.md
+*_ANALYSIS.md
+*_DEBUG.md
+*_VERIFICATION.md
+*_COMPLETION.md
+!README.md
+!CLAUDE.md
+
+# セッション・キャッシュ
+user_data/
+cache/
+sessions/
+temp/
+
+# IDE・エディタ関連
 .vscode/
 .idea/
 *.swp
@@ -84,14 +99,20 @@ cookies*.txt
 .DS_Store
 Thumbs.db
 
-# キャッシュ
-.cache/
-.pytest_cache/
-
-# セッションデータ（大きくなる可能性）
-user_data/*.json
-session_data/
-
-# 環境変数ファイル（セキュリティ）
+# Render.com・デプロイ環境変数
 .env
 .env.local
+.env.production
+
+# 本番運用外のアプリファイル
+working_app.py
+*_simple.py
+!app_simple.py
+
+# 開発・テスト環境フォルダ
+isolated_test_env/
+safe_debug_backups/
+test_env/
+ultrathin_test_env/
+venv/
+env/
