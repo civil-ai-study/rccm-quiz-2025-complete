@@ -1,36 +1,46 @@
-from flask import Flask
+import requests
+import sys
 
-app = Flask(__name__)
+print("=== ULTRA SYNC Common Department Test ===")
 
-@app.route('/')
-def hello():
-    return '''
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>RCCM Quiz App - Production Ready</title>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <h1>🚀 RCCM Quiz Application</h1>
-        <h2>✅ Production Environment Active</h2>
-        <p><strong>Status:</strong> Successfully deployed on Render.com</p>
-        <p><strong>Version:</strong> ULTRASYNC Stage 57</p>
-        <hr>
-        <h3>🎯 Available Features:</h3>
-        <ul>
-            <li>10問テスト</li>
-            <li>20問テスト</li>
-            <li>30問テスト</li>
-        </ul>
-        <p><em>Full RCCM Quiz functionality coming online...</em></p>
-    </body>
-    </html>
-    '''
+session = requests.Session()
 
-@app.route('/health')
-def health():
-    return {'status': 'ok', 'message': 'RCCM Quiz App Production Ready', 'stage': 'ULTRASYNC-57'}
-
-if __name__ == '__main__':
-    app.run(debug=True)
+try:
+    # Start quiz
+    response = session.get("http://127.0.0.1:5007/quiz/共通")
+    print(f"Quiz start: HTTP {response.status_code}")
+    
+    if response.status_code \!= 200:
+        print("Failed to start quiz")
+        sys.exit(1)
+    
+    # Answer 10 questions
+    answers = ["A", "B", "C", "D", "A", "B", "C", "D", "A", "B"]
+    
+    for i in range(10):
+        # Submit answer
+        response = session.post("http://127.0.0.1:5007/quiz", data={"answer": answers[i]})
+        if response.status_code == 200:
+            print(f"Question {i+1}: Answered {answers[i]} - OK")
+        else:
+            print(f"Question {i+1}: Failed with HTTP {response.status_code}")
+            sys.exit(1)
+    
+    # Check result page
+    response = session.get("http://127.0.0.1:5007/result")
+    if response.status_code == 200:
+        print(f"Result page: HTTP {response.status_code} - OK")
+        
+        if len(response.text) > 1000:
+            print("Result page has content - Test SUCCESSFUL")
+            print("=== COMMON DEPARTMENT 10-QUESTION COMPLETION TEST: SUCCESS ===")
+        else:
+            print("Result content: Invalid")
+            sys.exit(1)
+    else:
+        print(f"Result page failed: HTTP {response.status_code}")
+        sys.exit(1)
+        
+except Exception as e:
+    print(f"Error: {e}")
+    sys.exit(1)
