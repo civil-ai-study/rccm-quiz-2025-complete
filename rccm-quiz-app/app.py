@@ -681,9 +681,9 @@ if __name__ == '__main__':
     print(f"対応年度数: {len(AVAILABLE_YEARS)}")
     print("\nサーバー起動中...")
     
-    # 本番環境対応：環境変数からポート取得、デフォルトは5007
-    port = int(os.environ.get('PORT', 5007))
-    host = '0.0.0.0' if 'PORT' in os.environ else '127.0.0.1'
+    # 本番環境対応：専門家推奨設定（Render.com対応）
+    port = int(os.environ.get('PORT', 10000))
+    host = '0.0.0.0'  # 専門家推奨：常に0.0.0.0
     debug_mode = 'PORT' not in os.environ
     
     app.run(debug=debug_mode, host=host, port=port)
