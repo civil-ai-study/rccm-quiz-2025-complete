@@ -22,12 +22,20 @@ if sys.stderr.encoding != 'utf-8':
     sys.stderr.reconfigure(encoding='utf-8')
 
 from flask import Flask, render_template_string, request, session, redirect, url_for, make_response
-import pandas as pd
+import csv
 import random
 from datetime import datetime
 
 app = Flask(__name__)
-app.secret_key = 'rccm-simple-key-2025'  # 本番では環境変数使用
+
+# セキュリティ強化：環境変数からシークレットキー取得（本番対応）
+import secrets
+app.secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(32))
+
+# セキュリティ設定強化
+app.config['SESSION_COOKIE_SECURE'] = os.environ.get('HTTPS', 'False').lower() == 'true'
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 
 # Flask設定でUTF-8を強制
 app.config['DEFAULT_CHARSET'] = 'utf-8'
@@ -66,8 +74,8 @@ AVAILABLE_YEARS = [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2
 
 def load_csv_safe(file_path):
     """
-    Phase4エンコーディング問題対応強化版CSV読み込み
-    UTF-8優先・日本語検証付き
+    Phase4エンコーディング問題対応強化版CSV読み込み（pandas不使用版）
+    UTF-8優先・日本語検証付き・辞書リスト形式で返却
     """
     if not os.path.exists(file_path):
         print(f"ERROR: ファイルが存在しません: {file_path}")
@@ -85,19 +93,23 @@ def load_csv_safe(file_path):
     
     for encoding in encodings_to_try:
         try:
-            # エンコーディング指定で読み込み
-            df = pd.read_csv(file_path, encoding=encoding)
-            
-            # 日本語文字が正しく読み込まれているか検証
-            if not df.empty:
-                # サンプル文字列で日本語検証
-                sample_text = str(df.iloc[0, 0]) if len(df.columns) > 0 else ""
-                if any(ord(char) > 127 for char in sample_text):
-                    print(f"OK: {file_path} 日本語エンコーディング成功 ({encoding})")
-                else:
-                    print(f"OK: {file_path} ASCII読み込み成功 ({encoding})")
+            # エンコーディング指定でCSV読み込み
+            with open(file_path, 'r', encoding=encoding, newline='') as csvfile:
+                reader = csv.DictReader(csvfile)
+                data = list(reader)
                 
-            return df
+                if data:
+                    # 日本語文字が正しく読み込まれているか検証
+                    first_value = str(next(iter(data[0].values()))) if data[0] else ""
+                    if any(ord(char) > 127 for char in first_value):
+                        print(f"OK: {file_path} 日本語エンコーディング成功 ({encoding}) - {len(data)}行")
+                    else:
+                        print(f"OK: {file_path} ASCII読み込み成功 ({encoding}) - {len(data)}行")
+                    
+                    return data
+                else:
+                    print(f"WARNING: {file_path} は空のファイルです ({encoding})")
+                    return []
             
         except UnicodeDecodeError as e:
             print(f"WARNING: {file_path} エンコーディング {encoding} 失敗: Unicode Decode Error")
@@ -111,24 +123,25 @@ def load_csv_safe(file_path):
 
 def get_questions_by_category(category):
     """
-    カテゴリに応じた問題取得（確実版）
+    カテゴリに応じた問題取得（確実版・pandas不使用）
     """
     if category == "共通":
         # 4-1.csv（共通部門）
-        df = load_csv_safe("data/4-1.csv")
-        if df is not None:
-            return df.to_dict('records')
+        data = load_csv_safe("data/4-1.csv")
+        if data is not None:
+            print(f"OK: カテゴリ '{category}' で {len(data)} 問題取得")
+            return data
     else:
         # 4-2ファイル群から該当カテゴリをフィルタ
         all_questions = []
         for year in AVAILABLE_YEARS:
             file_path = f"data/4-2_{year}.csv"
-            df = load_csv_safe(file_path)
-            if df is not None:
+            data = load_csv_safe(file_path)
+            if data is not None:
                 # 完全一致フィルタ（専門家推奨）
-                filtered = df[df['category'] == category]
-                if len(filtered) > 0:
-                    all_questions.extend(filtered.to_dict('records'))
+                filtered = [q for q in data if q.get('category') == category]
+                if filtered:
+                    all_questions.extend(filtered)
         
         if all_questions:
             print(f"OK: カテゴリ '{category}' で {len(all_questions)} 問題取得")
@@ -139,18 +152,19 @@ def get_questions_by_category(category):
 
 def get_questions_by_year(year):
     """
-    年度別問題取得（確実版）
+    年度別問題取得（確実版・pandas不使用）
     """
     if year not in AVAILABLE_YEARS:
         print(f"ERROR: 無効な年度です: {year}")
         return [], []
     
     file_path = f"data/4-2_{year}.csv"
-    df = load_csv_safe(file_path)
+    data = load_csv_safe(file_path)
     
-    if df is not None:
-        questions = df.to_dict('records')
-        categories = sorted(df['category'].unique())
+    if data is not None:
+        questions = data
+        # カテゴリの一意リストを取得
+        categories = sorted(list(set(q.get('category', '不明') for q in data)))
         print(f"OK: {year}年度 {len(questions)}問題、{len(categories)}カテゴリ取得")
         return questions, categories
     
