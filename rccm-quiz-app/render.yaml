@@ -1,17 +1,18 @@
 services:
   - type: web
-    name: rccm-quiz-2025
+    name: rccm-quiz-ultrasync
     env: python
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
     envVars:
-      - key: FLASK_ENV
-        value: production
       - key: SECRET_KEY
         generateValue: true
-    healthCheckPath: /health
-    disk:
-      name: rccm-data
-      mountPath: /opt/render/project/src/data
-      sizeGB: 1
+      - key: HTTPS
+        value: true
+      - key: FLASK_ENV
+        value: production
+      - key: PYTHONPATH
+        value: .
+    autoDeploy: true
+    branch: master
