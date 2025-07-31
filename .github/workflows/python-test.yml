@@ -40,25 +40,13 @@ jobs:
           echo "1,土質及び基礎,テスト問題です,選択肢A,選択肢B,選択肢C,選択肢D,A,解説です" >> data/questions.csv
         fi
 
-    - name: Run Flask app in background
-      run: |
-        # Flaskアプリをバックグラウンドで起動し、URLにアクセスできるまで待機
-        python app.py &
-        sleep 10  # アプリが完全に起動するのを待つ
-        # ヘルスチェック（最大30秒間リトライ）
-        for i in {1..6}; do
-          if curl -f http://127.0.0.1:5000; then
-            echo "Flask app is running!"
-            break
-          else
-            echo "Waiting for Flask app... (attempt $i/6)"
-            sleep 5
-          fi
-        done
+    - name: Set working directory
+      run: cd rccm-quiz-app
 
-    - name: Run Selenium E2E Tests
+    - name: Run RCCM Comprehensive Production Tests
+      working-directory: ./rccm-quiz-app
       run: |
-        # あなたが作成したテストスクリプトを実行
+        # 包括的テストスクリプトを実行（サーバー起動も含む）
         python rccm_flask_auto_test.py
 
     - name: Upload test results

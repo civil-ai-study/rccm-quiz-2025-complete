@@ -1,0 +1,12 @@
+{
+  "test_date": "2025-07-27T20:23:28.062187",
+  "total_questions_in_system": 4259,
+  "forest_questions_available": 339,
+  "water_questions_available": 348,
+  "ultrasync_forest_returned": 20,
+  "ultrasync_categories": [
+    "森林土木"
+  ],
+  "actual_mixing_detected": false,
+  "honest_conclusion": "Re-investigation needed to determine actual problem"
+}

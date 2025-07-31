@@ -11,14 +11,39 @@ RCCM試験システム - 単純化版 (Phase 1)
 - 確実に動作する最小限機能
 """
 
-from flask import Flask, render_template_string, request, session, redirect, url_for
-import pandas as pd
+# Phase4エンコーディング完全修正 - システムレベルUTF-8設定
+import sys
 import os
+
+# システムレベルのUTF-8設定
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+if sys.stderr.encoding != 'utf-8':
+    sys.stderr.reconfigure(encoding='utf-8')
+
+from flask import Flask, render_template_string, request, session, redirect, url_for, make_response
+import pandas as pd
 import random
 from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = 'rccm-simple-key-2025'  # 本番では環境変数使用
+
+# Flask設定でUTF-8を強制
+app.config['DEFAULT_CHARSET'] = 'utf-8'
+app.config['JSON_AS_ASCII'] = False
+
+# すべてのレスポンスにUTF-8ヘッダーを付加するミドルウェア
+@app.after_request
+def after_request(response):
+    """すべてのHTTPレスポンスにUTF-8 charsetを明示的に設定"""
+    if response.mimetype == 'text/html':
+        response.headers['Content-Type'] = 'text/html; charset=utf-8'
+    elif response.mimetype == 'application/json':
+        response.headers['Content-Type'] = 'application/json; charset=utf-8'
+    elif response.mimetype.startswith('text/'):
+        response.headers['Content-Type'] = f'{response.mimetype}; charset=utf-8'
+    return response
 
 # 専門家推奨：確実に特定された日本語カテゴリ（完全版）
 DEPARTMENT_CATEGORIES = [
@@ -41,21 +66,42 @@ AVAILABLE_YEARS = [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2
 
 def load_csv_safe(file_path):
     """
-    専門家推奨：安全なCSV読み込み（複数エンコーディング対応）
-    絶対に嘘をつかない：例外時はNoneを返す
+    Phase4エンコーディング問題対応強化版CSV読み込み
+    UTF-8優先・日本語検証付き
     """
     if not os.path.exists(file_path):
         print(f"ERROR: ファイルが存在しません: {file_path}")
         return None
     
-    # 専門家推奨：複数エンコーディング試行順序
-    encodings_to_try = ['utf-8', 'utf-8-sig', 'shift_jis', 'cp932', 'euc-jp']
+    # UTF-8優先の強化エンコーディング試行順序
+    encodings_to_try = [
+        'utf-8-sig',  # UTF-8 with BOM
+        'utf-8',      # UTF-8 without BOM
+        'cp932',      # Windows Japanese
+        'shift_jis',  # Shift JIS
+        'euc-jp',     # EUC-JP
+        'iso-2022-jp' # ISO-2022-JP
+    ]
     
     for encoding in encodings_to_try:
         try:
+            # エンコーディング指定で読み込み
             df = pd.read_csv(file_path, encoding=encoding)
-            print(f"OK: {file_path} 読み込み成功 ({encoding})")
+            
+            # 日本語文字が正しく読み込まれているか検証
+            if not df.empty:
+                # サンプル文字列で日本語検証
+                sample_text = str(df.iloc[0, 0]) if len(df.columns) > 0 else ""
+                if any(ord(char) > 127 for char in sample_text):
+                    print(f"OK: {file_path} 日本語エンコーディング成功 ({encoding})")
+                else:
+                    print(f"OK: {file_path} ASCII読み込み成功 ({encoding})")
+                
             return df
+            
+        except UnicodeDecodeError as e:
+            print(f"WARNING: {file_path} エンコーディング {encoding} 失敗: Unicode Decode Error")
+            continue
         except Exception as e:
             print(f"WARNING: {file_path} エンコーディング {encoding} 失敗: {e}")
             continue

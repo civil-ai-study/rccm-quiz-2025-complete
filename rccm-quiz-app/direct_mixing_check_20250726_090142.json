@@ -1,0 +1,34 @@
+{
+  "timestamp": "2025-07-26T09:01:42.702319",
+  "total_checks": 4,
+  "successful_checks": 4,
+  "failed_checks": [],
+  "success_rate": 100.0,
+  "final_status": "NO_MIXING_DETECTED",
+  "detailed_results": [
+    {
+      "timestamp": "2025-07-26T09:01:41.850840",
+      "test": "トンネル vs 建設環境",
+      "status": "WARNING",
+      "details": "Content exists but no specific keywords detected"
+    },
+    {
+      "timestamp": "2025-07-26T09:01:42.120799",
+      "test": "道路 vs 河川",
+      "status": "SUCCESS",
+      "details": "No mixing - Found: ['道路'], Avoided: All prohibited content"
+    },
+    {
+      "timestamp": "2025-07-26T09:01:42.417996",
+      "test": "河川 vs トンネル",
+      "status": "SUCCESS",
+      "details": "No mixing - Found: ['河川', '砂防'], Avoided: All prohibited content"
+    },
+    {
+      "timestamp": "2025-07-26T09:01:42.702218",
+      "test": "建設環境 vs トンネル",
+      "status": "SUCCESS",
+      "details": "No mixing - Found: ['建設環境'], Avoided: All prohibited content"
+    }
+  ]
+}

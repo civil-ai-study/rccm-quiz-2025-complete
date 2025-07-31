@@ -149,7 +149,27 @@
       "Bash(wget:*)",
       "WebFetch(domain:pypi.org)",
       "Bash(PYTHONPATH=./lib/python3.12/site-packages:$PYTHONPATH python3 test_stable_baseline.py)",
-      "Bash(PYTHONPATH=../lib/python3.12/site-packages:$PYTHONPATH python3 setup_flask_safe.py)"
+      "Bash(PYTHONPATH=../lib/python3.12/site-packages:$PYTHONPATH python3 setup_flask_safe.py)",
+      "Bash(taskkill:*)",
+      "Bash(wmic process where processid=26312 delete:*)",
+      "Bash(wmic:*)",
+      "Bash(start http://localhost:5005)",
+      "WebFetch(domain:rccm-quiz-2025-complete.onrender.com)",
+      "mcp__ide__executeCode",
+      "WebFetch(domain:stackoverflow.com)",
+      "Bash(cmd /c start http://localhost:5005)",
+      "WebFetch(domain:render.com)",
+      "Bash(dir:*)",
+      "WebFetch(domain:www.rccm-cpd.com)",
+      "Bash(copy app.py app.py.backup_ultrasync_line5428_20250723_084900)",
+      "WebFetch(domain:rccm-quiz-app-claude-edit.onrender.com)",
+      "Bash(tail:*)",
+      "Bash(powershell:*)",
+      "Bash(start python app.py)",
+      "Bash(git rm:*)",
+      "Bash(chcp:*)",
+      "Bash(set TESTING=True)",
+      "WebFetch(domain:flask.palletsprojects.com)"
     ],
     "deny": []
   }

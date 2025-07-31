@@ -1,0 +1,20 @@
+{
+  "test_date": "2025-07-27T20:22:20.320016",
+  "old_method": {
+    "total_questions_loaded": 4259,
+    "forest_questions_found": 339,
+    "categories": [
+      "森林土木"
+    ],
+    "water_contamination": false,
+    "category_count": 1
+  },
+  "new_method": {
+    "forest_questions_returned": 10,
+    "categories": [
+      "森林土木"
+    ],
+    "water_contamination": false,
+    "category_count": 1
+  }
+}

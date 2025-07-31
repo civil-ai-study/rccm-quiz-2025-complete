@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-28T16:26:25.073709",
+  "base_url": "http://127.0.0.1:5000",
+  "total_departments": 13,
+  "department_results": {},
+  "overall_status": "server_unavailable",
+  "critical_issues": [],
+  "success_count": 0
+}

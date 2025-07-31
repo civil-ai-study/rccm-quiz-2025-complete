@@ -1,0 +1,7 @@
+{
+  "backup_timestamp": "20250730_221804",
+  "backup_reason": "分野混在問題修正前の安全バックアップ",
+  "files_backed_up": 3,
+  "data_directory_backed_up": true,
+  "backup_location": "backup_before_field_mixing_fix_20250730_221804"
+}

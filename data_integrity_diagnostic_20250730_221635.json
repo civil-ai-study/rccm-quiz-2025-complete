@@ -1,0 +1,294 @@
+{
+  "timestamp": "2025-07-30T22:16:35.146790",
+  "files_analyzed": 12,
+  "total_records": 4057,
+  "data_quality_metrics": {
+    "year_2008": {
+      "total_records": 360,
+      "empty_categories": 0,
+      "empty_questions": 0,
+      "category_completeness": 100.0,
+      "question_completeness": 100.0,
+      "unique_categories": 12,
+      "issues_found": 0
+    },
+    "year_2009": {
+      "total_records": 359,
+      "empty_categories": 0,
+      "empty_questions": 0,
+      "category_completeness": 100.0,
+      "question_completeness": 100.0,
+      "unique_categories": 12,
+      "issues_found": 0
+    },
+    "year_2010": {
+      "total_records": 239,
+      "empty_categories": 0,
+      "empty_questions": 0,
+      "category_completeness": 100.0,
+      "question_completeness": 100.0,
+      "unique_categories": 12,
+      "issues_found": 0
+    },
+    "year_2011": {
+      "total_records": 360,
+      "empty_categories": 0,
+      "empty_questions": 0,
+      "category_completeness": 100.0,
+      "question_completeness": 100.0,
+      "unique_categories": 12,
+      "issues_found": 0
+    },
+    "year_2012": {
+      "total_records": 307,
+      "empty_categories": 0,
+      "empty_questions": 0,
+      "category_completeness": 100.0,
+      "question_completeness": 100.0,
+      "unique_categories": 12,
+      "issues_found": 0
+    },
+    "year_2013": {
+      "total_records": 320,
+      "empty_categories": 0,
+      "empty_questions": 0,
+      "category_completeness": 100.0,
+      "question_completeness": 100.0,
+      "unique_categories": 11,
+      "issues_found": 0
+    },
+    "year_2014": {
+      "total_records": 240,
+      "empty_categories": 0,
+      "empty_questions": 0,
+      "category_completeness": 100.0,
+      "question_completeness": 100.0,
+      "unique_categories": 12,
+      "issues_found": 0
+    },
+    "year_2015": {
+      "total_records": 358,
+      "empty_categories": 0,
+      "empty_questions": 0,
+      "category_completeness": 100.0,
+      "question_completeness": 100.0,
+      "unique_categories": 12,
+      "issues_found": 0
+    },
+    "year_2016": {
+      "total_records": 361,
+      "empty_categories": 0,
+      "empty_questions": 0,
+      "category_completeness": 100.0,
+      "question_completeness": 100.0,
+      "unique_categories": 12,
+      "issues_found": 1
+    },
+    "year_2017": {
+      "total_records": 440,
+      "empty_categories": 0,
+      "empty_questions": 0,
+      "category_completeness": 100.0,
+      "question_completeness": 100.0,
+      "unique_categories": 12,
+      "issues_found": 0
+    },
+    "year_2018": {
+      "total_records": 357,
+      "empty_categories": 0,
+      "empty_questions": 0,
+      "category_completeness": 100.0,
+      "question_completeness": 100.0,
+      "unique_categories": 12,
+      "issues_found": 0
+    },
+    "year_2019": {
+      "total_records": 356,
+      "empty_categories": 0,
+      "empty_questions": 0,
+      "category_completeness": 100.0,
+      "question_completeness": 100.0,
+      "unique_categories": 12,
+      "issues_found": 0
+    }
+  },
+  "category_distribution": {
+    "year_2008": {
+      "道路": 30,
+      "土質及び基礎": 30,
+      "河川、砂防及び海岸・海洋": 30,
+      "鋼構造及びコンクリート": 30,
+      "農業土木": 30,
+      "施工計画、施工設備及び積算": 30,
+      "森林土木": 30,
+      "トンネル": 30,
+      "建設環境": 30,
+      "都市計画及び地方計画": 30,
+      "上水道及び工業用水道": 30,
+      "造園": 30
+    },
+    "year_2009": {
+      "道路": 30,
+      "土質及び基礎": 30,
+      "河川、砂防及び海岸・海洋": 30,
+      "鋼構造及びコンクリート": 30,
+      "農業土木": 30,
+      "施工計画、施工設備及び積算": 30,
+      "森林土木": 30,
+      "トンネル": 30,
+      "建設環境": 30,
+      "都市計画及び地方計画": 30,
+      "上水道及び工業用水道": 29,
+      "造園": 30
+    },
+    "year_2010": {
+      "道路": 20,
+      "土質及び基礎": 20,
+      "上水道及び工業用水道": 20,
+      "建設環境": 19,
+      "河川、砂防及び海岸・海洋": 20,
+      "鋼構造及びコンクリート": 20,
+      "農業土木": 20,
+      "施工計画、施工設備及び積算": 20,
+      "森林土木": 20,
+      "トンネル": 20,
+      "都市計画及び地方計画": 20,
+      "造園": 20
+    },
+    "year_2011": {
+      "道路": 30,
+      "土質及び基礎": 30,
+      "河川、砂防及び海岸・海洋": 30,
+      "鋼構造及びコンクリート": 30,
+      "農業土木": 30,
+      "施工計画、施工設備及び積算": 30,
+      "森林土木": 30,
+      "トンネル": 30,
+      "建設環境": 30,
+      "都市計画及び地方計画": 30,
+      "上水道及び工業用水道": 30,
+      "造園": 30
+    },
+    "year_2012": {
+      "道路": 18,
+      "土質及び基礎": 21,
+      "上水道及び工業用水道": 19,
+      "建設環境": 20,
+      "河川、砂防及び海岸・海洋": 19,
+      "鋼構造及びコンクリート": 31,
+      "農業土木": 30,
+      "施工計画、施工設備及び積算": 30,
+      "森林土木": 30,
+      "トンネル": 29,
+      "都市計画及び地方計画": 30,
+      "造園": 30
+    },
+    "year_2013": {
+      "道路": 30,
+      "河川、砂防及び海岸・海洋": 30,
+      "農業土木": 30,
+      "施工計画、施工設備及び積算": 30,
+      "森林土木": 30,
+      "トンネル": 30,
+      "建設環境": 30,
+      "都市計画及び地方計画": 30,
+      "上水道及び工業用水道": 30,
+      "造園": 30,
+      "鋼構造及びコンクリート": 20
+    },
+    "year_2014": {
+      "道路": 20,
+      "土質及び基礎": 20,
+      "河川、砂防及び海岸・海洋": 20,
+      "トンネル": 20,
+      "鋼構造及びコンクリート": 20,
+      "上水道及び工業用水道": 20,
+      "建設環境": 20,
+      "農業土木": 20,
+      "施工計画、施工設備及び積算": 20,
+      "森林土木": 20,
+      "都市計画及び地方計画": 20,
+      "造園": 20
+    },
+    "year_2015": {
+      "道路": 30,
+      "土質及び基礎": 30,
+      "鋼構造及びコンクリート": 30,
+      "農業土木": 30,
+      "施工計画、施工設備及び積算": 29,
+      "森林土木": 30,
+      "トンネル": 30,
+      "建設環境": 30,
+      "都市計画及び地方計画": 30,
+      "上水道及び工業用水道": 29,
+      "造園": 30,
+      "河川、砂防及び海岸・海洋": 30
+    },
+    "year_2016": {
+      "道路": 30,
+      "土質及び基礎": 30,
+      "河川、砂防及び海岸・海洋": 30,
+      "鋼構造及びコンクリート": 30,
+      "農業土木": 30,
+      "施工計画、施工設備及び積算": 31,
+      "森林土木": 30,
+      "トンネル": 30,
+      "建設環境": 30,
+      "都市計画及び地方計画": 30,
+      "上水道及び工業用水道": 30,
+      "造園": 30
+    },
+    "year_2017": {
+      "道路": 42,
+      "土質及び基礎": 57,
+      "河川、砂防及び海岸・海洋": 53,
+      "鋼構造及びコンクリート": 21,
+      "農業土木": 30,
+      "施工計画、施工設備及び積算": 28,
+      "森林土木": 30,
+      "トンネル": 31,
+      "建設環境": 30,
+      "都市計画及び地方計画": 37,
+      "上水道及び工業用水道": 51,
+      "造園": 30
+    },
+    "year_2018": {
+      "道路": 30,
+      "土質及び基礎": 29,
+      "河川、砂防及び海岸・海洋": 30,
+      "鋼構造及びコンクリート": 30,
+      "農業土木": 30,
+      "トンネル": 30,
+      "都市計画及び地方計画": 28,
+      "造園": 30,
+      "森林土木": 30,
+      "施工計画、施工設備及び積算": 30,
+      "上水道及び工業用水道": 30,
+      "建設環境": 30
+    },
+    "year_2019": {
+      "道路": 29,
+      "河川、砂防及び海岸・海洋": 29,
+      "土質及び基礎": 30,
+      "鋼構造及びコンクリート": 31,
+      "トンネル": 29,
+      "施工計画、施工設備及び積算": 30,
+      "建設環境": 30,
+      "上水道及び工業用水道": 30,
+      "農業土木": 30,
+      "森林土木": 29,
+      "都市計画及び地方計画": 29,
+      "造園": 30
+    }
+  },
+  "mixing_patterns": {
+    "global_mixing_detected": true
+  },
+  "field_validation": {},
+  "recommendations": [
+    "データ分離: 各カテゴリを個別ファイルに分離することを推奨",
+    "フィルタリング強化: カテゴリ別データ取得ロジックの厳密化が必要",
+    "データ検証自動化: 継続的品質監視システムの導入を推奨",
+    "バックアップ作成: 修正前の全データバックアップを推奨"
+  ]
+}

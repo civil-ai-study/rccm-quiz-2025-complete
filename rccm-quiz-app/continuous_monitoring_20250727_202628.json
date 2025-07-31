@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-07-27T20:26:27.429217",
+  "system_health": {
+    "core_functions": "accessible",
+    "import_status": "success"
+  },
+  "function_integrity": {
+    "forest_test": "pass",
+    "forest_questions_returned": 5,
+    "category_purity": "maintained"
+  },
+  "data_consistency": {
+    "total_questions": 4259,
+    "expected_categories": true,
+    "total_categories_found": 13
+  },
+  "performance_metrics": {
+    "response_time_seconds": 0.004128932952880859,
+    "performance_status": "acceptable"
+  },
+  "overall_assessment": {
+    "health_score": 100.0,
+    "status": "healthy",
+    "indicators_passed": 5,
+    "total_indicators": 5
+  }
+}

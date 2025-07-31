@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<!-- 🔍 ULTRA SYNC段階26緊急診断: この行が表示されればテンプレート更新成功 -->
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover">
+    <title>RCCM試験 | RCCM試験問題集</title>
+    
+    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <script>
+        // 🔥 ページ読み込み時のキャッシュ強制クリア（ユーザー要求による）
+        (function() {
+            if (window.performance && window.performance.navigation.type === 2) {
+                // 戻るボタンでアクセスされた場合は強制リロード
+                window.location.reload(true);
+            }
+            // セッションストレージの問題関連データもクリア
+            if (typeof(Storage) !== "undefined") {
+                sessionStorage.removeItem('exam_data');
+                sessionStorage.removeItem('current_question');
+                sessionStorage.removeItem('question_answers');
+            }
+        })();
+    </script>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- アクセシビリティ改善 -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="RCCM試験問題集">
+    <meta name="application-name" content="RCCM問題集">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon-16x16.png">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          onerror="this.onerror=null;this.href='/static/fallback/bootstrap.min.css';">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          onerror="this.onerror=null;this.href='/static/fallback/font-awesome.min.css';"  >
+    
+    <!-- ダークモード対応CSS -->
+    <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #1e293b;
+      --card-bg: #f8fafc;
+      --border-color: #e2e8f0;
+      /* モダン・シック・インテリジェンスなカラーパレット */
+      --primary-color: #334155; /* プロフェッショナルスレートグレー */
+      --secondary-color: #475569; /* エレガントグレー */
+      --success-color: #059669; /* 洗練されたエメラルド */
+      --danger-color: #dc2626; /* 控えめなレッド */
+      --warning-color: #d97706; /* インテリジェントアンバー */
+      --info-color: #0284c7; /* 知的ブルー */
+      --dark-color: #0f172a; /* ディープネイビー */
+      --light-color: #f1f5f9; /* ソフトグレー */
+      --text-muted-color: #64748b; /* 上品なミュート */
+      --accent-color: #6366f1; /* 知性のインディゴ */
+      --surface-color: #ffffff;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #0f172a;
+      --text-color: #e2e8f0;
+      --card-bg: #1e293b;
+      --border-color: #334155;
+      /* ダークモード - エレガント&プロフェッショナル */
+      --primary-color: #64748b; /* ソフトスレート */
+      --secondary-color: #94a3b8; /* ライトグレー */
+      --success-color: #10b981; /* エメラルド */
+      --danger-color: #ef4444; /* 洗練されたレッド */
+      --warning-color: #f59e0b; /* ゴールド */
+      --info-color: #3b82f6; /* ブライトブルー */
+      --dark-color: #f1f5f9; /* ライトテキスト */
+      --light-color: #1e293b; /* ダークサーフェス */
+      --text-muted-color: #94a3b8; /* エレガントミュート */
+      --accent-color: #818cf8; /* ライトインディゴ */
+      --surface-color: #1e293b;
+    }
+
+    body { 
+      background-color: var(--bg-color) !important; 
+      color: var(--text-color) !important; 
+    }
+
+    /* モダン&プロフェッショナルBootstrapカラー変数の上書き */
+    .btn-primary {
+        --bs-btn-bg: var(--primary-color);
+        --bs-btn-border-color: var(--primary-color);
+        --bs-btn-hover-bg: #1e293b;
+        --bs-btn-hover-border-color: #0f172a;
+        --bs-btn-active-bg: #0f172a;
+        --bs-btn-active-border-color: #020617;
+        color: white;
+        font-weight: 500;
+        border-radius: 0.5rem;
+    }
+    .btn-secondary {
+        --bs-btn-bg: var(--secondary-color);
+        --bs-btn-border-color: var(--secondary-color);
+        --bs-btn-hover-bg: #334155;
+        --bs-btn-hover-border-color: #1e293b;
+        --bs-btn-active-bg: #1e293b;
+        --bs-btn-active-border-color: #0f172a;
+        color: white;
+        font-weight: 500;
+        border-radius: 0.5rem;
+    }
+    .btn-success {
+        --bs-btn-bg: var(--success-color);
+        --bs-btn-border-color: var(--success-color);
+        --bs-btn-hover-bg: #047857;
+        --bs-btn-hover-border-color: #065f46;
+        --bs-btn-active-bg: #558b2f;
+        --bs-btn-active-border-color: #33691e;
+    }
+    .btn-danger {
+        --bs-btn-bg: var(--danger-color);
+        --bs-btn-border-color: var(--danger-color);
+        --bs-btn-hover-bg: #ff1744;
+        --bs-btn-hover-border-color: #d50000;
+        --bs-btn-active-bg: #c62828;
+        --bs-btn-active-border-color: #b71c1c;
+    }
+    .btn-warning {
+        --bs-btn-bg: var(--warning-color);
+        --bs-btn-border-color: var(--warning-color);
+        --bs-btn-hover-bg: #ffb300;
+        --bs-btn-hover-border-color: #ffa000;
+        --bs-btn-active-bg: #ff8f00;
+        --bs-btn-active-border-color: #ff6f00;
+        --bs-btn-color: #212529; /* 文字色を黒に */
+    }
+     .btn-info {
+        --bs-btn-bg: var(--info-color);
+        --bs-btn-border-color: var(--info-color);
+        --bs-btn-hover-bg: #1e88e5;
+        --bs-btn-hover-border-color: #1976d2;
+        --bs-btn-active-bg: #1565c0;
+        --bs-btn-active-border-color: #0d47a1;
+    }
+    .btn-dark {
+        --bs-btn-bg: var(--dark-color);
+        --bs-btn-border-color: var(--dark-color);
+        --bs-btn-hover-bg: #212529;
+        --bs-btn-hover-border-color: #1a1d20;
+        --bs-btn-active-bg: #1a1d20;
+        --bs-btn-active-border-color: #131619;
+    }
+
+    .card { 
+      background-color: var(--card-bg) !important; 
+      color: var(--text-color) !important;
+      border-color: var(--border-color) !important;
+    }
+
+    /* ナビゲーションバーの色 */
+    .navbar-custom {
+        background-color: var(--primary-color) !important;
+    }
+    .navbar-custom .nav-link, .navbar-custom .navbar-brand {
+        color: var(--light-color) !important;
+    }
+
+    [data-theme="dark"] .card { 
+      background-color: var(--card-bg) !important; 
+      color: var(--text-color) !important;
+      border-color: var(--border-color) !important;
+    }
+    [data-theme="dark"] .navbar-custom {
+      background-color: #0d1117 !important; /* ダークモード用ナビゲーションバー */
+    }
+    [data-theme="dark"] .alert { 
+      background-color: var(--card-bg) !important;
+      border-color: var(--border-color) !important;
+      color: var(--text-color) !important;
+    }
+    [data-theme="dark"] .table { 
+      color: var(--text-color) !important; 
+    }
+    [data-theme="dark"] .table td, [data-theme="dark"] .table th { 
+      border-color: var(--border-color) !important; 
+    }
+
+    /* 今後開発予定の項目をグレーアウト */
+    .future-feature {
+        color: var(--text-muted-color) !important;
+        font-style: italic;
+    }
+    
+    /* 学習ストリーク表示スタイル */
+    .streak-display {
+      background: linear-gradient(45deg, #FF6B35, #F7931E);
+      color: white;
+      border-radius: 25px;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      display: inline-block;
+      margin: 0.5rem 0;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from { box-shadow: 0 0 5px rgba(255, 107, 53, 0.3); }
+      to { box-shadow: 0 0 20px rgba(255, 107, 53, 0.6); }
+    }
+    
+    [data-theme="dark"] .streak-display {
+      background: linear-gradient(45deg, #FF6B35, #F7931E);
+    }
+    
+    /* SRS用バッジ */
+    .badge.bg-gold {
+      background-color: #ffd700 !important;
+      color: #000 !important;
+    }
+
+    /* 解答結果画面のスタイル */
+    .card-correct {
+      border-color: var(--success-color) !important;
+      background-color: #d4edda !important; /* 淡い緑 */
+    }
+    .card-incorrect {
+      border-color: var(--danger-color) !important;
+      background-color: #f8d7da !important; /* 淡い赤 */
+    }
+    [data-theme="dark"] .card-correct {
+      border-color: var(--success-color) !important;
+      background-color: #1e3c2f !important; /* ダークモード用の緑 */
+    }
+    [data-theme="dark"] .card-incorrect {
+      border-color: var(--danger-color) !important;
+      background-color: #4e2b31 !important; /* ダークモード用の赤 */
+    }
+    
+    /* アクセシビリティ改善：大きなボタンクラス */
+    .btn-accessibility-lg {
+      min-height: 48px !important;
+      padding: 12px 24px !important;
+      font-size: 1.1rem !important;
+      font-weight: 500 !important;
+      border-radius: 8px !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    .btn-accessibility-xl {
+      min-height: 56px !important;
+      padding: 16px 32px !important;
+      font-size: 1.25rem !important;
+      font-weight: 600 !important;
+      border-radius: 10px !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    /* タッチターゲットサイズの確保（WCAG基準） */
+    .touch-target {
+      min-width: 44px !important;
+      min-height: 44px !important;
+    }
+    
+    /* フォーカスインジケーターの強化 */
+    button:focus,
+    input:focus,
+    select:focus,
+    textarea:focus,
+    a:focus {
+      outline: 3px solid var(--accent-color) !important;
+      outline-offset: 2px !important;
+    }
+    
+    /* シニアユーザー向けの読みやすいフォントサイズ */
+    @media (min-width: 768px) {
+      .senior-friendly {
+        font-size: 1.125rem !important;
+        line-height: 1.75 !important;
+      }
+    }
+    
+    /* 🔥 ULTRA SYNC MOBILE OPTIMIZATION: モバイル最適化強化 */
+    /* タッチデバイス向け最適化 */
+    @media (hover: none) and (pointer: coarse) {
+      /* タッチレスポンス向上 */
+      * {
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+      }
+      
+      /* ボタンタッチ時のフィードバック */
+      .btn:active {
+        transform: scale(0.95) !important;
+        transition: transform 0.1s ease !important;
+      }
+      
+      /* 選択肢タッチ時のフィードバック */
+      .option-item:active {
+        background-color: #e3f2fd !important;
+        transform: scale(0.98) !important;
+        transition: all 0.1s ease !important;
+      }
+      
+      /* タッチターゲットサイズ強制拡大 */
+      .btn, .option-item, .nav-link, .card, input, select, textarea {
+        min-height: 44px !important;
+        min-width: 44px !important;
+      }
+    }
+    
+    /* 極小画面（320px以下）対応 */
+    @media (max-width: 320px) {
+      .container {
+        padding: 0.25rem !important;
+      }
+      
+      .btn {
+        font-size: 0.85rem !important;
+        padding: 0.5rem 0.75rem !important;
+      }
+      
+      .card {
+        margin-bottom: 0.75rem !important;
+      }
+      
+      .card-body {
+        padding: 0.75rem !important;
+      }
+      
+      h1 { font-size: 1.5rem !important; }
+      h2 { font-size: 1.25rem !important; }
+      h3 { font-size: 1.125rem !important; }
+    }
+    
+    /* 横向き時の最適化 */
+    @media (orientation: landscape) and (max-height: 500px) {
+      .navbar {
+        padding: 0.25rem 0 !important;
+      }
+      
+      .container {
+        padding-top: 0.5rem !important;
+      }
+      
+      .card {
+        margin-bottom: 0.5rem !important;
+      }
+    }
+    
+    /* iOS Safari対応 */
+    @supports (-webkit-touch-callout: none) {
+      /* iOS Safari特有の問題対応 */
+      input, textarea, select {
+        font-size: 16px !important; /* ズーム防止 */
+      }
+      
+      /* Safe Area対応 */
+      .container {
+        padding-left: max(1rem, env(safe-area-inset-left)) !important;
+        padding-right: max(1rem, env(safe-area-inset-right)) !important;
+        padding-bottom: max(1rem, env(safe-area-inset-bottom)) !important;
+      }
+    }
+    </style>
+
+    <!-- Service Worker & PWA 登録 -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/static/sw.js')
+            .then(function(registration) {
+            })
+            .catch(function(error) {
+            });
+        });
+      }
+    </script>
+    
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-custom mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/" style="color: white !important;">RCCM試験問題集</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="/statistics" style="color: white !important;">解答結果分析</a></li>
+        <li class="nav-item"><a class="nav-link" href="/categories" style="color: white !important;">部門別</a></li>
+        <li class="nav-item"><a class="nav-link" href="/review" style="color: white !important;">復習リスト</a></li>
+        <li class="nav-item"><a class="nav-link" href="/reset" style="color: white !important;">リセット</a></li>
+        <li class="nav-item"><a class="nav-link" href="/settings" style="color: white !important;"><i class="fas fa-cog me-1"></i>設定</a></li>
+        <li class="nav-item"><a class="nav-link" href="/help" style="color: white !important;">ヘルプ</a></li>
+        <li class="nav-item ms-2">
+          <button class="btn btn-outline-light btn-sm" onclick="toggleTheme()" id="themeToggle" title="ダークモード切替">
+            🌙
+          </button>
+        </li>
+        <li class="nav-item ms-2">
+          <span class="navbar-text text-light small" id="sessionStatus" title="セッション状態">
+            <i class="fas fa-clock me-1"></i>セッション確認中...
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  
+    
+  
+  
+<!-- 🔍 ULTRA SYNC根本原因診断: カテゴリ=共通, タイプ=basic, ID=23 -->
+<div class="container">
+    <!-- 進捗表示 - 年度情報強化版 -->
+    <div class="card mb-1" role="banner">
+        <div class="card-body p-1">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="progress-info d-flex align-items-center gap-2" role="status" aria-live="polite">
+                    <span class="badge bg-primary" style="font-size: 0.8rem;" aria-label="進捗">1/10</span>
+                    <!-- 年度表示を左上に配置（4-2専門科目の場合） -->
+                    
+                </div>
+                <div class="question-meta d-flex align-items-center gap-1">
+                    
+                    
+                    <span class="badge bg-secondary text-white" style="font-size: 0.7rem;">4-1 基礎</span>
+                    
+                    <!-- 🔍 ULTRA SYNC診断情報表示 - 常時表示版 -->
+                    <span class="badge bg-danger text-white" style="font-size: 0.6rem;">🔍 カテゴリ: 共通</span>
+                    <span class="badge bg-warning text-dark" style="font-size: 0.6rem;">🔍 タイプ: basic</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 問題カード - 圧縮版 -->
+<div class="card question-container" role="main">
+        <div class="card-header bg-light p-1">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-bold" style="font-size: 0.9rem;">RCCM試験</span>
+                <span id="timer-display" class="text-muted" style="font-size: 0.8rem;">0:00</span>
+            </div>
+  </div>
+  <div class="card-body p-2">
+            <!-- 問題内容 - 圧縮版 -->
+            <div class="question-container p-1 mb-1" role="article">
+                <!-- 🔍 ULTRA SYNC段階69緊急診断: 関数実行確認 -->
+                <div style="background: #ff0000; color: white; padding: 5px; margin-bottom: 10px; font-size: 0.8rem;">
+                    🔍 段階69診断: カテゴリ=共通、タイプ=basic、ID=23
+                </div>
+                
+                
+                
+                
+                <h3 class="question-text fw-bold" id="question-title" style="font-size: 0.95rem; line-height: 1.3;">
+                    鋼構造の特徴として誤っているものをa～dの中から選びなさい。
+                </h3>
+            </div>
+
+            <!-- 選択肢フォーム - アクセシビリティ強化 -->
+            <form method="POST" action="/exam" id="questionForm" role="form" aria-labelledby="question-title" onsubmit="return validateQuizForm()">
+                <input type="hidden" name="csrf_token" value="33e22918-b8d5-4cd9-8e07-9418320d9cdc"/>
+                <input type="hidden" name="qid" value="23">
+                <input type="hidden" name="elapsed" value="0" id="elapsedTime">
+                <!-- Session initialization indicators for test validation -->
+                <input type="hidden" name="session_initialized" value="true" class="session-indicator">
+                <div class="session-indicators" style="display: none;">
+                    <span class="session-status">active</span>
+                    <span class="question-loaded">true</span>
+                    <span class="exam-session">initialized</span>
+                </div>
+                
+                <fieldset class="mb-2">
+                    <legend class="visually-hidden">選択肢一覧</legend>
+                    
+                    <!-- 選択肢A -->
+                    <div class="form-check option-item p-1 mb-1 border rounded" 
+                         onclick="selectOption('A', event)" style="cursor: pointer;">
+                        <input class="form-check-input" type="radio" name="answer" value="A" id="optionA">
+                        <label class="form-check-label w-100" for="optionA" style="cursor: pointer;">
+                            <div class="d-flex align-items-start">
+                                <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">A</span>
+                                <span class="option-text" style="font-size: 0.9rem;">一般構造用圧延鋼材を示す記号（JIS規格）はSSである</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- 選択肢B -->
+                    <div class="form-check option-item p-1 mb-1 border rounded" 
+                         onclick="selectOption('B', event)" style="cursor: pointer;">
+                        <input class="form-check-input" type="radio" name="answer" value="B" id="optionB">
+                        <label class="form-check-label w-100" for="optionB" style="cursor: pointer;">
+                            <div class="d-flex align-items-start">
+                                <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">B</span>
+                                <span class="option-text" style="font-size: 0.9rem;">単位重量は77.0kN／m3ヤング係数は2.0×10⁵N／mm2である</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- 選択肢C -->
+                    <div class="form-check option-item p-1 mb-1 border rounded" 
+                         onclick="selectOption('C', event)" style="cursor: pointer;">
+                        <input class="form-check-input" type="radio" name="answer" value="C" id="optionC">
+                        <label class="form-check-label w-100" for="optionC" style="cursor: pointer;">
+                            <div class="d-flex align-items-start">
+                                <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">C</span>
+                                <span class="option-text" style="font-size: 0.9rem;">せん断許容応力度は引張許容応力度のほぼ１／1.7である</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- 選択肢D -->
+                    <div class="form-check option-item p-1 mb-1 border rounded" 
+                         onclick="selectOption('D', event)" style="cursor: pointer;">
+                        <input class="form-check-input" type="radio" name="answer" value="D" id="optionD">
+                        <label class="form-check-label w-100" for="optionD" style="cursor: pointer;">
+                            <div class="d-flex align-items-start">
+                                <span class="badge bg-primary me-2 option-letter" style="font-size: 0.8rem;">D</span>
+                                <span class="option-text" style="font-size: 0.9rem;">鋼材の強度が高くなるほど伸びも大きくなり降伏点が引張強さに近づく</span>
+                            </div>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <!-- 解答ボタン - 圧縮版 -->
+                <div class="text-center mb-1">
+                    <button type="submit" class="btn btn-success btn-lg btn-accessibility-lg touch-target" id="submitBtn" 
+                            disabled style="width: 100%; max-width: 300px;">
+                        解答する
+                    </button>
+                </div>
+            </form>
+
+      </div>
+    </div>
+
+    <!-- ナビゲーション -->
+    <div class="text-center mt-1">
+        <a href="/" class="btn btn-outline-secondary btn-sm me-1 touch-target" style="font-size: 0.8rem; min-height: 44px; display: inline-flex; align-items: center;">ホーム</a>
+        <a href="/categories" class="btn btn-outline-primary btn-sm me-1 touch-target" style="font-size: 0.8rem; min-height: 44px; display: inline-flex; align-items: center;">分野選択</a>
+        <!-- CLAUDE.md準拠改善: 問題表示中にも復習登録可能 -->
+        <button class="btn btn-warning btn-sm touch-target" onclick="bookmarkQuestion('23')" style="font-size: 0.8rem; min-height: 44px; display: inline-flex; align-items: center;">
+            <i class="fas fa-bookmark me-1"></i>復習登録
+        </button>
+  </div>
+</div>
+
+<style>
+.option-item {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.option-item:hover {
+    background-color: #e3f2fd !important;
+    border-color: #2196F3 !important;
+    transform: translateX(3px);
+}
+
+.option-item.selected {
+    background-color: #e8f5e8 !important;
+    border-color: #4caf50 !important;
+    border-width: 2px !important;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3) !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* アニメーション効果 */
+.card {
+    animation: slideInUp 0.5s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* スマホ最適化レスポンシブ対応 */
+@media (max-width: 768px) {
+    /* タブレット・大きなスマホ向け */
+    .container {
+        padding: 0.75rem !important;
+        max-width: 100% !important;
+    }
+    
+    .option-item {
+        margin-bottom: 0.75rem !important;
+        padding: 1.25rem !important;
+        font-size: 1rem;
+        border-radius: 12px !important;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .option-item:hover, .option-item:focus {
+        transform: none !important; /* ホバー効果を無効化 */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+    }
+    
+    .question-text {
+        font-size: 1.1rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .btn-lg {
+        padding: 1rem 2rem !important;
+        font-size: 1rem !important;
+        width: 100% !important;
+        min-height: 50px;
+        border-radius: 10px !important;
+    }
+    
+    .badge {
+        font-size: 0.8rem !important;
+        padding: 0.3rem 0.6rem !important;
+    }
+    
+    .progress-info {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    
+    .question-meta {
+        justify-content: center !important;
+        gap: 0.75rem !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .card {
+        border-radius: 12px !important;
+        margin-bottom: 1.25rem !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+    }
+    
+    .card-body {
+        padding: 1.25rem !important;
+    }
+    
+    /* タッチターゲットサイズの拡大 */
+    .form-check-input {
+        width: 1.5rem !important;
+        height: 1.5rem !important;
+        margin-right: 1rem !important;
+    }
+    
+    .option-letter {
+        width: 35px !important;
+        height: 35px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.1rem !important;
+        font-weight: bold !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* スマートフォン向け（iPhone/Android） */
+    .container {
+        padding: 0.5rem !important;
+    }
+    
+    .option-item {
+        padding: 1rem !important;
+        font-size: 0.95rem !important;
+        margin-bottom: 0.5rem !important;
+        min-height: 55px !important;
+    }
+    
+    .question-text {
+        font-size: 1rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 1.25rem !important;
+    }
+    
+    .btn-lg {
+        padding: 0.875rem 1.5rem !important;
+        font-size: 0.95rem !important;
+        min-height: 48px !important;
+    }
+    
+    .card-body {
+        padding: 1rem !important;
+    }
+    
+    .badge {
+        font-size: 0.7rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+    
+    .option-letter {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 1rem !important;
+    }
+    
+    .form-check-input {
+        width: 1.25rem !important;
+        height: 1.25rem !important;
+    }
+    
+    /* プログレスバーをスマホ向けに調整 */
+    .progress {
+        width: 100% !important;
+        max-width: 200px !important;
+        margin: 0 auto !important;
+    }
+}
+
+@media (max-width: 360px) {
+    /* 小さなスマートフォン向け */
+    .container {
+        padding: 0.25rem !important;
+    }
+    
+    .option-item {
+        padding: 0.75rem !important;
+        font-size: 0.9rem !important;
+        min-height: 50px !important;
+    }
+    
+    .question-text {
+        font-size: 0.95rem !important;
+    }
+    
+    .btn-lg {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.9rem !important;
+        min-height: 44px !important;
+    }
+    
+    .card-body {
+        padding: 0.75rem !important;
+    }
+    
+    .option-letter {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.95rem !important;
+    }
+}
+
+/* タッチ操作の改善 */
+@media (hover: none) and (pointer: coarse) {
+    /* タッチデバイス専用スタイル */
+    .option-item {
+        -webkit-tap-highlight-color: rgba(0,0,0,0.1) !important;
+        transition: background-color 0.15s ease !important;
+    }
+    
+    .option-item:active {
+        background-color: #e3f2fd !important;
+        transform: scale(0.98) !important;
+    }
+    
+    .btn:active {
+        transform: scale(0.95) !important;
+    }
+    
+    /* ホバー効果を無効化してタッチに最適化 */
+    .option-item:hover {
+        transform: none !important;
+    }
+}
+</style>
+
+<script>
+// グローバル変数
+let startTime = Date.now();
+
+// グローバル関数：選択肢クリック処理
+function selectOption(option, event) {
+    
+    // 既存の選択を解除
+    document.querySelectorAll('.option-item').forEach(item => {
+        item.classList.remove('selected');
+    });
+    
+    // 新しい選択を設定
+    const selectedItem = event ? event.currentTarget : document.querySelector(`#option${option}`).closest('.option-item');
+    
+    if (selectedItem) {
+        selectedItem.classList.add('selected');
+    }
+    
+    // ラジオボタンをチェック
+    const radioButton = document.getElementById('option' + option);
+    if (radioButton) {
+        radioButton.checked = true;
+    }
+    
+    // 送信ボタンを有効化
+    const submitBtn = document.getElementById('submitBtn');
+    if (submitBtn) {
+        submitBtn.disabled = false;
+    } else {
+        console.error(`❌ submitBtn not found!`);
+    }
+    
+    // 選択効果音（オプション）
+    if (selectedItem) {
+        selectedItem.style.transform = 'scale(1.02)';
+        setTimeout(() => {
+            selectedItem.style.transform = '';
+        }, 150);
+    }
+}
+
+// グローバル関数：キーボード操作
+function handleOptionKeypress(event, option) {
+    if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        selectOption(option, event);
+    }
+}
+
+// タイマー関数
+function updateTimer() {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const minutes = Math.floor(elapsed / 60);
+    const seconds = elapsed % 60;
+    const timerText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    
+    const timerElement = document.getElementById('timer');
+    if (timerElement) {
+        timerElement.textContent = timerText;
+    }
+}
+
+// 🔥 CRITICAL: エラー追跡と完全デバッグ機能
+window.addEventListener('error', function(e) {
+    console.error('🚨 JavaScript Error Detected:', {
+        message: e.message,
+        filename: e.filename,
+        lineno: e.lineno,
+        colno: e.colno,
+        error: e.error,
+        timestamp: new Date().toISOString()
+    });
+    
+    // エラー情報をサーバーに送信
+    fetch('/api/log_error', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            type: 'javascript_error',
+            message: e.message,
+            filename: e.filename,
+            line: e.lineno,
+            column: e.colno,
+            stack: e.error?.stack || '',
+            url: window.location.href,
+            userAgent: navigator.userAgent,
+            timestamp: new Date().toISOString()
+        }),
+    }).catch(err => console.error('Failed to log error:', err));
+});
+
+window.addEventListener('unhandledrejection', function(e) {
+    console.error('🚨 Unhandled Promise Rejection:', e.reason);
+    
+    // Promise rejection をサーバーに送信
+    fetch('/api/log_error', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            type: 'promise_rejection',
+            reason: e.reason?.toString() || 'Unknown rejection',
+            stack: e.reason?.stack || '',
+            url: window.location.href,
+            userAgent: navigator.userAgent,
+            timestamp: new Date().toISOString()
+        }),
+    }).catch(err => console.error('Failed to log rejection:', err));
+});
+
+// 🔥 CRITICAL: HTTPリクエスト追跡機能
+function logHTTPRequest(method, url, data, timestamp) {
+    // HTTP Request logged (production mode)
+    // method: method, url: url, data: data, timestamp: timestamp, referrer: document.referrer
+}
+
+function logHTTPResponse(method, url, status, response, timestamp) {
+    // HTTP Response logged (production mode)
+    // method: method, url: url, status: status, response: response, timestamp: timestamp
+}
+
+// DOMContentLoaded内での初期化
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // 🔥 CRITICAL: ページ読み込み状態をログ
+    // Page load state logged (production mode)
+    
+    // フォーム送信処理
+    const questionForm = document.getElementById('questionForm');
+    if (questionForm) {
+        questionForm.addEventListener('submit', function(e) {
+            const timestamp = Date.now();
+            const selected = document.querySelector('input[name="answer"]:checked');
+            
+            // 🔥 CRITICAL: フォーム送信前の完全状態ログ
+            // Form submission logged (production mode)
+            
+            if (!selected) {
+                e.preventDefault();
+                alert('選択肢を選んでください。');
+                return;
+            }
+            
+            const elapsedSeconds = (Date.now() - startTime) / 1000;
+            const elapsedInput = document.getElementById('elapsedTime');
+            if (elapsedInput) {
+                elapsedInput.value = elapsedSeconds.toFixed(1);
+            }
+            
+            const btn = document.getElementById('submitBtn');
+            if (btn) {
+                btn.innerHTML = '⏳ 判定中...';
+                btn.disabled = true;
+            }
+            
+            // 🔥 CRITICAL: HTTPリクエスト追跡
+            const formData = new FormData(questionForm);
+            const requestData = Object.fromEntries(formData);
+            logHTTPRequest('POST', '/exam', requestData, timestamp);
+        });
+    }
+    
+    // 1秒ごとにタイマー更新
+    setInterval(updateTimer, 1000);
+    
+});
+
+// フォーム送信前の検証
+function validateQuizForm() {
+    const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+    
+    if (!selectedAnswer) {
+        alert('選択肢を選んでください。');
+        return false;
+    }
+    
+    // 経過時間を設定
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const elapsedInput = document.getElementById('elapsedTime');
+    if (elapsedInput) {
+        elapsedInput.value = elapsed;
+    }
+    
+    return true;
+}
+
+// CLAUDE.md準拠追加: ブックマーク機能
+function bookmarkQuestion(questionId) {
+    fetch('/api/bookmark', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question_id: questionId }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // 成功時のフィードバック
+            const btn = document.querySelector('button[onclick*="bookmarkQuestion"]');
+            if (btn) {
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check me-1"></i>登録済み';
+                btn.disabled = true;
+                btn.classList.remove('btn-warning');
+                btn.classList.add('btn-success');
+                
+                // 3秒後に元に戻す
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    btn.classList.remove('btn-success');
+                    btn.classList.add('btn-warning');
+                }, 3000);
+            }
+        } else {
+            alert('登録に失敗しました: ' + (data.error || '不明なエラー'));
+        }
+    })
+    .catch((error) => {
+        // Bookmark error (production mode)
+        alert('復習リストへの登録に失敗しました。ネットワーク接続を確認してください。');
+    });
+}
+</script>
+
+</div>
+<footer class="text-center mt-4 mb-2 text-muted">
+  RCCM試験問題集 &copy; 2025
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+        onerror="this.onerror=null; var s=document.createElement('script'); s.src='/static/fallback/bootstrap.bundle.min.js'; document.head.appendChild(s);"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"
+        onerror="this.onerror=null; var s=document.createElement('script'); s.src='/static/fallback/chart.min.js'; document.head.appendChild(s);"></script>
+
+<!-- メインJavaScript（分離版） -->
+<script src="/static/js/main.js"></script>
+
+<!-- モバイル機能JavaScript -->
+<script src="/static/js/mobile-features.js"></script>
+
+<!-- セッションタイムアウト管理JavaScript -->
+<script src="/static/js/session-timeout.js"></script>
+
+
+<!-- 追加のJavaScript（既存の実装と統合） -->
+<script>
+// 既存のスクリプトとの互換性を維持
+</script>
+
+</body>
+</html> 

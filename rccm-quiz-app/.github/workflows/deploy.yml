@@ -27,10 +27,43 @@ jobs:
         pip install -r rccm-quiz-app/requirements.txt
         
     - name: Test application safety
+      working-directory: ./
       run: |
-        cd rccm-quiz-app
         python -c "from app import app; print('✅ Application syntax verified')"
-        python -c "from wsgi_optimized import application; print('✅ WSGI configuration verified')"
+        python -c "import os; print('✅ Data directory:', os.path.exists('data'))"
+        
+    - name: Run production readiness tests
+      working-directory: ./
+      run: |
+        # 本番デプロイ前の最終確認テスト
+        python -c "
+        import requests
+        import subprocess
+        import time
+        import sys
+        
+        # Flask起動テスト
+        print('🔄 Testing Flask startup...')
+        process = subprocess.Popen([sys.executable, 'app.py'], 
+                                 stdout=subprocess.DEVNULL, 
+                                 stderr=subprocess.DEVNULL)
+        time.sleep(10)
+        
+        try:
+            # 基本接続確認
+            response = requests.get('http://localhost:5000', timeout=5)
+            if response.status_code == 200:
+                print('✅ Flask server responding correctly')
+            else:
+                print(f'❌ Flask server error: {response.status_code}')
+                sys.exit(1)
+        except Exception as e:
+            print(f'❌ Connection failed: {e}')
+            sys.exit(1)
+        finally:
+            process.terminate()
+            print('🧹 Test server stopped')
+        "
         
     - name: Deploy to Vercel
       if: matrix.platform == 'vercel'

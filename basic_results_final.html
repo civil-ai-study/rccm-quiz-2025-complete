@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<!-- 🔍 ULTRA SYNC段階26緊急診断: この行が表示されればテンプレート更新成功 -->
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover">
+    <title>基礎科目 - 問題1/10 - RCCM試験問題集</title>
+    
+    <!-- 🔥 CRITICAL: 超強力キャッシュクリア（ユーザー要求による） -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <script>
+        // 🔥 ページ読み込み時のキャッシュ強制クリア（ユーザー要求による）
+        (function() {
+            if (window.performance && window.performance.navigation.type === 2) {
+                // 戻るボタンでアクセスされた場合は強制リロード
+                window.location.reload(true);
+            }
+            // セッションストレージの問題関連データもクリア
+            if (typeof(Storage) !== "undefined") {
+                sessionStorage.removeItem('exam_data');
+                sessionStorage.removeItem('current_question');
+                sessionStorage.removeItem('question_answers');
+            }
+        })();
+    </script>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- アクセシビリティ改善 -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="RCCM試験問題集">
+    <meta name="application-name" content="RCCM問題集">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon-16x16.png">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          onerror="this.onerror=null;this.href='/static/fallback/bootstrap.min.css';">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          onerror="this.onerror=null;this.href='/static/fallback/font-awesome.min.css';"  >
+    
+    <!-- ダークモード対応CSS -->
+    <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #1e293b;
+      --card-bg: #f8fafc;
+      --border-color: #e2e8f0;
+      /* モダン・シック・インテリジェンスなカラーパレット */
+      --primary-color: #334155; /* プロフェッショナルスレートグレー */
+      --secondary-color: #475569; /* エレガントグレー */
+      --success-color: #059669; /* 洗練されたエメラルド */
+      --danger-color: #dc2626; /* 控えめなレッド */
+      --warning-color: #d97706; /* インテリジェントアンバー */
+      --info-color: #0284c7; /* 知的ブルー */
+      --dark-color: #0f172a; /* ディープネイビー */
+      --light-color: #f1f5f9; /* ソフトグレー */
+      --text-muted-color: #64748b; /* 上品なミュート */
+      --accent-color: #6366f1; /* 知性のインディゴ */
+      --surface-color: #ffffff;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #0f172a;
+      --text-color: #e2e8f0;
+      --card-bg: #1e293b;
+      --border-color: #334155;
+      /* ダークモード - エレガント&プロフェッショナル */
+      --primary-color: #64748b; /* ソフトスレート */
+      --secondary-color: #94a3b8; /* ライトグレー */
+      --success-color: #10b981; /* エメラルド */
+      --danger-color: #ef4444; /* 洗練されたレッド */
+      --warning-color: #f59e0b; /* ゴールド */
+      --info-color: #3b82f6; /* ブライトブルー */
+      --dark-color: #f1f5f9; /* ライトテキスト */
+      --light-color: #1e293b; /* ダークサーフェス */
+      --text-muted-color: #94a3b8; /* エレガントミュート */
+      --accent-color: #818cf8; /* ライトインディゴ */
+      --surface-color: #1e293b;
+    }
+
+    body { 
+      background-color: var(--bg-color) !important; 
+      color: var(--text-color) !important; 
+    }
+
+    /* モダン&プロフェッショナルBootstrapカラー変数の上書き */
+    .btn-primary {
+        --bs-btn-bg: var(--primary-color);
+        --bs-btn-border-color: var(--primary-color);
+        --bs-btn-hover-bg: #1e293b;
+        --bs-btn-hover-border-color: #0f172a;
+        --bs-btn-active-bg: #0f172a;
+        --bs-btn-active-border-color: #020617;
+        color: white;
+        font-weight: 500;
+        border-radius: 0.5rem;
+    }
+    .btn-secondary {
+        --bs-btn-bg: var(--secondary-color);
+        --bs-btn-border-color: var(--secondary-color);
+        --bs-btn-hover-bg: #334155;
+        --bs-btn-hover-border-color: #1e293b;
+        --bs-btn-active-bg: #1e293b;
+        --bs-btn-active-border-color: #0f172a;
+        color: white;
+        font-weight: 500;
+        border-radius: 0.5rem;
+    }
+    .btn-success {
+        --bs-btn-bg: var(--success-color);
+        --bs-btn-border-color: var(--success-color);
+        --bs-btn-hover-bg: #047857;
+        --bs-btn-hover-border-color: #065f46;
+        --bs-btn-active-bg: #558b2f;
+        --bs-btn-active-border-color: #33691e;
+    }
+    .btn-danger {
+        --bs-btn-bg: var(--danger-color);
+        --bs-btn-border-color: var(--danger-color);
+        --bs-btn-hover-bg: #ff1744;
+        --bs-btn-hover-border-color: #d50000;
+        --bs-btn-active-bg: #c62828;
+        --bs-btn-active-border-color: #b71c1c;
+    }
+    .btn-warning {
+        --bs-btn-bg: var(--warning-color);
+        --bs-btn-border-color: var(--warning-color);
+        --bs-btn-hover-bg: #ffb300;
+        --bs-btn-hover-border-color: #ffa000;
+        --bs-btn-active-bg: #ff8f00;
+        --bs-btn-active-border-color: #ff6f00;
+        --bs-btn-color: #212529; /* 文字色を黒に */
+    }
+     .btn-info {
+        --bs-btn-bg: var(--info-color);
+        --bs-btn-border-color: var(--info-color);
+        --bs-btn-hover-bg: #1e88e5;
+        --bs-btn-hover-border-color: #1976d2;
+        --bs-btn-active-bg: #1565c0;
+        --bs-btn-active-border-color: #0d47a1;
+    }
+    .btn-dark {
+        --bs-btn-bg: var(--dark-color);
+        --bs-btn-border-color: var(--dark-color);
+        --bs-btn-hover-bg: #212529;
+        --bs-btn-hover-border-color: #1a1d20;
+        --bs-btn-active-bg: #1a1d20;
+        --bs-btn-active-border-color: #131619;
+    }
+
+    .card { 
+      background-color: var(--card-bg) !important; 
+      color: var(--text-color) !important;
+      border-color: var(--border-color) !important;
+    }
+
+    /* ナビゲーションバーの色 */
+    .navbar-custom {
+        background-color: var(--primary-color) !important;
+    }
+    .navbar-custom .nav-link, .navbar-custom .navbar-brand {
+        color: var(--light-color) !important;
+    }
+
+    [data-theme="dark"] .card { 
+      background-color: var(--card-bg) !important; 
+      color: var(--text-color) !important;
+      border-color: var(--border-color) !important;
+    }
+    [data-theme="dark"] .navbar-custom {
+      background-color: #0d1117 !important; /* ダークモード用ナビゲーションバー */
+    }
+    [data-theme="dark"] .alert { 
+      background-color: var(--card-bg) !important;
+      border-color: var(--border-color) !important;
+      color: var(--text-color) !important;
+    }
+    [data-theme="dark"] .table { 
+      color: var(--text-color) !important; 
+    }
+    [data-theme="dark"] .table td, [data-theme="dark"] .table th { 
+      border-color: var(--border-color) !important; 
+    }
+
+    /* 今後開発予定の項目をグレーアウト */
+    .future-feature {
+        color: var(--text-muted-color) !important;
+        font-style: italic;
+    }
+    
+    /* 学習ストリーク表示スタイル */
+    .streak-display {
+      background: linear-gradient(45deg, #FF6B35, #F7931E);
+      color: white;
+      border-radius: 25px;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      display: inline-block;
+      margin: 0.5rem 0;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from { box-shadow: 0 0 5px rgba(255, 107, 53, 0.3); }
+      to { box-shadow: 0 0 20px rgba(255, 107, 53, 0.6); }
+    }
+    
+    [data-theme="dark"] .streak-display {
+      background: linear-gradient(45deg, #FF6B35, #F7931E);
+    }
+    
+    /* SRS用バッジ */
+    .badge.bg-gold {
+      background-color: #ffd700 !important;
+      color: #000 !important;
+    }
+
+    /* 解答結果画面のスタイル */
+    .card-correct {
+      border-color: var(--success-color) !important;
+      background-color: #d4edda !important; /* 淡い緑 */
+    }
+    .card-incorrect {
+      border-color: var(--danger-color) !important;
+      background-color: #f8d7da !important; /* 淡い赤 */
+    }
+    [data-theme="dark"] .card-correct {
+      border-color: var(--success-color) !important;
+      background-color: #1e3c2f !important; /* ダークモード用の緑 */
+    }
+    [data-theme="dark"] .card-incorrect {
+      border-color: var(--danger-color) !important;
+      background-color: #4e2b31 !important; /* ダークモード用の赤 */
+    }
+    
+    /* アクセシビリティ改善：大きなボタンクラス */
+    .btn-accessibility-lg {
+      min-height: 48px !important;
+      padding: 12px 24px !important;
+      font-size: 1.1rem !important;
+      font-weight: 500 !important;
+      border-radius: 8px !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    .btn-accessibility-xl {
+      min-height: 56px !important;
+      padding: 16px 32px !important;
+      font-size: 1.25rem !important;
+      font-weight: 600 !important;
+      border-radius: 10px !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    /* タッチターゲットサイズの確保（WCAG基準） */
+    .touch-target {
+      min-width: 44px !important;
+      min-height: 44px !important;
+    }
+    
+    /* フォーカスインジケーターの強化 */
+    button:focus,
+    input:focus,
+    select:focus,
+    textarea:focus,
+    a:focus {
+      outline: 3px solid var(--accent-color) !important;
+      outline-offset: 2px !important;
+    }
+    
+    /* シニアユーザー向けの読みやすいフォントサイズ */
+    @media (min-width: 768px) {
+      .senior-friendly {
+        font-size: 1.125rem !important;
+        line-height: 1.75 !important;
+      }
+    }
+    
+    /* 🔥 ULTRA SYNC MOBILE OPTIMIZATION: モバイル最適化強化 */
+    /* タッチデバイス向け最適化 */
+    @media (hover: none) and (pointer: coarse) {
+      /* タッチレスポンス向上 */
+      * {
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+      }
+      
+      /* ボタンタッチ時のフィードバック */
+      .btn:active {
+        transform: scale(0.95) !important;
+        transition: transform 0.1s ease !important;
+      }
+      
+      /* 選択肢タッチ時のフィードバック */
+      .option-item:active {
+        background-color: #e3f2fd !important;
+        transform: scale(0.98) !important;
+        transition: all 0.1s ease !important;
+      }
+      
+      /* タッチターゲットサイズ強制拡大 */
+      .btn, .option-item, .nav-link, .card, input, select, textarea {
+        min-height: 44px !important;
+        min-width: 44px !important;
+      }
+    }
+    
+    /* 極小画面（320px以下）対応 */
+    @media (max-width: 320px) {
+      .container {
+        padding: 0.25rem !important;
+      }
+      
+      .btn {
+        font-size: 0.85rem !important;
+        padding: 0.5rem 0.75rem !important;
+      }
+      
+      .card {
+        margin-bottom: 0.75rem !important;
+      }
+      
+      .card-body {
+        padding: 0.75rem !important;
+      }
+      
+      h1 { font-size: 1.5rem !important; }
+      h2 { font-size: 1.25rem !important; }
+      h3 { font-size: 1.125rem !important; }
+    }
+    
+    /* 横向き時の最適化 */
+    @media (orientation: landscape) and (max-height: 500px) {
+      .navbar {
+        padding: 0.25rem 0 !important;
+      }
+      
+      .container {
+        padding-top: 0.5rem !important;
+      }
+      
+      .card {
+        margin-bottom: 0.5rem !important;
+      }
+    }
+    
+    /* iOS Safari対応 */
+    @supports (-webkit-touch-callout: none) {
+      /* iOS Safari特有の問題対応 */
+      input, textarea, select {
+        font-size: 16px !important; /* ズーム防止 */
+      }
+      
+      /* Safe Area対応 */
+      .container {
+        padding-left: max(1rem, env(safe-area-inset-left)) !important;
+        padding-right: max(1rem, env(safe-area-inset-right)) !important;
+        padding-bottom: max(1rem, env(safe-area-inset-bottom)) !important;
+      }
+    }
+    </style>
+
+    <!-- Service Worker & PWA 登録 -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/static/sw.js')
+            .then(function(registration) {
+            })
+            .catch(function(error) {
+            });
+        });
+      }
+    </script>
+    
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-custom mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/" style="color: white !important;">RCCM試験問題集</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="/statistics" style="color: white !important;">解答結果分析</a></li>
+        <li class="nav-item"><a class="nav-link" href="/categories" style="color: white !important;">部門別</a></li>
+        <li class="nav-item"><a class="nav-link" href="/review" style="color: white !important;">復習リスト</a></li>
+        <li class="nav-item"><a class="nav-link" href="/reset" style="color: white !important;">リセット</a></li>
+        <li class="nav-item"><a class="nav-link" href="/settings" style="color: white !important;"><i class="fas fa-cog me-1"></i>設定</a></li>
+        <li class="nav-item"><a class="nav-link" href="/help" style="color: white !important;">ヘルプ</a></li>
+        <li class="nav-item ms-2">
+          <button class="btn btn-outline-light btn-sm" onclick="toggleTheme()" id="themeToggle" title="ダークモード切替">
+            🌙
+          </button>
+        </li>
+        <li class="nav-item ms-2">
+          <span class="navbar-text text-light small" id="sessionStatus" title="セッション状態">
+            <i class="fas fa-clock me-1"></i>セッション確認中...
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  
+    
+  
+  
+<div class="container-fluid exam-container">
+    <!-- 試験ヘッダー -->
+    <div class="exam-header sticky-top bg-white border-bottom shadow-sm">
+        <div class="row align-items-center py-3">
+            <!-- 試験情報 -->
+            <div class="col-md-3">
+                <h5 class="mb-0">
+                    <i class="fas fa-graduation-cap text-primary"></i> 
+                    基礎科目
+                    
+                </h5>
+                <small class="text-muted">PRACTICE モード</small>
+            </div>
+            
+            <!-- 進捗情報 -->
+            <div class="col-md-6">
+                <div class="d-flex justify-content-center align-items-center">
+                    <span class="me-3">
+                        <strong>問題 1</strong> / 10
+                    </span>
+                    <div class="progress flex-grow-1 me-3" style="height: 8px; max-width: 300px;">
+                        <div class="progress-bar bg-success" 
+                             style="width: 10.0%"></div>
+                    </div>
+                    <small class="text-muted">10.0%</small>
+                </div>
+            </div>
+            
+            <!-- 時間情報 -->
+            <div class="col-md-3 text-end">
+                <div id="timer" class="exam-timer">
+                    <i class="fas fa-clock text-warning"></i>
+                    <span id="time-remaining">制限なし</span>分
+                </div>
+                <small class="text-muted d-block">残り時間</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- 時間警告モーダル -->
+    
+
+    <!-- 問題エリア -->
+    <div class="row mt-4">
+        <div class="col-lg-8 mx-auto">
+            <div class="card exam-question-card shadow">
+                <div class="card-header bg-primary text-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">
+                            <i class="fas fa-question-circle"></i> 
+                            問題 1
+                            
+                                <span class="badge bg-light text-dark ms-2">共通</span>
+                            
+                            
+                        </h6>
+                        <div class="exam-controls">
+                            <button type="button" id="flagBtn" class="btn btn-sm btn-outline-light me-2"
+                                    onclick="toggleFlag(0)">
+                                <i class="fas fa-flag" id="flagIcon"></i>
+                                <span id="flagText">フラグ</span>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-light" 
+                                    onclick="showNavigation()">
+                                <i class="fas fa-list"></i> 一覧
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <!-- 問題文 -->
+                    <div class="question-text mb-4">
+                        <p class="lead">地盤改良工法の名称として誤っているものをa～dのなかから選びなさい。</p>
+                    </div>
+                    
+                    <!-- 回答フォーム -->
+                    <form id="examAnswerForm" onsubmit="submitExamAnswer(event)">
+                        <input type="hidden" name="question_index" value="0">
+                        <input type="hidden" name="elapsed" value="0" id="elapsedTime">
+                        
+                        <div class="answer-options">
+                            
+                                
+                                
+                                <div class="form-check answer-option mb-3">
+                                    <input class="form-check-input" type="radio" 
+                                           name="answer" value="A" 
+                                           id="optionA"
+                                           onclick="enableSubmit()">
+                                    <label class="form-check-label" for="optionA">
+                                        <span class="option-letter">A</span>
+                                        <span class="option-text">オールケーシング工法</span>
+                                    </label>
+                                </div>
+                                
+                            
+                                
+                                
+                                <div class="form-check answer-option mb-3">
+                                    <input class="form-check-input" type="radio" 
+                                           name="answer" value="B" 
+                                           id="optionB"
+                                           onclick="enableSubmit()">
+                                    <label class="form-check-label" for="optionB">
+                                        <span class="option-letter">B</span>
+                                        <span class="option-text">バーチカルドレーン工法</span>
+                                    </label>
+                                </div>
+                                
+                            
+                                
+                                
+                                <div class="form-check answer-option mb-3">
+                                    <input class="form-check-input" type="radio" 
+                                           name="answer" value="C" 
+                                           id="optionC"
+                                           onclick="enableSubmit()">
+                                    <label class="form-check-label" for="optionC">
+                                        <span class="option-letter">C</span>
+                                        <span class="option-text">中層混合処理工法</span>
+                                    </label>
+                                </div>
+                                
+                            
+                                
+                                
+                                <div class="form-check answer-option mb-3">
+                                    <input class="form-check-input" type="radio" 
+                                           name="answer" value="D" 
+                                           id="optionD"
+                                           onclick="enableSubmit()">
+                                    <label class="form-check-label" for="optionD">
+                                        <span class="option-letter">D</span>
+                                        <span class="option-text">サンドコンパクションパイル工法</span>
+                                    </label>
+                                </div>
+                                
+                            
+                        </div>
+                        
+                        <!-- 回答ボタン -->
+                        <div class="text-center mt-4">
+                            <button type="submit" id="submitBtn" class="btn btn-primary btn-lg" disabled>
+                                <i class="fas fa-check"></i> 回答を提出
+                                
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ナビゲーション -->
+    <div class="row mt-4">
+        <div class="col-lg-8 mx-auto">
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-outline-secondary" 
+                        onclick="showNavigation()">
+                    <i class="fas fa-th"></i> 問題一覧
+                </button>
+                
+                <div class="question-nav-info text-muted">
+                    <small>
+                        回答済み: 0/10
+                        
+                    </small>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 試験終了確認モーダル -->
+<div class="modal fade" id="finishExamModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title">
+                    <i class="fas fa-flag-checkered"></i> 試験終了確認
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>注意：</strong>試験を終了すると、回答の変更はできません。
+                </div>
+                
+                <div class="exam-summary">
+                    <h6>回答状況</h6>
+                    <ul>
+                        <li>回答済み問題: <strong><span id="answeredCount">0</span>/10</strong></li>
+                        <li>未回答問題: <strong><span id="unansweredCount">10</span></strong></li>
+                        
+                    </ul>
+                </div>
+                
+                <p><strong>本当に試験を終了しますか？</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i> キャンセル
+                </button>
+                <button type="button" class="btn btn-warning" onclick="confirmFinishExam()">
+                    <i class="fas fa-flag-checkered"></i> 試験を終了する
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let questionStartTime = Date.now();
+let examTimeRemaining = 制限なし;
+let currentQuestionIndex = 0;
+let isFlagged = False;
+
+// ページ読み込み時の初期化
+document.addEventListener('DOMContentLoaded', function() {
+    // フラグ状態の初期化
+    updateFlagButton();
+    
+    // 時間警告モーダルの表示
+    
+    
+    // タイマー開始
+    startTimer();
+    
+    // ブラウザの戻るボタンを無効化
+    preventBrowserBack();
+});
+
+function enableSubmit() {
+    document.getElementById('submitBtn').disabled = false;
+}
+
+function submitExamAnswer(event) {
+    event.preventDefault();
+    
+    const formData = new FormData(event.target);
+    const selectedAnswer = formData.get('answer');
+    
+    if (!selectedAnswer) {
+        alert('回答を選択してください。');
+        return;
+    }
+    
+    // 経過時間を計算
+    const elapsed = (Date.now() - questionStartTime) / 1000;
+    formData.set('elapsed', elapsed.toString());
+    
+    // 提出ボタンを無効化
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 提出中...';
+    
+    // サーバーに送信
+    fetch('/submit_exam_answer', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            if (data.exam_finished) {
+                window.location.href = data.redirect;
+            } else {
+                // 次の問題に進む
+                window.location.reload();
+            }
+        } else {
+            alert('エラー: ' + data.error);
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> 回答を提出';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('サーバーとの通信に失敗しました。インターネット接続を確認してください。');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> 回答を提出';
+    });
+}
+
+function toggleFlag(questionIndex) {
+    const action = isFlagged ? 'unflag' : 'flag';
+    
+    fetch('/flag_exam_question', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `question_index=${questionIndex}&action=${action}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            isFlagged = !isFlagged;
+            updateFlagButton();
+        }
+    })
+    .catch(error => {
+        console.error('Flag error:', error);
+    });
+}
+
+function updateFlagButton() {
+    const flagIcon = document.getElementById('flagIcon');
+    const flagText = document.getElementById('flagText');
+    const flagBtn = document.getElementById('flagBtn');
+    
+    if (isFlagged) {
+        flagIcon.className = 'fas fa-flag text-warning';
+        flagText.textContent = 'フラグ解除';
+        flagBtn.classList.add('active');
+    } else {
+        flagIcon.className = 'far fa-flag';
+        flagText.textContent = 'フラグ';
+        flagBtn.classList.remove('active');
+    }
+}
+
+function showNavigation() {
+    window.open('/exam_navigation', '_blank', 'width=800,height=600');
+}
+
+function finishExam() {
+    const modal = new bootstrap.Modal(document.getElementById('finishExamModal'));
+    modal.show();
+}
+
+function confirmFinishExam() {
+    fetch('/finish_exam', {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = data.redirect;
+        } else {
+            alert('エラー: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Finish exam error:', error);
+        alert('サーバーとの通信に失敗しました。インターネット接続を確認してください。');
+    });
+}
+
+function startTimer() {
+    function updateTimer() {
+        const hours = Math.floor(examTimeRemaining / 60);
+        const minutes = examTimeRemaining % 60;
+        const timeString = hours > 0 ? 
+            `${hours}:${minutes.toString().padStart(2, '0')}` : 
+            minutes.toString();
+        
+        document.getElementById('time-remaining').textContent = timeString;
+        
+        // 時間切れチェック
+        if (examTimeRemaining <= 0) {
+            // 自動提出
+            alert('制限時間に達しました。試験を自動提出します。');
+            confirmFinishExam();
+            return;
+        }
+        
+        // 時間警告
+        if (examTimeRemaining === 10) {
+            alert('残り時間10分です！');
+        } else if (examTimeRemaining === 30) {
+            alert('残り時間30分です。');
+        }
+        
+        examTimeRemaining--;
+    }
+    
+    // 1分ごとに更新
+    setInterval(updateTimer, 60000);
+}
+
+function preventBrowserBack() {
+    history.pushState(null, null, location.href);
+    window.addEventListener('popstate', function(event) {
+        if (confirm('試験中です。本当にページを離れますか？回答データが失われる可能性があります。')) {
+            return;
+        } else {
+            history.pushState(null, null, location.href);
+        }
+    });
+}
+
+// ページを離れる前の警告
+window.addEventListener('beforeunload', function(e) {
+    e.preventDefault();
+    e.returnValue = '試験中です。ページを離れると回答データが失われる可能性があります。';
+});
+</script>
+
+<style>
+.exam-container {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.exam-header {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.exam-timer {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.exam-question-card {
+    border: none;
+    border-radius: 15px;
+}
+
+.question-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.answer-option {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px !important;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.answer-option:hover {
+    background: #e3f2fd;
+    border-color: #2196f3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.answer-option.checked {
+    background: #e8f5e8;
+    border-color: #4caf50;
+}
+
+.form-check-input:checked ~ .form-check-label .answer-option {
+    background: #e8f5e8;
+    border-color: #4caf50;
+}
+
+.option-letter {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: #dee2e6;
+    color: #495057;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+
+.form-check-input:checked ~ .form-check-label .option-letter {
+    background: #4caf50;
+    color: white;
+}
+
+.option-text {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.exam-controls .btn {
+    border-radius: 20px;
+}
+
+.question-nav-info {
+    display: flex;
+    align-items: center;
+}
+
+.modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    border-radius: 15px 15px 0 0;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .exam-header .col-md-3,
+    .exam-header .col-md-6 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    .exam-timer {
+        font-size: 1rem;
+    }
+    
+    .answer-option {
+        padding: 12px;
+    }
+    
+    .option-letter {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        margin-right: 10px;
+    }
+    
+    .question-text {
+        font-size: 1rem;
+    }
+}
+
+/* アニメーション */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.exam-timer {
+    animation: pulse 2s infinite;
+}
+
+.answer-option.form-check:hover {
+    animation: none;
+}
+
+/* フラグボタンの状態 */
+.btn.active {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+    color: #000 !important;
+}
+</style>
+
+</div>
+<footer class="text-center mt-4 mb-2 text-muted">
+  RCCM試験問題集 &copy; 2025
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+        onerror="this.onerror=null; var s=document.createElement('script'); s.src='/static/fallback/bootstrap.bundle.min.js'; document.head.appendChild(s);"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"
+        onerror="this.onerror=null; var s=document.createElement('script'); s.src='/static/fallback/chart.min.js'; document.head.appendChild(s);"></script>
+
+<!-- メインJavaScript（分離版） -->
+<script src="/static/js/main.js"></script>
+
+<!-- モバイル機能JavaScript -->
+<script src="/static/js/mobile-features.js"></script>
+
+<!-- セッションタイムアウト管理JavaScript -->
+<script src="/static/js/session-timeout.js"></script>
+
+
+</body>
+</html> 

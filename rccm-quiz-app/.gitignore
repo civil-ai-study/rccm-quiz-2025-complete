@@ -52,6 +52,28 @@ isolated_test_env/
 ultrathin_*.log
 *_fixed.log
 
+# テスト・デバッグファイル（大量クリーンアップ対象）
+*test*.py
+*debug*.py
+*verification*.py
+*analysis*.py
+*_test.html
+*_debug.html
+*test*.html
+*debug*.html
+*test*.json
+*debug*.json
+*verification*.json
+*analysis*.json
+
+# 一時ファイル・ログ類
+*.txt
+!requirements*.txt
+!README*.txt
+nul
+server.pid
+cookies*.txt
+
 # IDE関連
 .vscode/
 .idea/

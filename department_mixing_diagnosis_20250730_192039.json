@@ -1,0 +1,26 @@
+{
+  "建設環境": {
+    "questions_found": 10,
+    "categories": [
+      "建設環境"
+    ]
+  },
+  "森林土木": {
+    "questions_found": 10,
+    "categories": [
+      "森林土木"
+    ]
+  },
+  "農業土木": {
+    "questions_found": 10,
+    "categories": [
+      "農業土木"
+    ]
+  },
+  "トンネル": {
+    "questions_found": 10,
+    "categories": [
+      "トンネル"
+    ]
+  }
+}
