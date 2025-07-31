@@ -171,6 +171,50 @@ def get_questions_by_year(year):
     print(f"ERROR: {year}年度のファイルが読み込めません")
     return [], []
 
+def get_question_by_id_and_category(question_id, category):
+    """
+    問題IDとカテゴリから特定の問題を取得（セッション最適化用）
+    """
+    try:
+        # カテゴリから年度を抽出（年度指定がある場合）
+        if "年度）" in category:
+            # 例: "道路（2008年度）" -> "道路", 2008
+            base_category = category.split("（")[0]
+            year_str = category.split("（")[1].replace("年度）", "")
+            year = int(year_str)
+            
+            # 年度別ファイルから検索
+            file_path = f"data/4-2_{year}.csv"
+            data = load_csv_safe(file_path)
+            if data:
+                for question in data:
+                    if str(question.get('id', '')) == str(question_id) and question.get('category') == base_category:
+                        return question
+                        
+        elif category == "共通":
+            # 共通部門から検索
+            data = load_csv_safe("data/4-1.csv")
+            if data:
+                for question in data:
+                    if str(question.get('id', '')) == str(question_id):
+                        return question
+        else:
+            # 全年度ファイルから検索
+            for year in AVAILABLE_YEARS:
+                file_path = f"data/4-2_{year}.csv"
+                data = load_csv_safe(file_path)
+                if data:
+                    for question in data:
+                        if str(question.get('id', '')) == str(question_id) and question.get('category') == category:
+                            return question
+        
+        print(f"WARNING: 問題が見つかりません - ID: {question_id}, カテゴリ: {category}")
+        return None
+        
+    except Exception as e:
+        print(f"ERROR: 問題取得エラー - ID: {question_id}, カテゴリ: {category}, エラー: {e}")
+        return None
+
 # HTML テンプレート（最小限）
 HOME_TEMPLATE = '''
 <!DOCTYPE html>
@@ -459,9 +503,12 @@ def start_quiz(category):
     # 10問ランダム選択
     selected_questions = random.sample(questions, min(10, len(questions)))
     
-    # セッション初期化
+    # セッション最適化：問題IDのみ保存（4093バイト制限対応）
+    question_ids = [q.get('id', i) for i, q in enumerate(selected_questions)]
+    
+    # セッション初期化（最小限データのみ）
     session['quiz_category'] = category
-    session['quiz_questions'] = selected_questions
+    session['quiz_question_ids'] = question_ids  # 問題ID配列のみ保存
     session['quiz_current'] = 0
     session['quiz_answers'] = []
     session['quiz_start_time'] = datetime.now().isoformat()
@@ -483,7 +530,7 @@ def quiz():
             session['quiz_current'] += 1
         
         # 次の問題 or 結果画面
-        if session['quiz_current'] >= len(session.get('quiz_questions', [])):
+        if session['quiz_current'] >= len(session.get('quiz_question_ids', [])):
             return redirect(url_for('result'))
         else:
             return show_question()
@@ -493,21 +540,24 @@ def quiz():
         return show_question()
 
 def show_question():
-    """現在の問題を表示"""
+    """現在の問題を表示（セッション最適化版）"""
     
-    questions = session.get('quiz_questions', [])
+    question_ids = session.get('quiz_question_ids', [])
     current = session.get('quiz_current', 0)
     category = session.get('quiz_category', '')
     
-    if current >= len(questions):
+    if current >= len(question_ids):
         return redirect(url_for('result'))
     
-    question = questions[current]
+    # 問題IDから実際の問題データを動的取得
+    question = get_question_by_id_and_category(question_ids[current], category)
+    if not question:
+        return f"エラー: 問題が見つかりません（ID: {question_ids[current]}）", 404
     
     return render_template_string(QUIZ_TEMPLATE,
                                   question=question,
                                   current_num=current + 1,
-                                  total_num=len(questions),
+                                  total_num=len(question_ids),
                                   category=category)
 
 @app.route('/year/<int:year>')
@@ -553,9 +603,12 @@ def start_quiz_by_year(year, category):
     # 10問ランダム選択
     selected_questions = random.sample(category_questions, min(10, len(category_questions)))
     
-    # セッション初期化
+    # セッション最適化：問題IDのみ保存（4093バイト制限対応）
+    question_ids = [q.get('id', i) for i, q in enumerate(selected_questions)]
+    
+    # セッション初期化（最小限データのみ）
     session['quiz_category'] = f"{category}（{year}年度）"
-    session['quiz_questions'] = selected_questions
+    session['quiz_question_ids'] = question_ids  # 問題ID配列のみ保存
     session['quiz_current'] = 0
     session['quiz_answers'] = []
     session['quiz_start_time'] = datetime.now().isoformat()
@@ -567,24 +620,25 @@ def start_quiz_by_year(year, category):
 
 @app.route('/result')
 def result():
-    """結果表示"""
+    """結果表示（セッション最適化版）"""
     
-    questions = session.get('quiz_questions', [])
+    question_ids = session.get('quiz_question_ids', [])
     answers = session.get('quiz_answers', [])
     category = session.get('quiz_category', '')
     start_time = session.get('quiz_start_time', '')
     
-    if not questions or not answers:
+    if not question_ids or not answers:
         return redirect(url_for('home'))
     
-    # 正答数計算
+    # 正答数計算（問題IDから実際の問題データを取得）
     correct_count = 0
-    for i, question in enumerate(questions):
+    for i, question_id in enumerate(question_ids):
         if i < len(answers):
-            if answers[i] == question.get('correct_answer'):
+            question = get_question_by_id_and_category(question_id, category)
+            if question and answers[i] == question.get('correct_answer'):
                 correct_count += 1
     
-    total_count = len(questions)
+    total_count = len(question_ids)
     percentage = round((correct_count / total_count) * 100, 1) if total_count > 0 else 0
     
     # 所要時間計算
