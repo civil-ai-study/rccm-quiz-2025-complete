@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-RCCM試験システム - 単純化版 (Phase 1)
-2-3週間治らない問題の根本解決版
-専門家推奨手法：最小限・確実・日本語統一
+RCCM Quiz System - Simplified Version (Phase 1)
+Root cause solution for 2-3 weeks persistent problems
+Expert-recommended approach: Minimal, reliable, unified
 
-ウルトラシンク原則：
-- 絶対に嘘をつかない
-- 推測による実装なし  
-- 確実に動作する最小限機能
+Ultra Sync Principles:
+- Never lie about results
+- No implementation based on assumptions
+- Minimum reliable functionality only
 """
 
 # Phase4エンコーディング完全修正 - システムレベルUTF-8設定
@@ -658,32 +658,32 @@ def result():
 
 if __name__ == '__main__':
     print("=" * 60)
-    print("RCCM試験システム（単純化版）起動")
-    print("ウルトラシンク - 2-3週間治らない問題の根本解決版")
+    print("RCCM Quiz System (Simplified Version) Starting")
+    print("Ultra Sync - Root cause solution for persistent problems")
     print("=" * 60)
     
-    # データファイル存在確認
-    print("\nデータファイル確認:")
+    # Data files verification
+    print("\nData files verification:")
     common_file = "data/4-1.csv"
     if os.path.exists(common_file):
         print(f"OK: {common_file}")
     else:
-        print(f"ERROR: {common_file} が見つかりません")
+        print(f"ERROR: {common_file} not found")
     
     for year in AVAILABLE_YEARS:
         file_path = f"data/4-2_{year}.csv"
         if os.path.exists(file_path):
             print(f"OK: {file_path}")
         else:
-            print(f"WARNING: {file_path} が見つかりません")
+            print(f"WARNING: {file_path} not found")
     
-    print(f"\n対応カテゴリ数: {len(DEPARTMENT_CATEGORIES)} + 1（共通）")
-    print(f"対応年度数: {len(AVAILABLE_YEARS)}")
-    print("\nサーバー起動中...")
+    print(f"\nSupported categories: {len(DEPARTMENT_CATEGORIES)} + 1 (common)")
+    print(f"Supported years: {len(AVAILABLE_YEARS)}")
+    print("\nStarting server...")
     
-    # 本番環境対応：専門家推奨設定（Render.com対応）
+    # Production environment: Expert-recommended settings (Render.com compatible)
     port = int(os.environ.get('PORT', 10000))
-    host = '0.0.0.0'  # 専門家推奨：常に0.0.0.0
+    host = '0.0.0.0'  # Expert recommendation: Always bind to 0.0.0.0
     debug_mode = 'PORT' not in os.environ
     
     app.run(debug=debug_mode, host=host, port=port)
