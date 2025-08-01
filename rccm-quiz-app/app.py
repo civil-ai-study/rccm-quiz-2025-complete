@@ -332,7 +332,7 @@ QUIZ_TEMPLATE = '''
         <p>{{ question.question }}</p>
     </div>
     
-    <form method="POST">
+    <form method="POST" action="/quiz">
         <ul class="options">
             <li class="option">
                 <input type="radio" name="answer" value="A" id="option_a" required>
