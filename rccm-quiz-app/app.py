@@ -680,6 +680,7 @@ if __name__ == '__main__':
     print(f"\nSupported categories: {len(DEPARTMENT_CATEGORIES)} + 1 (common)")
     print(f"Supported years: {len(AVAILABLE_YEARS)}")
     print("\nStarting server...")
+    print("Form action fix deployed")
     
     # Production environment: Expert-recommended settings (Render.com compatible)
     port = int(os.environ.get('PORT', 10000))
