@@ -169,7 +169,8 @@
       "Bash(git rm:*)",
       "Bash(chcp:*)",
       "Bash(set TESTING=True)",
-      "WebFetch(domain:flask.palletsprojects.com)"
+      "WebFetch(domain:flask.palletsprojects.com)",
+      "WebFetch(domain:docs.railway.com)"
     ],
     "deny": []
   }

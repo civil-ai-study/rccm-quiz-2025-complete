@@ -7,6 +7,7 @@ import random
 import re
 import gc
 import logging
+import csv
 from datetime import datetime, timedelta, timezone
 from collections import defaultdict
 from typing import Dict, List
@@ -560,23 +561,23 @@ enterprise_data_manager = None
 
 # 🚀 ULTRA SYNC ROOT FIX: 一意部門マッピング（重複排除・根本修正）
 # 重大な設計欠陥修正：同一カテゴリへの重複マッピングを完全排除
+# 🔥 ULTRA SYNC FIX: 部門IDマッピングシステム統合（working_test_server.pyベース）
 DEPARTMENT_TO_CATEGORY_MAPPING = {
-    # 🔥 ULTRA SYNC FIX: config.pyのDEPARTMENTSキーと完全一致させる
-    # 4-2専門科目：12部門すべて対応（一意マッピング）
-    'road': '道路',
-    'tunnel': 'トンネル', 
-    'civil_planning': '河川、砂防及び海岸・海洋',
-    'urban_planning': '都市計画及び地方計画',
-    'landscape': '造園',
-    'construction_env': '建設環境',
-    'steel_concrete': '鋼構造及びコンクリート',
-    'soil_foundation': '土質及び基礎',  # 🔥 FIX: 'soil' → 'soil_foundation'
-    'construction_planning': '施工計画、施工設備及び積算',
-    'water_supply': '上水道及び工業用水道',
-    'forestry': '森林土木',
-    'agriculture': '農業土木',
     # 4-1基礎科目
-    'basic': '共通'
+    'basic': '共通',
+    # 4-2専門科目：12部門完全対応
+    'road': '道路', 
+    'river': '河川、砂防及び海岸・海洋',
+    'urban': '都市計画及び地方計画',
+    'garden': '造園',
+    'env': '建設環境',
+    'steel': '鋼構造及びコンクリート',
+    'soil': '土質及び基礎',
+    'construction': '施工計画、施工設備及び積算',
+    'water': '上水道及び工業用水道',
+    'forest': '森林土木',
+    'agri': '農業土木',
+    'tunnel': 'トンネル'
 }
 
 # 🚀 ULTRA SYNC: 旧名称互換マッピング（config.pyキーと一致）
@@ -619,6 +620,69 @@ def get_department_category(department_name):
     if normalized:
         return DEPARTMENT_TO_CATEGORY_MAPPING.get(normalized)
     return None
+
+def extract_department_questions_from_csv(department_name, num_questions=10):
+    """🔥 ULTRA SYNC: 部門別問題抽出機能（working_test_server.py統合版）"""
+    try:
+        data_dir = os.path.dirname(DataConfig.QUESTIONS_CSV)
+        if not os.path.exists(data_dir):
+            logger.error(f"データディレクトリが見つかりません: {data_dir}")
+            return []
+        
+        csv_files = [f for f in os.listdir(data_dir) if f.startswith('4-2_') and f.endswith('.csv')]
+        all_questions = []
+        
+        logger.info(f"部門別問題抽出開始: 部門={department_name}, 対象ファイル数={len(csv_files)}")
+        
+        for csv_file in csv_files:
+            file_path = os.path.join(data_dir, csv_file)
+            file_questions = []
+            
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        if row.get('category') == department_name:
+                            # 問題データの構造を統一
+                            question_data = {
+                                'id': row.get('id'),
+                                'category': row.get('category'),
+                                'year': row.get('year'),
+                                'question': row.get('question'),
+                                'option_a': row.get('option_a'),
+                                'option_b': row.get('option_b'),
+                                'option_c': row.get('option_c'),
+                                'option_d': row.get('option_d'),
+                                'correct_answer': row.get('correct_answer'),
+                                'explanation': row.get('explanation'),
+                                'reference': row.get('reference'),
+                                'difficulty': row.get('difficulty'),
+                                'question_type': 'specialist'
+                            }
+                            file_questions.append(question_data)
+            
+            except Exception as e:
+                logger.warning(f"CSVファイル読み込みエラー: {csv_file} - {e}")
+                continue
+            
+            if file_questions:
+                all_questions.extend(file_questions)
+                logger.debug(f"{csv_file}: {len(file_questions)}問抽出")
+        
+        logger.info(f"部門別問題抽出完了: 総問題数={len(all_questions)}問")
+        
+        if all_questions and num_questions > 0:
+            # ランダムで指定数の問題を選択
+            import random
+            selected_questions = random.sample(all_questions, min(num_questions, len(all_questions)))
+            logger.info(f"ランダム選択完了: {len(selected_questions)}問選択")
+            return selected_questions
+        
+        return all_questions
+        
+    except Exception as e:
+        logger.error(f"部門別問題抽出エラー: {e}")
+        return []
 
 # 問題データのキャッシュ
 _questions_cache = None
@@ -2140,6 +2204,36 @@ def index():
         return render_template('error.html', error_message=str(e)), 500
 
 
+@app.route('/department_quiz')
+def department_quiz():
+    """🔥 ULTRA SYNC: 部門別クイズ画面（統合版）"""
+    try:
+        return render_template('department_quiz.html', 
+                               departments=DEPARTMENT_TO_CATEGORY_MAPPING,
+                               title='部門別クイズ')
+    except Exception as e:
+        logger.error(f"部門別クイズ画面エラー: {e}")
+        return render_template('error.html', error="部門別クイズ画面の表示中にエラーが発生しました。")
+
+
+@app.route('/department_quiz/<dept_id>')
+def department_quiz_start(dept_id):
+    """🔥 ULTRA SYNC: 部門別クイズ開始（working_test_server.py統合版）"""
+    try:
+        if dept_id not in DEPARTMENT_TO_CATEGORY_MAPPING:
+            return render_template('error.html', error="無効な部門IDです。"), 400
+        
+        department_name = DEPARTMENT_TO_CATEGORY_MAPPING[dept_id]
+        logger.info(f"部門別クイズ開始: ID={dept_id}, 部門名={department_name}")
+        
+        # 専門科目として試験開始にリダイレクト
+        return redirect(url_for('exam', question_type='specialist', department=dept_id))
+        
+    except Exception as e:
+        logger.error(f"部門別クイズ開始エラー: {e}")
+        return render_template('error.html', error="部門別クイズの開始中にエラーが発生しました。")
+
+
 @app.route('/set_user', methods=['POST', 'GET'])
 def set_user():
     """ユーザー名を設定（企業環境での個別識別）"""
@@ -2317,28 +2411,39 @@ def exam():
                             logger.info(f"基礎科目セッション開始: {len(selected)}問")
                     
                     elif question_type == 'specialist':
-                        # 専門科目
-                        specialist_questions = [q for q in all_questions if q.get('question_type') == 'specialist']
-                        
+                        # 🔥 ULTRA SYNC専門科目: 新部門IDシステム統合版
                         if department:
-                            # 🔥 ULTRA SYNC CRITICAL FIX: グローバル部門マッピングを使用（重複排除・統一）
+                            # 部門IDから日本語カテゴリ名に変換
                             target_category = DEPARTMENT_TO_CATEGORY_MAPPING.get(department, department)
-                            specialist_questions = [q for q in specialist_questions 
-                                                  if q.get('category') == target_category]
-                        
-                        if specialist_questions:
-                            import random
-                            random.shuffle(specialist_questions)
-                            selected = specialist_questions[:10]
-                            session['exam_question_ids'] = [q['id'] for q in selected]
-                            session['exam_current'] = 0
-                            session['exam_category'] = target_category if department else '専門科目'
-                            session['selected_question_type'] = 'specialist'
-                            session['selected_department'] = department
-                            session.modified = True
-                            logger.info(f"専門科目セッション開始: {len(selected)}問")
+                            logger.info(f"専門科目開始: 部門ID={department} → カテゴリ={target_category}")
+                            
+                            # 新しい部門別問題抽出関数を使用
+                            selected_questions = extract_department_questions_from_csv(target_category, 10)
+                            
+                            if selected_questions:
+                                session['exam_question_ids'] = [q['id'] for q in selected_questions]
+                                session['exam_current'] = 0
+                                session['exam_category'] = target_category
+                                session['selected_question_type'] = 'specialist'
+                                session['selected_department'] = department
+                                session.modified = True
+                                logger.info(f"✅ 専門科目セッション開始: {len(selected_questions)}問（{target_category}）")
+                            else:
+                                logger.warning(f"部門'{target_category}'の問題が見つかりません - フォールバック実行")
+                                # フォールバック：全専門問題から選択
+                                all_specialist = [q for q in all_questions if q.get('question_type') == 'specialist']
+                                if all_specialist:
+                                    import random
+                                    random.shuffle(all_specialist)
+                                    selected = all_specialist[:10]
+                                    session['exam_question_ids'] = [q['id'] for q in selected]
+                                    session['exam_current'] = 0
+                                    session['exam_category'] = '専門科目（混合）'
+                                    session['selected_question_type'] = 'specialist'
+                                    session.modified = True
+                                    logger.info(f"専門科目フォールバック: {len(selected)}問")
                         else:
-                            # フォールバック：全専門問題から選択
+                            # 部門指定なし：全専門問題から選択
                             all_specialist = [q for q in all_questions if q.get('question_type') == 'specialist']
                             if all_specialist:
                                 import random
@@ -2346,10 +2451,10 @@ def exam():
                                 selected = all_specialist[:10]
                                 session['exam_question_ids'] = [q['id'] for q in selected]
                                 session['exam_current'] = 0
-                                session['exam_category'] = '専門科目（混合）'
+                                session['exam_category'] = '専門科目（全分野）'
                                 session['selected_question_type'] = 'specialist'
                                 session.modified = True
-                                logger.info(f"専門科目フォールバック: {len(selected)}問")
+                                logger.info(f"専門科目（全分野）: {len(selected)}問")
                     
                     else:
                         # デフォルト：基礎科目

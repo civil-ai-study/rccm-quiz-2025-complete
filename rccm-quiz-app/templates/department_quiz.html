@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}部門別クイズ選択 | RCCM試験問題集{% endblock %}
+{% block content %}
+<div class="container my-4">
+  <!-- ヘッダー -->
+  <div class="text-center mb-4">
+    <div class="d-flex align-items-center justify-content-center mb-3">
+      <a href="/" class="btn btn-outline-secondary me-3">
+        <i class="fas fa-arrow-left me-2"></i>ホームに戻る
+      </a>
+      <h1 class="mb-0">
+        <i class="fas fa-graduation-cap me-2"></i>部門別クイズ選択
+      </h1>
+    </div>
+    <p class="text-muted">RCCM専門科目（4-2）の部門別問題に挑戦しましょう</p>
+  </div>
+
+  <!-- 🔥 ULTRA SYNC: 部門選択グリッド -->
+  <div class="row">
+    <div class="col-lg-10 mx-auto">
+      <div class="card border-primary">
+        <div class="card-header text-white text-center" style="background-color: var(--primary-color)">
+          <h5 class="mb-0"><i class="fas fa-list me-2"></i>専門科目 12部門</h5>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            {% for dept_id, dept_name in departments.items() %}
+              {% if dept_id != 'basic' %}
+              <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-light shadow-sm hover-shadow">
+                  <div class="card-body text-center">
+                    <h6 class="card-title text-primary">{{ dept_name }}</h6>
+                    <p class="card-text small text-muted">ID: {{ dept_id }}</p>
+                    <a href="{{ url_for('department_quiz_start', dept_id=dept_id) }}" 
+                       class="btn btn-outline-primary btn-sm">
+                      <i class="fas fa-play me-2"></i>開始
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 基礎科目セクション -->
+  <div class="row mt-4">
+    <div class="col-lg-6 mx-auto">
+      <div class="card border-info">
+        <div class="card-header text-white text-center" style="background-color: var(--info-color)">
+          <h5 class="mb-0"><i class="fas fa-foundation me-2"></i>基礎科目（4-1）</h5>
+        </div>
+        <div class="card-body text-center">
+          <p class="card-text">基礎科目（共通）の問題に挑戦</p>
+          <a href="{{ url_for('exam', question_type='basic') }}" 
+             class="btn btn-info">
+            <i class="fas fa-play me-2"></i>基礎科目を開始
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 使用方法 -->
+  <div class="row mt-4">
+    <div class="col-lg-8 mx-auto">
+      <div class="card border-light">
+        <div class="card-header">
+          <h6 class="mb-0"><i class="fas fa-info-circle me-2"></i>使用方法</h6>
+        </div>
+        <div class="card-body">
+          <ul class="mb-0">
+            <li>各部門をクリックすると、その部門の専門問題（10問）が出題されます</li>
+            <li>複数年度のCSVファイルからランダムに問題が選択されます</li>
+            <li>部門IDシステムにより、日本語URL問題を回避しています</li>
+            <li>問題は全てCSVファイルから動的に抽出されます</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+</style>
+{% endblock %}
