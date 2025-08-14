@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>道路 - 問題1/10</title>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: "MS Gothic", monospace; margin: 20px; }
+        .question { background: #f9f9f9; padding: 15px; margin: 10px 0; }
+        .options { margin: 10px 0; }
+        .option { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>道路</h1>
+    <p>問題 1/10</p>
+    
+    <div class="question">
+        <h3>交通調査に関する記述のうち、誤っているものはどれか。</h3>
+    </div>
+    
+    <form method="POST" action="/quiz">
+        <div class="options">
+            <div class="option">
+                <input type="radio" name="answer" value="A" id="a">
+                <label for="a">A. OD調査とは自動車交通の交通量起終点乗員数などを調査するものである</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="B" id="b">
+                <label for="b">B. プローブカー調査とはカーナビゲーションを車両に搭載して走行データを収集する調査である</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="C" id="c">
+                <label for="c">C. 渋滞長調査とは信号待ちの車両の長さ車種や信号待ちの回数を計る調査である</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="D" id="d">
+                <label for="d">D. 断面交通量調査とは現況道路の断面交通量を調査するものである</label>
+            </div>
+        </div>
+        <button type="submit">回答する</button>
+    </form>
+    
+    <hr>
+    <p><small>
+        出典: 4-2_2008.csv (2008年)<br>
+        カテゴリ: 道路
+    </small></p>
+</body>
+</html>

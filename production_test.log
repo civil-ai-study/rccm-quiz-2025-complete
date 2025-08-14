@@ -1,0 +1,765 @@
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 337, in <module>
+    from ultra_sync_memory_leak_fix import UltraSyncMemoryOptimizer, memory_optimization_decorator as _memory_optimization_decorator
+ModuleNotFoundError: No module named 'ultra_sync_memory_leak_fix'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 342, in <module>
+    logger.warning(f"\u26a0\ufe0f Ultra Sync Memory Optimizer Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒ - äÓñ{ã@î\ÇÃÇ›ìÆçÏ: {e}")
+Message: "\u26a0\ufe0f Ultra Sync Memory Optimizer Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒ - äÓñ{ã@î\ÇÃÇ›ìÆçÏ: No module named 'ultra_sync_memory_leak_fix'"
+Arguments: ()
+2025-08-03 20:21:33,286 - __main__ - WARNING - \u26a0\ufe0f Ultra Sync Memory Optimizer Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒ - äÓñ{ã@î\ÇÃÇ›ìÆçÏ: No module named 'ultra_sync_memory_leak_fix'
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 352, in <module>
+    from memory_leak_monitor import MemoryLeakMonitor, init_memory_monitoring, memory_monitoring_decorator, global_memory_monitor
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\memory_leak_monitor.py", line 445, in <module>
+    global_memory_monitor = MemoryLeakMonitor()
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\memory_leak_monitor.py", line 57, in __init__
+    logger.info("Memory Leak Monitor initialized")
+Message: 'Memory Leak Monitor initialized'
+Arguments: ()
+2025-08-03 20:21:33,296 - memory_leak_monitor - INFO - Memory Leak Monitor initialized
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 353, in <module>
+    _memory_leak_monitor = init_memory_monitoring(app=None, auto_start=True)  # app ÇÕå„Ç≈ê›íË
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\memory_leak_monitor.py", line 452, in init_memory_monitoring
+    global_memory_monitor.start_monitoring()
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\memory_leak_monitor.py", line 68, in start_monitoring
+    logger.info("Memory leak monitoring started")
+Message: 'Memory leak monitoring started'
+Arguments: ()
+2025-08-03 20:21:33,375 - memory_leak_monitor - INFO - Memory leak monitoring started
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 353, in <module>
+    _memory_leak_monitor = init_memory_monitoring(app=None, auto_start=True)  # app ÇÕå„Ç≈ê›íË
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\memory_leak_monitor.py", line 464, in init_memory_monitoring
+    logger.info("Memory leak monitoring initialized successfully")
+Message: 'Memory leak monitoring initialized successfully'
+Arguments: ()
+2025-08-03 20:21:33,795 - memory_leak_monitor - INFO - Memory leak monitoring initialized successfully
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 354, in <module>
+    logger.info("\U0001f50d Memory Leak Monitor èâä˙âªäÆóπ")
+Message: '\U0001f50d Memory Leak Monitor èâä˙âªäÆóπ'
+Arguments: ()
+2025-08-03 20:21:33,798 - __main__ - INFO - \U0001f50d Memory Leak Monitor èâä˙âªäÆóπ
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 368, in <module>
+    from ultra_sync_unified_session_manager import unified_session_manager, init_unified_session_manager
+ModuleNotFoundError: No module named 'ultra_sync_unified_session_manager'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 371, in <module>
+    logger.error(f"\u274c Ultra Sync Unified Session Manager Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒ: {e}")
+Message: "\u274c Ultra Sync Unified Session Manager Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒ: No module named 'ultra_sync_unified_session_manager'"
+Arguments: ()
+2025-08-03 20:21:33,801 - __main__ - ERROR - \u274c Ultra Sync Unified Session Manager Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒ: No module named 'ultra_sync_unified_session_manager'
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 383, in <module>
+    from ultra_sync_performance_optimization import UltraSyncPerformanceOptimizer, performance_timing_decorator as _performance_timing_decorator
+ModuleNotFoundError: No module named 'ultra_sync_performance_optimization'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 388, in <module>
+    logger.warning(f"\u26a0\ufe0f Ultra Sync Performance Optimizer Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒ - äÓñ{ã@î\ÇÃÇ›ìÆçÏ: {e}")
+Message: "\u26a0\ufe0f Ultra Sync Performance Optimizer Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒ - äÓñ{ã@î\ÇÃÇ›ìÆçÏ: No module named 'ultra_sync_performance_optimization'"
+Arguments: ()
+2025-08-03 20:21:33,805 - __main__ - WARNING - \u26a0\ufe0f Ultra Sync Performance Optimizer Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒ - äÓñ{ã@î\ÇÃÇ›ìÆçÏ: No module named 'ultra_sync_performance_optimization'
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 395, in <module>
+    from ultra_sync_error_loop_prevention import UltraSyncErrorLoopPrevention, get_error_loop_prevention, register_flask_error_handlers
+ModuleNotFoundError: No module named 'ultra_sync_error_loop_prevention'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 399, in <module>
+    logger.warning(f"\u26a0\ufe0f Ultra Sync Error Loop Prevention System Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒ: {e}")
+Message: "\u26a0\ufe0f Ultra Sync Error Loop Prevention System Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒ: No module named 'ultra_sync_error_loop_prevention'"
+Arguments: ()
+2025-08-03 20:21:33,809 - __main__ - WARNING - \u26a0\ufe0f Ultra Sync Error Loop Prevention System Ç™å©Ç¬Ç©ÇËÇ‹ÇπÇÒ: No module named 'ultra_sync_error_loop_prevention'
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 420, in <module>
+    cache_manager = init_cache(app, redis_config)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\redis_cache.py", line 305, in init_cache
+    cache_manager = RedisCacheManager(app, config)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\redis_cache.py", line 50, in __init__
+    self.init_app(app)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\redis_cache.py", line 55, in init_app
+    logger.warning("\u26a0\ufe0f Redis/Flask-Caching not available. Using in-memory fallback.")
+Message: '\u26a0\ufe0f Redis/Flask-Caching not available. Using in-memory fallback.'
+Arguments: ()
+2025-08-03 20:21:33,815 - redis_cache - WARNING - \u26a0\ufe0f Redis/Flask-Caching not available. Using in-memory fallback.
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 420, in <module>
+    cache_manager = init_cache(app, redis_config)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\redis_cache.py", line 305, in init_cache
+    cache_manager = RedisCacheManager(app, config)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\redis_cache.py", line 50, in __init__
+    self.init_app(app)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\redis_cache.py", line 56, in init_app
+    self._setup_memory_fallback()
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\redis_cache.py", line 89, in _setup_memory_fallback
+    logger.info("\U0001f504 Using in-memory cache fallback")
+Message: '\U0001f504 Using in-memory cache fallback'
+Arguments: ()
+2025-08-03 20:21:33,818 - redis_cache - INFO - \U0001f504 Using in-memory cache fallback
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 422, in <module>
+    logger.info("\u26a1 Redis Cacheèâä˙âªäÆóπ - CSVì«Ç›çûÇ›çÇë¨âªóLå¯")
+Message: '\u26a1 Redis Cacheèâä˙âªäÆóπ - CSVì«Ç›çûÇ›çÇë¨âªóLå¯'
+Arguments: ()
+2025-08-03 20:21:33,821 - __main__ - INFO - \u26a1 Redis Cacheèâä˙âªäÆóπ - CSVì«Ç›çûÇ›çÇë¨âªóLå¯
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 450, in <module>
+    logger.warning("\u26a0\ufe0f CSRFï€åÏÇ™ñ≥å¯Ç≈Ç∑ - Flask-WTFÇÉCÉìÉXÉgÅ[ÉãÇµÇƒÇ≠ÇæÇ≥Ç¢")
+Message: '\u26a0\ufe0f CSRFï€åÏÇ™ñ≥å¯Ç≈Ç∑ - Flask-WTFÇÉCÉìÉXÉgÅ[ÉãÇµÇƒÇ≠ÇæÇ≥Ç¢'
+Arguments: ()
+2025-08-03 20:21:33,824 - __main__ - WARNING - \u26a0\ufe0f CSRFï€åÏÇ™ñ≥å¯Ç≈Ç∑ - Flask-WTFÇÉCÉìÉXÉgÅ[ÉãÇµÇƒÇ≠ÇæÇ≥Ç¢
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 466, in <module>
+    logger.info(f"\U0001f6e1\ufe0f SECURITY CONFIG: SECRET_KEY set: {bool(app.config.get('SECRET_KEY'))}")
+Message: '\U0001f6e1\ufe0f SECURITY CONFIG: SECRET_KEY set: True'
+Arguments: ()
+2025-08-03 20:21:33,826 - __main__ - INFO - \U0001f6e1\ufe0f SECURITY CONFIG: SECRET_KEY set: True
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 467, in <module>
+    logger.info(f"\U0001f6e1\ufe0f SECURITY CONFIG: CSRF enabled: {app.config.get('WTF_CSRF_ENABLED')}")
+Message: '\U0001f6e1\ufe0f SECURITY CONFIG: CSRF enabled: True'
+Arguments: ()
+2025-08-03 20:21:33,834 - __main__ - INFO - \U0001f6e1\ufe0f SECURITY CONFIG: CSRF enabled: True
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 468, in <module>
+    logger.info(f"\U0001f6e1\ufe0f SECURITY CONFIG: Cookie secure: {app.config.get('SESSION_COOKIE_SECURE')}")
+Message: '\U0001f6e1\ufe0f SECURITY CONFIG: Cookie secure: False'
+Arguments: ()
+2025-08-03 20:21:33,837 - __main__ - INFO - \U0001f6e1\ufe0f SECURITY CONFIG: Cookie secure: False
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 469, in <module>
+    logger.info(f"\U0001f6e1\ufe0f SECURITY CONFIG: Cookie httponly: {app.config.get('SESSION_COOKIE_HTTPONLY')}")
+Message: '\U0001f6e1\ufe0f SECURITY CONFIG: Cookie httponly: True'
+Arguments: ()
+2025-08-03 20:21:33,842 - __main__ - INFO - \U0001f6e1\ufe0f SECURITY CONFIG: Cookie httponly: True
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 470, in <module>
+    logger.info(f"\U0001f6e1\ufe0f SECURITY CONFIG: Cookie samesite: {app.config.get('SESSION_COOKIE_SAMESITE')}")
+Message: '\U0001f6e1\ufe0f SECURITY CONFIG: Cookie samesite: Lax'
+Arguments: ()
+2025-08-03 20:21:33,845 - __main__ - INFO - \U0001f6e1\ufe0f SECURITY CONFIG: Cookie samesite: Lax
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 483, in <module>
+    logger.info("\u2705 ÉZÉLÉÖÉäÉeÉBê›íËämîFäÆóπ")
+Message: '\u2705 ÉZÉLÉÖÉäÉeÉBê›íËämîFäÆóπ'
+Arguments: ()
+2025-08-03 20:21:33,848 - __main__ - INFO - \u2705 ÉZÉLÉÖÉäÉeÉBê›íËämîFäÆóπ
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 493, in <module>
+    _unified_session_manager = init_unified_session_manager(app)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'init_unified_session_manager' is not defined. Did you mean: '_unified_session_manager'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 497, in <module>
+    logger.error(f"\u274c ìùçáÉZÉbÉVÉáÉìä«óùÉVÉXÉeÉÄèâä˙âªé∏îs: {e}")
+Message: "\u274c ìùçáÉZÉbÉVÉáÉìä«óùÉVÉXÉeÉÄèâä˙âªé∏îs: name 'init_unified_session_manager' is not defined"
+Arguments: ()
+2025-08-03 20:21:33,854 - __main__ - ERROR - \u274c ìùçáÉZÉbÉVÉáÉìä«óùÉVÉXÉeÉÄèâä˙âªé∏îs: name 'init_unified_session_manager' is not defined
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 493, in <module>
+    _unified_session_manager = init_unified_session_manager(app)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'init_unified_session_manager' is not defined. Did you mean: '_unified_session_manager'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 500, in <module>
+    from session_timeout_enhancement import init_session_timeout
+ModuleNotFoundError: No module named 'session_timeout_enhancement'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 504, in <module>
+    logger.error(f"\u274c ÉtÉHÅ[ÉãÉoÉbÉNÇ‡é∏îs: {fallback_error}")
+Message: "\u274c ÉtÉHÅ[ÉãÉoÉbÉNÇ‡é∏îs: No module named 'session_timeout_enhancement'"
+Arguments: ()
+2025-08-03 20:21:33,859 - __main__ - ERROR - \u274c ÉtÉHÅ[ÉãÉoÉbÉNÇ‡é∏îs: No module named 'session_timeout_enhancement'
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 523, in <module>
+    logger.info("\U0001f50d Memory Leak Monitoring routes registered successfully")
+Message: '\U0001f50d Memory Leak Monitoring routes registered successfully'
+Arguments: ()
+2025-08-03 20:21:33,870 - __main__ - INFO - \U0001f50d Memory Leak Monitoring routes registered successfully
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 535, in <module>
+    logger.warning("\u26a0\ufe0f Unified Session Manager not available - using fallback session management")
+Message: '\u26a0\ufe0f Unified Session Manager not available - using fallback session management'
+Arguments: ()
+2025-08-03 20:21:33,880 - __main__ - WARNING - \u26a0\ufe0f Unified Session Manager not available - using fallback session management
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 8809, in <module>
+    logger.info("\U0001f680 ÉEÉãÉgÉâçÇë¨ãNìÆÉÇÅ[Éh: íxâÑì«Ç›çûÇ›óLå¯")
+Message: '\U0001f680 ÉEÉãÉgÉâçÇë¨ãNìÆÉÇÅ[Éh: íxâÑì«Ç›çûÇ›óLå¯'
+Arguments: ()
+2025-08-03 20:21:34,073 - __main__ - INFO - \U0001f680 ÉEÉãÉgÉâçÇë¨ãNìÆÉÇÅ[Éh: íxâÑì«Ç›çûÇ›óLå¯
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 8832, in <module>
+    logger.info("\u2705 ÉEÉãÉgÉâçÇë¨ãNìÆäÆóπ - ÉfÅ[É^ÇÕïKóvéûÇ…ì«Ç›çûÇ‹ÇÍÇ‹Ç∑")
+Message: '\u2705 ÉEÉãÉgÉâçÇë¨ãNìÆäÆóπ - ÉfÅ[É^ÇÕïKóvéûÇ…ì«Ç›çûÇ‹ÇÍÇ‹Ç∑'
+Arguments: ()
+2025-08-03 20:21:34,108 - __main__ - INFO - \u2705 ÉEÉãÉgÉâçÇë¨ãNìÆäÆóπ - ÉfÅ[É^ÇÕïKóvéûÇ…ì«Ç›çûÇ‹ÇÍÇ‹Ç∑
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 9042, in <module>
+    logger.info("\u2705 äJî≠ÉÇÅ[Éh: äOïîURLÉAÉNÉZÉXëŒâûçœÇ›")
+Message: '\u2705 äJî≠ÉÇÅ[Éh: äOïîURLÉAÉNÉZÉXëŒâûçœÇ›'
+Arguments: ()
+2025-08-03 20:21:34,117 - __main__ - INFO - \u2705 äJî≠ÉÇÅ[Éh: äOïîURLÉAÉNÉZÉXëŒâûçœÇ›
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 9045, in <module>
+    logger.info("\u26a1 çÇë¨ãNìÆÉÇÅ[ÉhÅiÉfÅ[É^ì«Ç›çûÇ›ÇÕèââÒÉAÉNÉZÉXéûÇ…é¿çsÅj")
+Message: '\u26a1 çÇë¨ãNìÆÉÇÅ[ÉhÅiÉfÅ[É^ì«Ç›çûÇ›ÇÕèââÒÉAÉNÉZÉXéûÇ…é¿çsÅj'
+Arguments: ()
+2025-08-03 20:21:34,127 - __main__ - INFO - \u26a1 çÇë¨ãNìÆÉÇÅ[ÉhÅiÉfÅ[É^ì«Ç›çûÇ›ÇÕèââÒÉAÉNÉZÉXéûÇ…é¿çsÅj
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 9047, in <module>
+    logger.info("\u2705 ãNìÆèÄîıäÆóπ - URLÉAÉNÉZÉXâ¬î\Ç≈Ç∑")
+Message: '\u2705 ãNìÆèÄîıäÆóπ - URLÉAÉNÉZÉXâ¬î\Ç≈Ç∑'
+Arguments: ()
+2025-08-03 20:21:34,129 - __main__ - INFO - \u2705 ãNìÆèÄîıäÆóπ - URLÉAÉNÉZÉXâ¬î\Ç≈Ç∑
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 9055, in <module>
+    logger.info("\U0001f680 RCCMééå±ñ‚ëËèWÉAÉvÉäÉPÅ[ÉVÉáÉìãNìÆíÜ...")
+Message: '\U0001f680 RCCMééå±ñ‚ëËèWÉAÉvÉäÉPÅ[ÉVÉáÉìãNìÆíÜ...'
+Arguments: ()
+2025-08-03 20:21:34,133 - __main__ - INFO - \U0001f680 RCCMééå±ñ‚ëËèWÉAÉvÉäÉPÅ[ÉVÉáÉìãNìÆíÜ...
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 9056, in <module>
+    logger.info(f"\U0001f310 ÉÅÉCÉìÉAÉNÉZÉXURL: http://localhost:{port}")
+Message: '\U0001f310 ÉÅÉCÉìÉAÉNÉZÉXURL: http://localhost:5005'
+Arguments: ()
+2025-08-03 20:21:34,136 - __main__ - INFO - \U0001f310 ÉÅÉCÉìÉAÉNÉZÉXURL: http://localhost:5005
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 9057, in <module>
+    logger.info(f"\U0001f30d äOïîÉAÉNÉZÉXURL: http://<Ç†Ç»ÇΩÇÃIPÉAÉhÉåÉX>:{port}")
+Message: '\U0001f30d äOïîÉAÉNÉZÉXURL: http://<Ç†Ç»ÇΩÇÃIPÉAÉhÉåÉX>:5005'
+Arguments: ()
+2025-08-03 20:21:34,138 - __main__ - INFO - \U0001f30d äOïîÉAÉNÉZÉXURL: http://<Ç†Ç»ÇΩÇÃIPÉAÉhÉåÉX>:5005
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 9058, in <module>
+    logger.info("\u2705 URLÇÉuÉâÉEÉUÇÃÉAÉhÉåÉXÉoÅ[Ç…ÉRÉsÅ[&ÉyÅ[ÉXÉgÇµÇƒÉAÉNÉZÉX")
+Message: '\u2705 URLÇÉuÉâÉEÉUÇÃÉAÉhÉåÉXÉoÅ[Ç…ÉRÉsÅ[&ÉyÅ[ÉXÉgÇµÇƒÉAÉNÉZÉX'
+Arguments: ()
+2025-08-03 20:21:34,140 - __main__ - INFO - \u2705 URLÇÉuÉâÉEÉUÇÃÉAÉhÉåÉXÉoÅ[Ç…ÉRÉsÅ[&ÉyÅ[ÉXÉgÇµÇƒÉAÉNÉZÉX
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 9059, in <module>
+    logger.info("\U0001f4a1 ãNìÆå„Ç∑ÇÆÇ…ÉAÉNÉZÉXâ¬î\Ç≈Ç∑ÅiÉfÅ[É^ì«Ç›çûÇ›ÇÕèââÒÉAÉNÉZÉXéûÅj")
+Message: '\U0001f4a1 ãNìÆå„Ç∑ÇÆÇ…ÉAÉNÉZÉXâ¬î\Ç≈Ç∑ÅiÉfÅ[É^ì«Ç›çûÇ›ÇÕèââÒÉAÉNÉZÉXéûÅj'
+Arguments: ()
+2025-08-03 20:21:34,154 - __main__ - INFO - \U0001f4a1 ãNìÆå„Ç∑ÇÆÇ…ÉAÉNÉZÉXâ¬î\Ç≈Ç∑ÅiÉfÅ[É^ì«Ç›çûÇ›ÇÕèââÒÉAÉNÉZÉXéûÅj
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 9062, in <module>
+    logger.info(f"\U0001f680 RCCM Ready - Host: {host}, Port: {port}")
+Message: '\U0001f680 RCCM Ready - Host: 0.0.0.0, Port: 5005'
+Arguments: ()
+2025-08-03 20:21:34,156 - __main__ - INFO - \U0001f680 RCCM Ready - Host: 0.0.0.0, Port: 5005
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 9074, in <module>
+    logger.info("\U0001f6e1\ufe0f äJî≠ÉÇÅ[Éh: ÉZÉLÉÖÉäÉeÉBê›íËÇ≈ãNìÆ")
+Message: '\U0001f6e1\ufe0f äJî≠ÉÇÅ[Éh: ÉZÉLÉÖÉäÉeÉBê›íËÇ≈ãNìÆ'
+Arguments: ()
+2025-08-03 20:21:34,158 - __main__ - INFO - \U0001f6e1\ufe0f äJî≠ÉÇÅ[Éh: ÉZÉLÉÖÉäÉeÉBê›íËÇ≈ãNìÆ
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 9075, in <module>
+    logger.info("\U0001f4da ñ{î‘ä¬ã´ÉfÉvÉçÉCï˚ñ@: DEPLOYMENT.md ÇéQè∆")
+Message: '\U0001f4da ñ{î‘ä¬ã´ÉfÉvÉçÉCï˚ñ@: DEPLOYMENT.md ÇéQè∆'
+Arguments: ()
+2025-08-03 20:21:34,161 - __main__ - INFO - \U0001f4da ñ{î‘ä¬ã´ÉfÉvÉçÉCï˚ñ@: DEPLOYMENT.md ÇéQè∆
+ * Serving Flask app 'app'
+ * Debug mode: on
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 9077, in <module>
+    app.run(
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 612, in run
+    run_simple(t.cast(str, host), port, self, **options)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\werkzeug\serving.py", line 1092, in run_simple
+    srv.log_startup()
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\werkzeug\serving.py", line 852, in log_startup
+    _log("info", "\n".join(messages))
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\werkzeug\_internal.py", line 96, in _log
+    getattr(_logger, type)(message.rstrip(), *args, **kwargs)
+Message: '\x1b[31m\x1b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\x1b[0m\n * Running on all addresses (0.0.0.0)\n * Running on http://127.0.0.1:5005\n * Running on http://192.168.0.69:5005'
+Arguments: ()
+2025-08-03 20:21:34,260 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5005
+ * Running on http://192.168.0.69:5005
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 80, in emit
+    self.doRollover()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 185, in doRollover
+    self.rotate(self.baseFilename, dfn)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\logging\handlers.py", line 121, in rotate
+    os.rename(source, dest)
+    ~~~~~~~~~^^^^^^^^^^^^^^
+PermissionError: [WinError 32] ÉvÉçÉZÉXÇÕÉtÉ@ÉCÉãÇ…ÉAÉNÉZÉXÇ≈Ç´Ç‹ÇπÇÒÅBï ÇÃÉvÉçÉZÉXÇ™égópíÜÇ≈Ç∑ÅB: 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log' -> 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\rccm_app.log.1'
+Call stack:
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 9077, in <module>
+    app.run(
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 612, in run
+    run_simple(t.cast(str, host), port, self, **options)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\werkzeug\serving.py", line 1093, in run_simple
+    _log("info", _ansi_style("Press CTRL+C to quit", "yellow"))
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\werkzeug\_internal.py", line 96, in _log
+    getattr(_logger, type)(message.rstrip(), *args, **kwargs)
+Message: '\x1b[33mPress CTRL+C to quit\x1b[0m'
+Arguments: ()
+2025-08-03 20:21:34,264 - werkzeug - INFO - [33mPress CTRL+C to quit[0m

@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>道路 - 問題1/10</title>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: "MS Gothic", monospace; margin: 20px; }
+        .question { background: #f9f9f9; padding: 15px; margin: 10px 0; }
+        .options { margin: 10px 0; }
+        .option { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>道路</h1>
+    <p>問題 1/10</p>
+    
+    <div class="question">
+        <h3>信号交差点の交通制御設計に関する記述として誤っているものはどれか</h3>
+    </div>
+    
+    <form method="POST" action="/quiz">
+        <div class="options">
+            <div class="option">
+                <input type="radio" name="answer" value="A" id="a">
+                <label for="a">A. 有効青時間は青・黄・全赤信号時間の和から発進損失時間とクリアランス損失時間を差し引いた時間である</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="B" id="b">
+                <label for="b">B. 飽和交通流率とは交差点流入部で交通需要が十分存在する状態での単位時間当たり最大車両数である</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="C" id="c">
+                <label for="c">C. 青信号表示時間の始まりの一部はクリアランス損失時間となる</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="D" id="d">
+                <label for="d">D. 信号制御の損失時間は発進損失時間とクリアランス損失時間からなる</label>
+            </div>
+        </div>
+        <button type="submit">回答する</button>
+    </form>
+    
+    <hr>
+    <p><small>
+        出典: 4-2_2019.csv (2019年)<br>
+        カテゴリ: 道路
+    </small></p>
+</body>
+</html>

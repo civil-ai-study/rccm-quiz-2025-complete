@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}{{ department.name }} - 問題種別選択{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- ヘッダー -->
+            <div class="card border-primary mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-book"></i> {{ department.name }}
+                    </h3>
+                    <p class="mb-0 small">学習開始する問題種別を選択してください</p>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        選択した部門での学習方式を決定してください。<br>
+                        <strong>4-1基礎科目</strong>または<strong>4-2専門科目</strong>から学習を開始できます。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 問題種別選択 -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-graduation-cap"></i> 4-1 基礎科目
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">建設機械の基礎的な技術について学習します。</p>
+                            <ul class="small">
+                                <li>建設機械原動機</li>
+                                <li>建設機械構造</li>
+                                <li>建設機械施工</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/exam?department={{ department.id }}&type=basic" class="btn btn-success btn-block">
+                                <i class="fas fa-play"></i> 4-1基礎科目を学習
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-cogs"></i> 4-2 専門科目
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{ department.name }}の専門技術について学習します。</p>
+                            <ul class="small">
+                                <li>専門技術知識</li>
+                                <li>施工管理技術</li>
+                                <li>実務に直結した問題</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/exam?department={{ department.id }}&type=specialist" class="btn btn-primary btn-block">
+                                <i class="fas fa-play"></i> 4-2専門科目を学習
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ナビゲーション -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between">
+                        <a href="/departments" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> 部門選択に戻る
+                        </a>
+                        <a href="/" class="btn btn-outline-secondary">
+                            <i class="fas fa-home"></i> ホームに戻る
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,699 @@
+2025-08-03 20:40:53,686 - app - WARNING - ⚠️ Ultra Sync Memory Optimizer が見つかりません - 基本機能のみ動作: No module named 'ultra_sync_memory_leak_fix'
+2025-08-03 20:40:53,689 - memory_leak_monitor - INFO - Memory Leak Monitor initialized
+2025-08-03 20:40:53,718 - memory_leak_monitor - INFO - Memory leak monitoring started
+2025-08-03 20:40:53,927 - memory_leak_monitor - INFO - Memory leak monitoring initialized successfully
+2025-08-03 20:40:53,927 - app - INFO - 🔍 Memory Leak Monitor 初期化完了
+2025-08-03 20:40:53,928 - app - ERROR - ❌ Ultra Sync Unified Session Manager が見つかりません: No module named 'ultra_sync_unified_session_manager'
+2025-08-03 20:40:53,929 - app - WARNING - ⚠️ Ultra Sync Performance Optimizer が見つかりません - 基本機能のみ動作: No module named 'ultra_sync_performance_optimization'
+2025-08-03 20:40:53,932 - app - WARNING - ⚠️ Ultra Sync Error Loop Prevention System が見つかりません: No module named 'ultra_sync_error_loop_prevention'
+2025-08-03 20:40:53,935 - redis_cache - WARNING - ⚠️ Redis/Flask-Caching not available. Using in-memory fallback.
+2025-08-03 20:40:53,935 - redis_cache - INFO - 🔄 Using in-memory cache fallback
+2025-08-03 20:40:53,935 - app - INFO - ⚡ Redis Cache初期化完了 - CSV読み込み高速化有効
+2025-08-03 20:40:53,935 - app - WARNING - ⚠️ CSRF保護が無効です - Flask-WTFをインストールしてください
+2025-08-03 20:40:53,935 - app - INFO - 🛡️ SECURITY CONFIG: SECRET_KEY set: True
+2025-08-03 20:40:53,935 - app - INFO - 🛡️ SECURITY CONFIG: CSRF enabled: True
+2025-08-03 20:40:53,936 - app - INFO - 🛡️ SECURITY CONFIG: Cookie secure: False
+2025-08-03 20:40:53,936 - app - INFO - 🛡️ SECURITY CONFIG: Cookie httponly: True
+2025-08-03 20:40:53,936 - app - INFO - 🛡️ SECURITY CONFIG: Cookie samesite: Lax
+2025-08-03 20:40:53,936 - app - INFO - ✅ セキュリティ設定確認完了
+2025-08-03 20:40:53,936 - app - ERROR - ❌ 統合セッション管理システム初期化失敗: name 'init_unified_session_manager' is not defined
+2025-08-03 20:40:53,936 - app - ERROR - ❌ フォールバックも失敗: No module named 'session_timeout_enhancement'
+2025-08-03 20:40:53,938 - app - INFO - 🔍 Memory Leak Monitoring routes registered successfully
+2025-08-03 20:40:53,938 - app - WARNING - ⚠️ Unified Session Manager not available - using fallback session management
+2025-08-03 20:40:54,006 - app - INFO - 🚀 ウルトラ高速起動モード: 遅延読み込み有効
+2025-08-03 20:40:54,011 - app - INFO - ✅ ウルトラ高速起動完了 - データは必要時に読み込まれます
+2025-08-03 20:40:54,048 - utils - INFO - RCCM統合データ読み込み開始: C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\data
+2025-08-03 20:40:54,049 - utils - INFO - 問題データ読み込み開始: C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\data\4-1.csv
+2025-08-03 20:40:54,049 - utils - INFO - ファイルサイズ: 92424 bytes
+2025-08-03 20:40:54,057 - utils - INFO - 読み込み成功: utf-8-sig エンコーディング
+2025-08-03 20:40:54,057 - utils - INFO - データ読み込み完了: 202行, エンコーディング: utf-8-sig
+2025-08-03 20:40:54,058 - utils - INFO - 有効な問題データ: 202問
+2025-08-03 20:40:54,058 - utils - INFO - 💾 Redis Cache SET: 4-1 (202 questions)
+2025-08-03 20:40:54,059 - utils - INFO - 4-1基礎データ読み込み完了: 202問
+2025-08-03 20:40:54,059 - utils - INFO - 問題データ読み込み開始: C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\data\4-2_2008.csv
+2025-08-03 20:40:54,059 - utils - INFO - ファイルサイズ: 201176 bytes
+2025-08-03 20:40:54,067 - utils - INFO - 読み込み成功: utf-8-sig エンコーディング
+2025-08-03 20:40:54,068 - utils - INFO - データ読み込み完了: 360行, エンコーディング: utf-8-sig
+2025-08-03 20:40:54,071 - utils - INFO - 有効な問題データ: 360問
+2025-08-03 20:40:54,072 - utils - INFO - 💾 Redis Cache SET: 4-2_2008 (360 questions)
+2025-08-03 20:40:54,073 - utils - INFO - 4-2専門データ2008年読み込み完了: 360問
+2025-08-03 20:40:54,074 - utils - INFO - 問題データ読み込み開始: C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\data\4-2_2009.csv
+2025-08-03 20:40:54,074 - utils - INFO - ファイルサイズ: 207651 bytes
+2025-08-03 20:40:54,082 - utils - INFO - 読み込み成功: utf-8-sig エンコーディング
+2025-08-03 20:40:54,083 - utils - INFO - データ読み込み完了: 359行, エンコーディング: utf-8-sig
+2025-08-03 20:40:54,088 - utils - INFO - 有効な問題データ: 359問
+2025-08-03 20:40:54,089 - utils - INFO - 💾 Redis Cache SET: 4-2_2009 (359 questions)
+2025-08-03 20:40:54,090 - utils - INFO - 4-2専門データ2009年読み込み完了: 359問
+2025-08-03 20:40:54,090 - utils - INFO - 問題データ読み込み開始: C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\data\4-2_2010.csv
+2025-08-03 20:40:54,091 - utils - INFO - ファイルサイズ: 157895 bytes
+2025-08-03 20:40:54,096 - utils - INFO - 読み込み成功: utf-8-sig エンコーディング
+2025-08-03 20:40:54,096 - utils - INFO - データ読み込み完了: 239行, エンコーディング: utf-8-sig
+2025-08-03 20:40:54,099 - utils - INFO - 有効な問題データ: 239問
+2025-08-03 20:40:54,099 - utils - INFO - 💾 Redis Cache SET: 4-2_2010 (239 questions)
+2025-08-03 20:40:54,100 - utils - INFO - 4-2専門データ2010年読み込み完了: 239問
+2025-08-03 20:40:54,100 - utils - INFO - 問題データ読み込み開始: C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\data\4-2_2011.csv
+2025-08-03 20:40:54,100 - utils - INFO - ファイルサイズ: 237300 bytes
+2025-08-03 20:40:54,108 - utils - INFO - 読み込み成功: utf-8-sig エンコーディング
+2025-08-03 20:40:54,109 - utils - INFO - データ読み込み完了: 360行, エンコーディング: utf-8-sig
+2025-08-03 20:40:54,112 - utils - INFO - 有効な問題データ: 360問
+2025-08-03 20:40:54,113 - utils - INFO - 💾 Redis Cache SET: 4-2_2011 (360 questions)
+2025-08-03 20:40:54,114 - utils - INFO - 4-2専門データ2011年読み込み完了: 360問
+2025-08-03 20:40:54,114 - utils - INFO - 問題データ読み込み開始: C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\data\4-2_2012.csv
+2025-08-03 20:40:54,115 - utils - INFO - ファイルサイズ: 199154 bytes
+2025-08-03 20:40:54,120 - utils - INFO - 読み込み成功: utf-8-sig エンコーディング
+2025-08-03 20:40:54,120 - utils - INFO - データ読み込み完了: 307行, エンコーディング: utf-8-sig
+2025-08-03 20:40:54,125 - utils - INFO - 有効な問題データ: 307問
+2025-08-03 20:40:54,126 - utils - INFO - 💾 Redis Cache SET: 4-2_2012 (307 questions)
+2025-08-03 20:40:54,126 - utils - INFO - 4-2専門データ2012年読み込み完了: 307問
+2025-08-03 20:40:54,127 - utils - INFO - 問題データ読み込み開始: C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\data\4-2_2013.csv
+2025-08-03 20:40:54,127 - utils - INFO - ファイルサイズ: 194057 bytes
+2025-08-03 20:40:54,135 - utils - INFO - 読み込み成功: utf-8-sig エンコーディング
+2025-08-03 20:40:54,136 - utils - INFO - データ読み込み完了: 320行, エンコーディング: utf-8-sig
+2025-08-03 20:40:54,137 - utils - INFO - 有効な問題データ: 320問
+2025-08-03 20:40:54,137 - utils - INFO - 💾 Redis Cache SET: 4-2_2013 (320 questions)
+2025-08-03 20:40:54,137 - utils - INFO - 4-2専門データ2013年読み込み完了: 320問
+2025-08-03 20:40:54,138 - utils - INFO - 問題データ読み込み開始: C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\data\4-2_2014.csv
+2025-08-03 20:40:54,138 - utils - INFO - ファイルサイズ: 153257 bytes
+2025-08-03 20:40:54,142 - utils - INFO - 読み込み成功: utf-8-sig エンコーディング
+2025-08-03 20:40:54,142 - utils - INFO - データ読み込み完了: 240行, エンコーディング: utf-8-sig
+2025-08-03 20:40:54,143 - utils - INFO - 有効な問題データ: 240問
+2025-08-03 20:40:54,143 - utils - INFO - 💾 Redis Cache SET: 4-2_2014 (240 questions)
+2025-08-03 20:40:54,144 - utils - INFO - 4-2専門データ2014年読み込み完了: 240問
+2025-08-03 20:40:54,144 - utils - INFO - 問題データ読み込み開始: C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\data\4-2_2015.csv
+2025-08-03 20:40:54,145 - utils - INFO - ファイルサイズ: 273998 bytes
+2025-08-03 20:40:54,151 - utils - INFO - 読み込み成功: utf-8-sig エンコーディング
+2025-08-03 20:40:54,151 - utils - INFO - データ読み込み完了: 358行, エンコーディング: utf-8-sig
+2025-08-03 20:40:54,152 - utils - INFO - 有効な問題データ: 358問
+2025-08-03 20:40:54,152 - utils - INFO - 💾 Redis Cache SET: 4-2_2015 (358 questions)
+2025-08-03 20:40:54,153 - utils - INFO - 4-2専門データ2015年読み込み完了: 358問
+2025-08-03 20:40:54,153 - utils - INFO - 問題データ読み込み開始: C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\data\4-2_2016.csv
+2025-08-03 20:40:54,153 - utils - INFO - ファイルサイズ: 291783 bytes
+2025-08-03 20:40:54,160 - utils - INFO - 読み込み成功: utf-8-sig エンコーディング
+2025-08-03 20:40:54,161 - utils - INFO - データ読み込み完了: 361行, エンコーディング: utf-8-sig
+2025-08-03 20:40:54,167 - utils - INFO - 有効な問題データ: 361問
+2025-08-03 20:40:54,168 - utils - INFO - 💾 Redis Cache SET: 4-2_2016 (361 questions)
+2025-08-03 20:40:54,169 - utils - INFO - 4-2専門データ2016年読み込み完了: 361問
+2025-08-03 20:40:54,169 - utils - INFO - 問題データ読み込み開始: C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\data\4-2_2017.csv
+2025-08-03 20:40:54,169 - utils - INFO - ファイルサイズ: 382964 bytes
+2025-08-03 20:40:54,177 - utils - INFO - 読み込み成功: utf-8-sig エンコーディング
+2025-08-03 20:40:54,177 - utils - INFO - データ読み込み完了: 440行, エンコーディング: utf-8-sig
+2025-08-03 20:40:54,179 - utils - INFO - 有効な問題データ: 440問
+2025-08-03 20:40:54,179 - utils - INFO - 💾 Redis Cache SET: 4-2_2017 (440 questions)
+2025-08-03 20:40:54,180 - utils - INFO - 4-2専門データ2017年読み込み完了: 440問
+2025-08-03 20:40:54,180 - utils - INFO - 問題データ読み込み開始: C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\data\4-2_2018.csv
+2025-08-03 20:40:54,180 - utils - INFO - ファイルサイズ: 309809 bytes
+2025-08-03 20:40:54,188 - utils - INFO - 読み込み成功: utf-8-sig エンコーディング
+2025-08-03 20:40:54,188 - utils - INFO - データ読み込み完了: 357行, エンコーディング: utf-8-sig
+2025-08-03 20:40:54,189 - utils - INFO - 有効な問題データ: 357問
+2025-08-03 20:40:54,190 - utils - INFO - 💾 Redis Cache SET: 4-2_2018 (357 questions)
+2025-08-03 20:40:54,190 - utils - INFO - 4-2専門データ2018年読み込み完了: 357問
+2025-08-03 20:40:54,190 - utils - INFO - 問題データ読み込み開始: C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\data\4-2_2019.csv
+2025-08-03 20:40:54,191 - utils - INFO - ファイルサイズ: 216806 bytes
+2025-08-03 20:40:54,196 - utils - INFO - 読み込み成功: utf-8-sig エンコーディング
+2025-08-03 20:40:54,196 - utils - INFO - データ読み込み完了: 356行, エンコーディング: utf-8-sig
+2025-08-03 20:40:54,197 - utils - INFO - 有効な問題データ: 356問
+2025-08-03 20:40:54,199 - utils - INFO - 💾 Redis Cache SET: 4-2_2019 (356 questions)
+2025-08-03 20:40:54,200 - utils - INFO - 4-2専門データ2019年読み込み完了: 356問
+2025-08-03 20:40:54,200 - utils - INFO - ID重複解決開始: 入力問題数=4259問
+2025-08-03 20:40:54,203 - utils - INFO - ID重複解決処理開始: 440個のIDを重複解決中 (例: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
+2025-08-03 20:40:54,204 - utils - INFO - 問題分類: 基礎=202問, 専門=4057問, その他=0問
+2025-08-03 20:40:54,209 - utils - INFO - ✅ ID重複解決完了: 基礎=202問(1000000-1000201), 専門=4057問(2000000-2004056), その他=0問, 総計=4259問
+2025-08-03 20:40:54,210 - utils - INFO - 重複解決例: [('basic_1', 1000000), ('basic_2', 1000001), ('basic_3', 1000002), ('basic_4', 1000003), ('basic_5', 1000004)]
+2025-08-03 20:40:54,211 - utils - INFO - 🚀 企業環境最適化: データキャッシュ完了 - 次回読み込み高速化
+2025-08-03 20:40:54,211 - utils - INFO - RCCM統合データ読み込み完了: 13ファイル, 総計4259問
+2025-08-03 20:40:54,211 - utils - INFO - 4-2専門データ対象年度: [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
+2025-08-03 20:40:54,217 - utils - INFO - 💾 Redis Cache SET: 統合データ (4259 questions, TTL: 10min)
+2025-08-03 20:40:54,217 - app - INFO - 新規セッション開始: 種別=specialist, 部門=road
+2025-08-03 20:40:54,217 - app - INFO - 専門科目開始: 部門ID=road → カテゴリ=道路
+2025-08-03 20:40:54,218 - app - INFO - 部門別問題抽出開始: 部門=道路, 対象ファイル数=14
+2025-08-03 20:40:54,257 - app - INFO - 部門別問題抽出完了: 総問題数=368問
+2025-08-03 20:40:54,258 - app - INFO - ランダム選択完了: 10問選択
+2025-08-03 20:40:54,258 - app - INFO - ✅ 専門科目セッション開始: 10問（道路）
+2025-08-03 20:40:54,258 - app - INFO - カテゴリ英語→日本語変換: None → 全体
+2025-08-03 20:40:54,258 - app - INFO - カテゴリデコード結果: 全体
+2025-08-03 20:40:54,260 - app - INFO - カテゴリ判定前: requested_category=全体, requested_question_type=specialist, requested_department=road
+2025-08-03 20:40:54,260 - app - INFO - カテゴリ処理後: requested_department=road, requested_question_type=specialist
+2025-08-03 20:40:54,260 - app - INFO - 🚨 ULTRA SYNC: 部門指定によりカテゴリ自動設定 road → 道路
+2025-08-03 20:40:54,260 - app - INFO - === SESSION STATE: Reading current position ===
+2025-08-03 20:40:54,261 - app - INFO - Session position: current_no=0, question_ids=10, next=False
+2025-08-03 20:40:54,261 - app - INFO - リセット判定: is_next=False, exam_ids=True, category_match=True, question_type_match=True, department_match=True, year_match=False, current_no=0, len=10
+2025-08-03 20:40:54,261 - app - INFO - 🔥 ULTRA SYNC: need_reset = True (is_next_request=False)
+2025-08-03 20:40:54,261 - app - INFO - 問題リセット: セッション完全クリア - ['exam_question_ids', 'exam_current', 'exam_category', 'selected_department', 'selected_question_type', 'request_history']
+2025-08-03 20:40:54,262 - app - INFO - get_mixed_questions呼び出し前: department=road, question_type=specialist, category=道路
+2025-08-03 20:40:54,262 - app - INFO - 専門科目フィルタ適用: 結果 4057問
+2025-08-03 20:40:54,262 - app - INFO - 🚀 ULTRA SYNC部門フィルタリング: road → road → 道路
+2025-08-03 20:40:54,263 - app - INFO - 専門科目フィルタ前のカテゴリ一覧: ['鋼構造及びコンクリート', '土質及び基礎', '施工計画、施工設備及び積算', '農業土木', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '道路', '森林土木', 'トンネル', '建設環境', '造園', '上水道及び工業用水道']
+2025-08-03 20:40:54,266 - app - INFO - ✅ 専門科目部門マッチング成功: カテゴリ「道路」で 339問
+2025-08-03 20:40:54,266 - app - INFO - カテゴリフィルタ適用: 道路 → 道路, 339 → 339問
+2025-08-03 20:40:54,266 - app - INFO - 最終選択問題のカテゴリ分布: ['道路']
+2025-08-03 20:40:54,267 - app - INFO - 問題選択完了: 復習0問, 新規10問, フィルタ:[部門:道路, 種別:4-2 選択科目, カテゴリ:道路]
+2025-08-03 20:40:54,267 - app - INFO - 🔥 ULTRA SYNC: 最終問題数確定 10問（10問設定に従って切断）
+2025-08-03 20:40:54,267 - app - INFO - 問題選択詳細: requested_size=10, selected_count=10, question_ids_count=10
+2025-08-03 20:40:54,267 - app - INFO - 問題ID一覧: [2003723, 2003362, 2002555, 2002566, 2002945, 2003347, 2001628, 2000006, 2001946, 2002943]
+2025-08-03 20:40:54,267 - app - INFO - 新しい問題セッション開始: 10問, フィルタ: 部門:道路, 種別:4-2 選択科目, カテゴリ:道路
+2025-08-03 20:40:54,267 - app - INFO - 問題ID取得: current_no=0, question_id=2003723
+2025-08-03 20:40:54,268 - app - INFO - 問題表示: 1/10 - ID:2003723
+2025-08-03 20:40:54,609 - app - ERROR - 🚨 CRITICAL ERROR in exam(): 'csrf_token' is undefined
+2025-08-03 20:40:54,610 - app - ERROR - 🚨 FULL TRACEBACK:
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 3921, in exam
+    return render_template('exam.html', **template_vars)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\base.html", line 408, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 80, in block 'content'
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    ^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+
+2025-08-03 20:40:54,612 - memory_leak_monitor - WARNING - High memory usage in exam: 11.9 MB
+2025-08-03 20:40:54,622 - app - INFO - カテゴリ英語→日本語変換: None → 全体
+2025-08-03 20:40:54,623 - app - INFO - カテゴリデコード結果: 全体
+2025-08-03 20:40:54,623 - app - INFO - 🔥 部門エイリアス変換: river → civil_planning
+2025-08-03 20:40:54,623 - app - INFO - カテゴリ判定前: requested_category=全体, requested_question_type=specialist, requested_department=civil_planning
+2025-08-03 20:40:54,623 - app - INFO - カテゴリ処理後: requested_department=civil_planning, requested_question_type=specialist
+2025-08-03 20:40:54,623 - app - WARNING - ⚠️ 未知の部門ID: civil_planning
+2025-08-03 20:40:54,626 - app - INFO - カテゴリ英語→日本語変換: None → 全体
+2025-08-03 20:40:54,626 - app - INFO - カテゴリデコード結果: 全体
+2025-08-03 20:40:54,626 - app - INFO - カテゴリ判定前: requested_category=全体, requested_question_type=specialist, requested_department=urban
+2025-08-03 20:40:54,627 - app - INFO - カテゴリ処理後: requested_department=urban, requested_question_type=specialist
+2025-08-03 20:40:54,627 - app - INFO - 🚨 ULTRA SYNC: 部門指定によりカテゴリ自動設定 urban → 都市計画及び地方計画
+2025-08-03 20:40:54,627 - app - INFO - === SESSION STATE: Reading current position ===
+2025-08-03 20:40:54,627 - app - INFO - Session position: current_no=0, question_ids=10, next=False
+2025-08-03 20:40:54,627 - app - INFO - リセット判定: is_next=False, exam_ids=True, category_match=False, question_type_match=True, department_match=False, year_match=False, current_no=0, len=10
+2025-08-03 20:40:54,627 - app - INFO - 🔥 ULTRA SYNC: need_reset = True (is_next_request=False)
+2025-08-03 20:40:54,627 - app - INFO - 問題リセット: セッション完全クリア - ['exam_question_ids', 'exam_current', 'exam_category', 'selected_department', 'selected_question_type', 'request_history']
+2025-08-03 20:40:54,628 - app - INFO - get_mixed_questions呼び出し前: department=urban, question_type=specialist, category=都市計画及び地方計画
+2025-08-03 20:40:54,628 - app - INFO - 専門科目フィルタ適用: 結果 4057問
+2025-08-03 20:40:54,628 - app - INFO - 🚀 ULTRA SYNC部門フィルタリング: urban → urban → 都市計画及び地方計画
+2025-08-03 20:40:54,629 - app - INFO - 専門科目フィルタ前のカテゴリ一覧: ['鋼構造及びコンクリート', '土質及び基礎', '施工計画、施工設備及び積算', '農業土木', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '道路', '森林土木', 'トンネル', '建設環境', '造園', '上水道及び工業用水道']
+2025-08-03 20:40:54,630 - app - INFO - ✅ 専門科目部門マッチング成功: カテゴリ「都市計画及び地方計画」で 344問
+2025-08-03 20:40:54,630 - app - INFO - カテゴリフィルタ適用: 都市計画及び地方計画 → 都市計画及び地方計画, 344 → 344問
+2025-08-03 20:40:54,630 - app - INFO - 最終選択問題のカテゴリ分布: ['都市計画及び地方計画']
+2025-08-03 20:40:54,630 - app - INFO - 問題選択完了: 復習0問, 新規10問, フィルタ:[部門:urban, 種別:4-2 選択科目, カテゴリ:都市計画及び地方計画]
+2025-08-03 20:40:54,630 - app - INFO - 🔥 ULTRA SYNC: 最終問題数確定 10問（10問設定に従って切断）
+2025-08-03 20:40:54,631 - app - INFO - 問題選択詳細: requested_size=10, selected_count=10, question_ids_count=10
+2025-08-03 20:40:54,631 - app - INFO - 問題ID一覧: [2001591, 2000929, 2002842, 2004015, 2001242, 2003529, 2002814, 2003218, 2001230, 2004017]
+2025-08-03 20:40:54,632 - app - INFO - 新しい問題セッション開始: 10問, フィルタ: 部門:urban, 種別:4-2 選択科目, カテゴリ:都市計画及び地方計画
+2025-08-03 20:40:54,632 - app - INFO - 問題ID取得: current_no=0, question_id=2001591
+2025-08-03 20:40:54,633 - app - INFO - 問題表示: 1/10 - ID:2001591
+2025-08-03 20:40:54,639 - app - ERROR - 🚨 CRITICAL ERROR in exam(): 'csrf_token' is undefined
+2025-08-03 20:40:54,639 - app - ERROR - 🚨 FULL TRACEBACK:
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 3921, in exam
+    return render_template('exam.html', **template_vars)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\base.html", line 408, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 80, in block 'content'
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    ^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+
+2025-08-03 20:40:54,643 - app - INFO - カテゴリ英語→日本語変換: None → 全体
+2025-08-03 20:40:54,643 - app - INFO - カテゴリデコード結果: 全体
+2025-08-03 20:40:54,643 - app - INFO - カテゴリ判定前: requested_category=全体, requested_question_type=specialist, requested_department=garden
+2025-08-03 20:40:54,643 - app - INFO - カテゴリ処理後: requested_department=garden, requested_question_type=specialist
+2025-08-03 20:40:54,643 - app - INFO - 🚨 ULTRA SYNC: 部門指定によりカテゴリ自動設定 garden → 造園
+2025-08-03 20:40:54,643 - app - INFO - === SESSION STATE: Reading current position ===
+2025-08-03 20:40:54,644 - app - INFO - Session position: current_no=0, question_ids=10, next=False
+2025-08-03 20:40:54,644 - app - INFO - リセット判定: is_next=False, exam_ids=True, category_match=False, question_type_match=True, department_match=False, year_match=False, current_no=0, len=10
+2025-08-03 20:40:54,644 - app - INFO - 🔥 ULTRA SYNC: need_reset = True (is_next_request=False)
+2025-08-03 20:40:54,645 - app - INFO - 問題リセット: セッション完全クリア - ['exam_question_ids', 'exam_current', 'exam_category', 'selected_department', 'selected_question_type', 'request_history']
+2025-08-03 20:40:54,645 - app - INFO - get_mixed_questions呼び出し前: department=garden, question_type=specialist, category=造園
+2025-08-03 20:40:54,646 - app - INFO - 専門科目フィルタ適用: 結果 4057問
+2025-08-03 20:40:54,646 - app - INFO - 🚀 ULTRA SYNC部門フィルタリング: garden → garden → 造園
+2025-08-03 20:40:54,647 - app - INFO - 専門科目フィルタ前のカテゴリ一覧: ['鋼構造及びコンクリート', '土質及び基礎', '施工計画、施工設備及び積算', '農業土木', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '道路', '森林土木', 'トンネル', '建設環境', '造園', '上水道及び工業用水道']
+2025-08-03 20:40:54,649 - app - INFO - ✅ 専門科目部門マッチング成功: カテゴリ「造園」で 340問
+2025-08-03 20:40:54,650 - app - INFO - カテゴリフィルタ適用: 造園 → 造園, 340 → 340問
+2025-08-03 20:40:54,650 - app - INFO - 最終選択問題のカテゴリ分布: ['造園']
+2025-08-03 20:40:54,650 - app - INFO - 問題選択完了: 復習0問, 新規10問, フィルタ:[部門:garden, 種別:4-2 選択科目, カテゴリ:造園]
+2025-08-03 20:40:54,650 - app - INFO - 🔥 ULTRA SYNC: 最終問題数確定 10問（10問設定に従って切断）
+2025-08-03 20:40:54,651 - app - INFO - 問題選択詳細: requested_size=10, selected_count=10, question_ids_count=10
+2025-08-03 20:40:54,651 - app - INFO - 問題ID一覧: [2002491, 2003575, 2003571, 2001312, 2003552, 2002884, 2001292, 2003292, 2000940, 2002165]
+2025-08-03 20:40:54,651 - app - INFO - 新しい問題セッション開始: 10問, フィルタ: 部門:garden, 種別:4-2 選択科目, カテゴリ:造園
+2025-08-03 20:40:54,651 - app - INFO - 問題ID取得: current_no=0, question_id=2002491
+2025-08-03 20:40:54,652 - app - INFO - 問題表示: 1/10 - ID:2002491
+2025-08-03 20:40:54,657 - app - ERROR - 🚨 CRITICAL ERROR in exam(): 'csrf_token' is undefined
+2025-08-03 20:40:54,657 - app - ERROR - 🚨 FULL TRACEBACK:
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 3921, in exam
+    return render_template('exam.html', **template_vars)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\base.html", line 408, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 80, in block 'content'
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    ^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+
+2025-08-03 20:40:54,662 - app - INFO - カテゴリ英語→日本語変換: None → 全体
+2025-08-03 20:40:54,662 - app - INFO - カテゴリデコード結果: 全体
+2025-08-03 20:40:54,662 - app - INFO - カテゴリ判定前: requested_category=全体, requested_question_type=specialist, requested_department=env
+2025-08-03 20:40:54,663 - app - INFO - カテゴリ処理後: requested_department=env, requested_question_type=specialist
+2025-08-03 20:40:54,663 - app - INFO - 🚨 ULTRA SYNC: 部門指定によりカテゴリ自動設定 env → 建設環境
+2025-08-03 20:40:54,663 - app - INFO - === SESSION STATE: Reading current position ===
+2025-08-03 20:40:54,663 - app - INFO - Session position: current_no=0, question_ids=10, next=False
+2025-08-03 20:40:54,664 - app - INFO - リセット判定: is_next=False, exam_ids=True, category_match=False, question_type_match=True, department_match=False, year_match=False, current_no=0, len=10
+2025-08-03 20:40:54,664 - app - INFO - 🔥 ULTRA SYNC: need_reset = True (is_next_request=False)
+2025-08-03 20:40:54,665 - app - INFO - 問題リセット: セッション完全クリア - ['exam_question_ids', 'exam_current', 'exam_category', 'selected_department', 'selected_question_type', 'request_history']
+2025-08-03 20:40:54,665 - app - INFO - get_mixed_questions呼び出し前: department=env, question_type=specialist, category=建設環境
+2025-08-03 20:40:54,666 - app - INFO - 専門科目フィルタ適用: 結果 4057問
+2025-08-03 20:40:54,666 - app - INFO - 🚀 ULTRA SYNC部門フィルタリング: env → env → 建設環境
+2025-08-03 20:40:54,667 - app - INFO - 専門科目フィルタ前のカテゴリ一覧: ['鋼構造及びコンクリート', '土質及び基礎', '施工計画、施工設備及び積算', '農業土木', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '道路', '森林土木', 'トンネル', '建設環境', '造園', '上水道及び工業用水道']
+2025-08-03 20:40:54,667 - app - INFO - ✅ 専門科目部門マッチング成功: カテゴリ「建設環境」で 329問
+2025-08-03 20:40:54,668 - app - INFO - カテゴリフィルタ適用: 建設環境 → 建設環境, 329 → 329問
+2025-08-03 20:40:54,668 - app - INFO - 最終選択問題のカテゴリ分布: ['建設環境']
+2025-08-03 20:40:54,668 - app - INFO - 問題選択完了: 復習0問, 新規10問, フィルタ:[部門:env, 種別:4-2 選択科目, カテゴリ:建設環境]
+2025-08-03 20:40:54,668 - app - INFO - 🔥 ULTRA SYNC: 最終問題数確定 10問（10問設定に従って切断）
+2025-08-03 20:40:54,669 - app - INFO - 問題選択詳細: requested_size=10, selected_count=10, question_ids_count=10
+2025-08-03 20:40:54,669 - app - INFO - 問題ID一覧: [2001810, 2003191, 2003896, 2000779, 2001395, 2002417, 2002084, 2002805, 2001201, 2001813]
+2025-08-03 20:40:54,669 - app - INFO - 新しい問題セッション開始: 10問, フィルタ: 部門:env, 種別:4-2 選択科目, カテゴリ:建設環境
+2025-08-03 20:40:54,669 - app - INFO - 問題ID取得: current_no=0, question_id=2001810
+2025-08-03 20:40:54,670 - app - INFO - 問題表示: 1/10 - ID:2001810
+2025-08-03 20:40:54,695 - app - ERROR - 🚨 CRITICAL ERROR in exam(): 'csrf_token' is undefined
+2025-08-03 20:40:54,696 - app - ERROR - 🚨 FULL TRACEBACK:
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 3921, in exam
+    return render_template('exam.html', **template_vars)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\base.html", line 408, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 80, in block 'content'
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    ^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+
+2025-08-03 20:40:54,706 - app - INFO - カテゴリ英語→日本語変換: None → 全体
+2025-08-03 20:40:54,706 - app - INFO - カテゴリデコード結果: 全体
+2025-08-03 20:40:54,706 - app - INFO - カテゴリ判定前: requested_category=全体, requested_question_type=specialist, requested_department=steel
+2025-08-03 20:40:54,707 - app - INFO - カテゴリ処理後: requested_department=steel, requested_question_type=specialist
+2025-08-03 20:40:54,707 - app - INFO - 🚨 ULTRA SYNC: 部門指定によりカテゴリ自動設定 steel → 鋼構造及びコンクリート
+2025-08-03 20:40:54,707 - app - INFO - === SESSION STATE: Reading current position ===
+2025-08-03 20:40:54,707 - app - INFO - Session position: current_no=0, question_ids=10, next=False
+2025-08-03 20:40:54,707 - app - INFO - リセット判定: is_next=False, exam_ids=True, category_match=False, question_type_match=True, department_match=False, year_match=False, current_no=0, len=10
+2025-08-03 20:40:54,708 - app - INFO - 🔥 ULTRA SYNC: need_reset = True (is_next_request=False)
+2025-08-03 20:40:54,708 - app - INFO - 問題リセット: セッション完全クリア - ['exam_question_ids', 'exam_current', 'exam_category', 'selected_department', 'selected_question_type', 'request_history']
+2025-08-03 20:40:54,708 - app - INFO - get_mixed_questions呼び出し前: department=steel, question_type=specialist, category=鋼構造及びコンクリート
+2025-08-03 20:40:54,709 - app - INFO - 専門科目フィルタ適用: 結果 4057問
+2025-08-03 20:40:54,709 - app - INFO - 🚀 ULTRA SYNC部門フィルタリング: steel → steel → 鋼構造及びコンクリート
+2025-08-03 20:40:54,709 - app - INFO - 専門科目フィルタ前のカテゴリ一覧: ['鋼構造及びコンクリート', '土質及び基礎', '施工計画、施工設備及び積算', '農業土木', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '道路', '森林土木', 'トンネル', '建設環境', '造園', '上水道及び工業用水道']
+2025-08-03 20:40:54,710 - app - INFO - ✅ 専門科目部門マッチング成功: カテゴリ「鋼構造及びコンクリート」で 323問
+2025-08-03 20:40:54,710 - app - INFO - カテゴリフィルタ適用: 鋼構造及びコンクリート → 鋼構造及びコンクリート, 323 → 323問
+2025-08-03 20:40:54,711 - app - INFO - 最終選択問題のカテゴリ分布: ['鋼構造及びコンクリート']
+2025-08-03 20:40:54,711 - app - INFO - 問題選択完了: 復習0問, 新規10問, フィルタ:[部門:steel, 種別:4-2 選択科目, カテゴリ:鋼構造及びコンクリート]
+2025-08-03 20:40:54,711 - app - INFO - 🔥 ULTRA SYNC: 最終問題数確定 10問（10問設定に従って切断）
+2025-08-03 20:40:54,711 - app - INFO - 問題選択詳細: requested_size=10, selected_count=10, question_ids_count=10
+2025-08-03 20:40:54,711 - app - INFO - 問題ID一覧: [2001932, 2002640, 2000820, 2003804, 2000822, 2000476, 2001055, 2001930, 2000461, 2003817]
+2025-08-03 20:40:54,711 - app - INFO - 新しい問題セッション開始: 10問, フィルタ: 部門:steel, 種別:4-2 選択科目, カテゴリ:鋼構造及びコンクリート
+2025-08-03 20:40:54,712 - app - INFO - 問題ID取得: current_no=0, question_id=2001932
+2025-08-03 20:40:54,712 - app - INFO - 問題表示: 1/10 - ID:2001932
+2025-08-03 20:40:54,723 - app - ERROR - 🚨 CRITICAL ERROR in exam(): 'csrf_token' is undefined
+2025-08-03 20:40:54,723 - app - ERROR - 🚨 FULL TRACEBACK:
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 3921, in exam
+    return render_template('exam.html', **template_vars)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\base.html", line 408, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 80, in block 'content'
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    ^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+
+2025-08-03 20:40:54,730 - app - INFO - カテゴリ英語→日本語変換: None → 全体
+2025-08-03 20:40:54,738 - app - INFO - カテゴリデコード結果: 全体
+2025-08-03 20:40:54,738 - app - INFO - カテゴリ判定前: requested_category=全体, requested_question_type=specialist, requested_department=soil
+2025-08-03 20:40:54,739 - app - INFO - カテゴリ処理後: requested_department=soil, requested_question_type=specialist
+2025-08-03 20:40:54,739 - app - INFO - 🚨 ULTRA SYNC: 部門指定によりカテゴリ自動設定 soil → 土質及び基礎
+2025-08-03 20:40:54,740 - app - INFO - === SESSION STATE: Reading current position ===
+2025-08-03 20:40:54,740 - app - INFO - Session position: current_no=0, question_ids=10, next=False
+2025-08-03 20:40:54,741 - app - INFO - リセット判定: is_next=False, exam_ids=True, category_match=False, question_type_match=True, department_match=False, year_match=False, current_no=0, len=10
+2025-08-03 20:40:54,741 - app - INFO - 🔥 ULTRA SYNC: need_reset = True (is_next_request=False)
+2025-08-03 20:40:54,741 - app - INFO - 問題リセット: セッション完全クリア - ['exam_question_ids', 'exam_current', 'exam_category', 'selected_department', 'selected_question_type', 'request_history']
+2025-08-03 20:40:54,742 - app - INFO - get_mixed_questions呼び出し前: department=soil, question_type=specialist, category=土質及び基礎
+2025-08-03 20:40:54,743 - app - INFO - 専門科目フィルタ適用: 結果 4057問
+2025-08-03 20:40:54,744 - app - INFO - 🚀 ULTRA SYNC部門フィルタリング: soil → soil → 土質及び基礎
+2025-08-03 20:40:54,745 - app - INFO - 専門科目フィルタ前のカテゴリ一覧: ['鋼構造及びコンクリート', '土質及び基礎', '施工計画、施工設備及び積算', '農業土木', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '道路', '森林土木', 'トンネル', '建設環境', '造園', '上水道及び工業用水道']
+2025-08-03 20:40:54,746 - app - INFO - ✅ 専門科目部門マッチング成功: カテゴリ「土質及び基礎」で 327問
+2025-08-03 20:40:54,747 - app - INFO - カテゴリフィルタ適用: 土質及び基礎 → 土質及び基礎, 327 → 327問
+2025-08-03 20:40:54,747 - app - INFO - 最終選択問題のカテゴリ分布: ['土質及び基礎']
+2025-08-03 20:40:54,749 - app - INFO - 問題選択完了: 復習0問, 新規10問, フィルタ:[部門:soil, 種別:4-2 選択科目, カテゴリ:土質及び基礎]
+2025-08-03 20:40:54,750 - app - INFO - 🔥 ULTRA SYNC: 最終問題数確定 10問（10問設定に従って切断）
+2025-08-03 20:40:54,750 - app - INFO - 問題選択詳細: requested_size=10, selected_count=10, question_ids_count=10
+2025-08-03 20:40:54,750 - app - INFO - 問題ID一覧: [2000412, 2000039, 2000056, 2001973, 2000994, 2001004, 2000756, 2000392, 2001349, 2002238]
+2025-08-03 20:40:54,750 - app - INFO - 新しい問題セッション開始: 10問, フィルタ: 部門:soil, 種別:4-2 選択科目, カテゴリ:土質及び基礎
+2025-08-03 20:40:54,751 - app - INFO - 問題ID取得: current_no=0, question_id=2000412
+2025-08-03 20:40:54,751 - app - INFO - 問題表示: 1/10 - ID:2000412
+2025-08-03 20:40:54,759 - app - ERROR - 🚨 CRITICAL ERROR in exam(): 'csrf_token' is undefined
+2025-08-03 20:40:54,760 - app - ERROR - 🚨 FULL TRACEBACK:
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 3921, in exam
+    return render_template('exam.html', **template_vars)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\base.html", line 408, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 80, in block 'content'
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    ^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+
+2025-08-03 20:40:54,766 - app - INFO - カテゴリ英語→日本語変換: None → 全体
+2025-08-03 20:40:54,766 - app - INFO - カテゴリデコード結果: 全体
+2025-08-03 20:40:54,766 - app - INFO - カテゴリ判定前: requested_category=全体, requested_question_type=specialist, requested_department=construction
+2025-08-03 20:40:54,767 - app - INFO - カテゴリ処理後: requested_department=construction, requested_question_type=specialist
+2025-08-03 20:40:54,767 - app - INFO - 🚨 ULTRA SYNC: 部門指定によりカテゴリ自動設定 construction → 施工計画、施工設備及び積算
+2025-08-03 20:40:54,767 - app - INFO - === SESSION STATE: Reading current position ===
+2025-08-03 20:40:54,768 - app - INFO - Session position: current_no=0, question_ids=10, next=False
+2025-08-03 20:40:54,768 - app - INFO - リセット判定: is_next=False, exam_ids=True, category_match=False, question_type_match=True, department_match=False, year_match=False, current_no=0, len=10
+2025-08-03 20:40:54,768 - app - INFO - 🔥 ULTRA SYNC: need_reset = True (is_next_request=False)
+2025-08-03 20:40:54,768 - app - INFO - 問題リセット: セッション完全クリア - ['exam_question_ids', 'exam_current', 'exam_category', 'selected_department', 'selected_question_type', 'request_history']
+2025-08-03 20:40:54,769 - app - INFO - get_mixed_questions呼び出し前: department=construction, question_type=specialist, category=施工計画、施工設備及び積算
+2025-08-03 20:40:54,770 - app - INFO - 専門科目フィルタ適用: 結果 4057問
+2025-08-03 20:40:54,770 - app - INFO - 🚀 ULTRA SYNC部門フィルタリング: construction → construction → 施工計画、施工設備及び積算
+2025-08-03 20:40:54,772 - app - INFO - 専門科目フィルタ前のカテゴリ一覧: ['鋼構造及びコンクリート', '土質及び基礎', '施工計画、施工設備及び積算', '農業土木', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '道路', '森林土木', 'トンネル', '建設環境', '造園', '上水道及び工業用水道']
+2025-08-03 20:40:54,773 - app - INFO - ✅ 専門科目部門マッチング成功: カテゴリ「施工計画、施工設備及び積算」で 338問
+2025-08-03 20:40:54,773 - app - INFO - カテゴリフィルタ適用: 施工計画、施工設備及び積算 → 施工計画、施工設備及び積算, 338 → 338問
+2025-08-03 20:40:54,774 - app - INFO - 最終選択問題のカテゴリ分布: ['施工計画、施工設備及び積算']
+2025-08-03 20:40:54,774 - app - INFO - 問題選択完了: 復習0問, 新規10問, フィルタ:[部門:construction, 種別:4-2 選択科目, カテゴリ:施工計画、施工設備及び積算]
+2025-08-03 20:40:54,774 - app - INFO - 🔥 ULTRA SYNC: 最終問題数確定 10問（10問設定に従って切断）
+2025-08-03 20:40:54,775 - app - INFO - 問題選択詳細: requested_size=10, selected_count=10, question_ids_count=10
+2025-08-03 20:40:54,775 - app - INFO - 問題ID一覧: [2001509, 2003866, 2003615, 2003874, 2002315, 2000157, 2002320, 2000866, 2003868, 2001743]
+2025-08-03 20:40:54,775 - app - INFO - 新しい問題セッション開始: 10問, フィルタ: 部門:construction, 種別:4-2 選択科目, カテゴリ:施工計画、施工設備及び積算
+2025-08-03 20:40:54,775 - app - INFO - 問題ID取得: current_no=0, question_id=2001509
+2025-08-03 20:40:54,776 - app - INFO - 問題表示: 1/10 - ID:2001509
+2025-08-03 20:40:54,787 - app - ERROR - 🚨 CRITICAL ERROR in exam(): 'csrf_token' is undefined
+2025-08-03 20:40:54,788 - app - ERROR - 🚨 FULL TRACEBACK:
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 3921, in exam
+    return render_template('exam.html', **template_vars)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\base.html", line 408, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 80, in block 'content'
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    ^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+
+2025-08-03 20:40:54,792 - app - INFO - カテゴリ英語→日本語変換: None → 全体
+2025-08-03 20:40:54,793 - app - INFO - カテゴリデコード結果: 全体
+2025-08-03 20:40:54,793 - app - INFO - カテゴリ判定前: requested_category=全体, requested_question_type=specialist, requested_department=water
+2025-08-03 20:40:54,793 - app - INFO - カテゴリ処理後: requested_department=water, requested_question_type=specialist
+2025-08-03 20:40:54,794 - app - INFO - 🚨 ULTRA SYNC: 部門指定によりカテゴリ自動設定 water → 上水道及び工業用水道
+2025-08-03 20:40:54,794 - app - INFO - === SESSION STATE: Reading current position ===
+2025-08-03 20:40:54,795 - app - INFO - Session position: current_no=0, question_ids=10, next=False
+2025-08-03 20:40:54,795 - app - INFO - リセット判定: is_next=False, exam_ids=True, category_match=False, question_type_match=True, department_match=False, year_match=False, current_no=0, len=10
+2025-08-03 20:40:54,796 - app - INFO - 🔥 ULTRA SYNC: need_reset = True (is_next_request=False)
+2025-08-03 20:40:54,796 - app - INFO - 問題リセット: セッション完全クリア - ['exam_question_ids', 'exam_current', 'exam_category', 'selected_department', 'selected_question_type', 'request_history']
+2025-08-03 20:40:54,796 - app - INFO - get_mixed_questions呼び出し前: department=water, question_type=specialist, category=上水道及び工業用水道
+2025-08-03 20:40:54,798 - app - INFO - 専門科目フィルタ適用: 結果 4057問
+2025-08-03 20:40:54,798 - app - INFO - 🚀 ULTRA SYNC部門フィルタリング: water → water → 上水道及び工業用水道
+2025-08-03 20:40:54,799 - app - INFO - 専門科目フィルタ前のカテゴリ一覧: ['鋼構造及びコンクリート', '土質及び基礎', '施工計画、施工設備及び積算', '農業土木', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '道路', '森林土木', 'トンネル', '建設環境', '造園', '上水道及び工業用水道']
+2025-08-03 20:40:54,800 - app - INFO - ✅ 専門科目部門マッチング成功: カテゴリ「上水道及び工業用水道」で 348問
+2025-08-03 20:40:54,801 - app - INFO - カテゴリフィルタ適用: 上水道及び工業用水道 → 上水道及び工業用水道, 348 → 348問
+2025-08-03 20:40:54,801 - app - INFO - 最終選択問題のカテゴリ分布: ['上水道及び工業用水道']
+2025-08-03 20:40:54,802 - app - INFO - 問題選択完了: 復習0問, 新規10問, フィルタ:[部門:water, 種別:4-2 選択科目, カテゴリ:上水道及び工業用水道]
+2025-08-03 20:40:54,802 - app - INFO - 🔥 ULTRA SYNC: 最終問題数確定 10問（10問設定に従って切断）
+2025-08-03 20:40:54,802 - app - INFO - 問題選択詳細: requested_size=10, selected_count=10, question_ids_count=10
+2025-08-03 20:40:54,802 - app - INFO - 問題ID一覧: [2003274, 2000760, 2003655, 2003251, 2001276, 2003661, 2002057, 2003929, 2003932, 2001359]
+2025-08-03 20:40:54,803 - app - INFO - 新しい問題セッション開始: 10問, フィルタ: 部門:water, 種別:4-2 選択科目, カテゴリ:上水道及び工業用水道
+2025-08-03 20:40:54,803 - app - INFO - 問題ID取得: current_no=0, question_id=2003274
+2025-08-03 20:40:54,804 - app - INFO - 問題表示: 1/10 - ID:2003274
+2025-08-03 20:40:54,813 - app - ERROR - 🚨 CRITICAL ERROR in exam(): 'csrf_token' is undefined
+2025-08-03 20:40:54,813 - app - ERROR - 🚨 FULL TRACEBACK:
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 3921, in exam
+    return render_template('exam.html', **template_vars)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\base.html", line 408, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 80, in block 'content'
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    ^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+
+2025-08-03 20:40:54,817 - app - INFO - カテゴリ英語→日本語変換: None → 全体
+2025-08-03 20:40:54,817 - app - INFO - カテゴリデコード結果: 全体
+2025-08-03 20:40:54,818 - app - INFO - カテゴリ判定前: requested_category=全体, requested_question_type=specialist, requested_department=forest
+2025-08-03 20:40:54,818 - app - INFO - カテゴリ処理後: requested_department=forest, requested_question_type=specialist
+2025-08-03 20:40:54,818 - app - INFO - 🚨 ULTRA SYNC: 部門指定によりカテゴリ自動設定 forest → 森林土木
+2025-08-03 20:40:54,818 - app - INFO - === SESSION STATE: Reading current position ===
+2025-08-03 20:40:54,818 - app - INFO - Session position: current_no=0, question_ids=10, next=False
+2025-08-03 20:40:54,819 - app - INFO - リセット判定: is_next=False, exam_ids=True, category_match=False, question_type_match=True, department_match=False, year_match=False, current_no=0, len=10
+2025-08-03 20:40:54,819 - app - INFO - 🔥 ULTRA SYNC: need_reset = True (is_next_request=False)
+2025-08-03 20:40:54,819 - app - INFO - 問題リセット: セッション完全クリア - ['exam_question_ids', 'exam_current', 'exam_category', 'selected_department', 'selected_question_type', 'request_history']
+2025-08-03 20:40:54,819 - app - INFO - get_mixed_questions呼び出し前: department=forest, question_type=specialist, category=森林土木
+2025-08-03 20:40:54,820 - app - INFO - 専門科目フィルタ適用: 結果 4057問
+2025-08-03 20:40:54,820 - app - INFO - 🚀 ULTRA SYNC部門フィルタリング: forest → forest → 森林土木
+2025-08-03 20:40:54,821 - app - INFO - 専門科目フィルタ前のカテゴリ一覧: ['鋼構造及びコンクリート', '土質及び基礎', '施工計画、施工設備及び積算', '農業土木', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '道路', '森林土木', 'トンネル', '建設環境', '造園', '上水道及び工業用水道']
+2025-08-03 20:40:54,821 - app - INFO - ✅ 専門科目部門マッチング成功: カテゴリ「森林土木」で 339問
+2025-08-03 20:40:54,822 - app - INFO - カテゴリフィルタ適用: 森林土木 → 森林土木, 339 → 339問
+2025-08-03 20:40:54,822 - app - INFO - 最終選択問題のカテゴリ分布: ['森林土木']
+2025-08-03 20:40:54,822 - app - INFO - 問題選択完了: 復習0問, 新規10問, フィルタ:[部門:forest, 種別:4-2 選択科目, カテゴリ:森林土木]
+2025-08-03 20:40:54,822 - app - INFO - 🔥 ULTRA SYNC: 最終問題数確定 10問（10問設定に従って切断）
+2025-08-03 20:40:54,823 - app - INFO - 問題選択詳細: requested_size=10, selected_count=10, question_ids_count=10
+2025-08-03 20:40:54,823 - app - INFO - 問題ID一覧: [2002144, 2001442, 2002736, 2003978, 2003140, 2003969, 2001756, 2000553, 2000545, 2000540]
+2025-08-03 20:40:54,823 - app - INFO - 新しい問題セッション開始: 10問, フィルタ: 部門:forest, 種別:4-2 選択科目, カテゴリ:森林土木
+2025-08-03 20:40:54,823 - app - INFO - 問題ID取得: current_no=0, question_id=2002144
+2025-08-03 20:40:54,824 - app - INFO - 問題表示: 1/10 - ID:2002144
+2025-08-03 20:40:54,827 - app - ERROR - 🚨 CRITICAL ERROR in exam(): 'csrf_token' is undefined
+2025-08-03 20:40:54,828 - app - ERROR - 🚨 FULL TRACEBACK:
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 3921, in exam
+    return render_template('exam.html', **template_vars)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\base.html", line 408, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 80, in block 'content'
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    ^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+
+2025-08-03 20:40:54,831 - app - INFO - カテゴリ英語→日本語変換: None → 全体
+2025-08-03 20:40:54,831 - app - INFO - カテゴリデコード結果: 全体
+2025-08-03 20:40:54,832 - app - INFO - カテゴリ判定前: requested_category=全体, requested_question_type=specialist, requested_department=agri
+2025-08-03 20:40:54,832 - app - INFO - カテゴリ処理後: requested_department=agri, requested_question_type=specialist
+2025-08-03 20:40:54,832 - app - INFO - 🚨 ULTRA SYNC: 部門指定によりカテゴリ自動設定 agri → 農業土木
+2025-08-03 20:40:54,832 - app - INFO - === SESSION STATE: Reading current position ===
+2025-08-03 20:40:54,833 - app - INFO - Session position: current_no=0, question_ids=10, next=False
+2025-08-03 20:40:54,833 - app - INFO - リセット判定: is_next=False, exam_ids=True, category_match=False, question_type_match=True, department_match=False, year_match=False, current_no=0, len=10
+2025-08-03 20:40:54,833 - app - INFO - 🔥 ULTRA SYNC: need_reset = True (is_next_request=False)
+2025-08-03 20:40:54,833 - app - INFO - 問題リセット: セッション完全クリア - ['exam_question_ids', 'exam_current', 'exam_category', 'selected_department', 'selected_question_type', 'request_history']
+2025-08-03 20:40:54,833 - app - INFO - get_mixed_questions呼び出し前: department=agri, question_type=specialist, category=農業土木
+2025-08-03 20:40:54,834 - app - INFO - 専門科目フィルタ適用: 結果 4057問
+2025-08-03 20:40:54,834 - app - INFO - 🚀 ULTRA SYNC部門フィルタリング: agri → agri → 農業土木
+2025-08-03 20:40:54,835 - app - INFO - 専門科目フィルタ前のカテゴリ一覧: ['鋼構造及びコンクリート', '土質及び基礎', '施工計画、施工設備及び積算', '農業土木', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '道路', '森林土木', 'トンネル', '建設環境', '造園', '上水道及び工業用水道']
+2025-08-03 20:40:54,836 - app - INFO - ✅ 専門科目部門マッチング成功: カテゴリ「農業土木」で 340問
+2025-08-03 20:40:54,836 - app - INFO - カテゴリフィルタ適用: 農業土木 → 農業土木, 340 → 340問
+2025-08-03 20:40:54,836 - app - INFO - 最終選択問題のカテゴリ分布: ['農業土木']
+2025-08-03 20:40:54,836 - app - INFO - 問題選択完了: 復習0問, 新規10問, フィルタ:[部門:agri, 種別:4-2 選択科目, カテゴリ:農業土木]
+2025-08-03 20:40:54,836 - app - INFO - 🔥 ULTRA SYNC: 最終問題数確定 10問（10問設定に従って切断）
+2025-08-03 20:40:54,836 - app - INFO - 問題選択詳細: requested_size=10, selected_count=10, question_ids_count=10
+2025-08-03 20:40:54,837 - app - INFO - 問題ID一覧: [2003062, 2002674, 2000149, 2000132, 2002104, 2003076, 2003078, 2002671, 2000854, 2003476]
+2025-08-03 20:40:54,837 - app - INFO - 新しい問題セッション開始: 10問, フィルタ: 部門:agri, 種別:4-2 選択科目, カテゴリ:農業土木
+2025-08-03 20:40:54,837 - app - INFO - 問題ID取得: current_no=0, question_id=2003062
+2025-08-03 20:40:54,837 - app - INFO - 問題表示: 1/10 - ID:2003062
+2025-08-03 20:40:54,841 - app - ERROR - 🚨 CRITICAL ERROR in exam(): 'csrf_token' is undefined
+2025-08-03 20:40:54,841 - app - ERROR - 🚨 FULL TRACEBACK:
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 3921, in exam
+    return render_template('exam.html', **template_vars)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\base.html", line 408, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 80, in block 'content'
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    ^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+
+2025-08-03 20:40:54,844 - app - INFO - カテゴリ英語→日本語変換: None → 全体
+2025-08-03 20:40:54,844 - app - INFO - カテゴリデコード結果: 全体
+2025-08-03 20:40:54,845 - app - INFO - カテゴリ判定前: requested_category=全体, requested_question_type=specialist, requested_department=tunnel
+2025-08-03 20:40:54,845 - app - INFO - カテゴリ処理後: requested_department=tunnel, requested_question_type=specialist
+2025-08-03 20:40:54,845 - app - INFO - 🚨 ULTRA SYNC: 部門指定によりカテゴリ自動設定 tunnel → トンネル
+2025-08-03 20:40:54,845 - app - INFO - === SESSION STATE: Reading current position ===
+2025-08-03 20:40:54,845 - app - INFO - Session position: current_no=0, question_ids=10, next=False
+2025-08-03 20:40:54,845 - app - INFO - リセット判定: is_next=False, exam_ids=True, category_match=False, question_type_match=True, department_match=False, year_match=False, current_no=0, len=10
+2025-08-03 20:40:54,845 - app - INFO - 🔥 ULTRA SYNC: need_reset = True (is_next_request=False)
+2025-08-03 20:40:54,845 - app - INFO - 問題リセット: セッション完全クリア - ['exam_question_ids', 'exam_current', 'exam_category', 'selected_department', 'selected_question_type', 'request_history']
+2025-08-03 20:40:54,846 - app - INFO - get_mixed_questions呼び出し前: department=tunnel, question_type=specialist, category=トンネル
+2025-08-03 20:40:54,846 - app - INFO - 専門科目フィルタ適用: 結果 4057問
+2025-08-03 20:40:54,846 - app - INFO - 🚀 ULTRA SYNC部門フィルタリング: tunnel → tunnel → トンネル
+2025-08-03 20:40:54,847 - app - INFO - 専門科目フィルタ前のカテゴリ一覧: ['鋼構造及びコンクリート', '土質及び基礎', '施工計画、施工設備及び積算', '農業土木', '都市計画及び地方計画', '河川、砂防及び海岸・海洋', '道路', '森林土木', 'トンネル', '建設環境', '造園', '上水道及び工業用水道']
+2025-08-03 20:40:54,848 - app - INFO - ✅ 専門科目部門マッチング成功: カテゴリ「トンネル」で 339問
+2025-08-03 20:40:54,848 - app - INFO - カテゴリフィルタ適用: トンネル → トンネル, 339 → 339問
+2025-08-03 20:40:54,849 - app - INFO - 最終選択問題のカテゴリ分布: ['トンネル']
+2025-08-03 20:40:54,849 - app - INFO - 問題選択完了: 復習0問, 新規10問, フィルタ:[部門:トンネル, 種別:4-2 選択科目, カテゴリ:トンネル]
+2025-08-03 20:40:54,849 - app - INFO - 🔥 ULTRA SYNC: 最終問題数確定 10問（10問設定に従って切断）
+2025-08-03 20:40:54,849 - app - INFO - 問題選択詳細: requested_size=10, selected_count=10, question_ids_count=10
+2025-08-03 20:40:54,850 - app - INFO - 問題ID一覧: [2001556, 2003842, 2003171, 2001447, 2000587, 2002381, 2001179, 2001565, 2003843, 2001564]
+2025-08-03 20:40:54,850 - app - INFO - 新しい問題セッション開始: 10問, フィルタ: 部門:トンネル, 種別:4-2 選択科目, カテゴリ:トンネル
+2025-08-03 20:40:54,850 - app - INFO - 問題ID取得: current_no=0, question_id=2001556
+2025-08-03 20:40:54,850 - app - INFO - 問題表示: 1/10 - ID:2001556
+2025-08-03 20:40:54,854 - app - ERROR - 🚨 CRITICAL ERROR in exam(): 'csrf_token' is undefined
+2025-08-03 20:40:54,854 - app - ERROR - 🚨 FULL TRACEBACK:
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app.py", line 3921, in exam
+    return render_template('exam.html', **template_vars)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\base.html", line 408, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\templates\exam.html", line 80, in block 'content'
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    ^^^^^^^^^
+  File "C:\Users\ABC\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+

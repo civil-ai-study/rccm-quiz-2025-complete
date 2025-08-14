@@ -1,0 +1,2477 @@
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Serving Flask app 'app_lightweight_fix'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5013
+ * Running on http://192.168.0.69:5013
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+127.0.0.1 - - [09/Aug/2025 23:12:20] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:09] "GET /quiz/basic HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:10] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:10] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:10] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:10] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:10] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:10] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:10] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:11] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:11] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:11] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:11] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:11] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:11] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:11] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:12] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:12] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:12] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:12] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:12] "POST /quiz HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2025 23:14:13] "GET /result HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:14] "GET /quiz/road HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:15] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:15] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:15] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:15] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:15] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:15] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:15] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:16] "GET /quiz HTTP/1.1" 200 -
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+OK: data/4-1.csv 読み込み成功 (utf-8) - 202問
+成功: 基礎科目「基礎科目（共通）」で202問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'basic_1754748849', 'quiz_dept_id': 'basic', 'quiz_dept_name': '基礎科目（共通）', 'quiz_question_ids': ['143', '59', '202', '120', '4', '76', '188', '45', '148', '5'], 'quiz_current': 0, 'quiz_answers': []}
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': '基礎科目（共通）'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 1, 'quiz_answers_count': 1, 'quiz_question_ids_count': 10, 'quiz_dept_name': '基礎科目（共通）'}
+SUCCESS: セッション更新完了 - current=2, answers=2
+INFO: 次問題表示 - 3/10
+DEBUG: セッション再確認 - current=2, answers=2
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 2, 'quiz_answers_count': 2, 'quiz_question_ids_count': 10, 'quiz_dept_name': '基礎科目（共通）'}
+SUCCESS: セッション更新完了 - current=3, answers=3
+INFO: 次問題表示 - 4/10
+DEBUG: セッション再確認 - current=3, answers=3
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 3, 'quiz_answers_count': 3, 'quiz_question_ids_count': 10, 'quiz_dept_name': '基礎科目（共通）'}
+SUCCESS: セッション更新完了 - current=4, answers=4
+INFO: 次問題表示 - 5/10
+DEBUG: セッション再確認 - current=4, answers=4
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 4, 'quiz_answers_count': 4, 'quiz_question_ids_count': 10, 'quiz_dept_name': '基礎科目（共通）'}
+SUCCESS: セッション更新完了 - current=5, answers=5
+INFO: 次問題表示 - 6/10
+DEBUG: セッション再確認 - current=5, answers=5
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 5, 'quiz_answers_count': 5, 'quiz_question_ids_count': 10, 'quiz_dept_name': '基礎科目（共通）'}
+SUCCESS: セッション更新完了 - current=6, answers=6
+INFO: 次問題表示 - 7/10
+DEBUG: セッション再確認 - current=6, answers=6
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 6, 'quiz_answers_count': 6, 'quiz_question_ids_count': 10, 'quiz_dept_name': '基礎科目（共通）'}
+SUCCESS: セッション更新完了 - current=7, answers=7
+INFO: 次問題表示 - 8/10
+DEBUG: セッション再確認 - current=7, answers=7
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 7, 'quiz_answers_count': 7, 'quiz_question_ids_count': 10, 'quiz_dept_name': '基礎科目（共通）'}
+SUCCESS: セッション更新完了 - current=8, answers=8
+INFO: 次問題表示 - 9/10
+DEBUG: セッション再確認 - current=8, answers=8
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 8, 'quiz_answers_count': 8, 'quiz_question_ids_count': 10, 'quiz_dept_name': '基礎科目（共通）'}
+SUCCESS: セッション更新完了 - current=9, answers=9
+INFO: 次問題表示 - 10/10
+DEBUG: セッション再確認 - current=9, answers=9
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = C
+DEBUG: セッション要約 = {'quiz_current': 9, 'quiz_answers_count': 9, 'quiz_question_ids_count': 10, 'quiz_dept_name': '基礎科目（共通）'}
+SUCCESS: セッション更新完了 - current=10, answers=10
+INFO: 10問完了 - 結果画面に遷移
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'道路'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'road_1754748854', 'quiz_dept_id': 'road', 'quiz_dept_name': '道路', 'quiz_question_ids': ['10', '4', '20', '11', '5', '10', '10', '11', '17', '1'], 'quiz_current': 0, 'quiz_answers': []}
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': '道路'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 1, 'quiz_answers_count': 1, 'quiz_question_ids_count': 10, 'quiz_dept_name': '道路'}
+SUCCESS: セッション更新完了 - current=2, answers=2
+INFO: 次問題表示 - 3/10
+DEBUG: セッション再確認 - current=2, answers=2
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 2, 'quiz_answers_count': 2, 'quiz_question_ids_count': 10, 'quiz_dept_name': '道路'}
+SUCCESS: セッション更新完了 - current=3, answers=3
+INFO: 次問題表示 - 4/10
+DEBUG: セッション再確認 - current=3, answers=3
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 3, 'quiz_answers_count': 3, 'quiz_question_ids_count': 10, 'quiz_dept_name': '道路'}
+SUCCESS: セッション更新完了 - current=4, answers=4
+INFO: 次問題表示 - 5/10
+DEBUG: セッション再確認 - current=4, answers=4
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 4, 'quiz_answers_count': 4, 'quiz_question_ids_count': 10, 'quiz_dept_name': '道路'}127.0.0.1 - - [09/Aug/2025 23:14:16] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:16] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:16] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:16] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:16] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:16] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:16] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:16] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:17] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:17] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:17] "POST /quiz HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2025 23:14:17] "GET /result HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:18] "GET /quiz/river HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:18] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:19] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:19] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:19] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:19] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:19] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:19] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:19] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:19] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:19] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:19] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:19] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:20] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:20] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:20] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:20] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:20] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:20] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:20] "POST /quiz HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2025 23:14:21] "GET /result HTTP/1.1" 200 -
+
+SUCCESS: セッション更新完了 - current=5, answers=5
+INFO: 次問題表示 - 6/10
+DEBUG: セッション再確認 - current=5, answers=5
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 5, 'quiz_answers_count': 5, 'quiz_question_ids_count': 10, 'quiz_dept_name': '道路'}
+SUCCESS: セッション更新完了 - current=6, answers=6
+INFO: 次問題表示 - 7/10
+DEBUG: セッション再確認 - current=6, answers=6
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 6, 'quiz_answers_count': 6, 'quiz_question_ids_count': 10, 'quiz_dept_name': '道路'}
+SUCCESS: セッション更新完了 - current=7, answers=7
+INFO: 次問題表示 - 8/10
+DEBUG: セッション再確認 - current=7, answers=7
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 7, 'quiz_answers_count': 7, 'quiz_question_ids_count': 10, 'quiz_dept_name': '道路'}
+SUCCESS: セッション更新完了 - current=8, answers=8
+INFO: 次問題表示 - 9/10
+DEBUG: セッション再確認 - current=8, answers=8
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 8, 'quiz_answers_count': 8, 'quiz_question_ids_count': 10, 'quiz_dept_name': '道路'}
+SUCCESS: セッション更新完了 - current=9, answers=9
+INFO: 次問題表示 - 10/10
+DEBUG: セッション再確認 - current=9, answers=9
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = C
+DEBUG: セッション要約 = {'quiz_current': 9, 'quiz_answers_count': 9, 'quiz_question_ids_count': 10, 'quiz_dept_name': '道路'}
+SUCCESS: セッション更新完了 - current=10, answers=10
+INFO: 10問完了 - 結果画面に遷移
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'河川、砂防及び海岸・海洋'で351問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'river_1754748858', 'quiz_dept_id': 'river', 'quiz_dept_name': '河川、砂防及び海岸・海洋', 'quiz_question_ids': ['45', '84', '68', '75', '83', '88', '37', '2016_河川、砂防及び海岸・海洋_7', '52', '2016_河川、砂防及び海岸・海洋_9'], 'quiz_current': 0, 'quiz_answers': []}
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': '河川、砂防及び海岸・海洋'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 1, 'quiz_answers_count': 1, 'quiz_question_ids_count': 10, 'quiz_dept_name': '河川、砂防及び海岸・海洋'}
+SUCCESS: セッション更新完了 - current=2, answers=2
+INFO: 次問題表示 - 3/10
+DEBUG: セッション再確認 - current=2, answers=2
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 2, 'quiz_answers_count': 2, 'quiz_question_ids_count': 10, 'quiz_dept_name': '河川、砂防及び海岸・海洋'}
+SUCCESS: セッション更新完了 - current=3, answers=3
+INFO: 次問題表示 - 4/10
+DEBUG: セッション再確認 - current=3, answers=3
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 3, 'quiz_answers_count': 3, 'quiz_question_ids_count': 10, 'quiz_dept_name': '河川、砂防及び海岸・海洋'}
+SUCCESS: セッション更新完了 - current=4, answers=4
+INFO: 次問題表示 - 5/10
+DEBUG: セッション再確認 - current=4, answers=4
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 4, 'quiz_answers_count': 4, 'quiz_question_ids_count': 10, 'quiz_dept_name': '河川、砂防及び海岸・海洋'}
+SUCCESS: セッション更新完了 - current=5, answers=5
+INFO: 次問題表示 - 6/10
+DEBUG: セッション再確認 - current=5, answers=5
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 5, 'quiz_answers_count': 5, 'quiz_question_ids_count': 10, 'quiz_dept_name': '河川、砂防及び海岸・海洋'}
+SUCCESS: セッション更新完了 - current=6, answers=6
+INFO: 次問題表示 - 7/10
+DEBUG: セッション再確認 - current=6, answers=6
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 6, 'quiz_answers_count': 6, 'quiz_question_ids_count': 10, 'quiz_dept_name': '河川、砂防及び海岸・海洋'}
+SUCCESS: セッション更新完了 - current=7, answers=7
+INFO: 次問題表示 - 8/10
+DEBUG: セッション再確認 - current=7, answers=7
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 7, 'quiz_answers_count': 7, 'quiz_question_ids_count': 10, 'quiz_dept_name': '河川、砂防及び海岸・海洋'}
+SUCCESS: セッション更新完了 - current=8, answers=8
+INFO: 次問題表示 - 9/10
+DEBUG: セッション再確認 - current=8, answers=8
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 8, 'quiz_answers_count': 8, 'quiz_question_ids_count': 10, 'quiz_dept_name': '河川、砂防及び海岸・海洋'}
+SUCCESS: セッション更新完了 - current=9, answers=9
+INFO: 次問題表示 - 10/10
+DEBUG: セッション再確認 - current=9, answers=9
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = C
+DEBUG: セッション要約 = {'quiz_current': 9, 'quiz_answers_count': 9, 'quiz_question_ids_count': 10, 'quiz_dept_name': '河川、砂防及び海岸・海洋'}
+SUCCESS: セッション更新完了 - current=10, answers=10
+INFO: 10問完了 - 結果画面に遷移
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問127.0.0.1 - - [09/Aug/2025 23:14:21] "GET /quiz/urban HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:22] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:22] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:22] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:22] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:22] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:22] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:22] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:22] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:22] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:23] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:23] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:23] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:23] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:23] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:23] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:23] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:23] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:23] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:23] "POST /quiz HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2025 23:14:24] "GET /result HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:24] "GET /quiz/garden HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:25] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:25] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:25] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:25] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:25] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:25] "GET /quiz HTTP/1.1" 200 -
+
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'都市計画及び地方計画'で344問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'urban_1754748861', 'quiz_dept_id': 'urban', 'quiz_dept_name': '都市計画及び地方計画', 'quiz_question_ids': ['271', '278', '283', '295', '299', '321', '310', '276', '12', '249'], 'quiz_current': 0, 'quiz_answers': []}
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': '都市計画及び地方計画'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 1, 'quiz_answers_count': 1, 'quiz_question_ids_count': 10, 'quiz_dept_name': '都市計画及び地方計画'}
+SUCCESS: セッション更新完了 - current=2, answers=2
+INFO: 次問題表示 - 3/10
+DEBUG: セッション再確認 - current=2, answers=2
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 2, 'quiz_answers_count': 2, 'quiz_question_ids_count': 10, 'quiz_dept_name': '都市計画及び地方計画'}
+SUCCESS: セッション更新完了 - current=3, answers=3
+INFO: 次問題表示 - 4/10
+DEBUG: セッション再確認 - current=3, answers=3
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 3, 'quiz_answers_count': 3, 'quiz_question_ids_count': 10, 'quiz_dept_name': '都市計画及び地方計画'}
+SUCCESS: セッション更新完了 - current=4, answers=4
+INFO: 次問題表示 - 5/10
+DEBUG: セッション再確認 - current=4, answers=4
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 4, 'quiz_answers_count': 4, 'quiz_question_ids_count': 10, 'quiz_dept_name': '都市計画及び地方計画'}
+SUCCESS: セッション更新完了 - current=5, answers=5
+INFO: 次問題表示 - 6/10
+DEBUG: セッション再確認 - current=5, answers=5
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 5, 'quiz_answers_count': 5, 'quiz_question_ids_count': 10, 'quiz_dept_name': '都市計画及び地方計画'}
+SUCCESS: セッション更新完了 - current=6, answers=6
+INFO: 次問題表示 - 7/10
+DEBUG: セッション再確認 - current=6, answers=6
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 6, 'quiz_answers_count': 6, 'quiz_question_ids_count': 10, 'quiz_dept_name': '都市計画及び地方計画'}
+SUCCESS: セッション更新完了 - current=7, answers=7
+INFO: 次問題表示 - 8/10
+DEBUG: セッション再確認 - current=7, answers=7
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 7, 'quiz_answers_count': 7, 'quiz_question_ids_count': 10, 'quiz_dept_name': '都市計画及び地方計画'}
+SUCCESS: セッション更新完了 - current=8, answers=8
+INFO: 次問題表示 - 9/10
+DEBUG: セッション再確認 - current=8, answers=8
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 8, 'quiz_answers_count': 8, 'quiz_question_ids_count': 10, 'quiz_dept_name': '都市計画及び地方計画'}
+SUCCESS: セッション更新完了 - current=9, answers=9
+INFO: 次問題表示 - 10/10
+DEBUG: セッション再確認 - current=9, answers=9
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = C
+DEBUG: セッション要約 = {'quiz_current': 9, 'quiz_answers_count': 9, 'quiz_question_ids_count': 10, 'quiz_dept_name': '都市計画及び地方計画'}
+SUCCESS: セッション更新完了 - current=10, answers=10
+INFO: 10問完了 - 結果画面に遷移
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'造園'で340問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'garden_1754748864', 'quiz_dept_id': 'garden', 'quiz_dept_name': '造園', 'quiz_question_ids': ['406', '2016_造園_1', '309', '290', '355', '326', '333', '287', '298', '393'], 'quiz_current': 0, 'quiz_answers': []}
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': '造園'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 1, 'quiz_answers_count': 1, 'quiz_question_ids_count': 10, 'quiz_dept_name': '造園'}
+SUCCESS: セッション更新完了 - current=2, answers=2
+INFO: 次問題表示 - 3/10
+DEBUG: セッション再確認 - current=2, answers=2
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 2, 'quiz_answers_count': 2, 'quiz_question_ids_count': 10, 'quiz_dept_name': '造園'}
+SUCCESS: セッション更新完了 - current=3, answers=3
+INFO: 次問題表示 - 4/10
+DEBUG: セッション再確認 - current=3, answers=3
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 3, 'quiz_answers_count': 3, 'quiz_question_ids_count': 10, 'quiz_dept_name': '造園'}
+SUCCESS: セッション更新完了 - current=4, answers=4
+INFO: 次問題表示 - 5/10127.0.0.1 - - [09/Aug/2025 23:14:25] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:25] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:25] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:26] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:26] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:26] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:26] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:26] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:26] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:26] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:26] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:26] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:27] "POST /quiz HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2025 23:14:27] "GET /result HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:28] "GET /quiz/env HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:28] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:28] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:28] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:28] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:28] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:28] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:28] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:28] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:29] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:29] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:29] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:29] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:29] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:29] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:29] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:29] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:29] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:29] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:30] "POST /quiz HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2025 23:14:30] "GET /result HTTP/1.1" 200 -
+
+DEBUG: セッション再確認 - current=4, answers=4
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 4, 'quiz_answers_count': 4, 'quiz_question_ids_count': 10, 'quiz_dept_name': '造園'}
+SUCCESS: セッション更新完了 - current=5, answers=5
+INFO: 次問題表示 - 6/10
+DEBUG: セッション再確認 - current=5, answers=5
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 5, 'quiz_answers_count': 5, 'quiz_question_ids_count': 10, 'quiz_dept_name': '造園'}
+SUCCESS: セッション更新完了 - current=6, answers=6
+INFO: 次問題表示 - 7/10
+DEBUG: セッション再確認 - current=6, answers=6
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 6, 'quiz_answers_count': 6, 'quiz_question_ids_count': 10, 'quiz_dept_name': '造園'}
+SUCCESS: セッション更新完了 - current=7, answers=7
+INFO: 次問題表示 - 8/10
+DEBUG: セッション再確認 - current=7, answers=7
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 7, 'quiz_answers_count': 7, 'quiz_question_ids_count': 10, 'quiz_dept_name': '造園'}
+SUCCESS: セッション更新完了 - current=8, answers=8
+INFO: 次問題表示 - 9/10
+DEBUG: セッション再確認 - current=8, answers=8
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 8, 'quiz_answers_count': 8, 'quiz_question_ids_count': 10, 'quiz_dept_name': '造園'}
+SUCCESS: セッション更新完了 - current=9, answers=9
+INFO: 次問題表示 - 10/10
+DEBUG: セッション再確認 - current=9, answers=9
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = C
+DEBUG: セッション要約 = {'quiz_current': 9, 'quiz_answers_count': 9, 'quiz_question_ids_count': 10, 'quiz_dept_name': '造園'}
+SUCCESS: セッション更新完了 - current=10, answers=10
+INFO: 10問完了 - 結果画面に遷移
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'建設環境'で329問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'env_1754748868', 'quiz_dept_id': 'env', 'quiz_dept_name': '建設環境', 'quiz_question_ids': ['252', '246', '3', '9', '4', '268', '19', '256', '259', '2016_建設環境_9'], 'quiz_current': 0, 'quiz_answers': []}
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': '建設環境'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 1, 'quiz_answers_count': 1, 'quiz_question_ids_count': 10, 'quiz_dept_name': '建設環境'}
+SUCCESS: セッション更新完了 - current=2, answers=2
+INFO: 次問題表示 - 3/10
+DEBUG: セッション再確認 - current=2, answers=2
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 2, 'quiz_answers_count': 2, 'quiz_question_ids_count': 10, 'quiz_dept_name': '建設環境'}
+SUCCESS: セッション更新完了 - current=3, answers=3
+INFO: 次問題表示 - 4/10
+DEBUG: セッション再確認 - current=3, answers=3
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 3, 'quiz_answers_count': 3, 'quiz_question_ids_count': 10, 'quiz_dept_name': '建設環境'}
+SUCCESS: セッション更新完了 - current=4, answers=4
+INFO: 次問題表示 - 5/10
+DEBUG: セッション再確認 - current=4, answers=4
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 4, 'quiz_answers_count': 4, 'quiz_question_ids_count': 10, 'quiz_dept_name': '建設環境'}
+SUCCESS: セッション更新完了 - current=5, answers=5
+INFO: 次問題表示 - 6/10
+DEBUG: セッション再確認 - current=5, answers=5
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 5, 'quiz_answers_count': 5, 'quiz_question_ids_count': 10, 'quiz_dept_name': '建設環境'}
+SUCCESS: セッション更新完了 - current=6, answers=6
+INFO: 次問題表示 - 7/10
+DEBUG: セッション再確認 - current=6, answers=6
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 6, 'quiz_answers_count': 6, 'quiz_question_ids_count': 10, 'quiz_dept_name': '建設環境'}
+SUCCESS: セッション更新完了 - current=7, answers=7
+INFO: 次問題表示 - 8/10
+DEBUG: セッション再確認 - current=7, answers=7
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 7, 'quiz_answers_count': 7, 'quiz_question_ids_count': 10, 'quiz_dept_name': '建設環境'}
+SUCCESS: セッション更新完了 - current=8, answers=8
+INFO: 次問題表示 - 9/10
+DEBUG: セッション再確認 - current=8, answers=8
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 8, 'quiz_answers_count': 8, 'quiz_question_ids_count': 10, 'quiz_dept_name': '建設環境'}
+SUCCESS: セッション更新完了 - current=9, answers=9
+INFO: 次問題表示 - 10/10
+DEBUG: セッション再確認 - current=9, answers=9
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = C
+DEBUG: セッション要約 = {'quiz_current': 9, 'quiz_answers_count': 9, 'quiz_question_ids_count': 10, 'quiz_dept_name': '建設環境'}
+SUCCESS: セッション更新完了 - current=10, answers=10
+INFO: 10問完了 - 結果画面に遷移
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問127.0.0.1 - - [09/Aug/2025 23:14:31] "GET /quiz/steel HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:31] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:31] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:31] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:31] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:31] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:31] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:32] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:32] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:32] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:32] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:32] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:32] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:32] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:32] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:32] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:32] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:32] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:32] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:33] "POST /quiz HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2025 23:14:33] "GET /result HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:34] "GET /quiz/soil HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:34] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:34] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:34] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:34] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:34] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:35] "GET /quiz HTTP/1.1" 200 -
+
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'鋼構造及びコンクリート'で323問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'steel_1754748871', 'quiz_dept_id': 'steel', 'quiz_dept_name': '鋼構造及びコンクリート', 'quiz_question_ids': ['110', '83', '3', '142', '2016_鋼構造及びコンクリート_4', '11', '20', '105', '113', '8'], 'quiz_current': 0, 'quiz_answers': []}
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': '鋼構造及びコンクリート'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 1, 'quiz_answers_count': 1, 'quiz_question_ids_count': 10, 'quiz_dept_name': '鋼構造及びコンクリート'}
+SUCCESS: セッション更新完了 - current=2, answers=2
+INFO: 次問題表示 - 3/10
+DEBUG: セッション再確認 - current=2, answers=2
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 2, 'quiz_answers_count': 2, 'quiz_question_ids_count': 10, 'quiz_dept_name': '鋼構造及びコンクリート'}
+SUCCESS: セッション更新完了 - current=3, answers=3
+INFO: 次問題表示 - 4/10
+DEBUG: セッション再確認 - current=3, answers=3
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 3, 'quiz_answers_count': 3, 'quiz_question_ids_count': 10, 'quiz_dept_name': '鋼構造及びコンクリート'}
+SUCCESS: セッション更新完了 - current=4, answers=4
+INFO: 次問題表示 - 5/10
+DEBUG: セッション再確認 - current=4, answers=4
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 4, 'quiz_answers_count': 4, 'quiz_question_ids_count': 10, 'quiz_dept_name': '鋼構造及びコンクリート'}
+SUCCESS: セッション更新完了 - current=5, answers=5
+INFO: 次問題表示 - 6/10
+DEBUG: セッション再確認 - current=5, answers=5
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 5, 'quiz_answers_count': 5, 'quiz_question_ids_count': 10, 'quiz_dept_name': '鋼構造及びコンクリート'}
+SUCCESS: セッション更新完了 - current=6, answers=6
+INFO: 次問題表示 - 7/10
+DEBUG: セッション再確認 - current=6, answers=6
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 6, 'quiz_answers_count': 6, 'quiz_question_ids_count': 10, 'quiz_dept_name': '鋼構造及びコンクリート'}
+SUCCESS: セッション更新完了 - current=7, answers=7
+INFO: 次問題表示 - 8/10
+DEBUG: セッション再確認 - current=7, answers=7
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 7, 'quiz_answers_count': 7, 'quiz_question_ids_count': 10, 'quiz_dept_name': '鋼構造及びコンクリート'}
+SUCCESS: セッション更新完了 - current=8, answers=8
+INFO: 次問題表示 - 9/10
+DEBUG: セッション再確認 - current=8, answers=8
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 8, 'quiz_answers_count': 8, 'quiz_question_ids_count': 10, 'quiz_dept_name': '鋼構造及びコンクリート'}
+SUCCESS: セッション更新完了 - current=9, answers=9
+INFO: 次問題表示 - 10/10
+DEBUG: セッション再確認 - current=9, answers=9
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = C
+DEBUG: セッション要約 = {'quiz_current': 9, 'quiz_answers_count': 9, 'quiz_question_ids_count': 10, 'quiz_dept_name': '鋼構造及びコンクリート'}
+SUCCESS: セッション更新完了 - current=10, answers=10
+INFO: 10問完了 - 結果画面に遷移
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'土質及び基礎'で327問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'soil_1754748874', 'quiz_dept_id': 'soil', 'quiz_dept_name': '土質及び基礎', 'quiz_question_ids': ['93', '60', '47', '87', '74', '47', '49', '18', '35', '51'], 'quiz_current': 0, 'quiz_answers': []}
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': '土質及び基礎'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 1, 'quiz_answers_count': 1, 'quiz_question_ids_count': 10, 'quiz_dept_name': '土質及び基礎'}
+SUCCESS: セッション更新完了 - current=2, answers=2
+INFO: 次問題表示 - 3/10
+DEBUG: セッション再確認 - current=2, answers=2
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 2, 'quiz_answers_count': 2, 'quiz_question_ids_count': 10, 'quiz_dept_name': '土質及び基礎'}
+SUCCESS: セッション更新完了 - current=3, answers=3
+INFO: 次問題表示 - 4/10
+DEBUG: セッション再確認 - current=3, answers=3
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 3, 'quiz_answers_count': 3, 'quiz_question_ids_count': 10, 'quiz_dept_name': '土質及び基礎'}127.0.0.1 - - [09/Aug/2025 23:14:35] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:35] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:35] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:35] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:35] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:35] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:35] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:35] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:35] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:35] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:36] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:36] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:36] "POST /quiz HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2025 23:14:36] "GET /result HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:37] "GET /quiz/construction HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:37] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:37] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:38] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:38] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:38] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:38] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:38] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:38] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:38] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:38] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:38] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:38] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:38] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:39] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:39] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:39] "GET /quiz HTTP/1.1" 200 -
+
+SUCCESS: セッション更新完了 - current=4, answers=4
+INFO: 次問題表示 - 5/10
+DEBUG: セッション再確認 - current=4, answers=4
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 4, 'quiz_answers_count': 4, 'quiz_question_ids_count': 10, 'quiz_dept_name': '土質及び基礎'}
+SUCCESS: セッション更新完了 - current=5, answers=5
+INFO: 次問題表示 - 6/10
+DEBUG: セッション再確認 - current=5, answers=5
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 5, 'quiz_answers_count': 5, 'quiz_question_ids_count': 10, 'quiz_dept_name': '土質及び基礎'}
+SUCCESS: セッション更新完了 - current=6, answers=6
+INFO: 次問題表示 - 7/10
+DEBUG: セッション再確認 - current=6, answers=6
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 6, 'quiz_answers_count': 6, 'quiz_question_ids_count': 10, 'quiz_dept_name': '土質及び基礎'}
+SUCCESS: セッション更新完了 - current=7, answers=7
+INFO: 次問題表示 - 8/10
+DEBUG: セッション再確認 - current=7, answers=7
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 7, 'quiz_answers_count': 7, 'quiz_question_ids_count': 10, 'quiz_dept_name': '土質及び基礎'}
+SUCCESS: セッション更新完了 - current=8, answers=8
+INFO: 次問題表示 - 9/10
+DEBUG: セッション再確認 - current=8, answers=8
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 8, 'quiz_answers_count': 8, 'quiz_question_ids_count': 10, 'quiz_dept_name': '土質及び基礎'}
+SUCCESS: セッション更新完了 - current=9, answers=9
+INFO: 次問題表示 - 10/10
+DEBUG: セッション再確認 - current=9, answers=9
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = C
+DEBUG: セッション要約 = {'quiz_current': 9, 'quiz_answers_count': 9, 'quiz_question_ids_count': 10, 'quiz_dept_name': '土質及び基礎'}
+SUCCESS: セッション更新完了 - current=10, answers=10
+INFO: 10問完了 - 結果画面に遷移
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'施工計画、施工設備及び積算'で338問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'construction_1754748877', 'quiz_dept_id': 'construction', 'quiz_dept_name': '施工計画、施工設備及び積算', 'quiz_question_ids': ['151', '2016_施工計画、施工設備及び積算_1', '2016_施工計画、施工設備及び積算_2', '177', '2016_施工計画、施工設備及び積算_4', '187', '144', '143', '170', '154'], 'quiz_current': 0, 'quiz_answers': []}
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': '施工計画、施工設備及び積算'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 1, 'quiz_answers_count': 1, 'quiz_question_ids_count': 10, 'quiz_dept_name': '施工計画、施工設備及び積算'}
+SUCCESS: セッション更新完了 - current=2, answers=2
+INFO: 次問題表示 - 3/10
+DEBUG: セッション再確認 - current=2, answers=2
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 2, 'quiz_answers_count': 2, 'quiz_question_ids_count': 10, 'quiz_dept_name': '施工計画、施工設備及び積算'}
+SUCCESS: セッション更新完了 - current=3, answers=3
+INFO: 次問題表示 - 4/10
+DEBUG: セッション再確認 - current=3, answers=3
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 3, 'quiz_answers_count': 3, 'quiz_question_ids_count': 10, 'quiz_dept_name': '施工計画、施工設備及び積算'}
+SUCCESS: セッション更新完了 - current=4, answers=4
+INFO: 次問題表示 - 5/10
+DEBUG: セッション再確認 - current=4, answers=4
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 4, 'quiz_answers_count': 4, 'quiz_question_ids_count': 10, 'quiz_dept_name': '施工計画、施工設備及び積算'}
+SUCCESS: セッション更新完了 - current=5, answers=5
+INFO: 次問題表示 - 6/10
+DEBUG: セッション再確認 - current=5, answers=5
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 5, 'quiz_answers_count': 5, 'quiz_question_ids_count': 10, 'quiz_dept_name': '施工計画、施工設備及び積算'}
+SUCCESS: セッション更新完了 - current=6, answers=6
+INFO: 次問題表示 - 7/10
+DEBUG: セッション再確認 - current=6, answers=6
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 6, 'quiz_answers_count': 6, 'quiz_question_ids_count': 10, 'quiz_dept_name': '施工計画、施工設備及び積算'}
+SUCCESS: セッション更新完了 - current=7, answers=7
+INFO: 次問題表示 - 8/10
+DEBUG: セッション再確認 - current=7, answers=7
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 7, 'quiz_answers_count': 7, 'quiz_question_ids_count': 10, 'quiz_dept_name': '施工計画、施工設備及び積算'}
+SUCCESS: セッション更新完了 - current=8, answers=8
+INFO: 次問題表示 - 9/10
+DEBUG: セッション再確認 - current=8, answers=8
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 8, 'quiz_answers_count': 8, 'quiz_question_ids_count': 10, 'quiz_dept_name': '施工計画、施工設備及び積算'}
+SUCCESS: セッション更新完了 - current=9, answers=9
+INFO: 次問題表示 - 10/10
+DEBUG: セッション再確認 - current=9, answers=9127.0.0.1 - - [09/Aug/2025 23:14:39] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:39] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:39] "POST /quiz HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2025 23:14:39] "GET /result HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:40] "GET /quiz/water HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:40] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:41] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:41] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:41] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:41] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:41] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:41] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:41] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:41] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:41] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:41] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:41] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:42] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:42] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:42] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:42] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:42] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:42] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:42] "POST /quiz HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2025 23:14:42] "GET /result HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:43] "GET /quiz/forest HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:44] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:44] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:44] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:44] "GET /quiz HTTP/1.1" 200 -
+
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = C
+DEBUG: セッション要約 = {'quiz_current': 9, 'quiz_answers_count': 9, 'quiz_question_ids_count': 10, 'quiz_dept_name': '施工計画、施工設備及び積算'}
+SUCCESS: セッション更新完了 - current=10, answers=10
+INFO: 10問完了 - 結果画面に遷移
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'上水道及び工業用水道'で348問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'water_1754748880', 'quiz_dept_id': 'water', 'quiz_dept_name': '上水道及び工業用水道', 'quiz_question_ids': ['360', '322', '12', '41', '311', '220', '313', '43', '303', '2016_上水道及び工業用水道_9'], 'quiz_current': 0, 'quiz_answers': []}
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': '上水道及び工業用水道'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 1, 'quiz_answers_count': 1, 'quiz_question_ids_count': 10, 'quiz_dept_name': '上水道及び工業用水道'}
+SUCCESS: セッション更新完了 - current=2, answers=2
+INFO: 次問題表示 - 3/10
+DEBUG: セッション再確認 - current=2, answers=2
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 2, 'quiz_answers_count': 2, 'quiz_question_ids_count': 10, 'quiz_dept_name': '上水道及び工業用水道'}
+SUCCESS: セッション更新完了 - current=3, answers=3
+INFO: 次問題表示 - 4/10
+DEBUG: セッション再確認 - current=3, answers=3
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 3, 'quiz_answers_count': 3, 'quiz_question_ids_count': 10, 'quiz_dept_name': '上水道及び工業用水道'}
+SUCCESS: セッション更新完了 - current=4, answers=4
+INFO: 次問題表示 - 5/10
+DEBUG: セッション再確認 - current=4, answers=4
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 4, 'quiz_answers_count': 4, 'quiz_question_ids_count': 10, 'quiz_dept_name': '上水道及び工業用水道'}
+SUCCESS: セッション更新完了 - current=5, answers=5
+INFO: 次問題表示 - 6/10
+DEBUG: セッション再確認 - current=5, answers=5
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 5, 'quiz_answers_count': 5, 'quiz_question_ids_count': 10, 'quiz_dept_name': '上水道及び工業用水道'}
+SUCCESS: セッション更新完了 - current=6, answers=6
+INFO: 次問題表示 - 7/10
+DEBUG: セッション再確認 - current=6, answers=6
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 6, 'quiz_answers_count': 6, 'quiz_question_ids_count': 10, 'quiz_dept_name': '上水道及び工業用水道'}
+SUCCESS: セッション更新完了 - current=7, answers=7
+INFO: 次問題表示 - 8/10
+DEBUG: セッション再確認 - current=7, answers=7
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 7, 'quiz_answers_count': 7, 'quiz_question_ids_count': 10, 'quiz_dept_name': '上水道及び工業用水道'}
+SUCCESS: セッション更新完了 - current=8, answers=8
+INFO: 次問題表示 - 9/10
+DEBUG: セッション再確認 - current=8, answers=8
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 8, 'quiz_answers_count': 8, 'quiz_question_ids_count': 10, 'quiz_dept_name': '上水道及び工業用水道'}
+SUCCESS: セッション更新完了 - current=9, answers=9
+INFO: 次問題表示 - 10/10
+DEBUG: セッション再確認 - current=9, answers=9
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = C
+DEBUG: セッション要約 = {'quiz_current': 9, 'quiz_answers_count': 9, 'quiz_question_ids_count': 10, 'quiz_dept_name': '上水道及び工業用水道'}
+SUCCESS: セッション更新完了 - current=10, answers=10
+INFO: 10問完了 - 結果画面に遷移
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'森林土木'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'forest_1754748883', 'quiz_dept_id': 'forest', 'quiz_dept_name': '森林土木', 'quiz_question_ids': ['18', '203', '6', '214', '208', '185', '14', '201', '163', '291'], 'quiz_current': 0, 'quiz_answers': []}
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': '森林土木'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 1, 'quiz_answers_count': 1, 'quiz_question_ids_count': 10, 'quiz_dept_name': '森林土木'}
+SUCCESS: セッション更新完了 - current=2, answers=2
+INFO: 次問題表示 - 3/10
+DEBUG: セッション再確認 - current=2, answers=2
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 2, 'quiz_answers_count': 2, 'quiz_question_ids_count': 10, 'quiz_dept_name': '森林土木'}127.0.0.1 - - [09/Aug/2025 23:14:44] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:44] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:44] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:44] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:44] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:44] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:44] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:45] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:45] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:45] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:45] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:45] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:45] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:45] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:45] "POST /quiz HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2025 23:14:46] "GET /result HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:46] "GET /quiz/agri HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:47] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:47] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:47] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:47] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:47] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:47] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:47] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:47] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:48] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:48] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:48] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:48] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:48] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:48] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:48] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:48] "GET /quiz HTTP/1.1" 200 -
+
+SUCCESS: セッション更新完了 - current=3, answers=3
+INFO: 次問題表示 - 4/10
+DEBUG: セッション再確認 - current=3, answers=3
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 3, 'quiz_answers_count': 3, 'quiz_question_ids_count': 10, 'quiz_dept_name': '森林土木'}
+SUCCESS: セッション更新完了 - current=4, answers=4
+INFO: 次問題表示 - 5/10
+DEBUG: セッション再確認 - current=4, answers=4
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 4, 'quiz_answers_count': 4, 'quiz_question_ids_count': 10, 'quiz_dept_name': '森林土木'}
+SUCCESS: セッション更新完了 - current=5, answers=5
+INFO: 次問題表示 - 6/10
+DEBUG: セッション再確認 - current=5, answers=5
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 5, 'quiz_answers_count': 5, 'quiz_question_ids_count': 10, 'quiz_dept_name': '森林土木'}
+SUCCESS: セッション更新完了 - current=6, answers=6
+INFO: 次問題表示 - 7/10
+DEBUG: セッション再確認 - current=6, answers=6
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 6, 'quiz_answers_count': 6, 'quiz_question_ids_count': 10, 'quiz_dept_name': '森林土木'}
+SUCCESS: セッション更新完了 - current=7, answers=7
+INFO: 次問題表示 - 8/10
+DEBUG: セッション再確認 - current=7, answers=7
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 7, 'quiz_answers_count': 7, 'quiz_question_ids_count': 10, 'quiz_dept_name': '森林土木'}
+SUCCESS: セッション更新完了 - current=8, answers=8
+INFO: 次問題表示 - 9/10
+DEBUG: セッション再確認 - current=8, answers=8
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 8, 'quiz_answers_count': 8, 'quiz_question_ids_count': 10, 'quiz_dept_name': '森林土木'}
+SUCCESS: セッション更新完了 - current=9, answers=9
+INFO: 次問題表示 - 10/10
+DEBUG: セッション再確認 - current=9, answers=9
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = C
+DEBUG: セッション要約 = {'quiz_current': 9, 'quiz_answers_count': 9, 'quiz_question_ids_count': 10, 'quiz_dept_name': '森林土木'}
+SUCCESS: セッション更新完了 - current=10, answers=10
+INFO: 10問完了 - 結果画面に遷移
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'農業土木'で340問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'agri_1754748886', 'quiz_dept_id': 'agri', 'quiz_dept_name': '農業土木', 'quiz_question_ids': ['157', '44', '123', '129', '10', '20', '121', '19', '120', '122'], 'quiz_current': 0, 'quiz_answers': []}
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': '農業土木'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 1, 'quiz_answers_count': 1, 'quiz_question_ids_count': 10, 'quiz_dept_name': '農業土木'}
+SUCCESS: セッション更新完了 - current=2, answers=2
+INFO: 次問題表示 - 3/10
+DEBUG: セッション再確認 - current=2, answers=2
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 2, 'quiz_answers_count': 2, 'quiz_question_ids_count': 10, 'quiz_dept_name': '農業土木'}
+SUCCESS: セッション更新完了 - current=3, answers=3
+INFO: 次問題表示 - 4/10
+DEBUG: セッション再確認 - current=3, answers=3
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 3, 'quiz_answers_count': 3, 'quiz_question_ids_count': 10, 'quiz_dept_name': '農業土木'}
+SUCCESS: セッション更新完了 - current=4, answers=4
+INFO: 次問題表示 - 5/10
+DEBUG: セッション再確認 - current=4, answers=4
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 4, 'quiz_answers_count': 4, 'quiz_question_ids_count': 10, 'quiz_dept_name': '農業土木'}
+SUCCESS: セッション更新完了 - current=5, answers=5
+INFO: 次問題表示 - 6/10
+DEBUG: セッション再確認 - current=5, answers=5
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 5, 'quiz_answers_count': 5, 'quiz_question_ids_count': 10, 'quiz_dept_name': '農業土木'}
+SUCCESS: セッション更新完了 - current=6, answers=6
+INFO: 次問題表示 - 7/10
+DEBUG: セッション再確認 - current=6, answers=6
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 6, 'quiz_answers_count': 6, 'quiz_question_ids_count': 10, 'quiz_dept_name': '農業土木'}
+SUCCESS: セッション更新完了 - current=7, answers=7
+INFO: 次問題表示 - 8/10
+DEBUG: セッション再確認 - current=7, answers=7
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 7, 'quiz_answers_count': 7, 'quiz_question_ids_count': 10, 'quiz_dept_name': '農業土木'}
+SUCCESS: セッション更新完了 - current=8, answers=8
+INFO: 次問題表示 - 9/10
+DEBUG: セッション再確認 - current=8, answers=8
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 8, 'quiz_answers_count': 8, 'quiz_question_ids_count': 10, 'quiz_dept_name': '農業土木'}127.0.0.1 - - [09/Aug/2025 23:14:48] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:48] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:49] "POST /quiz HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2025 23:14:49] "GET /result HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:50] "GET /quiz/tunnel HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:50] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:50] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:50] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:50] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:50] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:50] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:50] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:50] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:51] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:51] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:51] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:51] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:51] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:51] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:51] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:51] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:51] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:52] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:14:52] "POST /quiz HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2025 23:14:52] "GET /result HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:18:16] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:18:17] "GET /quiz/road HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:18:18] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:18:18] "GET /quiz HTTP/1.1" 200 -
+
+SUCCESS: セッション更新完了 - current=9, answers=9
+INFO: 次問題表示 - 10/10
+DEBUG: セッション再確認 - current=9, answers=9
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = C
+DEBUG: セッション要約 = {'quiz_current': 9, 'quiz_answers_count': 9, 'quiz_question_ids_count': 10, 'quiz_dept_name': '農業土木'}
+SUCCESS: セッション更新完了 - current=10, answers=10
+INFO: 10問完了 - 結果画面に遷移
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'トンネル'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'tunnel_1754748890', 'quiz_dept_id': 'tunnel', 'quiz_dept_name': 'トンネル', 'quiz_question_ids': ['219', '234', '146', '126', '144', '188', '2016_トンネル_6', '132', '239', '223'], 'quiz_current': 0, 'quiz_answers': []}
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': 'トンネル'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 1, 'quiz_answers_count': 1, 'quiz_question_ids_count': 10, 'quiz_dept_name': 'トンネル'}
+SUCCESS: セッション更新完了 - current=2, answers=2
+INFO: 次問題表示 - 3/10
+DEBUG: セッション再確認 - current=2, answers=2
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 2, 'quiz_answers_count': 2, 'quiz_question_ids_count': 10, 'quiz_dept_name': 'トンネル'}
+SUCCESS: セッション更新完了 - current=3, answers=3
+INFO: 次問題表示 - 4/10
+DEBUG: セッション再確認 - current=3, answers=3
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 3, 'quiz_answers_count': 3, 'quiz_question_ids_count': 10, 'quiz_dept_name': 'トンネル'}
+SUCCESS: セッション更新完了 - current=4, answers=4
+INFO: 次問題表示 - 5/10
+DEBUG: セッション再確認 - current=4, answers=4
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 4, 'quiz_answers_count': 4, 'quiz_question_ids_count': 10, 'quiz_dept_name': 'トンネル'}
+SUCCESS: セッション更新完了 - current=5, answers=5
+INFO: 次問題表示 - 6/10
+DEBUG: セッション再確認 - current=5, answers=5
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 5, 'quiz_answers_count': 5, 'quiz_question_ids_count': 10, 'quiz_dept_name': 'トンネル'}
+SUCCESS: セッション更新完了 - current=6, answers=6
+INFO: 次問題表示 - 7/10
+DEBUG: セッション再確認 - current=6, answers=6
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 6, 'quiz_answers_count': 6, 'quiz_question_ids_count': 10, 'quiz_dept_name': 'トンネル'}
+SUCCESS: セッション更新完了 - current=7, answers=7
+INFO: 次問題表示 - 8/10
+DEBUG: セッション再確認 - current=7, answers=7
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 7, 'quiz_answers_count': 7, 'quiz_question_ids_count': 10, 'quiz_dept_name': 'トンネル'}
+SUCCESS: セッション更新完了 - current=8, answers=8
+INFO: 次問題表示 - 9/10
+DEBUG: セッション再確認 - current=8, answers=8
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = B
+DEBUG: セッション要約 = {'quiz_current': 8, 'quiz_answers_count': 8, 'quiz_question_ids_count': 10, 'quiz_dept_name': 'トンネル'}
+SUCCESS: セッション更新完了 - current=9, answers=9
+INFO: 次問題表示 - 10/10
+DEBUG: セッション再確認 - current=9, answers=9
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = C
+DEBUG: セッション要約 = {'quiz_current': 9, 'quiz_answers_count': 9, 'quiz_question_ids_count': 10, 'quiz_dept_name': 'トンネル'}
+SUCCESS: セッション更新完了 - current=10, answers=10
+INFO: 10問完了 - 結果画面に遷移
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'道路'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'road_1754749097', 'quiz_dept_id': 'road', 'quiz_dept_name': '道路', 'quiz_question_ids': ['40', '8', '7', '17', '24', '13', '20', '11', '26', '2'], 'quiz_current': 0, 'quiz_answers': []}
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': '道路'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'都市計画及び地方計画'で344問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'urban_1754749099', 'quiz_dept_id': 'urban', 'quiz_dept_name': '都市計画及び地方計画', 'quiz_question_ids': ['303', '265', '2016_都市計画及び地方計画_2', '300', '330', '291', '175', '287', '262', '160'], 'quiz_current': 0, 'quiz_answers': []}127.0.0.1 - - [09/Aug/2025 23:18:19] "GET /quiz/urban HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:18:19] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:18:20] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:18:21] "GET /quiz/tunnel HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:18:21] "POST /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:18:21] "GET /quiz HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:21:30] "GET /quiz/road HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:21:32] "GET /quiz/river HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:21:34] "GET /quiz/tunnel HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:22:59] "GET /quiz/road HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:01] "GET /quiz/road HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:02] "GET /quiz/road HTTP/1.1" 200 -
+
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': '都市計画及び地方計画'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'トンネル'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'tunnel_1754749101', 'quiz_dept_id': 'tunnel', 'quiz_dept_name': 'トンネル', 'quiz_question_ids': ['187', '192', '240', '239', '227', '144', '2016_トンネル_6', '218', '2016_トンネル_8', '16'], 'quiz_current': 0, 'quiz_answers': []}
+DEBUG: セッション内容 = ['_permanent', 'quiz_answers', 'quiz_current', 'quiz_dept_id', 'quiz_dept_name', 'quiz_question_ids', 'session_id']
+DEBUG: quiz_questions存在? = False
+DEBUG: 回答受信 = A
+DEBUG: セッション要約 = {'quiz_current': 0, 'quiz_answers_count': 0, 'quiz_question_ids_count': 10, 'quiz_dept_name': 'トンネル'}
+SUCCESS: セッション更新完了 - current=1, answers=1
+INFO: 次問題表示 - 2/10
+DEBUG: セッション再確認 - current=1, answers=1
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'道路'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'road_1754749290', 'quiz_dept_id': 'road', 'quiz_dept_name': '道路', 'quiz_question_ids': ['2016_道路_0', '4', '8', '16', '25', '2016_道路_5', '4', '25', '5', '20'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'河川、砂防及び海岸・海洋'で351問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'river_1754749292', 'quiz_dept_id': 'river', 'quiz_dept_name': '河川、砂防及び海岸・海洋', 'quiz_question_ids': ['61', '106', '87', '123', '73', '90', '63', '2016_河川、砂防及び海岸・海洋_7', '14', '336'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'トンネル'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'tunnel_1754749294', 'quiz_dept_id': 'tunnel', 'quiz_dept_name': 'トンネル', 'quiz_question_ids': ['2016_トンネル_0', '231', '141', '8', '150', '254', '228', '234', '11', '224'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'道路'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'road_1754749379', 'quiz_dept_id': 'road', 'quiz_dept_name': '道路', 'quiz_question_ids': ['2', '23', '2016_道路_2', '27', '2016_道路_4', '17', '5', '22', '13', '7'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'道路'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'road_1754749381', 'quiz_dept_id': 'road', 'quiz_dept_name': '道路', 'quiz_question_ids': ['3', '21', '8', '7', '20', '18', '2', '11', '1', '8'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'道路'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'road_1754749382', 'quiz_dept_id': 'road', 'quiz_dept_name': '道路', 'quiz_question_ids': ['13', '15', '3', '7', '4', '17', '8', '2016_道路_7', '19', '23'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問127.0.0.1 - - [09/Aug/2025 23:23:04] "GET /quiz/road HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:05] "GET /quiz/road HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:06] "GET /quiz/road HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:07] "GET /quiz/road HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:08] "GET /quiz/road HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:09] "GET /quiz/road HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:10] "GET /quiz/road HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:11] "GET /quiz/river HTTP/1.1" 200 -
+
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'道路'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'road_1754749384', 'quiz_dept_id': 'road', 'quiz_dept_name': '道路', 'quiz_question_ids': ['14', '1', '29', '15', '41', '20', '11', '12', '2016_道路_8', '2016_道路_9'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'道路'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'road_1754749385', 'quiz_dept_id': 'road', 'quiz_dept_name': '道路', 'quiz_question_ids': ['21', '28', '8', '12', '2016_道路_4', '4', '18', '14', '16', '4'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'道路'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'road_1754749386', 'quiz_dept_id': 'road', 'quiz_dept_name': '道路', 'quiz_question_ids': ['12', '4', '11', '17', '4', '2016_道路_5', '3', '3', '9', '27'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'道路'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'road_1754749387', 'quiz_dept_id': 'road', 'quiz_dept_name': '道路', 'quiz_question_ids': ['22', '22', '10', '5', '18', '13', '18', '28', '21', '17'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'道路'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'road_1754749388', 'quiz_dept_id': 'road', 'quiz_dept_name': '道路', 'quiz_question_ids': ['12', '5', '2016_道路_2', '23', '10', '37', '17', '22', '1', '15'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'道路'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'road_1754749389', 'quiz_dept_id': 'road', 'quiz_dept_name': '道路', 'quiz_question_ids': ['40', '23', '22', '19', '3', '7', '4', '24', '16', '7'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'道路'で339問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'road_1754749390', 'quiz_dept_id': 'road', 'quiz_dept_name': '道路', 'quiz_question_ids': ['17', '25', '13', '1', '11', '12', '2016_道路_6', '14', '24', '3'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'河川、砂防及び海岸・海洋'で351問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'river_1754749391', 'quiz_dept_id': 'river', 'quiz_dept_name': '河川、砂防及び海岸・海洋', 'quiz_question_ids': ['69', '2016_河川、砂防及び海岸・海洋_1', '345', '350', '99', '96', '90', '73', '85', '63'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'河川、砂防及び海岸・海洋'で351問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'river_1754749392', 'quiz_dept_id': 'river', 'quiz_dept_name': '河川、砂防及び海岸・海洋', 'quiz_question_ids': ['83', '2016_河川、砂防及び海岸・海洋_1', '2016_河川、砂防及び海岸・海洋_2', '100', '81', '114', '90', '430', '2016_河川、砂防及び海岸・海洋_8', '422'], 'quiz_current': 0, 'quiz_answers': []}127.0.0.1 - - [09/Aug/2025 23:23:12] "GET /quiz/river HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:13] "GET /quiz/river HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:14] "GET /quiz/river HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:15] "GET /quiz/river HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:16] "GET /quiz/urban HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:17] "GET /quiz/urban HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:18] "GET /quiz/urban HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:19] "GET /quiz/urban HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2025 23:23:20] "GET /quiz/urban HTTP/1.1" 200 -
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'河川、砂防及び海岸・海洋'で351問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'river_1754749393', 'quiz_dept_id': 'river', 'quiz_dept_name': '河川、砂防及び海岸・海洋', 'quiz_question_ids': ['89', '86', '65', '83', '71', '440', '78', '80', '36', '108'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'河川、砂防及び海岸・海洋'で351問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'river_1754749394', 'quiz_dept_id': 'river', 'quiz_dept_name': '河川、砂防及び海岸・海洋', 'quiz_question_ids': ['82', '50', '88', '2016_河川、砂防及び海岸・海洋_3', '89', '2016_河川、砂防及び海岸・海洋_5', '61', '64', '2016_河川、砂防及び海岸・海洋_8', '99'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'河川、砂防及び海岸・海洋'で351問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'river_1754749395', 'quiz_dept_id': 'river', 'quiz_dept_name': '河川、砂防及び海岸・海洋', 'quiz_question_ids': ['72', '61', '85', '87', '345', '94', '6', '74', '42', '88'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'都市計画及び地方計画'で344問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'urban_1754749396', 'quiz_dept_id': 'urban', 'quiz_dept_name': '都市計画及び地方計画', 'quiz_question_ids': ['162', '286', '245', '304', '324', '2016_都市計画及び地方計画_5', '270', '271', '292', '272'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'都市計画及び地方計画'で344問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'urban_1754749397', 'quiz_dept_id': 'urban', 'quiz_dept_name': '都市計画及び地方計画', 'quiz_question_ids': ['283', '203', '157', '300', '209', '19', '262', '283', '162', '265'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'都市計画及び地方計画'で344問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'urban_1754749398', 'quiz_dept_id': 'urban', 'quiz_dept_name': '都市計画及び地方計画', 'quiz_question_ids': ['311', '299', '310', '252', '290', '164', '18', '6', '15', '205'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'都市計画及び地方計画'で344問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'urban_1754749399', 'quiz_dept_id': 'urban', 'quiz_dept_name': '都市計画及び地方計画', 'quiz_question_ids': ['276', '243', '331', '219', '291', '262', '2016_都市計画及び地方計画_6', '333', '297', '220'], 'quiz_current': 0, 'quiz_answers': []}
+OK: data/4-2_2008.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2009.csv 読み込み成功 (utf-8) - 359問
+OK: data/4-2_2010.csv 読み込み成功 (utf-8) - 239問
+OK: data/4-2_2011.csv 読み込み成功 (utf-8) - 360問
+OK: data/4-2_2012.csv 読み込み成功 (utf-8) - 307問
+OK: data/4-2_2013.csv 読み込み成功 (utf-8) - 320問
+OK: data/4-2_2014.csv 読み込み成功 (utf-8) - 240問
+OK: data/4-2_2015.csv 読み込み成功 (utf-8) - 358問
+OK: data/4-2_2016.csv 読み込み成功 (utf-8) - 361問
+OK: data/4-2_2017.csv 読み込み成功 (utf-8) - 440問
+OK: data/4-2_2018.csv 読み込み成功 (utf-8) - 357問
+OK: data/4-2_2019.csv 読み込み成功 (utf-8) - 356問
+成功: 部門'都市計画及び地方計画'で344問取得
+DEBUG: セッション初期化完了 - session_id作成
+DEBUG: 初期セッション内容 = {'_permanent': True, 'session_id': 'urban_1754749400', 'quiz_dept_id': 'urban', 'quiz_dept_name': '都市計画及び地方計画', 'quiz_question_ids': ['300', '320', '321', '314', '269', '286', '284', '313', '304', '307'], 'quiz_current': 0, 'quiz_answers': []}
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\simple_test.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\utils.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\utils.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\utils.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app.py', reloading
+RCCM軽量版テストサーバー起動
+目的: 13部門（基礎科目+12専門部門）問題混在の修正確認
+対応部門: 基礎科目（4-1.csv）+ 12専門部門（4-2_*.csv）
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777

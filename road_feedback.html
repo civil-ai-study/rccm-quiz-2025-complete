@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>道路 - 問題2/10</title>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: "MS Gothic", monospace; margin: 20px; }
+        .question { background: #f9f9f9; padding: 15px; margin: 10px 0; }
+        .options { margin: 10px 0; }
+        .option { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>道路</h1>
+    <p>問題 2/10</p>
+    
+    <div class="question">
+        <h3>設計車両に関する記述のうち、誤っているものを選びなさい。</h3>
+    </div>
+    
+    <form method="POST" action="/quiz">
+        <div class="options">
+            <div class="option">
+                <input type="radio" name="answer" value="A" id="a">
+                <label for="a">A. 設計車両の諸元は車両制限令、道路運送車両の保安基準、道路交通法による基準の最大寸法の車両をもとに定めている</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="B" id="b">
+                <label for="b">B. 小型自動車の長さは道路運送車両法による最大の値4.7mを用いている</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="C" id="c">
+                <label for="c">C. フルトレーラ連結車よりセミトレーラ連結車の方が回転時の占有幅が大きいことから、セミトレーラ連結車の長さとして16.5mを用いている</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="D" id="d">
+                <label for="d">D. 背高コンテナについては、昭和60年４月より指定経路で輸送可能となり、これを考慮してセミトレーラ連結車の高さは4.1mとしている</label>
+            </div>
+        </div>
+        <button type="submit">回答する</button>
+    </form>
+    
+    <hr>
+    <p><small>
+        出典: 4-2_2010.csv (2010年)<br>
+        カテゴリ: 道路
+    </small></p>
+</body>
+</html>

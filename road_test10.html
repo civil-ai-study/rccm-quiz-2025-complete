@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>道路 - 問題1/10</title>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: "MS Gothic", monospace; margin: 20px; }
+        .question { background: #f9f9f9; padding: 15px; margin: 10px 0; }
+        .options { margin: 10px 0; }
+        .option { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>道路</h1>
+    <p>問題 1/10</p>
+    
+    <div class="question">
+        <h3>道路標識に関する記述のうち、誤っているものはどれか。</h3>
+    </div>
+    
+    <form method="POST" action="/quiz">
+        <div class="options">
+            <div class="option">
+                <input type="radio" name="answer" value="A" id="a">
+                <label for="a">A. 案内標識は目的地までの方向や距離を示す。</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="B" id="b">
+                <label for="b">B. 警戒標識は道路上の危険を予告する。</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="C" id="c">
+                <label for="c">C. 規制標識は通行の禁止や制限を表示する。</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="D" id="d">
+                <label for="d">D. 指示標識は通行方法を指定する。</label>
+            </div>
+        </div>
+        <button type="submit">回答する</button>
+    </form>
+    
+    <hr>
+    <p><small>
+        出典: 4-2_2009.csv (2009年)<br>
+        カテゴリ: 道路
+    </small></p>
+</body>
+</html>

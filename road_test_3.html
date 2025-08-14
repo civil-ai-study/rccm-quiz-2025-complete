@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>道路 - 問題1/10</title>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: "MS Gothic", monospace; margin: 20px; }
+        .question { background: #f9f9f9; padding: 15px; margin: 10px 0; }
+        .options { margin: 10px 0; }
+        .option { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>道路</h1>
+    <p>問題 1/10</p>
+    
+    <div class="question">
+        <h3>登坂車線に関する記述のうち、誤っているものはどれか。</h3>
+    </div>
+    
+    <form method="POST" action="/quiz">
+        <div class="options">
+            <div class="option">
+                <input type="radio" name="answer" value="A" id="a">
+                <label for="a">A. 普通道路の縦断勾配が5%(高速自動車国道および高速自動車国道以外の設計速度が80km/h以上の道路では3%)を超える車道には、必要に応じて登坂車線を設置する。</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="B" id="b">
+                <label for="b">B. 第1種のような高速連続運転が行われる道路では、高い許容最低速度を用いて設置区間を設定した方が望ましい。</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="C" id="c">
+                <label for="c">C. 登坂車線の幅員は、3.0mとする。また、第1種、第2種の道路においては、本線との間に側帯相当幅を設ける。</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="D" id="d">
+                <label for="d">D. 長区間に登坂車線を設置する場合は、必要に応じて非常駐車帯を設置する必要がある。</label>
+            </div>
+        </div>
+        <button type="submit">回答する</button>
+    </form>
+    
+    <hr>
+    <p><small>
+        出典: 4-2_2017.csv (2017年)<br>
+        カテゴリ: 道路
+    </small></p>
+</body>
+</html>

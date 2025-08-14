@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>問題 1/10 - 道路</title>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .question-header { background: #f8f9fa; padding: 20px; margin-bottom: 20px; }
+        .question-text { font-size: 1.1em; margin-bottom: 20px; }
+        .options { list-style: none; padding: 0; }
+        .option { margin: 10px 0; }
+        .option input { margin-right: 10px; }
+        .submit-btn { 
+            background: #007bff; 
+            color: white; 
+            padding: 15px 30px; 
+            border: none; 
+            border-radius: 5px; 
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        .submit-btn:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="question-header">
+        <h1>道路</h1>
+        <h2>問題 1 / 10</h2>
+    </div>
+    
+    <div class="question-text">
+        <p>剛性パイプカルバートの埋設形式で、突出型とならないものはどれか。</p>
+    </div>
+    
+    <form method="POST">
+        <ul class="options">
+            <li class="option">
+                <input type="radio" name="answer" value="A" id="option_a" required>
+                <label for="option_a">A. 直接地盤またはよく締固めた地盤上に設置する場合</label>
+            </li>
+            <li class="option">
+                <input type="radio" name="answer" value="B" id="option_b" required>
+                <label for="option_b">B. 溝掘りした後管が杭で支持される場合</label>
+            </li>
+            <li class="option">
+                <input type="radio" name="answer" value="C" id="option_c" required>
+                <label for="option_c">C. 溝掘りした後管上での溝幅が管の外径の1.5倍以上ある場合</label>
+            </li>
+            <li class="option">
+                <input type="radio" name="answer" value="D" id="option_d" required>
+                <label for="option_d">D. 溝掘りした後原地盤からの土かぶりが管上での溝幅の1/2以下の場合</label>
+            </li>
+        </ul>
+        
+        <input type="submit" value="回答する" class="submit-btn">
+    </form>
+    
+    <hr>
+    <p><a href="/">← トップページに戻る</a></p>
+</body>
+</html>

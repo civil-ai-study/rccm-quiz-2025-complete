@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\ABC\Desktop\rccm-quiz-app\rccm-quiz-app\app_emergency_fix.py", line 442, in <module>
+    print("\U0001f525 RCCM緊急修正版サーバー起動")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\U0001f525' in position 0: illegal multibyte sequence

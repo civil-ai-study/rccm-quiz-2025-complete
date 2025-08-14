@@ -1,13 +1,16 @@
+# ULTRA SYNC COMPLETE DEPENDENCIES - ALL ERRORS FIXED
 Flask==3.0.0
 gunicorn==23.0.0
 Werkzeug==3.0.1
 Jinja2==3.1.2
 Flask-WTF==1.2.1
 
-# ULTRA SYNC PRODUCTION DEPLOYMENT OPTIMIZATION
-# Minimal dependencies for Render.com free tier
-# Memory usage optimized for deployment constraints
-
-# Essential only
+# Missing critical dependencies that caused multiple deployment failures
+psutil==5.9.8
+redis==5.0.1
 python-dotenv==1.1.0
 pytz==2024.1
+
+# Optional dependencies with fallback handling in code
+# redis-py-cluster (handled with try/except)
+# exam_simulator (handled with try/except)

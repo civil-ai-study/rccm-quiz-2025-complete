@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>道路 - 問題1/10</title>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: "MS Gothic", monospace; margin: 20px; }
+        .question { background: #f9f9f9; padding: 15px; margin: 10px 0; }
+        .options { margin: 10px 0; }
+        .option { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>道路</h1>
+    <p>問題 1/10</p>
+    
+    <div class="question">
+        <h3>道路の設計速度に関する記述として、誤っているものをa～dのなかから選びなさい。</h3>
+    </div>
+    
+    <form method="POST" action="/quiz">
+        <div class="options">
+            <div class="option">
+                <input type="radio" name="answer" value="A" id="a">
+                <label for="a">A. 設計速度は、道路を設計する際に用いる自動車の速度で、道路の幾何構造の決定の基礎となるものである。</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="B" id="b">
+                <label for="b">B. 設計速度は、その道路を利用する自動車の実際の走行速度を表すものである。</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="C" id="c">
+                <label for="c">C. 設計速度は、道路の区分、地形、当該道路の存する地域の状況等を勘案して定める。</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="D" id="d">
+                <label for="d">D. 第1種道路の設計速度は、自動車専用道路としての機能を発揮するため、他の種別の道路より高く設定されている。</label>
+            </div>
+        </div>
+        <button type="submit">回答する</button>
+    </form>
+    
+    <hr>
+    <p><small>
+        出典: 4-2_2014.csv (2014年)<br>
+        カテゴリ: 道路
+    </small></p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+EMERGENCY: RCCM emergency fix server starting
+PURPOSE: Fix 9 department errors on production port 5005
+SUPPORT: Basic + 12 specialist departments
+ * Serving Flask app 'app_emergency_fix'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5005
+ * Running on http://192.168.0.69:5005
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app_emergency_fix.py', reloading
+EMERGENCY: RCCM emergency fix server starting
+PURPOSE: Fix 9 department errors on production port 5005
+SUPPORT: Basic + 12 specialist departments
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app_emergency_fix.py', reloading
+EMERGENCY: RCCM emergency fix server starting
+PURPOSE: Fix 9 department errors on production port 5005
+SUPPORT: Basic + 12 specialist departments
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777
+ * Detected change in 'C:\\Users\\ABC\\Desktop\\rccm-quiz-app\\rccm-quiz-app\\app_emergency_fix.py', reloading
+EMERGENCY: RCCM emergency fix server starting
+PURPOSE: Fix 9 department errors on emergency port 5006
+SUPPORT: Basic + 12 specialist departments
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 122-146-777

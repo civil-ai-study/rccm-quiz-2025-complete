@@ -1,0 +1,182 @@
+{
+  "road": {
+    "status": "success",
+    "question_content": "問題表示中にエラーが発生しました。詳細: &#39;csrf_token&#39; is undefined",
+    "analysis": {
+      "expected_matches": 0,
+      "other_department_matches": {},
+      "likely_correct_department": false,
+      "potential_mixing": false
+    },
+    "session_info": {
+      "department": "road",
+      "category": "道路",
+      "question_count": 10
+    }
+  },
+  "river": {
+    "status": "success",
+    "question_content": "No question content found",
+    "analysis": {
+      "expected_matches": 0,
+      "other_department_matches": {},
+      "likely_correct_department": false,
+      "potential_mixing": false
+    },
+    "session_info": {
+      "department": "road",
+      "category": "道路",
+      "question_count": 10
+    }
+  },
+  "urban": {
+    "status": "success",
+    "question_content": "問題表示中にエラーが発生しました。詳細: &#39;csrf_token&#39; is undefined",
+    "analysis": {
+      "expected_matches": 0,
+      "other_department_matches": {},
+      "likely_correct_department": false,
+      "potential_mixing": false
+    },
+    "session_info": {
+      "department": "urban",
+      "category": "都市計画及び地方計画",
+      "question_count": 10
+    }
+  },
+  "garden": {
+    "status": "success",
+    "question_content": "問題表示中にエラーが発生しました。詳細: &#39;csrf_token&#39; is undefined",
+    "analysis": {
+      "expected_matches": 0,
+      "other_department_matches": {},
+      "likely_correct_department": false,
+      "potential_mixing": false
+    },
+    "session_info": {
+      "department": "garden",
+      "category": "造園",
+      "question_count": 10
+    }
+  },
+  "env": {
+    "status": "success",
+    "question_content": "問題表示中にエラーが発生しました。詳細: &#39;csrf_token&#39; is undefined",
+    "analysis": {
+      "expected_matches": 0,
+      "other_department_matches": {},
+      "likely_correct_department": false,
+      "potential_mixing": false
+    },
+    "session_info": {
+      "department": "env",
+      "category": "建設環境",
+      "question_count": 10
+    }
+  },
+  "steel": {
+    "status": "success",
+    "question_content": "問題表示中にエラーが発生しました。詳細: &#39;csrf_token&#39; is undefined",
+    "analysis": {
+      "expected_matches": 0,
+      "other_department_matches": {},
+      "likely_correct_department": false,
+      "potential_mixing": false
+    },
+    "session_info": {
+      "department": "steel",
+      "category": "鋼構造及びコンクリート",
+      "question_count": 10
+    }
+  },
+  "soil": {
+    "status": "success",
+    "question_content": "問題表示中にエラーが発生しました。詳細: &#39;csrf_token&#39; is undefined",
+    "analysis": {
+      "expected_matches": 0,
+      "other_department_matches": {},
+      "likely_correct_department": false,
+      "potential_mixing": false
+    },
+    "session_info": {
+      "department": "soil",
+      "category": "土質及び基礎",
+      "question_count": 10
+    }
+  },
+  "construction": {
+    "status": "success",
+    "question_content": "問題表示中にエラーが発生しました。詳細: &#39;csrf_token&#39; is undefined",
+    "analysis": {
+      "expected_matches": 0,
+      "other_department_matches": {},
+      "likely_correct_department": false,
+      "potential_mixing": false
+    },
+    "session_info": {
+      "department": "construction",
+      "category": "施工計画、施工設備及び積算",
+      "question_count": 10
+    }
+  },
+  "water": {
+    "status": "success",
+    "question_content": "問題表示中にエラーが発生しました。詳細: &#39;csrf_token&#39; is undefined",
+    "analysis": {
+      "expected_matches": 0,
+      "other_department_matches": {},
+      "likely_correct_department": false,
+      "potential_mixing": false
+    },
+    "session_info": {
+      "department": "water",
+      "category": "上水道及び工業用水道",
+      "question_count": 10
+    }
+  },
+  "forest": {
+    "status": "success",
+    "question_content": "問題表示中にエラーが発生しました。詳細: &#39;csrf_token&#39; is undefined",
+    "analysis": {
+      "expected_matches": 0,
+      "other_department_matches": {},
+      "likely_correct_department": false,
+      "potential_mixing": false
+    },
+    "session_info": {
+      "department": "forest",
+      "category": "森林土木",
+      "question_count": 10
+    }
+  },
+  "agri": {
+    "status": "success",
+    "question_content": "問題表示中にエラーが発生しました。詳細: &#39;csrf_token&#39; is undefined",
+    "analysis": {
+      "expected_matches": 0,
+      "other_department_matches": {},
+      "likely_correct_department": false,
+      "potential_mixing": false
+    },
+    "session_info": {
+      "department": "agri",
+      "category": "農業土木",
+      "question_count": 10
+    }
+  },
+  "tunnel": {
+    "status": "success",
+    "question_content": "問題表示中にエラーが発生しました。詳細: &#39;csrf_token&#39; is undefined",
+    "analysis": {
+      "expected_matches": 0,
+      "other_department_matches": {},
+      "likely_correct_department": false,
+      "potential_mixing": false
+    },
+    "session_info": {
+      "department": "tunnel",
+      "category": "トンネル",
+      "question_count": 10
+    }
+  }
+}

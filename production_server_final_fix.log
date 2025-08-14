@@ -1,0 +1,43 @@
+2025-08-08 23:26:01,533 - __main__ - INFO - \U0001f50d Ultra Sync Memory Optimizer ‰Šú‰»Š®—¹
+2025-08-08 23:26:01,536 - memory_leak_monitor - INFO - Memory Leak Monitor initialized
+2025-08-08 23:26:01,635 - memory_leak_monitor - INFO - Memory leak monitoring started
+2025-08-08 23:26:01,829 - memory_leak_monitor - INFO - Memory leak monitoring initialized successfully
+2025-08-08 23:26:01,830 - __main__ - INFO - \U0001f50d Memory Leak Monitor ‰Šú‰»Š®—¹
+2025-08-08 23:26:01,831 - __main__ - INFO - \U0001f525 Ultra Sync Unified Session Manager ‰Šú‰»€”õŠ®—¹
+2025-08-08 23:26:01,832 - __main__ - INFO - \U0001f4ca Ultra Sync Performance Optimizer ‰Šú‰»Š®—¹
+2025-08-08 23:26:01,835 - __main__ - INFO - \U0001f6e1\ufe0f Ultra Sync Error Loop Prevention System ‰Šú‰»Š®—¹
+2025-08-08 23:26:01,838 - redis_cache - WARNING - \u26a0\ufe0f Redis/Flask-Caching not available. Using in-memory fallback.
+2025-08-08 23:26:01,839 - redis_cache - INFO - \U0001f504 Using in-memory cache fallback
+2025-08-08 23:26:01,839 - __main__ - INFO - \u26a1 Redis Cache‰Šú‰»Š®—¹ - CSV“Ç‚İ‚İ‚‘¬‰»—LŒø
+2025-08-08 23:26:01,840 - __main__ - INFO - \U0001f6e1\ufe0f CSRF•ÛŒì‚ª—LŒø‰»‚³‚ê‚Ü‚µ‚½
+2025-08-08 23:26:01,841 - __main__ - INFO - \U0001f6e1\ufe0f CSRFƒg[ƒNƒ“ŠÖ”‚ğƒeƒ“ƒvƒŒ[ƒgƒRƒ“ƒeƒLƒXƒg‚É’Ç‰Á‚µ‚Ü‚µ‚½
+2025-08-08 23:26:01,841 - __main__ - INFO - \U0001f6e1\ufe0f SECURITY CONFIG: SECRET_KEY set: True
+2025-08-08 23:26:01,841 - __main__ - INFO - \U0001f6e1\ufe0f SECURITY CONFIG: CSRF enabled: True
+2025-08-08 23:26:01,841 - __main__ - INFO - \U0001f6e1\ufe0f SECURITY CONFIG: Cookie secure: False
+2025-08-08 23:26:01,841 - __main__ - INFO - \U0001f6e1\ufe0f SECURITY CONFIG: Cookie httponly: True
+2025-08-08 23:26:01,842 - __main__ - INFO - \U0001f6e1\ufe0f SECURITY CONFIG: Cookie samesite: Lax
+2025-08-08 23:26:01,842 - __main__ - INFO - \u2705 ƒZƒLƒ…ƒŠƒeƒBİ’èŠm”FŠ®—¹
+2025-08-08 23:26:01,842 - __main__ - INFO - \U0001f525 Ultra Sync Unified Session Manager ‰Šú‰»Š®—¹
+2025-08-08 23:26:01,846 - __main__ - INFO - \U0001f50d Memory Leak Monitoring routes registered successfully
+2025-08-08 23:26:01,847 - __main__ - INFO - \U0001f525 Unified Session Manager routes automatically registered
+2025-08-08 23:26:01,847 - __main__ - INFO - \U0001f6e1\ufe0f Ultra Sync unified error handlers registered successfully
+2025-08-08 23:26:01,971 - __main__ - INFO - \U0001f680 ƒEƒ‹ƒgƒ‰‚‘¬‹N“®ƒ‚[ƒh: ’x‰„“Ç‚İ‚İ—LŒø
+2025-08-08 23:26:01,974 - __main__ - INFO - \u2705 ƒEƒ‹ƒgƒ‰‚‘¬‹N“®Š®—¹ - ƒf[ƒ^‚Í•K—v‚É“Ç‚İ‚Ü‚ê‚Ü‚·
+2025-08-08 23:26:01,981 - __main__ - INFO - \u2705 ŠJ”­ƒ‚[ƒh: ŠO•”URLƒAƒNƒZƒX‘Î‰Ï‚İ
+2025-08-08 23:26:01,981 - __main__ - INFO - \u26a1 ‚‘¬‹N“®ƒ‚[ƒhiƒf[ƒ^“Ç‚İ‚İ‚Í‰‰ñƒAƒNƒZƒX‚ÉÀsj
+2025-08-08 23:26:01,981 - __main__ - INFO - \u2705 ‹N“®€”õŠ®—¹ - URLƒAƒNƒZƒX‰Â”\‚Å‚·
+2025-08-08 23:26:01,981 - __main__ - INFO - \U0001f680 RCCMŒ±–â‘èWƒAƒvƒŠƒP[ƒVƒ‡ƒ“‹N“®’†...
+2025-08-08 23:26:01,981 - __main__ - INFO - \U0001f310 ƒƒCƒ“ƒAƒNƒZƒXURL: http://localhost:5005
+2025-08-08 23:26:01,982 - __main__ - INFO - \U0001f30d ŠO•”ƒAƒNƒZƒXURL: http://<‚ ‚È‚½‚ÌIPƒAƒhƒŒƒX>:5005
+2025-08-08 23:26:01,982 - __main__ - INFO - \u2705 URL‚ğƒuƒ‰ƒEƒU‚ÌƒAƒhƒŒƒXƒo[‚ÉƒRƒs[&ƒy[ƒXƒg‚µ‚ÄƒAƒNƒZƒX
+2025-08-08 23:26:01,982 - __main__ - INFO - \U0001f4a1 ‹N“®Œã‚·‚®‚ÉƒAƒNƒZƒX‰Â”\‚Å‚·iƒf[ƒ^“Ç‚İ‚İ‚Í‰‰ñƒAƒNƒZƒXj
+2025-08-08 23:26:01,982 - __main__ - INFO - \U0001f680 RCCM Ready - Host: 0.0.0.0, Port: 5005
+2025-08-08 23:26:01,982 - __main__ - INFO - \U0001f6e1\ufe0f ŠJ”­ƒ‚[ƒh: ƒZƒLƒ…ƒŠƒeƒBİ’è‚Å‹N“®
+2025-08-08 23:26:01,982 - __main__ - INFO - \U0001f4da –{”ÔŠÂ‹«ƒfƒvƒƒC•û–@: DEPLOYMENT.md ‚ğQÆ
+ * Serving Flask app 'app'
+ * Debug mode: on
+2025-08-08 23:26:02,097 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5005
+ * Running on http://192.168.0.69:5005
+2025-08-08 23:26:02,098 - werkzeug - INFO - [33mPress CTRL+C to quit[0m

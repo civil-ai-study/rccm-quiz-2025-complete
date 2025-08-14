@@ -1,0 +1,12 @@
+RCCM ULTRATHIN軽量版テストサーバー起動
+目的: Cookie size limit解決 + セッション管理修正
+ * Serving Flask app 'app_lightweight_ultrathin'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5014
+ * Running on http://192.168.0.69:5014
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 129-128-550

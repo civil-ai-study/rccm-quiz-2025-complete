@@ -1,0 +1,32 @@
+{
+  "dependency_map": {
+    "LIGHTWEIGHT_DEPARTMENT_MAPPING": [],
+    "english_department_ids": [],
+    "url_routing_english": [],
+    "template_english_references": [
+      "('base.html', 'env', [(364, 'padding-left: max(1rem, env(safe-area-inset-left)) !important;'), (365, 'padding-right: max(1rem, env(safe-area-inset-right)) !important;'), (366, 'padding-bottom: max(1rem, env(safe-area-inset-bottom)) !important;')])",
+      "('enhanced_base.html', 'env', [(233, '<i class=\"fas fa-envelope me-1\"></i>お問い合わせ')])",
+      "('help.html', 'env', [(620, '<h3 class=\"mb-0\"><i class=\"fas fa-envelope me-2\"></i>📞 お問い合わせ・サポート</h3>')])",
+      "('help_updated.html', 'env', [(655, '<h5 class=\"text-info\"><i class=\"fas fa-envelope me-2\"></i>サポート窓口</h5>')])",
+      "('index.html', 'road', [(179, '<a href=\"/quiz/road\" class=\"dept-btn road\">'), (180, '<i class=\"fas fa-road\"></i>'), (396, '.dept-btn.road:hover { background: #059669; border-color: #059669; }')])",
+      "('index.html', 'river', [(183, '<a href=\"/quiz/river\" class=\"dept-btn river\">'), (397, '.dept-btn.river:hover { background: #0284c7; border-color: #0284c7; }')])",
+      "('index.html', 'urban', [(195, '<a href=\"/quiz/urban_planning\" class=\"dept-btn-small\">都市計画</a>')])",
+      "('index.html', 'env', [(197, '<a href=\"/quiz/construction_env\" class=\"dept-btn-small\">建設環境</a>')])",
+      "('index.html', 'steel', [(198, '<a href=\"/quiz/steel_concrete\" class=\"dept-btn-small\">鋼構造</a>')])",
+      "('index.html', 'soil', [(199, '<a href=\"/quiz/soil_foundation\" class=\"dept-btn-small\">土質基礎</a>')])",
+      "('index.html', 'construction', [(197, '<a href=\"/quiz/construction_env\" class=\"dept-btn-small\">建設環境</a>'), (200, '<a href=\"/quiz/construction_planning\" class=\"dept-btn-small\">施工計画</a>')])",
+      "('index.html', 'water', [(184, '<i class=\"fas fa-water\"></i>'), (201, '<a href=\"/quiz/water_supply\" class=\"dept-btn-small\">上水道</a>')])",
+      "('index.html', 'forest', [(202, '<a href=\"/quiz/forestry\" class=\"dept-btn-small\">森林土木</a>')])",
+      "('index.html', 'agri', [(203, '<a href=\"/quiz/agriculture\" class=\"dept-btn-small\">農業土木</a>')])",
+      "('index.html', 'tunnel', [(187, '<a href=\"/quiz/tunnel\" class=\"dept-btn tunnel\">'), (398, '.dept-btn.tunnel:hover { background: #d97706; border-color: #d97706; }')])",
+      "('learning_plan.html', 'road', [(136, '<h6><i class=\"fas fa-road\"></i> 学習アプローチ</h6>')])"
+    ],
+    "javascript_english_ids": [],
+    "config_english_mappings": [
+      "(95, 'road', \"'road': {\")"
+    ]
+  },
+  "modification_plan": [],
+  "analysis_timestamp": "2025-08-11T15:20:00+09:00",
+  "total_dependencies": 17
+}

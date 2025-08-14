@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>道路 - 問題1/10</title>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: "MS Gothic", monospace; margin: 20px; }
+        .question { background: #f9f9f9; padding: 15px; margin: 10px 0; }
+        .options { margin: 10px 0; }
+        .option { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>道路</h1>
+    <p>問題 1/10</p>
+    
+    <div class="question">
+        <h3>平面交差点に関する記述のうち、誤っているものはどれか。</h3>
+    </div>
+    
+    <form method="POST" action="/quiz">
+        <div class="options">
+            <div class="option">
+                <input type="radio" name="answer" value="A" id="a">
+                <label for="a">A. 設計交通量を飽和交通流率で除した値を需要率といいその交通量を捌くのに必要なスプリットに相当する</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="B" id="b">
+                <label for="b">B. 飽和交通流率は流入部において交通需要が十分に存在する状態で単位時間当たりに通過しうる最大の車両数であり理想的な状態では2200台車線青1時間とされる</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="C" id="c">
+                <label for="c">C. 発進損失とクリアランス損失の2種類の損失時間の和を現示毎に合計した値を1サイクル当たりの損失時間という</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="answer" value="D" id="d">
+                <label for="d">D. 現示の需要率は各現示における最大の需要率であり各現示の需要率の合計値が交差点の需要率でこれが0.9を超えると設計交通量を捌くことが出来なくなる</label>
+            </div>
+        </div>
+        <button type="submit">回答する</button>
+    </form>
+    
+    <hr>
+    <p><small>
+        出典: 4-2_2008.csv (2008年)<br>
+        カテゴリ: 道路
+    </small></p>
+</body>
+</html>
