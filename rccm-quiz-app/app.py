@@ -4152,14 +4152,34 @@ def exam():
             requested_question_type = 'specialist'
             logger.info(f"ULTRA SYNC: 部門指定により専門科目に自動設定 - {requested_department}")
             
-        # FIRE CRITICAL FIX: 部門指定時のカテゴリ自動設定（ウルトラシンク）
+        # 🎯 CLAUDE.md準拠緊急修正: 英語ID変換システム廃止・日本語カテゴリ直接使用
         if requested_department and requested_category == '全体':
-            # 部門IDからカテゴリ日本語名を取得
-            if requested_department in LIGHTWEIGHT_DEPARTMENT_MAPPING:
-                requested_category = LIGHTWEIGHT_DEPARTMENT_MAPPING[requested_department]
-                logger.info(f"🚨 ULTRA SYNC: 部門指定によりカテゴリ自動設定 {requested_department} → {requested_category}")
+            # ❌ NEVER: LIGHTWEIGHT_DEPARTMENT_MAPPING等の英語→日本語変換システム
+            # ✅ YOU MUST: CSVファイルの日本語カテゴリを直接使用
+            
+            # トンネル部門修正用：英語IDから日本語カテゴリへの直接マッピング
+            emergency_direct_mapping = {
+                'tunnel': 'トンネル',  # 🎯 トンネル部門修正の核心
+                'road': '道路',
+                'river': '河川、砂防及び海岸・海洋',
+                'urban': '都市計画及び地方計画',
+                'garden': '造園',
+                'env': '建設環境',
+                'steel': '鋼構造及びコンクリート',
+                'soil': '土質及び基礎',
+                'construction': '施工計画、施工設備及び積算',
+                'water': '上水道及び工業用水道',
+                'forest': '森林土木',
+                'agri': '農業土木',
+                'basic': '基礎科目（共通）'
+            }
+            
+            # 日本語カテゴリ取得（CLAUDE.md準拠）
+            if requested_department in emergency_direct_mapping:
+                requested_category = emergency_direct_mapping[requested_department]
+                logger.info(f"🎯 CLAUDE.md準拠: 部門指定によりカテゴリ自動設定 {requested_department} → {requested_category}")
             else:
-                logger.warning(f"WARNING 未知の部門ID: {requested_department}")
+                logger.warning(f"⚠️ WARNING CLAUDE.md準拠: 未知の部門ID: {requested_department}")
 
         # 年度パラメータの取得とサニタイズ
         requested_year = sanitize_input(request.args.get('year'))
@@ -5053,9 +5073,29 @@ def department_study(department):
             specialist_questions = basic_questions  # 基礎科目では基礎問題と専門問題は同じ
             specialist_history = basic_history
         else:
-            # 部門キーを日本語カテゴリに変換（グローバル定数使用）
-            target_category = LIGHTWEIGHT_DEPARTMENT_MAPPING.get(department_key, department_key)
-
+            # 🎯 CLAUDE.md準拠：英語ID変換システム廃止・日本語カテゴリ直接使用
+            # ❌ NEVER: LIGHTWEIGHT_DEPARTMENT_MAPPING等の英語→日本語変換システム
+            # ✅ YOU MUST: CSVファイルの日本語カテゴリを直接使用
+            
+            # 英語IDから日本語カテゴリへの直接マッピング（一時的互換性確保）
+            direct_category_mapping = {
+                'tunnel': 'トンネル',
+                'road': '道路', 
+                'river': '河川、砂防及び海岸・海洋',
+                'urban': '都市計画及び地方計画',
+                'garden': '造園',
+                'env': '建設環境',
+                'steel': '鋼構造及びコンクリート',
+                'soil': '土質及び基礎',
+                'construction': '施工計画、施工設備及び積算',
+                'water': '上水道及び工業用水道',
+                'forest': '森林土木',
+                'agri': '農業土木'
+            }
+            
+            # 日本語カテゴリ取得（CLAUDE.md準拠）
+            target_category = direct_category_mapping.get(department_key, department_key)
+            
             specialist_questions = [q for q in questions
                                     if q.get('question_type') == 'specialist' and q.get('category') == target_category]
             specialist_history = [h for h in session.get('history', [])
