@@ -108,80 +108,80 @@ class RCCMConfig:
             'icon': '🚇',
             'color': '#795548'
         },
-        'civil_planning': {
-            'id': 'civil_planning',
+        'river': {
+            'id': 'river',
             'name': '河川、砂防及び海岸・海洋',
             'full_name': '建設部門：河川、砂防及び海岸・海洋',
             'description': '河川工学、砂防工学、海岸・海洋工学に関する専門技術',
             'icon': '🌊',
             'color': '#2196F3'
         },
-        'urban_planning': {
-            'id': 'urban_planning',
+        'urban': {
+            'id': 'urban',
             'name': '都市計画及び地方計画',
             'full_name': '建設部門：都市計画及び地方計画',
             'description': '都市計画、地方計画に関する専門技術',
             'icon': '🏙️',
             'color': '#9C27B0'
         },
-        'landscape': {
-            'id': 'landscape',
+        'garden': {
+            'id': 'garden',
             'name': '造園',
             'full_name': '建設部門：造園',
             'description': '造園計画、設計、施工に関する専門技術',
             'icon': '🌸',
             'color': '#E91E63'
         },
-        'construction_env': {
-            'id': 'construction_env',
+        'env': {
+            'id': 'env',
             'name': '建設環境',
             'full_name': '建設部門：建設環境',
             'description': '建設環境、環境保全に関する専門技術',
             'icon': '🌱',
             'color': '#4CAF50'
         },
-        'steel_concrete': {
-            'id': 'steel_concrete',
+        'steel': {
+            'id': 'steel',
             'name': '鋼構造及びコンクリート',
             'full_name': '建設部門：鋼構造及びコンクリート',
             'description': '鋼構造、コンクリート構造に関する専門技術',
             'icon': '🏗️',
             'color': '#607D8B'
         },
-        'soil_foundation': {
-            'id': 'soil_foundation',
+        'soil': {
+            'id': 'soil',
             'name': '土質及び基礎',
             'full_name': '建設部門：土質及び基礎',
             'description': '土質工学、基礎工学に関する専門技術',
             'icon': '🪨',
             'color': '#8D6E63'
         },
-        'construction_planning': {
-            'id': 'construction_planning',
+        'construction': {
+            'id': 'construction',
             'name': '施工計画、施工設備及び積算',
             'full_name': '建設部門：施工計画、施工設備及び積算',
             'description': '施工計画、施工設備、積算に関する専門技術',
             'icon': '📋',
             'color': '#FF5722'
         },
-        'water_supply': {
-            'id': 'water_supply',
+        'water': {
+            'id': 'water',
             'name': '上水道及び工業用水道',
             'full_name': '建設部門：上水道及び工業用水道',
             'description': '上水道、工業用水道に関する専門技術',
             'icon': '💧',
             'color': '#00BCD4'
         },
-        'forestry': {
-            'id': 'forestry',
+        'forest': {
+            'id': 'forest',
             'name': '森林土木',
             'full_name': '建設部門：森林土木',
             'description': '森林土木、治山工事に関する専門技術',
             'icon': '🌲',
             'color': '#8BC34A'
         },
-        'agriculture': {
-            'id': 'agriculture',
+        'agri': {
+            'id': 'agri',
             'name': '農業土木',
             'full_name': '建設部門：農業土木',
             'description': '農業基盤整備に関する専門技術',

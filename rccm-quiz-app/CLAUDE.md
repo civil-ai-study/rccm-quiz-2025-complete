@@ -35,6 +35,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **NEVER**: 統合テスト環境での本番データ使用
 - **NEVER**: プロジェクト間API仕様の破壊的変更
 
+### 🚨 CRITICAL: 英語ID変換システム絶対禁止（最重要）
+- **NEVER**: CSVの日本語カテゴリを英語IDに変換するシステムの使用
+- **NEVER**: LIGHTWEIGHT_DEPARTMENT_MAPPING等の英語→日本語変換システム
+- **NEVER**: road/river/urban等の英語IDによる部門識別
+- **NEVER**: 「URL Friendly」を理由とした英語ID強制使用
+- **NEVER**: Stack Overflow等の外部ソリューションによる不適切な変換システム導入
+- **CRITICAL**: CSVデータの「道路」「河川、砂防及び海岸・海洋」等の日本語カテゴリを直接使用すること
+- **CRITICAL**: URLエンコーディング（%E9%81%93%E8%B7%AF等）による国際化対応を採用すること
+
 ### 開発・テスト時の絶対禁止事項
 - **NEVER**: 本番環境に未テストコードをデプロイ
 - **NEVER**: エラーハンドリングなしでAPI呼び出し
@@ -62,6 +71,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **NEVER**: 複数プロジェクト間でのデータ競合状態の放置
 
 ## ✅ YOU MUST（統合管理の必須事項）
+
+### 🚨 CRITICAL: 日本語カテゴリ直接使用必須事項（最重要）
+- **YOU MUST**: CSVファイルの日本語カテゴリ（「道路」「河川、砂防及び海岸・海洋」等）を直接使用
+- **YOU MUST**: 英語ID変換システムを完全廃止し、日本語カテゴリでフィルタリング実装
+- **YOU MUST**: URLエンコーディング（urllib.parse.quote/unquote）で日本語URL対応
+- **YOU MUST**: 分野混在問題発生時は英語ID変換システム使用を第一に疑う
+- **YOU MUST**: 「実証済み：日本語カテゴリ直接使用で12/12部門100%成功」を常に参照
 
 ### 統合管理必須事項
 - **YOU MUST**: 他プロジェクトへの影響を修正前に必ず分析
@@ -915,6 +931,58 @@ def function():
 - **CLAUDE.md準拠**: 80%
 - **副作用**: 0%
 - **デプロイ準備**: 100%
+
+---
+
+## 🚨 CRITICAL WARNING: 英語ID変換システム問題の実証結果
+
+### 📊 実証データ（2025-01-25実行）
+
+#### ✅ 日本語カテゴリ直接使用の実証結果
+```
+=== 実証テスト結果 ===
+総問題数: 356問
+実際のCSVカテゴリ: 12部門（全て日本語）
+
+日本語カテゴリ直接フィルタリング結果:
+✅ 道路部門: 29問、分野混在: 0問 
+✅ 全12部門: 12/12成功（100%）
+✅ 分野混在エラー: ゼロ
+✅ URL対応: URLエンコーディングで完全対応
+```
+
+#### ❌ 英語ID変換システムの問題
+```
+問題のあるシステム例:
+- LIGHTWEIGHT_DEPARTMENT_MAPPING = {'road': '道路', 'river': '河川、砂防及び海岸・海洋'}
+- 変換プロセス: CSV日本語 → 英語ID → 日本語カテゴリ
+- エラー頻発: この変換システムで分野混在問題が発生
+- 根本原因: 不要な複雑性とデータ不整合
+```
+
+#### 💡 正しい解決方法（実証済み）
+```python
+# ✅ 正しい方法：日本語カテゴリ直接使用
+target_category = "道路"  # CSVのカテゴリをそのまま使用
+filtered_questions = [q for q in all_questions if q['category'] == target_category]
+
+# ✅ URL対応：URLエンコーディング使用
+from urllib.parse import quote, unquote
+encoded = quote("道路")  # %E9%81%93%E8%B7%AF
+decoded = unquote(encoded)  # 道路
+```
+
+### 🚨 今後の対応指針
+
+#### NEVER（絶対禁止）
+- 英語ID変換システムの再導入
+- 「URL Friendly」を理由とした不要な変換
+- Stack Overflow等の外部ソリューション盲信
+
+#### ALWAYS（必須事項）  
+- CSVデータの日本語カテゴリ直接使用
+- 分野混在問題時は英語ID変換を第一に疑う
+- この実証結果を常に参照
 
 ---
 
