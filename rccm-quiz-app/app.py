@@ -4489,30 +4489,32 @@ def exam():
         # 現在の問題を取得
         current_question_id = exam_question_ids[current_no]
         logger.info(f"問題ID取得: current_no={current_no}, question_id={current_question_id}")
-        # EMERGENCY FIX 18: Enhanced question lookup with ID mapping support
+        
+        # CRITICAL FIX: Standard question lookup using CSV ID directly
         question = None
         
-        # First, try Emergency Fix 18 direct question mapping (for construction environment sessions)
-                # First, try Emergency Fix 19 optimized question lookup
-        if 'emergency_fix_19_storage_id' in session:
+        # Try direct CSV ID lookup first (standard sessions)
+        if isinstance(current_question_id, (int, str)):
+            question = next((q for q in all_questions if str(q.get('id', '')) == str(current_question_id)), None)
+            if question:
+                logger.info(f"SUCCESS: Question found via direct CSV ID lookup - ID {current_question_id}")
+        
+        # EMERGENCY FIX 19: Only for optimized storage sessions
+        if not question and 'emergency_fix_19_storage_id' in session:
             question = emergency_fix_19_get_question_by_sequential_id(str(current_question_id))
             if question:
                 logger.info(f"EMERGENCY FIX 19: Question found via optimized storage - sequential ID {current_question_id}")
         
-        # First, try Emergency Fix 19 optimized question lookup
-        if 'emergency_fix_19_storage_id' in session:
-            question = emergency_fix_19_get_question_by_sequential_id(str(current_question_id))
-            if question:
-                logger.info(f"EMERGENCY FIX 19: Question found via optimized storage - sequential ID {current_question_id}")
-        
-        # Fallback to Emergency Fix 18 direct question mapping
-        elif 'emergency_fix_18_questions' in session and str(current_question_id) in session['emergency_fix_18_questions']:
+        # EMERGENCY FIX 18: Only for construction environment sessions
+        if not question and 'emergency_fix_18_questions' in session and str(current_question_id) in session['emergency_fix_18_questions']:
             question = session['emergency_fix_18_questions'][str(current_question_id)]
             logger.info(f"EMERGENCY FIX 18: Question found via direct mapping - sequential ID {current_question_id}")
         
-        # If not found via Emergency Fix 18, try standard lookup
-        if not question:
-            question = next((q for q in all_questions if int(q.get('id', 0)) == current_question_id), None)
+        # Final fallback: Try integer conversion
+        if not question and isinstance(current_question_id, str) and current_question_id.isdigit():
+            question = next((q for q in all_questions if int(q.get('id', 0)) == int(current_question_id)), None)
+            if question:
+                logger.info(f"SUCCESS: Question found via integer conversion - ID {current_question_id}")
 
         if not question:
             logger.error(f"問題データ取得失敗: ID {current_question_id}, available_ids={[q.get('id') for q in all_questions[:5]]}")
@@ -10156,7 +10158,31 @@ def api_error_prevention_cleanup():
                 logger.warning("WARNING: Emergency Fix 21 - CSRF error, allowing construction environment to proceed")
                 return True
             return False
-    
+
+
+@app.route('/api/log_error', methods=['POST'])
+@csrf.exempt  # Exempt from CSRF for JavaScript error logging
+def log_error():
+    """JavaScript error logging endpoint for Ultra Sync Stage 3 error tracking"""
+    try:
+        # Handle both JSON and form data
+        if request.is_json:
+            error_data = request.get_json()
+        else:
+            error_data = request.form.to_dict()
+            
+        error_type = error_data.get('type', 'unknown')
+        message = error_data.get('message', 'No message')
+        filename = error_data.get('filename', 'unknown')
+        
+        # Log the JavaScript error for debugging
+        logger.warning(f"JavaScript Error - Type: {error_type}, Message: {message}, File: {filename}")
+        
+        return jsonify({'status': 'logged', 'success': True}), 200
+    except Exception as e:
+        logger.error(f"/api/log_error endpoint error: {e}")
+        return jsonify({'error': 'Logging failed', 'success': False}), 500
+
 
 if __name__ == '__main__':
     # SHIELD セキュリティ強化: 本番環境設定（元の設定を維持）
