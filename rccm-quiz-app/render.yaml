@@ -4,7 +4,7 @@ services:
     env: python
     plan: free
     buildCommand: cd rccm-quiz-app && pip install -r requirements.txt
-    startCommand: cd rccm-quiz-app && gunicorn --bind 0.0.0.0:$PORT --workers 1 --timeout 180 --preload app:app
+    startCommand: cd rccm-quiz-app && gunicorn --bind 0.0.0.0:$PORT --workers 1 --timeout 180 --preload wsgi:application
     envVars:
       - key: SECRET_KEY
         generateValue: true
