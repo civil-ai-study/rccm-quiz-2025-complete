@@ -12,7 +12,5 @@ services:
         value: production
       - key: RENDER
         value: "true"
-      - key: PYTHONPATH
-        value: ./rccm-quiz-app
     autoDeploy: true
     branch: master
