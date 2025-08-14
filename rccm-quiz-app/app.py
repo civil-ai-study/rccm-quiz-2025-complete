@@ -21,14 +21,22 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 from utils import load_questions_improved, DataLoadError, get_sample_data_improved, load_rccm_data_files
 from config import Config, ExamConfig, SRSConfig, DataConfig, RCCMConfig
 
-# EMERGENCY DATA LOADING FIX
+# EMERGENCY DATA LOADING FIX - PRODUCTION OPTIMIZED
 try:
     from utils import emergency_load_all_questions, emergency_get_questions
     EMERGENCY_DATA_FIX_AVAILABLE = True
-    print("SUCCESS: Emergency data loading functions imported successfully")
+    # Production optimization: Minimal logging only
+    if os.environ.get('FLASK_ENV') != 'production':
+        print("Emergency data loading functions imported successfully")
 except ImportError:
     EMERGENCY_DATA_FIX_AVAILABLE = False
-    print("WARNING: Emergency data loading functions not available")
+    # Create fallback functions for production stability
+    def emergency_load_all_questions():
+        return []
+    def emergency_get_questions(category, count=10):
+        return []
+    if os.environ.get('FLASK_ENV') != 'production':
+        print("Emergency data loading functions not available - using fallbacks")
 
 # Exam simulator import (fix for 10-question completion testing)
 try:
@@ -401,14 +409,18 @@ except ImportError as e:
         """Memory optimization decorator fallback (no-op when optimizer unavailable)"""
         return func
 
-# SEARCH ULTRA SYNC MEMORY LEAK MONITOR: 包括的メモリリーク監視システム初期化
+# SEARCH ULTRA SYNC MEMORY LEAK MONITOR: 包括的メモリリーク監視システム初期化 - PRODUCTION OPTIMIZED
 _memory_leak_monitor = None
-try:
-    from memory_leak_monitor import MemoryLeakMonitor, init_memory_monitoring, memory_monitoring_decorator, global_memory_monitor
-    _memory_leak_monitor = init_memory_monitoring(app=None, auto_start=True)  # app は後で設定
-    logger.info("SEARCH Memory Leak Monitor 初期化完了")
-except ImportError as e:
-    logger.warning(f"WARNING Memory Leak Monitor が見つかりません: {e}")
+if os.environ.get('FLASK_ENV') != 'production' and os.environ.get('ENABLE_MEMORY_MONITORING') == 'true':
+    try:
+        from memory_leak_monitor import MemoryLeakMonitor, init_memory_monitoring, memory_monitoring_decorator, global_memory_monitor
+        _memory_leak_monitor = init_memory_monitoring(app=None, auto_start=True)  # app は後で設定
+        logger.info("SEARCH Memory Leak Monitor 初期化完了")
+    except ImportError as e:
+        logger.warning(f"WARNING Memory Leak Monitor が見つかりません: {e}")
+        _memory_leak_monitor = None
+else:
+    # Production mode: Disable memory monitoring for performance
     _memory_leak_monitor = None
     
     # フォールバックデコレータ定義
@@ -417,13 +429,17 @@ except ImportError as e:
             return func
         return decorator
 
-# FIRE ULTRA SYNC UNIFIED SESSION MANAGER: 4システム統合版セッション管理
+# FIRE ULTRA SYNC UNIFIED SESSION MANAGER: 4システム統合版セッション管理 - PRODUCTION SAFE
 _unified_session_manager = None
-try:
-    from ultra_sync_unified_session_manager import unified_session_manager, init_unified_session_manager
-    logger.info("FIRE Ultra Sync Unified Session Manager 初期化準備完了")
-except ImportError as e:
-    logger.error(f"ERROR Ultra Sync Unified Session Manager が見つかりません: {e}")
+if os.environ.get('FLASK_ENV') != 'production':
+    try:
+        from ultra_sync_unified_session_manager import unified_session_manager, init_unified_session_manager
+        logger.info("FIRE Ultra Sync Unified Session Manager 初期化準備完了")
+    except ImportError as e:
+        logger.warning(f"Ultra Sync Unified Session Manager が見つかりません: {e}")
+        _unified_session_manager = None
+else:
+    # Production mode: Skip optional session manager
     _unified_session_manager = None
     
     # フォールバックデコレータ定義
@@ -432,17 +448,25 @@ except ImportError as e:
             return func
         return decorator
 
-# 📊 ULTRA SYNC PERFORMANCE FIX: Performance Optimizer 遅延初期化（logger初期化後）
+# 📊 ULTRA SYNC PERFORMANCE FIX: Performance Optimizer 遅延初期化（logger初期化後） - PRODUCTION SAFE
 _performance_optimizer = None
-try:
-    from ultra_sync_performance_optimization import UltraSyncPerformanceOptimizer, performance_timing_decorator as _performance_timing_decorator
-    _performance_optimizer = UltraSyncPerformanceOptimizer()
-    performance_timing_decorator = _performance_timing_decorator
-    logger.info("📊 Ultra Sync Performance Optimizer 初期化完了")
-except ImportError as e:
-    logger.warning(f"WARNING Ultra Sync Performance Optimizer が見つかりません - 基本機能のみ動作: {e}")
+if os.environ.get('FLASK_ENV') != 'production':
+    try:
+        from ultra_sync_performance_optimization import UltraSyncPerformanceOptimizer, performance_timing_decorator as _performance_timing_decorator
+        _performance_optimizer = UltraSyncPerformanceOptimizer()
+        performance_timing_decorator = _performance_timing_decorator
+        logger.info("📊 Ultra Sync Performance Optimizer 初期化完了")
+    except ImportError as e:
+        logger.warning(f"WARNING Ultra Sync Performance Optimizer が見つかりません - 基本機能のみ動作: {e}")
+        _performance_optimizer = None
+        # フォールバックデコレータ定義
+        def performance_timing_decorator(func):
+            return func
+else:
+    # Production mode: Skip performance optimizer, use fallback
     _performance_optimizer = None
-    # デコレーターはデフォルトのままで使用
+    def performance_timing_decorator(func):
+        return func
 
 # SHIELD ULTRA SYNC ERROR LOOP PREVENTION: エラーページ無限ループ防止システム初期化
 _error_loop_prevention = None

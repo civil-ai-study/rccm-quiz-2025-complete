@@ -3,12 +3,10 @@ gunicorn==23.0.0
 Werkzeug==3.0.1
 Jinja2==3.1.2
 
-# ULTRA SYNC EMERGENCY OPTIMIZATION
-# Heavy libraries (pandas, numpy) temporarily removed
-# Deploy speed priority - minimal configuration
+# ULTRA SYNC PRODUCTION DEPLOYMENT OPTIMIZATION
+# Minimal dependencies for Render.com free tier
+# Memory usage optimized for deployment constraints
 
-# Essential only - Deploy optimization
+# Essential only
 python-dotenv==1.1.0
 pytz==2024.1
-psutil==5.9.8
-requests==2.31.0
