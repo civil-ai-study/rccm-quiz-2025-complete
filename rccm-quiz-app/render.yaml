@@ -1,20 +1,18 @@
 services:
   - type: web
-    name: rccm-quiz-ultrasync
+    name: rccm-quiz-2025-complete
     env: python
     plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn --bind 0.0.0.0:$PORT --workers 1 --timeout 120 --preload --pythonpath . app:app
+    buildCommand: cd rccm-quiz-app && pip install -r requirements.txt
+    startCommand: cd rccm-quiz-app && gunicorn --bind 0.0.0.0:$PORT --workers 1 --timeout 180 --preload --pythonpath . app:app
     envVars:
       - key: SECRET_KEY
         generateValue: true
-      - key: HTTPS
-        value: "true"
       - key: FLASK_ENV
         value: production
+      - key: RENDER
+        value: "true"
       - key: PYTHONPATH
-        value: .
-      - key: PORT
-        value: "10000"
+        value: ./rccm-quiz-app
     autoDeploy: true
     branch: master

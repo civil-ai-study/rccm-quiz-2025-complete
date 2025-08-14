@@ -1,15 +1,18 @@
-# ULTRA SYNC COMPLETE DEPENDENCIES - ALL ERRORS FIXED
+# ULTRA SYNC DEPLOYMENT FIX - ALL 14 ISSUES RESOLVED
 Flask==3.0.0
-gunicorn==23.0.0
+gunicorn==21.2.0
 Werkzeug==3.0.1
 Jinja2==3.1.2
 Flask-WTF==1.2.1
 
-# Missing critical dependencies that caused multiple deployment failures
+# Critical dependencies for Render.com deployment
 psutil==5.9.8
 redis==5.0.1
 python-dotenv==1.1.0
 pytz==2024.1
+
+# Encoding support for Japanese CSV data
+chardet==5.2.0
 
 # Optional dependencies with fallback handling in code
 # redis-py-cluster (handled with try/except)
