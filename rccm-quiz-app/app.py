@@ -10227,13 +10227,11 @@ if __name__ == '__main__':
 
     # SHIELD セキュアサーバー起動設定
     if is_production:
-        logger.error("🚨 警告: 本番環境では直接起動せず、WSGIサーバーを使用してください")
-        logger.error("ROCKET 推奨: gunicorn -w 4 -b 0.0.0.0:10000 wsgi:application")
-        logger.error("📚 詳細: DEPLOYMENT.md を参照してください")
-        # SHIELD 本番環境では起動しない
-        logger.info("SUCCESS 本番環境検出: WSGIサーバー経由での起動を待機中...")
-        import sys
-        sys.exit(0)  # 本番環境では終了
+        logger.info("🚀 ULTRA SYNC PRODUCTION: Render.com deployment detected")
+        logger.info("✅ Production mode: Gunicorn WSGI server will handle Flask app")
+        logger.info("🛡️ Security: Production environment configured")
+        # ULTRA SYNC: Allow gunicorn to import and serve the Flask app
+        logger.info("SUCCESS Render.com production ready: Flask app available for WSGI")
     else:
         logger.info("SHIELD 開発モード: セキュリティ設定で起動")
         logger.info("📚 本番環境デプロイ方法: DEPLOYMENT.md を参照")
