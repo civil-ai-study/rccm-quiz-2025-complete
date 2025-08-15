@@ -73,14 +73,15 @@ import psutil
 _memory_optimizer = None
 # FIRE ULTRA SYNC FIX: memory_optimization_decorator はimport時に設定される
 
-# FIRE ULTRA SYNC UNICODE FIX: CP932エンコーディング問題対策
+# FIRE ULTRA SYNC UNICODE FIX: CP932エンコーディング問題対策（拡張版）
 def clean_unicode_for_cp932(text):
     """CP932でエンコードできない文字を安全な文字に置換"""
     if not text:
         return text
     
-    # よくある問題文字の置換マップ
+    # よくある問題文字の置換マップ（絵文字含む）
     replacements = {
+        # Unicode特殊文字
         '\u00b2': '²',  # 上付き2
         '\u00b3': '³',  # 上付き3
         '\u00bd': '1/2',  # 1/2分数
@@ -93,6 +94,25 @@ def clean_unicode_for_cp932(text):
         '\u201c': '"',   # 左ダブルクォート
         '\u201d': '"',   # 右ダブルクォート
         '\u2026': '...',  # 三点リーダー
+        # 絵文字マップを統合
+        '✅': '[OK]',
+        '❌': '[NG]', 
+        '🔍': '[検索]',
+        '🔧': '[工具]',
+        '⚡': '[電気]',
+        '📊': '[グラフ]',
+        '📋': '[クリップボード]',
+        '🎯': '[目標]',
+        '🏆': '[トロフィー]',
+        '🚀': '[ロケット]',
+        '🛡️': '[盾]',
+        '🎉': '[祝]',
+        '⚠️': '[警告]',
+        '🔥': '[火]',
+        '💡': '[電球]',
+        '📝': '[メモ]',
+        '🚨': '[緊急]',
+        '🌟': '[星]',
     }
     
     cleaned_text = text
@@ -130,6 +150,31 @@ def safe_log_session_content(session_dict, message="セッション内容"):
             except:
                 safe_dict[key] = f"<{type(value).__name__}>"
         logger.debug(f"{message} = {safe_dict}")
+
+def safe_print(*args, **kwargs):
+    """CP932安全なprint関数（Unicode問題回避）"""
+    import sys
+    try:
+        # 通常のprint実行を試行
+        print(*args, **kwargs)
+    except UnicodeEncodeError:
+        # エンコーディングエラーの場合は安全版を使用
+        safe_args = []
+        for arg in args:
+            if isinstance(arg, str):
+                # 文字列の場合はclean_unicode_for_cp932を適用
+                safe_args.append(clean_unicode_for_cp932(arg))
+            else:
+                safe_args.append(str(arg))
+        print(*safe_args, **kwargs)
+    except Exception as e:
+        # その他のエラーの場合はフォールバック
+        try:
+            print(f"[safe_print error: {e}]", **kwargs)
+        except:
+            pass  # 最後の手段：何も出力しない
+
+# 注意: 絵文字変換マップはclean_unicode_for_cp932関数内に統合済み
 
 # FIRE ULTRA SYNC TIMEZONE FIX: UTC統一時刻処理ヘルパー関数
 def get_utc_now():
@@ -674,12 +719,17 @@ LIGHTWEIGHT_DEPARTMENT_MAPPING = {
     'road': '道路',
     'river': '河川、砂防及び海岸・海洋',
     'urban': '都市計画及び地方計画',
+    'urban_planning': '都市計画及び地方計画',  # 🚨 CRITICAL FIX: urban_planningエイリアス追加
     'garden': '造園',
     'env': '建設環境',
+    'construction_env': '建設環境',  # 🚨 CRITICAL FIX: construction_envエイリアス追加
     'steel': '鋼構造及びコンクリート',
+    'steel_concrete': '鋼構造及びコンクリート',  # 🚨 CRITICAL FIX: steel_concreteエイリアス追加
     'soil': '土質及び基礎',
+    'soil_foundation': '土質及び基礎',  # 🚨 CRITICAL FIX: soil_foundationエイリアス追加
     'construction': '施工計画、施工設備及び積算',
     'water': '上水道及び工業用水道',
+    'water_supply': '上水道及び工業用水道',  # 🚨 CRITICAL FIX: water_supplyエイリアス追加
     'forest': '森林土木',
     'agri': '農業土木',
     'tunnel': 'トンネル'
@@ -2488,7 +2538,7 @@ def get_questions_by_department(department_name):
             try:
                 questions = load_csv_safe(f'data/4-2_{year}.csv')
                 for question in questions:
-                    if question.get('category') == LIGHTWEIGHT_DEPARTMENT_MAPPING.get(department_name):
+                    if question.get('category') == department_name:
                         question['year'] = year
                         all_questions.append(question)
             except Exception as e:
@@ -4825,14 +4875,7 @@ def select_department(department_id):
         # 部門エイリアスの解決
         department_id = resolve_department_alias(department_id)
 
-        # FIRE ULTRA SYNC FIX 最終版: 軽量版成功パターン完全移植
-        LIGHTWEIGHT_DEPARTMENT_MAPPING = {
-            'basic': '共通', 'road': '道路', 'river': '河川、砂防及び海岸・海洋',
-            'urban': '都市計画及び地方計画', 'garden': '造園', 'env': '建設環境',
-            'steel': '鋼構造及びコンクリート', 'soil': '土質及び基礎', 
-            'construction': '施工計画、施工設備及び積算', 'water': '上水道及び工業用水道',
-            'forest': '森林土木', 'agri': '農業土木', 'tunnel': 'トンネル'
-        }
+        # 🗑️ ULTRA SYNC FIX: ローカル定義削除 - グローバルLIGHTWEIGHT_DEPARTMENT_MAPPINGを使用
         
         logger.info(f"SEARCH 軽量版パターン適用: department_id={department_id}")
         
@@ -4864,22 +4907,8 @@ def select_department(department_id):
 def question_types(department_id):
     """FIRE ULTRA SYNC 軽量版完全移植: RCCMConfig完全除去・LIGHTWEIGHT_DEPARTMENT_MAPPING使用"""
     
-    # FIRE 軽量版成功パターン完全移植（RCCMConfig完全不使用）
-    LIGHTWEIGHT_DEPARTMENT_MAPPING = {
-        'basic': '基礎科目（共通）',  # 4-1基礎科目追加
-        'road': '道路',
-        'river': '河川、砂防及び海岸・海洋',
-        'urban': '都市計画及び地方計画',
-        'garden': '造園',
-        'env': '建設環境',
-        'steel': '鋼構造及びコンクリート',
-        'soil': '土質及び基礎',
-        'construction': '施工計画、施工設備及び積算',
-        'water': '上水道及び工業用水道',
-        'forest': '森林土木',
-        'agri': '農業土木',
-        'tunnel': 'トンネル'
-    }
+    # 🚨 CRITICAL FIX: グローバルLIGHTWEIGHT_DEPARTMENT_MAPPINGを使用（重複定義削除）
+    # ローカル定義削除 - グローバルの18部門マッピング（エイリアス含む）を使用
     
     logger.info(f"SEARCH question_types開始: department_id={department_id}")
     logger.info(f"SEARCH LIGHTWEIGHT_DEPARTMENT_MAPPING keys: {list(LIGHTWEIGHT_DEPARTMENT_MAPPING.keys())}")
@@ -4929,14 +4958,7 @@ def department_categories(department_id, question_type):
         # 部門エイリアスの解決
         department_id = resolve_department_alias(department_id)
 
-        # FIRE ULTRA SYNC FIX 最終版: 軽量版成功パターン完全移植
-        LIGHTWEIGHT_DEPARTMENT_MAPPING = {
-            'basic': '共通', 'road': '道路', 'river': '河川、砂防及び海岸・海洋',
-            'urban': '都市計画及び地方計画', 'garden': '造園', 'env': '建設環境',
-            'steel': '鋼構造及びコンクリート', 'soil': '土質及び基礎', 
-            'construction': '施工計画、施工設備及び積算', 'water': '上水道及び工業用水道',
-            'forest': '森林土木', 'agri': '農業土木', 'tunnel': 'トンネル'
-        }
+        # 🗑️ ULTRA SYNC FIX: ローカル定義削除 - グローバルLIGHTWEIGHT_DEPARTMENT_MAPPINGを使用
         
         if department_id not in LIGHTWEIGHT_DEPARTMENT_MAPPING:
             logger.error(f"ERROR department_categories無効な部門ID: {department_id}")
@@ -4950,14 +4972,7 @@ def department_categories(department_id, question_type):
         session['selected_question_type'] = question_type
         session.modified = True
 
-        # FIRE ULTRA SYNC FIX: 軽量版パターン適用
-        LIGHTWEIGHT_DEPARTMENT_MAPPING = {
-            'basic': '共通', 'road': '道路', 'river': '河川、砂防及び海岸・海洋',
-            'urban': '都市計画及び地方計画', 'garden': '造園', 'env': '建設環境',
-            'steel': '鋼構造及びコンクリート', 'soil': '土質及び基礎', 
-            'construction': '施工計画、施工設備及び積算', 'water': '上水道及び工業用水道',
-            'forest': '森林土木', 'agri': '農業土木', 'tunnel': 'トンネル'
-        }
+        # 🗑️ ULTRA SYNC FIX: ローカル定義削除 - グローバルLIGHTWEIGHT_DEPARTMENT_MAPPINGを使用
         department_info = {'name': LIGHTWEIGHT_DEPARTMENT_MAPPING.get(department_id, '不明')}
         type_info = RCCMConfig.QUESTION_TYPES[question_type]
 
