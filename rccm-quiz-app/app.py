@@ -745,6 +745,7 @@ LEGACY_DEPARTMENT_ALIASES = {
     'construction_management': 'construction',   # 施工計画
     'water_supply_sewerage': 'water',           # 上下水道
     'forest_civil': 'forest',                   # 森林土木
+    'forestry': 'forest',                       # 旧forestry IDを正しいforestに修正
     'agricultural_civil': 'agri',               # 農業土木
     'common': 'basic'                           # 基礎科目
 }
@@ -1126,7 +1127,7 @@ def resolve_department_alias(department):
     
     # 追加の個別エイリアス（後方互換性維持）
     department_aliases = {
-        'shinrin': 'forestry',  # 森林土木のエイリアス
+        'shinrin': 'forest',  # 森林土木のエイリアス（正しいIDに修正）
     }
     
     if department in department_aliases:
