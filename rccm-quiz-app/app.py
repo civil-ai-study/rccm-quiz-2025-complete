@@ -11495,3 +11495,8 @@ if __name__ == '__main__':
             # SHIELD セキュリティ強化: SSLコンテキスト設定(本番ではリバースプロキシで処理)
             ssl_context=None  # リバースプロキシ(nginx, Render)でSSL終端
         )
+
+
+if __name__ == "__main__":
+    # ULTRA SYNC: Production/Development mode detection
+    main()
