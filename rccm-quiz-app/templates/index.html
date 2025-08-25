@@ -79,27 +79,42 @@
     <div class="collapse" id="quickGuide">
       <div class="card border-primary">
         <div class="card-body">
-          <h6><i class="fas fa-route me-2"></i>推奨学習フロー</h6>
+          <h6><i class="fas fa-route me-2"></i>推奨学習フロー（迷わず進める方法）</h6>
           <div class="row">
             <div class="col-md-4 mb-3">
               <div class="step-card">
                 <div class="step-number">1</div>
-                <h6>問題を解く</h6>
-                <p class="small text-muted">まずはランダム出題で実力を確認</p>
+                <h6>基礎科目から開始</h6>
+                <p class="small text-muted">
+                  <strong>「すぐに問題を始める」</strong>ボタンで基礎科目（4-1）を体験
+                </p>
+                <a href="/exam?question_type=basic" class="btn btn-sm btn-success">
+                  <i class="fas fa-play me-1"></i>基礎科目開始
+                </a>
               </div>
             </div>
             <div class="col-md-4 mb-3">
               <div class="step-card">
                 <div class="step-number">2</div>
-                <h6>専門科目学習</h6>
-                <p class="small text-muted">各部門の専門問題を学習</p>
+                <h6>専門部門選択</h6>
+                <p class="small text-muted">
+                  基礎科目に慣れたら、<strong>「4-2専門科目」</strong>→<strong>「部門選択」</strong>
+                </p>
+                <button class="btn btn-sm btn-primary" onclick="toggleDepartments()">
+                  <i class="fas fa-list me-1"></i>部門選択
+                </button>
               </div>
             </div>
             <div class="col-md-4 mb-3">
               <div class="step-card">
                 <div class="step-number">3</div>
-                <h6>復習・統計確認</h6>
-                <p class="small text-muted">間違えた問題を復習し、進捗を確認</p>
+                <h6>復習で定着</h6>
+                <p class="small text-muted">
+                  間違えた問題は<strong>「復習リスト」</strong>で重点的に学習
+                </p>
+                <a href="/review" class="btn btn-sm btn-warning">
+                  <i class="fas fa-redo me-1"></i>復習開始
+                </a>
               </div>
             </div>
           </div>
@@ -108,6 +123,34 @@
             <strong>ヒント:</strong> 各機能には詳細な説明があります。わからないことがあれば「ヘルプ」ボタンをクリックしてください。<br>
             <strong>新機能:</strong> ソーシャル学習、AI分析、認定追跡など豊富な学習支援機能を利用できます。
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🚑 緊急UX改善: 初めての方向け明確なエントリーポイント -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="first-time-guidance">
+        <div class="alert alert-success text-center" style="border: 2px solid #28a745; background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);">
+          <h4 class="alert-heading mb-3">
+            <i class="fas fa-star me-2" style="color: #ffc107;"></i>
+            <strong>初めての方はこちら</strong>
+            <i class="fas fa-star ms-2" style="color: #ffc107;"></i>
+          </h4>
+          <p class="mb-3">RCCM試験対策を始めるには、まず下記のボタンをクリックしてください。</p>
+          <div class="d-grid gap-2 d-md-block">
+            <a href="/exam?question_type=basic" class="btn btn-success btn-lg me-md-2 mb-2 mb-md-0" style="min-width: 200px;">
+              <i class="fas fa-play me-2"></i>すぐに問題を始める
+            </a>
+            <button class="btn btn-outline-success btn-lg" onclick="showDetailedGuide()" style="min-width: 200px;">
+              <i class="fas fa-map me-2"></i>詳しい使い方を見る
+            </button>
+          </div>
+          <small class="d-block mt-2 text-muted">
+            <i class="fas fa-lightbulb me-1"></i>
+            推奨：まずは基礎科目（4-1）から始めて、操作に慣れることをお勧めします
+          </small>
         </div>
       </div>
     </div>
@@ -192,15 +235,15 @@
         
         <!-- その他の部門（コンパクト配置） -->
         <div class="dept-others">
-          <a href="/quiz/urban_planning" class="dept-btn-small">都市計画</a>
-          <a href="/quiz/landscape" class="dept-btn-small">造園</a>
-          <a href="/quiz/construction_env" class="dept-btn-small">建設環境</a>
-          <a href="/quiz/steel_concrete" class="dept-btn-small">鋼構造</a>
-          <a href="/quiz/soil_foundation" class="dept-btn-small">土質基礎</a>
-          <a href="/quiz/construction_planning" class="dept-btn-small">施工計画</a>
-          <a href="/quiz/water_supply" class="dept-btn-small">上水道</a>
-          <a href="/quiz/forestry" class="dept-btn-small">森林土木</a>
-          <a href="/quiz/agriculture" class="dept-btn-small">農業土木</a>
+          <a href="/quiz/urban" class="dept-btn-small">都市計画</a>
+          <a href="/quiz/garden" class="dept-btn-small">造園</a>
+          <a href="/quiz/env" class="dept-btn-small">建設環境</a>
+          <a href="/quiz/steel" class="dept-btn-small">鋼構造</a>
+          <a href="/quiz/soil" class="dept-btn-small">土質基礎</a>
+          <a href="/quiz/construction" class="dept-btn-small">施工計画</a>
+          <a href="/quiz/water" class="dept-btn-small">上水道</a>
+          <a href="/quiz/forest" class="dept-btn-small">森林土木</a>
+          <a href="/quiz/agri" class="dept-btn-small">農業土木</a>
         </div>
       </div>
       
@@ -471,6 +514,64 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* 🚑 緊急UX改善: ステップカードスタイル */
+.step-card {
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background: #f8f9fa;
+    transition: all 0.2s ease;
+    height: 100%;
+}
+
+.step-card:hover {
+    border-color: #0d6efd;
+    background: #e7f3ff;
+    transform: translateY(-2px);
+}
+
+.step-number {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background: #0d6efd;
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.step-card h6 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.first-time-guidance .alert {
+    position: relative;
+    overflow: hidden;
+}
+
+.first-time-guidance .alert::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+}
 </style>
 
 <script>
@@ -534,13 +635,33 @@ if ('performance' in window) {
 }
 
 
-// 初心者ガイダンス表示制御
+// 🚑 緊急UX改善: 詳細ガイド表示機能
+function showDetailedGuide() {
+    const guideElement = document.getElementById('beginnerGuide');
+    guideElement.style.display = 'block';
+    
+    // スムーズスクロールで詳細ガイドに移動
+    setTimeout(() => {
+        guideElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+    
+    // 詳細ガイドを自動展開
+    const collapseElement = document.getElementById('quickGuide');
+    if (collapseElement) {
+        const bsCollapse = new bootstrap.Collapse(collapseElement, {
+            show: true
+        });
+    }
+}
+
+// 初心者ガイダンス表示制御（改善版）
 function showBeginnerGuideIfNeeded() {
+    // 初回訪問者には「初めての方はこちら」が常に表示されるため、
+    // 自動表示は控えめにし、ユーザーの明示的な選択を重視
     const hasVisited = localStorage.getItem('rccm_has_visited');
-    const guideDismissed = localStorage.getItem('rccm_guide_dismissed');
-    if (!hasVisited && !guideDismissed) {
-        document.getElementById('beginnerGuide').style.display = 'block';
+    if (!hasVisited) {
         localStorage.setItem('rccm_has_visited', 'true');
+        // 自動表示はしない（「初めての方はこちら」セクションで十分）
     }
 }
 

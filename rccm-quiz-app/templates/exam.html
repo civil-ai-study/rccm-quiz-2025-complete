@@ -2,6 +2,8 @@
 {% block title %}RCCM試験 | RCCM試験問題集{% endblock %}
 {% block content %}
 <!-- 🔍 ULTRA SYNC根本原因診断: カテゴリ={{ question.category }}, タイプ={{ question.question_type }}, ID={{ question.id }} -->
+<!-- 🚨 CRITICAL DEBUG INFO: {% for msg in debug_info %}{{ msg }} | {% endfor %} -->
+{{ forced_debug|safe }}
 <div class="container">
     <!-- 進捗表示 - 年度情報強化版 -->
     <div class="card mb-1" role="banner">
@@ -82,14 +84,14 @@
         
         
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                 <input type="hidden" name="qid" value="{{ question.id }}">
                 <input type="hidden" name="elapsed" value="0" id="elapsedTime">
                 <!-- Session initialization indicators for test validation -->
                 <input type="hidden" name="session_initialized" value="true" class="session-indicator">
+                <!-- 🚨 CRITICAL FIX: Add session preservation fields to prevent department=NOT_FOUND error -->
+                <input type="hidden" name="department" value="{{ department }}">
+                <input type="hidden" name="question_type" value="{{ question_type }}">
+                <input type="hidden" name="count" value="{{ count }}">
                 <div class="session-indicators" style="display: none;">
                     <span class="session-status">active</span>
                     <span class="question-loaded">true</span>

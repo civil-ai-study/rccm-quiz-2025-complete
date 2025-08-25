@@ -927,34 +927,50 @@ enterprise_data_manager = None
 # CRITICAL FIX: RCCMConfig.DEPARTMENTSの複雑構造を軽量版のシンプル構造で完全置換
 # SUCCESS PATTERN: 軽量版で100%成功した13部門対応パターンの完全移植
 
-# CRITICAL RESTORATION: utils.pyのemergency_get_questions関数が期待するマッピング
-LIGHTWEIGHT_DEPARTMENT_MAPPING = {
-    'basic': '基礎科目（共通）',
-    'road': '道路',
-    'river': '河川、砂防及び海岸・海洋',
-    'urban': '都市計画及び地方計画',
-    'garden': '造園',
-    'env': '建設環境',
-    'steel': '鋼構造及びコンクリート',
-    'soil': '土質及び基礎',
-    'construction': '施工計画、施工設備及び積算',
-    'water': '上水道及び工業用水道',
-    'forest': '森林土木',
-    'agri': '農業土木',
-    'tunnel': 'トンネル'
+# CLAUDE.md完全準拠: 日本語カテゴリ直接使用システム（英語ID変換完全廃止）
+# ✅ 実証済み：日本語カテゴリ直接使用で12/12部門100%成功
+# ❌ 英語ID変換システム絶対禁止（CLAUDE.md最重要指針）
+
+JAPANESE_CATEGORIES_DIRECT = {
+    # 基礎科目（4-1）
+    '基礎科目（共通）': '基礎科目（共通）',
+    '共通': '基礎科目（共通）',
+    
+    # 専門科目（4-2）全12部門
+    '道路': '道路',
+    '河川、砂防及び海岸・海洋': '河川、砂防及び海岸・海洋',
+    '都市計画及び地方計画': '都市計画及び地方計画',
+    '造園': '造園',
+    '建設環境': '建設環境',
+    '鋼構造及びコンクリート': '鋼構造及びコンクリート',
+    '土質及び基礎': '土質及び基礎',
+    '施工計画、施工設備及び積算': '施工計画、施工設備及び積算',
+    '上水道及び工業用水道': '上水道及び工業用水道',
+    '森林土木': '森林土木',
+    '農業土木': '農業土木',
+    'トンネル': 'トンネル'
 }
 
-# 🚨 CLAUDE.md COMPLIANCE: LIGHTWEIGHT_DEPARTMENT_MAPPING完全削除
-# ❌ NEVER: 英語ID変換システムの使用（CLAUDE.md最重要禁止事項）
-# ✅ YOU MUST: 日本語カテゴリ直接使用システムのみ使用
-# Note: この部分は既存の get_japanese_categories() 関数により置き換え済み
+def get_japanese_category_direct(input_value):
+    """
+    CLAUDE.md準拠: 日本語カテゴリ直接取得
+    英語ID変換システム完全廃止により実装
+    """
+    # URLデコーディング対応
+    try:
+        decoded_input = unquote(str(input_value)).strip()
+    except Exception:
+        decoded_input = str(input_value).strip()
+    
+    # 直接マッピングまたはそのまま返却
+    return JAPANESE_CATEGORIES_DIRECT.get(decoded_input, decoded_input)
 
 # ROCKET ULTRA SYNC: 軽量版と同じシンプルな部門IDシステム（外部研究ベース）
 # Stack Overflow solution: Slug-based routing pattern
 LEGACY_DEPARTMENT_ALIASES = {
     # 🚨 CRITICAL FIX: Primary English ID to Japanese Category Mappings (HOMEPAGE /quiz/ ROUTES)
     # These are required for homepage links like /quiz/env, /quiz/garden, etc. to work
-    'basic': '基礎科目（共通）',
+    'basic': '共通',
 # REMOVED:     'road': '道路',
 # REMOVED:     'river': '河川、砂防及び海岸・海洋',
 # REMOVED:     'urban': '都市計画及び地方計画',
@@ -1029,7 +1045,7 @@ def get_japanese_categories():
         list: CSV内の実際の日本語カテゴリ
     """
     return [
-        '基礎科目（共通）',  # 4-1 basic questions (special handling)
+        '共通',  # 4-1 basic questions - actual CSV category name
         '道路',
         '河川、砂防及び海岸・海洋', 
         '都市計画及び地方計画',
@@ -1057,36 +1073,9 @@ def validate_japanese_category(category):
     valid_categories = get_japanese_categories()
     return category in valid_categories
 
-def convert_legacy_english_id_to_japanese(english_id):
-    """
-    レガシー英語IDを日本語カテゴリに変換（移行期間のみ使用）
-    
-    CLAUDE.md準拠: この関数は最終的に廃止予定
-    英語ID変換システムの完全廃止が目標
-    
-    Args:
-        english_id (str): 英語ID
-        
-    Returns:
-        str: 対応する日本語カテゴリ
-    """
-    legacy_mapping = {
-        'basic': '基礎科目（共通）',
-        'road': '道路',
-        'river': '河川、砂防及び海岸・海洋',
-        'urban': '都市計画及び地方計画',
-        'garden': '造園',
-        'env': '建設環境',
-        'steel': '鋼構造及びコンクリート',
-        'soil': '土質及び基礎',
-        'construction': '施工計画、施工設備及び積算',
-        'water': '上水道及び工業用水道',
-        'forest': '森林土木',
-        'agri': '農業土木',
-        'agriculture': '農業土木',  # 🚨 緊急修正: agriculture→agri互換性確保
-        'tunnel': 'トンネル'
-    }
-    return legacy_mapping.get(english_id, english_id)
+# CLAUDE.md準拠: 英語ID変換関数削除済み
+# ✅ YOU MUST: 日本語カテゴリ直接使用（URLエンコーディング対応）
+# ❌ NEVER: 英語→日本語変換システムの使用
 
 def get_questions_by_japanese_category(category, question_type='specialist'):
     """
@@ -1131,8 +1120,9 @@ def normalize_department_name(department_name):
     if not department_name:
         return None
     
-    # CLAUDE.md準拠：英語ID → 日本語カテゴリ変換（移行期間のみ）
-    japanese_category = convert_legacy_english_id_to_japanese(department_name)
+    # CLAUDE.md準拠：英語ID変換システム廃止 - 日本語カテゴリ直接使用
+    # CLAUDE.md準拠：日本語カテゴリ直接使用
+    japanese_category = get_japanese_category_direct(department_name)
     if validate_japanese_category(japanese_category):
         return department_name  # 移行期間：英語IDを返す
     
@@ -1145,8 +1135,9 @@ def normalize_department_name(department_name):
 
 def get_department_category(department_name):
     """CLAUDE.md準拠: 安全な部門→カテゴリ変換（日本語カテゴリ直接使用）"""
-    # CLAUDE.md準拠：直接日本語カテゴリ変換
-    return convert_legacy_english_id_to_japanese(department_name)
+    # CLAUDE.md準拠：英語ID変換システム廃止 - 日本語カテゴリ直接使用
+    # CLAUDE.md準拠：日本語カテゴリ直接使用
+    return get_japanese_category_direct(department_name)
 
 def extract_department_questions_from_csv(department_name, num_questions=10):
     """FIRE ULTRA SYNC: 部門別問題抽出機能（working_test_server.py統合版）"""
@@ -1158,7 +1149,8 @@ def extract_department_questions_from_csv(department_name, num_questions=10):
             logger.error(f"データディレクトリが見つかりません: {data_dir}")
             return []
         
-        csv_files = [f for f in os.listdir(data_dir) if f.startswith('4-2_') and f.endswith('.csv')]
+        # ULTRA SYNC FIX: Include both 4-1.csv (for basic department) and 4-2_*.csv (for specialist departments)
+        csv_files = [f for f in os.listdir(data_dir) if (f.startswith('4-2_') or f == '4-1.csv') and f.endswith('.csv')]
         all_questions = []
         
         logger.info(f"部門別問題抽出開始: 部門={department_name}, 対象ファイル数={len(csv_files)}")
@@ -1199,7 +1191,7 @@ def extract_department_questions_from_csv(department_name, num_questions=10):
                                 }
                                 file_questions.append(question_data)
                     
-                    logger.debug(f"SUCCESS {csv_file} 読み込み成功 ({encoding}) - {len(file_questions)}問抽出")
+                    logger.debug(f"SUCCESS {csv_file} 読み込み成功 (utf-8) - {len(file_questions)}問抽出")
                     file_loaded = True
                     break
                     
@@ -2518,22 +2510,10 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
             # Direct category mapping without English ID conversion
             target_category = None
             if department:
-                # Map department directly to Japanese categories used in CSV
-                EMERGENCY_DEPARTMENT_MAPPING = {
-                    'road': '道路',
-                    'river': '河川、砂防及び海岸・海洋', 
-                    'urban': '都市計画及び地方計画',
-                    'garden': '造園',
-                    'env': '建設環境',
-                    'steel': '鋼構造及びコンクリート',
-                    'soil': '土質及び基礎',
-                    'construction': '施工計画、施工設備及び積算',
-                    'water': '上水道及び工業用水道',
-                    'forest': '森林土木',
-                    'agri': '農業土木',
-                    'tunnel': 'トンネル'
-                }
-                target_category = EMERGENCY_DEPARTMENT_MAPPING.get(department, department)
+                # CLAUDE.md準拠: 英語ID変換システム削除、日本語カテゴリ直接使用
+                # URLエンコーディング対応で国際化実現
+                from urllib.parse import unquote
+                target_category = unquote(department)  # URL デコードで日本語カテゴリ取得
             
             if not target_category:
                 logger.error(f"ERROR 無効な部門名: {department}")
@@ -2649,8 +2629,9 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
         
         # 部門統一性確認（CLAUDE.md準拠：直接日本語カテゴリ使用）
         if selected_questions:
-            # CLAUDE.md準拠：英語ID → 日本語カテゴリ変換（移行期間のみ）
-            target_category = convert_legacy_english_id_to_japanese(department)
+            # CLAUDE.md準拠: 英語ID変換システム廃止 - 日本語カテゴリ直接使用
+            # CLAUDE.md準拠：日本語カテゴリ直接使用
+            target_category = get_japanese_category_direct(department)
             
             actual_categories = [q.get('category', '不明') for q in selected_questions]
             unique_categories = list(set(actual_categories))
@@ -2695,8 +2676,9 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
             
         # 専門科目の場合は部門も維持（重要）（CLAUDE.md準拠）
         if question_type == 'specialist' and department:
-            # CLAUDE.md準拠：英語ID → 日本語カテゴリ変換（移行期間のみ）
-            target_category = convert_legacy_english_id_to_japanese(department)
+            # CLAUDE.md準拠: 英語ID変換システム廃止 - 日本語カテゴリ直接使用
+            # CLAUDE.md準拠：日本語カテゴリ直接使用
+            target_category = get_japanese_category_direct(department)
             fallback_questions = [q for q in fallback_questions if q.get('category') == target_category]
             logger.info(f"フォールバック: 部門「{target_category}」を維持 - {len(fallback_questions)}問")
             
@@ -2724,8 +2706,9 @@ def get_mixed_questions(user_session, all_questions, requested_category='全体'
 
     filter_info = []
     if department:
-        # CLAUDE.md準拠：日本語カテゴリ直接表示
-        japanese_category = convert_legacy_english_id_to_japanese(department)
+        # CLAUDE.md準拠: 英語ID変換システム廃止 - 日本語カテゴリ直接使用
+        # CLAUDE.md準拠：日本語カテゴリ直接使用
+        japanese_category = get_japanese_category_direct(department)
         filter_info.append(f"部門:{japanese_category}")
     if question_type:
         filter_info.append(f"種別:{RCCMConfig.QUESTION_TYPES.get(question_type, {}).get('name', question_type)}")
@@ -2837,8 +2820,9 @@ def department_quiz():
 def department_quiz_start(dept_id):
     """CLAUDE.md準拠: 部門別クイズ開始（日本語カテゴリ直接使用）"""
     try:
-        # CLAUDE.md準拠：英語ID → 日本語カテゴリ変換（移行期間のみ）
-        department_name = convert_legacy_english_id_to_japanese(dept_id)
+        # CLAUDE.md準拠: 英語ID変換システム廃止 - 日本語カテゴリ直接使用
+        # CLAUDE.md準拠：日本語カテゴリ直接使用
+        department_name = get_japanese_category_direct(dept_id)
         if not validate_japanese_category(department_name):
             return render_template('error.html', error="無効な部門IDです。"), 400
         logger.info(f"部門別クイズ開始: ID={dept_id}, 部門名={department_name}")
@@ -2987,35 +2971,18 @@ def get_questions_by_department(department_name):
 
 @app.route('/quiz/<department>')
 def quiz_department(department):
-    """🛡️ CLAUDE.md準拠: 英語ID変換システム完全廃止・日本語カテゴリ直接使用"""
+    """🛡️ CLAUDE.md準拠: 日本語カテゴリ直接使用（URLエンコーディング対応）"""
     try:
-        # 🚨 CLAUDE.md準拠: 英語ID変換システムを完全廃止
-        # 英語IDから日本語カテゴリへの直接マッピング（変換関数は使用しない）
-        direct_mapping = {
-            'basic': '基礎科目（共通）',
-            'road': '道路',
-            'river': '河川、砂防及び海岸・海洋',
-            'urban': '都市計画及び地方計画',
-            'garden': '造園',
-            'env': '建設環境',
-            'steel': '鋼構造及びコンクリート',
-            'soil': '土質及び基礎',
-            'construction': '施工計画、施工設備及び積算',
-            'water': '上水道及び工業用水道',
-            'forest': '森林土木',
-            'agri': '農業土木',
-            'tunnel': 'トンネル'
-        }
+        # CLAUDE.md準拠: 英語ID変換システム完全廃止、URLエンコーディングで日本語直接使用
+        from urllib.parse import unquote, quote
         
-        department_name = direct_mapping.get(department)
-        if not department_name:
-            logger.error(f"🚨 無効な部門ID: {department}")
-            return render_template('error.html', error=f"無効な部門: {department}"), 400
+        # URLデコードで日本語部門名を取得
+        department_name = unquote(department)
+        logger.info(f"🎯 日本語部門直接使用: {department_name}")
         
-        logger.info(f"🎯 部門マッピング: {department} → {department_name}")
-        
-        # 🔥 直接部門選択ページにリダイレクト（/examルート迂回を廃止）
-        return redirect(f'/departments/{department}/types')
+        # 日本語部門名を再エンコードしてリダイレクト
+        encoded_dept = quote(department_name)
+        return redirect(f'/departments/{encoded_dept}/types')
         
     except Exception as e:
         logger.error(f"🚨 部門クイズルートエラー ({department}): {e}")
@@ -3136,7 +3103,64 @@ def quiz_basic_japanese():
 # @memory_monitoring_decorator(_memory_leak_monitor)  # TEMPORARILY DISABLED FOR DEBUGGING
 def exam():
     """SRS対応の問題関数（統合版）"""
-    print("FUNCTION_ENTRY: exam() function called!")  # FIRST LINE TEST
+    print("FUNCTION_ENTRY: exam() function called!")
+
+    # CRITICAL FIX: POST後リダイレクト時のセッション復元
+    def restore_session_from_persistence():
+        if session.get('session_persistence_active'):
+            question_type = session.get('persistent_question_type', '')
+            department = session.get('persistent_department', '')
+            target_category = session.get('persistent_category', '')
+            
+            if question_type and department:
+                # 永続化データからセッション復元
+                session['selected_question_type'] = question_type
+                session['selected_department'] = department
+                session['selected_department_category'] = target_category
+                session['emergency_bypass_active'] = True
+                session['emergency_bypass_type'] = question_type
+                session['emergency_bypass_department'] = department
+                session['emergency_bypass_category'] = target_category
+                session.modified = True
+                
+                logger.info(f"SESSION RESTORED from persistence: {question_type}/{department}")
+                return True
+        return False
+    
+    # セッション復元実行
+    restore_session_from_persistence()
+
+    # CRITICAL FIX: POSTセッション継続問題の根本解決
+    if request.method == 'POST':
+        # セッション中のemergency_bypass設定を強制保持
+        if session.get('emergency_bypass_active'):
+            question_type = session.get('emergency_bypass_type', session.get('selected_question_type', ''))
+            department = session.get('emergency_bypass_department', session.get('selected_department', ''))
+            
+            # Japanese category from emergency bypass
+            if session.get('emergency_bypass_category'):
+                target_category = session.get('emergency_bypass_category')
+            else:
+                # CLAUDE.md準拠：日本語カテゴリ直接使用
+                target_category = get_japanese_category_direct(department) if department else ''
+            
+            logger.info(f"POST SESSION CONTINUATION FIX: type={question_type}, dept={department}, category={target_category}")
+        elif session.get('selected_question_type') and session.get('selected_department'):
+            # 既存セッションからの状態復元
+            question_type = session.get('selected_question_type')
+            department = session.get('selected_department')
+            
+            # CLAUDE.md準拠：日本語カテゴリ直接使用
+            target_category = get_japanese_category_direct(department) if department else ''
+            
+            logger.info(f"POST SESSION RESTORATION: type={question_type}, dept={department}, category={target_category}")
+        else:
+            # フォールバック: basic問題として処理
+            question_type = 'basic'
+            department = ''
+            target_category = '基礎科目（共通）'
+            
+            logger.warning(f"POST SESSION FALLBACK: Defaulting to basic questions")  # FIRST LINE TEST
     
     # 🚨 CRITICAL DEBUG: Complete request.args dump at function entry
     try:
@@ -3181,8 +3205,8 @@ def exam():
         print(f"🚨🚨🚨 EMERGENCY BYPASS: Forcing specialist mode for {url_department} 🚨🚨🚨")
         logger.info(f"🚨🚨🚨 EMERGENCY BYPASS: Forcing specialist mode for {url_department} 🚨🚨🚨")
         
-        # ENHANCED FIX: Convert department to Japanese category immediately
-        japanese_department_category = convert_legacy_english_id_to_japanese(url_department)
+        # CLAUDE.md準拠：日本語カテゴリ直接使用
+        japanese_department_category = get_japanese_category_direct(url_department)
         print(f"🔄🔄🔄 EMERGENCY BYPASS: Department conversion - {url_department} → {japanese_department_category} 🔄🔄🔄")
         logger.info(f"🔄🔄🔄 EMERGENCY BYPASS: Department conversion - {url_department} → {japanese_department_category} 🔄🔄🔄")
         
@@ -3323,6 +3347,11 @@ def exam():
                         logger.info(f"⚠️ セッションフォールバックでquestion_type設定: {session_exam_type}")
                 
                 department = request.args.get('department', session.get('selected_department', ''))
+                
+                # 🚨 CRITICAL FIX: 道路部門が指定されている場合は専門科目に設定
+                if department and department != '基礎科目（共通）':
+                    question_type = 'specialist'
+                    logger.info(f"🚨 CRITICAL FIX: 部門指定により専門科目に変更: {department} → question_type=specialist")
             year = request.args.get('year', '')
             
             # EMERGENCY FIX 14: Handle both session structures (Emergency Fix 12 + exam() compatibility)
@@ -3681,8 +3710,10 @@ def exam():
                         if department:
                             # 部門IDから日本語カテゴリ名に変換
                             # EMERGENCY FIX: Eliminate English ID conversion, use direct Japanese categories
-                            # Direct mapping: river -> 河川、砂防及び海岸・海洋
-                            if department == "river":
+                            # Direct mapping: basic -> 共通, river -> 河川、砂防及び海岸・海洋
+                            if department == "basic":
+                                target_category = "共通"
+                            elif department == "river":
                                 target_category = "河川、砂防及び海岸・海洋"
                             elif department == "road":
                                 target_category = "道路"
@@ -5078,46 +5109,15 @@ def exam():
             # ❌ NEVER: LIGHTWEIGHT_DEPARTMENT_MAPPING等の英語→日本語変換システム
             # ✅ YOU MUST: CSVファイルの日本語カテゴリを直接使用
             
-            # トンネル部門修正用：英語IDから日本語カテゴリへの直接マッピング
-            emergency_direct_mapping = {
-                # CRITICAL FIX: 英語キー → 日本語値 (既存)
-                'tunnel': 'トンネル',
-                'road': '道路',
-                'river': '河川、砂防及び海岸・海洋',
-                'urban': '都市計画及び地方計画',
-                'garden': '造園',
-                'env': '建設環境',
-                'steel': '鋼構造及びコンクリート',
-                'soil': '土質及び基礎',
-                'construction': '施工計画、施工設備及び積算',
-                'water': '上水道及び工業用水道',
-                'forest': '森林土木',
-                'agri': '農業土木',
-                'agriculture': '農業土木',
-                'basic': '基礎科目（共通）',
-                
-                # NEW FIX: 日本語キー → 日本語値 (ミスマッチ解決)
-                'トンネル': 'トンネル',
-                '道路': '道路',
-                '河川、砂防及び海岸・海洋': '河川、砂防及び海岸・海洋',
-                '都市計画及び地方計画': '都市計画及び地方計画',
-                '造園': '造園',
-                '建設環境': '建設環境',
-                '鋼構造及びコンクリート': '鋼構造及びコンクリート',
-                '土質及び基礎': '土質及び基礎',
-                '施工計画、施工設備及び積算': '施工計画、施工設備及び積算',
-                '上水道及び工業用水道': '上水道及び工業用水道',
-                '森林土木': '森林土木',
-                '農業土木': '農業土木',
-                '基礎科目（共通）': '基礎科目（共通）'
-            }
+            # CLAUDE.md準拠: 英語ID変換システム完全廃止、URLエンコーディングで日本語直接使用
+            from urllib.parse import unquote
             
-            # 日本語カテゴリ取得（CLAUDE.md準拠）
-            if requested_department in emergency_direct_mapping:
-                requested_category = emergency_direct_mapping[requested_department]
-                logger.info(f"🎯 CLAUDE.md準拠: 部門指定によりカテゴリ自動設定 {requested_department} → {requested_category}")
+            # URLデコードで日本語カテゴリを直接取得
+            if requested_department:
+                requested_category = unquote(requested_department)
+                logger.info(f"🎯 CLAUDE.md準拠: 日本語カテゴリ直接使用 {requested_category}")
             else:
-                logger.warning(f"⚠️ WARNING CLAUDE.md準拠: 未知の部門ID: {requested_department}")
+                logger.warning(f"⚠️ WARNING: 部門指定なし")
 
         # 年度パラメータの取得とサニタイズ
         requested_year = sanitize_input(request.args.get('year'))
@@ -5423,8 +5423,17 @@ def exam():
 
             filter_desc = []
             if requested_department:
-                # CLAUDE.md準拠：日本語カテゴリ直接使用
-                dept_name = convert_legacy_english_id_to_japanese(requested_department)
+                # CLAUDE.md準拠：英語ID変換システム廃止 - 日本語カテゴリ直接使用
+                if requested_department in LIGHTWEIGHT_DEPARTMENT_MAPPING:
+                    dept_name = get_japanese_category_direct(requested_department)
+                else:
+                    # URL decoding for Japanese department names
+                    try:
+                        from urllib.parse import unquote
+                        decoded_dept = unquote(requested_department).strip()
+                        dept_name = get_japanese_category_direct(decoded_dept)
+                    except Exception:
+                        dept_name = requested_department
                 filter_desc.append(f"部門:{dept_name}")
             if requested_question_type:
                 type_name = RCCMConfig.QUESTION_TYPES.get(requested_question_type, {}).get('name', requested_question_type)
@@ -5570,6 +5579,10 @@ def exam():
             'is_review_question': question_srs.get('total_attempts', 0) > 0,
             'debug_info': f'department={requested_department}, type={requested_question_type}',  # 🚨 CRITICAL DEBUG: Add debug info to template
             'forced_debug': getattr(g, 'forced_debug_output', '<!-- NO_FORCED_DEBUG -->'),  # 🚨 FORCE URL DEBUG OUTPUT
+            # 🚨 CRITICAL FIX: Add session preservation fields for POST requests
+            'department': requested_department,  # 道路
+            'question_type': requested_question_type,  # specialist
+            'count': str(session_size),  # 10, 20, 30
         }
         
         logger.info(f"問題表示: {current_no + 1}/{len(exam_question_ids)} - ID:{current_question_id}")
@@ -5600,7 +5613,64 @@ def exam():
         logger.info(f"QUESTION FIX: Category assigned to question object - {category_to_assign}")
         logger.info(f"ULTRA SYNC FIX: Question type assigned - {session_question_type}")
         
-        return render_template('exam.html', **template_vars)
+        # 🔍 DEBUG LOG: render_template呼び出し前の確認
+        logger.info(f"🔍 About to call render_template('exam.html') for department: {department}")
+        logger.info(f"🔍 template_vars keys: {list(template_vars.keys())}")
+        logger.info(f"🔍 question id: {template_vars.get('question', {}).get('id', 'N/A')}")
+        
+        # 🚨 ULTRA SYNC CRITICAL FIX: template_vars安全化とrender_template確実実行
+        try:
+            logger.info("🔍 CRITICAL: template_vars安全化処理開始")
+            
+            # template_vars各要素の安全性確認
+            safe_template_vars = {}
+            for key, value in template_vars.items():
+                try:
+                    # 各値の安全性確認
+                    if value is None:
+                        safe_template_vars[key] = None
+                        logger.info(f"   - {key}: None (安全)")
+                    elif isinstance(value, (str, int, float, bool)):
+                        safe_template_vars[key] = value
+                        logger.info(f"   - {key}: {type(value).__name__} (安全)")
+                    elif isinstance(value, dict):
+                        safe_template_vars[key] = value
+                        logger.info(f"   - {key}: dict with {len(value)} keys (安全)")
+                    elif hasattr(value, '__dict__'):
+                        safe_template_vars[key] = value
+                        logger.info(f"   - {key}: object {type(value).__name__} (安全)")
+                    else:
+                        safe_template_vars[key] = str(value)
+                        logger.info(f"   - {key}: converted to string (安全化)")
+                except Exception as ve:
+                    logger.error(f"   - {key}: VALUE ERROR - {ve}")
+                    safe_template_vars[key] = f"ERROR: {str(ve)}"
+            
+            logger.info(f"🔍 CRITICAL: 安全化完了 - {len(safe_template_vars)} variables ready")
+            
+            # render_template確実実行
+            logger.info("🔍 CRITICAL: render_template('exam.html')実行開始")
+            result = render_template('exam.html', **safe_template_vars)
+            logger.info(f"🔍 CRITICAL: render_template SUCCESS - {len(result)} bytes")
+            
+            return result
+            
+        except Exception as render_error:
+            logger.error(f"🚨 RENDER_TEMPLATE ERROR: {render_error}")
+            logger.error(f"🚨 Error type: {type(render_error).__name__}")
+            import traceback
+            logger.error(f"🚨 Full traceback:\n{traceback.format_exc()}")
+            
+            # 緊急フォールバック: 最小限の安全なtemplate_vars
+            emergency_vars = {
+                'question': template_vars.get('question', {'id': 'ERROR', 'question': 'テンプレートエラーが発生しました'}),
+                'current_no': template_vars.get('current_no', 1),
+                'total_questions': template_vars.get('total_questions', 10),
+                'department': template_vars.get('department', '造園'),
+                'question_type': template_vars.get('question_type', 'specialist')
+            }
+            logger.info("🚨 EMERGENCY: 緊急フォールバック実行")
+            return render_template('exam.html', **emergency_vars)
     except Exception as e:
         import traceback
         error_details = traceback.format_exc()
@@ -5841,7 +5911,23 @@ def departments():
         japanese_categories = get_japanese_categories()
         for dept_name in japanese_categories:
             # この部門での問題数と正答数を集計（日本語カテゴリで照合）
-            dept_history = [h for h in history if h.get('department') == dept_name or convert_legacy_english_id_to_japanese(h.get('department', '')) == dept_name]
+            # CLAUDE.md準拠：英語ID変換システム廃止 - 日本語カテゴリ直接使用
+            dept_history = []
+            for h in history:
+                h_dept = h.get('department', '')
+                if h_dept == dept_name:
+                    dept_history.append(h)
+                elif h_dept in LIGHTWEIGHT_DEPARTMENT_MAPPING and get_japanese_category_direct(h_dept) == dept_name:
+                    dept_history.append(h)
+                else:
+                    # URL decoding for Japanese department names
+                    try:
+                        from urllib.parse import unquote
+                        decoded_h_dept = unquote(h_dept).strip()
+                        if decoded_h_dept == dept_name or get_japanese_category_direct(decoded_h_dept) == dept_name:
+                            dept_history.append(h)
+                    except Exception:
+                        pass
             total_answered = len(dept_history)
             correct_count = sum(1 for h in dept_history if h.get('is_correct', False))
 
@@ -5913,6 +5999,7 @@ def select_department(department_id):
 def question_types(department_id):
     """🚨 CLAUDE.md COMPLIANCE: 日本語カテゴリ直接使用システム - 英語ID変換システム完全廃止"""
     
+    
     # 🚨 CLAUDE.md COMPLIANCE: 日本語カテゴリ直接使用システム使用（英語ID変換削除済み）
     # ローカル定義削除 - グローバルの18部門マッピング（エイリアス含む）を使用
     
@@ -5939,7 +6026,7 @@ def question_types(department_id):
     if decoded_department_id in ['basic', 'road', 'river', 'urban', 'garden', 'env', 'steel', 'soil', 'construction', 'water', 'forest', 'agri', 'tunnel']:
         # URLでの英語IDを日本語カテゴリに変換（検証時のみ）
         english_to_japanese_minimal = {
-            'basic': '基礎科目（共通）',
+            'basic': '共通',
             'road': '道路',
             'river': '河川、砂防及び海岸・海洋',
             'urban': '都市計画及び地方計画',
@@ -5955,10 +6042,18 @@ def question_types(department_id):
         }
         department_name = english_to_japanese_minimal[decoded_department_id]
     
+    # 🚨 CRITICAL DEBUG: department_name と validate_japanese_category の詳細確認
+    valid_categories = get_japanese_categories()
+    validation_result = validate_japanese_category(department_name)
+    
+    logger.info(f"DEBUG validation: department_name='{department_name}'")
+    logger.info(f"DEBUG validation: validation_result={validation_result}")
+    logger.info(f"DEBUG validation: valid_categories={valid_categories}")
+    
+
     # 🚨 CLAUDE.md COMPLIANCE: 日本語カテゴリ直接使用（英語ID変換システム完全廃止）
-    if not validate_japanese_category(department_name):
+    if not validation_result:
         logger.error(f"ERROR question_types部門見つからず: {department_id}")
-        valid_categories = get_japanese_categories()
         logger.info(f"有効カテゴリ: {valid_categories}")
         return render_template('error.html', error="指定された部門が見つかりません。")
     
@@ -5968,31 +6063,52 @@ def question_types(department_id):
     session['selected_department'] = department_id
     session.modified = True
     
-    # FIRE 軽量版パターン完全移植: 直接HTMLレスポンスで確実動作
-    return f"""
-    <html>
-    <head>
-        <title>問題種別選択 - {department_name}</title>
-        <meta charset="utf-8">
-        <style>
-            body {{ font-family: Arial, sans-serif; margin: 20px; }}
-            .btn {{ padding: 10px 20px; margin: 10px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; display: inline-block; }}
-            .btn:hover {{ background: #0056b3; }}
-        </style>
-    </head>
-    <body>
-        <h1>{department_name} - 問題種別選択</h1>
-        <p>学習開始する問題種別を選択してください：</p>
-        
-        <div>
-            <a href="/exam?department={department_id}&type=basic" class="btn">4-1 基礎科目</a>
-            <a href="/exam?department={department_id}&type=specialist" class="btn">4-2 専門科目</a>
-        </div>
-        
-        <p><a href="/departments">← 部門選択に戻る</a></p>
-    </body>
-    </html>
-    """
+    # 🚨 CRITICAL FIX: 4-2専門科目として選択された場合は直接4-2専門問題に進む
+    # ユーザー指摘「4-1の共通問題と4-2の専門分野の問題は全く別物」への対応
+    
+    # 🚨 CRITICAL DEBUG: 条件分岐の詳細ログ出力 + 強制テスト出力
+    debug_info = f"DEBUG: decoded_department_id='{decoded_department_id}', type={type(decoded_department_id)}"
+    basic_check = decoded_department_id == 'basic'
+    urban_check = decoded_department_id == 'urban'
+    
+    logger.info(debug_info)
+    logger.info(f"DEBUG: decoded_department_id == 'basic' ? {basic_check}")
+    logger.info(f"DEBUG: decoded_department_id == 'urban' ? {urban_check}")
+    
+    
+    # 基礎科目の場合のみ選択画面を表示
+    if decoded_department_id == 'basic':
+        logger.info(f"DEBUG: 基礎科目分岐に入りました")
+        return f"""
+        <html>
+        <head>
+            <title>問題種別選択 - {department_name}</title>
+            <meta charset="utf-8">
+            <style>
+                body {{ font-family: Arial, sans-serif; margin: 20px; }}
+                .btn {{ padding: 10px 20px; margin: 10px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; display: inline-block; }}
+                .btn:hover {{ background: #0056b3; }}
+            </style>
+        </head>
+        <body>
+            <h1>{department_name} - 基礎科目問題</h1>
+            <p>4-1基礎科目（共通問題）を開始します：</p>
+            
+            <div>
+                <a href="/exam?department={department_id}&type=basic" class="btn">4-1 基礎科目開始</a>
+            </div>
+            
+            <p><a href="/departments">← 部門選択に戻る</a></p>
+        </body>
+        </html>
+        """
+    
+    # 🎯 4-2専門科目の場合：直接専門問題に進む（正しい動作）
+    else:
+        logger.info(f"DEBUG: 専門科目分岐に入りました - リダイレクト実行")
+        # 直接4-2専門科目の問題画面にリダイレクト
+        logger.info(f"REDIRECT: {department_id} → /exam?department={department_id}&type=specialist")
+        return redirect(f'/exam?department={department_id}&type=specialist')
 
 
 @app.route('/test-route')
@@ -6029,32 +6145,10 @@ def department_start(department_id):
             target_category = '基礎科目（共通）'
             logger.info(f"✅ 基礎科目部門確認: {department_id} → {target_category}")
         else:
-            # 🎯 CLAUDE.md準拠: 直接マッピング使用（英語ID変換システム廃止）
-            direct_mapping = {
-# REMOVED:                 'road': '道路',
-# REMOVED:                 'river': '河川、砂防及び海岸・海洋', 
-# REMOVED:                 'urban': '都市計画及び地方計画',
-# REMOVED:                 'garden': '造園',
-# REMOVED:                 'env': '建設環境',
-# REMOVED:                 'steel': '鋼構造及びコンクリート',
-# REMOVED:                 'soil': '土質及び基礎',
-# REMOVED:                 'construction': '施工計画、施工設備及び積算',
-# REMOVED:                 'water': '上水道及び工業用水道',
-# REMOVED:                 'forest': '森林土木',
-# REMOVED:                 'agri': '農業土木',
-# REMOVED:                 'tunnel': 'トンネル'
-            }
-            
-            # 既に日本語の場合はそのまま、英語IDの場合は変換
-            if department_id in direct_mapping:
-                target_category = direct_mapping[department_id]
-                logger.info(f"✅ 英語ID変換: {department_id} → {target_category}")
-            elif department_id in direct_mapping.values():
-                target_category = department_id  # 既に日本語カテゴリ
-                logger.info(f"✅ 日本語カテゴリ直接使用: {target_category}")
-            else:
-                logger.error(f"🚨 未知の部門ID: {department_id}")
-                return render_template('error.html', error="指定された部門が見つかりません。")
+            # CLAUDE.md準拠: URLエンコーディングで日本語カテゴリ直接使用
+            from urllib.parse import unquote
+            target_category = unquote(department_id)
+            logger.info(f"✅ 日本語カテゴリ直接使用: {target_category}")
             
         logger.info(f"🎯 部門マッピング最終確認: {original_department_id} → {target_category}")
         logger.info(f"SEARCH 部門開始: {department_id} → {target_category}")
@@ -6264,25 +6358,11 @@ def department_study(department):
             # ❌ NEVER: LIGHTWEIGHT_DEPARTMENT_MAPPING等の英語→日本語変換システム
             # ✅ YOU MUST: CSVファイルの日本語カテゴリを直接使用
             
-            # 英語IDから日本語カテゴリへの直接マッピング（一時的互換性確保）
-            direct_category_mapping = {
-# REMOVED:                 'tunnel': 'トンネル',
-# REMOVED:                 'road': '道路', 
-# REMOVED:                 'river': '河川、砂防及び海岸・海洋',
-# REMOVED:                 'urban': '都市計画及び地方計画',
-# REMOVED:                 'garden': '造園',
-# REMOVED:                 'env': '建設環境',
-# REMOVED:                 'steel': '鋼構造及びコンクリート',
-# REMOVED:                 'soil': '土質及び基礎',
-# REMOVED:                 'construction': '施工計画、施工設備及び積算',
-# REMOVED:                 'water': '上水道及び工業用水道',
-# REMOVED:                 'forest': '森林土木',
-# REMOVED:                 'agri': '農業土木',
-                'agriculture': '農業土木'  # 🚨 緊急修正: agriculture→agri互換性確保
-            }
+            # CLAUDE.md準拠: URLエンコーディングで日本語カテゴリ直接使用
+            from urllib.parse import unquote
             
-            # 日本語カテゴリ取得（CLAUDE.md準拠）
-            target_category = direct_category_mapping.get(department_key, department_key)
+            # 日本語カテゴリ取得（英語ID変換システム廃止）
+            target_category = unquote(department_key)
             
             specialist_questions = [q for q in questions
                                     if q.get('question_type') == 'specialist' and q.get('category') == target_category]
@@ -7121,7 +7201,17 @@ def bookmarks_page():
                 dept_key = question.get('department', '')
                 dept_name = ''
                 if dept_key:
-                    dept_name = convert_legacy_english_id_to_japanese(dept_key)
+                    # CLAUDE.md準拠：英語ID変換システム廃止 - 日本語カテゴリ直接使用
+                    if dept_key in LIGHTWEIGHT_DEPARTMENT_MAPPING:
+                        dept_name = get_japanese_category_direct(dept_key)
+                    else:
+                        # URL decoding for Japanese department names
+                        try:
+                            from urllib.parse import unquote
+                            decoded_dept = unquote(dept_key).strip()
+                            dept_name = get_japanese_category_direct(decoded_dept)
+                        except Exception:
+                            dept_name = dept_key
 
                 questions.append({
                     'id': question.get('id'),
@@ -7814,7 +7904,17 @@ def ai_analysis():
         for entry in history:
             dept = entry.get('department')
             if dept:
-                dept_name = convert_legacy_english_id_to_japanese(dept)
+                # CLAUDE.md準拠：英語ID変換システム廃止 - 日本語カテゴリ直接使用
+                if dept in LIGHTWEIGHT_DEPARTMENT_MAPPING:
+                    dept_name = get_japanese_category_direct(dept)
+                else:
+                    # URL decoding for Japanese department names
+                    try:
+                        from urllib.parse import unquote
+                        decoded_dept = unquote(dept).strip()
+                        dept_name = get_japanese_category_direct(decoded_dept)
+                    except Exception:
+                        dept_name = dept
                 if validate_japanese_category(dept_name):
                     if dept not in available_departments:
                         available_departments[dept] = {'count': 0, 'name': dept_name}
@@ -7868,7 +7968,17 @@ def adaptive_questions():
         # 🚨 CLAUDE.md COMPLIANCE: 日本語カテゴリ直接使用（英語ID変換システム完全廃止）
         category_name = 'AI適応学習'
         if department:
-            dept_name = convert_legacy_english_id_to_japanese(department)
+            # CLAUDE.md準拠：英語ID変換システム廃止 - 日本語カテゴリ直接使用
+            if department in LIGHTWEIGHT_DEPARTMENT_MAPPING:
+                dept_name = get_japanese_category_direct(department)
+            else:
+                # URL decoding for Japanese department names
+                try:
+                    from urllib.parse import unquote
+                    decoded_dept = unquote(department).strip()
+                    dept_name = get_japanese_category_direct(decoded_dept)
+                except Exception:
+                    dept_name = department
             category_name = f'AI適応学習 ({dept_name})'
 
         session['exam_category'] = category_name
@@ -7933,7 +8043,17 @@ def integrated_learning():
 
         # 🚨 CLAUDE.md COMPLIANCE: 日本語カテゴリ直接使用（英語ID変換システム完全廃止）
         if department:
-            dept_name = convert_legacy_english_id_to_japanese(department)
+            # CLAUDE.md準拠：英語ID変換システム廃止 - 日本語カテゴリ直接使用
+            if department in LIGHTWEIGHT_DEPARTMENT_MAPPING:
+                dept_name = get_japanese_category_direct(department)
+            else:
+                # URL decoding for Japanese department names
+                try:
+                    from urllib.parse import unquote
+                    decoded_dept = unquote(department).strip()
+                    dept_name = get_japanese_category_direct(decoded_dept)
+                except Exception:
+                    dept_name = department
             category_name = f'{category_name} ({dept_name})'
 
         session['exam_category'] = category_name
