@@ -5424,7 +5424,7 @@ def exam():
             filter_desc = []
             if requested_department:
                 # CLAUDE.md準拠：英語ID変換システム廃止 - 日本語カテゴリ直接使用
-                if requested_department in LIGHTWEIGHT_DEPARTMENT_MAPPING:
+                if requested_department in ["basic", "road", "river", "urban", "garden", "env", "steel", "soil", "construction", "water", "forest", "agri", "tunnel"]:
                     dept_name = get_japanese_category_direct(requested_department)
                 else:
                     # URL decoding for Japanese department names
@@ -5917,7 +5917,7 @@ def departments():
                 h_dept = h.get('department', '')
                 if h_dept == dept_name:
                     dept_history.append(h)
-                elif h_dept in LIGHTWEIGHT_DEPARTMENT_MAPPING and get_japanese_category_direct(h_dept) == dept_name:
+                elif h_dept in ["basic", "road", "river", "urban", "garden", "env", "steel", "soil", "construction", "water", "forest", "agri", "tunnel"] and get_japanese_category_direct(h_dept) == dept_name:
                     dept_history.append(h)
                 else:
                     # URL decoding for Japanese department names
@@ -7202,7 +7202,7 @@ def bookmarks_page():
                 dept_name = ''
                 if dept_key:
                     # CLAUDE.md準拠：英語ID変換システム廃止 - 日本語カテゴリ直接使用
-                    if dept_key in LIGHTWEIGHT_DEPARTMENT_MAPPING:
+                    if dept_key in ["basic", "road", "river", "urban", "garden", "env", "steel", "soil", "construction", "water", "forest", "agri", "tunnel"]:
                         dept_name = get_japanese_category_direct(dept_key)
                     else:
                         # URL decoding for Japanese department names
@@ -7905,7 +7905,7 @@ def ai_analysis():
             dept = entry.get('department')
             if dept:
                 # CLAUDE.md準拠：英語ID変換システム廃止 - 日本語カテゴリ直接使用
-                if dept in LIGHTWEIGHT_DEPARTMENT_MAPPING:
+                if dept in ["basic", "road", "river", "urban", "garden", "env", "steel", "soil", "construction", "water", "forest", "agri", "tunnel"]:
                     dept_name = get_japanese_category_direct(dept)
                 else:
                     # URL decoding for Japanese department names
@@ -7969,7 +7969,7 @@ def adaptive_questions():
         category_name = 'AI適応学習'
         if department:
             # CLAUDE.md準拠：英語ID変換システム廃止 - 日本語カテゴリ直接使用
-            if department in LIGHTWEIGHT_DEPARTMENT_MAPPING:
+            if department in ["basic", "road", "river", "urban", "garden", "env", "steel", "soil", "construction", "water", "forest", "agri", "tunnel"]:
                 dept_name = get_japanese_category_direct(department)
             else:
                 # URL decoding for Japanese department names
@@ -8044,7 +8044,7 @@ def integrated_learning():
         # 🚨 CLAUDE.md COMPLIANCE: 日本語カテゴリ直接使用（英語ID変換システム完全廃止）
         if department:
             # CLAUDE.md準拠：英語ID変換システム廃止 - 日本語カテゴリ直接使用
-            if department in LIGHTWEIGHT_DEPARTMENT_MAPPING:
+            if department in ["basic", "road", "river", "urban", "garden", "env", "steel", "soil", "construction", "water", "forest", "agri", "tunnel"]:
                 dept_name = get_japanese_category_direct(department)
             else:
                 # URL decoding for Japanese department names
