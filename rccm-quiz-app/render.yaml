@@ -4,7 +4,7 @@ services:
     env: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn --bind 0.0.0.0:$PORT app:app
+    startCommand: gunicorn --bind 0.0.0.0:$PORT wsgi:application
     envVars:
       - key: SECRET_KEY
         generateValue: true
@@ -14,5 +14,9 @@ services:
         value: "true"
       - key: PYTHONIOENCODING
         value: "utf-8"
+      - key: PYTHONPATH
+        value: "."
+      - key: WEB_CONCURRENCY
+        value: "2"
     autoDeploy: true
     branch: master
