@@ -6018,8 +6018,61 @@ def select_department(department_id):
         return render_template('error.html', error="部門選択中にエラーが発生しました。")
 
 
-# 🚨 CLAUDE.md COMPLIANCE: /departments/<department_id>/types ルート削除完了
-# 理由: 4-1/4-2再選択画面は不要（ユーザー指摘の通り、スタート画面で完全分離済み）
+# 🚨 BACKWARD COMPATIBILITY: /departments/<department_id>/types ルート復活
+# 理由: 既存のブックマークやリンクとの互換性確保
+@app.route('/departments/<department_id>/types')
+def question_types(department_id):
+    """
+    🔧 BACKWARD COMPATIBILITY FIX
+    既存のURL構造との互換性を保つため、/departments/<id>/typesを復活
+    直接適切なexamルートにリダイレクトする
+    """
+    
+    logger.info(f"BACKWARD COMPATIBILITY: /types route accessed for {department_id}")
+    
+    try:
+        # URLデコードで日本語部門名を直接取得
+        import urllib.parse
+        try:
+            if '%' in department_id:
+                department_name = urllib.parse.unquote(department_id, encoding='utf-8')
+            else:
+                department_name = department_id
+        except (UnicodeDecodeError, ValueError):
+            department_name = department_id
+        
+        # 🚨 CLAUDE.md COMPLIANCE: 基礎科目の英語ID対応
+        if department_name == 'basic' or department_id == 'basic':
+            department_name = '基礎科目（共通）'
+            return redirect(url_for('exam', department='basic', type='basic', count=10))
+        
+        # 英語IDの場合は日本語に変換
+        english_to_japanese_minimal = {
+            'env': '建設環境',
+            'road': '道路', 
+            'river': '河川、砂防及び海岸・海洋',
+            'urban': '都市計画及び地方計画',
+            'garden': '造園',
+            'steel': '鋼構造及びコンクリート',
+            'soil': '土質及び基礎',
+            'construction': '施工計画、施工設備及び積算',
+            'water': '上水道及び工業用水道',
+            'forest': '森林土木',
+            'agri': '農業土木',
+            'tunnel': 'トンネル'
+        }
+        
+        if department_id in english_to_japanese_minimal:
+            department_name = english_to_japanese_minimal[department_id]
+            
+        logger.info(f"BACKWARD COMPATIBILITY: {department_id} -> {department_name}")
+        
+        # 専門科目として直接examルートにリダイレクト
+        return redirect(url_for('exam', department=department_id, type='specialist', count=10))
+        
+    except Exception as e:
+        logger.error(f"BACKWARD COMPATIBILITY error for {department_id}: {e}")
+        return redirect(url_for('departments'))
 
 
 @app.route('/test-route')
