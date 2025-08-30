@@ -2997,7 +2997,7 @@ def get_questions_by_department(department_name):
 
 @app.route('/quiz/<department>')
 def quiz_department(department):
-    """🛡️ CLAUDE.md準拠: 英語ID変換システム完全廃止・日本語カテゴリ直接使用"""
+    """🚨 ULTRA SYNC FIX: 4-1/4-2完全分離システム - 再選択画面廃止"""
     try:
         # 🚨 CLAUDE.md準拠: 英語ID変換システムを完全廃止
         # 英語IDから日本語カテゴリへの直接マッピング（変換関数は使用しない）
@@ -3024,8 +3024,22 @@ def quiz_department(department):
         
         logger.info(f"🎯 部門マッピング: {department} → {department_name}")
         
-        # 🔥 直接部門選択ページにリダイレクト（/examルート迂回を廃止）
-        return redirect(f'/departments/{department}/types')
+        # 🔥 ULTRA SYNC FIX: 4-1/4-2完全分離
+        # URL parameter または session で問題種別を確認
+        question_type = request.args.get('type') or session.get('selected_question_type')
+        
+        if question_type == 'basic':
+            # 4-1基礎科目: 直接exam開始（部門選択不要）
+            logger.info(f"🎯 4-1基礎科目直接開始: {department_name}")
+            return redirect(f'/exam?department={department}&type=basic')
+        elif question_type == 'specialist':
+            # 4-2専門科目: 直接専門問題開始（types画面をバイパス）
+            logger.info(f"🎯 4-2専門科目直接開始: {department_name}")
+            return redirect(f'/exam?department={department}&type=specialist')
+        else:
+            # 問題種別未選択の場合のみtypes画面表示
+            logger.info(f"🔍 問題種別未選択: {department_name} → types画面")
+            return redirect(f'/departments/{department}/types')
         
     except Exception as e:
         logger.error(f"🚨 部門クイズルートエラー ({department}): {e}")
@@ -3692,7 +3706,7 @@ def exam():
                             selected = basic_questions[:10]
                             session['exam_question_ids'] = [q['id'] for q in selected]
                             session['exam_current'] = 0
-                            session['exam_category'] = '基礎科目'
+                            session['exam_category'] = '基礎科目（共通）'
                             session['selected_question_type'] = 'basic'
                             session.modified = True
                             logger.info(f"基礎科目セッション開始: {len(selected)}問")
@@ -3818,7 +3832,7 @@ def exam():
                             selected = basic_questions[:10]
                             session['exam_question_ids'] = [q['id'] for q in selected]
                             session['exam_current'] = 0
-                            session['exam_category'] = '基礎科目'
+                            session['exam_category'] = '基礎科目（共通）'
                             session['selected_question_type'] = 'basic'
                             session.modified = True
                             logger.info(f"デフォルト基礎科目: {len(selected)}問")
@@ -3911,6 +3925,10 @@ def exam():
                 logger.info("SUCCESS: Emergency Fix 21 - CSRF validation passed")
             # FIRE ULTRA SYNC CRITICAL FIX: 無効データ厳密検証
             form_data = dict(request.form)
+            logger.info(f"🔍 ULTRA SYNC DEBUG: Full form_data = {form_data}")
+            logger.info(f"🔍 ULTRA SYNC DEBUG: form_data keys = {list(form_data.keys())}")
+            for key, value in form_data.items():
+                logger.info(f"🔍 ULTRA SYNC DEBUG: {key} = {value}")
             
             # FIRE ULTRA SYNC CRITICAL FIX: 全POSTデータの厳密検証
             # 新規セッション開始の場合
@@ -4006,11 +4024,25 @@ def exam():
                                            error="無効な回答が選択されました。",
                                            error_type="invalid_input")
 
-                # 問題IDの検証強化
+                # 🔧 ULTRA SYNC FIX: qidをsequential indexとして処理
+                # Sequential ID (1,2,3...) として処理し、CSV IDとの混同を防ぐ  
                 try:
-                    qid = int(qid)
-                    if qid <= 0 or qid > 100000:  # 合理的な範囲チェック
-                        raise ValueError(f"問題ID範囲外: {qid}")
+                    qid_sequential = int(qid)
+                    # Sequential indexの範囲チェック (1-based index: 1,2,3,...)
+                    if qid_sequential <= 0 or qid_sequential > 50:  # Session内での範囲
+                        raise ValueError(f"Sequential ID範囲外: {qid_sequential}")
+                    
+                    # 実際のCSV ID取得: session内のquestion listから取得
+                    exam_ids = session.get('exam_question_ids', [])
+                    if exam_ids and qid_sequential <= len(exam_ids):
+                        # Sequential indexから実際のCSV IDを取得
+                        actual_csv_id = exam_ids[qid_sequential - 1]  # 1-based to 0-based
+                        logger.info(f"🔄 QID変換: sequential={qid_sequential} → CSV_ID={actual_csv_id}")
+                        qid = int(actual_csv_id)  # 実際の処理用にCSV IDを使用
+                    else:
+                        logger.warning(f"Sequential ID {qid_sequential}がsession範囲外: exam_ids={len(exam_ids)}")
+                        qid = qid_sequential  # フォールバック
+                        
                 except (ValueError, TypeError) as e:
                     logger.warning(f"🚨 問題ID変換エラー: {qid} - {e}")
                     return render_template('error.html',
@@ -4350,7 +4382,7 @@ def exam():
                             session['exam_question_ids'] = question_ids
                             session['exam_current'] = current_index
                             session['selected_question_type'] = 'basic'
-                            session['exam_category'] = '基礎科目'
+                            session['exam_category'] = '基礎科目（共通）'
                             session.modified = True
 
                             exam_question_ids = question_ids
@@ -4485,7 +4517,7 @@ def exam():
                                 session['exam_question_ids'] = question_ids
                                 session['exam_current'] = current_index
                                 session['selected_question_type'] = 'basic'
-                                session['exam_category'] = '基礎科目'
+                                session['exam_category'] = '基礎科目（共通）'
                                 session.modified = True
 
                                 exam_question_ids = question_ids
@@ -5595,6 +5627,18 @@ def exam():
         session_total_questions = session.get('quiz_settings', {}).get('questions_per_session', 10)
         logger.info(f"ULTRA SYNC TEMPLATE: Using session total_questions={session_total_questions}")
         
+        # ULTRA SYNC FIX: Determine department name for UI display
+        session_question_type = session.get('selected_question_type', session.get('question_type', ''))
+        if session_question_type == 'basic':
+            department_name = '基礎科目（共通）'
+        else:
+            # For specialist departments, get from LIGHTWEIGHT_DEPARTMENT_MAPPING or fallback
+            department_id = session.get('selected_department', '')
+            if department_id and department_id in LIGHTWEIGHT_DEPARTMENT_MAPPING:
+                department_name = LIGHTWEIGHT_DEPARTMENT_MAPPING[department_id]
+            else:
+                department_name = session.get('exam_category', 'N/A')
+
         template_vars = {
             'question': question,
             'current_no': current_no + 1,  # 表示用は1から開始
@@ -5605,19 +5649,30 @@ def exam():
             'is_review_question': question_srs.get('total_attempts', 0) > 0,
             'debug_info': f'department={requested_department}, type={requested_question_type}',  # 🚨 CRITICAL DEBUG: Add debug info to template
             'forced_debug': getattr(g, 'forced_debug_output', '<!-- NO_FORCED_DEBUG -->'),  # 🚨 FORCE URL DEBUG OUTPUT
+            'department_name': department_name,  # ULTRA SYNC: Add department name for UI consistency
         }
+        
+        # 🔍 ULTRA SYNC DEBUG: テンプレート変数値確認
+        logger.info(f"🔍 TEMPLATE DEBUG: current_no (0-based)={current_no}, current_no+1 (1-based)={current_no+1}")
+        logger.info(f"🔍 TEMPLATE DEBUG: template_vars['current_no']={template_vars['current_no']}")
         
         logger.info(f"問題表示: {current_no + 1}/{len(exam_question_ids)} - ID:{current_question_id}")
 
-        # CRITICAL FIX: Assign processed category to question object
-        # Safe category assignment with fallback
+        # ULTRA SYNC FIX: Category display standardization for 4-1 basic subjects
+        # User perspective: "基礎科目（共通）" is the most user-friendly display format
         category_to_assign = None
         if 'target_category' in locals():
             category_to_assign = target_category
         elif 'actual_category' in locals():
             category_to_assign = actual_category
         else:
-            category_to_assign = session.get('department', session.get('exam_category', 'N/A'))
+            # Check if this is a basic subject session
+            session_question_type = session.get('selected_question_type', session.get('question_type', ''))
+            if session_question_type == 'basic':
+                # ULTRA SYNC: Standardize basic subject category display for user consistency
+                category_to_assign = '基礎科目（共通）'  # User-friendly format
+            else:
+                category_to_assign = session.get('department', session.get('exam_category', 'N/A'))
         
         if isinstance(question, dict):
             question['category'] = category_to_assign

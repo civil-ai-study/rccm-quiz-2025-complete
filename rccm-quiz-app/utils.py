@@ -1274,52 +1274,6 @@ def emergency_load_all_questions():
     print(f"Emergency loader result: {len(all_questions)} total questions")
     return all_questions
 
-def emergency_get_questions(department=None, question_type=None, count=10):
-    """
-    EMERGENCY QUESTION GETTER - Replaces problematic original function
-    """
-    all_questions = emergency_load_all_questions()
-    
-    if not all_questions:
-        print("ERROR EMERGENCY: No questions loaded - check CSV files")
-        return []
-    
-    # Filter questions based on parameters
-    filtered_questions = all_questions
-    
-    if question_type:
-        filtered_questions = [q for q in filtered_questions if q.get('question_type') == question_type]
-        print(f"Filtered by type '{question_type}': {len(filtered_questions)} questions")
-    
-    if department and question_type == 'specialist':
-        # EMERGENCY FIX: Use direct Japanese category mapping
-        department_mapping = {
-            'river': '河川、砂防及び海岸・海洋',
-            'road': '道路',
-            'urban': '都市計画及び地方計画',
-            'tunnel': 'トンネル',
-            'garden': '造園',
-            'env': '建設環境',
-            'steel': '鋼構造及びコンクリート',
-            'soil': '土質及び基礎',
-            'construction': '施工計画、施工設備及び積算',
-            'water': '上水道及び工業用水道',
-            'forest': '森林土木',
-            'agri': '農業土木'
-        }
-        
-        target_category = department_mapping.get(department, department)
-        filtered_questions = [q for q in filtered_questions if q.get('category') == target_category]
-        print(f"Filtered by department '{department}' (category: {target_category}): {len(filtered_questions)} questions")
-    
-    # Return requested count
-    if count and len(filtered_questions) > count:
-        import random
-        filtered_questions = random.sample(filtered_questions, count)
-    
-    print(f"Final result: {len(filtered_questions)} questions")
-    return filtered_questions
-
 
 # End of emergency fix
 # ================================
@@ -1386,52 +1340,6 @@ def emergency_load_all_questions():
     
     print(f"Emergency loader result: {len(all_questions)} total questions")
     return all_questions
-
-def emergency_get_questions(department=None, question_type=None, count=10):
-    """
-    EMERGENCY QUESTION GETTER - Replaces problematic original function
-    """
-    all_questions = emergency_load_all_questions()
-    
-    if not all_questions:
-        print("ERROR EMERGENCY: No questions loaded - check CSV files")
-        return []
-    
-    # Filter questions based on parameters
-    filtered_questions = all_questions
-    
-    if question_type:
-        filtered_questions = [q for q in filtered_questions if q.get('question_type') == question_type]
-        print(f"Filtered by type '{question_type}': {len(filtered_questions)} questions")
-    
-    if department and question_type == 'specialist':
-        # EMERGENCY FIX: Use direct Japanese category mapping
-        department_mapping = {
-            'river': '河川、砂防及び海岸・海洋',
-            'road': '道路',
-            'urban': '都市計画及び地方計画',
-            'tunnel': 'トンネル',
-            'garden': '造園',
-            'env': '建設環境',
-            'steel': '鋼構造及びコンクリート',
-            'soil': '土質及び基礎',
-            'construction': '施工計画、施工設備及び積算',
-            'water': '上水道及び工業用水道',
-            'forest': '森林土木',
-            'agri': '農業土木'
-        }
-        
-        target_category = department_mapping.get(department, department)
-        filtered_questions = [q for q in filtered_questions if q.get('category') == target_category]
-        print(f"Filtered by department '{department}' (category: {target_category}): {len(filtered_questions)} questions")
-    
-    # Return requested count
-    if count and len(filtered_questions) > count:
-        import random
-        filtered_questions = random.sample(filtered_questions, count)
-    
-    print(f"Final result: {len(filtered_questions)} questions")
-    return filtered_questions
 
 
 # End of emergency fix
@@ -1502,7 +1410,8 @@ def emergency_load_all_questions():
 
 def emergency_get_questions(department=None, question_type=None, count=10):
     """
-    EMERGENCY QUESTION GETTER - Replaces problematic original function
+    EMERGENCY QUESTION GETTER - CLAUDE.md COMPLIANCE FIXED VERSION
+    CRITICAL FIX: CSVには'question_type'フィールドが存在しないため、部門別フィルタのみ実行
     """
     all_questions = emergency_load_all_questions()
     
@@ -1513,12 +1422,12 @@ def emergency_get_questions(department=None, question_type=None, count=10):
     # Filter questions based on parameters
     filtered_questions = all_questions
     
-    if question_type:
-        filtered_questions = [q for q in filtered_questions if q.get('question_type') == question_type]
-        print(f"Filtered by type '{question_type}': {len(filtered_questions)} questions")
+    # ✅ CRITICAL FIX: CSVには'question_type'フィールドが存在しないため、この処理をスキップ
+    # 基礎科目は4-1.csv、専門科目は4-2.csvで既に分離されている
+    print(f"FIXED: Total questions loaded: {len(filtered_questions)}")
     
     if department and question_type == 'specialist':
-        # EMERGENCY FIX: Use direct Japanese category mapping
+        # CLAUDE.md COMPLIANCE: 日本語カテゴリで直接フィルタ
         department_mapping = {
             'river': '河川、砂防及び海岸・海洋',
             'road': '道路',
@@ -1536,16 +1445,22 @@ def emergency_get_questions(department=None, question_type=None, count=10):
         
         target_category = department_mapping.get(department, department)
         filtered_questions = [q for q in filtered_questions if q.get('category') == target_category]
-        print(f"Filtered by department '{department}' (category: {target_category}): {len(filtered_questions)} questions")
+        print(f"FIXED: Filtered by department '{department}' (category: {target_category}): {len(filtered_questions)} questions")
+        
+        if len(filtered_questions) == 0:
+            print(f"WARNING: No questions found for category '{target_category}' - available categories:")
+            available_categories = set(q.get('category', 'N/A') for q in all_questions)
+            for cat in sorted(available_categories):
+                count_for_cat = len([q for q in all_questions if q.get('category') == cat])
+                print(f"  - {cat}: {count_for_cat} questions")
     
     # Return requested count
     if count and len(filtered_questions) > count:
         import random
         filtered_questions = random.sample(filtered_questions, count)
     
-    print(f"Final result: {len(filtered_questions)} questions")
+    print(f"FIXED: Final result: {len(filtered_questions)} questions")
     return filtered_questions
 
 
 # End of emergency fix
-# ================================

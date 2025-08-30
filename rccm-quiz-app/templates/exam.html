@@ -25,6 +25,10 @@
                     {% elif question.question_type == 'basic' %}
                     <span class="badge bg-secondary text-white" style="font-size: 0.7rem;">4-1 基礎</span>
                     {% endif %}
+                    <!-- ULTRA SYNC: User-friendly category display for consistency verification -->
+                    {% if department_name %}
+                    <span class="badge bg-success text-white" style="font-size: 0.65rem;">カテゴリ: {{ department_name }}</span>
+                    {% endif %}
                     <!-- 🔍 ULTRA SYNC診断情報表示 - 開発環境のみ -->
                     {% if config.DEBUG %}
                     <span class="badge bg-danger text-white" style="font-size: 0.6rem;">🔍 カテゴリ: {{ question.category | default('不明') }}</span>
@@ -84,7 +88,7 @@
         
         
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                <input type="hidden" name="qid" value="{{ question.id }}">
+                <input type="hidden" name="qid" value="{{ current_no }}">
                 <input type="hidden" name="elapsed" value="0" id="elapsedTime">
                 <!-- Session initialization indicators for test validation -->
                 <input type="hidden" name="session_initialized" value="true" class="session-indicator">
