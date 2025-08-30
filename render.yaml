@@ -3,8 +3,8 @@ services:
     name: rccm-quiz-2025-complete
     env: python
     plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn --bind 0.0.0.0:$PORT --workers 1 --timeout 180 --preload wsgi:application
+    buildCommand: cd rccm-quiz-app && pip install -r requirements.txt
+    startCommand: cd rccm-quiz-app && gunicorn --bind 0.0.0.0:$PORT --workers 1 --timeout 180 --preload app:app
     envVars:
       - key: SECRET_KEY
         generateValue: true
