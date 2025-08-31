@@ -3904,9 +3904,13 @@ def exam():
             for key, value in form_data.items():
                 logger.info(f"🔍 ULTRA SYNC DEBUG: {key} = {value}")
             
-            # FIRE ULTRA SYNC CRITICAL FIX: 全POSTデータの厳密検証
-            # 新規セッション開始の場合と回答送信の場合を正しく分離
-            if any(key in form_data for key in ['department', 'question_type', 'num_questions']):
+            # 🚨 CRITICAL FIX: 回答送信を最優先でチェック（新規セッション検証を回避）
+            # 回答送信の場合と新規セッション開始の場合を正しく分離
+            if any(key in form_data for key in ['answer']):
+                # 🚨 CRITICAL FIX: 回答送信時は一切の検証をスキップ
+                logger.info(f"✅ ULTRA SYNC: 回答送信検出 - 検証スキップして処理継続")
+                pass  # 検証をスキップして通常の処理に進む
+            elif any(key in form_data for key in ['department', 'question_type', 'num_questions']):
                 # 新規セッション開始時の検証
                 valid_session_keys = ['department', 'question_type', 'num_questions', 'csrf_token']
                 invalid_keys = [key for key in form_data.keys() if key not in valid_session_keys]
@@ -3916,14 +3920,6 @@ def exam():
                     return render_template('error.html',
                                          error=f"不正なセッション開始パラメータ: {', '.join(invalid_keys)}",
                                          error_type="invalid_session_params"), 400
-            elif any(key in form_data for key in ['qid', 'answer']):
-                # 🚨 CLAUDE.md COMPLIANCE FIX: 回答送信時の有効フィールド追加
-                valid_answer_keys = ['qid', 'answer', 'elapsed', 'session_initialized', 'count', 'csrf_token']
-                invalid_keys = [key for key in form_data.keys() if key not in valid_answer_keys]
-                
-                if invalid_keys:
-                    logger.warning(f"🚨 ULTRA SYNC: 回答送信時の不正フィールド: {invalid_keys}")
-                    # 不正フィールドは警告のみ、処理は継続（過度に厳密な検証を緩和）
             else:
                 # 回答送信時の検証 - 必須フィールドチェック
                 if not form_data:
