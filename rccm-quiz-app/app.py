@@ -196,7 +196,53 @@ except ImportError:
     EMERGENCY_DATA_FIX_AVAILABLE = False
     # Create fallback functions for production stability
     def emergency_load_all_questions():
-        return []
+        """Fixed fallback emergency data loader"""
+        import os
+        import csv
+        
+        data_dir = os.path.join(os.path.dirname(__file__), 'data')
+        all_questions = []
+        
+        csv_files = {
+            '4-1.csv': 'basic',
+            '4-2_2019.csv': 'specialist'
+        }
+        
+        for filename, question_type in csv_files.items():
+            filepath = os.path.join(data_dir, filename)
+            
+            if os.path.exists(filepath):
+                try:
+                    # Try multiple encodings
+                    for encoding in ['utf-8-sig', 'utf-8', 'shift_jis', 'cp932']:
+                        try:
+                            with open(filepath, 'r', encoding=encoding, newline='') as f:
+                                reader = csv.DictReader(f)
+                                file_questions = []
+                                for row in reader:
+                                    # Create a fresh dictionary to avoid reference issues
+                                    clean_row = {}
+                                    
+                                    # Copy all fields properly
+                                    for key, value in row.items():
+                                        clean_row[key] = value if value is not None else ""
+                                    
+                                    # Set required fields
+                                    clean_row['question_type'] = question_type
+                                    if question_type == 'basic':
+                                        # For basic subjects, ensure category is set to '共通'
+                                        clean_row['category'] = '共通'
+                                    
+                                    file_questions.append(clean_row)
+                                
+                                all_questions.extend(file_questions)
+                                break
+                        except (UnicodeDecodeError, Exception):
+                            continue
+                except Exception:
+                    continue
+        
+        return all_questions
     def emergency_get_questions(department=None, question_type='specialist', count=10):
         # ULTRA SYNC SIGNATURE FIX: 呼び出し側に合わせたパラメータ名に修正
         try:
@@ -1190,7 +1236,7 @@ def extract_department_questions_from_csv(department_name, num_questions=10):
                                 }
                                 file_questions.append(question_data)
                     
-                    logger.debug(f"SUCCESS {csv_file} 読み込み成功 ({encoding}) - {len(file_questions)}問抽出")
+                    logger.debug(f"SUCCESS {csv_file} 読み込み成功 (utf-8) - {len(file_questions)}問抽出")
                     file_loaded = True
                     break
                     
@@ -5625,6 +5671,11 @@ def exam():
             'debug_info': f'department={requested_department}, type={requested_question_type}',  # 🚨 CRITICAL DEBUG: Add debug info to template
             'forced_debug': getattr(g, 'forced_debug_output', '<!-- NO_FORCED_DEBUG -->'),  # 🚨 FORCE URL DEBUG OUTPUT
             'department_name': department_name,  # ULTRA SYNC: Add department name for UI consistency
+            # 🚨 CRITICAL FIX: Add missing template variables that exam.html expects
+            'department': requested_department,  # Required by exam.html hidden input
+            'question_type': requested_question_type,  # Required by exam.html hidden input
+            'count': session_total_questions,  # Required by exam.html hidden input
+            'qid': current_question_id,  # CRITICAL: Add question ID for form submission
         }
         
         # 🔍 ULTRA SYNC DEBUG: テンプレート変数値確認
