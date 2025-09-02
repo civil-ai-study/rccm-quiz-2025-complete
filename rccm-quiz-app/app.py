@@ -205,8 +205,8 @@ except ImportError:
             data_dir = os.path.join(os.path.dirname(__file__), 'data')
             all_questions = []
             
-            # Basic subject questions
-            basic_file = os.path.join(data_dir, 'rccm_basic_subjects.csv')
+            # Basic subject questions (4-1.csv)
+            basic_file = os.path.join(data_dir, '4-1.csv')
             if os.path.exists(basic_file):
                 with open(basic_file, 'r', encoding='utf-8') as f:
                     reader = csv.DictReader(f)
@@ -222,22 +222,24 @@ except ImportError:
                             'question_type': 'basic'
                         })
             
-            # Specialist questions
-            specialist_file = os.path.join(data_dir, 'rccm_specialist_questions.csv')
-            if os.path.exists(specialist_file):
-                with open(specialist_file, 'r', encoding='utf-8') as f:
-                    reader = csv.DictReader(f)
-                    for row in reader:
-                        all_questions.append({
-                            'id': row.get('id', ''),
-                            'question': row.get('question', ''),
-                            'choices': [row.get('choice_1', ''), row.get('choice_2', ''), 
-                                      row.get('choice_3', ''), row.get('choice_4', '')],
-                            'correct_answer': row.get('correct_answer', 'A'),
-                            'explanation': row.get('explanation', ''),
-                            'department': row.get('department', ''),
-                            'question_type': 'specialist'
-                        })
+            # Specialist questions (4-2_*.csv files)
+            import glob
+            specialist_files = glob.glob(os.path.join(data_dir, '4-2_*.csv'))
+            for specialist_file in specialist_files:
+                if os.path.exists(specialist_file):
+                    with open(specialist_file, 'r', encoding='utf-8') as f:
+                        reader = csv.DictReader(f)
+                        for row in reader:
+                            all_questions.append({
+                                'id': row.get('id', ''),
+                                'question': row.get('question', ''),
+                                'choices': [row.get('choice_1', ''), row.get('choice_2', ''), 
+                                          row.get('choice_3', ''), row.get('choice_4', '')],
+                                'correct_answer': row.get('correct_answer', 'A'),
+                                'explanation': row.get('explanation', ''),
+                                'department': row.get('department', ''),
+                                'question_type': 'specialist'
+                            })
             
             print(f"Emergency loaded {len(all_questions)} questions")
             return all_questions
