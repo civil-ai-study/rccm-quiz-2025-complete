@@ -249,14 +249,55 @@ except ImportError:
             traceback.print_exc()
             return []
     def emergency_get_questions(department=None, question_type='specialist', count=10):
-        # ULTRA SYNC SIGNATURE FIX: 呼び出し側に合わせたパラメータ名に修正
+        """Get questions for specific department and type using emergency data loader"""
         try:
-            from utils import emergency_get_questions as utils_emergency_get_questions
-            # CRITICAL FIX: 正しいパラメータ名でutils.py関数を呼び出し
-            return utils_emergency_get_questions(department=department, question_type=question_type, count=count)
+            all_questions = emergency_load_all_questions()
+            
+            # Filter by question type
+            if question_type == 'basic':
+                filtered_questions = [q for q in all_questions if q.get('question_type') == 'basic']
+            else:
+                filtered_questions = [q for q in all_questions if q.get('question_type') == 'specialist']
+            
+            # Filter by department/category if specified
+            if department and question_type != 'basic':
+                # Handle both English IDs and Japanese category names
+                department_mapping = {
+                    'river': '河川、砂防及び海岸・海洋',
+                    'road': '道路',
+                    'urban': '都市計画及び地方計画',
+                    'tunnel': 'トンネル',
+                    'garden': '造園',
+                    'env': '建設環境',
+                    'steel': '鋼構造及びコンクリート',
+                    'soil': '土質及び基礎',
+                    'construction': '施工計画、施工設備及び積算',
+                    'water': '上水道及び工業用水道',
+                    'forest': '森林土木',
+                    'agri': '農業土木'
+                }
+                
+                # Convert English ID to Japanese category if needed
+                target_category = department_mapping.get(department, department)
+                
+                # Filter by category
+                dept_questions = [q for q in filtered_questions if q.get('department') == target_category or q.get('category') == target_category]
+                if dept_questions:
+                    filtered_questions = dept_questions
+                    print(f"Emergency filtered to {target_category}: {len(filtered_questions)} questions")
+                else:
+                    print(f"No questions found for {target_category}, using all {question_type} questions")
+            
+            # Shuffle and limit to requested count
+            import random
+            random.shuffle(filtered_questions)
+            selected = filtered_questions[:count]
+            
+            print(f"Emergency selected {len(selected)} questions for {department}/{question_type}")
+            return selected
+            
         except Exception as e:
             print(f"ULTRA SYNC ERROR during emergency_get_questions: {e}")
-            # フォールバック：空リストではなく適切なエラーメッセージ
             import traceback
             traceback.print_exc()
             return []
