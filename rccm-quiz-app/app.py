@@ -196,7 +196,56 @@ except ImportError:
     EMERGENCY_DATA_FIX_AVAILABLE = False
     # Create fallback functions for production stability
     def emergency_load_all_questions():
-        return []
+        """Emergency fallback to load all questions from CSV"""
+        import os
+        import csv
+        import traceback
+        
+        try:
+            data_dir = os.path.join(os.path.dirname(__file__), 'data')
+            all_questions = []
+            
+            # Basic subject questions
+            basic_file = os.path.join(data_dir, 'rccm_basic_subjects.csv')
+            if os.path.exists(basic_file):
+                with open(basic_file, 'r', encoding='utf-8') as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        all_questions.append({
+                            'id': row.get('id', ''),
+                            'question': row.get('question', ''),
+                            'choices': [row.get('choice_1', ''), row.get('choice_2', ''), 
+                                      row.get('choice_3', ''), row.get('choice_4', '')],
+                            'correct_answer': row.get('correct_answer', 'A'),
+                            'explanation': row.get('explanation', ''),
+                            'department': 'basic_subject',
+                            'question_type': 'basic'
+                        })
+            
+            # Specialist questions
+            specialist_file = os.path.join(data_dir, 'rccm_specialist_questions.csv')
+            if os.path.exists(specialist_file):
+                with open(specialist_file, 'r', encoding='utf-8') as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        all_questions.append({
+                            'id': row.get('id', ''),
+                            'question': row.get('question', ''),
+                            'choices': [row.get('choice_1', ''), row.get('choice_2', ''), 
+                                      row.get('choice_3', ''), row.get('choice_4', '')],
+                            'correct_answer': row.get('correct_answer', 'A'),
+                            'explanation': row.get('explanation', ''),
+                            'department': row.get('department', ''),
+                            'question_type': 'specialist'
+                        })
+            
+            print(f"Emergency loaded {len(all_questions)} questions")
+            return all_questions
+            
+        except Exception as e:
+            print(f"Emergency load failed: {e}")
+            traceback.print_exc()
+            return []
     def emergency_get_questions(department=None, question_type='specialist', count=10):
         # ULTRA SYNC SIGNATURE FIX: 呼び出し側に合わせたパラメータ名に修正
         try:
