@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}RCCM試験 | RCCM試験問題集{% endblock %}
 {% block content %}
-<!-- 🔍 ULTRA SYNC根本原因診断: カテゴリ={{ question.category }}, タイプ={{ question.question_type }}, ID={{ question.id }} -->
-<!-- 🚨 CRITICAL DEBUG INFO: {% for msg in debug_info %}{{ msg }} | {% endfor %} -->
-{{ forced_debug|safe }}
 <div class="container">
     <!-- 進捗表示 - 年度情報強化版 -->
     <div class="card mb-1" role="banner">
@@ -25,14 +22,9 @@
                     {% elif question.question_type == 'basic' %}
                     <span class="badge bg-secondary text-white" style="font-size: 0.7rem;">4-1 基礎</span>
                     {% endif %}
-                    <!-- ULTRA SYNC: User-friendly category display for consistency verification -->
+                    <!-- カテゴリ表示 - 本番環境用（単一表示） -->
                     {% if department_name %}
-                    <span class="badge bg-success text-white" style="font-size: 0.65rem;">カテゴリ: {{ department_name }}</span>
-                    {% endif %}
-                    <!-- 🔍 ULTRA SYNC診断情報表示 - 開発環境のみ -->
-                    {% if config.DEBUG %}
-                    <span class="badge bg-danger text-white" style="font-size: 0.6rem;">🔍 カテゴリ: {{ question.category | default('不明') }}</span>
-                    <span class="badge bg-warning text-dark" style="font-size: 0.6rem;">🔍 タイプ: {{ question.question_type | default('不明') }}</span>
+                    <span class="badge bg-success text-white" style="font-size: 0.65rem;">{{ department_name }}</span>
                     {% endif %}
                 </div>
             </div>
@@ -50,32 +42,7 @@
   <div class="card-body p-2">
             <!-- 問題内容 - 圧縮版 -->
             <div class="question-container p-1 mb-1" role="article">
-                <!-- 🔍 ULTRA SYNC診断情報 - 開発環境のみ表示 -->
-                {% if config.DEBUG %}
-                <div style="background: #ff0000; color: white; padding: 5px; margin-bottom: 10px; font-size: 0.8rem;">
-                    🔍 段階69診断: カテゴリ={{ question.category }}、タイプ={{ question.question_type }}、ID={{ question.id }}
-                </div>
-                {% if session.ultra_sync_stage69_forced_display %}
-                <div style="background: #ffaa00; color: white; padding: 5px; margin-bottom: 10px; font-size: 0.8rem;">
-                    🔍 段階69強制表示: {{ session.ultra_sync_stage69_forced_display }}
-                </div>
-                {% endif %}
-                {% if session.ultra_sync_stage68_exam_type_check %}
-                <div style="background: #0066cc; color: white; padding: 5px; margin-bottom: 10px; font-size: 0.8rem;">
-                    🔍 段階68: {{ session.ultra_sync_stage68_exam_type_check }}
-                </div>
-                {% endif %}
-                {% if session.ultra_sync_stage68_condition_check %}
-                <div style="background: #009900; color: white; padding: 5px; margin-bottom: 10px; font-size: 0.8rem;">
-                    🔍 条件確認: {{ session.ultra_sync_stage68_condition_check }}
-                </div>
-                {% endif %}
-                {% if session.ultra_sync_stage68_path %}
-                <div style="background: #6600cc; color: white; padding: 5px; margin-bottom: 10px; font-size: 0.8rem;">
-                    🔍 実行パス: {{ session.ultra_sync_stage68_path }}
-                </div>
-                {% endif %}
-                {% endif %}
+                <!-- デバッグ情報は本番環境では非表示 -->
                 <h3 class="question-text fw-bold" id="question-title" style="font-size: 0.95rem; line-height: 1.3;">
                     {{ question.question }}
                 </h3>
